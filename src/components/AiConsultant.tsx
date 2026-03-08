@@ -172,6 +172,8 @@ export default function AiConsultant() {
     email: "",
   });
   const [submitting, setSubmitting] = useState(false);
+  const [chatMessages, setChatMessages] = useState<{ role: "user" | "bot"; text: string }[]>([]);
+  const [chatInput, setChatInput] = useState("");
 
   const handleSelect = (field: keyof UserData, value: string, nextStep: Step) => {
     setUserData((prev) => ({ ...prev, [field]: value }));
@@ -219,6 +221,42 @@ export default function AiConsultant() {
       phone: "",
       email: "",
     });
+  };
+
+  const qaKnowledge = [
+    { keywords: ["價格", "多少錢", "費用", "報價", "成本"], answer: "GraBox 智取櫃依規格不同，單機版約 NT$15-25 萬，聯網版約 NT$25-40 萬。量大可議價，歡迎洽詢詳細報價。" },
+    { keywords: ["交期", "多久", "什麼時候", "等多久"], answer: "標準規格約 4-6 週交貨。OEM/ODM 客製化訂單約 8-12 週，視數量與客製程度而定。" },
+    { keywords: ["保固", "維修", "售後", "壞了"], answer: "全產品提供一年免費保固，可加購延長保固至三年。全台灣服務據點，24小時線上客服支援。" },
+    { keywords: ["付款", "支付", "怎麼付", "刷卡", "LINE Pay"], answer: "支持多元支付：LINE Pay、街口支付、悠遊卡、信用卡、Apple Pay、Google Pay，也可搭配企業月結方案。" },
+    { keywords: ["尺寸", "大小", "幾格", "規格", "多大"], answer: "GraBox 提供多種規格：6格、12格、18格、24格，也可依場地需求客製尺寸。標準寬度 60-120cm。" },
+    { keywords: ["溫控", "溫度", "冷藏", "冷凍", "保溫"], answer: "支援三溫層控制：常溫（15-25°C）、冷藏（2-8°C）、冷凍（-18°C以下），可混搭配置。" },
+    { keywords: ["安裝", "裝機", "到府", "設定"], answer: "我們提供全台到府安裝服務，含場地評估、設備安裝、系統設定、員工教育訓練，一站式完成。" },
+    { keywords: ["經銷", "代理", "合作", "推薦", "加盟"], answer: "歡迎加入 MCS 經銷夥伴計畫！推薦成功可獲得積分獎勵，兌換商品、電商點數或 LINE 點數。" },
+    { keywords: ["販賣機", "自動販賣", "無人"], answer: "MCS 智能販賣機搭載 AI 系統，支援人臉辨識、多元支付、遠端庫存管理，100% 台灣設計製造。" },
+    { keywords: ["POS", "點餐", "KDS", "廚房"], answer: "我們提供 POS 點餐系統與 KDS 廚房顯示系統串接，支援外送平台整合，多店統一管理。" },
+    { keywords: ["會員", "積分", "點數", "LINE點數"], answer: "MCS 會員系統支援積分累積與兌換：折抵商品、換電商點數、或兌換 LINE 點數（星益欣/12cm 整合）。" },
+    { keywords: ["OEM", "ODM", "貼牌", "客製", "自有品牌"], answer: "OEM/ODM 全客製服務，外觀設計到軟體介面，100% 台灣製造。少量多樣、彈性生產。" },
+    { keywords: ["台灣", "製造", "品質", "MIT"], answer: "MCS 所有智慧設備皆為台灣設計、台灣製造，通過嚴格品質檢測，提供完整售後服務與保固。" },
+    { keywords: ["雲端", "數據", "分析", "報表"], answer: "MCS 雲端營運平台提供即時 Dashboard、AI 銷售預測、庫存管理、顧客行為分析、自動化報表。" },
+    { keywords: ["你好", "哈囉", "嗨", "Hi", "hello"], answer: "您好！我可以為您介紹 GraBox 智取櫃、智能販賣機、POS/KDS 系統、會員系統等方案，請問您想了解什麼？" },
+  ];
+
+  const handleChat = () => {
+    if (!chatInput.trim()) return;
+    const question = chatInput.trim();
+    setChatInput("");
+    setChatMessages((prev) => [...prev, { role: "user", text: question }]);
+
+    const matched = qaKnowledge.find((qa) =>
+      qa.keywords.some((kw) => question.toLowerCase().includes(kw.toLowerCase()))
+    );
+    const answer = matched
+      ? matched.answer
+      : `感謝您的提問！關於「${question}」的問題，建議您撥打 (02) 2558-8848 或 Email 至 service@transtep.com，我們的專員會為您詳細說明。`;
+
+    setTimeout(() => {
+      setChatMessages((prev) => [...prev, { role: "bot", text: answer }]);
+    }, 500);
   };
 
   const recommendation = step === "recommend" || step === "contact" || step === "done"
@@ -441,6 +479,7 @@ export default function AiConsultant() {
               <>
                 <BotMessage text="感謝您的諮詢！我們的專員會盡快與您聯繫。" />
                 <BotMessage text="您也可以加入 MCS 會員，推薦朋友還能獲得積分獎勵喔！" />
+                <BotMessage text="有任何問題都可以直接在下方輸入，我隨時為您解答！" />
                 <div className="space-y-2 mt-2">
                   <a
                     href="#services"
@@ -458,13 +497,44 @@ export default function AiConsultant() {
                 </div>
               </>
             )}
+
+            {/* Free Chat Messages */}
+            {chatMessages.map((msg, i) =>
+              msg.role === "user" ? (
+                <UserMessage key={i} text={msg.text} />
+              ) : (
+                <BotMessage key={i} text={msg.text} />
+              )
+            )}
           </div>
 
-          {/* Footer */}
-          <div className="px-5 py-3 border-t border-gray-100 text-center">
-            <span className="text-xs text-gray-400">
-              MCS AI 智慧顧問 — 台灣製造，品質保證
-            </span>
+          {/* Chat Input - Always visible */}
+          <div className="px-4 py-3 border-t border-gray-100">
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleChat()}
+                placeholder="有問題？直接輸入或用語音..."
+                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
+              />
+              <button
+                onClick={handleChat}
+                disabled={!chatInput.trim()}
+                className="bg-mcs-orange text-white px-3 py-2 rounded-lg hover:bg-mcs-orange-light transition-colors disabled:opacity-30"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+              </button>
+            </div>
+            <div className="text-[10px] text-gray-400 mt-1.5 flex items-center gap-1">
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+              </svg>
+              Win+H 啟動語音輸入
+            </div>
           </div>
         </div>
       )}
