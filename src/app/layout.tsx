@@ -80,6 +80,12 @@ export const metadata: Metadata = {
       "新加坡MCS銓幻元科技，GraBox AI智取櫃、自助服務設備、POS/KDS系統串接、雲端營運平台。",
     images: ["/images/mcs-logo.png"],
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_ID,
+    other: {
+      "msvalidate.01": process.env.NEXT_PUBLIC_BING_ID || "",
+    },
+  },
   robots: {
     index: true,
     follow: true,
