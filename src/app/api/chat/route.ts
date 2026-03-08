@@ -109,9 +109,27 @@ export async function POST(req: NextRequest) {
 
     const model = getGeminiModel();
 
-    // Build chat history (all messages except the last user message)
-    const history = messages.slice(0, -1).map((msg: { role: string; text: string }) => ({
-      role: msg.role === "bot" ? "model" : "user",
+    // Filter and fix history: Gemini requires alternating user/model roles
+    // Merge consecutive same-role messages and ensure proper alternation
+    const filtered: { role: string; text: string }[] = [];
+    for (const msg of messages.slice(0, -1)) {
+      const role = msg.role === "bot" ? "model" : "user";
+      const last = filtered[filtered.length - 1];
+      if (last && last.role === role) {
+        // Merge consecutive same-role messages
+        last.text += "\n" + msg.text;
+      } else {
+        filtered.push({ role, text: msg.text });
+      }
+    }
+
+    // Gemini history must start with "user" role — if it starts with "model", prepend a dummy user turn
+    if (filtered.length > 0 && filtered[0].role === "model") {
+      filtered.unshift({ role: "user", text: "你好" });
+    }
+
+    const history = filtered.map((msg) => ({
+      role: msg.role,
       parts: [{ text: msg.text }],
     }));
 
@@ -119,7 +137,7 @@ export async function POST(req: NextRequest) {
 
     const chat = model.startChat({
       history,
-      systemInstruction: { role: "user", parts: [{ text: systemPrompt }] },
+      systemInstruction: systemPrompt,
     });
 
     const result = await chat.sendMessage(lastMessage);
@@ -128,8 +146,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ answer: text });
   } catch (error) {
     console.error("Chat API error:", error);
+    // Return error details in dev for debugging
+    const errMsg = error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json({
-      answer: "抱歉，我目前暫時無法回應，請稍後再試，或直接 Email 至 service@transtep.com，我們的專員會為您服務！🍊",
+      answer: `抱歉，我目前暫時無法回應，請稍後再試，或直接 Email 至 service@transtep.com，我們的專員會為您服務！🍊`,
+      debug: errMsg,
     });
   }
 }

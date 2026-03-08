@@ -96,9 +96,19 @@ export default function AiConsultant() {
     recognition.interimResults = true;
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
-      const transcript = Array.from(event.results)
+      let transcript = Array.from(event.results)
         .map((result) => result[0].transcript)
         .join("");
+      // Fix common misrecognitions for product terms
+      transcript = transcript
+        .replace(/breaks/gi, "GraBox")
+        .replace(/grab box/gi, "GraBox")
+        .replace(/gray box/gi, "GraBox")
+        .replace(/grape box/gi, "GraBox")
+        .replace(/借錢/g, "介紹")
+        .replace(/MCS/gi, "MCS")
+        .replace(/pos/gi, "POS")
+        .replace(/kds/gi, "KDS");
       setInput(transcript);
 
       // If final result, auto-send
