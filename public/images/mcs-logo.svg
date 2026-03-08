@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" fill="none">
+  <!-- Orange Circle Icon -->
+  <g transform="translate(50, 50)">
+    <!-- Outer ring -->
+    <circle cx="0" cy="0" r="38" stroke="#E8751A" stroke-width="6" fill="none"/>
+    <!-- Inner circle -->
+    <circle cx="0" cy="0" r="10" fill="#E8751A"/>
+    <!-- Top-right swoosh (clockwise arrow) -->
+    <path d="M 0 -38 A 38 38 0 0 1 33 -19" stroke="#E8751A" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M 28 -32 L 33 -19 L 21 -22" fill="#E8751A"/>
+    <!-- Bottom-left swoosh (clockwise arrow) -->
+    <path d="M 0 38 A 38 38 0 0 1 -33 19" stroke="#E8751A" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M -28 32 L -33 19 L -21 22" fill="#E8751A"/>
+    <!-- Inner ring -->
+    <circle cx="0" cy="0" r="20" stroke="#E8751A" stroke-width="4" fill="none" opacity="0.5"/>
+  </g>
+
+  <!-- MCS Text -->
+  <text x="105" y="52" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="52" fill="#1B3A5C" letter-spacing="2">MCS</text>
+
+  <!-- English subtitle -->
+  <text x="105" y="72" font-family="Arial, sans-serif" font-weight="400" font-size="11" fill="#666" letter-spacing="1.5">META CLEARING STATION PTE. LTD.</text>
+
+  <!-- Chinese name -->
+  <text x="105" y="90" font-family="Arial, Microsoft JhengHei, sans-serif" font-weight="400" font-size="11" fill="#888" letter-spacing="2">銓幻元科技股份有限公司</text>
+</svg>
