@@ -73,7 +73,7 @@ export default function Contact() {
             <h3 className="text-xl font-bold text-mcs-blue-dark mb-6">
               填寫諮詢表單
             </h3>
-            <form action="https://formspree.io/f/mlgpdlqv" method="POST" className="space-y-5">
+            <form action="https://formspree.io/f/mqeyadkg" method="POST" className="space-y-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   公司名稱
