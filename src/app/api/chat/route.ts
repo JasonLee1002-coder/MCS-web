@@ -96,7 +96,10 @@ function getGeminiModel() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error("GEMINI_API_KEY not set");
   const genAI = new GoogleGenerativeAI(apiKey);
-  return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  return genAI.getGenerativeModel({
+    model: "gemini-2.5-flash",
+    systemInstruction: { role: "user", parts: [{ text: systemPrompt }] },
+  });
 }
 
 export async function POST(req: NextRequest) {
@@ -135,10 +138,7 @@ export async function POST(req: NextRequest) {
 
     const lastMessage = messages[messages.length - 1].text;
 
-    const chat = model.startChat({
-      history,
-      systemInstruction: systemPrompt,
-    });
+    const chat = model.startChat({ history });
 
     const result = await chat.sendMessage(lastMessage);
     const text = result.response.text();
