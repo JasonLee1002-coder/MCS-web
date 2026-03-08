@@ -1,267 +1,93 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-type Step =
-  | "welcome"
-  | "industry"
-  | "scale"
-  | "product"
-  | "pain"
-  | "recommend"
-  | "contact"
-  | "done";
-
-interface UserData {
-  industry: string;
-  scale: string;
-  product: string;
-  pain: string;
-  name: string;
-  company: string;
-  phone: string;
-  email: string;
+interface Message {
+  role: "user" | "bot";
+  text: string;
+  options?: { label: string; value: string }[];
 }
 
-const industryOptions = [
-  { label: "餐飲業", value: "餐飲業", icon: "🍽️" },
-  { label: "零售業", value: "零售業", icon: "🛒" },
-  { label: "飯店旅宿", value: "飯店旅宿", icon: "🏨" },
-  { label: "企業團膳", value: "企業團膳", icon: "🏢" },
-  { label: "智能販賣", value: "智能販賣", icon: "🤖" },
-  { label: "其他", value: "其他", icon: "💡" },
+const qaKnowledge = [
+  { keywords: ["價格", "多少錢", "費用", "報價", "成本", "價位"], answer: "GraBox 智取櫃依規格不同，單機版約 NT$15-25 萬，聯網版約 NT$25-40 萬。量大可議價，歡迎留下聯繫方式取得詳細報價！" },
+  { keywords: ["交期", "多久", "什麼時候", "等多久", "幾週"], answer: "標準規格約 4-6 週交貨。OEM/ODM 客製化訂單約 8-12 週，視數量與客製程度而定。" },
+  { keywords: ["保固", "維修", "售後", "壞了", "故障"], answer: "全產品提供一年免費保固，可加購延長保固至三年。全台灣服務據點，線上客服支援。" },
+  { keywords: ["付款", "支付", "怎麼付", "刷卡", "LINE Pay", "支付方式"], answer: "支持多元支付：LINE Pay、街口支付、悠遊卡、信用卡、Apple Pay、Google Pay，也可搭配企業月結方案。" },
+  { keywords: ["尺寸", "大小", "幾格", "規格", "多大", "格數"], answer: "GraBox 提供多種規格：6格、12格、18格、24格，也可依場地需求客製尺寸。標準寬度 60-120cm。" },
+  { keywords: ["溫控", "溫度", "冷藏", "冷凍", "保溫", "三溫"], answer: "支援三溫層控制：常溫（15-25°C）、冷藏（2-8°C）、冷凍（-18°C以下），可混搭配置。" },
+  { keywords: ["安裝", "裝機", "到府", "設定", "裝設"], answer: "我們提供全台到府安裝服務，含場地評估、設備安裝、系統設定、員工教育訓練，一站式完成。" },
+  { keywords: ["經銷", "代理", "合作", "推薦", "加盟", "夥伴"], answer: "歡迎加入 MCS 經銷夥伴計畫！推薦成功可獲得積分獎勵，兌換商品、電商點數或 LINE 點數。請留下聯繫方式，我們會盡快聯繫您！" },
+  { keywords: ["販賣機", "自動販賣", "無人", "自動"], answer: "MCS 智能販賣機搭載 AI 系統，支援人臉辨識、多元支付、遠端庫存管理，100% 台灣設計製造，適用商場、辦公大樓、學校等場景。" },
+  { keywords: ["POS", "點餐", "KDS", "廚房"], answer: "我們提供 POS 點餐系統與 KDS 廚房顯示系統串接，支援外送平台整合（UberEats/Foodpanda），多店統一管理。" },
+  { keywords: ["會員", "積分", "點數", "LINE點數", "獎勵"], answer: "MCS 會員系統支援積分累積與兌換：折抵商品、換電商點數、或兌換 LINE 點數（星益欣/12cm 整合），幫助您經營忠實客戶。" },
+  { keywords: ["OEM", "ODM", "貼牌", "客製", "自有品牌", "品牌"], answer: "OEM/ODM 全客製服務，從外觀設計到軟體介面，100% 台灣製造。少量多樣、彈性生產，支援品牌貼牌需求。" },
+  { keywords: ["台灣", "製造", "品質", "MIT", "哪裡做"], answer: "MCS 所有智慧設備皆為台灣設計、台灣製造，通過嚴格品質檢測，提供完整售後服務與保固。" },
+  { keywords: ["雲端", "數據", "分析", "報表", "dashboard"], answer: "MCS 雲端營運平台提供即時 Dashboard、AI 銷售預測、庫存管理、顧客行為分析、自動化報表。" },
+  { keywords: ["GraBox", "grabox", "智取櫃", "取餐櫃", "取餐"], answer: "GraBox AI 智取櫃是我們的明星產品！結合 AI 訂餐系統，提供單機版與聯網版，支援三溫層控制，適用餐飲、飯店、企業等場景。想了解更多嗎？可以問我價格、規格、溫控等問題！" },
+  { keywords: ["你好", "哈囉", "嗨", "Hi", "hello", "您好"], answer: "您好！我是 Yuzu 🍊 很高興為您服務！您可以直接問我任何關於智取櫃、智能販賣機、POS系統、會員系統的問題，或者告訴我您的需求，我來為您推薦方案！" },
+  { keywords: ["謝謝", "感謝", "thanks", "Thank"], answer: "不客氣！如果還有其他問題隨時問我 🍊 想要進一步了解的話，也可以留下聯絡方式，我們的專員會為您服務！" },
+  { keywords: ["餐廳", "餐飲", "小吃", "便當", "飲料", "咖啡"], answer: "餐飲業是我們最擅長的領域！GraBox 智取櫃可以解決取餐效率問題，搭配 POS/KDS 系統串接，讓您的餐廳全面數位化。想知道適合您規模的方案嗎？" },
+  { keywords: ["零售", "商店", "超商", "店面"], answer: "零售業我們提供智能販賣機、POS 系統串接、會員管理系統等完整解決方案，幫助您實現無人化或半自助營運模式。" },
+  { keywords: ["聯絡", "聯繫", "找人", "業務", "電話"], answer: "請留下您的姓名、公司和 Email，我會請專員盡快與您聯繫！或者直接 Email 至 service@transtep.com。" },
 ];
 
-const scaleOptions: Record<string, { label: string; value: string }[]> = {
-  餐飲業: [
-    { label: "小型（1-2 間店）", value: "小型" },
-    { label: "中型（3-10 間店）", value: "中型" },
-    { label: "連鎖（10 間以上）", value: "連鎖" },
-  ],
-  零售業: [
-    { label: "單店", value: "單店" },
-    { label: "多店（3-10 間）", value: "多店" },
-    { label: "連鎖品牌", value: "連鎖品牌" },
-  ],
-  飯店旅宿: [
-    { label: "民宿/小型旅館", value: "小型" },
-    { label: "中型飯店", value: "中型" },
-    { label: "大型飯店/連鎖", value: "大型" },
-  ],
-  企業團膳: [
-    { label: "50人以下", value: "50人以下" },
-    { label: "50-200人", value: "50-200人" },
-    { label: "200人以上", value: "200人以上" },
-  ],
-  智能販賣: [
-    { label: "單點設置", value: "單點" },
-    { label: "多點佈建", value: "多點" },
-    { label: "大量佈建（10台以上）", value: "大量" },
-  ],
-  其他: [
-    { label: "小型", value: "小型" },
-    { label: "中型", value: "中型" },
-    { label: "大型", value: "大型" },
-  ],
-};
-
-const productOptions: Record<string, { label: string; value: string }[]> = {
-  餐飲業: [
-    { label: "便當/定食", value: "便當定食" },
-    { label: "飲品/咖啡", value: "飲品咖啡" },
-    { label: "麵包/烘焙", value: "麵包烘焙" },
-    { label: "複合式餐飲", value: "複合式" },
-  ],
-  零售業: [
-    { label: "食品/生鮮", value: "食品生鮮" },
-    { label: "日用品", value: "日用品" },
-    { label: "複合式零售", value: "複合式" },
-  ],
-  飯店旅宿: [
-    { label: "客房餐飲", value: "客房餐飲" },
-    { label: "自助吧/Buffet", value: "自助吧" },
-    { label: "外帶/外送", value: "外帶外送" },
-  ],
-  企業團膳: [
-    { label: "員工餐廳", value: "員工餐廳" },
-    { label: "便當/餐盒", value: "便當餐盒" },
-    { label: "下午茶/點心", value: "下午茶" },
-  ],
-  智能販賣: [
-    { label: "食品飲料", value: "食品飲料" },
-    { label: "生活用品", value: "生活用品" },
-    { label: "鮮食/冷藏品", value: "鮮食冷藏" },
-  ],
-  其他: [
-    { label: "食品相關", value: "食品" },
-    { label: "非食品", value: "非食品" },
-    { label: "混合型", value: "混合" },
-  ],
-};
-
-const painOptions = [
-  { label: "取餐效率太低", value: "取餐效率" },
-  { label: "人力不足/成本高", value: "人力成本" },
-  { label: "需要 POS/KDS 系統", value: "系統需求" },
-  { label: "想導入智慧設備", value: "智慧設備" },
-  { label: "會員經營/行銷整合", value: "會員行銷" },
-  { label: "想做品牌貼牌(OEM/ODM)", value: "品牌貼牌" },
-];
-
-function getRecommendation(data: UserData): {
-  title: string;
-  solutions: string[];
-  message: string;
-} {
-  const solutions: string[] = [];
-  let title = "";
-
-  if (
-    data.pain === "取餐效率" ||
-    data.pain === "人力成本" ||
-    data.pain === "智慧設備"
-  ) {
-    if (data.scale === "小型" || data.scale === "單店" || data.scale === "單點") {
-      solutions.push("GraBox AI智取櫃 — 單機版");
-      title = "GraBox 單機版最適合您！";
-    } else {
-      solutions.push("GraBox AI智取櫃 — 聯網版");
-      title = "GraBox 聯網版是您的最佳選擇！";
-    }
-  }
-
-  if (data.pain === "系統需求") {
-    solutions.push("餐飲與零售系統串接（POS / KDS）");
-    solutions.push("雲端營運平台 + AI分析模組");
-    title = "系統串接 + 雲端平台方案";
-  }
-
-  if (data.pain === "會員行銷") {
-    solutions.push("企業會員系統整合（ERP）");
-    solutions.push("雲端營運平台 + AI分析模組");
-    title = "會員經營整合方案";
-  }
-
-  if (data.pain === "品牌貼牌") {
-    solutions.push("OEM / ODM 貼牌客製（100% 台灣製造）");
-    title = "OEM/ODM 品牌客製方案";
-  }
-
-  if (solutions.length === 0) {
-    solutions.push("GraBox AI智取櫃");
-    solutions.push("雲端營運平台 + AI分析模組");
-    title = "為您量身打造的整合方案";
-  }
-
-  const message = `根據您的需求（${data.industry}・${data.scale}・${data.product}），我們推薦以下方案。所有設備皆為台灣製造，品質有保障！`;
-
-  return { title, solutions, message };
+function findAnswer(question: string): string {
+  const q = question.toLowerCase();
+  const matched = qaKnowledge.find((qa) =>
+    qa.keywords.some((kw) => q.includes(kw.toLowerCase()))
+  );
+  if (matched) return matched.answer;
+  return `謝謝您的提問！關於「${question}」，建議您留下聯繫方式，或 Email 至 service@transtep.com，我們的專員會為您詳細說明。您也可以試著問我：價格、規格、交期、溫控、安裝、經銷合作 等問題！`;
 }
+
+const quickTopics = [
+  "GraBox 智取櫃是什麼？",
+  "價格大概多少？",
+  "有哪些規格？",
+  "可以客製嗎？",
+  "如何成為經銷夥伴？",
+  "我想聯絡業務",
+];
 
 export default function AiConsultant() {
   const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState<Step>("welcome");
-  const [userData, setUserData] = useState<UserData>({
-    industry: "",
-    scale: "",
-    product: "",
-    pain: "",
-    name: "",
-    company: "",
-    phone: "",
-    email: "",
-  });
-  const [submitting, setSubmitting] = useState(false);
-  const [chatMessages, setChatMessages] = useState<{ role: "user" | "bot"; text: string }[]>([]);
-  const [chatInput, setChatInput] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const chatRef = useRef<HTMLDivElement>(null);
 
-  const handleSelect = (field: keyof UserData, value: string, nextStep: Step) => {
-    setUserData((prev) => ({ ...prev, [field]: value }));
-    setStep(nextStep);
-  };
-
-  const handleContactSubmit = async () => {
-    if (!userData.name || !userData.phone) return;
-    setSubmitting(true);
-
-    try {
-      await fetch("https://formspree.io/f/mqeyadkg", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          _subject: `[AI顧問] ${userData.industry} - ${userData.company || "未填公司"}`,
-          company: userData.company,
-          name: userData.name,
-          phone: userData.phone,
-          email: userData.email,
-          industry: userData.industry,
-          scale: userData.scale,
-          product: userData.product,
-          pain: userData.pain,
-          source: "AI智慧顧問",
-        }),
-      });
-      setStep("done");
-    } catch {
-      setStep("done");
-    } finally {
-      setSubmitting(false);
+  // Auto scroll to bottom
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-  };
+  }, [messages]);
 
-  const reset = () => {
-    setStep("welcome");
-    setUserData({
-      industry: "",
-      scale: "",
-      product: "",
-      pain: "",
-      name: "",
-      company: "",
-      phone: "",
-      email: "",
-    });
-  };
+  // Show welcome when first opened
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      setMessages([
+        { role: "bot", text: "您好！我是 Yuzu（柚子）🍊 MCS 銓幻元科技的 AI 顧問" },
+        { role: "bot", text: "您可以直接輸入問題，或點選下方常見主題開始！" },
+      ]);
+    }
+  }, [isOpen, messages.length]);
 
-  const qaKnowledge = [
-    { keywords: ["價格", "多少錢", "費用", "報價", "成本"], answer: "GraBox 智取櫃依規格不同，單機版約 NT$15-25 萬，聯網版約 NT$25-40 萬。量大可議價，歡迎洽詢詳細報價。" },
-    { keywords: ["交期", "多久", "什麼時候", "等多久"], answer: "標準規格約 4-6 週交貨。OEM/ODM 客製化訂單約 8-12 週，視數量與客製程度而定。" },
-    { keywords: ["保固", "維修", "售後", "壞了"], answer: "全產品提供一年免費保固，可加購延長保固至三年。全台灣服務據點，24小時線上客服支援。" },
-    { keywords: ["付款", "支付", "怎麼付", "刷卡", "LINE Pay"], answer: "支持多元支付：LINE Pay、街口支付、悠遊卡、信用卡、Apple Pay、Google Pay，也可搭配企業月結方案。" },
-    { keywords: ["尺寸", "大小", "幾格", "規格", "多大"], answer: "GraBox 提供多種規格：6格、12格、18格、24格，也可依場地需求客製尺寸。標準寬度 60-120cm。" },
-    { keywords: ["溫控", "溫度", "冷藏", "冷凍", "保溫"], answer: "支援三溫層控制：常溫（15-25°C）、冷藏（2-8°C）、冷凍（-18°C以下），可混搭配置。" },
-    { keywords: ["安裝", "裝機", "到府", "設定"], answer: "我們提供全台到府安裝服務，含場地評估、設備安裝、系統設定、員工教育訓練，一站式完成。" },
-    { keywords: ["經銷", "代理", "合作", "推薦", "加盟"], answer: "歡迎加入 MCS 經銷夥伴計畫！推薦成功可獲得積分獎勵，兌換商品、電商點數或 LINE 點數。請透過網站表單或 AI 顧問留下資料，我們會盡快聯繫您！" },
-    { keywords: ["販賣機", "自動販賣", "無人"], answer: "MCS 智能販賣機搭載 AI 系統，支援人臉辨識、多元支付、遠端庫存管理，100% 台灣設計製造。" },
-    { keywords: ["POS", "點餐", "KDS", "廚房"], answer: "我們提供 POS 點餐系統與 KDS 廚房顯示系統串接，支援外送平台整合，多店統一管理。" },
-    { keywords: ["會員", "積分", "點數", "LINE點數"], answer: "MCS 會員系統支援積分累積與兌換：折抵商品、換電商點數、或兌換 LINE 點數（星益欣/12cm 整合）。" },
-    { keywords: ["OEM", "ODM", "貼牌", "客製", "自有品牌"], answer: "OEM/ODM 全客製服務，外觀設計到軟體介面，100% 台灣製造。少量多樣、彈性生產。" },
-    { keywords: ["台灣", "製造", "品質", "MIT"], answer: "MCS 所有智慧設備皆為台灣設計、台灣製造，通過嚴格品質檢測，提供完整售後服務與保固。" },
-    { keywords: ["雲端", "數據", "分析", "報表"], answer: "MCS 雲端營運平台提供即時 Dashboard、AI 銷售預測、庫存管理、顧客行為分析、自動化報表。" },
-    { keywords: ["你好", "哈囉", "嗨", "Hi", "hello"], answer: "您好！我可以為您介紹 GraBox 智取櫃、智能販賣機、POS/KDS 系統、會員系統等方案，請問您想了解什麼？" },
-  ];
+  const sendMessage = (text: string) => {
+    if (!text.trim()) return;
+    const question = text.trim();
+    setInput("");
 
-  const handleChat = () => {
-    if (!chatInput.trim()) return;
-    const question = chatInput.trim();
-    setChatInput("");
-    setChatMessages((prev) => [...prev, { role: "user", text: question }]);
-
-    const matched = qaKnowledge.find((qa) =>
-      qa.keywords.some((kw) => question.toLowerCase().includes(kw.toLowerCase()))
-    );
-    const answer = matched
-      ? matched.answer
-      : `感謝您的提問！關於「${question}」的問題，建議您Email 至 service@transtep.com 或透過網站表單聯繫我們，我們的專員會為您詳細說明。`;
+    setMessages((prev) => [...prev, { role: "user", text: question }]);
 
     setTimeout(() => {
-      setChatMessages((prev) => [...prev, { role: "bot", text: answer }]);
-    }, 500);
+      const answer = findAnswer(question);
+      setMessages((prev) => [...prev, { role: "bot", text: answer }]);
+    }, 400);
   };
 
-  const recommendation = step === "recommend" || step === "contact" || step === "done"
-    ? getRecommendation(userData)
-    : null;
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") sendMessage(input);
+  };
 
   return (
     <>
@@ -280,18 +106,16 @@ export default function AiConsultant() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[380px] max-h-[600px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
+        <div className="fixed bottom-6 right-6 z-50 w-[380px] h-[560px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-mcs-blue-dark to-mcs-blue px-5 py-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-mcs-blue-dark to-mcs-blue px-5 py-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                </svg>
+              <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center text-xl">
+                🍊
               </div>
               <div>
                 <div className="text-white font-bold text-sm">Yuzu AI 顧問</div>
-                <div className="text-white/60 text-xs">線上為您服務</div>
+                <div className="text-white/60 text-xs">銓幻元科技 MCS</div>
               </div>
             </div>
             <button
@@ -305,219 +129,61 @@ export default function AiConsultant() {
           </div>
 
           {/* Chat Body */}
-          <div className="flex-1 overflow-y-auto p-5 space-y-4">
-            {/* Welcome */}
-            {step === "welcome" && (
-              <>
-                <BotMessage text="您好！我是 Yuzu（柚子）🍊 MCS 的 AI 智慧顧問" />
-                <BotMessage text="我可以根據您的需求，推薦最適合的智慧設備方案。台灣製造，品質保證！" />
-                <VoiceTip />
-                <BotMessage text="請問您的產業類型是？" />
-                <div className="grid grid-cols-2 gap-2 mt-2">
-                  {industryOptions.map((opt) => (
-                    <OptionButton
-                      key={opt.value}
-                      label={`${opt.icon} ${opt.label}`}
-                      onClick={() => handleSelect("industry", opt.value, "scale")}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
-            {/* Scale */}
-            {step === "scale" && (
-              <>
-                <UserMessage text={userData.industry} />
-                <BotMessage text={`了解！您是${userData.industry}。請問營業規模大約是？`} />
-                <div className="space-y-2 mt-2">
-                  {(scaleOptions[userData.industry] || scaleOptions["其他"]).map((opt) => (
-                    <OptionButton
-                      key={opt.value}
-                      label={opt.label}
-                      onClick={() => handleSelect("scale", opt.value, "product")}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
-            {/* Product */}
-            {step === "product" && (
-              <>
-                <UserMessage text={userData.scale} />
-                <BotMessage text="請問您主要經營的品項是？" />
-                <div className="space-y-2 mt-2">
-                  {(productOptions[userData.industry] || productOptions["其他"]).map((opt) => (
-                    <OptionButton
-                      key={opt.value}
-                      label={opt.label}
-                      onClick={() => handleSelect("product", opt.value, "pain")}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
-            {/* Pain Point */}
-            {step === "pain" && (
-              <>
-                <UserMessage text={userData.product} />
-                <BotMessage text="最後一個問題，您目前最想解決的問題是？" />
-                <div className="space-y-2 mt-2">
-                  {painOptions.map((opt) => (
-                    <OptionButton
-                      key={opt.value}
-                      label={opt.label}
-                      onClick={() => handleSelect("pain", opt.value, "recommend")}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
-            {/* Recommendation */}
-            {step === "recommend" && recommendation && (
-              <>
-                <UserMessage text={userData.pain} />
-                <BotMessage text="分析完成！以下是為您量身推薦的方案：" />
-                <div className="bg-gradient-to-br from-mcs-blue-dark to-mcs-blue rounded-xl p-4 text-white">
-                  <div className="font-bold text-mcs-orange mb-2">
-                    {recommendation.title}
+          <div ref={chatRef} className="flex-1 overflow-y-auto p-4 space-y-3">
+            {messages.map((msg, i) =>
+              msg.role === "bot" ? (
+                <div key={i} className="flex gap-2">
+                  <div className="w-7 h-7 bg-mcs-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-sm">
+                    🍊
                   </div>
-                  <p className="text-sm text-gray-300 mb-3">
-                    {recommendation.message}
-                  </p>
-                  <ul className="space-y-1.5">
-                    {recommendation.solutions.map((s) => (
-                      <li key={s} className="flex items-center gap-2 text-sm">
-                        <span className="w-1.5 h-1.5 bg-mcs-orange rounded-full flex-shrink-0" />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="bg-gray-100 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-gray-700 max-w-[280px]">
+                    {msg.text}
+                  </div>
                 </div>
-                <BotMessage text="想進一步了解嗎？留下聯絡方式，我們的專員會盡快與您聯繫！" />
-                <OptionButton
-                  label="留下聯絡資訊"
-                  onClick={() => setStep("contact")}
-                />
-                <button
-                  onClick={reset}
-                  className="text-sm text-gray-400 hover:text-gray-600 mt-1"
-                >
-                  重新開始
-                </button>
-              </>
-            )}
-
-            {/* Contact Form */}
-            {step === "contact" && (
-              <>
-                <BotMessage text="請填寫以下資訊，我們會盡快聯繫您：" />
-                <div className="bg-mcs-blue-dark/5 border border-mcs-blue/10 rounded-xl px-4 py-3 text-xs text-gray-500 flex items-center gap-2">
-                  <svg className="w-4 h-4 text-mcs-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
-                  </svg>
-                  <span>按 <kbd className="bg-gray-200 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold">Win</kbd> + <kbd className="bg-gray-200 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold">H</kbd> 啟動語音，用說的填寫更快！</span>
-                </div>
-                <div className="space-y-3 mt-2">
-                  <input
-                    type="text"
-                    placeholder="姓名 *"
-                    value={userData.name}
-                    onChange={(e) =>
-                      setUserData((prev) => ({ ...prev, name: e.target.value }))
-                    }
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
-                  />
-                  <input
-                    type="text"
-                    placeholder="公司名稱"
-                    value={userData.company}
-                    onChange={(e) =>
-                      setUserData((prev) => ({ ...prev, company: e.target.value }))
-                    }
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="電話 *"
-                    value={userData.phone}
-                    onChange={(e) =>
-                      setUserData((prev) => ({ ...prev, phone: e.target.value }))
-                    }
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    value={userData.email}
-                    onChange={(e) =>
-                      setUserData((prev) => ({ ...prev, email: e.target.value }))
-                    }
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
-                  />
-                  <button
-                    onClick={handleContactSubmit}
-                    disabled={submitting || !userData.name || !userData.phone}
-                    className="w-full bg-mcs-orange text-white py-2.5 rounded-lg text-sm font-medium hover:bg-mcs-orange-light transition-colors disabled:opacity-50"
-                  >
-                    {submitting ? "送出中..." : "送出諮詢"}
-                  </button>
-                </div>
-              </>
-            )}
-
-            {/* Done */}
-            {step === "done" && (
-              <>
-                <BotMessage text="感謝您的諮詢！我們的專員會盡快與您聯繫。" />
-                <BotMessage text="您也可以加入 MCS 會員，推薦朋友還能獲得積分獎勵喔！" />
-                <BotMessage text="有任何問題都可以直接在下方輸入，我隨時為您解答！" />
-                <div className="space-y-2 mt-2">
-                  <a
-                    href="#services"
-                    onClick={() => setIsOpen(false)}
-                    className="block text-center bg-mcs-blue text-white py-2 rounded-lg text-sm font-medium hover:bg-mcs-blue-dark transition-colors"
-                  >
-                    瀏覽更多方案
-                  </a>
-                  <button
-                    onClick={reset}
-                    className="w-full text-sm text-gray-400 hover:text-gray-600"
-                  >
-                    重新諮詢
-                  </button>
-                </div>
-              </>
-            )}
-
-            {/* Free Chat Messages */}
-            {chatMessages.map((msg, i) =>
-              msg.role === "user" ? (
-                <UserMessage key={i} text={msg.text} />
               ) : (
-                <BotMessage key={i} text={msg.text} />
+                <div key={i} className="flex justify-end">
+                  <div className="bg-mcs-orange text-white rounded-xl rounded-tr-sm px-4 py-2.5 text-sm max-w-[280px]">
+                    {msg.text}
+                  </div>
+                </div>
               )
+            )}
+
+            {/* Quick Topics - only show at start */}
+            {messages.length <= 2 && (
+              <>
+                <VoiceTip />
+                <div className="space-y-1.5 mt-1">
+                  {quickTopics.map((topic) => (
+                    <button
+                      key={topic}
+                      onClick={() => sendMessage(topic)}
+                      className="block w-full text-left px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-mcs-orange hover:bg-mcs-orange/5 transition-colors"
+                    >
+                      {topic}
+                    </button>
+                  ))}
+                </div>
+              </>
             )}
           </div>
 
-          {/* Chat Input - Always visible */}
-          <div className="px-4 py-3 border-t border-gray-100">
+          {/* Input */}
+          <div className="px-4 py-3 border-t border-gray-100 flex-shrink-0">
             <div className="flex gap-2">
               <input
                 type="text"
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleChat()}
-                placeholder="有問題？直接輸入或用語音..."
-                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="直接輸入問題，或用語音..."
+                className="flex-1 px-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
+                autoFocus
               />
               <button
-                onClick={handleChat}
-                disabled={!chatInput.trim()}
-                className="bg-mcs-orange text-white px-3 py-2 rounded-lg hover:bg-mcs-orange-light transition-colors disabled:opacity-30"
+                onClick={() => sendMessage(input)}
+                disabled={!input.trim()}
+                className="bg-mcs-orange text-white px-3.5 py-2.5 rounded-xl hover:bg-mcs-orange-light transition-colors disabled:opacity-30"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
@@ -534,31 +200,6 @@ export default function AiConsultant() {
         </div>
       )}
     </>
-  );
-}
-
-function BotMessage({ text }: { text: string }) {
-  return (
-    <div className="flex gap-2">
-      <div className="w-7 h-7 bg-mcs-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-        <svg className="w-4 h-4 text-mcs-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-        </svg>
-      </div>
-      <div className="bg-gray-100 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-gray-700 max-w-[280px]">
-        {text}
-      </div>
-    </div>
-  );
-}
-
-function UserMessage({ text }: { text: string }) {
-  return (
-    <div className="flex justify-end">
-      <div className="bg-mcs-orange text-white rounded-xl rounded-tr-sm px-4 py-2.5 text-sm max-w-[280px]">
-        {text}
-      </div>
-    </div>
   );
 }
 
@@ -579,22 +220,5 @@ function VoiceTip() {
         </div>
       </div>
     </div>
-  );
-}
-
-function OptionButton({
-  label,
-  onClick,
-}: {
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="w-full text-left px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-700 hover:border-mcs-orange hover:bg-mcs-orange/5 transition-colors"
-    >
-      {label}
-    </button>
   );
 }
