@@ -35,7 +35,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-medium">Email</div>
-                  <div className="text-gray-300">steven.fan@transtep.com</div>
+                  <div className="text-gray-300">service@transtep.com</div>
                 </div>
               </div>
 
@@ -73,15 +73,17 @@ export default function Contact() {
             <h3 className="text-xl font-bold text-mcs-blue-dark mb-6">
               填寫諮詢表單
             </h3>
-            <form className="space-y-5">
+            <form action="https://formspree.io/f/mlgpdlqv" method="POST" className="space-y-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   公司名稱
                 </label>
                 <input
                   type="text"
+                  name="company"
                   className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange"
                   placeholder="請輸入公司名稱"
+                  required
                 />
               </div>
               <div>
@@ -90,8 +92,10 @@ export default function Contact() {
                 </label>
                 <input
                   type="text"
+                  name="name"
                   className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange"
                   placeholder="請輸入姓名"
+                  required
                 />
               </div>
               <div>
@@ -100,15 +104,17 @@ export default function Contact() {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange"
                   placeholder="請輸入 Email"
+                  required
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   感興趣的方案
                 </label>
-                <select className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange text-gray-600">
+                <select name="service" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange text-gray-600">
                   <option value="">請選擇</option>
                   <option value="grabox">GraBox 智取櫃</option>
                   <option value="oem">OEM / ODM 貼牌客製</option>
@@ -123,6 +129,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   rows={4}
+                  name="message"
                   className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange resize-none"
                   placeholder="請簡述您的需求..."
                 />
