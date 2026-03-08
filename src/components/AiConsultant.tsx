@@ -231,7 +231,7 @@ export default function AiConsultant() {
     { keywords: ["尺寸", "大小", "幾格", "規格", "多大"], answer: "GraBox 提供多種規格：6格、12格、18格、24格，也可依場地需求客製尺寸。標準寬度 60-120cm。" },
     { keywords: ["溫控", "溫度", "冷藏", "冷凍", "保溫"], answer: "支援三溫層控制：常溫（15-25°C）、冷藏（2-8°C）、冷凍（-18°C以下），可混搭配置。" },
     { keywords: ["安裝", "裝機", "到府", "設定"], answer: "我們提供全台到府安裝服務，含場地評估、設備安裝、系統設定、員工教育訓練，一站式完成。" },
-    { keywords: ["經銷", "代理", "合作", "推薦", "加盟"], answer: "歡迎加入 MCS 經銷夥伴計畫！推薦成功可獲得積分獎勵，兌換商品、電商點數或 LINE 點數。" },
+    { keywords: ["經銷", "代理", "合作", "推薦", "加盟"], answer: "歡迎加入 MCS 經銷夥伴計畫！推薦成功可獲得積分獎勵，兌換商品、電商點數或 LINE 點數。請透過網站表單或 AI 顧問留下資料，我們會盡快聯繫您！" },
     { keywords: ["販賣機", "自動販賣", "無人"], answer: "MCS 智能販賣機搭載 AI 系統，支援人臉辨識、多元支付、遠端庫存管理，100% 台灣設計製造。" },
     { keywords: ["POS", "點餐", "KDS", "廚房"], answer: "我們提供 POS 點餐系統與 KDS 廚房顯示系統串接，支援外送平台整合，多店統一管理。" },
     { keywords: ["會員", "積分", "點數", "LINE點數"], answer: "MCS 會員系統支援積分累積與兌換：折抵商品、換電商點數、或兌換 LINE 點數（星益欣/12cm 整合）。" },
@@ -252,7 +252,7 @@ export default function AiConsultant() {
     );
     const answer = matched
       ? matched.answer
-      : `感謝您的提問！關於「${question}」的問題，建議您撥打 (02) 2558-8848 或 Email 至 service@transtep.com，我們的專員會為您詳細說明。`;
+      : `感謝您的提問！關於「${question}」的問題，建議您Email 至 service@transtep.com 或透過網站表單聯繫我們，我們的專員會為您詳細說明。`;
 
     setTimeout(() => {
       setChatMessages((prev) => [...prev, { role: "bot", text: answer }]);

@@ -116,8 +116,8 @@ const slides = [
     subtitle: "銓幻元科技股份有限公司",
     image: "",
     bullets: [
-      "電話：(02) 2558-8848",
       "Email：service@transtep.com",
+      "AI 智慧顧問：www.MCStation.ai（右下角對話）",
       "地址：103 台北市大同區長安西路78巷4弄10號1樓",
       "網站：www.MCStation.ai",
     ],

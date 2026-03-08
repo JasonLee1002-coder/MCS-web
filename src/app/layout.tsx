@@ -116,7 +116,7 @@ export default function RootLayout({
                 postalCode: "103",
                 addressCountry: "TW",
               },
-              telephone: "+886-2-2558-8848",
+              contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "service@transtep.com" },
               email: "steven.fan@transtep.com",
               sameAs: [],
               makesOffer: [
