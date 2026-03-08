@@ -10,11 +10,13 @@ const slides = [
     subtitle: "AI 智慧設備 x 商業系統整合",
     description: "Meta Clearing Station Pte. Ltd.",
     bg: "from-mcs-blue-dark via-mcs-blue to-mcs-blue-dark",
+    image: "",
   },
   {
     id: "grabox",
     title: "GraBox AI 智取櫃",
     subtitle: "AI 訂餐 | 接線服務員",
+    image: "/images/01_grabox_main.png",
     bullets: [
       "單機版 / 聯網版可選",
       "AI 智慧訂餐系統",
@@ -28,6 +30,7 @@ const slides = [
     id: "vending",
     title: "智能販賣機",
     subtitle: "各類自助服務設備 x AI系統整合",
+    image: "/images/03_smart_vending.png",
     bullets: [
       "AI 人臉辨識 / 會員辨識",
       "多元支付：LINE Pay、街口、信用卡",
@@ -41,6 +44,7 @@ const slides = [
     id: "oem",
     title: "OEM / ODM 貼牌客製",
     subtitle: "可 100% 台灣製造",
+    image: "/images/05_oem_factory.png",
     bullets: [
       "外觀設計到軟體介面全客製",
       "品牌 Logo / UI 貼牌服務",
@@ -54,6 +58,7 @@ const slides = [
     id: "member",
     title: "企業會員系統整合",
     subtitle: "ERP | 商務流程與資料平台",
+    image: "/images/07_membership_app.png",
     bullets: [
       "會員資料管理與分群",
       "ERP 系統整合",
@@ -67,6 +72,7 @@ const slides = [
     id: "pos",
     title: "餐飲與零售系統串接",
     subtitle: "POS | KDS",
+    image: "/images/04_pos_kds.png",
     bullets: [
       "POS 點餐結帳系統",
       "KDS 廚房顯示系統",
@@ -80,6 +86,7 @@ const slides = [
     id: "cloud",
     title: "雲端營運平台 + AI分析模組",
     subtitle: "數據驅動的營運管理",
+    image: "/images/06_dashboard.png",
     bullets: [
       "即時營運 Dashboard",
       "AI 銷售預測與建議",
@@ -93,6 +100,7 @@ const slides = [
     id: "partner",
     title: "成為 MCS 經銷夥伴",
     subtitle: "推薦獎勵計畫",
+    image: "/images/10_team.png",
     bullets: [
       "推薦積分 → 折抵商品",
       "推薦積分 → 電商點數換好物",
@@ -106,6 +114,7 @@ const slides = [
     id: "contact",
     title: "聯絡我們",
     subtitle: "銓幻元科技股份有限公司",
+    image: "",
     bullets: [
       "電話：(02) 2558-8848",
       "Email：service@transtep.com",
@@ -305,14 +314,21 @@ export default function PresentPage() {
                 </ul>
               </div>
               <div className="flex items-center justify-center">
-                <div className="w-80 h-80 bg-white/5 border border-white/10 rounded-3xl flex items-center justify-center">
-                  <div className="text-center text-white/30">
-                    <svg className="w-16 h-16 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
-                    </svg>
-                    <span className="text-sm">產品圖片</span>
+                {slide.image ? (
+                  <div className="w-80 h-80 rounded-3xl overflow-hidden shadow-2xl">
+                    <Image
+                      src={slide.image}
+                      alt={slide.title}
+                      width={400}
+                      height={400}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
+                ) : (
+                  <div className="w-80 h-80 bg-white/5 border border-white/10 rounded-3xl flex items-center justify-center">
+                    <div className="text-6xl font-bold text-mcs-orange">MCS</div>
+                  </div>
+                )}
               </div>
             </div>
           )}

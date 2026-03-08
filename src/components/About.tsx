@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <section id="about" className="py-24 bg-white">
@@ -41,32 +43,14 @@ export default function About() {
 
           {/* Right - Visual */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-mcs-blue-dark to-mcs-blue rounded-2xl p-10 text-white">
-              <div className="text-center mb-8">
-                <div className="text-5xl font-bold text-mcs-orange mb-2">MCS</div>
-                <div className="text-sm text-gray-300 tracking-widest">
-                  META CLEARING STATION PTE. LTD.
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-mcs-orange rounded-full" />
-                  <span>智慧設備研發與製造</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-mcs-orange rounded-full" />
-                  <span>AI 演算與應用整合</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-mcs-orange rounded-full" />
-                  <span>商業系統串接與客製</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-mcs-orange rounded-full" />
-                  <span>雲端平台營運管理</span>
-                </div>
-              </div>
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/09_ecosystem.png"
+                alt="MCS 智慧設備生態系統"
+                width={600}
+                height={400}
+                className="w-full h-auto"
+              />
             </div>
 
             {/* Decorative */}
