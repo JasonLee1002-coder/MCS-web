@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -63,12 +64,21 @@ export const metadata: Metadata = {
     title: "銓幻元科技 | GraBox AI智取櫃 - 新加坡MCS Meta Clearing Station",
     description:
       "銓幻元科技（新加坡MCS）專業提供 GraBox AI智取櫃、智能販賣機、自助服務設備AI整合、OEM/ODM貼牌客製、企業會員與餐飲零售系統串接。台灣製造，AI智慧設備 x 商業系統整合。",
+    images: [
+      {
+        url: "/images/mcs-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "銓幻元科技 MCS Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "銓幻元科技 | GraBox AI智取櫃 - MCS Meta Clearing Station",
     description:
       "新加坡MCS銓幻元科技，GraBox AI智取櫃、自助服務設備、POS/KDS系統串接、雲端營運平台。",
+    images: ["/images/mcs-logo.png"],
   },
   robots: {
     index: true,
@@ -91,6 +101,22 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant">
       <head>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
