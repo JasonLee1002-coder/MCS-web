@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import ReactMarkdown from "react-markdown";
 
 interface Message {
   role: "user" | "bot";
@@ -208,8 +209,8 @@ export default function AiConsultant() {
                   <div className="w-7 h-7 bg-mcs-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-sm">
                     🍊
                   </div>
-                  <div className="bg-gray-100 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-gray-700 max-w-[280px] whitespace-pre-wrap">
-                    {msg.text}
+                  <div className="bg-gray-100 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-gray-700 max-w-[280px] prose prose-sm prose-gray prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-strong:text-mcs-blue-dark prose-headings:text-mcs-blue-dark prose-headings:text-sm prose-headings:mt-2 prose-headings:mb-1">
+                    <ReactMarkdown>{msg.text}</ReactMarkdown>
                   </div>
                 </div>
               ) : (
