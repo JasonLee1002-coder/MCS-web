@@ -273,6 +273,12 @@ export default function AiConsultant() {
               <>
                 <BotMessage text="您好！我是 MCS AI 智慧顧問 👋" />
                 <BotMessage text="我可以根據您的需求，推薦最適合的智慧設備方案。台灣製造，品質保證！" />
+                <div className="bg-mcs-blue-dark/5 border border-mcs-blue/10 rounded-xl px-4 py-3 text-xs text-gray-500 flex items-center gap-2">
+                  <svg className="w-4 h-4 text-mcs-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+                  </svg>
+                  <span>按下 <kbd className="bg-gray-200 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold">Win</kbd> + <kbd className="bg-gray-200 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold">H</kbd> 可啟動語音輸入，用說的更方便！</span>
+                </div>
                 <BotMessage text="請問您的產業類型是？" />
                 <div className="grid grid-cols-2 gap-2 mt-2">
                   {industryOptions.map((opt) => (
