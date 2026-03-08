@@ -268,13 +268,13 @@ export default function AiConsultant() {
       {/* Floating Button */}
       {!isOpen && (
         <button
+          id="yuzu-ai-btn"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 bg-mcs-orange text-white w-16 h-16 rounded-full shadow-lg hover:bg-mcs-orange-light transition-all flex items-center justify-center animate-bounce"
-          aria-label="AI 智慧顧問"
+          className="fixed bottom-6 right-6 z-50 bg-mcs-orange text-white rounded-full shadow-lg hover:bg-mcs-orange-light transition-all flex items-center gap-2 pl-4 pr-5 py-3 animate-bounce"
+          aria-label="Yuzu AI 顧問"
         >
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-          </svg>
+          <span className="text-2xl">🍊</span>
+          <span className="text-sm font-bold">Yuzu AI</span>
         </button>
       )}
 
@@ -290,7 +290,7 @@ export default function AiConsultant() {
                 </svg>
               </div>
               <div>
-                <div className="text-white font-bold text-sm">MCS AI 智慧顧問</div>
+                <div className="text-white font-bold text-sm">Yuzu AI 顧問</div>
                 <div className="text-white/60 text-xs">線上為您服務</div>
               </div>
             </div>
@@ -309,14 +309,9 @@ export default function AiConsultant() {
             {/* Welcome */}
             {step === "welcome" && (
               <>
-                <BotMessage text="您好！我是 MCS AI 智慧顧問 👋" />
+                <BotMessage text="您好！我是 Yuzu（柚子）🍊 MCS 的 AI 智慧顧問" />
                 <BotMessage text="我可以根據您的需求，推薦最適合的智慧設備方案。台灣製造，品質保證！" />
-                <div className="bg-mcs-blue-dark/5 border border-mcs-blue/10 rounded-xl px-4 py-3 text-xs text-gray-500 flex items-center gap-2">
-                  <svg className="w-4 h-4 text-mcs-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
-                  </svg>
-                  <span>按下 <kbd className="bg-gray-200 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold">Win</kbd> + <kbd className="bg-gray-200 px-1.5 py-0.5 rounded text-[10px] font-mono font-bold">H</kbd> 可啟動語音輸入，用說的更方便！</span>
-                </div>
+                <VoiceTip />
                 <BotMessage text="請問您的產業類型是？" />
                 <div className="grid grid-cols-2 gap-2 mt-2">
                   {industryOptions.map((opt) => (
@@ -562,6 +557,26 @@ function UserMessage({ text }: { text: string }) {
     <div className="flex justify-end">
       <div className="bg-mcs-orange text-white rounded-xl rounded-tr-sm px-4 py-2.5 text-sm max-w-[280px]">
         {text}
+      </div>
+    </div>
+  );
+}
+
+function VoiceTip() {
+  return (
+    <div className="bg-gradient-to-r from-mcs-orange/10 to-mcs-blue/10 border border-mcs-orange/20 rounded-xl p-3">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 bg-mcs-orange rounded-xl flex items-center justify-center flex-shrink-0">
+          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+          </svg>
+        </div>
+        <div>
+          <div className="text-xs font-bold text-mcs-blue-dark">語音輸入</div>
+          <div className="text-[11px] text-gray-500 mt-0.5">
+            按 <kbd className="bg-white px-1.5 py-0.5 rounded shadow-sm text-[10px] font-mono font-bold border">Win</kbd> + <kbd className="bg-white px-1.5 py-0.5 rounded shadow-sm text-[10px] font-mono font-bold border">H</kbd> 用說的更方便！
+          </div>
+        </div>
       </div>
     </div>
   );

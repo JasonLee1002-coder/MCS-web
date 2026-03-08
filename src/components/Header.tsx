@@ -4,6 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+function openYuzu() {
+  const btn = document.getElementById("yuzu-ai-btn");
+  if (btn) btn.click();
+}
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -11,7 +16,6 @@ export default function Header() {
     { label: "首頁", href: "#hero" },
     { label: "服務方案", href: "#services" },
     { label: "關於我們", href: "#about" },
-    { label: "聯絡我們", href: "#contact" },
   ];
 
   return (
@@ -44,12 +48,18 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="bg-mcs-orange text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-mcs-orange-light transition-colors"
+            <button
+              onClick={openYuzu}
+              className="text-sm font-medium text-gray-700 hover:text-mcs-orange transition-colors"
             >
-              立即諮詢
-            </a>
+              聯絡我們
+            </button>
+            <button
+              onClick={openYuzu}
+              className="bg-mcs-orange text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-mcs-orange-light transition-colors flex items-center gap-1.5"
+            >
+              <span>🍊</span> 問 Yuzu
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -81,17 +91,21 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="block mt-2 bg-mcs-orange text-white px-5 py-2 rounded-full text-sm font-medium text-center hover:bg-mcs-orange-light"
-              onClick={() => setMenuOpen(false)}
+            <button
+              className="block w-full text-left py-3 px-2 text-sm font-medium text-gray-700 hover:text-mcs-orange"
+              onClick={() => { setMenuOpen(false); openYuzu(); }}
             >
-              立即諮詢
-            </a>
+              聯絡我們
+            </button>
+            <button
+              className="block w-full mt-2 bg-mcs-orange text-white px-5 py-2 rounded-full text-sm font-medium text-center hover:bg-mcs-orange-light"
+              onClick={() => { setMenuOpen(false); openYuzu(); }}
+            >
+              🍊 問 Yuzu
+            </button>
           </nav>
         )}
       </div>
     </header>
   );
 }
-
