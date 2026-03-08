@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 
 const systemPrompt = `你是 Yuzu（柚子）🍊，銓幻元科技股份有限公司（MCS - Meta Clearing Station Pte. Ltd.）的 AI 智慧顧問。
@@ -92,7 +92,12 @@ const systemPrompt = `你是 Yuzu（柚子）🍊，銓幻元科技股份有限�
 6. 絕對不要編造不存在的功能或數據
 7. 不要提供電話號碼，所有聯繫引導到 Email 或本 AI 顧問`;
 
-const client = new Anthropic();
+function getGeminiModel() {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error("GEMINI_API_KEY not set");
+  const genAI = new GoogleGenerativeAI(apiKey);
+  return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -102,27 +107,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Messages required" }, { status: 400 });
     }
 
-    // Convert our message format to Claude format
-    const claudeMessages = messages.map((msg: { role: string; text: string }) => ({
-      role: msg.role === "bot" ? "assistant" as const : "user" as const,
-      content: msg.text,
+    const model = getGeminiModel();
+
+    // Build chat history (all messages except the last user message)
+    const history = messages.slice(0, -1).map((msg: { role: string; text: string }) => ({
+      role: msg.role === "bot" ? "model" : "user",
+      parts: [{ text: msg.text }],
     }));
 
-    const response = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 300,
-      system: systemPrompt,
-      messages: claudeMessages,
+    const lastMessage = messages[messages.length - 1].text;
+
+    const chat = model.startChat({
+      history,
+      systemInstruction: { role: "user", parts: [{ text: systemPrompt }] },
     });
 
-    const text = response.content[0].type === "text" ? response.content[0].text : "";
+    const result = await chat.sendMessage(lastMessage);
+    const text = result.response.text();
 
     return NextResponse.json({ answer: text });
   } catch (error) {
     console.error("Chat API error:", error);
-    // Fallback response if API fails
     return NextResponse.json({
-      answer: "抱歉，我目前暫時無法回應，請稍後再試，或直接 Email 至 service@transtep.com，我們的專員會為您服務！",
+      answer: "抱歉，我目前暫時無法回應，請稍後再試，或直接 Email 至 service@transtep.com，我們的專員會為您服務！🍊",
     });
   }
 }
