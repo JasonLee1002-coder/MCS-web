@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 
 interface Message {
@@ -8,16 +9,61 @@ interface Message {
   text: string;
 }
 
-const quickTopics = [
-  "GraBox 智取櫃跟市面上有什麼差異？",
-  "價格大概多少？",
-  "有哪些規格可以選？",
-  "可以客製自己的品牌嗎？",
-  "如何成為經銷夥伴？",
-  "我想了解更多",
-];
+interface PageContext {
+  welcome: string;
+  topics: string[];
+}
+
+const pageContexts: Record<string, PageContext> = {
+  "/": {
+    welcome: "有什麼我可以幫您的嗎？不管是產品規格、合作方式，還是想聊聊您的需求，我都在！",
+    topics: [
+      "GraBox 智取櫃跟市面上有什麼差異？",
+      "你們有哪些產品？",
+      "可以客製自己的品牌嗎？",
+      "如何成為經銷夥伴？",
+      "我有開店/餐廳需求，怎麼合作？",
+      "我想了解更多",
+    ],
+  },
+  "/cases": {
+    welcome: "正在看我們的客戶案例嗎？有任何想深入了解的，隨時問我！",
+    topics: [
+      "麥味登的智取櫃是怎麼運作的？",
+      "冷凍微波機怎麼賣到日本的？",
+      "麗嬰國際的販賣機有什麼特色？",
+      "我也想導入類似方案，怎麼開始？",
+      "你們的設備保固多久？",
+      "跟你們合作的流程是什麼？",
+    ],
+  },
+  "/products/grabox": {
+    welcome: "想了解 GraBox 智取櫃的細節嗎？規格、功能、適用場景，問我就對了！",
+    topics: [
+      "GraBox 有哪些格數可以選？",
+      "可以做冷藏或冷凍嗎？",
+      "人臉辨識取餐怎麼運作？",
+      "可以跟我的 POS 系統串接嗎？",
+      "安裝需要什麼條件？",
+      "我想幫我的品牌客製一台",
+    ],
+  },
+};
+
+const defaultContext: PageContext = {
+  welcome: "有什麼我可以幫您的嗎？產品、規格、合作方式都可以問我！",
+  topics: [
+    "你們有哪些產品？",
+    "GraBox 智取櫃是什麼？",
+    "可以客製化嗎？",
+    "如何聯繫你們？",
+    "我想了解更多",
+  ],
+};
 
 export default function AiConsultant() {
+  const pathname = usePathname();
+  const ctx = pageContexts[pathname] || defaultContext;
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -42,15 +88,15 @@ export default function AiConsultant() {
     }
   }, [messages, isLoading]);
 
-  // Show welcome when first opened
+  // Show welcome when first opened — context-aware
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([
-        { role: "bot", text: "您好！我是 Yuzu（柚子）🍊 MCS 銓幻元科技的 AI 顧問" },
-        { role: "bot", text: "您可以打字或按下麥克風 🎙️ 直接用說的，我來為您解答！" },
+        { role: "bot", text: "嗨！我是 Yuzu（柚子）🍊 MCS 銓幻元科技的 AI 顧問" },
+        { role: "bot", text: ctx.welcome },
       ]);
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, ctx.welcome]);
 
   const sendMessage = useCallback(async (text: string) => {
     if (!text.trim() || isLoading) return;
@@ -241,7 +287,7 @@ export default function AiConsultant() {
             {/* Quick Topics - only show at start */}
             {messages.length <= 2 && !isLoading && (
               <div className="space-y-1.5 mt-1">
-                {quickTopics.map((topic) => (
+                {ctx.topics.map((topic) => (
                   <button
                     key={topic}
                     onClick={() => sendMessage(topic)}
