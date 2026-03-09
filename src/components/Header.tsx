@@ -15,6 +15,8 @@ export default function Header() {
   const navItems = [
     { label: "首頁", href: "#hero" },
     { label: "服務方案", href: "#services" },
+    { label: "客戶實績", href: "/cases" },
+    { label: "產品", href: "/products/grabox" },
     { label: "關於我們", href: "#about" },
   ];
 
