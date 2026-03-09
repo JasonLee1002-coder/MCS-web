@@ -55,8 +55,15 @@ const cases = [
       "智取櫃租賃制，加盟金含設備",
     ],
     images: [
-      { src: "/images/illustrations/mysmart.png", alt: "早餐店智取櫃實景 My SMART 智慧門市自助取餐" },
-      { src: "/images/cases/mwd/store-render.jpg", alt: "麥味登 MWD 智慧門市概念圖 My SMART 智取櫃" },
+      { src: "/images/cases/mwd/mwd-snoopy-storefront.jpg", alt: "麥味登 Snoopy 聯名智慧門市外觀 My Express 智取櫃 TAKE OUT" },
+      { src: "/images/cases/mwd/grabox-closeup.jpg", alt: "GraBox 智取櫃 12 格 LED 燈號近拍 麥味登門市" },
+      { src: "/images/cases/mwd/grabox-use-cases.png", alt: "GraBox 智取櫃應用場景 麥味登 東方美 全家 佳德鳳梨酥" },
+      { src: "/images/cases/mwd/snoopy-menu.jpg", alt: "麥味登 PEANUTS Snoopy 聯名菜單" },
+      { src: "/images/cases/mwd/grabox-features.png", alt: "GraBox 智取櫃核心特色 智慧設計 安全可靠 靈活配置" },
+    ],
+    videos: [
+      { src: "/images/cases/mwd/grabox-demo.mp4", alt: "GraBox 智取櫃取餐實際操作示範" },
+      { src: "/images/cases/mwd/kaohsiung-expo.mp4", alt: "高雄加盟展 GraBox 智取櫃展示" },
     ],
     tags: ["智取櫃", "餐飲連鎖", "自助取餐", "POS串接", "數位轉型"],
   },
@@ -276,6 +283,25 @@ export default function CasesPage() {
                         height={500}
                         className="w-full h-64 sm:h-80 object-cover object-top hover:scale-105 transition-transform duration-500"
                       />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {("videos" in c) && (c as { videos: { src: string; alt: string }[] }).videos.length > 0 && (
+                <div className="grid gap-4 mb-8 grid-cols-1 sm:grid-cols-2">
+                  {(c as { videos: { src: string; alt: string }[] }).videos.map((vid, i) => (
+                    <div key={i} className="rounded-2xl overflow-hidden shadow-lg">
+                      <video
+                        src={vid.src}
+                        controls
+                        playsInline
+                        muted
+                        preload="metadata"
+                        className="w-full h-64 sm:h-80 object-cover bg-black"
+                      >
+                        {vid.alt}
+                      </video>
                     </div>
                   ))}
                 </div>
