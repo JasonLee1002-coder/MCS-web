@@ -27,8 +27,9 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Meta Clearing Station 為企業提供從智取櫃硬體到 POS/KDS
-          雲端系統的一站式整合方案，打造高效率的數位營運體驗。
+          Meta Clearing Station 為企業提供 AI
+          智取櫃、智慧販賣機、自助服務機、冷凍微波機到 POS/KDS
+          雲端系統的一站式軟硬體整合方案，100% 台灣製造，外銷日本。
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
