@@ -8,12 +8,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Redirect old PHP URLs (from previous mcstation.ai site) to new pages
+      // Redirect all old URLs from previous mcstation.ai site
       { source: "/index.php/zh/lian-luo-wo-men", destination: "/#contact", permanent: true },
+      { source: "/index.php/zh/chan-pin-jie-shao", destination: "/products/grabox", permanent: true },
+      { source: "/index.php/zh/guan-yu-wo-men", destination: "/#about", permanent: true },
       { source: "/index.php/zh/:path*", destination: "/", permanent: true },
+      { source: "/index.php/en/contact-us", destination: "/#contact", permanent: true },
       { source: "/index.php/en/:path*", destination: "/", permanent: true },
       { source: "/index.php/:path*", destination: "/", permanent: true },
       { source: "/index.php", destination: "/", permanent: true },
+      { source: "/index", destination: "/", permanent: true },
+      { source: "/index.html", destination: "/", permanent: true },
     ];
   },
   async headers() {
