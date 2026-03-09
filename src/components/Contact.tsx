@@ -104,10 +104,14 @@ export default function Contact() {
                 </label>
                 <select name="service" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange text-gray-600">
                   <option value="">請選擇</option>
-                  <option value="grabox">GraBox 智取櫃</option>
+                  <option value="grabox">GraBox AI 智取櫃</option>
+                  <option value="vending">智慧販賣機</option>
+                  <option value="microwave">冷凍微波販賣機</option>
+                  <option value="kiosk">自助服務機 Kiosk</option>
                   <option value="oem">OEM / ODM 貼牌客製</option>
+                  <option value="pos">POS / KDS 餐飲系統串接</option>
                   <option value="member">企業會員系統整合</option>
-                  <option value="pos">餐飲與零售系統串接</option>
+                  <option value="partner">經銷夥伴加盟</option>
                   <option value="other">其他</option>
                 </select>
               </div>
