@@ -162,7 +162,7 @@ export default function RootLayout({
                     "@type": "Product",
                     name: "GraBox AI智取櫃",
                     description:
-                      "結合AI技術的智慧取餐櫃，提供AI訂餐、接線服務員功能，單機版與聯網版。",
+                      "結合AI技術的智慧取餐櫃，提供AI訂餐、人臉辨識取餐功能，多種規格可選。",
                   },
                 },
                 {

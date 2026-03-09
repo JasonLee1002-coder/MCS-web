@@ -5,9 +5,9 @@ const services = [
     title: "GraBox 智取櫃",
     subtitle: "AI 訂餐 | 接線服務員",
     description:
-      "結合 AI 技術的智慧取餐櫃，提供單機版與聯網版，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。",
+      "結合 AI 技術的智慧取餐櫃，多種規格可選，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。",
     image: "/images/illustrations/grabox.png",
-    tags: ["單機版", "聯網版", "AI 訂餐"],
+    tags: ["三溫層", "人臉辨識", "AI 訂餐"],
   },
   {
     title: "智慧販賣機 · 自助服務機 · 冷凍微波機",

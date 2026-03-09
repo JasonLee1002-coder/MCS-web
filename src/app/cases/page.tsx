@@ -52,7 +52,7 @@ const cases = [
       "AI 尖峰預測：分析點餐數據，預製加速出餐",
       "KDS 廚房顯示系統串接",
       "PEANUTS / Snoopy 聯名主題店與周邊商品",
-      "智取櫃租賃制，138 萬加盟金含設備",
+      "智取櫃租賃制，加盟金含設備",
     ],
     images: [
       { src: "/images/illustrations/mysmart.png", alt: "早餐店智取櫃實景 My SMART 智慧門市自助取餐" },
@@ -139,6 +139,8 @@ const cases = [
     ],
     images: [
       { src: "/images/illustrations/microwave.png", alt: "冷凍微波販賣機 日本首都高速公路服務區 Made in Taiwan 台灣製造" },
+      { src: "/images/cases/expressway/team-vending.jpg", alt: "台日團隊於智能販賣機前合影 跨國技術交流" },
+      { src: "/images/cases/expressway/business-meeting.jpg", alt: "銓幻元科技與日本首都高速公路商務合作會議" },
     ],
     tags: ["國際合作", "日本市場", "高速公路", "智慧交通", "台灣之光"],
   },
@@ -153,7 +155,7 @@ const cases = [
       "100% 台灣設計、台灣製造",
       "嚴格品質檢測流程",
       "少量多樣、彈性生產",
-      "快速交貨（標準品 4-6 週）",
+      "快速交貨，彈性排程",
       "全台售後服務網絡",
       "軟硬體一站式整合",
     ],

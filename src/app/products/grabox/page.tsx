@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "GraBox AI 智取櫃 | 三溫層智慧取餐櫃",
   description:
-    "GraBox AI 智取櫃：結合 AI 訂餐系統的智慧取餐櫃。三溫層控制（常溫/冷藏/冷凍）、人臉辨識、多元支付、24H無人取餐。單機版 NT$15-25萬，100% 台灣製造。適用餐廳、飯店、企業、學校。",
+    "GraBox AI 智取櫃：結合 AI 訂餐系統的智慧取餐櫃。三溫層控制（常溫/冷藏/冷凍）、人臉辨識、多元支付、24H無人取餐。100% 台灣製造，規格客製化。適用餐廳、飯店、企業、學校。",
   keywords: [
     "GraBox",
     "AI智取櫃",
@@ -92,7 +92,7 @@ const advantages = [
     title: "vs 自建系統",
     points: [
       "軟硬體一體交付，不用自己整合",
-      "4-6 週即可上線，自建至少半年",
+      "快速上線，自建至少半年",
       "持續更新 AI 功能，自建維護成本高",
     ],
   },
@@ -140,24 +140,11 @@ const jsonLd = {
     name: "銓幻元科技股份有限公司",
   },
   countryOfOrigin: "TW",
-  offers: [
-    {
-      "@type": "Offer",
-      name: "GraBox 單機版",
-      priceCurrency: "TWD",
-      price: "150000",
-      priceValidUntil: "2027-12-31",
-      availability: "https://schema.org/InStock",
-    },
-    {
-      "@type": "Offer",
-      name: "GraBox 聯網版",
-      priceCurrency: "TWD",
-      price: "250000",
-      priceValidUntil: "2027-12-31",
-      availability: "https://schema.org/InStock",
-    },
-  ],
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+    url: "https://www.mcstation.ai/products/grabox",
+  },
 };
 
 export default function GraBoxPage() {
@@ -204,13 +191,13 @@ export default function GraBoxPage() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-xl text-sm">
-                  單機版 NT$15-25 萬
+                  單機版 / 聯網版可選
                 </span>
                 <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-xl text-sm">
-                  聯網版 NT$25-40 萬
+                  三溫層混搭
                 </span>
                 <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-xl text-sm">
-                  交期 4-6 週
+                  OEM/ODM 客製
                 </span>
               </div>
             </div>
@@ -327,7 +314,7 @@ export default function GraBoxPage() {
         <div className="max-w-4xl mx-auto px-4 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">準備好升級了嗎？</h2>
           <p className="text-lg text-white/90 mb-8">
-            從諮詢到安裝，4-6 週即可上線。全台到府服務，含教育訓練。
+            從諮詢到安裝，快速上線。全台到府服務，含教育訓練。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
