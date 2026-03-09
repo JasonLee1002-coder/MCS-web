@@ -138,9 +138,14 @@ const cases = [
       "跨國技術合作典範",
     ],
     images: [
-      { src: "/images/illustrations/microwave.png", alt: "冷凍微波販賣機 日本首都高速公路服務區 Made in Taiwan 台灣製造" },
-      { src: "/images/cases/expressway/team-vending.jpg", alt: "台日團隊於智能販賣機前合影 跨國技術交流" },
-      { src: "/images/cases/expressway/business-meeting.jpg", alt: "銓幻元科技與日本首都高速公路商務合作會議" },
+      { src: "/images/cases/expressway/shuto-group-photo.jpg", alt: "銓幻元科技團隊與日本首都高速道路合作夥伴合影" },
+      { src: "/images/cases/expressway/shuto-office-reception.jpg", alt: "日本首都高速道路サービス辦公室接待處" },
+      { src: "/images/cases/expressway/service-area-interior.jpg", alt: "日本首都高速公路服務區智能販賣機部署現場" },
+      { src: "/images/cases/expressway/vending-closeup.jpg", alt: "團隊實地視察販賣機運作情形" },
+      { src: "/images/cases/expressway/vending-menu-screen.jpg", alt: "冷凍微波販賣機日文餐點菜單觸控螢幕" },
+      { src: "/images/cases/expressway/mitsui-soko-sign.jpg", alt: "三井倉庫物流株式會社 Mitsui-Soko Logistics" },
+      { src: "/images/cases/expressway/warehouse-meeting.jpg", alt: "銓幻元團隊於三井倉庫物流中心商務會議" },
+      { src: "/images/cases/expressway/overview-collage.png", alt: "日本首都高速公路合作案實地考察總覽" },
     ],
     tags: ["國際合作", "日本市場", "高速公路", "智慧交通", "台灣之光"],
   },
@@ -256,13 +261,13 @@ export default function CasesPage() {
               </p>
 
               {c.images.length > 0 && (
-                <div className={`grid gap-4 mb-8 ${c.images.length === 1 ? "grid-cols-1 max-w-2xl" : c.images.length === 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"}`}>
+                <div className={`grid gap-4 mb-8 ${c.images.length === 1 ? "grid-cols-1 max-w-2xl" : c.images.length === 2 ? "grid-cols-1 sm:grid-cols-2" : c.images.length > 4 ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"}`}>
                   {c.images.map((img, i) => (
                     <div
                       key={i}
                       className={`rounded-2xl overflow-hidden shadow-lg ${
                         c.images.length === 3 && i === 0 ? "sm:col-span-2" : ""
-                      }`}
+                      }${c.images.length > 4 && i === 0 ? " col-span-2 row-span-2" : ""}`}
                     >
                       <Image
                         src={img.src}
