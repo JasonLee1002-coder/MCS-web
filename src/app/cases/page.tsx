@@ -274,7 +274,7 @@ export default function CasesPage() {
                         alt={img.alt}
                         width={800}
                         height={500}
-                        className="w-full h-64 sm:h-72 object-cover hover:scale-105 transition-transform duration-500"
+                        className="w-full h-64 sm:h-80 object-cover object-top hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                   ))}
