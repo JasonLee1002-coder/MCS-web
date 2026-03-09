@@ -41,15 +41,25 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-gray-700 hover:text-mcs-orange transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.href.startsWith("/") ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm font-medium text-gray-700 hover:text-mcs-orange transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm font-medium text-gray-700 hover:text-mcs-orange transition-colors"
+                >
+                  {item.label}
+                </a>
+              )
+            )}
             <button
               onClick={openYuzu}
               className="text-sm font-medium text-gray-700 hover:text-mcs-orange transition-colors"
@@ -83,16 +93,27 @@ export default function Header() {
         {/* Mobile Nav */}
         {menuOpen && (
           <nav className="md:hidden pb-4 border-t border-gray-100">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="block py-3 px-2 text-sm font-medium text-gray-700 hover:text-mcs-orange"
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.href.startsWith("/") ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block py-3 px-2 text-sm font-medium text-gray-700 hover:text-mcs-orange"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="block py-3 px-2 text-sm font-medium text-gray-700 hover:text-mcs-orange"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              )
+            )}
             <button
               className="block w-full text-left py-3 px-2 text-sm font-medium text-gray-700 hover:text-mcs-orange"
               onClick={() => { setMenuOpen(false); openYuzu(); }}

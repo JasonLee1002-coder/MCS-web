@@ -124,9 +124,49 @@ function SpecIcon({ type }: { type: string }) {
   );
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "GraBox AI 智取櫃",
+  description:
+    "結合 AI 訂餐系統的智慧取餐櫃。三溫層控制（常溫/冷藏/冷凍）、人臉辨識取餐、多元支付、24H無人取餐。100% 台灣製造。",
+  image: "https://www.mcstation.ai/images/01_grabox_main.png",
+  brand: {
+    "@type": "Brand",
+    name: "銓幻元科技 MCS",
+  },
+  manufacturer: {
+    "@type": "Organization",
+    name: "銓幻元科技股份有限公司",
+  },
+  countryOfOrigin: "TW",
+  offers: [
+    {
+      "@type": "Offer",
+      name: "GraBox 單機版",
+      priceCurrency: "TWD",
+      price: "150000",
+      priceValidUntil: "2027-12-31",
+      availability: "https://schema.org/InStock",
+    },
+    {
+      "@type": "Offer",
+      name: "GraBox 聯網版",
+      priceCurrency: "TWD",
+      price: "250000",
+      priceValidUntil: "2027-12-31",
+      availability: "https://schema.org/InStock",
+    },
+  ],
+};
+
 export default function GraBoxPage() {
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className="bg-gradient-to-br from-mcs-blue-dark via-mcs-blue to-mcs-blue-dark pt-28 pb-20 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">

@@ -159,9 +159,28 @@ const cases = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "客戶實績 | 銓幻元科技 MCS",
+  description:
+    "銓幻元科技客戶成功案例：麗嬰國際、麥味登、宮廟數位功德箱、日本首都高速公路等跨產業 AI 智慧設備整合。",
+  url: "https://www.mcstation.ai/cases",
+  mainEntity: cases.map((c) => ({
+    "@type": "CreativeWork",
+    name: `${c.client} — ${c.title}`,
+    description: c.description,
+    url: `https://www.mcstation.ai/cases#${c.id}`,
+  })),
+};
+
 export default function CasesPage() {
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Header */}
       <section className="bg-gradient-to-br from-mcs-blue-dark to-mcs-blue pt-28 pb-16 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
