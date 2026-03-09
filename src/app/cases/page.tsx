@@ -167,6 +167,15 @@ const cases = [
   },
 ];
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.mcstation.ai" },
+    { "@type": "ListItem", position: 2, name: "客戶實績", item: "https://www.mcstation.ai/cases" },
+  ],
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -188,6 +197,10 @@ export default function CasesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {/* Header */}
       <section className="bg-gradient-to-br from-mcs-blue-dark to-mcs-blue pt-28 pb-16 text-white">

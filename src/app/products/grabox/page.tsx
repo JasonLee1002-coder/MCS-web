@@ -174,6 +174,16 @@ const jsonLd = {
   },
 };
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.mcstation.ai" },
+    { "@type": "ListItem", position: 2, name: "產品", item: "https://www.mcstation.ai/products/grabox" },
+    { "@type": "ListItem", position: 3, name: "GraBox AI 智取櫃", item: "https://www.mcstation.ai/products/grabox" },
+  ],
+};
+
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -197,6 +207,10 @@ export default function GraBoxPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {/* Hero */}
       <section className="bg-gradient-to-br from-mcs-blue-dark via-mcs-blue to-mcs-blue-dark pt-28 pb-20 text-white relative overflow-hidden">

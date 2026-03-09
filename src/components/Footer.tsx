@@ -43,6 +43,9 @@ export default function Footer() {
                 <a href="#about" className="hover:text-white transition-colors">關於我們</a>
               </li>
               <li>
+                <a href="#faq" className="hover:text-white transition-colors">常見問題</a>
+              </li>
+              <li>
                 <a href="#contact" className="hover:text-white transition-colors">聯絡我們</a>
               </li>
             </ul>
