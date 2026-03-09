@@ -138,8 +138,7 @@ const cases = [
       "跨國技術合作典範",
     ],
     images: [
-      { src: "/images/illustrations/microwave.png", alt: "冷凍微波販賣機 日本首都高速公路服務區 Made in Taiwan" },
-      { src: "/images/cases/expressway/japan-meeting.jpg", alt: "銓幻元科技與日本首都高速公路合作洽談" },
+      { src: "/images/illustrations/microwave.png", alt: "冷凍微波販賣機 日本首都高速公路服務區 Made in Taiwan 台灣製造" },
     ],
     tags: ["國際合作", "日本市場", "高速公路", "智慧交通", "台灣之光"],
   },
