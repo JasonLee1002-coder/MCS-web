@@ -45,8 +45,8 @@ export default function About() {
           <div className="relative">
             <div className="rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/images/09_ecosystem.png"
-                alt="MCS 智慧設備生態系統"
+                src="/images/illustrations/factory.png"
+                alt="MCS 銓幻元科技台灣在地工廠 100% 台灣製造品質檢測"
                 width={600}
                 height={400}
                 className="w-full h-auto"

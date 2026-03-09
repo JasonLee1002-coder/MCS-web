@@ -33,9 +33,9 @@ const cases = [
       "加值服務平台 3 年維護合約",
     ],
     images: [
+      { src: "/images/illustrations/funbox.png", alt: "麗嬰國際 Funbox 寶可夢 TOMICA 品牌智能販賣機 商場實景" },
       { src: "/images/cases/funbox/vending-machines.jpg", alt: "麗嬰國際 Funbox 寶可夢 TOMICA KEEPPLAY 品牌智能販賣機" },
       { src: "/images/cases/funbox/store-front.jpg", alt: "台北地下街 來玩聚 Play Together 智能販賣機專區" },
-      { src: "/images/cases/funbox/underground-mall.jpg", alt: "台北地下街 Funbox 智能販賣機門市實景" },
     ],
     tags: ["智能販賣機", "文創玩具", "百貨商場", "多元支付", "雲端管理"],
   },
@@ -55,6 +55,7 @@ const cases = [
       "ORDER → PICK UP → TAKE OUT 全自動流程",
     ],
     images: [
+      { src: "/images/illustrations/mysmart.png", alt: "早餐店智取櫃實景 My SMART 智慧門市自助取餐" },
       { src: "/images/cases/mwd/store-render.jpg", alt: "麥味登 MWD 智慧門市概念圖 My SMART 智取櫃" },
     ],
     tags: ["智取櫃", "餐飲連鎖", "自助取餐", "POS串接", "數位轉型"],
@@ -75,6 +76,7 @@ const cases = [
       "100% 台灣在地設計製造",
     ],
     images: [
+      { src: "/images/illustrations/temple.png", alt: "數位功德香油箱 - 金龍鳳凰雕刻觸控螢幕宮廟智能設備" },
       { src: "/images/cases/temple/digital-donation.jpg", alt: "數位功德香油箱 - 觸控螢幕宮廟造型智能設備" },
       { src: "/images/cases/temple/donation-boxes.jpg", alt: "招財開運主題數位功德箱 - 台灣在地製造" },
     ],
@@ -115,6 +117,7 @@ const cases = [
       "24 小時無人化營運支援",
     ],
     images: [
+      { src: "/images/illustrations/kiosk.png", alt: "飯店自助 Check-in Kiosk 多國語言介面" },
       { src: "/images/cases/hotel/self-checkin.jpg", alt: "水漾月明度假文旅 自助 Check-in Kiosk 多語言介面" },
     ],
     tags: ["旅宿業", "自助Kiosk", "多語言", "無人櫃台", "智慧飯店"],
@@ -135,6 +138,7 @@ const cases = [
       "跨國技術合作典範",
     ],
     images: [
+      { src: "/images/illustrations/microwave.png", alt: "冷凍微波販賣機 日本首都高速公路服務區 Made in Taiwan" },
       { src: "/images/cases/expressway/japan-meeting.jpg", alt: "銓幻元科技與日本首都高速公路合作洽談" },
     ],
     tags: ["國際合作", "日本市場", "高速公路", "智慧交通", "台灣之光"],
@@ -155,6 +159,7 @@ const cases = [
       "軟硬體一站式整合",
     ],
     images: [
+      { src: "/images/illustrations/factory.png", alt: "台灣在地工廠品質檢測產線 - 銓幻元科技 100% 台灣製造" },
       { src: "/images/cases/oem/factory-inspection.jpg", alt: "台灣在地工廠品質檢測 - 銓幻元科技智慧設備製造" },
     ],
     tags: ["台灣製造", "OEM", "品質保證", "彈性生產", "在地服務"],

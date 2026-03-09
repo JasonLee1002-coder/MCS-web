@@ -6,7 +6,7 @@ const services = [
     subtitle: "AI 訂餐 | 接線服務員",
     description:
       "結合 AI 技術的智慧取餐櫃，提供單機版與聯網版，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。",
-    image: "/images/01_grabox_main.png",
+    image: "/images/illustrations/grabox.png",
     tags: ["單機版", "聯網版", "AI 訂餐"],
   },
   {
@@ -14,7 +14,7 @@ const services = [
     subtitle: "智慧自助服務解決方案",
     description:
       "智能販賣機、自助點餐機、自助結帳機、冷凍微波販賣機等全系列設備，結合 AI 系統整合。冷凍微波機已外銷日本首都高速公路服務區。",
-    image: "/images/03_smart_vending.png",
+    image: "/images/illustrations/vending.png",
     tags: ["智能販賣機", "冷凍微波機", "自助服務機", "外銷日本"],
   },
   {
@@ -22,7 +22,7 @@ const services = [
     subtitle: "可 100% 台灣製造",
     description:
       "提供完整的硬體客製化服務，從外觀設計到軟體介面，全程台灣製造，品質有保障。支援企業品牌貼牌需求。",
-    image: "/images/05_oem_factory.png",
+    image: "/images/illustrations/factory.png",
     tags: ["品牌客製", "台灣製造", "硬體設計"],
   },
   {
@@ -30,7 +30,7 @@ const services = [
     subtitle: "ERP | 商務流程與資料平台",
     description:
       "整合企業會員管理、ERP 系統、商務流程自動化與資料分析平台，協助企業建立完整的數位化會員經營體系。",
-    image: "/images/07_membership_app.png",
+    image: "/images/illustrations/partner.png",
     tags: ["會員管理", "ERP", "流程自動化"],
   },
   {
@@ -38,7 +38,7 @@ const services = [
     subtitle: "POS | KDS",
     description:
       "提供 POS 點餐系統、KDS 廚房顯示系統的完整串接，讓餐飲與零售業者輕鬆實現數位轉型。",
-    image: "/images/04_pos_kds.png",
+    image: "/images/illustrations/pos-kds.png",
     tags: ["POS", "KDS", "餐飲零售"],
   },
   {
@@ -46,7 +46,7 @@ const services = [
     subtitle: "數據驅動的營運管理",
     description:
       "提供雲端營運管理平台搭配 AI 分析模組，即時掌握營運數據、銷售趨勢與客戶行為，助力企業精準決策。",
-    image: "/images/06_dashboard.png",
+    image: "/images/illustrations/hero.png",
     tags: ["雲端平台", "AI 分析", "營運管理"],
   },
 ];

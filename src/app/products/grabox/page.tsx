@@ -217,8 +217,8 @@ export default function GraBoxPage() {
             <div className="flex justify-center">
               <div className="w-72 h-72 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/01_grabox_main.png"
-                  alt="GraBox AI 智取櫃產品圖"
+                  src="/images/illustrations/grabox.png"
+                  alt="GraBox AI 智取櫃產品圖 - 三溫層智慧取餐櫃"
                   width={500}
                   height={500}
                   className="w-full h-full object-cover"

@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-mcs-blue-dark via-mcs-blue to-mcs-blue-dark"
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-mcs-blue-dark via-mcs-blue to-mcs-blue-dark"
     >
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
@@ -19,47 +21,64 @@ export default function Hero() {
       {/* Glowing accent lines */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-mcs-orange to-transparent" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-          <span className="text-mcs-orange">AI 智慧設備</span>
-          <span className="mx-3 text-white/60">x</span>
-          <span className="text-white">商業系統整合</span>
-        </h1>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left - Text */}
+          <div className="text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+              <span className="text-mcs-orange">AI 智慧設備</span>
+              <span className="mx-3 text-white/60">x</span>
+              <span className="text-white">商業系統整合</span>
+            </h1>
 
-        <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Meta Clearing Station 為企業提供 AI
-          智取櫃、智慧販賣機、自助服務機、冷凍微波機到 POS/KDS
-          雲端系統的一站式軟硬體整合方案，100% 台灣製造，外銷日本。
-        </p>
+            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+              Meta Clearing Station 為企業提供 AI
+              智取櫃、智慧販賣機、自助服務機、冷凍微波機到 POS/KDS
+              雲端系統的一站式軟硬體整合方案，100% 台灣製造，外銷日本。
+            </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#services"
-            className="bg-mcs-orange text-white px-8 py-3.5 rounded-full text-lg font-medium hover:bg-mcs-orange-light transition-colors shadow-lg shadow-mcs-orange/25"
-          >
-            瞭解方案
-          </a>
-          <a
-            href="#contact"
-            className="border border-white/30 text-white px-8 py-3.5 rounded-full text-lg font-medium hover:bg-white/10 transition-colors"
-          >
-            聯絡我們
-          </a>
-        </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a
+                href="#services"
+                className="bg-mcs-orange text-white px-8 py-3.5 rounded-full text-lg font-medium hover:bg-mcs-orange-light transition-colors shadow-lg shadow-mcs-orange/25"
+              >
+                瞭解方案
+              </a>
+              <a
+                href="#contact"
+                className="border border-white/30 text-white px-8 py-3.5 rounded-full text-lg font-medium hover:bg-white/10 transition-colors"
+              >
+                聯絡我們
+              </a>
+            </div>
 
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto">
-          <div>
-            <div className="text-3xl font-bold text-mcs-orange">100%</div>
-            <div className="text-sm text-gray-400 mt-1">台灣製造</div>
+            {/* Stats */}
+            <div className="mt-12 grid grid-cols-3 gap-8 max-w-lg mx-auto lg:mx-0">
+              <div>
+                <div className="text-3xl font-bold text-mcs-orange">100%</div>
+                <div className="text-sm text-gray-400 mt-1">台灣製造</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-mcs-orange">6</div>
+                <div className="text-sm text-gray-400 mt-1">核心方案</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-mcs-orange">AI</div>
+                <div className="text-sm text-gray-400 mt-1">智慧驅動</div>
+              </div>
+            </div>
           </div>
-          <div>
-            <div className="text-3xl font-bold text-mcs-orange">6</div>
-            <div className="text-sm text-gray-400 mt-1">核心方案</div>
-          </div>
-          <div>
-            <div className="text-3xl font-bold text-mcs-orange">AI</div>
-            <div className="text-sm text-gray-400 mt-1">智慧驅動</div>
+
+          {/* Right - Hero illustration */}
+          <div className="flex justify-center">
+            <Image
+              src="/images/illustrations/hero.png"
+              alt="MCS 銓幻元科技 AI 智慧設備生態系統 - 智取櫃、販賣機、自助服務機、雲端平台整合"
+              width={700}
+              height={500}
+              className="w-full max-w-xl drop-shadow-2xl"
+              priority
+            />
           </div>
         </div>
       </div>
