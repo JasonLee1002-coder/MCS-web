@@ -124,6 +124,33 @@ function SpecIcon({ type }: { type: string }) {
   );
 }
 
+const faqItems = [
+  {
+    q: "GraBox 智取櫃有哪些溫度選擇？",
+    a: "GraBox 支援三溫層混搭控制：常溫（15-25°C）、冷藏（2-8°C）、冷凍（-18°C 以下），同一台機器可同時配置不同溫度格位，滿足多樣餐點保存需求。",
+  },
+  {
+    q: "GraBox 智取櫃有哪些規格可選？",
+    a: "提供 6 格、12 格、18 格、24 格等多種標準規格，也可依場地需求客製尺寸。單機版與聯網版可選，支援 OEM/ODM 品牌貼牌客製。",
+  },
+  {
+    q: "GraBox 適合哪些場景使用？",
+    a: "廣泛適用於餐廳、飯店、企業辦公大樓、學校、醫院、便利商店等場景，實現 24 小時無人化取餐，有效解決排隊等候與人力成本問題。",
+  },
+  {
+    q: "GraBox 支援哪些支付方式？",
+    a: "支援 LINE Pay、街口支付、悠遊卡、信用卡、Apple Pay、Google Pay 等多元支付方式，一機搞定所有付款需求。",
+  },
+  {
+    q: "GraBox 跟市面上的智取櫃有什麼不同？",
+    a: "GraBox 內建 AI 訂餐系統、語音互動、人臉辨識，並非單純的密碼鎖櫃。支援三溫層混搭、自帶雲端管理平台與數據分析，100% 台灣製造，售後服務快速。",
+  },
+  {
+    q: "GraBox 的保固與售後服務？",
+    a: "全產品提供一年免費保固，可加購延長至三年。全台灣服務據點，提供到府安裝、場地評估、系統設定與員工教育訓練。",
+  },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -147,12 +174,29 @@ const jsonLd = {
   },
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+
 export default function GraBoxPage() {
   return (
     <main className="min-h-screen bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       {/* Hero */}
       <section className="bg-gradient-to-br from-mcs-blue-dark via-mcs-blue to-mcs-blue-dark pt-28 pb-20 text-white relative overflow-hidden">
@@ -309,6 +353,42 @@ export default function GraBoxPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-4">
+            常見問題
+          </h2>
+          <p className="text-center text-gray-500 mb-12">
+            關於 GraBox AI 智取櫃的常見疑問
+          </p>
+          <div className="space-y-4">
+            {faqItems.map((item, i) => (
+              <details
+                key={i}
+                className="bg-white rounded-xl border border-gray-100 group"
+              >
+                <summary className="flex items-center justify-between p-6 cursor-pointer font-medium text-gray-900 hover:text-mcs-orange transition-colors">
+                  {item.q}
+                  <svg
+                    className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-4">
+                  {item.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="bg-gradient-to-r from-mcs-orange to-mcs-orange-light py-16">
         <div className="max-w-4xl mx-auto px-4 text-center text-white">
@@ -318,7 +398,7 @@ export default function GraBoxPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/"
+              href="/#contact"
               className="bg-white text-mcs-orange px-8 py-3 rounded-full font-medium hover:bg-white/90 transition-colors"
             >
               聯絡我們
