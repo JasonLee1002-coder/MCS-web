@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { LightboxImage, LightboxVideo } from "@/components/Lightbox";
 
 export const metadata: Metadata = {
   title: "客戶實績 | 麗嬰國際、麥味登、鼎新電腦、首都高速公路合作案例",
@@ -276,7 +277,7 @@ export default function CasesPage() {
                         c.images.length === 3 && i === 0 ? "sm:col-span-2" : ""
                       }${c.images.length > 4 && i === 0 ? " col-span-2 row-span-2" : ""}`}
                     >
-                      <Image
+                      <LightboxImage
                         src={img.src}
                         alt={img.alt}
                         width={800}
@@ -292,16 +293,11 @@ export default function CasesPage() {
                 <div className="grid gap-4 mb-8 grid-cols-1 sm:grid-cols-2">
                   {(c as { videos: { src: string; alt: string }[] }).videos.map((vid, i) => (
                     <div key={i} className="rounded-2xl overflow-hidden shadow-lg">
-                      <video
+                      <LightboxVideo
                         src={vid.src}
-                        controls
-                        playsInline
-                        muted
-                        preload="metadata"
+                        alt={vid.alt}
                         className="w-full h-64 sm:h-80 object-cover bg-black"
-                      >
-                        {vid.alt}
-                      </video>
+                      />
                     </div>
                   ))}
                 </div>

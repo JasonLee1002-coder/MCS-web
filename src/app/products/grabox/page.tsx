@@ -3,15 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "GraBox AI 智取櫃 | 三溫層智慧取餐櫃",
+  title: "GraBox AI 智取櫃 | 多溫層智慧取餐櫃",
   description:
-    "GraBox AI 智取櫃：結合 AI 訂餐系統的智慧取餐櫃。三溫層控制（常溫/冷藏/冷凍）、人臉辨識、多元支付、24H無人取餐。100% 台灣製造，規格客製化。適用餐廳、飯店、企業、學校。",
+    "GraBox AI 智取櫃：結合 AI 訂餐系統的智慧取餐櫃。標配常溫，可客製冷藏/冷凍溫層、人臉辨識、多元支付、24H無人取餐。100% 台灣製造，規格客製化。適用餐廳、飯店、企業、學校。",
   keywords: [
     "GraBox",
     "AI智取櫃",
     "智取櫃",
     "智慧取餐櫃",
-    "三溫層智取櫃",
+    "多溫層智取櫃",
     "無人取餐",
     "AI訂餐系統",
     "智能取餐櫃",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "GraBox AI 智取櫃 | 銓幻元科技 MCS",
     description:
-      "三溫層 AI 智慧取餐櫃，人臉辨識取餐、多元支付、雲端管理。100% 台灣製造。",
+      "多溫層 AI 智慧取餐櫃，標配常溫可客製冷藏冷凍、人臉辨識取餐、多元支付、雲端管理。100% 台灣製造。",
     images: ["/images/01_grabox_main.png"],
   },
 };
@@ -41,8 +41,8 @@ const features = [
     desc: "內建 AI 訂餐系統，消費者可透過手機、觸控螢幕或語音下單，智能推薦餐點。",
   },
   {
-    title: "三溫層混搭",
-    desc: "同一台機器可同時配置常溫（15-25°C）、冷藏（2-8°C）、冷凍（-18°C以下）格位。",
+    title: "多溫層可客製",
+    desc: "標準配備常溫格位，可依需求客製冷藏（2-8°C）、冷凍（-18°C以下）溫層，靈活搭配。",
   },
   {
     title: "人臉辨識取餐",
@@ -76,7 +76,7 @@ const advantages = [
     title: "vs 傳統密碼鎖櫃",
     points: [
       "GraBox 內建 AI 系統，不只是「放東西的櫃子」",
-      "三溫層混搭，傳統櫃只有常溫",
+      "可客製冷藏/冷凍溫層，傳統櫃只有常溫",
       "自帶雲端平台，傳統櫃無數據能力",
     ],
   },
@@ -127,7 +127,7 @@ function SpecIcon({ type }: { type: string }) {
 const faqItems = [
   {
     q: "GraBox 智取櫃有哪些溫度選擇？",
-    a: "GraBox 支援三溫層混搭控制：常溫（15-25°C）、冷藏（2-8°C）、冷凍（-18°C 以下），同一台機器可同時配置不同溫度格位，滿足多樣餐點保存需求。",
+    a: "GraBox 標準配備常溫（15-25°C）格位，可依需求客製冷藏（2-8°C）、冷凍（-18°C 以下）溫層，同一台機器可混搭不同溫度格位，滿足多樣餐點保存需求。",
   },
   {
     q: "GraBox 智取櫃有哪些規格可選？",
@@ -143,7 +143,7 @@ const faqItems = [
   },
   {
     q: "GraBox 跟市面上的智取櫃有什麼不同？",
-    a: "GraBox 內建 AI 訂餐系統、語音互動、人臉辨識，並非單純的密碼鎖櫃。支援三溫層混搭、自帶雲端管理平台與數據分析，100% 台灣製造，售後服務快速。",
+    a: "GraBox 內建 AI 訂餐系統、語音互動、人臉辨識，並非單純的密碼鎖櫃。標配常溫，可客製冷藏/冷凍溫層，自帶雲端管理平台與數據分析，100% 台灣製造，售後服務快速。",
   },
   {
     q: "GraBox 的保固與售後服務？",
@@ -156,7 +156,7 @@ const jsonLd = {
   "@type": "Product",
   name: "GraBox AI 智取櫃",
   description:
-    "結合 AI 訂餐系統的智慧取餐櫃。三溫層控制（常溫/冷藏/冷凍）、人臉辨識取餐、多元支付、24H無人取餐。100% 台灣製造。",
+    "結合 AI 訂餐系統的智慧取餐櫃。標配常溫，可客製冷藏/冷凍溫層、人臉辨識取餐、多元支付、24H無人取餐。100% 台灣製造。",
   image: "https://www.mcstation.ai/images/01_grabox_main.png",
   brand: {
     "@type": "Brand",
@@ -244,7 +244,7 @@ export default function GraBoxPage() {
                 <span className="text-mcs-orange">AI 智取櫃</span>
               </h1>
               <p className="text-xl text-white/80 mb-8 leading-relaxed">
-                不只是取餐櫃 — 結合 AI 訂餐系統、人臉辨識、三溫層控制的
+                不只是取餐櫃 — 結合 AI 訂餐系統、人臉辨識、多溫層可客製的
                 新一代智慧設備。100% 台灣設計製造。
               </p>
               <div className="flex flex-wrap gap-4">
@@ -252,7 +252,7 @@ export default function GraBoxPage() {
                   單機版 / 聯網版可選
                 </span>
                 <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-xl text-sm">
-                  三溫層混搭
+                  多溫層可客製
                 </span>
                 <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-xl text-sm">
                   OEM/ODM 客製
@@ -263,7 +263,7 @@ export default function GraBoxPage() {
               <div className="w-72 h-72 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/illustrations/grabox.png"
-                  alt="GraBox AI 智取櫃產品圖 - 三溫層智慧取餐櫃"
+                  alt="GraBox AI 智取櫃產品圖 - 多溫層智慧取餐櫃"
                   width={500}
                   height={500}
                   className="w-full h-full object-cover"
