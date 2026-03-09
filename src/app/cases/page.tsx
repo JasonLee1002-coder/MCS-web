@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LightboxImage, LightboxVideo } from "@/components/Lightbox";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "客戶實績 | 麗嬰國際、麥味登、鼎新電腦、首都高速公路合作案例",
@@ -355,6 +356,7 @@ export default function CasesPage() {
           </div>
         </div>
       </section>
+      <ScrollToTop />
     </main>
   );
 }
