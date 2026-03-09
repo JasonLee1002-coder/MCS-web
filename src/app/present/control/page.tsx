@@ -10,6 +10,7 @@ const slides = [
   { id: "member", title: "會員系統", icon: "👥" },
   { id: "pos", title: "POS/KDS", icon: "🛒" },
   { id: "cloud", title: "雲端平台", icon: "☁️" },
+  { id: "cases", title: "客戶實績", icon: "🏆" },
   { id: "partner", title: "經銷夥伴", icon: "🤝" },
   { id: "contact", title: "聯絡我們", icon: "📞" },
 ];

@@ -16,7 +16,7 @@ const slides = [
     id: "grabox",
     title: "GraBox AI 智取櫃",
     subtitle: "AI 訂餐 | 接線服務員",
-    image: "/images/01_grabox_main.png",
+    image: "/images/illustrations/grabox.png",
     bullets: [
       "多種規格，客製化方案",
       "AI 智慧訂餐系統",
@@ -30,7 +30,7 @@ const slides = [
     id: "vending",
     title: "智能販賣機",
     subtitle: "各類自助服務設備 x AI系統整合",
-    image: "/images/03_smart_vending.png",
+    image: "/images/illustrations/vending.png",
     bullets: [
       "AI 人臉辨識 / 會員辨識",
       "多元支付：LINE Pay、街口、信用卡",
@@ -44,7 +44,7 @@ const slides = [
     id: "oem",
     title: "OEM / ODM 貼牌客製",
     subtitle: "可 100% 台灣製造",
-    image: "/images/05_oem_factory.png",
+    image: "/images/illustrations/factory.png",
     bullets: [
       "外觀設計到軟體介面全客製",
       "品牌 Logo / UI 貼牌服務",
@@ -58,7 +58,7 @@ const slides = [
     id: "member",
     title: "企業會員系統整合",
     subtitle: "ERP | 商務流程與資料平台",
-    image: "/images/07_membership_app.png",
+    image: "/images/illustrations/partner.png",
     bullets: [
       "會員資料管理與分群",
       "ERP 系統整合",
@@ -72,7 +72,7 @@ const slides = [
     id: "pos",
     title: "餐飲與零售系統串接",
     subtitle: "POS | KDS",
-    image: "/images/04_pos_kds.png",
+    image: "/images/illustrations/pos-kds.png",
     bullets: [
       "POS 點餐結帳系統",
       "KDS 廚房顯示系統",
@@ -86,7 +86,7 @@ const slides = [
     id: "cloud",
     title: "雲端營運平台 + AI分析模組",
     subtitle: "數據驅動的營運管理",
-    image: "/images/06_dashboard.png",
+    image: "/images/illustrations/hero.png",
     bullets: [
       "即時營運 Dashboard",
       "AI 銷售預測與建議",
@@ -97,10 +97,25 @@ const slides = [
     bg: "from-[#1a2a4a] to-mcs-blue-dark",
   },
   {
+    id: "cases",
+    title: "客戶實績",
+    subtitle: "跨產業 AI 智慧設備整合",
+    image: "/images/cases/mwd/mwd-snoopy-storefront.jpg",
+    bullets: [
+      "麗嬰國際 Funbox — 20+ 台品牌主題智能販賣機",
+      "麥味登 MWD — 智能取餐櫃進駐連鎖門市",
+      "宮廟數位功德箱 — 進駐仁海宮、護國宮、成功廟",
+      "日本首都高速公路 — 冷凍微波機外銷日本",
+      "靈知科技 × 長林旅店 — 自助 Check-in Kiosk",
+      "更多案例：www.MCStation.ai/cases",
+    ],
+    bg: "from-[#1a2a4a] to-mcs-blue-dark",
+  },
+  {
     id: "partner",
     title: "成為 MCS 經銷夥伴",
     subtitle: "推薦獎勵計畫",
-    image: "/images/10_team.png",
+    image: "/images/illustrations/partner.png",
     bullets: [
       "推薦積分 → 折抵商品",
       "推薦積分 → 電商點數換好物",
@@ -271,8 +286,19 @@ export default function PresentPage() {
               <div className="text-xl text-white/50">
                 {slide.description}
               </div>
-              <div className="mt-12 text-white/30 text-sm">
-                手機掃描 QR Code 或開啟控制頁面互動
+              <div className="mt-12 flex flex-col items-center gap-3">
+                <div className="bg-white rounded-xl p-3 inline-block">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent("https://www.mcstation.ai/present/control")}`}
+                    alt="掃描 QR Code 開啟手機遙控器"
+                    width={120}
+                    height={120}
+                  />
+                </div>
+                <div className="text-white/40 text-sm">
+                  掃描 QR Code 用手機控制簡報
+                </div>
               </div>
             </div>
           ) : slide.id === "contact" ? (

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "GraBox AI 智取櫃 | 多溫層智慧取餐櫃",
@@ -199,6 +201,8 @@ const faqJsonLd = {
 
 export default function GraBoxPage() {
   return (
+    <>
+    <Header />
     <main className="min-h-screen bg-white">
       <script
         type="application/ld+json"
@@ -427,5 +431,7 @@ export default function GraBoxPage() {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   );
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { LightboxImage, LightboxVideo } from "@/components/Lightbox";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -220,6 +222,8 @@ const jsonLd = {
 
 export default function CasesPage() {
   return (
+    <>
+    <Header />
     <main className="min-h-screen bg-white">
       <script
         type="application/ld+json"
@@ -371,5 +375,7 @@ export default function CasesPage() {
       </section>
       <ScrollToTop />
     </main>
+    <Footer />
+    </>
   );
 }
