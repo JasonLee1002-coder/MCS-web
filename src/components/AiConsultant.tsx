@@ -68,18 +68,33 @@ export default function AiConsultant() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isListening, setIsListening] = useState(false);
-  const [voiceSupported, setVoiceSupported] = useState(false);
   const chatRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
 
-  // Check if speech recognition is supported
+  // Get room code from URL if on /present/control
+  const isPresenterMode = pathname === "/present/control";
+  const roomCodeRef = useRef("");
+
   useEffect(() => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      setVoiceSupported(true);
+    if (isPresenterMode) {
+      const params = new URLSearchParams(window.location.search);
+      roomCodeRef.current = params.get("room") || "";
     }
-  }, []);
+  }, [isPresenterMode]);
+
+  // Sync Yuzu Q&A to presentation screen
+  const syncToPresentation = useCallback((question: string, answer: string) => {
+    if (!isPresenterMode || !roomCodeRef.current) return;
+    fetch("/api/present", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        room: roomCodeRef.current,
+        qa: question,
+        qaAnswer: answer,
+      }),
+    }).catch(() => {});
+  }, [isPresenterMode]);
+
 
   // Auto scroll to bottom
   useEffect(() => {
@@ -116,6 +131,7 @@ export default function AiConsultant() {
 
       const data = await res.json();
       setMessages((prev) => [...prev, { role: "bot", text: data.answer }]);
+      syncToPresentation(question, data.answer);
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -124,85 +140,7 @@ export default function AiConsultant() {
     } finally {
       setIsLoading(false);
     }
-  }, [messages, isLoading]);
-
-  const toggleVoice = useCallback(() => {
-    if (isListening) {
-      // Stop listening
-      recognitionRef.current?.stop();
-      setIsListening(false);
-      return;
-    }
-
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return;
-
-    const recognition = new SpeechRecognition();
-    recognition.lang = "zh-TW";
-    recognition.continuous = false;
-    recognition.interimResults = true;
-
-    recognition.onresult = (event: SpeechRecognitionEvent) => {
-      let transcript = Array.from(event.results)
-        .map((result) => result[0].transcript)
-        .join("");
-      // Fix common misrecognitions for product terms
-      transcript = transcript
-        .replace(/breaks/gi, "GraBox")
-        .replace(/grab box/gi, "GraBox")
-        .replace(/gray box/gi, "GraBox")
-        .replace(/grape box/gi, "GraBox")
-        .replace(/借錢/g, "介紹")
-        .replace(/MCS/gi, "MCS")
-        .replace(/pos/gi, "POS")
-        .replace(/kds/gi, "KDS");
-      setInput(transcript);
-
-      // If final result, auto-send
-      if (event.results[event.results.length - 1].isFinal) {
-        setIsListening(false);
-        if (transcript.trim()) {
-          // Small delay to show the transcribed text before sending
-          setTimeout(() => {
-            setInput("");
-            // We need to construct messages inline since state may not be updated
-            const newMsgs: Message[] = [...messages, { role: "user", text: transcript.trim() }];
-            setMessages(newMsgs);
-            setIsLoading(true);
-
-            fetch("/api/chat", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ messages: newMsgs }),
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                setMessages((prev) => [...prev, { role: "bot", text: data.answer }]);
-              })
-              .catch(() => {
-                setMessages((prev) => [
-                  ...prev,
-                  { role: "bot", text: "抱歉，暫時無法回應，請稍後再試 🍊" },
-                ]);
-              })
-              .finally(() => setIsLoading(false));
-          }, 300);
-        }
-      }
-    };
-
-    recognition.onerror = () => {
-      setIsListening(false);
-    };
-
-    recognition.onend = () => {
-      setIsListening(false);
-    };
-
-    recognitionRef.current = recognition;
-    recognition.start();
-    setIsListening(true);
-  }, [isListening, messages]);
+  }, [messages, isLoading, syncToPresentation]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") sendMessage(input);
@@ -302,40 +240,16 @@ export default function AiConsultant() {
 
           {/* Input */}
           <div className="px-4 py-3 border-t border-gray-100 flex-shrink-0">
-            {/* Voice listening indicator */}
-            {isListening && (
-              <div className="mb-2 flex items-center gap-2 text-sm text-red-500 animate-pulse">
-                <span className="w-2.5 h-2.5 bg-red-500 rounded-full" />
-                正在聆聽，請說話...
-              </div>
-            )}
             <div className="flex gap-2">
-              {/* Mic Button */}
-              {voiceSupported && (
-                <button
-                  onClick={toggleVoice}
-                  disabled={isLoading}
-                  className={`px-3 py-2.5 rounded-xl transition-all disabled:opacity-30 ${
-                    isListening
-                      ? "bg-red-500 text-white animate-pulse"
-                      : "bg-gray-100 text-gray-500 hover:bg-mcs-orange/10 hover:text-mcs-orange"
-                  }`}
-                  title="按下開始語音輸入"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
-                  </svg>
-                </button>
-              )}
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder={isListening ? "正在聽您說..." : "打字或按 🎙️ 說話"}
+                placeholder="輸入您的問題..."
                 className="flex-1 px-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
                 autoFocus
-                disabled={isLoading || isListening}
+                disabled={isLoading}
               />
               <button
                 onClick={() => sendMessage(input)}
@@ -348,7 +262,7 @@ export default function AiConsultant() {
               </button>
             </div>
             <div className="text-[10px] text-gray-400 mt-1.5 text-center">
-              Powered by AI · 按 🎙️ 用說的更方便
+              Powered by Yuzu AI 🍊
             </div>
           </div>
         </div>

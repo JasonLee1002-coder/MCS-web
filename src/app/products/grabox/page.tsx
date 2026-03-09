@@ -31,46 +31,46 @@ export const metadata: Metadata = {
 };
 
 const specs = [
-  { label: "格數規格", value: "6 / 12 / 18 / 24 格", icon: "grid" },
+  { label: "格數規格", value: "模組化自由組合", icon: "grid" },
   { label: "溫控範圍", value: "常溫 · 冷藏 · 冷凍", icon: "temp" },
-  { label: "標準寬度", value: "60 - 120 cm", icon: "size" },
+  { label: "標準組合", value: "1375 × 1280 mm", icon: "size" },
   { label: "電壓", value: "110V / 60Hz", icon: "power" },
 ];
 
 const features = [
   {
-    title: "AI 智慧訂餐",
-    desc: "內建 AI 訂餐系統，消費者可透過手機、觸控螢幕或語音下單，智能推薦餐點。",
+    title: "彈性模組化組合",
+    desc: "小格櫃、大格櫃、中控櫃自由堆疊組合，可直立彈性配置，適應各種場地需求。",
+  },
+  {
+    title: "雙面獨立工業螢幕",
+    desc: "前後雙螢幕獨立運作，前面消費者點餐取餐，後面店員放餐管理，穩定高品質工業級電腦。",
+  },
+  {
+    title: "安全可靠設計",
+    desc: "通過上市連鎖餐飲近萬次開關門壓力測試。雷射感應防夾手，自動閘門無接觸開啟。",
+  },
+  {
+    title: "一體成形板金",
+    desc: "100% MIT 一體成形不鏽鋼板金，抗菌無縫設計，不漏液、衛生好清潔。內建紫外線殺菌功能。",
   },
   {
     title: "多溫層可客製",
     desc: "標準配備常溫格位，可依需求客製冷藏（2-8°C）、冷凍（-18°C以下）溫層，靈活搭配。",
   },
   {
-    title: "人臉辨識取餐",
-    desc: "刷臉即可開櫃取餐，免掃碼、免輸密碼，3 秒完成取餐動作。",
-  },
-  {
-    title: "多元支付",
-    desc: "LINE Pay、街口、悠遊卡、信用卡、Apple Pay、Google Pay，一機搞定。",
-  },
-  {
-    title: "雲端即時管理",
-    desc: "即時 Dashboard 監控所有櫃位狀態、溫度、銷售數據，自動補貨提醒。",
-  },
-  {
-    title: "OEM/ODM 客製",
-    desc: "外觀、軟體介面、品牌 Logo 全客製。少量多樣，彈性生產。",
+    title: "智慧功能整合",
+    desc: "五色可控燈光、外送員簽名自取功能、會員數位集點。可單機作業，也可聯網升級雲端管理。",
   },
 ];
 
 const useCases = [
-  { scene: "餐廳 / 便當店", desc: "24H 無人取餐，解決尖峰等候問題" },
-  { scene: "飯店 / 民宿", desc: "房客自助取餐，降低人力成本" },
-  { scene: "企業 / 辦公大樓", desc: "員工訂餐直取，提升午餐效率" },
-  { scene: "學校 / 醫院", desc: "大量配餐場景，分流取餐人潮" },
-  { scene: "便利商店 / 超市", desc: "擴充自助取貨，延伸服務時段" },
-  { scene: "外送平台整合", desc: "UberEats / Foodpanda 訂單自動入櫃" },
+  { scene: "連鎖早餐店", desc: "外帶餐點自取，提升營運效率（實績：麥味登）", image: "/images/products/grabox/r101-scene.png" },
+  { scene: "知名糕餅店", desc: "網路預訂、智取櫃取貨，免排隊（示意：佳德鳳梨酥）", image: "/images/products/grabox/chiate-scenario.png" },
+  { scene: "便利商店門口", desc: "24 小時自助服務，便利店門口展示（實績：全家超商）", image: "/images/products/grabox/dm-scenarios.png" },
+  { scene: "飯店 / 民宿", desc: "房客自助取餐，降低人力成本", image: "" },
+  { scene: "企業 / 辦公大樓", desc: "員工訂餐直取，提升午餐效率", image: "" },
+  { scene: "外送平台整合", desc: "外送員持碼自取，減少店員確認訂單的衝突", image: "" },
 ];
 
 const advantages = [
@@ -264,13 +264,13 @@ export default function GraBoxPage() {
               </div>
             </div>
             <div className="flex justify-center">
-              <div className="w-72 h-72 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
+              <div className="w-72 h-72 lg:w-96 lg:h-[28rem] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/illustrations/grabox.png"
-                  alt="GraBox AI 智取櫃產品圖 - 多溫層智慧取餐櫃"
+                  src="/images/products/grabox/r101-spec.png"
+                  alt="GraBox-R101 智慧取餐櫃產品規格圖 - 100% 台灣製造"
                   width={500}
-                  height={500}
-                  className="w-full h-full object-cover"
+                  height={700}
+                  className="w-full h-full object-cover object-top"
                   priority
                 />
               </div>
@@ -296,14 +296,102 @@ export default function GraBoxPage() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Product Detail Images */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-4">
-            六大核心功能
+            GraBox-R101 產品細節
+          </h2>
+          <p className="text-center text-gray-500 mb-12">
+            100% 台灣製造 · 模組化設計 · 通過上市連鎖餐飲品質驗證
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/products/grabox/dm-features.png"
+                alt="GraBox 智取櫃核心特色 - 智慧設計、安全可靠、靈活配置"
+                width={600}
+                height={800}
+                className="w-full h-auto"
+              />
+              <div className="bg-gray-50 px-4 py-2 text-xs text-gray-400 text-center">示意情境圖</div>
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/products/grabox/r101-scene.png"
+                alt="GraBox-R101 實際應用場景 - 麥味登早餐連鎖門市"
+                width={600}
+                height={800}
+                className="w-full h-auto"
+              />
+              <div className="bg-gray-50 px-4 py-2 text-xs text-gray-400 text-center">示意情境圖</div>
+            </div>
+          </div>
+          {/* Spec Table */}
+          <div className="mt-12 bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+            <div className="bg-mcs-blue-dark text-white px-6 py-4 font-bold text-lg">
+              GraBox-R101 產品規格
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left font-medium text-gray-500">項目</th>
+                    <th className="px-6 py-3 text-left font-medium text-gray-500">寬度 (W)</th>
+                    <th className="px-6 py-3 text-left font-medium text-gray-500">高度 (H)</th>
+                    <th className="px-6 py-3 text-left font-medium text-gray-500">深度 (D)</th>
+                    <th className="px-6 py-3 text-left font-medium text-gray-500">備註</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  <tr>
+                    <td className="px-6 py-3 font-medium text-gray-900">小格單元</td>
+                    <td className="px-6 py-3 text-gray-600">~295mm</td>
+                    <td className="px-6 py-3 text-gray-600">~295mm</td>
+                    <td className="px-6 py-3 text-gray-600">390mm</td>
+                    <td className="px-6 py-3 text-gray-600">4 層堆疊</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-3 font-medium text-gray-900">大格單元</td>
+                    <td className="px-6 py-3 text-gray-600">~415mm</td>
+                    <td className="px-6 py-3 text-gray-600">~295mm</td>
+                    <td className="px-6 py-3 text-gray-600">390mm</td>
+                    <td className="px-6 py-3 text-gray-600">4 層堆疊</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-3 font-medium text-gray-900">中控櫃</td>
+                    <td className="px-6 py-3 text-gray-600">~665mm</td>
+                    <td className="px-6 py-3 text-gray-600">1280mm</td>
+                    <td className="px-6 py-3 text-gray-600">390mm</td>
+                    <td className="px-6 py-3 text-gray-600">含主控電腦與顯控板</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-3 font-medium text-gray-900">底座高度</td>
+                    <td className="px-6 py-3 text-gray-600" colSpan={3}>450 - 700mm（可調）</td>
+                    <td className="px-6 py-3 text-gray-600"></td>
+                  </tr>
+                  <tr className="bg-mcs-orange/5">
+                    <td className="px-6 py-3 font-bold text-mcs-blue-dark">標準組合</td>
+                    <td className="px-6 py-3 font-bold text-mcs-blue-dark">1375mm</td>
+                    <td className="px-6 py-3 font-bold text-mcs-blue-dark">1280mm</td>
+                    <td className="px-6 py-3 font-bold text-mcs-blue-dark">390mm</td>
+                    <td className="px-6 py-3 font-bold text-mcs-blue-dark">2小格+1大格+中控櫃</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-4">
+            六大核心特色
           </h2>
           <p className="text-center text-gray-500 mb-12 max-w-2xl mx-auto">
-            GraBox 不只是硬體，是一套完整的 AI 智慧取餐解決方案
+            通過上市連鎖餐飲每日數百次實戰驗證的品質
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
@@ -354,16 +442,36 @@ export default function GraBoxPage() {
       {/* Use Cases */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-12">
-            適用場景
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-4">
+            應用場景
           </h2>
+          <p className="text-center text-gray-500 mb-12">
+            從早餐店到糕餅名店，GraBox 已在多種場景實戰驗證
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {useCases.map((u) => (
-              <div key={u.scene} className="flex items-start gap-4 p-5 bg-gray-50 rounded-xl">
-                <span className="w-2 h-2 bg-mcs-orange rounded-full mt-2 flex-shrink-0" />
-                <div>
-                  <div className="font-bold text-gray-900">{u.scene}</div>
-                  <div className="text-sm text-gray-500 mt-1">{u.desc}</div>
+              <div key={u.scene} className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
+                {u.image ? (
+                  <div className="h-48 overflow-hidden">
+                    <Image
+                      src={u.image}
+                      alt={`${u.scene} - GraBox 智取櫃應用場景`}
+                      width={400}
+                      height={250}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 bg-gradient-to-br from-mcs-blue-dark to-mcs-blue flex items-center justify-center">
+                    <span className="text-4xl text-white/30 font-bold">GraBox</span>
+                  </div>
+                )}
+                <div className="p-5">
+                  <div className="font-bold text-gray-900 mb-1">{u.scene}</div>
+                  <div className="text-sm text-gray-500">{u.desc}</div>
+                  {u.image && (
+                    <div className="text-[10px] text-gray-300 mt-2">示意情境圖</div>
+                  )}
                 </div>
               </div>
             ))}
@@ -403,6 +511,28 @@ export default function GraBoxPage() {
                 </div>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Showcase: 佳德 scenario */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-4">
+            實際應用想像
+          </h2>
+          <p className="text-center text-gray-500 mb-10">
+            知名糕餅店導入 GraBox 智取櫃，網路預訂、到店免排隊取貨
+          </p>
+          <div className="rounded-2xl overflow-hidden shadow-xl">
+            <Image
+              src="/images/products/grabox/chiate-scenario.png"
+              alt="佳德糕餅導入 GraBox 智取櫃 - 消費者排隊取貨場景"
+              width={1200}
+              height={600}
+              className="w-full h-auto"
+            />
+            <div className="bg-white px-6 py-3 text-xs text-gray-400 text-center">示意情境圖</div>
           </div>
         </div>
       </section>

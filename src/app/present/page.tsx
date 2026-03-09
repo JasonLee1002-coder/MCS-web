@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
 
 const slides = [
   {
@@ -253,45 +254,60 @@ export default function PresentPage() {
   const [qaQuestion, setQaQuestion] = useState("");
   const [qaAnswer, setQaAnswer] = useState("");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const slideRef = useRef(0);
+  const lastQaTsRef = useRef(0);
+
+  // Keep ref in sync with state
+  useEffect(() => {
+    slideRef.current = currentSlide;
+  }, [currentSlide]);
 
   // Generate room code on mount
   useEffect(() => {
     const code = Math.random().toString(36).substring(2, 8).toUpperCase();
     setRoomCode(code);
-
-    // Store in localStorage for same-device control
-    localStorage.setItem("mcs-present-room", code);
-    localStorage.setItem("mcs-present-slide", "0");
   }, []);
 
-  // Listen for control commands via localStorage (cross-tab sync)
+  // Poll API for cross-device sync
   useEffect(() => {
-    const handleStorage = (e: StorageEvent) => {
-      if (e.key === "mcs-present-slide" && e.newValue !== null) {
-        const slideIndex = parseInt(e.newValue);
-        if (!isNaN(slideIndex) && slideIndex >= 0 && slideIndex < slides.length) {
+    if (!roomCode) return;
+
+    const poll = async () => {
+      try {
+        const res = await fetch(`/api/present?room=${roomCode}`);
+        if (!res.ok) return;
+        const data = await res.json();
+
+        // Handle slide change — compare against ref, not stale closure
+        if (typeof data.slide === "number" && data.slide !== slideRef.current) {
           setIsTransitioning(true);
           setTimeout(() => {
-            setCurrentSlide(slideIndex);
+            setCurrentSlide(data.slide);
+            slideRef.current = data.slide;
             setIsTransitioning(false);
             setQaVisible(false);
           }, 300);
         }
-      }
-      if (e.key === "mcs-present-qa" && e.newValue) {
-        const question = e.newValue;
-        setQaQuestion(question);
-        setQaAnswer(findAnswer(question));
-        setQaVisible(true);
-      }
-      if (e.key === "mcs-present-qa-hide") {
-        setQaVisible(false);
+
+        // Handle Q&A
+        if (data.qaTs > lastQaTsRef.current) {
+          lastQaTsRef.current = data.qaTs;
+          if (data.qa) {
+            setQaQuestion(data.qa);
+            setQaAnswer(data.qaAnswer || findAnswer(data.qa));
+            setQaVisible(true);
+          } else {
+            setQaVisible(false);
+          }
+        }
+      } catch {
+        // ignore polling errors
       }
     };
 
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
+    const interval = setInterval(poll, 500);
+    return () => clearInterval(interval);
+  }, [roomCode]);
 
   // Keyboard controls for presentation
   const handleKeyDown = useCallback(
@@ -340,7 +356,7 @@ export default function PresentPage() {
           alt="MCS"
           width={140}
           height={45}
-          className="h-10 w-auto brightness-0 invert"
+          className="h-10 w-auto"
         />
         <div className="flex items-center gap-4">
           <span className="text-white/40 text-sm">
@@ -375,7 +391,7 @@ export default function PresentPage() {
                 <div className="bg-white rounded-xl p-3 inline-block">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent("https://www.mcstation.ai/present/control")}`}
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(`https://www.mcstation.ai/present/control?room=${roomCode}`)}`}
                     alt="掃描 QR Code 開啟手機遙控器"
                     width={120}
                     height={120}
@@ -450,20 +466,23 @@ export default function PresentPage() {
       {qaVisible && (
         <div className="absolute inset-0 z-30 bg-black/70 flex items-center justify-center px-16">
           <div className="bg-white rounded-3xl p-12 max-w-3xl w-full text-gray-800 shadow-2xl">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-                </svg>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center text-xl">
+                  🍊
+                </div>
+                <div className="text-sm text-mcs-orange font-medium">Yuzu AI 即時回覆</div>
               </div>
-              <div className="text-sm text-mcs-orange font-medium">客戶提問</div>
+              <button onClick={() => setQaVisible(false)} className="text-gray-400 hover:text-gray-600 text-sm">
+                按 ESC 關閉
+              </button>
             </div>
             <div className="text-2xl font-bold mb-6 text-mcs-blue-dark">
               {qaQuestion}
             </div>
             <div className="h-px bg-gray-200 mb-6" />
-            <div className="text-lg leading-relaxed text-gray-600">
-              {qaAnswer}
+            <div className="text-lg leading-relaxed text-gray-600 prose prose-lg prose-gray max-w-none">
+              <ReactMarkdown>{qaAnswer}</ReactMarkdown>
             </div>
           </div>
         </div>

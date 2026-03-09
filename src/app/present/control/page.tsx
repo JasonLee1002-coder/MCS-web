@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 const slides = [
   { id: "cover", title: "封面", icon: "🏠" },
@@ -32,30 +33,58 @@ const quickQA = [
   { label: "如何成為經銷？", question: "經銷" },
 ];
 
-export default function ControlPage() {
+function ControlPageInner() {
+  const searchParams = useSearchParams();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [customQuestion, setCustomQuestion] = useState("");
   const [connected, setConnected] = useState(false);
+  const [roomCode, setRoomCode] = useState("");
+  const [manualRoom, setManualRoom] = useState("");
+  const [sending, setSending] = useState(false);
+  const [toast, setToast] = useState("");
+
+  // Get room code from URL query param
+  useEffect(() => {
+    const room = searchParams.get("room");
+    if (room) {
+      setRoomCode(room);
+    }
+  }, [searchParams]);
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 1500);
+  }, []);
+
+  const sendCommand = useCallback(async (data: Record<string, unknown>) => {
+    if (!roomCode) return;
+    setSending(true);
+    try {
+      await fetch("/api/present", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ room: roomCode, ...data }),
+      });
+    } catch {
+      // ignore errors
+    } finally {
+      setSending(false);
+    }
+  }, [roomCode]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
-    localStorage.setItem("mcs-present-slide", index.toString());
-    // Trigger storage event for other tabs
-    window.dispatchEvent(
-      new StorageEvent("storage", {
-        key: "mcs-present-slide",
-        newValue: index.toString(),
-      })
-    );
+    sendCommand({ slide: index });
+    showToast(`已切換：${slides[index].title}`);
   };
 
   const sendQuestion = (question: string) => {
-    localStorage.setItem("mcs-present-qa", question);
-    localStorage.setItem("mcs-present-qa-ts", Date.now().toString());
+    sendCommand({ qa: question });
+    showToast(`已送出提問：${question}`);
   };
 
   const hideQA = () => {
-    localStorage.setItem("mcs-present-qa-hide", Date.now().toString());
+    sendCommand({ qaHide: true });
   };
 
   const handleCustomQuestion = () => {
@@ -66,8 +95,12 @@ export default function ControlPage() {
   };
 
   const handleConnect = () => {
+    const room = roomCode || manualRoom.trim().toUpperCase();
+    if (!room) return;
+    setRoomCode(room);
     setConnected(true);
   };
+
 
   if (!connected) {
     return (
@@ -81,13 +114,29 @@ export default function ControlPage() {
           <h1 className="text-xl font-bold text-mcs-blue-dark mb-2">
             MCS 簡報遙控器
           </h1>
-          <p className="text-gray-500 text-sm mb-6">
-            請先在電腦端開啟簡報模式<br />
-            <span className="text-mcs-orange font-mono">/present</span>
-          </p>
+          {roomCode ? (
+            <p className="text-gray-500 text-sm mb-6">
+              簡報室代碼：<span className="text-mcs-orange font-mono font-bold text-lg">{roomCode}</span>
+            </p>
+          ) : (
+            <div className="mb-6">
+              <p className="text-gray-500 text-sm mb-3">
+                請輸入電腦端顯示的簡報室代碼
+              </p>
+              <input
+                type="text"
+                value={manualRoom}
+                onChange={(e) => setManualRoom(e.target.value.toUpperCase())}
+                placeholder="輸入 Room Code..."
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-center text-lg font-mono tracking-widest focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
+                maxLength={6}
+              />
+            </div>
+          )}
           <button
             onClick={handleConnect}
-            className="w-full bg-mcs-orange text-white py-3 rounded-xl font-medium hover:bg-mcs-orange-light transition-colors"
+            disabled={!roomCode && !manualRoom.trim()}
+            className="w-full bg-mcs-orange text-white py-3 rounded-xl font-medium hover:bg-mcs-orange-light transition-colors disabled:opacity-40"
           >
             連線開始
           </button>
@@ -98,12 +147,19 @@ export default function ControlPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-mcs-blue-dark text-white px-5 py-2.5 rounded-full text-sm shadow-lg animate-bounce">
+          {toast}
+        </div>
+      )}
+
       {/* Header */}
       <div className="bg-mcs-blue-dark text-white px-4 py-3 flex items-center justify-between sticky top-0 z-10">
         <div className="font-bold text-sm">MCS 簡報控制</div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          <span className="text-xs text-white/60">已連線</span>
+          <span className="text-xs text-white/60">Room: {roomCode}</span>
         </div>
       </div>
 
@@ -206,7 +262,24 @@ export default function ControlPage() {
         >
           隱藏問答視窗
         </button>
+
+        {/* Sending indicator */}
+        {sending && (
+          <div className="text-center text-xs text-gray-400">傳送中...</div>
+        )}
       </div>
     </div>
+  );
+}
+
+export default function ControlPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-gray-400">載入中...</div>
+      </div>
+    }>
+      <ControlPageInner />
+    </Suspense>
   );
 }
