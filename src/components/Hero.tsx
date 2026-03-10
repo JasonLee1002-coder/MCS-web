@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { LightboxImage } from "@/components/Lightbox";
 
 export default function Hero() {
   return (
@@ -71,13 +71,12 @@ export default function Hero() {
 
           {/* Right - Hero illustration */}
           <div className="flex justify-center">
-            <Image
+            <LightboxImage
               src="/images/illustrations/hero.png"
               alt="MCS 銓幻元科技 AI 智慧設備生態系統 - 智取櫃、販賣機、自助服務機、雲端平台整合"
               width={700}
               height={500}
               className="w-full max-w-xl drop-shadow-2xl"
-              priority
             />
           </div>
         </div>

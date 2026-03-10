@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
+import { LightboxImage } from "@/components/Lightbox";
 import ReactMarkdown from "react-markdown";
 
 const slides = [
@@ -17,7 +18,7 @@ const slides = [
     id: "grabox",
     title: "GraBox AI 智取櫃",
     subtitle: "AI 訂餐 | 接線服務員",
-    image: "/images/illustrations/grabox.png",
+    image: "/images/cases/mwd/grabox-closeup.jpg",
     bullets: [
       "多種規格，客製化方案",
       "AI 智慧訂餐系統",
@@ -333,7 +334,7 @@ export default function PresentPage() {
   const slide = slides[currentSlide];
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${slide.bg} text-white relative overflow-hidden`}>
+    <div className={`h-screen bg-gradient-to-br ${slide.bg} text-white relative overflow-hidden`}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -443,7 +444,7 @@ export default function PresentPage() {
               <div className="flex items-center justify-center">
                 {slide.image ? (
                   <div className="w-80 h-80 rounded-3xl overflow-hidden shadow-2xl">
-                    <Image
+                    <LightboxImage
                       src={slide.image}
                       alt={slide.title}
                       width={400}

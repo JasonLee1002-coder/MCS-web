@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 const services = [
@@ -6,7 +9,7 @@ const services = [
     subtitle: "AI 訂餐 | 接線服務員",
     description:
       "結合 AI 技術的智慧取餐櫃，多種規格可選，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。",
-    image: "/images/illustrations/grabox.png",
+    image: "/images/cases/mwd/grabox-closeup.jpg",
     tags: ["多溫層可客製", "人臉辨識", "AI 訂餐"],
   },
   {
@@ -52,6 +55,25 @@ const services = [
 ];
 
 export default function Services() {
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [lightboxAlt, setLightboxAlt] = useState("");
+
+  const closeLightbox = useCallback(() => setLightboxSrc(null), []);
+
+  useEffect(() => {
+    if (lightboxSrc) {
+      const handleKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") closeLightbox();
+      };
+      document.addEventListener("keydown", handleKey);
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.removeEventListener("keydown", handleKey);
+        document.body.style.overflow = "";
+      };
+    }
+  }, [lightboxSrc, closeLightbox]);
+
   return (
     <section id="services" className="py-24 bg-mcs-gray">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,7 +92,13 @@ export default function Services() {
               key={service.title}
               className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 group"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div
+                className="relative h-48 overflow-hidden cursor-zoom-in"
+                onClick={() => {
+                  setLightboxSrc(service.image);
+                  setLightboxAlt(service.title);
+                }}
+              >
                 <Image
                   src={service.image}
                   alt={service.title}
@@ -105,6 +133,32 @@ export default function Services() {
           ))}
         </div>
       </div>
+
+      {lightboxSrc && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={closeLightbox}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/70 hover:text-white z-10"
+            onClick={closeLightbox}
+            aria-label="關閉"
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <Image
+            src={lightboxSrc}
+            alt={lightboxAlt}
+            width={1920}
+            height={1080}
+            className="max-w-full max-h-[90vh] object-contain"
+            onClick={(e) => e.stopPropagation()}
+            quality={90}
+          />
+        </div>
+      )}
     </section>
   );
 }

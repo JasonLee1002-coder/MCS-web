@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { LightboxImage } from "@/components/Lightbox";
 
 export default function About() {
   return (
@@ -44,7 +44,7 @@ export default function About() {
           {/* Right - Visual */}
           <div className="relative">
             <div className="rounded-2xl overflow-hidden shadow-lg">
-              <Image
+              <LightboxImage
                 src="/images/illustrations/factory.png"
                 alt="MCS 銓幻元科技台灣在地工廠 100% 台灣製造品質檢測"
                 width={600}

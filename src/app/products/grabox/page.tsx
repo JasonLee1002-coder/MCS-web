@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { LightboxImage } from "@/components/Lightbox";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -265,13 +266,12 @@ export default function GraBoxPage() {
             </div>
             <div className="flex justify-center">
               <div className="w-72 h-72 lg:w-96 lg:h-[28rem] rounded-3xl overflow-hidden shadow-2xl">
-                <Image
+                <LightboxImage
                   src="/images/products/grabox/r101-spec.png"
                   alt="GraBox-R101 智慧取餐櫃產品規格圖 - 100% 台灣製造"
                   width={500}
                   height={700}
                   className="w-full h-full object-cover object-top"
-                  priority
                 />
               </div>
             </div>
@@ -307,7 +307,7 @@ export default function GraBoxPage() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="rounded-2xl overflow-hidden shadow-lg">
-              <Image
+              <LightboxImage
                 src="/images/products/grabox/dm-features.png"
                 alt="GraBox 智取櫃核心特色 - 智慧設計、安全可靠、靈活配置"
                 width={600}
@@ -317,7 +317,7 @@ export default function GraBoxPage() {
               <div className="bg-gray-50 px-4 py-2 text-xs text-gray-400 text-center">示意情境圖</div>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-lg">
-              <Image
+              <LightboxImage
                 src="/images/products/grabox/r101-scene.png"
                 alt="GraBox-R101 實際應用場景 - 麥味登早餐連鎖門市"
                 width={600}
@@ -453,7 +453,7 @@ export default function GraBoxPage() {
               <div key={u.scene} className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow">
                 {u.image ? (
                   <div className="h-48 overflow-hidden">
-                    <Image
+                    <LightboxImage
                       src={u.image}
                       alt={`${u.scene} - GraBox 智取櫃應用場景`}
                       width={400}
@@ -525,7 +525,7 @@ export default function GraBoxPage() {
             知名糕餅店導入 GraBox 智取櫃，網路預訂、到店免排隊取貨
           </p>
           <div className="rounded-2xl overflow-hidden shadow-xl">
-            <Image
+            <LightboxImage
               src="/images/products/grabox/chiate-scenario.png"
               alt="佳德糕餅導入 GraBox 智取櫃 - 消費者排隊取貨場景"
               width={1200}
