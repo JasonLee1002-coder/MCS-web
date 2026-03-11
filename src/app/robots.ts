@@ -6,6 +6,9 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.mcstation.ai/sitemap.xml",
+    sitemap: [
+      "https://www.mcstation.ai/sitemap.xml",
+      "https://www.mcstation.ai/video-sitemap.xml",
+    ],
   };
 }
