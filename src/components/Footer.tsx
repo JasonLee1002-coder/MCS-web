@@ -70,8 +70,11 @@ export default function Footer() {
 
         {/* Divider + Copyright */}
         <div className="border-t border-gray-700 pt-6 text-sm text-center">
-          &copy; {new Date().getFullYear()} 銓幻元科技股份有限公司 Meta Clearing
-          Station Pte. Ltd. All rights reserved.
+          &copy; {new Date().getFullYear()}{" "}
+          <Link href="/blog" className="text-gray-400 hover:text-gray-400 no-underline">
+            銓幻元科技股份有限公司
+          </Link>{" "}
+          Meta Clearing Station Pte. Ltd. All rights reserved.
         </div>
       </div>
     </footer>
