@@ -17,7 +17,6 @@ export default function Header() {
     { label: "服務方案", href: "/#services" },
     { label: "客戶實績", href: "/cases" },
     { label: "產品", href: "/products/grabox" },
-    { label: "部落格", href: "/blog" },
     { label: "關於我們", href: "/#about" },
     { label: "常見問題", href: "/#faq" },
   ];

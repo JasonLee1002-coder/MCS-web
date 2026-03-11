@@ -40,9 +40,6 @@ export default function Footer() {
                 <Link href="/products/grabox" className="hover:text-white transition-colors">GraBox AI 智取櫃</Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-white transition-colors">部落格</Link>
-              </li>
-              <li>
                 <a href="#about" className="hover:text-white transition-colors">關於我們</a>
               </li>
               <li>
