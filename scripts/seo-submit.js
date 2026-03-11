@@ -3,35 +3,41 @@
 /**
  * SEO submission script for mcstation.ai
  * - Submit URLs to IndexNow (Bing, Yandex, etc.)
- * Note: Google/Bing sitemap ping is deprecated. Use IndexNow for Bing/Yandex.
- *       Google discovers sitemaps via robots.txt automatically.
+ * - Auto-discovers blog posts from content/blog/ directory
  *
  * Usage:
  *   node scripts/seo-submit.js                   # Submit all URLs via IndexNow
  *   node scripts/seo-submit.js <url>             # Submit a specific URL
  */
 
+import { readdirSync } from "fs";
+import { resolve, basename } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const SITE_URL = "https://www.mcstation.ai";
 const INDEXNOW_KEY = "94ce3922543309ce70f4a6d4a9f5cfea";
 
-// All known pages
-const PAGES = [
-  "/",
-  "/cases",
-  "/products/grabox",
-  "/blog",
-  "/blog/ai-smart-pickup-cabinet-trend-2026",
-  "/blog/frozen-microwave-vending-machine-japan",
-  "/blog/smart-vending-machine-taiwan-2026",
-  "/blog/grabox-vs-traditional-pickup",
-  "/blog/digital-transformation-restaurant-2026",
-  "/blog/oem-odm-smart-device-taiwan",
-];
+// Static pages
+const STATIC_PAGES = ["/", "/cases", "/products/grabox", "/blog"];
+
+// Auto-discover blog posts
+function getBlogSlugs() {
+  const blogDir = resolve(__dirname, "..", "content", "blog");
+  try {
+    return readdirSync(blogDir)
+      .filter((f) => f.endsWith(".md"))
+      .map((f) => `/blog/${basename(f, ".md")}`);
+  } catch {
+    return [];
+  }
+}
 
 async function submitIndexNow(urls) {
   const fullUrls = urls.map((u) => (u.startsWith("http") ? u : `${SITE_URL}${u}`));
 
   console.log(`\n📡 Submitting ${fullUrls.length} URLs to IndexNow...`);
+  fullUrls.forEach((u) => console.log(`   ${u}`));
 
   const body = {
     host: "www.mcstation.ai",
@@ -46,7 +52,7 @@ async function submitIndexNow(urls) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    console.log(`   Status: ${res.status} ${res.statusText}`);
+    console.log(`\n   Status: ${res.status} ${res.statusText}`);
     if (res.ok || res.status === 200 || res.status === 202) {
       console.log("   ✅ IndexNow submission successful!");
     } else {
@@ -67,7 +73,9 @@ async function main() {
   if (specificUrl) {
     await submitIndexNow([specificUrl]);
   } else {
-    await submitIndexNow(PAGES);
+    const allPages = [...STATIC_PAGES, ...getBlogSlugs()];
+    console.log(`   Found ${allPages.length} pages (${STATIC_PAGES.length} static + ${allPages.length - STATIC_PAGES.length} blog)`);
+    await submitIndexNow(allPages);
   }
 
   console.log("\n✨ Done!");
