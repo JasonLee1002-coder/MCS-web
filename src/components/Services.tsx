@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { ScrollReveal, StaggerContainer, StaggerItem, TiltCard } from "@/components/motion";
 
 const services = [
   {
@@ -75,72 +76,74 @@ export default function Services() {
   }, [lightboxSrc, closeLightbox]);
 
   return (
-    <section id="services" className="py-24 bg-mcs-gray">
+    <section id="services" className="py-24 bg-mcs-gray relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-mcs-blue-dark mb-4">
             智慧設備整合方案
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             從硬體設備到軟體系統，MCS 提供完整的一站式整合服務
           </p>
-        </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.12}>
           {services.map((service) => (
-            <div
-              key={service.title}
-              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 group"
-            >
-              <div
-                className="relative h-48 overflow-hidden cursor-zoom-in"
-                onClick={() => {
-                  setLightboxSrc(service.image);
-                  setLightboxAlt(service.title);
-                }}
-              >
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+            <StaggerItem key={service.title}>
+              <TiltCard className="h-full">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100/80 group card-glow h-full flex flex-col">
+                  <div
+                    className="relative h-48 overflow-hidden cursor-zoom-in"
+                    onClick={() => {
+                      setLightboxSrc(service.image);
+                      setLightboxAlt(service.title);
+                    }}
+                  >
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
 
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-mcs-blue-dark mb-1">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-mcs-orange font-medium mb-3">
-                  {service.subtitle}
-                </p>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  {service.description}
-                </p>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-lg font-bold text-mcs-blue-dark mb-1 group-hover:text-mcs-orange transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-mcs-orange font-medium mb-3">
+                      {service.subtitle}
+                    </p>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-1">
+                      {service.description}
+                    </p>
 
-                <div className="flex flex-wrap gap-2">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs bg-mcs-blue/5 text-mcs-blue px-3 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                    <div className="flex flex-wrap gap-2">
+                      {service.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs bg-mcs-blue/5 text-mcs-blue px-3 py-1 rounded-full border border-mcs-blue/10 hover:bg-mcs-orange/10 hover:text-mcs-orange hover:border-mcs-orange/20 transition-colors duration-300"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </TiltCard>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
 
       {lightboxSrc && (
         <div
-          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out backdrop-blur-sm"
           onClick={closeLightbox}
         >
           <button
-            className="absolute top-4 right-4 text-white/70 hover:text-white z-10"
+            className="absolute top-4 right-4 text-white/70 hover:text-white z-10 transition-colors"
             onClick={closeLightbox}
             aria-label="關閉"
           >
