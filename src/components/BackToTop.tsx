@@ -35,19 +35,37 @@ export default function BackToTop() {
           animate={{ opacity: 1, scale: 1, x: 0 }}
           exit={{ opacity: 0, scale: 0.3, x: -40 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.88 }}
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.85 }}
           aria-label="回到頂部"
         >
-          {/* Persistent pulsing glow ring */}
+          {/* Outer ripple ring 1 — slow expanding pulse */}
           <motion.div
-            className="absolute inset-[-8px] rounded-full bg-gradient-to-tr from-mcs-orange/30 to-orange-400/20 blur-lg"
-            animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-[-14px] rounded-full border-2 border-mcs-orange/40"
+            animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
           />
 
-          {/* Button body */}
-          <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-mcs-orange to-orange-500 shadow-[0_0_20px_rgba(232,117,26,0.5)] group-hover:shadow-[0_0_35px_rgba(232,117,26,0.7)] flex items-center justify-center transition-shadow duration-300">
+          {/* Outer ripple ring 2 — offset timing */}
+          <motion.div
+            className="absolute inset-[-10px] rounded-full border border-orange-400/30"
+            animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 1.5 }}
+          />
+
+          {/* Persistent pulsing glow */}
+          <motion.div
+            className="absolute inset-[-8px] rounded-full bg-gradient-to-tr from-mcs-orange/40 to-orange-400/25 blur-lg"
+            animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0.9, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          {/* Button body — periodic bounce */}
+          <motion.div
+            className="relative w-14 h-14 rounded-full bg-gradient-to-br from-mcs-orange to-orange-500 shadow-[0_0_24px_rgba(232,117,26,0.6)] group-hover:shadow-[0_0_40px_rgba(232,117,26,0.8)] flex items-center justify-center transition-shadow duration-300"
+            animate={{ y: [0, -5, 0, -2, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}
+          >
             {/* Progress ring */}
             <svg className="absolute inset-[-3px] w-[62px] h-[62px] -rotate-90" viewBox="0 0 62 62">
               <circle
@@ -72,19 +90,19 @@ export default function BackToTop() {
               />
             </svg>
 
-            {/* Bouncing arrow */}
+            {/* Bouncing arrow — more energetic */}
             <motion.svg
               className="w-6 h-6 text-white relative z-10"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
               strokeWidth={3}
-              animate={{ y: [0, -3, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ y: [0, -4, 0, -2, 0] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
             </motion.svg>
-          </div>
+          </motion.div>
 
           {/* Label tooltip */}
           <motion.span
