@@ -22,7 +22,7 @@ export default function BackToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const circumference = 2 * Math.PI * 20;
+  const circumference = 2 * Math.PI * 24;
   const strokeDashoffset = circumference * (1 - progress);
 
   return (
@@ -30,62 +30,69 @@ export default function BackToTop() {
       {show && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 z-[90] group"
-          initial={{ opacity: 0, scale: 0.5, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.5, y: 20 }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          whileHover={{ scale: 1.12 }}
-          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-28 left-6 z-[90] group cursor-pointer"
+          initial={{ opacity: 0, scale: 0.3, x: -40 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          exit={{ opacity: 0, scale: 0.3, x: -40 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.88 }}
           aria-label="回到頂部"
         >
-          {/* Glow behind */}
-          <div className="absolute inset-0 rounded-full bg-mcs-orange/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-150" />
+          {/* Persistent pulsing glow ring */}
+          <motion.div
+            className="absolute inset-[-8px] rounded-full bg-gradient-to-tr from-mcs-orange/30 to-orange-400/20 blur-lg"
+            animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          />
 
           {/* Button body */}
-          <div className="relative w-12 h-12 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg shadow-mcs-orange/20 border border-mcs-orange/30 flex items-center justify-center group-hover:border-mcs-orange/60 group-hover:shadow-mcs-orange/40 transition-all duration-300">
+          <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-mcs-orange to-orange-500 shadow-[0_0_20px_rgba(232,117,26,0.5)] group-hover:shadow-[0_0_35px_rgba(232,117,26,0.7)] flex items-center justify-center transition-shadow duration-300">
             {/* Progress ring */}
-            <svg className="absolute inset-0 w-12 h-12 -rotate-90" viewBox="0 0 48 48">
+            <svg className="absolute inset-[-3px] w-[62px] h-[62px] -rotate-90" viewBox="0 0 62 62">
               <circle
-                cx="24"
-                cy="24"
-                r="20"
+                cx="31"
+                cy="31"
+                r="24"
                 fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-gray-200/30"
+                stroke="rgba(255,255,255,0.15)"
+                strokeWidth="3"
               />
               <circle
-                cx="24"
-                cy="24"
-                r="20"
+                cx="31"
+                cy="31"
+                r="24"
                 fill="none"
-                stroke="url(#progress-gradient)"
-                strokeWidth="2.5"
+                stroke="white"
+                strokeWidth="3"
                 strokeLinecap="round"
                 strokeDasharray={circumference}
                 strokeDashoffset={strokeDashoffset}
-                style={{ transition: "stroke-dashoffset 0.1s ease" }}
+                style={{ transition: "stroke-dashoffset 0.15s ease" }}
               />
-              <defs>
-                <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#E8751A" />
-                  <stop offset="100%" stopColor="#F5923E" />
-                </linearGradient>
-              </defs>
             </svg>
 
-            {/* Arrow icon */}
-            <svg
-              className="w-5 h-5 text-mcs-orange group-hover:text-mcs-orange-light transition-colors relative z-10"
+            {/* Bouncing arrow */}
+            <motion.svg
+              className="w-6 h-6 text-white relative z-10"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              strokeWidth={2.5}
+              strokeWidth={3}
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-            </svg>
+            </motion.svg>
           </div>
+
+          {/* Label tooltip */}
+          <motion.span
+            className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-white/95 backdrop-blur-md text-mcs-orange font-bold text-xs px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap border border-mcs-orange/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+            initial={false}
+          >
+            回到頂部 ↑
+          </motion.span>
         </motion.button>
       )}
     </AnimatePresence>
