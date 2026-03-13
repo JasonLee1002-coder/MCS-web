@@ -84,19 +84,23 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group relative">
-            {/* Glow ring behind logo on hover */}
+            {/* Logo with glow effects */}
             <div className="relative">
+              {/* Ambient glow - always visible, intensifies on hover */}
+              <div className="logo-ambient-glow" />
+              {/* Hover ring glow */}
               <div className="logo-glow-ring" />
               <motion.div
                 whileHover={{ scale: 1.06 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative z-10"
               >
                 <Image
                   src="/images/mcs-logo.png"
                   alt="MCS - Meta Clearing Station 銓幻元科技股份有限公司"
                   width={180}
                   height={60}
-                  className="h-14 w-auto relative z-10"
+                  className="h-14 w-auto drop-shadow-[0_0_8px_rgba(232,117,26,0.3)] group-hover:drop-shadow-[0_0_16px_rgba(232,117,26,0.5)] transition-[filter] duration-500"
                   priority
                 />
               </motion.div>
