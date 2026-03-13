@@ -19,7 +19,7 @@ const SITE_URL = "https://www.mcstation.ai";
 const INDEXNOW_KEY = "94ce3922543309ce70f4a6d4a9f5cfea";
 
 // Static pages
-const STATIC_PAGES = ["/", "/cases", "/products/grabox", "/blog"];
+const STATIC_PAGES = ["/", "/cases", "/products/frozen-microwave", "/products/grabox", "/blog"];
 
 // Auto-discover blog posts
 function getBlogSlugs() {
