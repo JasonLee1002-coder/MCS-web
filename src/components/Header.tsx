@@ -61,8 +61,8 @@ export default function Header() {
       label: "產品",
       href: "/products/frozen-microwave",
       children: [
-        { label: "🔥 冷凍微波販賣機", href: "/products/frozen-microwave" },
         { label: "📦 GraBox 智取櫃", href: "/products/grabox" },
+        { label: "❄️ 冷凍微波販賣機", href: "/products/frozen-microwave" },
       ],
     },
     { label: "關於我們", href: "/#about" },

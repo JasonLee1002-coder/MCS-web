@@ -7,22 +7,22 @@ import { ScrollReveal, StaggerContainer, StaggerItem, TiltCard } from "@/compone
 
 const services = [
   {
-    title: "冷凍微波販賣機",
-    subtitle: "🔥 主力產品 | 日本首都高速指定合作",
+    title: "GraBox 智取櫃",
+    subtitle: "主力產品 | AI 訂餐 · 接線服務員",
     description:
-      "台灣唯一擁有上百台實績，100% 台製研發。搭載 3600W 商用微波，冷食瞬間變熱餐。服務全家超商數百台經驗，食安管控業界領先。日本首都高速公路 MOU 指定合作。",
-    image: "/images/products/frozen-microwave/th-21ms-catalog.png",
-    tags: ["冷凍微波加熱", "食安管控", "日本MOU", "台灣製造"],
-    link: "/products/frozen-microwave",
+      "結合 AI 技術的智慧取餐櫃，多種規格可選，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。100% 台灣設計製造。",
+    image: "/images/cases/mwd/grabox-closeup.jpg",
+    tags: ["多溫層可客製", "人臉辨識", "AI 訂餐", "台灣製造"],
+    link: "/products/grabox",
   },
   {
-    title: "GraBox 智取櫃",
-    subtitle: "AI 訂餐 | 接線服務員",
+    title: "冷凍販賣機 · 冷凍微波機",
+    subtitle: "日本首都高速指定合作 | 食安管控",
     description:
-      "結合 AI 技術的智慧取餐櫃，多種規格可選，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。",
-    image: "/images/cases/mwd/grabox-closeup.jpg",
-    tags: ["多溫層可客製", "人臉辨識", "AI 訂餐"],
-    link: "/products/grabox",
+      "台灣唯一擁有上百台實績。冷凍販賣機 + 冷凍微波加熱販賣機全系列。服務全家超商數百台經驗，食安管控業界領先。日本首都高速公路 MOU 指定合作。",
+    image: "/images/products/frozen-microwave/th-21ms-catalog.png",
+    tags: ["冷凍販賣機", "冷凍微波加熱", "食安管控", "日本MOU"],
+    link: "/products/frozen-microwave",
   },
   {
     title: "OEM / ODM 貼牌客製",

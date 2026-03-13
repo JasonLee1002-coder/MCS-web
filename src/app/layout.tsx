@@ -11,7 +11,7 @@ const geistSans = Geist({
 
 export const metadata: Metadata = {
   title: {
-    default: "銓幻元科技 | MCS Meta Clearing Station - 冷凍微波販賣機 · GraBox AI智取櫃 | 智慧設備整合方案",
+    default: "銓幻元科技 | MCS Meta Clearing Station - GraBox AI智取櫃 · 冷凍微波販賣機 | 智慧設備整合方案",
     template: "%s | 銓幻元科技 MCS",
   },
   description:
