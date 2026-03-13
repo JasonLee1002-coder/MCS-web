@@ -826,6 +826,27 @@ function CTA() {
   );
 }
 
+/* ───── Section Divider ───── */
+function SectionDivider() {
+  return (
+    <div className="relative py-4 bg-[#050a15]">
+      <div className="max-w-3xl mx-auto px-8">
+        <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
+      </div>
+    </div>
+  );
+}
+
+function SectionDividerDark() {
+  return (
+    <div className="relative py-4 bg-[#080e1c]">
+      <div className="max-w-3xl mx-auto px-8">
+        <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
+      </div>
+    </div>
+  );
+}
+
 /* ───── Main Export ───── */
 export default function FrozenMicrowaveShowcase() {
   return (
@@ -833,12 +854,18 @@ export default function FrozenMicrowaveShowcase() {
       <CinematicHero />
       <ProcessFlow />
       <BigNumbers />
+      <SectionDivider />
       <FeatureShowcase />
+      <SectionDividerDark />
       <MachineLineup />
       <JapanMOU />
+      <SectionDivider />
       <FoodSafetyPlatform />
+      <SectionDividerDark />
       <UseCases />
+      <SectionDivider />
       <CatalogGallery />
+      <SectionDividerDark />
       <FAQ />
       <CTA />
     </>

@@ -100,7 +100,11 @@ export default function Header() {
                   alt="MCS - Meta Clearing Station 銓幻元科技股份有限公司"
                   width={180}
                   height={60}
-                  className="h-14 w-auto drop-shadow-[0_0_8px_rgba(232,117,26,0.3)] group-hover:drop-shadow-[0_0_16px_rgba(232,117,26,0.5)] transition-[filter] duration-500"
+                  className={`h-14 w-auto transition-[filter] duration-500 ${
+                    scrolled
+                      ? "drop-shadow-[0_0_6px_rgba(232,117,26,0.2)] group-hover:drop-shadow-[0_0_12px_rgba(232,117,26,0.4)]"
+                      : "brightness-125 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)] group-hover:drop-shadow-[0_0_18px_rgba(232,117,26,0.6)]"
+                  }`}
                   priority
                 />
               </motion.div>
