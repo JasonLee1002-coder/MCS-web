@@ -189,13 +189,20 @@ import BackToTop from "@/components/BackToTop";
 **Component features**:
 - **Position**: Fixed `bottom-28 left-6 z-[90]` (bottom-left, above mobile nav)
 - **Visibility**: Appears after scrolling 400px (`scrollY > 400`)
-- **Scroll progress ring**: SVG circle (`r=24`, `circumference = 2πr`) with `strokeDashoffset` based on scroll percentage — white ring fills as user scrolls down
-- **Orange gradient button**: `w-14 h-14` circle, `bg-gradient-to-br from-mcs-orange to-orange-500`
-- **Bouncing arrow**: White chevron-up with infinite `y: [0, -3, 0]` animation
-- **Pulsing glow ring**: `absolute inset-[-8px]` with `scale: [1, 1.3, 1]` + `opacity: [0.5, 0.8, 0.5]` infinite loop
-- **Hover tooltip**: "回到頂部 ↑" label appears on hover (right side, white pill badge)
-- **Spring entrance/exit**: `AnimatePresence` with spring physics (`stiffness: 260, damping: 20`), slides in from left
 - **Click**: `window.scrollTo({ top: 0, behavior: "smooth" })`
+- **Spring entrance/exit**: `AnimatePresence` with spring physics (`stiffness: 260, damping: 20`), slides in from left
+- **Hover**: `whileHover={{ scale: 1.15 }}`, `whileTap={{ scale: 0.85 }}`
+
+**Animation layers (5 layers, inside→out)**:
+
+| Layer | Element | Animation | Timing |
+|-------|---------|-----------|--------|
+| 1 | **Arrow** (white chevron-up SVG) | `y: [0, -4, 0, -2, 0]` double-bounce | 1.2s infinite |
+| 2 | **Button body** (`w-14 h-14` orange gradient circle) | `y: [0, -5, 0, -2, 0]` periodic hop | 2.5s infinite + 1.5s pause |
+| 3 | **Progress ring** (SVG `r=24`) | `strokeDashoffset` tracks scroll % | passive scroll listener |
+| 4 | **Glow pulse** (`inset-[-8px]`, blur-lg) | `scale: [1, 1.35, 1]` + `opacity: [0.5, 0.9, 0.5]` | 2s infinite |
+| 5a | **Ripple ring 1** (`inset-[-14px]`, border-2) | `scale: [1, 1.6, 1]` + `opacity: [0.6, 0, 0.6]` | 3s infinite |
+| 5b | **Ripple ring 2** (`inset-[-10px]`, border-1) | `scale: [1, 1.4, 1]` + `opacity: [0.4, 0, 0.4]` | 3s infinite, delay 1.5s |
 
 **Key implementation**:
 ```tsx
@@ -210,11 +217,30 @@ const strokeDashoffset = circumference * (1 - progress);
   <circle r="24" stroke="white" strokeWidth="3" strokeDasharray={circumference}
     strokeDashoffset={strokeDashoffset} strokeLinecap="round" />
 </svg>
+
+// Double ripple rings (water-ripple effect, offset timing)
+<motion.div className="absolute inset-[-14px] rounded-full border-2 border-mcs-orange/40"
+  animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
+  transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }} />
+<motion.div className="absolute inset-[-10px] rounded-full border border-orange-400/30"
+  animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
+  transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: 1.5 }} />
+
+// Button body periodic bounce (hop then rest)
+<motion.div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-mcs-orange to-orange-500 ..."
+  animate={{ y: [0, -5, 0, -2, 0] }}
+  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}>
+
+// Arrow energetic double-bounce
+<motion.svg animate={{ y: [0, -4, 0, -2, 0] }}
+  transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}>
 ```
 
 **Shadow glow levels**:
-- Default: `shadow-[0_0_20px_rgba(232,117,26,0.5)]`
-- Hover: `shadow-[0_0_35px_rgba(232,117,26,0.7)]`
+- Default: `shadow-[0_0_24px_rgba(232,117,26,0.6)]`
+- Hover: `shadow-[0_0_40px_rgba(232,117,26,0.8)]`
+
+**Hover tooltip**: "回到頂部 ↑" white pill badge, appears on right side (`left-full ml-3`)
 
 ---
 
