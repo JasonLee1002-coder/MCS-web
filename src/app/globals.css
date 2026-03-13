@@ -164,6 +164,62 @@ html {
   transition: transform 0.6s ease;
 }
 
+/* ── Logo shimmer text effect ── */
+@keyframes shimmer-slide {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.logo-text-shimmer {
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-slide 4s linear infinite;
+}
+
+.logo-text-shimmer-dark {
+  background-image: linear-gradient(
+    90deg,
+    #0F2440 0%,
+    #0F2440 35%,
+    #E8751A 50%,
+    #0F2440 65%,
+    #0F2440 100%
+  );
+}
+
+.logo-text-shimmer-light {
+  background-image: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 35%,
+    #E8751A 50%,
+    #ffffff 65%,
+    #ffffff 100%
+  );
+}
+
+/* ── Logo glow pulse ── */
+@keyframes logo-glow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.logo-glow-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 16px;
+  background: radial-gradient(ellipse at center, rgba(232,117,26,0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.group:hover .logo-glow-ring {
+  animation: logo-glow 2s ease-in-out infinite;
+}
+
 /* ── Noise texture overlay ── */
 .noise-overlay {
   position: fixed;
