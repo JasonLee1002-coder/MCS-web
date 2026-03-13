@@ -65,8 +65,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.7 }}
             >
-              Meta Clearing Station 為企業提供 AI
-              智取櫃、智慧販賣機、自助服務機、冷凍微波機到 POS/KDS
+              Meta Clearing Station 為企業提供{" "}
+              <span className="text-mcs-orange font-semibold">GraBox AI 智取櫃</span>、
+              冷凍販賣機、冷凍微波機、自助服務設備到 POS/KDS
               雲端系統的一站式軟硬體整合方案，100% 台灣製造，外銷日本。
             </motion.p>
 
