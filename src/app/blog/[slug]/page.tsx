@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
+
 import { getBlogPost, getAllBlogSlugs } from "@/lib/blog";
 
 export async function generateStaticParams() {
@@ -205,7 +205,6 @@ export default async function BlogPostPage({
             </div>
           </div>
         </section>
-        <ScrollToTop />
       </main>
       <Footer />
     </>
