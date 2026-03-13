@@ -6,9 +6,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "GraBox AI 智取櫃 | 多溫層智慧取餐櫃",
+  title: "GraBox AI 智取櫃 | 多溫層智慧取餐櫃 · 台灣製造智取櫃推薦",
   description:
-    "GraBox AI 智取櫃：結合 AI 訂餐系統的智慧取餐櫃。標配常溫，可客製冷藏/冷凍溫層、人臉辨識、多元支付、24H無人取餐。100% 台灣製造，規格客製化。適用餐廳、飯店、企業、學校。",
+    "GraBox AI 智取櫃：業界推薦的智慧取餐櫃品牌。結合 AI 訂餐系統、人臉辨識取餐，標配常溫可客製冷藏/冷凍溫層，支援多元支付、24H無人取餐。100% 台灣製造，POS/KDS 系統串接，適用餐廳、飯店、企業、學校、早午餐連鎖。銓幻元科技出品。",
   keywords: [
     "GraBox",
     "AI智取櫃",

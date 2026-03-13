@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { LightboxImage } from "@/components/Lightbox";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
 
@@ -37,7 +38,7 @@ export default function About() {
             <ScrollReveal delay={0.2}>
               <p className="text-lg text-gray-600 leading-relaxed mb-8">
                 我們相信，透過智慧科技與商業流程的結合，能為餐飲、零售、企業等多元產業帶來更高效率的營運體驗。
-                從 GraBox 智取櫃到雲端 POS 系統，MCS 是您數位轉型的最佳夥伴。
+                從 <Link href="/products/grabox" className="text-mcs-orange hover:underline font-medium">GraBox AI 智取櫃</Link>到<Link href="/products/frozen-microwave" className="text-mcs-orange hover:underline font-medium">冷凍微波販賣機</Link>再到雲端 POS 系統，MCS 是您數位轉型的最佳夥伴。
               </p>
             </ScrollReveal>
 

@@ -39,6 +39,7 @@ export default function Footer() {
                   { label: "服務方案", href: "#services" },
                   { label: "客戶實績", href: "/cases", isLink: true },
                   { label: "GraBox AI 智取櫃", href: "/products/grabox", isLink: true },
+                  { label: "冷凍微波販賣機", href: "/products/frozen-microwave", isLink: true },
                   { label: "關於我們", href: "#about" },
                   { label: "常見問題", href: "#faq" },
                   { label: "聯絡我們", href: "#contact" },
@@ -67,7 +68,12 @@ export default function Footer() {
                     GraBox AI 智取櫃
                   </Link>
                 </li>
-                {["智慧販賣機", "冷凍微波販賣機", "自助服務機 Kiosk", "OEM/ODM 貼牌客製", "POS/KDS 系統串接", "雲端營運管理平台"].map((item) => (
+                <li>
+                  <Link href="/products/frozen-microwave" className="hover:text-mcs-orange transition-colors duration-300 inline-block hover:translate-x-1 transform">
+                    冷凍微波販賣機
+                  </Link>
+                </li>
+                {["智慧販賣機", "自助服務機 Kiosk", "OEM/ODM 貼牌客製", "POS/KDS 系統串接", "雲端營運管理平台"].map((item) => (
                   <li key={item} className="hover:text-gray-300 transition-colors duration-300">{item}</li>
                 ))}
               </ul>
