@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -7,6 +8,36 @@ import About from "@/components/About";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "銓幻元科技 MCS | GraBox AI 智取櫃 · 冷凍微波販賣機 · 台灣製造智慧設備領導品牌",
+  description:
+    "銓幻元科技 100% 台灣研發製造 GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機。服務全家超商數百台實績，日本首都高速公路 MOU 指定合作。提供 AI 訂餐、人臉辨識取餐、多溫層控制、雲端營運管理平台。",
+  keywords: [
+    "銓幻元科技",
+    "MCS",
+    "GraBox",
+    "AI智取櫃",
+    "智慧取餐櫃",
+    "冷凍微波販賣機",
+    "冷凍販賣機",
+    "智能販賣機",
+    "台灣製造販賣機",
+    "無人販賣機",
+    "24H無人服務區",
+    "智慧販賣機平台",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "銓幻元科技 MCS | GraBox AI 智取櫃 · 冷凍微波販賣機",
+    description:
+      "100% 台灣研發製造智慧設備。GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機。全家超商數百台實績，日本高速公路 MOU 合作。",
+    url: "https://www.mcstation.ai",
+    images: ["/images/mcs-logo.png"],
+  },
+};
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
