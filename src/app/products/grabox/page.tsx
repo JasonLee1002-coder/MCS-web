@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "企業取餐櫃",
     "冷藏取餐櫃",
   ],
+  alternates: {
+    canonical: "/products/grabox",
+  },
   openGraph: {
     title: "GraBox AI 智取櫃 | 銓幻元科技 MCS",
     description:

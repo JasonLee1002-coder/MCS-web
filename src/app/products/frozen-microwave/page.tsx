@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     "販賣機營運模式",
     "全家超商販賣機",
   ],
+  alternates: {
+    canonical: "/products/frozen-microwave",
+  },
   openGraph: {
     title: "冷凍微波販賣機 | 台灣唯一百台實績 · 日本首都高速指定",
     description:
