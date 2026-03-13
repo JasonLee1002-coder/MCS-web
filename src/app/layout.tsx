@@ -11,7 +11,7 @@ const geistSans = Geist({
 
 export const metadata: Metadata = {
   title: {
-    default: "銓幻元科技 | MCS Meta Clearing Station - GraBox AI智取櫃 | 智慧設備整合方案",
+    default: "銓幻元科技 | MCS Meta Clearing Station - 冷凍微波販賣機 · GraBox AI智取櫃 | 智慧設備整合方案",
     template: "%s | 銓幻元科技 MCS",
   },
   description:
@@ -47,8 +47,13 @@ export const metadata: Metadata = {
     "自動販賣機台灣",
     "冷凍微波販賣機",
     "冷凍微波機",
+    "冷凍販賣機",
+    "冷凍食品販賣機",
+    "24H無人服務區",
+    "微波加熱販賣機",
     "自助服務機",
     "外銷日本",
+    "日本首都高速公路",
     "餐飲數位轉型",
     "智慧餐飲設備",
     "經銷商系統",

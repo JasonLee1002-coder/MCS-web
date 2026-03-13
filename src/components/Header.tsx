@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useMotionValueEvent, useScroll, AnimatePresence } from "framer-motion";
@@ -10,10 +10,23 @@ function openYuzu() {
   if (btn) btn.click();
 }
 
+interface NavChild {
+  label: string;
+  href: string;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+  children?: NavChild[];
+}
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -29,11 +42,29 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const navItems = [
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const navItems: NavItem[] = [
     { label: "首頁", href: "/#hero" },
     { label: "服務方案", href: "/#services" },
     { label: "客戶實績", href: "/cases" },
-    { label: "產品", href: "/products/grabox" },
+    {
+      label: "產品",
+      href: "/products/frozen-microwave",
+      children: [
+        { label: "🔥 冷凍微波販賣機", href: "/products/frozen-microwave" },
+        { label: "📦 GraBox 智取櫃", href: "/products/grabox" },
+      ],
+    },
     { label: "關於我們", href: "/#about" },
     { label: "常見問題", href: "/#faq" },
   ];
@@ -71,6 +102,57 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
+              // Items with dropdown
+              if (item.children) {
+                return (
+                  <div
+                    key={item.href}
+                    className="relative"
+                    ref={dropdownRef}
+                    onMouseEnter={() => setDropdownOpen(true)}
+                    onMouseLeave={() => setDropdownOpen(false)}
+                  >
+                    <button
+                      className={`text-sm font-medium transition-colors relative group flex items-center gap-1 ${
+                        scrolled
+                          ? "text-gray-700 hover:text-mcs-orange"
+                          : "text-white/80 hover:text-white"
+                      }`}
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    >
+                      {item.label}
+                      <svg className={`w-3.5 h-3.5 transition-transform ${dropdownOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-mcs-orange transition-all duration-300 group-hover:w-full" />
+                    </button>
+                    <AnimatePresence>
+                      {dropdownOpen && (
+                        <motion.div
+                          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden"
+                          initial={{ opacity: 0, y: -8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.15 }}
+                        >
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className="block px-4 py-3 text-sm text-gray-700 hover:bg-mcs-orange/5 hover:text-mcs-orange transition-colors"
+                              onClick={() => setDropdownOpen(false)}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
+              // Regular items
               const NavTag = item.href.startsWith("/") && !item.href.includes("#") ? Link : "a";
               return (
                 <NavTag
@@ -134,6 +216,32 @@ export default function Header() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               {navItems.map((item, i) => {
+                // Items with children - show as group in mobile
+                if (item.children) {
+                  return (
+                    <motion.div
+                      key={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                    >
+                      <div className="py-2 px-4 text-xs font-bold text-gray-400 uppercase tracking-wider mt-1">
+                        {item.label}
+                      </div>
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block py-2.5 px-6 text-sm font-medium text-gray-700 hover:text-mcs-orange hover:bg-mcs-orange/5 rounded-lg transition-all"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  );
+                }
+
                 const NavTag = item.href.startsWith("/") && !item.href.includes("#") ? Link : "a";
                 return (
                   <motion.div

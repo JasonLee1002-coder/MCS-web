@@ -2,9 +2,19 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ScrollReveal, StaggerContainer, StaggerItem, TiltCard } from "@/components/motion";
 
 const services = [
+  {
+    title: "冷凍微波販賣機",
+    subtitle: "🔥 主力產品 | 日本首都高速指定合作",
+    description:
+      "台灣唯一擁有上百台實績，100% 台製研發。搭載 3600W 商用微波，冷食瞬間變熱餐。服務全家超商數百台經驗，食安管控業界領先。日本首都高速公路 MOU 指定合作。",
+    image: "/images/products/frozen-microwave/th-21ms-catalog.png",
+    tags: ["冷凍微波加熱", "食安管控", "日本MOU", "台灣製造"],
+    link: "/products/frozen-microwave",
+  },
   {
     title: "GraBox 智取櫃",
     subtitle: "AI 訂餐 | 接線服務員",
@@ -12,14 +22,7 @@ const services = [
       "結合 AI 技術的智慧取餐櫃，多種規格可選，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。",
     image: "/images/cases/mwd/grabox-closeup.jpg",
     tags: ["多溫層可客製", "人臉辨識", "AI 訂餐"],
-  },
-  {
-    title: "智慧販賣機 · 自助服務機 · 冷凍微波機",
-    subtitle: "智慧自助服務解決方案",
-    description:
-      "智能販賣機、自助點餐機、自助結帳機、冷凍微波販賣機等全系列設備，結合 AI 系統整合。冷凍微波機已外銷日本首都高速公路服務區。",
-    image: "/images/illustrations/vending.png",
-    tags: ["智能販賣機", "冷凍微波機", "自助服務機", "外銷日本"],
+    link: "/products/grabox",
   },
   {
     title: "OEM / ODM 貼牌客製",
@@ -31,7 +34,7 @@ const services = [
   },
   {
     title: "企業會員系統整合",
-    subtitle: "ERP | 商務流程與資料平台",
+    subtitle: "ERP | 商務流程與資料分析平台",
     description:
       "整合企業會員管理、ERP 系統、商務流程自動化與資料分析平台，協助企業建立完整的數位化會員經營體系。",
     image: "/images/illustrations/partner.png",
@@ -129,6 +132,17 @@ export default function Services() {
                         </span>
                       ))}
                     </div>
+                    {"link" in service && service.link && (
+                      <Link
+                        href={service.link}
+                        className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-mcs-orange hover:text-mcs-orange-light transition-colors"
+                      >
+                        了解更多
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </TiltCard>
