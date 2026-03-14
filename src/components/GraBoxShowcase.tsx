@@ -710,12 +710,17 @@ function CTASection() {
               看客戶實績
             </Link>
           </div>
-          <div className="mt-8">
-            <Link
-              href="/products/frozen-microwave"
-              className="text-white/30 text-sm hover:text-orange-400 transition-colors"
-            >
+          <div className="flex justify-center gap-6 mt-8">
+            <Link href="/products/frozen-microwave" className="text-white/30 text-sm hover:text-orange-400 transition-colors">
               也看看 → 冷凍微波販賣機
+            </Link>
+          </div>
+          <div className="flex justify-center gap-4 mt-4">
+            <Link href="/blog/grabox-ai-ordering-face-recognition" className="text-orange-400/50 hover:text-orange-400 text-sm transition-colors">
+              延伸閱讀：AI 訂餐 × 人臉辨識 →
+            </Link>
+            <Link href="/blog/smart-pickup-cabinet-brand-comparison" className="text-orange-400/50 hover:text-orange-400 text-sm transition-colors">
+              智取櫃品牌比較 →
             </Link>
           </div>
         </ScrollReveal>

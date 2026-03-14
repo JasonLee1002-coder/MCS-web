@@ -181,6 +181,12 @@ export default function BlogPage() {
                 了解 GraBox 智取櫃
               </Link>
               <Link
+                href="/products/frozen-microwave"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg transition-all"
+              >
+                冷凍微波販賣機
+              </Link>
+              <Link
                 href="/cases"
                 className="border-2 border-mcs-blue-dark text-mcs-blue-dark px-8 py-3 rounded-full font-medium hover:bg-mcs-blue-dark hover:text-white transition-colors"
               >

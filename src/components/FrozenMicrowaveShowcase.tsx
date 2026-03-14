@@ -814,10 +814,24 @@ function CTA() {
               </Link>
             </GlowPulse>
             <Link
+              href="/cases"
+              className="inline-block border border-white/20 text-white/60 px-10 py-4 rounded-full font-medium hover:bg-white/5 hover:text-white transition-all"
+            >
+              查看客戶實績
+            </Link>
+            <Link
               href="/products/grabox"
               className="inline-block border border-white/20 text-white/60 px-10 py-4 rounded-full font-medium hover:bg-white/5 hover:text-white transition-all"
             >
               看 GraBox 智取櫃
+            </Link>
+          </div>
+          <div className="flex justify-center gap-4 mt-4">
+            <Link href="/blog/frozen-microwave-vending-machine-japan" className="text-blue-400/60 hover:text-blue-400 text-sm transition-colors">
+              延伸閱讀：外銷日本實戰 →
+            </Link>
+            <Link href="/blog/frozen-vending-machine-food-safety-management" className="text-blue-400/60 hover:text-blue-400 text-sm transition-colors">
+              食安管控指南 →
             </Link>
           </div>
         </ScrollReveal>

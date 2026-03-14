@@ -385,6 +385,12 @@ export default function CasesPage() {
             >
               看 GraBox 智取櫃
             </Link>
+            <Link
+              href="/products/frozen-microwave"
+              className="border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white/10 transition-colors"
+            >
+              冷凍微波販賣機
+            </Link>
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion";
 
@@ -121,6 +122,16 @@ export default function FAQ() {
             </StaggerItem>
           ))}
         </StaggerContainer>
+        <ScrollReveal className="mt-10 text-center">
+          <p className="text-sm text-gray-400">
+            想了解更多？
+            <Link href="/products/grabox" className="text-mcs-orange hover:underline mx-1">GraBox 智取櫃</Link>
+            ·
+            <Link href="/products/frozen-microwave" className="text-mcs-orange hover:underline mx-1">冷凍微波販賣機</Link>
+            ·
+            <Link href="/blog" className="text-mcs-orange hover:underline mx-1">部落格知識庫</Link>
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -197,6 +197,12 @@ export default async function BlogPostPage({
                 了解 GraBox 智取櫃
               </Link>
               <Link
+                href="/products/frozen-microwave"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg transition-all"
+              >
+                冷凍微波販賣機
+              </Link>
+              <Link
                 href="/cases"
                 className="border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white/10 transition-colors"
               >
