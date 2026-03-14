@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import AiConsultant from "@/components/AiConsultant";
 import BackToTop from "@/components/BackToTop";
@@ -197,6 +199,8 @@ export default function RootLayout({
         {children}
         <BackToTop />
         <AiConsultant />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
