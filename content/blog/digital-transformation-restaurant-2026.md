@@ -32,7 +32,7 @@ POS（Point of Sale）點餐系統是數位轉型的第一步。從手寫單據�
 
 #### 第三階段：AI 智取櫃
 
-這是目前最前沿的升級。當 POS 接單、KDS 管理出餐流程之後，最後一哩路就是**取餐**。GraBox AI智取櫃完成了這個閉環：
+這是目前最前沿的升級。當 POS 接單、KDS 管理出餐流程之後，最後一哩路就是**取餐**。[GraBox AI智取櫃](/products/grabox)完成了這個閉環：
 
 ```
 顧客APP點餐 → POS接單 → KDS顯示 → 廚房製作 → 放入GraBox → 顧客掃碼取餐
@@ -75,7 +75,7 @@ POS（Point of Sale）點餐系統是數位轉型的第一步。從手寫單據�
 
 ### 成功案例：完整數位轉型
 
-麥味登的智慧門市是餐飲數位轉型的最佳範例：
+[麥味登的智慧門市](/cases#mwd)是餐飲數位轉型的最佳範例：
 
 1. **POS 系統**：門市 + APP 雙管道點餐
 2. **KDS**：廚房顯示系統管理製餐流程
@@ -88,4 +88,13 @@ POS（Point of Sale）點餐系統是數位轉型的第一步。從手寫單據�
 
 不確定從哪裡開始？銓幻元科技提供免費的數位轉型諮詢服務。我們的團隊會根據您的營運規模、現有系統、預算，規劃最適合的升級路徑。
 
-歡迎透過官網聯繫銓幻元科技，讓我們陪您走過數位轉型的每一步。
+歡迎[聯繫銓幻元科技](/#contact)，讓我們陪您走過數位轉型的每一步。
+
+---
+
+### 延伸閱讀
+
+- [GraBox AI 智取櫃產品介紹](/products/grabox)
+- [GraBox 智取櫃 vs 傳統叫號取餐：完整比較分析](/blog/grabox-vs-traditional-pickup)
+- [餐飲業缺工解方：智慧設備如何補足人力缺口](/blog/restaurant-labor-shortage-solution)
+- [智取櫃導入 SOP 完整流程](/blog/smart-cabinet-implementation-sop)

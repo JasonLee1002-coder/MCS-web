@@ -61,13 +61,13 @@ image: "/images/cases/oem/factory-inspection.jpg"
 
 **需求**：為麗嬰國際打造寶可夢、TOMICA 等 IP 品牌主題的智能販賣機。
 
-**成果**：20+ 台品牌主題機台進駐全台各大商場，每台機台的外觀、互動介面都完全客製化。
+**成果**：20+ 台品牌主題機台[進駐全台各大商場](/cases#funbox)，每台機台的外觀、互動介面都完全客製化。
 
 #### 案例三：冷凍微波販賣機（日本規格）
 
 **需求**：日本首都高速公路需要符合日本法規、電壓、語言的冷凍微波販賣機。
 
-**成果**：100% 台灣製造的冷凍微波販賣機成功外銷日本，在首都高速公路服務區穩定運作。
+**成果**：100% 台灣製造的[冷凍微波販賣機](/products/frozen-microwave)成功外銷日本，在[首都高速公路服務區](/cases#expressway)穩定運作。
 
 ### OEM/ODM 合作流程
 
@@ -108,4 +108,13 @@ image: "/images/cases/oem/factory-inspection.jpg"
 - 為特殊場域開發客製化機台
 - 尋找可靠的台灣製造合作夥伴
 
-歡迎透過銓幻元科技官網與我們聯繫，我們的團隊將在 24 小時內回覆您的詢問。
+歡迎[與我們聯繫](/#contact)，我們的團隊將在 24 小時內回覆您的詢問。
+
+---
+
+### 延伸閱讀
+
+- [冷凍微波販賣機產品介紹（TH-21MS/FD/FS）](/products/frozen-microwave)
+- [GraBox AI 智取櫃產品介紹](/products/grabox)
+- [冷凍微波販賣機外銷日本：台灣製造如何打進日本高速公路市場](/blog/frozen-microwave-vending-machine-japan)
+- [銓幻元科技客戶實績總覽](/cases)

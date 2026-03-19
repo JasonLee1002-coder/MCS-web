@@ -79,7 +79,18 @@ const jsonLd = {
     "@type": "Offer",
     availability: "https://schema.org/InStock",
     url: "https://www.mcstation.ai/products/grabox",
+    priceCurrency: "TWD",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      priceCurrency: "TWD",
+      eligibleQuantity: {
+        "@type": "QuantitativeValue",
+        unitText: "台",
+      },
+    },
   },
+  category: "智慧取餐設備",
+  inLanguage: "zh-Hant",
 };
 
 const breadcrumbJsonLd = {

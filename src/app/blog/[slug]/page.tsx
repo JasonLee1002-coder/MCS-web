@@ -50,6 +50,8 @@ export default async function BlogPostPage({
   const { slug } = await params;
   const post = await getBlogPost(slug);
 
+  const wordCount = post.content.replace(/<[^>]*>/g, "").length;
+
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -57,10 +59,16 @@ export default async function BlogPostPage({
     description: post.description,
     datePublished: post.date,
     dateModified: post.date,
+    inLanguage: "zh-Hant",
+    wordCount,
     author: {
       "@type": "Organization",
       name: "銓幻元科技股份有限公司",
       url: "https://www.mcstation.ai",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.mcstation.ai/images/mcs-logo.png",
+      },
     },
     publisher: {
       "@type": "Organization",
@@ -70,11 +78,15 @@ export default async function BlogPostPage({
         url: "https://www.mcstation.ai/images/mcs-logo.png",
       },
     },
-    mainEntityOfPage: `https://www.mcstation.ai/blog/${slug}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.mcstation.ai/blog/${slug}`,
+    },
     image: post.image
       ? `https://www.mcstation.ai${post.image}`
       : "https://www.mcstation.ai/images/mcs-logo.png",
     keywords: post.keywords.join(", "),
+    articleSection: "智慧設備與餐飲數位轉型",
   };
 
   const breadcrumbJsonLd = {
@@ -162,7 +174,7 @@ export default async function BlogPostPage({
             <div className="rounded-2xl overflow-hidden shadow-xl">
               <Image
                 src={post.image}
-                alt={post.title}
+                alt={`${post.title} — 銓幻元科技部落格`}
                 width={1200}
                 height={630}
                 className="w-full h-64 sm:h-80 object-cover"

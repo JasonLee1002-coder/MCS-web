@@ -1,7 +1,7 @@
 ---
 title: "GraBox AI 訂餐系統 × 人臉辨識取餐：智取櫃核心 AI 技術解密"
 date: "2026-03-14"
-description: "GraBox AI 智取櫃如何運用 AI 訂餐系統與人臉辨識技術？從語音點餐、智慧推薦到刷臉取餐，深度解析智取櫃的 AI 核心技術與企業應用場景。"
+description: "GraBox AI 智取櫃如何運用 AI 訂餐系統與人臉辨識技術？從語音點餐、智慧推薦到刷臉取餐，深度解析智取櫃的 AI 核心技術、企業應用場景與導入效益評估。"
 keywords: ["AI訂餐系統", "人臉辨識取餐", "GraBox AI功能", "智取櫃AI技術", "人臉辨識販賣機", "AI點餐系統", "智慧取餐AI", "銓幻元科技", "GraBox"]
 image: "/images/cases/mwd/grabox-closeup.jpg"
 ---

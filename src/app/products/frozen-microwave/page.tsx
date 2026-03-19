@@ -55,7 +55,23 @@ const jsonLd = {
     "@type": "Offer",
     availability: "https://schema.org/InStock",
     url: "https://www.mcstation.ai/products/frozen-microwave",
+    priceCurrency: "TWD",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      priceCurrency: "TWD",
+      eligibleQuantity: {
+        "@type": "QuantitativeValue",
+        unitText: "台",
+      },
+    },
   },
+  additionalProperty: [
+    { "@type": "PropertyValue", name: "微波功率", value: "3600W" },
+    { "@type": "PropertyValue", name: "溫度範圍", value: "-18°C ~ 4°C" },
+    { "@type": "PropertyValue", name: "製造地", value: "台灣" },
+  ],
+  category: "冷凍微波販賣設備",
+  inLanguage: "zh-Hant",
 };
 
 const breadcrumbJsonLd = {

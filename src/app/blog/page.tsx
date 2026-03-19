@@ -60,8 +60,10 @@ export default function BlogPage() {
     description:
       "AI智取櫃、智慧販賣機、餐飲數位轉型的最新趨勢與深度分析。",
     url: "https://www.mcstation.ai/blog",
+    inLanguage: "zh-Hant",
     mainEntity: {
       "@type": "ItemList",
+      numberOfItems: posts.length,
       itemListElement: posts.map((post, i) => ({
         "@type": "ListItem",
         position: i + 1,
@@ -127,7 +129,7 @@ export default function BlogPage() {
                       <div className="relative h-48 overflow-hidden">
                         <Image
                           src={post.image}
-                          alt={post.title}
+                          alt={`${post.title} — 銓幻元科技部落格`}
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />

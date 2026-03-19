@@ -163,7 +163,9 @@ export default function RootLayout({
               },
               contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "service@transtep.com" },
               email: "steven.fan@transtep.com",
-              sameAs: [],
+              sameAs: [
+                "https://github.com/JasonLee1002-coder/MCS-web",
+              ],
               makesOffer: [
                 {
                   "@type": "Offer",
