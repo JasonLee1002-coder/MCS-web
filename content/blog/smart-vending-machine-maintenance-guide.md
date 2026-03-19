@@ -154,3 +154,13 @@ image: "/images/illustrations/factory.png"
 如果您正在評估智慧販賣機的導入，或已經在營運中希望優化維護流程，歡迎與銓幻元科技的團隊聊聊。從維護排程規劃到售後服務方案，我們很樂意分享多年的實戰經驗，協助您的設備長期穩健運轉。
 
 [聯絡我們，了解更多售後服務方案 →](/#contact)
+
+---
+
+## 延伸閱讀
+
+- [冷凍微波販賣機 TH-21MS/FD/FS 產品介紹](/products/frozen-microwave)
+- [GraBox 智慧取餐櫃產品介紹](/products/grabox)
+- [冷凍販賣機食安管控完整指南](/blog/frozen-vending-machine-food-safety-management)
+- [IVM 雲端販賣機管理平台完整介紹](/blog/ivm-cloud-vending-management-platform)
+- [智慧取餐櫃導入 SOP 完整流程](/blog/smart-cabinet-implementation-sop)

@@ -40,7 +40,7 @@ image: "/images/cases/funbox/vending-machines.jpg"
 
 #### 硬體端：支付終端模組
 
-一台完整的多元支付販賣機，通常配備以下硬體：
+一台完整的多元支付販賣機（如銓幻元科技的[冷凍微波販賣機](/products/frozen-microwave)或 [GraBox 智慧取餐櫃](/products/grabox)），通常配備以下硬體：
 
 - **NFC 讀卡機**：處理感應支付（信用卡、手機 NFC、電子票證）
 - **QR Code 掃碼器**：讀取消費者手機上的付款碼
@@ -113,4 +113,14 @@ image: "/images/cases/funbox/vending-machines.jpg"
 
 支付整合是智能販賣機的核心技術之一。做得好，消費者感受到的是「自然順暢」的購物體驗；做不好，再好的商品也賣不出去。
 
-銓幻元科技從硬體支付模組到軟體金流整合，提供一站式的解決方案。無論你是想在現有設備加裝新的支付方式，還是從零開始規劃多元支付販賣機，歡迎與我們聊聊你的需求。
+銓幻元科技從硬體支付模組到軟體金流整合，提供一站式的解決方案。無論你是想在現有設備加裝新的支付方式，還是從零開始規劃多元支付販賣機，[歡迎與我們聊聊你的需求 →](/#contact)
+
+---
+
+## 延伸閱讀
+
+- [冷凍微波販賣機 TH-21MS/FD/FS 產品介紹](/products/frozen-microwave)
+- [GraBox 智慧取餐櫃產品介紹](/products/grabox)
+- [IVM 雲端販賣機管理平台完整介紹](/blog/ivm-cloud-vending-management-platform)
+- [販賣機選點策略：高營收據點的關鍵要素](/blog/vending-machine-location-strategy)
+- [客戶實績：FunBox 多元支付販賣機案例](/cases#funbox)

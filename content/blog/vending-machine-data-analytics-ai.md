@@ -93,11 +93,21 @@ A：即使只有一台販賣機，IVM 平台的數據分析功能都能幫助您
 A：在累積 3 個月以上的歷史數據後，AI 預測模型的準確度通常可達 85% 以上。數據量越大、營運時間越長，預測精度越高。
 
 **Q：現有的販賣機可以加裝數據分析功能嗎？**
-A：銓幻元科技的設備出廠即內建 IVM 平台連線能力。如果您使用的是其他品牌設備，歡迎與我們聯繫評估相容性。相關設備資訊可參考[智慧販賣機產品頁](/products/frozen-microwave)。
+A：銓幻元科技的設備出廠即內建 IVM 平台連線能力，包括[冷凍微波販賣機](/products/frozen-microwave)與 [GraBox 智慧取餐櫃](/products/grabox)全系列產品。如果您使用的是其他品牌設備，歡迎與我們聯繫評估相容性。
 
 **Q：數據報表可以匯出嗎？**
 A：可以。IVM 平台支援 CSV 與 PDF 格式的報表匯出，方便您整合至公司現有的 ERP 或財務系統。
 
 ## 結語
 
-販賣機營運已經從「擺了就等著收錢」進入「用數據精準經營」的時代。透過 [GraBox](/products/grabox) 智取櫃與 IVM 雲端平台的數據分析能力，您可以把每一台販賣機都變成一個持續優化的利潤中心。歡迎與銓幻元科技聯繫，開始您的數據化營運之旅。
+販賣機營運已經從「擺了就等著收錢」進入「用數據精準經營」的時代。透過 [GraBox](/products/grabox) 智取櫃與 IVM 雲端平台的數據分析能力，您可以把每一台販賣機都變成一個持續優化的利潤中心。[歡迎與銓幻元科技聯繫，開始您的數據化營運之旅 →](/#contact)
+
+---
+
+## 延伸閱讀
+
+- [冷凍微波販賣機 TH-21MS/FD/FS 產品介紹](/products/frozen-microwave)
+- [GraBox 智慧取餐櫃產品介紹](/products/grabox)
+- [IVM 雲端販賣機管理平台完整介紹](/blog/ivm-cloud-vending-management-platform)
+- [販賣機選點策略：高營收據點的關鍵要素](/blog/vending-machine-location-strategy)
+- [智慧販賣機維護保養全攻略](/blog/smart-vending-machine-maintenance-guide)

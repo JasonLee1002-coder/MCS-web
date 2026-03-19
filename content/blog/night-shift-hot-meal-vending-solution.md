@@ -153,3 +153,13 @@ image: "/images/products/frozen-microwave/th-21ms-main.png"
 無論您是企業的行政管理部門、場域的營運負責人，或是正在尋找新通路的冷凍食品品牌，歡迎與我們聯繫，一起為深夜工作的人們提供一餐溫暖。
 
 [聯絡我們，了解夜間熱食方案 →](/#contact)
+
+---
+
+## 延伸閱讀
+
+- [冷凍微波販賣機產品介紹](/products/frozen-microwave)
+- [24H 工廠宿舍自助食堂方案](/blog/factory-dormitory-24h-meal-solution)
+- [販賣機設點選址策略完整指南](/blog/vending-machine-location-strategy)
+- [冷凍販賣機食品安全管控指南](/blog/frozen-vending-machine-food-safety-management)
+- [智慧販賣機 ROI 分析：投資報酬率怎麼算？](/blog/smart-vending-machine-roi-analysis)

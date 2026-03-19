@@ -15,7 +15,7 @@ export default function Footer() {
             {/* Company Info */}
             <div>
               <div className="text-white font-bold text-lg mb-2">MCS 銓幻元科技</div>
-              <div className="text-sm leading-relaxed">
+              <address className="text-sm leading-relaxed not-italic">
                 <p>銓幻元科技股份有限公司</p>
                 <p className="text-gray-500 text-xs mt-0.5">Meta Clearing Station Pte. Ltd. 台灣分公司</p>
                 <p className="mt-2">103 台北市大同區長安西路78巷4弄10號1樓</p>
@@ -27,7 +27,7 @@ export default function Footer() {
                     service@transtep.com
                   </a>
                 </p>
-              </div>
+              </address>
             </div>
 
             {/* Quick Links */}
@@ -41,6 +41,7 @@ export default function Footer() {
                   { label: "GraBox AI 智取櫃", href: "/products/grabox", isLink: true },
                   { label: "冷凍微波販賣機", href: "/products/frozen-microwave", isLink: true },
                   { label: "關於我們", href: "#about" },
+                  { label: "部落格", href: "/blog", isLink: true },
                   { label: "常見問題", href: "#faq" },
                   { label: "聯絡我們", href: "#contact" },
                 ].map((item) => (
@@ -60,7 +61,7 @@ export default function Footer() {
             </div>
 
             {/* Products */}
-            <div>
+            <nav aria-label="產品與服務導覽">
               <div className="text-white font-semibold mb-2">產品與服務</div>
               <ul className="text-sm space-y-1.5">
                 <li>
@@ -73,11 +74,21 @@ export default function Footer() {
                     冷凍微波販賣機
                   </Link>
                 </li>
-                {["智慧販賣機", "自助服務機 Kiosk", "OEM/ODM 貼牌客製", "POS/KDS 系統串接", "雲端營運管理平台"].map((item) => (
-                  <li key={item} className="hover:text-gray-300 transition-colors duration-300">{item}</li>
+                {[
+                  { label: "智慧販賣機", href: "/blog/smart-vending-machine-taiwan-2026" },
+                  { label: "自助服務機 Kiosk", href: "/blog/hotel-self-checkin-kiosk" },
+                  { label: "OEM/ODM 貼牌客製", href: "/blog/oem-odm-smart-device-taiwan" },
+                  { label: "POS/KDS 系統串接", href: "/blog/smart-cabinet-pos-kds-integration" },
+                  { label: "雲端營運管理平台", href: "/blog/ivm-cloud-vending-management-platform" },
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.href} className="hover:text-mcs-orange transition-colors duration-300 inline-block hover:translate-x-1 transform">
+                      {item.label}
+                    </Link>
+                  </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           </div>
         </ScrollReveal>
 

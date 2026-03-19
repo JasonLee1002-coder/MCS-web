@@ -12,7 +12,7 @@ keywords:
   - 工廠無人食堂
   - 員工餐飲自助化
 category: "產業應用"
-image: "/images/mcs-logo.png"
+image: "/images/illustrations/factory.png"
 ---
 
 ## 製造業的餐飲痛點：夜班員工吃什麼？
@@ -102,3 +102,17 @@ GraBox 的角色是讓團膳廠商的服務時間從午餐時段延伸到全天�
 ### Q3：工廠環境粉塵較多，會不會影響設備？
 
 銓幻元科技的設備為台灣在地製造，可依工廠環境需求加裝防塵濾網等保護措施。此外，我們提供定期巡檢維護服務，確保設備在各種環境下都能穩定運作。
+
+## 結語
+
+工廠宿舍的 24H 自助食堂不再是遙不可及的願景，透過 GraBox 智取櫃與冷凍微波販賣機的雙設備組合，就能以最少的人力實現全天候餐飲服務。歡迎[與銓幻元科技聯繫](/#contact)，讓我們為您的廠區規劃最適合的員工餐飲方案。
+
+---
+
+## 延伸閱讀
+
+- [GraBox 智慧取餐櫃產品介紹](/products/grabox)
+- [冷凍微波販賣機產品介紹](/products/frozen-microwave)
+- [銓幻元科技客戶實績](/cases)
+- [餐飲業缺工怎麼辦？智慧設備解決方案](/blog/restaurant-labor-shortage-solution)
+- [智慧販賣機 ROI 分析：投資報酬率怎麼算？](/blog/smart-vending-machine-roi-analysis)

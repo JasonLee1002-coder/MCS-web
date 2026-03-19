@@ -24,7 +24,7 @@ image: "/images/products/frozen-microwave/japan-expressway.png"
 - 旅客 24H 都有熱食需求
 - 深夜時段人力配置困難
 - 休息站空間充足
-- 客流量穩定且可預測
+- 客流量穩定且可預測（[查看日本首都高速公路實績](/cases#expressway)）
 
 ### 2. 工業區 / 科技園區
 
@@ -136,4 +136,14 @@ image: "/images/products/frozen-microwave/japan-expressway.png"
 
 **一台冷凍微波販賣機，就是一個 24H 不打烊的熱食服務站。**
 
-[了解冷凍微波販賣機 →](/products/frozen-microwave) | [了解 GraBox 智取櫃 →](/products/grabox)
+[了解冷凍微波販賣機 →](/products/frozen-microwave) | [了解 GraBox 智取櫃 →](/products/grabox) | [立即諮詢 →](/#contact)
+
+---
+
+## 延伸閱讀
+
+- [冷凍微波販賣機產品介紹](/products/frozen-microwave)
+- [GraBox AI 智取櫃產品介紹](/products/grabox)
+- [智慧販賣機選點策略指南](/blog/vending-machine-location-strategy)
+- [冷凍販賣機食安管控完整指南](/blog/frozen-vending-machine-food-safety-management)
+- [智慧販賣機 ROI 投資報酬率分析](/blog/smart-vending-machine-roi-analysis)

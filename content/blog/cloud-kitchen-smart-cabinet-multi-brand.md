@@ -12,8 +12,10 @@ keywords:
   - 雲廚房管理系統
   - 智慧取餐櫃
 category: "產業應用"
-image: "/images/mcs-logo.png"
+image: "/images/cases/mwd/grabox-features.png"
 ---
+
+# 雲廚房 × 智取櫃 — 中央廚房多品牌多地點的智慧取餐解決方案
 
 ## 雲廚房的崛起：一間廚房、多個品牌
 
@@ -105,3 +107,15 @@ GraBox 有多種尺寸可選，最小的機型佔地不到一坪。智取櫃通�
 ### Q3：已經在用外送平台了，還需要智取櫃嗎？
 
 智取櫃不是取代外送平台，而是讓外送流程更順暢。外送員取餐效率提升，平均配送時間縮短，對平台評分和消費者體驗都有正面影響。同時，智取櫃也讓你多了「自取」這個零抽成的銷售管道。
+
+想進一步了解雲廚房導入智取櫃的投資效益，可以參考[智慧販賣機 ROI 投資報酬率分析](/blog/smart-vending-machine-roi-analysis)。準備好了嗎？歡迎[聯繫我們](/#contact)，由專業團隊為你的雲廚房量身規劃取餐動線。
+
+---
+
+## 延伸閱讀
+
+- [GraBox AI 智取櫃產品介紹](/products/grabox)
+- [冷凍微波販賣機產品介紹](/products/frozen-microwave)
+- [智取櫃 POS/KDS 整合完整指南](/blog/smart-cabinet-pos-kds-integration)
+- [餐飲業缺工解方：智慧設備如何幫你省人力](/blog/restaurant-labor-shortage-solution)
+- [IVM 雲端智慧販賣機管理平台](/blog/ivm-cloud-vending-management-platform)

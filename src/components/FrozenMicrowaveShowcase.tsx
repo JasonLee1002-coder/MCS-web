@@ -139,7 +139,7 @@ function CinematicHero() {
                 <div className="relative w-[320px] h-[400px] sm:w-[380px] sm:h-[480px]">
                   <Image
                     src="/images/products/frozen-microwave/th-21ms-main.png"
-                    alt="TH-21MS 冷凍微波加熱販賣機"
+                    alt="TH-21MS 冷凍微波加熱販賣機 — 3600W 商用微波即食熱餐解決方案 | 銓幻元科技"
                     fill
                     className="object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.3)]"
                     priority

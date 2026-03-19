@@ -130,7 +130,7 @@ function BentoCard({
           >
             <Image
               src={service.image}
-              alt={service.title}
+              alt={`${service.title} — ${service.subtitle} | 銓幻元科技`}
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />

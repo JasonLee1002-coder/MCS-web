@@ -46,7 +46,7 @@ GraBox 搭載的 AI 引擎並非只是行銷話術。銓幻元科技投入自主
 - **外送平台對接**：Uber Eats、foodpanda 等平台訂單可直接導入
 - **會員系統連動**：取餐資料回寫 CRM，累積消費數據
 
-GraBox 在系統整合方面提供開放式 API 架構，能與主流 POS 系統、KDS 及第三方外送平台串接。這意味著企業不需要打掉重練現有系統，只需將 GraBox 接入既有流程即可。相較於部分品牌採封閉式架構、要求全面更換系統的做法，GraBox 的整合彈性大幅降低了導入門檻。
+GraBox 在系統整合方面提供開放式 API 架構，能與主流 POS 系統、KDS 及第三方外送平台串接。這意味著企業不需要打掉重練現有系統，只需將 GraBox 接入既有流程即可。相較於部分品牌採封閉式架構、要求全面更換系統的做法，GraBox 的整合彈性大幅降低了導入門檻。想深入了解 POS 與 KDS 串接的技術細節，可以參考[智取櫃 POS/KDS 整合完整指南](/blog/smart-cabinet-pos-kds-integration)。
 
 ### 四、客製化能力：你的需求不該遷就規格
 
@@ -119,4 +119,14 @@ GraBox 由銓幻元科技 100% 在台灣設計、製造與組裝，從電路板�
 
 選購智取櫃不只是買一台設備，而是為營運流程導入一套智慧解決方案。銓幻元科技提供免費的現場評估服務，由專業團隊針對你的場域條件、營運流程與預算規劃，量身建議最適合的 GraBox 導入方案。
 
-歡迎前往 [GraBox 產品頁](/products/grabox) 了解完整規格，或直接透過官網聯繫我們，安排一對一的產品展示與諮詢。
+歡迎前往 [GraBox 產品頁](/products/grabox) 了解完整規格，或直接[聯繫我們](/#contact)安排一對一的產品展示與諮詢。
+
+---
+
+## 延伸閱讀
+
+- [GraBox AI 智取櫃產品介紹](/products/grabox)
+- [智取櫃 POS/KDS 整合完整指南](/blog/smart-cabinet-pos-kds-integration)
+- [智取櫃導入 SOP 完整流程](/blog/smart-cabinet-implementation-sop)
+- [智慧販賣機 ROI 投資報酬率分析](/blog/smart-vending-machine-roi-analysis)
+- [2026 智取櫃推薦指南](/blog/smart-pickup-cabinet-recommendation-2026)

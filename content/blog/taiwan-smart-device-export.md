@@ -16,7 +16,7 @@ image: "/images/cases/expressway/service-area-interior.jpg"
 
 日本首都高速公路（首都高速道路株式会社）管轄的服務區，過去面臨一個現實問題：深夜時段的餐飲服務。高速公路服務區的人流在白天集中，但深夜仍有不少長途駕駛或物流司機需要用餐。傳統的餐飲店面在深夜維持營運的人力成本過高，導致多數服務區的餐飲在晚間十點後就關門了。
 
-解決方案是導入**冷凍微波複合販賣機**——這正是台灣銓幻元科技的產品。
+解決方案是導入**[冷凍微波複合販賣機](/products/frozen-microwave)**——這正是台灣銓幻元科技的產品。
 
 ![日本首都高速公路服務區](/images/cases/expressway/service-area-interior.jpg)
 
@@ -71,7 +71,7 @@ image: "/images/cases/expressway/service-area-interior.jpg"
 日本已是驗證過的市場。下一步的關鍵是從單一案例擴展到更多場域：
 
 - **連鎖便利商店的深夜無人化**：日本便利商店正面臨嚴重的深夜人力不足問題，智慧販賣設備是潛在的解方
-- **企業辦公大樓**：日本大企業對員工福利的重視度高，智慧取餐設備在辦公場域有明確需求
+- **企業辦公大樓**：日本大企業對員工福利的重視度高，[智慧取餐設備](/products/grabox)在辦公場域有明確需求
 - **觀光景點**：日本的觀光景點和車站需要多語系自助服務設備
 
 #### 東南亞市場佈局
@@ -104,4 +104,14 @@ image: "/images/cases/expressway/service-area-interior.jpg"
 
 台灣的智慧設備產業正站在一個轉捩點。從純硬體代工走向解決方案輸出，從單一市場走向全球佈局。日本首都高速公路的案例已經打開了一扇門，接下來就看台灣業者如何把這條路走寬、走遠。
 
-想了解更多台灣智慧設備的外銷實績與合作方案，歡迎造訪 [mcstation.ai](https://www.mcstation.ai) 與我們聯繫。
+想了解更多台灣智慧設備的外銷實績與合作方案，歡迎[聯繫我們](/#contact)洽談合作。
+
+---
+
+## 延伸閱讀
+
+- [冷凍微波販賣機產品介紹](/products/frozen-microwave)
+- [GraBox AI 智取櫃產品介紹](/products/grabox)
+- [客戶實績與合作案例](/cases)
+- [智慧販賣機 ROI 投資報酬率分析](/blog/smart-vending-machine-roi-analysis)
+- [冷凍販賣機食安管控完整指南](/blog/frozen-vending-machine-food-safety-management)
