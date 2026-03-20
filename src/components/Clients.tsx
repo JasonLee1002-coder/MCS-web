@@ -141,7 +141,7 @@ export default function Clients() {
                       transition-all duration-500
                       ring-1 ring-gray-100 group-hover:ring-mcs-orange/20"
                     >
-                      {c.icon}
+                      <span aria-label={`${c.name} 圖示`}>{c.icon}</span>
                     </div>
 
                     {/* Name */}

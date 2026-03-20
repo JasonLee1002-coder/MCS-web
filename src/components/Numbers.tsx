@@ -28,7 +28,7 @@ export default function Numbers() {
         <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.15}>
           {stats.map((s) => (
             <StaggerItem key={s.label}>
-              <div className="text-center glass-card rounded-2xl p-6 hover:bg-white/5 transition-colors duration-500">
+              <div className="text-center glass-card rounded-2xl p-6 hover:bg-white/5 transition-colors duration-500" role="group" aria-label={`${s.number !== null ? s.number + (s.suffix || "") : s.text} ${s.label}`}>
                 <div className="text-4xl sm:text-5xl font-bold text-mcs-orange mb-2">
                   {s.number !== null ? (
                     <AnimatedCounter value={s.number} suffix={s.suffix} />

@@ -211,6 +211,61 @@ const cases = [
   },
 ];
 
+const videoJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: [
+    {
+      "@type": "VideoObject",
+      name: "GraBox 智取櫃取餐實際操作示範",
+      description: "麥味登門市 GraBox AI 智取櫃的實際取餐操作流程示範",
+      contentUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-demo.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-closeup.jpg",
+      uploadDate: "2025-12-01",
+    },
+    {
+      "@type": "VideoObject",
+      name: "高雄加盟展 GraBox 智取櫃展示",
+      description: "銓幻元科技在高雄加盟展展示 GraBox AI 智取櫃",
+      contentUrl: "https://www.mcstation.ai/images/cases/mwd/kaohsiung-expo.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-features.png",
+      uploadDate: "2025-12-01",
+    },
+    {
+      "@type": "VideoObject",
+      name: "數位功德香油箱操作示範",
+      description: "全台首創數位功德香油箱的觸控操作與點燈示範",
+      contentUrl: "https://www.mcstation.ai/images/cases/temple/temple-machine-01.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/temple/temple-daytime.jpg",
+      uploadDate: "2025-12-01",
+    },
+    {
+      "@type": "VideoObject",
+      name: "數位功德香油箱觸控互動展示",
+      description: "數位功德箱觸控螢幕互動功能展示",
+      contentUrl: "https://www.mcstation.ai/images/cases/temple/temple-machine-02.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/temple/temple-daytime.jpg",
+      uploadDate: "2025-12-01",
+    },
+    {
+      "@type": "VideoObject",
+      name: "數位功德香油箱完整導覽",
+      description: "數位功德箱從投幣到點燈的完整操作導覽影片",
+      contentUrl: "https://www.mcstation.ai/images/cases/temple/temple-machine-03.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/temple/temple-daytime.jpg",
+      uploadDate: "2025-12-01",
+    },
+    {
+      "@type": "VideoObject",
+      name: "中壢仁海宮小朋友體驗數位功德箱",
+      description: "中壢仁海宮的小朋友實際體驗數位功德香油箱操作",
+      contentUrl: "https://www.mcstation.ai/images/cases/temple/renhai-kid.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/temple/temple-daytime.jpg",
+      uploadDate: "2025-12-01",
+    },
+  ],
+};
+
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -243,6 +298,10 @@ export default function CasesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
       />
       <script
         type="application/ld+json"
