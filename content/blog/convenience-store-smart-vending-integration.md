@@ -10,6 +10,9 @@ keywords:
   - 超商無人化
   - 全家智慧販賣機
   - 便利商店轉型
+  - 超商智取櫃
+  - 便利商店設備升級
+  - 鮮食販賣機
 category: "產業趨勢"
 image: "/images/cases/funbox/vending-machines.jpg"
 ---

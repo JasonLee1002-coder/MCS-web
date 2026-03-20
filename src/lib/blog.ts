@@ -52,6 +52,34 @@ export function getAllBlogPosts(): BlogPostMeta[] {
     .sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
+export function getAdjacentPosts(slug: string): {
+  prev: BlogPostMeta | null;
+  next: BlogPostMeta | null;
+} {
+  const posts = getAllBlogPosts();
+  const index = posts.findIndex((p) => p.slug === slug);
+  return {
+    prev: index > 0 ? posts[index - 1] : null,
+    next: index < posts.length - 1 ? posts[index + 1] : null,
+  };
+}
+
+export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
+  const posts = getAllBlogPosts();
+  const current = posts.find((p) => p.slug === slug);
+  if (!current) return [];
+  const currentKeywords = new Set(current.keywords);
+  return posts
+    .filter((p) => p.slug !== slug)
+    .map((p) => ({
+      post: p,
+      score: p.keywords.filter((k) => currentKeywords.has(k)).length,
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((r) => r.post);
+}
+
 export async function getBlogPost(slug: string): Promise<BlogPost> {
   const filePath = path.join(blogDir, `${slug}.md`);
   const raw = fs.readFileSync(filePath, "utf-8");

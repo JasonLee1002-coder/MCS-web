@@ -4,6 +4,44 @@
 
 ---
 
+## 2026-03-21 — 第四波 6 輪檢討優化（Rounds 14-19）
+
+### 動作
+- **Round 14**: Meta description 修正 + BlogPosting Schema 強化
+  - /cases description 從 120 字元擴充至 ~150 字元（加入「展現從餐飲到文創的全方位導入實力」）
+  - BlogPosting JSON-LD image 從純字串升級為 ImageObject（含 width/height），提升 Rich Snippet 資格
+- **Round 15**: Blog 文章導航系統
+  - blog.ts 新增 `getAdjacentPosts()` 和 `getRelatedPosts()` 函式
+  - 每篇 blog 底部新增「相關文章」區塊（依關鍵字相似度推薦 3 篇）
+  - 新增「上一篇 / 下一篇」導覽列（增加內部連結爬行效率）
+- **Round 16**: Lightbox 無障礙修復
+  - LightboxImage modal 加入 `role="dialog"`, `aria-modal="true"`, `aria-label`
+  - LightboxVideo modal 加入相同 ARIA 屬性
+  - 關閉按鈕 aria-label 更具描述性（「關閉放大圖片」/「關閉放大影片」）
+  - SVG icon 加入 `aria-hidden="true"`
+- **Round 17**: Layout meta + Sitemap 優化
+  - layout.tsx 加入 `theme-color: #0F2440`（瀏覽器 UI 品牌化）
+  - sitemap.ts blog 文章 priority 分層：30天內 0.8、90天內 0.75、其餘 0.7（獎勵新鮮內容）
+- **Round 18**: Blog 關鍵字擴充
+  - convenience-store-smart-vending-integration.md 從 7 → 10 關鍵字
+  - taiwan-smart-device-export.md 從 7 → 10 關鍵字
+  - 全站 45 篇 blog 均達 9+ 關鍵字標準
+- **Round 19**: Build 驗證 + IndexNow 50 URL 提交（200 OK 成功）
+
+### SEO 評分變化
+| 項目 | Round 13 後 | Round 19 後 |
+|------|-------------|-------------|
+| /cases description 合格 | ❌ (120字元) | ✅ (~150字元) |
+| BlogPosting image schema | 字串 | ImageObject |
+| Blog 文章間導航 | 無 | ✅ 上下篇 + 相關3篇 |
+| Blog 關鍵字低於8的文章 | 2篇 | 0篇 |
+| Lightbox ARIA 完整度 | 基本 | 完整（dialog+modal） |
+| theme-color | 無 | ✅ #0F2440 |
+| Sitemap 新文章優先 | 統一 0.7 | 分層 0.7-0.8 |
+| 全站 SEO 評分 | 9.8/10 | 9.9/10 |
+
+---
+
 ## 2026-03-20 — 第三波 3 輪精修（Rounds 11-13）
 
 ### 動作

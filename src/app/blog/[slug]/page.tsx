@@ -4,7 +4,7 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import { getBlogPost, getAllBlogSlugs } from "@/lib/blog";
+import { getBlogPost, getAllBlogSlugs, getAdjacentPosts, getRelatedPosts } from "@/lib/blog";
 
 export async function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
@@ -83,8 +83,18 @@ export default async function BlogPostPage({
       "@id": `https://www.mcstation.ai/blog/${slug}`,
     },
     image: post.image
-      ? `https://www.mcstation.ai${post.image}`
-      : "https://www.mcstation.ai/images/mcs-logo.png",
+      ? {
+          "@type": "ImageObject",
+          url: `https://www.mcstation.ai${post.image}`,
+          width: 1200,
+          height: 630,
+        }
+      : {
+          "@type": "ImageObject",
+          url: "https://www.mcstation.ai/images/mcs-logo.png",
+          width: 1200,
+          height: 630,
+        },
     keywords: post.keywords.join(", "),
     articleSection: "智慧設備與餐飲數位轉型",
   };
@@ -191,6 +201,82 @@ export default async function BlogPostPage({
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>
+
+        {/* Related Articles */}
+        {(() => {
+          const related = getRelatedPosts(slug, 3);
+          if (related.length === 0) return null;
+          return (
+            <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-100">
+              <h2 className="text-xl font-bold text-gray-900 mb-6">相關文章</h2>
+              <div className="grid sm:grid-cols-3 gap-6">
+                {related.map((r) => (
+                  <Link
+                    key={r.slug}
+                    href={`/blog/${r.slug}`}
+                    className="group block rounded-xl border border-gray-100 hover:border-mcs-orange/30 hover:shadow-md transition-all overflow-hidden"
+                  >
+                    {r.image && (
+                      <Image
+                        src={r.image}
+                        alt={r.title}
+                        width={400}
+                        height={210}
+                        className="w-full h-36 object-cover"
+                      />
+                    )}
+                    <div className="p-4">
+                      <h3 className="text-sm font-semibold text-gray-900 group-hover:text-mcs-orange transition-colors line-clamp-2">
+                        {r.title}
+                      </h3>
+                      <time className="text-xs text-gray-400 mt-1 block">{r.date}</time>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* Prev/Next Navigation */}
+        {(() => {
+          const { prev, next } = getAdjacentPosts(slug);
+          if (!prev && !next) return null;
+          return (
+            <nav className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-100" aria-label="文章導覽">
+              <div className="flex justify-between items-stretch gap-4">
+                {prev ? (
+                  <Link
+                    href={`/blog/${prev.slug}`}
+                    className="flex-1 group flex items-center gap-3 p-4 rounded-xl border border-gray-100 hover:border-mcs-orange/30 hover:shadow-sm transition-all"
+                  >
+                    <svg className="w-5 h-5 text-gray-400 group-hover:text-mcs-orange shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <div className="min-w-0">
+                      <div className="text-xs text-gray-400">上一篇</div>
+                      <div className="text-sm font-medium text-gray-700 group-hover:text-mcs-orange transition-colors truncate">{prev.title}</div>
+                    </div>
+                  </Link>
+                ) : <div className="flex-1" />}
+                {next ? (
+                  <Link
+                    href={`/blog/${next.slug}`}
+                    className="flex-1 group flex items-center justify-end gap-3 p-4 rounded-xl border border-gray-100 hover:border-mcs-orange/30 hover:shadow-sm transition-all text-right"
+                  >
+                    <div className="min-w-0">
+                      <div className="text-xs text-gray-400">下一篇</div>
+                      <div className="text-sm font-medium text-gray-700 group-hover:text-mcs-orange transition-colors truncate">{next.title}</div>
+                    </div>
+                    <svg className="w-5 h-5 text-gray-400 group-hover:text-mcs-orange shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                ) : <div className="flex-1" />}
+              </div>
+            </nav>
+          );
+        })()}
 
         {/* Related CTA */}
         <section className="bg-gradient-to-r from-mcs-orange to-mcs-orange-light py-12">

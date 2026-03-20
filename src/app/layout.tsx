@@ -62,6 +62,9 @@ export const metadata: Metadata = {
     "經銷商系統",
     "會員積分系統",
   ],
+  other: {
+    "theme-color": "#0F2440",
+  },
   authors: [{ name: "銓幻元科技股份有限公司" }],
   creator: "銓幻元科技股份有限公司",
   publisher: "Meta Clearing Station Pte. Ltd.",

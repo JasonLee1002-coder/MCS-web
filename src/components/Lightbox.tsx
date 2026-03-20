@@ -50,13 +50,16 @@ export function LightboxImage({
         <div
           className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out"
           onClick={() => setOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`放大檢視：${alt}`}
         >
           <button
             className="absolute top-4 right-4 text-white/70 hover:text-white z-10"
             onClick={() => setOpen(false)}
-            aria-label="關閉"
+            aria-label="關閉放大圖片"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -120,13 +123,16 @@ export function LightboxVideo({
         <div
           className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4"
           onClick={() => setOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`放大檢視影片：${alt}`}
         >
           <button
             className="absolute top-4 right-4 text-white/70 hover:text-white z-10"
             onClick={() => setOpen(false)}
-            aria-label="關閉"
+            aria-label="關閉放大影片"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>

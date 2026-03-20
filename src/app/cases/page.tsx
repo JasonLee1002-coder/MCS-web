@@ -9,7 +9,7 @@ import { LightboxImage, LightboxVideo } from "@/components/Lightbox";
 export const metadata: Metadata = {
   title: "客戶實績 | 麗嬰國際、麥味登、鼎新電腦、首都高速公路合作案例",
   description:
-    "銓幻元科技客戶成功案例：麗嬰國際 Funbox Toys 智能販賣機、麥味登智取櫃、宮廟數位功德箱、自助旅店 Kiosk、玩具加乘潮流販賣機、日本首都高速公路合作。台灣在地製造，跨產業 AI 智慧設備整合。",
+    "銓幻元科技客戶成功案例：麗嬰國際 Funbox Toys 智能販賣機、麥味登智取櫃、宮廟數位功德箱、自助旅店 Kiosk、玩具加乘潮流販賣機、日本首都高速公路合作。台灣在地製造，跨產業 AI 智慧設備整合，展現從餐飲到文創的全方位導入實力。",
   keywords: [
     "銓幻元科技案例",
     "智能販賣機案例",
