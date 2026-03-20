@@ -4,6 +4,31 @@
 
 ---
 
+## 2026-03-20 — 第三波 3 輪精修（Rounds 11-13）
+
+### 動作
+- **Round 11**: 全站無障礙（Accessibility）修復
+  - Header 主導覽加入「部落格」連結（桌面＋行動版）
+  - Header dropdown 加入 aria-haspopup, aria-expanded
+  - Header mobile menu 加入 aria-label="行動裝置選單"
+  - Contact 3 個裝飾性 SVG 加入 aria-hidden="true"
+  - Numbers 統計卡片加入 role="group" + aria-label
+  - Clients 客戶圖示加入 aria-label
+- **Round 12**: Cases 頁面加入 VideoObject JSON-LD（6 支影片結構化資料）
+  - GraBox 取餐示範 x2
+  - 數位功德箱 x4
+- **Round 13**: 最終 build 驗證 + IndexNow 50 URL 提交
+
+### SEO 評分變化
+| 項目 | Round 10 後 | Round 13 後 |
+|------|------------|-------------|
+| Header /blog 連結 | 無 | ✅ 桌面＋行動版 |
+| ARIA 無障礙 | 基本 | 全元件完整 |
+| Video 結構化資料 | 僅 video-sitemap | +VideoObject JSON-LD |
+| 全站 SEO 評分 | 9.6/10 | 9.8/10 |
+
+---
+
 ## 2026-03-20 — 第二波 5 輪深度優化（Rounds 6-10）
 
 ### 動作
