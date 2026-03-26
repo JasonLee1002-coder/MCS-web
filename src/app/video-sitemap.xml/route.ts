@@ -20,6 +20,46 @@ export async function GET() {
         "https://www.mcstation.ai/images/cases/mwd/grabox-features.png",
     },
     {
+      loc: "https://www.mcstation.ai/cases#mwd",
+      title: "GraBox 智取櫃完整運作流程",
+      description:
+        "從店員放餐到顧客取餐的 GraBox AI智取櫃完整運作流程實錄。",
+      contentUrl:
+        "https://www.mcstation.ai/images/cases/mwd/grabox-operation-demo.mp4",
+      thumbnailUrl:
+        "https://www.mcstation.ai/images/cases/mwd/grabox-locker-closeup.jpg",
+    },
+    {
+      loc: "https://www.mcstation.ai/cases#mwd",
+      title: "GraBox 智取櫃外帶取餐流程",
+      description:
+        "麥味登門市 GraBox AI智取櫃外帶取餐流程實拍，展示顧客自助取餐體驗。",
+      contentUrl:
+        "https://www.mcstation.ai/images/cases/mwd/grabox-takeout-flow.mp4",
+      thumbnailUrl:
+        "https://www.mcstation.ai/images/cases/mwd/mwd-storefront-exterior.jpg",
+    },
+    {
+      loc: "https://www.mcstation.ai/cases#mwd",
+      title: "顧客自助取餐過程",
+      description:
+        "顧客使用 GraBox AI智取櫃自助取餐的完整過程，掃碼開門輕鬆取餐。",
+      contentUrl:
+        "https://www.mcstation.ai/images/cases/mwd/grabox-pickup-process.mp4",
+      thumbnailUrl:
+        "https://www.mcstation.ai/images/cases/mwd/grabox-touchscreen-ui.jpg",
+    },
+    {
+      loc: "https://www.mcstation.ai/cases#mwd",
+      title: "2025 高雄加盟展 GraBox 智取櫃展示實況",
+      description:
+        "2025 高雄加盟展現場 GraBox AI智取櫃展示與觀眾互動實況。",
+      contentUrl:
+        "https://www.mcstation.ai/images/cases/mwd/franchise-expo-2025.mp4",
+      thumbnailUrl:
+        "https://www.mcstation.ai/images/cases/mwd/franchise-expo-2026.jpg",
+    },
+    {
       loc: "https://www.mcstation.ai/cases#temple",
       title: "數位功德香油箱操作示範",
       description:

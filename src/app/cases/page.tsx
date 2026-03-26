@@ -62,29 +62,41 @@ const cases = [
     id: "mwd",
     client: "麥味登 MWD（揚秦國際）",
     title: "智慧餐飲門市 × My SMART 智取櫃",
-    subtitle: "連鎖餐飲品牌的數位轉型標竿",
+    subtitle: "連鎖餐飲品牌的數位轉型標竿｜2025 高雄加盟展 → 2026 全面擴展",
     description:
-      "與台灣知名連鎖早午餐品牌麥味登（揚秦國際集團）合作，打造全新智慧門市概念。首間智能店型於桃園大興店啟動，導入「智能取餐櫃」，APP 點餐後掃 QR Code 直接取餐，不需經過櫃台。AI 預測模組分析尖峰時段點餐率，提前預製半成品加快出餐速度，智取櫃採租賃制納入加盟金內。",
+      "與台灣知名連鎖早午餐品牌麥味登（揚秦國際集團）合作，打造全新智慧門市概念。首間智能店型於桃園大興店啟動，導入 GraBox AI 智取櫃（My Express），APP 點餐後掃 QR Code 或簽名直接取餐，不需經過櫃台。AI 預測模組分析尖峰時段點餐率，提前預製半成品加快出餐速度。從 2025 高雄加盟展首次亮相，到 2026 加盟展持續展出，智取櫃已從概念驗證走向規模化部署，租賃制納入加盟金讓店主零負擔導入。",
     highlights: [
       "首間智能店：桃園大興店，第二站忠孝新生店",
-      "智能取餐櫃：APP 掃 QR Code 自助取餐",
+      "智能取餐櫃：APP 掃 QR Code / 簽名自助取餐",
       "AI 尖峰預測：分析點餐數據，預製加速出餐",
       "KDS 廚房顯示系統串接",
       "PEANUTS / Snoopy 聯名主題店與周邊商品",
       "智取櫃租賃制，加盟金含設備",
+      "2025 高雄加盟展首次亮相，現場反響熱烈",
+      "2026 加盟展持續展出，全面推廣中",
     ],
     images: [
       { src: "/images/cases/mwd/mwd-snoopy-storefront.jpg", alt: "麥味登 Snoopy 聯名智慧門市外觀 My Express 智取櫃 TAKE OUT" },
+      { src: "/images/cases/mwd/mwd-storefront-exterior.jpg", alt: "麥味登門市實景 GraBox 智取櫃外觀 My Express TAKE OUT 街景" },
+      { src: "/images/cases/mwd/grabox-locker-closeup.jpg", alt: "GraBox 智取櫃 12 格 LED 彩色燈號近拍 紅藍燈光顯示取餐狀態" },
+      { src: "/images/cases/mwd/grabox-touchscreen-ui.jpg", alt: "GraBox 智取櫃觸控螢幕 My Express 簽名取餐介面" },
       { src: "/images/cases/mwd/grabox-closeup.jpg", alt: "GraBox 智取櫃 12 格 LED 燈號近拍 麥味登門市" },
+      { src: "/images/cases/mwd/franchise-expo-2026.jpg", alt: "2026 加盟展 麥味登攤位 GraBox 智取櫃現場展示" },
+      { src: "/images/cases/mwd/mwd-storefront-daytime.jpg", alt: "麥味登門市白天實景 GraBox 智取櫃正面外觀" },
       { src: "/images/cases/mwd/grabox-use-cases.png", alt: "GraBox 智取櫃應用場景 麥味登 東方美 全家 佳德鳳梨酥" },
+      { src: "/images/cases/mwd/grabox-features.png", alt: "GraBox R101 智取櫃核心特色 規格 100% 台灣製造" },
+      { src: "/images/cases/mwd/chiate-grabox-storefront.png", alt: "佳德糕餅 GraBox 智取櫃應用情境 網路預訂免排隊取貨" },
       { src: "/images/cases/mwd/snoopy-menu.jpg", alt: "麥味登 PEANUTS Snoopy 聯名菜單" },
-      { src: "/images/cases/mwd/grabox-features.png", alt: "GraBox 智取櫃核心特色 智慧設計 安全可靠 靈活配置" },
     ],
     videos: [
       { src: "/images/cases/mwd/grabox-demo.mp4", alt: "GraBox 智取櫃取餐實際操作示範" },
+      { src: "/images/cases/mwd/grabox-operation-demo.mp4", alt: "GraBox 智取櫃完整運作流程 店員放餐到顧客取餐" },
+      { src: "/images/cases/mwd/grabox-takeout-flow.mp4", alt: "GraBox 智取櫃外帶取餐流程實拍" },
+      { src: "/images/cases/mwd/grabox-pickup-process.mp4", alt: "顧客使用 GraBox 智取櫃自助取餐過程" },
+      { src: "/images/cases/mwd/franchise-expo-2025.mp4", alt: "2025 高雄加盟展 GraBox 智取櫃展示實況" },
       { src: "/images/cases/mwd/kaohsiung-expo.mp4", alt: "高雄加盟展 GraBox 智取櫃展示" },
     ],
-    tags: ["智取櫃", "餐飲連鎖", "自助取餐", "POS串接", "數位轉型"],
+    tags: ["智取櫃", "餐飲連鎖", "自助取餐", "POS串接", "數位轉型", "加盟展"],
   },
   {
     id: "temple",
@@ -230,6 +242,38 @@ const videoJsonLd = {
       contentUrl: "https://www.mcstation.ai/images/cases/mwd/kaohsiung-expo.mp4",
       thumbnailUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-features.png",
       uploadDate: "2025-12-01",
+    },
+    {
+      "@type": "VideoObject",
+      name: "GraBox 智取櫃完整運作流程",
+      description: "從店員放餐到顧客取餐的 GraBox 智取櫃完整運作流程實錄",
+      contentUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-operation-demo.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-locker-closeup.jpg",
+      uploadDate: "2025-10-14",
+    },
+    {
+      "@type": "VideoObject",
+      name: "GraBox 智取櫃外帶取餐流程",
+      description: "麥味登門市 GraBox 智取櫃外帶取餐流程實拍",
+      contentUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-takeout-flow.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/mwd/mwd-storefront-exterior.jpg",
+      uploadDate: "2025-10-30",
+    },
+    {
+      "@type": "VideoObject",
+      name: "顧客自助取餐過程",
+      description: "顧客使用 GraBox 智取櫃自助取餐的完整過程",
+      contentUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-pickup-process.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/mwd/grabox-touchscreen-ui.jpg",
+      uploadDate: "2025-10-30",
+    },
+    {
+      "@type": "VideoObject",
+      name: "2025 高雄加盟展 GraBox 智取櫃展示實況",
+      description: "2025 高雄加盟展現場 GraBox AI 智取櫃展示與觀眾互動實況",
+      contentUrl: "https://www.mcstation.ai/images/cases/mwd/franchise-expo-2025.mp4",
+      thumbnailUrl: "https://www.mcstation.ai/images/cases/mwd/franchise-expo-2026.jpg",
+      uploadDate: "2025-08-08",
     },
     {
       "@type": "VideoObject",
@@ -382,7 +426,7 @@ export default function CasesPage() {
               )}
 
               {("videos" in c) && (c as { videos: { src: string; alt: string }[] }).videos.length > 0 && (
-                <div className="grid gap-4 mb-8 grid-cols-1 sm:grid-cols-2">
+                <div className={`grid gap-4 mb-8 grid-cols-1 sm:grid-cols-2 ${(c as { videos: { src: string; alt: string }[] }).videos.length > 4 ? "lg:grid-cols-3" : ""}`}>
                   {(c as { videos: { src: string; alt: string }[] }).videos.map((vid, i) => (
                     <div key={i} className="rounded-2xl overflow-hidden shadow-lg">
                       <LightboxVideo
