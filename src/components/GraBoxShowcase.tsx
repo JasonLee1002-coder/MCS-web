@@ -58,7 +58,6 @@ const features = [
 
 const useCases = [
   { scene: "連鎖早餐店", desc: "外帶餐點自取，提升營運效率（實績：麥味登）", image: "/images/products/grabox/r101-scene.png", featured: true },
-  { scene: "知名糕餅店", desc: "網路預訂、智取櫃取貨，免排隊（示意：佳德鳳梨酥）", image: "/images/products/grabox/chiate-scenario.png", featured: true },
 
   { scene: "飯店 / 民宿", desc: "房客自助取餐，降低人力成本", image: "", featured: false },
   { scene: "企業 / 辦公大樓", desc: "員工訂餐直取，提升午餐效率", image: "", featured: false },
@@ -600,7 +599,7 @@ function UseCasesSection() {
   );
 }
 
-/* ───── Showcase: Chiate scenario ───── */
+/* ───── Showcase: MWD scenario ───── */
 function ShowcaseScene() {
   return (
     <section className="py-32 bg-[#050a15]">
@@ -610,23 +609,23 @@ function ShowcaseScene() {
             Showcase
           </p>
           <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
-            實際應用想像
+            實際應用案例
           </h2>
           <p className="text-white/30">
-            知名糕餅店導入 GraBox 智取櫃，網路預訂、到店免排隊取貨
+            麥味登導入 GraBox 智取櫃，外帶餐點自取、提升營運效率
           </p>
         </ScrollReveal>
         <ScrollReveal>
           <div className="rounded-2xl overflow-hidden border border-white/10 relative">
             <LightboxImage
-              src="/images/products/grabox/chiate-scenario.png"
-              alt="佳德糕餅導入 GraBox 智取櫃 - 消費者排隊取貨場景"
+              src="/images/products/grabox/r101-scene.png"
+              alt="麥味登導入 GraBox 智取櫃 - 門市實際應用場景"
               width={1200}
               height={600}
               className="w-full h-auto"
             />
             <div className="bg-white/[0.03] px-6 py-3 text-xs text-white/30 text-center">
-              示意情境圖
+              麥味登門市實績
             </div>
           </div>
         </ScrollReveal>
