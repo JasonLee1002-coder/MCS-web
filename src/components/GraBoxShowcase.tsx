@@ -59,7 +59,7 @@ const features = [
 const useCases = [
   { scene: "連鎖早餐店", desc: "外帶餐點自取，提升營運效率（實績：麥味登）", image: "/images/products/grabox/r101-scene.png", featured: true },
   { scene: "知名糕餅店", desc: "網路預訂、智取櫃取貨，免排隊（示意：佳德鳳梨酥）", image: "/images/products/grabox/chiate-scenario.png", featured: true },
-  { scene: "便利商店門口", desc: "24 小時自助服務，便利店門口展示（實績：全家超商）", image: "/images/products/grabox/dm-scenarios.png", featured: true },
+  { scene: "便利商店門口", desc: "24 小時自助服務，便利店門口展示（實績：知名連鎖超商）", image: "/images/products/grabox/dm-scenarios.png", featured: true },
   { scene: "飯店 / 民宿", desc: "房客自助取餐，降低人力成本", image: "", featured: false },
   { scene: "企業 / 辦公大樓", desc: "員工訂餐直取，提升午餐效率", image: "", featured: false },
   { scene: "外送平台整合", desc: "外送員持碼自取，減少店員確認訂單的衝突", image: "", featured: false },

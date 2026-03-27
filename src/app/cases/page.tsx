@@ -83,7 +83,7 @@ const cases = [
       { src: "/images/cases/mwd/grabox-closeup.jpg", alt: "GraBox 智取櫃 12 格 LED 燈號近拍 麥味登門市" },
       { src: "/images/cases/mwd/franchise-expo-2026.jpg", alt: "2026 加盟展 麥味登攤位 GraBox 智取櫃現場展示" },
       { src: "/images/cases/mwd/mwd-storefront-daytime.jpg", alt: "麥味登門市白天實景 GraBox 智取櫃正面外觀" },
-      { src: "/images/cases/mwd/grabox-use-cases.png", alt: "GraBox 智取櫃應用場景 麥味登 東方美 全家 佳德鳳梨酥" },
+      { src: "/images/cases/mwd/grabox-use-cases.png", alt: "GraBox 智取櫃應用場景 麥味登 東方美 連鎖超商 佳德鳳梨酥" },
       { src: "/images/cases/mwd/grabox-features.png", alt: "GraBox R101 智取櫃核心特色 規格 100% 台灣製造" },
       { src: "/images/cases/mwd/chiate-grabox-storefront.png", alt: "佳德糕餅 GraBox 智取櫃應用情境 網路預訂免排隊取貨" },
       { src: "/images/cases/mwd/snoopy-menu.jpg", alt: "麥味登 PEANUTS Snoopy 聯名菜單" },

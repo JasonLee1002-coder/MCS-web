@@ -30,7 +30,7 @@ image: "/images/products/frozen-microwave/ivm-platform.png"
 
 ## IVM管理平台的六大核心功能
 
-IVM（Intelligent Vending Management）是銓幻元科技針對智慧販賣機營運需求，從零開始自主研發的雲端管理平台。不同於市面上的通用方案，IVM 是從實際營運痛點出發，經過服務全家超商等大型客戶的實戰驗證，逐步迭代而成。
+IVM（Intelligent Vending Management）是銓幻元科技針對智慧販賣機營運需求，從零開始自主研發的雲端管理平台。不同於市面上的通用方案，IVM 是從實際營運痛點出發，經過服務大型連鎖通路客戶的實戰驗證，逐步迭代而成。
 
 ### 一、即時銷售數據儀表板
 

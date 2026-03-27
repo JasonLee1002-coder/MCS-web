@@ -321,7 +321,7 @@ function FeatureShowcase() {
     },
     {
       title: "食安管控業界領先",
-      desc: "服務全家超商數百台經驗。食品效期自動管理、溫度即時監控、異常 LINE 即時推播。",
+      desc: "服務大型連鎖通路實戰經驗。食品效期自動管理、溫度即時監控、異常 LINE 即時推播。",
       icon: "🛡️",
       accent: "text-green-400",
     },
@@ -566,11 +566,11 @@ function FoodSafetyPlatform() {
                 Food Safety Control
               </p>
               <h2 className="text-4xl sm:text-5xl font-black text-white mb-6 leading-tight">
-                服務全家超商<br />
+                服務大型連鎖通路<br />
                 <span className="text-green-400">數百台</span>經驗
               </h2>
               <p className="text-white/40 text-lg leading-relaxed mb-10">
-                不只賣機器 — 累積服務全家超商數百台智慧販賣機的實戰經驗，
+                不只賣機器 — 累積服務大型連鎖通路數百台智慧販賣機的實戰經驗，
                 打造業界最完善的食安管控系統。
               </p>
 
@@ -728,7 +728,7 @@ function FAQ() {
     },
     {
       q: "食品安全如何管控？",
-      a: "服務全家超商數百台經驗：溫度 24H 即時監控、食品效期自動下架、異常 LINE 即時通知、銷售紀錄完整可追溯。",
+      a: "服務大型連鎖通路實戰經驗：溫度 24H 即時監控、食品效期自動下架、異常 LINE 即時通知、銷售紀錄完整可追溯。",
     },
     {
       q: "台製和進口機型差在哪？",
