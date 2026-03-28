@@ -1,8 +1,36 @@
 "use client";
 
+import { useState, type FormEvent } from "react";
 import { ScrollReveal } from "@/components/motion";
 
 export default function Contact() {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch("https://formspree.io/f/mqeyadkg", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section
       id="contact"
@@ -83,78 +111,105 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-mcs-blue-dark mb-6">
                 填寫諮詢表單
               </h3>
-              <form action="https://formspree.io/f/mqeyadkg" method="POST" className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    公司名稱
-                  </label>
-                  <input
-                    type="text"
-                    name="company"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange transition-all duration-300"
-                    placeholder="請輸入公司名稱"
-                    required
-                  />
+
+              {status === "success" ? (
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">感謝您的諮詢！</h4>
+                  <p className="text-gray-600 mb-6">我們已收到您的需求，將在 1-2 個工作天內回覆您。</p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="text-mcs-orange hover:underline font-medium"
+                  >
+                    再次填寫
+                  </button>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    聯絡人
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange transition-all duration-300"
-                    placeholder="請輸入姓名"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange transition-all duration-300"
-                    placeholder="請輸入 Email"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    感興趣的方案
-                  </label>
-                  <select name="service" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange text-gray-600 transition-all duration-300">
-                    <option value="">請選擇</option>
-                    <option value="grabox">GraBox AI 智取櫃</option>
-                    <option value="vending">智慧販賣機</option>
-                    <option value="microwave">冷凍微波販賣機</option>
-                    <option value="kiosk">自助服務機 Kiosk</option>
-                    <option value="oem">OEM / ODM 貼牌客製</option>
-                    <option value="pos">POS / KDS 餐飲系統串接</option>
-                    <option value="member">企業會員系統整合</option>
-                    <option value="partner">經銷夥伴加盟</option>
-                    <option value="other">其他</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    需求說明
-                  </label>
-                  <textarea
-                    rows={4}
-                    name="message"
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange resize-none transition-all duration-300"
-                    placeholder="請簡述您的需求..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="btn-shine w-full bg-mcs-orange text-white py-3 rounded-lg font-medium hover:bg-mcs-orange-light transition-all duration-300 hover:shadow-lg hover:shadow-mcs-orange/25"
-                >
-                  送出諮詢
-                </button>
-              </form>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      公司名稱
+                    </label>
+                    <input
+                      type="text"
+                      name="company"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange transition-all duration-300"
+                      placeholder="請輸入公司名稱"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      聯絡人
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange transition-all duration-300"
+                      placeholder="請輸入姓名"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange transition-all duration-300"
+                      placeholder="請輸入 Email"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      感興趣的方案
+                    </label>
+                    <select name="service" className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange text-gray-600 transition-all duration-300">
+                      <option value="">請選擇</option>
+                      <option value="grabox">GraBox AI 智取櫃</option>
+                      <option value="vending">智慧販賣機</option>
+                      <option value="microwave">冷凍微波販賣機</option>
+                      <option value="kiosk">自助服務機 Kiosk</option>
+                      <option value="oem">OEM / ODM 貼牌客製</option>
+                      <option value="pos">POS / KDS 餐飲系統串接</option>
+                      <option value="member">企業會員系統整合</option>
+                      <option value="partner">經銷夥伴加盟</option>
+                      <option value="other">其他</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      需求說明
+                    </label>
+                    <textarea
+                      rows={4}
+                      name="message"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-mcs-orange/50 focus:border-mcs-orange resize-none transition-all duration-300"
+                      placeholder="請簡述您的需求..."
+                    />
+                  </div>
+
+                  {status === "error" && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
+                      送出失敗，請稍後再試或直接寄信至 service@transtep.com
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="btn-shine w-full bg-mcs-orange text-white py-3 rounded-lg font-medium hover:bg-mcs-orange-light transition-all duration-300 hover:shadow-lg hover:shadow-mcs-orange/25 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === "sending" ? "送出中..." : "送出諮詢"}
+                  </button>
+                </form>
+              )}
             </div>
           </ScrollReveal>
         </div>

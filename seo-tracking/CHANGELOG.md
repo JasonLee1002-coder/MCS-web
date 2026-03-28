@@ -4,6 +4,47 @@
 
 ---
 
+## 2026-03-28 — 第五波：內容擴充 + 技術改善（Rounds 20-22）
+
+### 動作
+- **Round 20**: 5 篇新部落格文章填補關鍵受眾缺口
+  - `retail-channel-vending-machine-strategy.md` — 零售通路（百貨/商場/量販店）策略指南
+  - `frozen-food-brand-direct-sales-vending.md` — 冷凍食材品牌直營通路轉型
+  - `community-unmanned-store-guide.md` — 社區無人商店建置實戰指南
+  - `ai-dynamic-pricing-sales-prediction-vending.md` — AI 銷售預測與動態補貨
+  - `bento-fresh-food-vending-machine-guide.md` — 便當鮮食販賣機營運全攻略
+  - 總部落格文章數：45 → 50 篇
+- **Round 21**: 技術改善
+  - 新增全站 Error Boundary（src/app/error.tsx）
+  - Contact 表單升級為 AJAX 提交 + 成功/錯誤/送出中狀態回饋
+  - 驗證 7 篇核心 blog 文章的 /cases 內部連結完整性
+- **Round 22**: Build 驗證（66 頁面全部通過）+ SEO 快照 + IndexNow 提交
+
+### 內容策略缺口填補
+| 受眾缺口 | 嚴重度 | 填補文章 |
+|---------|--------|---------|
+| 零售通路（百貨/商場/量販） | 嚴重 | retail-channel-vending-machine-strategy |
+| 冷凍食材品牌直銷 | 嚴重 | frozen-food-brand-direct-sales-vending |
+| 社區/住宅無人商店 | 中度 | community-unmanned-store-guide |
+| AI/數據驅動營運 | 中度 | ai-dynamic-pricing-sales-prediction-vending |
+| 便當/鮮食無人販售 | 中度 | bento-fresh-food-vending-machine-guide |
+
+### SEO 評分變化
+| 項目 | Round 19 後 | Round 22 後 |
+|------|-------------|-------------|
+| 總頁面數 | 50 | 55 |
+| 部落格文章數 | 45 | 50 |
+| Error Boundary | 無 | ✅ |
+| Contact 表單回饋 | 無 | ✅ 成功/錯誤/送出中 |
+| 零售通路受眾覆蓋 | 1-2 篇 | 3-4 篇 |
+| 冷凍食材品牌覆蓋 | 3 篇 | 4 篇 |
+| 社區無人商店覆蓋 | 0 篇 | 1 篇 |
+| 便當/鮮食覆蓋 | 0 篇 | 1 篇 |
+| AI/數據營運覆蓋 | 1 篇 | 2 篇 |
+| 全站 SEO 評分（校準後） | 9.0/10 | 9.0/10 |
+
+---
+
 ## 2026-03-21 — 第四波 6 輪檢討優化（Rounds 14-19）
 
 ### 動作
