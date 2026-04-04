@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import FrozenMicrowaveShowcase from "@/components/FrozenMicrowaveShowcase";
 
 export const metadata: Metadata = {
-  title: "冷凍微波販賣機 | 台灣唯一百台實績 · 日本首都高速公路指定合作",
+  title: "冷凍微波販賣機 | 銓幻元科技 · 台灣唯一百台實績 · 日本高速公路指定",
   description:
     "銓幻元科技 100% 台灣研發製造冷凍微波販賣機，搭載商用 3600W 微波加熱，冷食瞬間變熱餐。服務大型連鎖通路數百台智慧販賣機經驗，食安管控業界領先。受日本首都高速公路青睞，簽訂 MOU 布點全日本休息站。提供台製與進口機型選擇。",
   keywords: [
@@ -56,14 +56,8 @@ const jsonLd = {
     availability: "https://schema.org/InStock",
     url: "https://www.mcstation.ai/products/frozen-microwave",
     priceCurrency: "TWD",
-    priceSpecification: {
-      "@type": "PriceSpecification",
-      priceCurrency: "TWD",
-      eligibleQuantity: {
-        "@type": "QuantitativeValue",
-        unitText: "台",
-      },
-    },
+    price: "0",
+    description: "歡迎來電洽詢客製報價",
   },
   additionalProperty: [
     { "@type": "PropertyValue", name: "微波功率", value: "3600W" },
@@ -79,8 +73,7 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.mcstation.ai" },
-    { "@type": "ListItem", position: 2, name: "產品", item: "https://www.mcstation.ai/products/frozen-microwave" },
-    { "@type": "ListItem", position: 3, name: "冷凍微波販賣機", item: "https://www.mcstation.ai/products/frozen-microwave" },
+    { "@type": "ListItem", position: 2, name: "冷凍微波販賣機", item: "https://www.mcstation.ai/products/frozen-microwave" },
   ],
 };
 

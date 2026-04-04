@@ -120,5 +120,7 @@ image: "/images/cases/funbox/vending-machines.jpg"
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
 - [智慧販賣機選點策略指南](/blog/vending-machine-location-strategy)
+- [販賣機 vs 請人：成本效益完整比較](/blog/vending-machine-vs-hiring-cost-analysis)
+- [販賣機創業加盟全攻略](/blog/vending-machine-startup-franchise-guide)
 - [智慧販賣機最暢銷商品分析](/blog/vending-machine-best-selling-products)
 - [台灣自動販賣機法規完整指南](/blog/vending-machine-legal-guide-taiwan)

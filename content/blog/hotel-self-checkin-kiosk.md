@@ -2,7 +2,7 @@
 title: "飯店自助 Check-in Kiosk 完整指南：旅宿業降低人力成本的關鍵解方"
 date: "2026-02-05"
 description: "飯店自助check-in Kiosk如何幫助旅宿業者降低櫃台人力成本？從功能需求到導入策略，完整解析旅宿業數位化的實務做法。"
-keywords: ["自助check-in", "飯店Kiosk", "旅宿業數位化", "無人櫃台", "飯店自助入住", "旅館數位轉型", "銓幻元科技"]
+keywords: ["自助check-in", "飯店Kiosk", "旅宿業數位化", "無人櫃台", "飯店自助入住", "旅館數位轉型", "銓幻元科技", "智慧旅館設備", "自助入住機推薦", "旅宿業自動化"]
 image: "/images/cases/hotel/self-checkin.jpg"
 ---
 

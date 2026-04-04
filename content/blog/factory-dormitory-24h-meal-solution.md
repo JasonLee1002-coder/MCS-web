@@ -116,3 +116,5 @@ GraBox 的角色是讓團膳廠商的服務時間從午餐時段延伸到全天�
 - [銓幻元科技客戶實績](/cases)
 - [餐飲業缺工怎麼辦？智慧設備解決方案](/blog/restaurant-labor-shortage-solution)
 - [智慧販賣機 ROI 分析：投資報酬率怎麼算？](/blog/smart-vending-machine-roi-analysis)
+- [販賣機 vs 請人：成本效益完整比較](/blog/vending-machine-vs-hiring-cost-analysis)
+- [ESG 永續販賣機：智慧設備達成 ESG 目標](/blog/esg-sustainable-vending-machine)

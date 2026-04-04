@@ -78,16 +78,10 @@ const jsonLd = {
   offers: {
     "@type": "Offer",
     availability: "https://schema.org/InStock",
+    price: "0",
+    description: "歡迎來電洽詢客製報價",
     url: "https://www.mcstation.ai/products/grabox",
     priceCurrency: "TWD",
-    priceSpecification: {
-      "@type": "PriceSpecification",
-      priceCurrency: "TWD",
-      eligibleQuantity: {
-        "@type": "QuantitativeValue",
-        unitText: "台",
-      },
-    },
   },
   category: "智慧取餐設備",
   inLanguage: "zh-Hant",
@@ -98,8 +92,7 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "首頁", item: "https://www.mcstation.ai" },
-    { "@type": "ListItem", position: 2, name: "產品", item: "https://www.mcstation.ai/products/grabox" },
-    { "@type": "ListItem", position: 3, name: "GraBox AI 智取櫃", item: "https://www.mcstation.ai/products/grabox" },
+    { "@type": "ListItem", position: 2, name: "GraBox AI 智取櫃", item: "https://www.mcstation.ai/products/grabox" },
   ],
 };
 

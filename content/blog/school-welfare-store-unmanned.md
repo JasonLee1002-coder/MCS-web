@@ -10,6 +10,9 @@ keywords:
   - 學校自助服務
   - 校園午餐取餐
   - 學校福利社轉型
+  - 銓幻元科技
+  - 校園無人取餐
+  - 學校智能販賣機
 category: "應用場景"
 image: "/images/mcs-logo.png"
 ---

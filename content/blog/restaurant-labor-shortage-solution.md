@@ -89,3 +89,5 @@ image: "/images/blog/restaurant-labor.jpg"
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [餐飲數位轉型完整指南](/blog/digital-transformation-restaurant-2026)
 - [智取櫃與 POS/KDS 系統串接](/blog/smart-cabinet-pos-kds-integration)
+- [排隊人潮怎麼解？智取櫃消滅尖峰排隊](/blog/queue-solution-smart-pickup-cabinet)
+- [販賣機 vs 請人：成本效益完整比較](/blog/vending-machine-vs-hiring-cost-analysis)

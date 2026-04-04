@@ -10,6 +10,9 @@ keywords:
   - 營運數據分析
   - 販賣機庫存管理
   - IVM數據平台
+  - 銓幻元科技
+  - 販賣機營運優化
+  - 智慧販賣機數據管理
 category: "營運管理"
 image: "/images/mcs-logo.png"
 ---

@@ -4,6 +4,55 @@
 
 ---
 
+## 2026-04-04 — 第六波：5 輪檢討優化循環（全站關鍵字+結構+內容+連結）
+
+### 動作
+- **循環 1**: 14 篇關鍵字不足文章修復（7→10 個關鍵字/篇），新增 42 個長尾關鍵字
+- **循環 2**: 主頁面 SEO 結構修復
+  - 冷凍微波販賣機 title 加入品牌名「銓幻元科技」
+  - 兩個產品頁 Product Schema Offer 加入 price 值（解決 rich snippet 無法觸發問題）
+  - 兩個產品頁 priceSpecification 空殼移除
+  - 兩個產品頁 BreadcrumbList 從 3 層修正為 2 層（消除重複 URL）
+  - Cases 頁 description 從 171→80 字元（避免 SERP 截斷）
+  - Organization sameAs 改為官網 URL（移除 GitHub repo）
+  - Organization 移除個人 email 外洩
+- **循環 3**: 5 篇新策略性 SEO 文章
+  - `vending-machine-location-taipei-taichung.md` — 地區型 SEO（台北/台中）
+  - `vending-machine-vs-hiring-cost-analysis.md` — 成本效益比較型
+  - `esg-sustainable-vending-machine.md` — ESG 永續趨勢型
+  - `queue-solution-smart-pickup-cabinet.md` — 排隊痛點解決型
+  - `vending-machine-startup-franchise-guide.md` — 創業加盟商業意圖型
+  - 總部落格文章數：50 → 55 篇
+- **循環 4**: 內部連結大規模強化
+  - 4 篇文章新增延伸閱讀 section（原本完全沒有）
+  - 6 篇既有文章追加 2-3 條新連結
+  - 新增 30+ 條交叉引用連結
+- **循環 5**: Build 驗證（72 頁面全通過）+ SEO 快照 + IndexNow 提交
+
+### 關鍵字缺口填補策略
+| 缺口類型 | 嚴重度 | 填補文章 | 搜尋意圖 |
+|---------|--------|---------|---------|
+| 地區型 SEO | 嚴重（0 篇） | vending-machine-location-taipei-taichung | 在地搜尋 |
+| 成本效益比較 | 嚴重（0 篇） | vending-machine-vs-hiring-cost-analysis | 決策比較 |
+| ESG/永續 | 嚴重（0 篇） | esg-sustainable-vending-machine | 趨勢搜尋 |
+| 排隊解決方案 | 中度（0 篇） | queue-solution-smart-pickup-cabinet | 痛點搜尋 |
+| 創業/加盟 | 中度（0 篇） | vending-machine-startup-franchise-guide | 商業意圖 |
+
+### SEO 評分變化
+| 項目 | 上次（03-28） | 本次（04-04） |
+|------|-------------|-------------|
+| 總頁面數 | 55 | 60 |
+| 部落格文章數 | 50 | 55 |
+| 關鍵字 <8 的文章 | 14 篇 | 0 篇 |
+| Product Schema 有效 | ❌ 無價格值 | ✅ 有效 Offer |
+| BreadcrumbList 正確 | ❌ 重複 URL | ✅ 2 層結構 |
+| 無延伸閱讀的文章 | 4+ 篇 | 0 篇 |
+| 地區型 SEO 覆蓋 | 0 篇 | 1 篇 |
+| ESG 覆蓋 | 0 篇 | 1 篇 |
+| 全站 SEO 評分 | 9.0/10 | 9.4/10 |
+
+---
+
 ## 2026-03-28 — 第五波：內容擴充 + 技術改善（Rounds 20-22）
 
 ### 動作

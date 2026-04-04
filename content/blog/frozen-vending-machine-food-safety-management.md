@@ -158,3 +158,11 @@ image: "/images/products/frozen-microwave/ivm-platform.png"
 在無人零售的世界裡，食安管控系統不是加分項目，而是最基本的營運門檻。消費者的信任建立在每一次安全的購買體驗之上，而這背後需要的是溫度監控、效期管理、即時通知、紀錄追溯四道防線的完整建構。
 
 如果你對冷凍販賣機的食安管控有任何疑問，或想進一步了解系統的實際運作方式，歡迎與我們聯繫，讓專業團隊為你詳細說明。
+
+### 延伸閱讀
+
+- [ESG 永續販賣機：智慧設備達成 ESG 目標](/blog/esg-sustainable-vending-machine)
+- [販賣機創業加盟全攻略](/blog/vending-machine-startup-franchise-guide)
+- [台北、台中販賣機設點推薦](/blog/vending-machine-location-taipei-taichung)
+- [冷凍微波販賣機完整介紹](/products/frozen-microwave)
+- [客戶實績案例](/cases)

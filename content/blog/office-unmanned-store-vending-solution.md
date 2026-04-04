@@ -109,3 +109,5 @@ GraBox 支援冷藏（4°C）、常溫與保溫（65°C）三種溫度區間，�
 - [智慧取餐櫃導入 SOP 完整指南](/blog/smart-cabinet-implementation-sop)
 - [智慧取餐櫃 × POS/KDS 系統整合](/blog/smart-cabinet-pos-kds-integration)
 - [客戶實績與成功案例](/cases)
+- [排隊人潮怎麼解？智取櫃消滅尖峰排隊](/blog/queue-solution-smart-pickup-cabinet)
+- [ESG 永續販賣機：智慧設備達成 ESG 目標](/blog/esg-sustainable-vending-machine)

@@ -178,3 +178,11 @@ image: "/images/products/frozen-microwave/th-21ms-catalog.png"
 ---
 
 *您的社區想建置無人商店嗎？歡迎[聯繫我們](/#contact)安排免費場地評估。*
+
+### 延伸閱讀
+
+- [台北、台中販賣機設點推薦](/blog/vending-machine-location-taipei-taichung)
+- [販賣機創業加盟全攻略](/blog/vending-machine-startup-franchise-guide)
+- [販賣機 vs 請人：成本效益完整比較](/blog/vending-machine-vs-hiring-cost-analysis)
+- [ESG 永續販賣機：智慧設備達成 ESG 目標](/blog/esg-sustainable-vending-machine)
+- [冷凍微波販賣機完整介紹](/products/frozen-microwave)

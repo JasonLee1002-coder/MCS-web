@@ -10,6 +10,9 @@ keywords:
   - 24H拉麵
   - 微波拉麵販賣機
   - 冷凍烏龍麵販賣機
+  - 銓幻元科技
+  - 無人拉麵店
+  - 冷凍食品自動販賣
 category: "商機分析"
 image: "/images/products/frozen-microwave/th-21ms-catalog.png"
 ---

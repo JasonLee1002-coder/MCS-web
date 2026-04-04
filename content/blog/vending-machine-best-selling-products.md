@@ -130,3 +130,5 @@ image: "/images/blog/vending-products.jpg"
 - [販賣機選點策略完整指南](/blog/vending-machine-location-strategy)
 - [IVM 雲端販賣機管理平台解析](/blog/ivm-cloud-vending-management-platform)
 - [販賣機數據分析與 AI 應用](/blog/vending-machine-data-analytics-ai)
+- [台北、台中販賣機設點推薦](/blog/vending-machine-location-taipei-taichung)
+- [販賣機創業加盟全攻略](/blog/vending-machine-startup-franchise-guide)

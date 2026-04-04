@@ -10,6 +10,9 @@ keywords:
   - 長照機構販賣機
   - 銀髮族自助服務
   - 老人友善設備
+  - 銓幻元科技
+  - 長照無人販賣機
+  - 智慧販賣機無障礙
 category: "應用場景"
 image: "/images/illustrations/vending.png"
 ---
