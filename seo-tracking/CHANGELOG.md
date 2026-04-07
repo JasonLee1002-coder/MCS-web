@@ -4,6 +4,31 @@
 
 ---
 
+## 2026-04-07b — 第八波：問句型 SEO + Wiki 深度頁（5 篇）
+
+### 動作
+- **問句型 1**: `vending-machine-types-complete-list-2026.md` — 「台灣販賣機有哪些種類？」
+- **問句型 2**: `vending-machine-setup-cost-breakdown-2026.md` — 「開一台要多少錢？費用大公開」
+- **問句型 3**: `what-is-smart-pickup-cabinet-grabox-complete-guide.md` — 「智取櫃是什麼？完整說明」
+- **Wiki 深度 1**: `frozen-microwave-vending-machine-complete-wiki.md` — 冷凍微波販賣機完整百科
+- **問句型 4**: `taiwan-vending-machine-brands-comparison-2026.md` — 「台灣廠商有哪些？」
+- **IndexNow** ✅ 全站提交成功
+- **Build 驗證** ✅ 70 頁面全通過
+
+### 策略依據
+- 借鑑 jason-seo「無人商店有哪些？」排名 #5.1、曝光 255 次的成功案例
+- MCS_web 原本 0 篇問句型文章，本波一次補 4 篇問句 + 1 篇 wiki
+
+### SEO 評分變化
+| 項目 | 上次（04-07a） | 本次（04-07b） |
+|------|-------------|-------------|
+| 總頁面數 | 65 | 70 |
+| 問句型文章 | 0 篇 | 4 篇 |
+| Wiki 深度頁 | 0 篇 | 1 篇 |
+| 全站 SEO 評分 | 9.5/10 | 9.6/10 |
+
+---
+
 ## 2026-04-07 — 第七波：地區型 SEO 擴充 + 內容缺口填補（5 篇）
 
 ### 動作
