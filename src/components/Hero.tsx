@@ -3,14 +3,19 @@
 import { motion } from "framer-motion";
 import { LightboxImage } from "@/components/Lightbox";
 import { FloatingElement, MagneticHover } from "@/components/motion";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/translations";
 
 export default function Hero() {
+  const { lang } = useLanguage();
+  const tr = translations[lang];
+
   return (
     <section
       id="hero"
       className="relative min-h-screen flex items-center overflow-hidden hero-gradient"
     >
-      {/* Animated grid pattern */}
+      {/* Animated grid */}
       <div className="absolute inset-0 hero-grid" />
 
       {/* Glowing orbs */}
@@ -24,8 +29,21 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Text */}
+          {/* Left — Text */}
           <div className="text-center lg:text-left">
+
+            {/* Singapore ACRA Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-white/80 mb-6 backdrop-blur-sm"
+            >
+              <span className="text-base">🇸🇬</span>
+              <span className="font-medium">{tr.hero.badge}</span>
+            </motion.div>
+
+            {/* Headline */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -38,7 +56,7 @@ export default function Hero() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  AI 智慧設備
+                  {tr.hero.headline1}
                 </motion.span>
                 <motion.span
                   className="mx-3 text-white/40 inline-block"
@@ -46,7 +64,7 @@ export default function Hero() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.6 }}
                 >
-                  x
+                  ×
                 </motion.span>
                 <motion.span
                   className="text-white inline-block"
@@ -54,23 +72,22 @@ export default function Hero() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  商業系統整合
+                  {tr.hero.headline2}
                 </motion.span>
               </h1>
             </motion.div>
 
+            {/* Tagline */}
             <motion.p
               className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.7 }}
             >
-              Meta Clearing Station 為企業提供{" "}
-              <span className="text-mcs-orange font-semibold">GraBox AI 智取櫃</span>、
-              冷凍販賣機、冷凍微波機、自助服務設備到 POS/KDS
-              雲端系統的一站式軟硬體整合方案，100% 台灣製造，外銷日本。
+              {tr.hero.tagline}
             </motion.p>
 
+            {/* CTAs */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
@@ -82,7 +99,7 @@ export default function Hero() {
                   href="#services"
                   className="btn-shine bg-mcs-orange text-white px-8 py-3.5 rounded-full text-lg font-medium hover:bg-mcs-orange-light transition-all shadow-lg shadow-mcs-orange/25 hover:shadow-xl hover:shadow-mcs-orange/30 inline-block"
                 >
-                  瞭解方案
+                  {tr.hero.cta1}
                 </a>
               </MagneticHover>
               <MagneticHover>
@@ -90,7 +107,7 @@ export default function Hero() {
                   href="#contact"
                   className="border border-white/20 text-white px-8 py-3.5 rounded-full text-lg font-medium hover:bg-white/10 hover:border-white/40 transition-all inline-block backdrop-blur-sm"
                 >
-                  聯絡我們
+                  {tr.hero.cta2}
                 </a>
               </MagneticHover>
             </motion.div>
@@ -103,9 +120,9 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 1.1 }}
             >
               {[
-                { val: "100%", label: "台灣製造" },
-                { val: "6", label: "核心方案" },
-                { val: "AI", label: "智慧驅動" },
+                { val: tr.hero.stat1v, label: tr.hero.stat1l },
+                { val: tr.hero.stat2v, label: tr.hero.stat2l },
+                { val: tr.hero.stat3v, label: tr.hero.stat3l },
               ].map((s, i) => (
                 <motion.div
                   key={s.label}
@@ -122,7 +139,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right - Hero illustration */}
+          {/* Right — Hero illustration */}
           <motion.div
             className="flex justify-center"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -132,7 +149,7 @@ export default function Hero() {
             <FloatingElement duration={8} distance={12}>
               <LightboxImage
                 src="/images/illustrations/hero.png"
-                alt="MCS 銓幻元科技 AI 智慧設備生態系統 - 智取櫃、販賣機、自助服務機、雲端平台整合"
+                alt="MCS Meta Clearing Station — AI Smart Equipment Ecosystem"
                 width={700}
                 height={500}
                 className="w-full max-w-xl drop-shadow-2xl"
@@ -142,7 +159,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Wave divider at bottom */}
+      {/* Wave divider */}
       <div className="section-wave">
         <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
           <path

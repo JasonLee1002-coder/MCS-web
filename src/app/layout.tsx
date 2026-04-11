@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import AiConsultant from "@/components/AiConsultant";
 import BackToTop from "@/components/BackToTop";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -200,9 +201,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} antialiased`}>
-        {children}
-        <BackToTop />
-        <AiConsultant />
+        <LanguageProvider>
+          {children}
+          <BackToTop />
+          <AiConsultant />
+        </LanguageProvider>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -4,6 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useMotionValueEvent, useScroll, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/translations";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 function openYuzu() {
   const btn = document.getElementById("yuzu-ai-btn");
@@ -28,6 +31,8 @@ export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
+  const { lang } = useLanguage();
+  const tr = translations[lang];
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = scrollY.getPrevious() ?? 0;
@@ -35,14 +40,12 @@ export default function Header() {
     setScrolled(latest > 50);
   });
 
-  // Close mobile menu on resize
   useEffect(() => {
     const handleResize = () => { if (window.innerWidth >= 768) setMenuOpen(false); };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Close dropdown on click outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -54,20 +57,21 @@ export default function Header() {
   }, []);
 
   const navItems: NavItem[] = [
-    { label: "首頁", href: "/#hero" },
-    { label: "服務方案", href: "/#services" },
-    { label: "客戶實績", href: "/cases" },
+    { label: tr.nav.home,       href: "/#hero" },
+    { label: tr.nav.services,   href: "/#services" },
+    { label: tr.nav.consulting, href: "/#consulting" },
+    { label: tr.nav.cases,      href: "/cases" },
     {
-      label: "產品",
+      label: tr.nav.products,
       href: "/products/frozen-microwave",
       children: [
-        { label: "📦 GraBox 智取櫃", href: "/products/grabox" },
-        { label: "❄️ 冷凍微波販賣機", href: "/products/frozen-microwave" },
+        { label: "📦 GraBox " + (lang === "zh" ? "智取櫃" : lang === "ja" ? "スマートキャビネット" : lang === "id" ? "Lemari Pintar" : "Smart Cabinet"), href: "/products/grabox" },
+        { label: "❄️ " + (lang === "zh" ? "冷凍微波販賣機" : lang === "ja" ? "冷凍電子レンジ自販機" : lang === "id" ? "Vending Microwave Beku" : "Frozen Microwave Vending"), href: "/products/frozen-microwave" },
       ],
     },
-    { label: "部落格", href: "/blog" },
-    { label: "關於我們", href: "/#about" },
-    { label: "常見問題", href: "/#faq" },
+    { label: tr.nav.blog,  href: "/blog" },
+    { label: tr.nav.about, href: "/#about" },
+    { label: tr.nav.faq,   href: "/#faq" },
   ];
 
   return (
@@ -83,13 +87,11 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+
+          {/* Logo + Company Name */}
           <Link href="/" className="flex items-center gap-3 group relative">
-            {/* Logo with glow effects */}
             <div className="relative">
-              {/* Ambient glow - always visible, intensifies on hover */}
               <div className="logo-ambient-glow" />
-              {/* Hover ring glow */}
               <div className="logo-glow-ring" />
               <motion.div
                 whileHover={{ scale: 1.06 }}
@@ -98,7 +100,7 @@ export default function Header() {
               >
                 <Image
                   src="/images/mcs-logo.png"
-                  alt="MCS - Meta Clearing Station 銓幻元科技股份有限公司"
+                  alt="MCS - Meta Clearing Station Pte. Ltd."
                   width={180}
                   height={60}
                   className={`h-14 w-auto transition-[filter] duration-500 ${
@@ -110,22 +112,24 @@ export default function Header() {
                 />
               </motion.div>
             </div>
-            <motion.span
-              className={`font-bold text-base leading-tight hidden sm:block logo-text-shimmer ${
-                scrolled ? "logo-text-shimmer-dark" : "logo-text-shimmer-light"
-              }`}
+            <motion.div
+              className="hidden sm:block leading-tight"
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              銓幻元科技<br />股份有限公司
-            </motion.span>
+              <div className={`font-bold text-sm logo-text-shimmer ${scrolled ? "logo-text-shimmer-dark" : "logo-text-shimmer-light"}`}>
+                {lang === "zh" ? "銓幻元科技" : "Meta Clearing Station"}
+              </div>
+              <div className={`text-[10px] font-medium tracking-wide ${scrolled ? "text-gray-400" : "text-white/40"}`}>
+                {lang === "zh" ? "META CLEARING STATION PTE. LTD." : lang === "ja" ? "シンガポール法人" : lang === "id" ? "Terdaftar ACRA Singapura" : "Singapore · ACRA 202316403G"}
+              </div>
+            </motion.div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="主導覽列">
+          <nav className="hidden md:flex items-center gap-6" aria-label="主導覽列">
             {navItems.map((item) => {
-              // Items with dropdown
               if (item.children) {
                 return (
                   <div
@@ -137,9 +141,7 @@ export default function Header() {
                   >
                     <button
                       className={`text-sm font-medium transition-colors relative group flex items-center gap-1 ${
-                        scrolled
-                          ? "text-gray-700 hover:text-mcs-orange"
-                          : "text-white/80 hover:text-white"
+                        scrolled ? "text-gray-700 hover:text-mcs-orange" : "text-white/80 hover:text-white"
                       }`}
                       onClick={() => setDropdownOpen(!dropdownOpen)}
                       aria-haspopup="menu"
@@ -177,16 +179,13 @@ export default function Header() {
                 );
               }
 
-              // Regular items
               const NavTag = item.href.startsWith("/") && !item.href.includes("#") ? Link : "a";
               return (
                 <NavTag
                   key={item.href}
                   href={item.href}
                   className={`text-sm font-medium transition-colors relative group ${
-                    scrolled
-                      ? "text-gray-700 hover:text-mcs-orange"
-                      : "text-white/80 hover:text-white"
+                    scrolled ? "text-gray-700 hover:text-mcs-orange" : "text-white/80 hover:text-white"
                   }`}
                 >
                   {item.label}
@@ -194,48 +193,47 @@ export default function Header() {
                 </NavTag>
               );
             })}
-            <button
-              onClick={openYuzu}
-              className={`text-sm font-medium transition-colors ${
-                scrolled
-                  ? "text-gray-700 hover:text-mcs-orange"
-                  : "text-white/80 hover:text-white"
-              }`}
-            >
-              聯絡我們
-            </button>
+
+            {/* Language Switcher */}
+            <LanguageSwitcher dark={!scrolled} />
+
+            {/* Ask Yuzu */}
             <motion.button
               onClick={openYuzu}
               className="btn-shine bg-mcs-orange text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-mcs-orange-light transition-all flex items-center gap-1.5 shadow-lg shadow-mcs-orange/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>🍊</span> 問 Yuzu
+              <span>🍊</span>
+              {lang === "zh" ? "問 Yuzu" : lang === "ja" ? "Yuzuに聞く" : lang === "id" ? "Tanya Yuzu" : "Ask Yuzu"}
             </motion.button>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? "關閉選單" : "展開選單"}
-            aria-expanded={menuOpen}
-          >
-            <svg className={`w-6 h-6 transition-colors ${scrolled ? "text-gray-900" : "text-white"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              {menuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          {/* Mobile: Language + Hamburger */}
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher dark={!scrolled} />
+            <button
+              className="p-2"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+            >
+              <svg className={`w-6 h-6 transition-colors ${scrolled ? "text-gray-900" : "text-white"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                {menuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav */}
         <AnimatePresence>
           {menuOpen && (
             <motion.nav
-              aria-label="行動裝置選單"
+              aria-label="Mobile menu"
               className="md:hidden pb-4 border-t border-gray-100 bg-white/95 backdrop-blur-xl rounded-b-2xl"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
@@ -243,7 +241,6 @@ export default function Header() {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               {navItems.map((item, i) => {
-                // Items with children - show as group in mobile
                 if (item.children) {
                   return (
                     <motion.div
@@ -288,18 +285,6 @@ export default function Header() {
                 );
               })}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navItems.length * 0.05 }}
-              >
-                <button
-                  className="block w-full text-left py-3 px-4 text-sm font-medium text-gray-700 hover:text-mcs-orange hover:bg-mcs-orange/5 rounded-lg transition-all"
-                  onClick={() => { setMenuOpen(false); openYuzu(); }}
-                >
-                  聯絡我們
-                </button>
-              </motion.div>
-              <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: (navItems.length + 1) * 0.05 }}
@@ -309,7 +294,7 @@ export default function Header() {
                   className="block w-full bg-mcs-orange text-white px-5 py-2.5 rounded-full text-sm font-medium text-center hover:bg-mcs-orange-light transition-colors"
                   onClick={() => { setMenuOpen(false); openYuzu(); }}
                 >
-                  🍊 問 Yuzu
+                  🍊 {lang === "zh" ? "問 Yuzu" : lang === "ja" ? "Yuzuに聞く" : lang === "id" ? "Tanya Yuzu" : "Ask Yuzu"}
                 </button>
               </motion.div>
             </motion.nav>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import GlobalPresence from "@/components/GlobalPresence";
+import Consulting from "@/components/Consulting";
 import Clients from "@/components/Clients";
 import Numbers from "@/components/Numbers";
 import About from "@/components/About";
@@ -119,6 +121,8 @@ export default function Home() {
         />
         <Hero />
         <Services />
+        <GlobalPresence />
+        <Consulting />
         <Clients />
         <Numbers />
         <About />

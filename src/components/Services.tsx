@@ -11,6 +11,8 @@ import {
   TiltCard,
   GlowPulse,
 } from "@/components/motion";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/translations";
 
 const services = [
   {
@@ -257,6 +259,8 @@ function BentoCard({
 export default function Services() {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [lightboxAlt, setLightboxAlt] = useState("");
+  const { lang } = useLanguage();
+  const tr = translations[lang].services;
 
   const closeLightbox = useCallback(() => setLightboxSrc(null), []);
 
@@ -298,14 +302,14 @@ export default function Services() {
           >
             <span className="w-2 h-2 rounded-full bg-mcs-orange animate-pulse" />
             <span className="text-sm font-medium text-mcs-blue-dark/70">
-              全方位解決方案
+              {lang === "zh" ? "全方位解決方案" : lang === "ja" ? "総合的なソリューション" : lang === "id" ? "Solusi Menyeluruh" : "Comprehensive Solutions"}
             </span>
           </motion.div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-mcs-blue-dark mb-4">
-            智慧設備整合方案
+            {tr.title}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            從硬體設備到軟體系統，MCS 提供完整的一站式整合服務
+            {tr.subtitle}
           </p>
         </ScrollReveal>
 
