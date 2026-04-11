@@ -9,15 +9,22 @@
  */
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { writeFileSync, mkdirSync } from "fs";
+import { writeFileSync, mkdirSync, readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import * as dotenv from "dotenv";
 
-dotenv.config({ path: ".env.local" });
+// Load .env.local manually (no dotenv dependency needed)
+const __dirname0 = dirname(fileURLToPath(import.meta.url));
+const envPath = join(__dirname0, "../.env.local");
+try {
+  const envContent = readFileSync(envPath, "utf8");
+  for (const line of envContent.split("\n")) {
+    const m = line.match(/^([^#=]+)=(.*)$/);
+    if (m) process.env[m[1].trim()] = m[2].trim().replace(/^"|"$/g, "");
+  }
+} catch { /* ignore if no .env.local */ }
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const outputDir = join(__dirname, "../public/images/generated");
+const outputDir = join(__dirname0, "../public/images/generated");
 mkdirSync(outputDir, { recursive: true });
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);

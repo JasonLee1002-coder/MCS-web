@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { ScrollReveal } from "@/components/motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/translations";
+import SGHQIllustration from "@/components/illustrations/SGHQIllustration";
+import TWRDIllustration from "@/components/illustrations/TWRDIllustration";
+import GlobalBridgeIllustration from "@/components/illustrations/GlobalBridgeIllustration";
 
 export default function GlobalPresence() {
   const { lang } = useLanguage();
@@ -47,6 +50,10 @@ export default function GlobalPresence() {
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 {tr.sgBadge}
+              </div>
+              {/* SG Illustration */}
+              <div className="mt-6 rounded-xl overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                <SGHQIllustration className="w-full" />
               </div>
             </div>
           </motion.div>
@@ -103,6 +110,10 @@ export default function GlobalPresence() {
                 </svg>
                 {tr.twBadge}
               </div>
+              {/* TW R&D Illustration */}
+              <div className="mt-6 rounded-xl overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                <TWRDIllustration className="w-full" />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -113,6 +124,19 @@ export default function GlobalPresence() {
           <div className="bg-mcs-orange text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-black">×</div>
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-mcs-orange/40 to-transparent" />
         </div>
+
+        {/* Global Bridge Illustration */}
+        <ScrollReveal>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-12 rounded-2xl overflow-hidden border border-mcs-blue/20 shadow-xl"
+          >
+            <GlobalBridgeIllustration className="w-full" />
+          </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );
