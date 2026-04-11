@@ -4,6 +4,74 @@
 
 ---
 
+## 2026-04-09b — 第十波：第二輪三波循環（FAQPage ×11 + 3 新文章 + YAML 修復）
+
+### Round 1 — FAQPage 大規模批量擴展（11 篇）
+為以下文章加入 FAQ frontmatter（各 4 個 Q&A）：
+`restaurant-labor-shortage-solution`、`vending-machine-location-strategy`、`grabox-vs-traditional-pickup`、`smart-vending-machine-roi-analysis`、`vending-machine-vs-hiring-cost-analysis`、`smart-vending-machine-maintenance-guide`、`vending-machine-legal-guide-taiwan`、`brunch-chain-smart-cabinet-solution`、`smart-cabinet-pos-kds-integration`、`vending-machine-startup-franchise-guide`、`smart-cabinet-implementation-sop`
+
+累計 FAQPage 啟用：22 篇（全站 71 篇的 31%）
+
+### Round 2 — 3 篇填補「評估猶豫期」的新文章
+- `smart-cabinet-disadvantages-real-talk.md` — 「AI智取櫃缺點有哪些？」（主動掌握負面搜尋流量）
+- `vending-machine-location-finding-guide.md` — 「販賣機怎麼找場地？申請管道與談判技巧」
+- `frozen-vending-machine-buying-mistakes.md` — 「冷凍微波販賣機採購5大常見錯誤」
+
+### Round 3 — 技術修復 + 收尾
+- YAML 修復：`smart-cabinet-implementation-sop.md` 缺少結尾 `---`，已修復
+- Build 驗證 ✅（88 頁面全通過）
+- IndexNow ✅ 200 OK
+
+### SEO 評分
+| 項目 | 09a | 09b |
+|------|-----|-----|
+| FAQPage 啟用數 | 8 篇 | 22 篇 |
+| 總頁面數 | 73 | 76 |
+| 全站評分 | 9.7/10 | 9.7/10 |
+
+---
+
+## 2026-04-09 — 第九波：三輪檢討循環（FAQPage Schema + 3 新文章 + 交叉連結）
+
+### 動作
+
+**Round 1 — FAQPage Schema 基礎建設**
+- `src/lib/blog.ts`：新增 `FaqItem` interface + `BlogPost.faq` 欄位支援
+- `src/app/blog/[slug]/page.tsx`：自動渲染 FAQPage JSON-LD（當 faq 欄位存在時）
+- 5 篇核心文章加入 FAQ frontmatter（各 4～5 Q&A）：
+  - `what-is-smart-pickup-cabinet-grabox-complete-guide`（5 FAQ）
+  - `frozen-microwave-vending-machine-complete-wiki`（5 FAQ）
+  - `vending-machine-setup-cost-breakdown-2026`（5 FAQ）
+  - `smart-pickup-cabinet-recommendation-2026`（4 FAQ）
+  - `vending-machine-types-complete-list-2026`（4 FAQ）
+
+**Round 2 — 3 篇新策略性文章（均含 FAQPage schema）**
+- `grabox-ai-smart-cabinet-complete-wiki-2026.md` — GraBox 專屬 Wiki（填補重大缺口）
+- `vending-machine-monthly-revenue-how-much.md` — 「販賣機一個月能賺多少？」月收益試算
+- `smart-vending-machine-faq-complete-guide-2026.md` — 販賣機常見問題 Q&A 大全（24 個問題）
+
+**Round 3 — 交叉連結 + 驗證**
+- 4 篇舊文章延伸閱讀補連結指向新文章
+- Build 驗證 ✅（85 頁面全通過）
+- IndexNow ✅ 全站提交成功（200 OK）
+
+### 策略依據
+- FAQPage JSON-LD 是本輪最大突破：70 篇文章 0 個 FAQ schema → 5 篇啟用，架構完成後可快速擴展
+- GraBox wiki 是填補既有缺口（冷凍微波有 wiki、GraBox 沒有）
+- 月收益問題是高商業意圖關鍵字，搜尋者接近決策階段
+
+### SEO 評分變化
+| 項目 | 上次（04-07b） | 本次（04-09） |
+|------|-------------|-------------|
+| 總頁面數 | 70 | 73 |
+| FAQPage schema | 0 篇 | 5 篇 |
+| GraBox wiki | 0 篇 | 1 篇 |
+| 月收益試算文章 | 0 篇 | 1 篇 |
+| Q&A 大全文章 | 0 篇 | 1 篇 |
+| 全站 SEO 評分 | 9.6/10 | 9.7/10 |
+
+---
+
 ## 2026-04-07b — 第八波：問句型 SEO + Wiki 深度頁（5 篇）
 
 ### 動作

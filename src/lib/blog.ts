@@ -7,6 +7,11 @@ import gfm from "remark-gfm";
 
 const blogDir = path.join(process.cwd(), "content", "blog");
 
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -14,6 +19,7 @@ export interface BlogPost {
   description: string;
   keywords: string[];
   image?: string;
+  faq?: FaqItem[];
   content: string;
 }
 
@@ -94,6 +100,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
     description: data.description || "",
     keywords: data.keywords || [],
     image: data.image,
+    faq: data.faq || undefined,
     content: processed.toString(),
   };
 }

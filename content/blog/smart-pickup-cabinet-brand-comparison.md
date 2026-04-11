@@ -125,6 +125,7 @@ GraBox 由銓幻元科技 100% 在台灣設計、製造與組裝，從電路板�
 
 ## 延伸閱讀
 
+- [GraBox AI 智取櫃完整百科：規格、功能、案例、費用](/blog/grabox-ai-smart-cabinet-complete-wiki-2026)
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
 - [智取櫃 POS/KDS 整合完整指南](/blog/smart-cabinet-pos-kds-integration)
 - [智取櫃導入 SOP 完整流程](/blog/smart-cabinet-implementation-sop)

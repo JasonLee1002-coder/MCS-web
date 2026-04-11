@@ -124,6 +124,21 @@ export default async function BlogPostPage({
     ],
   };
 
+  const faqJsonLd = post.faq && post.faq.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: post.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        })),
+      }
+    : null;
+
   return (
     <>
       <Header />
@@ -138,6 +153,12 @@ export default async function BlogPostPage({
             __html: JSON.stringify(breadcrumbJsonLd),
           }}
         />
+        {faqJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          />
+        )}
 
         {/* Header */}
         <section className="bg-gradient-to-br from-mcs-blue-dark to-mcs-blue pt-28 pb-12 text-white">
