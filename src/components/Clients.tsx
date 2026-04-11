@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ScrollReveal,
   StaggerContainer,
@@ -13,81 +14,201 @@ const clients = [
   {
     name: "麗嬰國際 Funbox Toys",
     id: "funbox",
+    tag: "玩具零售",
+    highlight: "GraBox 智取櫃無人零售",
+    desc: "導入 GraBox AI 智取櫃，實現無人自助取貨，大幅提升購物體驗，節省人力成本 40%+。",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1014.625 7.5H12m0-2.625A2.625 2.625 0 009.375 7.5H12m0-2.625V7.5m0 0H3.375c-.621 0-1.125.504-1.125 1.125v3.5c0 .621.504 1.125 1.125 1.125H12m0-5.75h8.625c.621 0 1.125.504 1.125 1.125v3.5c0 .621.504 1.125-1.125 1.125H12" />
       </svg>
     ),
-    tag: "玩具零售",
   },
   {
     name: "麥味登 MWD（揚秦國際）",
     id: "mwd",
+    tag: "連鎖餐飲",
+    highlight: "POS/KDS 雲端整合",
+    desc: "導入 POS/KDS 雲端系統，整合廚房出餐與前台結帳，全台門店翻桌效率顯著提升。",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.379a48.474 48.474 0 00-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12" />
       </svg>
     ),
-    tag: "連鎖餐飲",
   },
   {
     name: "日本首都高速公路",
     id: "expressway",
+    tag: "海外交通",
+    highlight: "冷凍微波販賣機海外落地",
+    desc: "服務區導入冷凍微波販賣機，實現 24H 無人化服務，解決夜間無人值守痛點。",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A8.966 8.966 0 013 12c0-1.264.26-2.467.732-3.559" />
       </svg>
     ),
-    tag: "海外交通",
   },
   {
     name: "鼎新電腦",
-    id: "funbox",
+    id: "digiwin",
+    tag: "企業軟體",
+    highlight: "ERP 系統深度整合",
+    desc: "ERP 系統對接 MCS 設備管理後台，數據全鏈路打通，提升企業數位管理效率。",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" />
       </svg>
     ),
-    tag: "企業軟體",
   },
   {
     name: "靈知科技 × 長林旅店",
     id: "hotel",
+    tag: "智慧旅宿",
+    highlight: "自助 Check-in 無人化",
+    desc: "導入自助 check-in/out 系統，實現旅宿全流程無人化，旅客滿意度顯著提升。",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
       </svg>
     ),
-    tag: "智慧旅宿",
   },
   {
     name: "玩具加乘",
     id: "toyplus",
+    tag: "玩具電商",
+    highlight: "O2O 線上線下打通",
+    desc: "電商訂單整合線下智取點，透過 GraBox 實現 O2O 購物全流程，取貨零等待。",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
       </svg>
     ),
-    tag: "玩具電商",
   },
 ];
 
 export default function Clients() {
+  const [selected, setSelected] = useState<typeof clients[0] | null>(null);
+
   return (
     <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-gray-50/80 via-white to-gray-50/50">
-      {/* Subtle background pattern */}
+      {/* Background pattern */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Dot pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `radial-gradient(circle, #E8751A 1px, transparent 1px)`,
-            backgroundSize: "32px 32px",
-          }}
+          style={{ backgroundImage: `radial-gradient(circle, #E8751A 1px, transparent 1px)`, backgroundSize: "32px 32px" }}
         />
-        {/* Soft radial glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-radial from-mcs-orange/[0.04] via-transparent to-transparent rounded-full blur-3xl" />
       </div>
+
+      {/* ===== PREVIEW MODAL ===== */}
+      <AnimatePresence>
+        {selected && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelected(null)}
+            />
+
+            {/* Modal */}
+            <div className="fixed inset-0 z-[101] flex items-center justify-center p-6">
+              <motion.div
+                className="relative w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl"
+                initial={{ opacity: 0, scale: 0.85, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.85, y: 30 }}
+                transition={{ type: "spring", stiffness: 300, damping: 26 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Header strip */}
+                <div className="bg-gradient-to-r from-mcs-blue-dark to-mcs-blue p-8 relative overflow-hidden">
+                  <div className="absolute -top-8 -right-8 w-32 h-32 bg-mcs-orange/20 rounded-full blur-2xl" />
+                  <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-white/5 rounded-full blur-xl" />
+
+                  {/* Close */}
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white/70 hover:text-white transition-all group"
+                  >
+                    <svg className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+
+                  <div className="relative z-10 flex items-center gap-4">
+                    {/* Icon enlarged */}
+                    <motion.div
+                      className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-mcs-orange shrink-0"
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+                    >
+                      <span className="scale-150">{selected.icon}</span>
+                    </motion.div>
+                    <div>
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-mcs-orange/20 border border-mcs-orange/30 text-mcs-orange mb-1.5">
+                        {selected.tag}
+                      </span>
+                      <h3 className="text-lg font-bold text-white leading-snug">{selected.name}</h3>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="p-8">
+                  {/* Highlight badge */}
+                  <motion.div
+                    className="inline-flex items-center gap-2 bg-mcs-orange/10 border border-mcs-orange/20 rounded-full px-3.5 py-1.5 text-xs font-semibold text-mcs-orange mb-4"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.15 }}
+                  >
+                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    {selected.highlight}
+                  </motion.div>
+
+                  <motion.p
+                    className="text-gray-600 leading-relaxed text-sm mb-7"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    {selected.desc}
+                  </motion.p>
+
+                  <motion.div
+                    className="flex gap-3"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                  >
+                    <Link
+                      href={`/cases#${selected.id}`}
+                      onClick={() => setSelected(null)}
+                      className="flex-1 flex items-center justify-center gap-2 bg-mcs-blue-dark text-white px-5 py-3 rounded-xl font-semibold text-sm hover:bg-mcs-blue transition-colors"
+                    >
+                      查看完整案例
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </Link>
+                    <button
+                      onClick={() => setSelected(null)}
+                      className="px-4 py-3 rounded-xl border border-gray-200 text-gray-500 text-sm hover:bg-gray-50 transition-colors"
+                    >
+                      關閉
+                    </button>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </>
+        )}
+      </AnimatePresence>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -105,7 +226,7 @@ export default function Clients() {
           </div>
         </ScrollReveal>
 
-        {/* Client Cards Grid */}
+        {/* Client Cards */}
         <StaggerContainer
           className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6"
           staggerDelay={0.1}
@@ -113,36 +234,54 @@ export default function Clients() {
           {clients.map((c) => (
             <StaggerItem key={c.name}>
               <TiltCard>
-                <Link
-                  href={`/cases#${c.id}`}
-                  className="group relative block rounded-2xl p-5 sm:p-6 h-full
+                <motion.button
+                  className="group relative w-full rounded-2xl p-5 sm:p-6 h-full text-left
                     bg-white/70 backdrop-blur-md
                     border border-white/60
                     shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.03)]
-                    hover:shadow-[0_4px_20px_rgba(232,117,26,0.15),0_0_0_1px_rgba(232,117,26,0.12)]
-                    hover:border-mcs-orange/30
-                    transition-all duration-500 ease-out
-                    overflow-hidden"
+                    overflow-hidden cursor-pointer"
+                  onClick={() => setSelected(c)}
+                  whileHover={{
+                    y: -6,
+                    boxShadow: "0 16px 40px rgba(232,117,26,0.18), 0 0 0 1px rgba(232,117,26,0.15)",
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 22 }}
                 >
                   {/* Hover gradient overlay */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-mcs-orange/0 via-mcs-orange/0 to-mcs-orange/0 group-hover:from-mcs-orange/[0.04] group-hover:via-transparent group-hover:to-mcs-orange/[0.02] transition-all duration-700" />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-mcs-orange/0 via-transparent to-mcs-orange/0 group-hover:from-mcs-orange/[0.06] group-hover:to-mcs-orange/[0.02] transition-all duration-500" />
 
-                  {/* Animated border glow on hover */}
-                  <div className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-mcs-orange/20 via-mcs-orange/5 to-mcs-orange/20 blur-sm -z-10" />
+                  {/* Ripple ring on hover */}
+                  <div className="absolute inset-0 rounded-2xl border border-mcs-orange/0 group-hover:border-mcs-orange/25 transition-all duration-400" />
+
+                  {/* Expand icon — top right */}
+                  <motion.div
+                    className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    initial={false}
+                  >
+                    <div className="w-6 h-6 rounded-full bg-mcs-orange/10 border border-mcs-orange/30 flex items-center justify-center">
+                      <svg className="w-3 h-3 text-mcs-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                      </svg>
+                    </div>
+                  </motion.div>
 
                   {/* Content */}
                   <div className="relative z-10 flex flex-col items-center text-center gap-3">
-                    {/* Icon circle */}
-                    <div className="flex items-center justify-center w-14 h-14 rounded-xl
-                      bg-gradient-to-br from-gray-50 to-gray-100
-                      group-hover:from-mcs-orange/10 group-hover:to-mcs-orange/5
-                      text-gray-400 group-hover:text-mcs-orange
-                      shadow-sm group-hover:shadow-md group-hover:shadow-mcs-orange/10
-                      transition-all duration-500
-                      ring-1 ring-gray-100 group-hover:ring-mcs-orange/20"
+                    {/* Icon */}
+                    <motion.div
+                      className="flex items-center justify-center w-14 h-14 rounded-xl
+                        bg-gradient-to-br from-gray-50 to-gray-100
+                        group-hover:from-mcs-orange/15 group-hover:to-mcs-orange/5
+                        text-gray-400 group-hover:text-mcs-orange
+                        shadow-sm group-hover:shadow-lg group-hover:shadow-mcs-orange/15
+                        transition-all duration-400
+                        ring-1 ring-gray-100 group-hover:ring-mcs-orange/25"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 400 }}
                     >
-                      <span aria-label={`${c.name} 圖示`}>{c.icon}</span>
-                    </div>
+                      {c.icon}
+                    </motion.div>
 
                     {/* Name */}
                     <span className="text-sm sm:text-base font-semibold text-gray-700 group-hover:text-gray-900 transition-colors duration-300 leading-tight">
@@ -153,18 +292,8 @@ export default function Clients() {
                     <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 text-gray-400 group-hover:bg-mcs-orange/10 group-hover:text-mcs-orange transition-all duration-300">
                       {c.tag}
                     </span>
-
-                    {/* Arrow indicator */}
-                    <motion.div
-                      className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <svg className="w-4 h-4 text-mcs-orange/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                      </svg>
-                    </motion.div>
                   </div>
-                </Link>
+                </motion.button>
               </TiltCard>
             </StaggerItem>
           ))}
@@ -184,13 +313,7 @@ export default function Clients() {
                 transition-all duration-300"
             >
               查看完整客戶實績
-              <svg
-                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-              >
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
