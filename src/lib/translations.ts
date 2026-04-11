@@ -14,6 +14,7 @@ export type Translations = {
   };
   hero: {
     badge: string;
+    subBadge: string;
     headline1: string;
     headline2: string;
     tagline: string;
@@ -98,6 +99,7 @@ export const translations: Record<Lang, Translations> = {
     },
     hero: {
       badge: "新加坡 ACRA 認證企業 · UEN 202316403G",
+      subBadge: "🇹🇼 台灣技術實力 · 拓展東南亞市場",
       headline1: "AI 智慧設備",
       headline2: "商業系統整合",
       tagline:
@@ -207,6 +209,7 @@ export const translations: Record<Lang, Translations> = {
     },
     hero: {
       badge: "ACRA Registered Singapore Company · UEN 202316403G",
+      subBadge: "🇹🇼 Taiwan Tech · Expanding into Southeast Asia",
       headline1: "AI Smart Equipment",
       headline2: "Business System Integration",
       tagline:
@@ -316,6 +319,7 @@ export const translations: Record<Lang, Translations> = {
     },
     hero: {
       badge: "Perusahaan Terdaftar ACRA Singapura · UEN 202316403G",
+      subBadge: "🇹🇼 Teknologi Taiwan · Ekspansi ke Asia Tenggara",
       headline1: "Perangkat Cerdas AI",
       headline2: "Integrasi Sistem Bisnis",
       tagline:
@@ -425,6 +429,7 @@ export const translations: Record<Lang, Translations> = {
     },
     hero: {
       badge: "シンガポールACRA認定企業 · UEN 202316403G",
+      subBadge: "🇹🇼 台湾テクノロジー · 東南アジア市場へ展開",
       headline1: "AIスマート機器",
       headline2: "ビジネスシステム統合",
       tagline:

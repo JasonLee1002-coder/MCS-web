@@ -32,16 +32,26 @@ export default function Hero() {
           {/* Left — Text */}
           <div className="text-center lg:text-left">
 
-            {/* Singapore ACRA Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-white/80 mb-6 backdrop-blur-sm"
-            >
-              <span className="text-base">🇸🇬</span>
-              <span className="font-medium">{tr.hero.badge}</span>
-            </motion.div>
+            {/* Badges */}
+            <div className="flex flex-col sm:flex-row flex-wrap gap-2 justify-center lg:justify-start mb-6">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-white/80 backdrop-blur-sm"
+              >
+                <span className="text-base">🇸🇬</span>
+                <span className="font-medium">{tr.hero.badge}</span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.25 }}
+                className="inline-flex items-center gap-2 bg-mcs-orange/15 border border-mcs-orange/40 rounded-full px-4 py-1.5 text-sm text-mcs-orange font-semibold backdrop-blur-sm"
+              >
+                <span>{tr.hero.subBadge}</span>
+              </motion.div>
+            </div>
 
             {/* Headline */}
             <motion.div
