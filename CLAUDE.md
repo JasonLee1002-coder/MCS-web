@@ -58,6 +58,7 @@
 ## Git Push 策略
 - 合併多個改動再一次 push
 - 不要每改一行就推
+- **當用戶說「推」，立即執行 `git add` + `git commit` + `git push`，不需要再確認**
 
 ## 待處理回報
 每次開始工作時，請先檢查 `REPORTS.md`（如果存在），裡面是 Jason 透過 LINE Yuzu-san 回報的問題，請優先處理。
