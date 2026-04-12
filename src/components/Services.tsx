@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -259,8 +260,11 @@ function BentoCard({
 export default function Services() {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [lightboxAlt, setLightboxAlt] = useState("");
+  const [mounted, setMounted] = useState(false);
   const { lang } = useLanguage();
   const tr = translations[lang].services;
+
+  useEffect(() => { setMounted(true); }, []);
 
   const closeLightbox = useCallback(() => setLightboxSrc(null), []);
 
@@ -283,108 +287,96 @@ export default function Services() {
     }
   }, [lightboxSrc, closeLightbox]);
 
+  const lightbox = lightboxSrc ? (
+    <motion.div
+      className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out backdrop-blur-md"
+      onClick={closeLightbox}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <button
+        className="absolute top-4 right-4 text-white/70 hover:text-white z-10 transition-colors"
+        onClick={closeLightbox}
+        aria-label="關閉"
+      >
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.3 }}>
+        <Image
+          src={lightboxSrc}
+          alt={lightboxAlt}
+          width={1920}
+          height={1080}
+          className="max-w-full max-h-[90vh] object-contain rounded-lg"
+          onClick={(e) => e.stopPropagation()}
+          quality={90}
+        />
+      </motion.div>
+    </motion.div>
+  ) : null;
+
   return (
-    <section id="services" className="py-24 bg-mcs-gray relative overflow-hidden">
-      {/* ── Background decoration ── */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-mcs-orange/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-mcs-blue/5 rounded-full blur-[120px]" />
-      </div>
+    <>
+      {mounted && createPortal(lightbox, document.body)}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* ── Section Header ── */}
-        <ScrollReveal className="text-center mb-16">
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-mcs-blue-dark/5 border border-mcs-blue-dark/10 mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <span className="w-2 h-2 rounded-full bg-mcs-orange animate-pulse" />
-            <span className="text-sm font-medium text-mcs-blue-dark/70">
-              {lang === "zh" ? "全方位解決方案" : lang === "ja" ? "総合的なソリューション" : lang === "id" ? "Solusi Menyeluruh" : "Comprehensive Solutions"}
-            </span>
-          </motion.div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-mcs-blue-dark mb-4">
-            {tr.title}
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            {tr.subtitle}
-          </p>
-        </ScrollReveal>
+      <section id="services" className="py-24 bg-mcs-gray relative overflow-hidden">
+        {/* ── Background decoration ── */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-mcs-orange/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-mcs-blue/5 rounded-full blur-[120px]" />
+        </div>
 
-        {/* ── Bento Grid ── */}
-        <StaggerContainer
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-5 auto-rows-auto"
-          staggerDelay={0.1}
-        >
-          {services.map((service, index) => {
-            const isFeatured = index < 2;
-            // Layout classes for the bento grid
-            const layoutClass =
-              index < 2
-                ? "lg:col-span-3" // Featured: half width each
-                : "lg:col-span-2"; // Small: one-third width each (2 of 6)
-
-            return (
-              <div key={service.title} className={layoutClass}>
-                <BentoCard
-                  service={service}
-                  index={index}
-                  isFeatured={isFeatured}
-                  onImageClick={openLightbox}
-                />
-              </div>
-            );
-          })}
-        </StaggerContainer>
-      </div>
-
-      {/* ── Lightbox ── */}
-      {lightboxSrc && (
-        <motion.div
-          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 cursor-zoom-out backdrop-blur-md"
-          onClick={closeLightbox}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <button
-            className="absolute top-4 right-4 text-white/70 hover:text-white z-10 transition-colors"
-            onClick={closeLightbox}
-            aria-label="關閉"
-          >
-            <svg
-              className="w-8 h-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* ── Section Header ── */}
+          <ScrollReveal className="text-center mb-16">
+            <motion.div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-mcs-blue-dark/5 border border-mcs-blue-dark/10 mb-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
+              <span className="w-2 h-2 rounded-full bg-mcs-orange animate-pulse" />
+              <span className="text-sm font-medium text-mcs-blue-dark/70">
+                {lang === "zh" ? "全方位解決方案" : lang === "ja" ? "総合的なソリューション" : lang === "id" ? "Solusi Menyeluruh" : "Comprehensive Solutions"}
+              </span>
+            </motion.div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-mcs-blue-dark mb-4">
+              {tr.title}
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              {tr.subtitle}
+            </p>
+          </ScrollReveal>
+
+          {/* ── Bento Grid ── */}
+          <StaggerContainer
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-5 auto-rows-auto"
+            staggerDelay={0.1}
           >
-            <Image
-              src={lightboxSrc}
-              alt={lightboxAlt}
-              width={1920}
-              height={1080}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
-              onClick={(e) => e.stopPropagation()}
-              quality={90}
-            />
-          </motion.div>
-        </motion.div>
-      )}
-    </section>
+            {services.map((service, index) => {
+              const isFeatured = index < 2;
+              const layoutClass =
+                index < 2
+                  ? "lg:col-span-3"
+                  : "lg:col-span-2";
+
+              return (
+                <div key={service.title} className={layoutClass}>
+                  <BentoCard
+                    service={service}
+                    index={index}
+                    isFeatured={isFeatured}
+                    onImageClick={openLightbox}
+                  />
+                </div>
+              );
+            })}
+          </StaggerContainer>
+        </div>
+      </section>
+    </>
   );
 }
