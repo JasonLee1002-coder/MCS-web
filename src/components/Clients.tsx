@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -54,19 +55,24 @@ const clients = [
 export default function Clients() {
   const [selected, setSelected] = useState<typeof clients[0] | null>(null);
   const [imgZoom, setImgZoom] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  return (
-    <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-gray-50/80 via-white to-gray-50/50">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: `radial-gradient(circle, #E8751A 1px, transparent 1px)`, backgroundSize: "32px 32px" }} />
-      </div>
+  useEffect(() => { setMounted(true); }, []);
 
+  // Close on Escape
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") { setImgZoom(false); setSelected(null); } };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
+  const modals = (
+    <>
       {/* ===== IMAGE LIGHTBOX ===== */}
       <AnimatePresence>
         {selected && imgZoom && (
           <motion.div
-            className="fixed inset-0 bg-black/95 z-[200] flex items-center justify-center p-4 cursor-zoom-out"
+            className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 cursor-zoom-out"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setImgZoom(false)}
           >
@@ -100,12 +106,12 @@ export default function Clients() {
       <AnimatePresence>
         {selected && !imgZoom && (
           <>
-            <motion.div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+            <motion.div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setSelected(null)} />
-            <div className="fixed inset-0 z-[101] flex items-center justify-center p-6">
+            <div className="fixed inset-0 z-[9999] flex items-center justify-center p-6 pointer-events-none">
               <motion.div
-                className="relative w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl"
+                className="relative w-full max-w-md bg-white rounded-3xl overflow-hidden shadow-2xl pointer-events-auto"
                 initial={{ opacity: 0, scale: 0.85, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.85, y: 30 }}
@@ -174,69 +180,82 @@ export default function Clients() {
           </>
         )}
       </AnimatePresence>
+    </>
+  );
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal>
-          <div className="text-center mb-14">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-mcs-orange/10 text-mcs-orange mb-4">Trusted Partners</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 tracking-tight">信賴銓幻元的企業夥伴</h2>
-            <p className="mt-3 text-gray-500 text-sm max-w-md mx-auto">從零售到餐飲、從國內到海外，多元產業的共同選擇</p>
-          </div>
-        </ScrollReveal>
+  return (
+    <>
+      {mounted && createPortal(modals, document.body)}
 
-        <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6" staggerDelay={0.08}>
-          {clients.map((c) => (
-            <StaggerItem key={c.name}>
-              <TiltCard>
-                <motion.button
-                  className="group relative w-full rounded-2xl overflow-hidden cursor-pointer border border-transparent hover:border-mcs-orange/30 transition-all duration-400 bg-white shadow-sm"
-                  onClick={() => { setSelected(c); setImgZoom(false); }}
-                  whileHover={{ y: -6, boxShadow: "0 16px 40px rgba(232,117,26,0.15)" }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                >
-                  {/* Card image */}
-                  <div className="relative w-full h-32 overflow-hidden">
-                    <Image src={c.image} alt={c.name} fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-600" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    {/* Expand icon */}
-                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <div className="w-6 h-6 rounded-full bg-black/40 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-                        </svg>
+      <section className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-gray-50/80 via-white to-gray-50/50">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 opacity-[0.03]"
+            style={{ backgroundImage: `radial-gradient(circle, #E8751A 1px, transparent 1px)`, backgroundSize: "32px 32px" }} />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-mcs-orange/10 text-mcs-orange mb-4">Trusted Partners</span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 tracking-tight">信賴銓幻元的企業夥伴</h2>
+              <p className="mt-3 text-gray-500 text-sm max-w-md mx-auto">從零售到餐飲、從國內到海外，多元產業的共同選擇</p>
+            </div>
+          </ScrollReveal>
+
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6" staggerDelay={0.08}>
+            {clients.map((c) => (
+              <StaggerItem key={c.name}>
+                <TiltCard>
+                  <motion.button
+                    className="group relative w-full rounded-2xl overflow-hidden cursor-pointer border border-transparent hover:border-mcs-orange/30 transition-all duration-400 bg-white shadow-sm"
+                    onClick={() => { setSelected(c); setImgZoom(false); }}
+                    whileHover={{ y: -6, boxShadow: "0 16px 40px rgba(232,117,26,0.15)" }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 320, damping: 22 }}
+                  >
+                    {/* Card image */}
+                    <div className="relative w-full h-32 overflow-hidden">
+                      <Image src={c.image} alt={c.name} fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-600" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      {/* Expand icon */}
+                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <div className="w-6 h-6 rounded-full bg-black/40 backdrop-blur-sm border border-white/30 flex items-center justify-center">
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Card info */}
-                  <div className="p-4 text-center">
-                    <span className="text-xs font-semibold text-gray-900 group-hover:text-mcs-blue-dark leading-tight block mb-1.5">
-                      {c.name.split("（")[0].split("×")[0].trim()}
-                    </span>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 text-gray-400 group-hover:bg-mcs-orange/10 group-hover:text-mcs-orange transition-all duration-300">
-                      {c.tag}
-                    </span>
-                  </div>
-                </motion.button>
-              </TiltCard>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+                    {/* Card info */}
+                    <div className="p-4 text-center">
+                      <span className="text-xs font-semibold text-gray-900 group-hover:text-mcs-blue-dark leading-tight block mb-1.5">
+                        {c.name.split("（")[0].split("×")[0].trim()}
+                      </span>
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 text-gray-400 group-hover:bg-mcs-orange/10 group-hover:text-mcs-orange transition-all duration-300">
+                        {c.tag}
+                      </span>
+                    </div>
+                  </motion.button>
+                </TiltCard>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
 
-        <ScrollReveal delay={0.4} className="text-center mt-12">
-          <motion.div whileHover={{ x: 6 }} className="inline-block">
-            <Link href="/cases"
-              className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-mcs-orange/40 shadow-sm hover:shadow-md text-gray-600 hover:text-mcs-orange font-medium text-sm transition-all duration-300">
-              查看完整客戶實績
-              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-          </motion.div>
-        </ScrollReveal>
-      </div>
-    </section>
+          <ScrollReveal delay={0.4} className="text-center mt-12">
+            <motion.div whileHover={{ x: 6 }} className="inline-block">
+              <Link href="/cases"
+                className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-mcs-orange/40 shadow-sm hover:shadow-md text-gray-600 hover:text-mcs-orange font-medium text-sm transition-all duration-300">
+                查看完整客戶實績
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
+            </motion.div>
+          </ScrollReveal>
+        </div>
+      </section>
+    </>
   );
 }
