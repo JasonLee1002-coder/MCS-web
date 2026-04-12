@@ -98,48 +98,46 @@ function BentoCard({
 }) {
   const hasLink = "link" in service && service.link;
 
-  return (
-    <StaggerItem>
-      <TiltCard className="h-full">
+  const cardInner = (
+    <motion.div
+      className={`
+        relative group h-full rounded-2xl overflow-hidden
+        border border-white/10
+        bg-gradient-to-br from-[#0F2440]/95 via-[#1B3A5C]/90 to-[#0F2440]/95
+        backdrop-blur-xl
+        cursor-pointer
+        ${isFeatured ? "min-h-[420px] sm:min-h-[480px]" : "min-h-[320px] sm:min-h-[360px]"}
+      `}
+      whileHover={{
+        boxShadow: "0 0 40px rgba(232,117,26,0.25), 0 20px 60px rgba(0,0,0,0.4)",
+      }}
+      transition={{ duration: 0.4 }}
+    >
+      {/* ── Animated gradient border ── */}
+      <div className="absolute inset-0 rounded-2xl p-[1px] -z-0 overflow-hidden">
         <motion.div
-          className={`
-            relative group h-full rounded-2xl overflow-hidden
-            border border-white/10
-            bg-gradient-to-br from-[#0F2440]/95 via-[#1B3A5C]/90 to-[#0F2440]/95
-            backdrop-blur-xl
-            cursor-pointer
-            ${isFeatured ? "min-h-[420px] sm:min-h-[480px]" : "min-h-[320px] sm:min-h-[360px]"}
-          `}
-          whileHover={{
-            boxShadow: "0 0 40px rgba(232,117,26,0.25), 0 20px 60px rgba(0,0,0,0.4)",
-          }}
-          transition={{ duration: 0.4 }}
-        >
-          {/* ── Animated gradient border ── */}
-          <div className="absolute inset-0 rounded-2xl p-[1px] -z-0 overflow-hidden">
-            <motion.div
-              className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_0%,#E8751A_10%,transparent_20%,transparent_100%)]"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              style={{ opacity: 0 }}
-              whileHover={{ opacity: 0.6 }}
-            />
-          </div>
+          className="absolute inset-[-200%] bg-[conic-gradient(from_0deg,transparent_0%,#E8751A_10%,transparent_20%,transparent_100%)]"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          style={{ opacity: 0 }}
+          whileHover={{ opacity: 0.6 }}
+        />
+      </div>
 
-          {/* ── Background image with overlay ── */}
-          <div
-            className="absolute inset-0 cursor-zoom-in"
-            onClick={() => onImageClick(service.image, service.title)}
-          >
-            <Image
-              src={service.image}
-              alt={`${service.title} — ${service.subtitle} | 銓幻元科技`}
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            />
-            {/* Dark gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0F2440] via-[#0F2440]/80 to-[#0F2440]/30 group-hover:via-[#0F2440]/70 group-hover:to-[#0F2440]/20 transition-all duration-500" />
-          </div>
+      {/* ── Background image with overlay ── */}
+      <div
+        className="absolute inset-0"
+        onClick={!hasLink ? () => onImageClick(service.image, service.title) : undefined}
+      >
+        <Image
+          src={service.image}
+          alt={`${service.title} — ${service.subtitle} | 銓幻元科技`}
+          fill
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F2440] via-[#0F2440]/80 to-[#0F2440]/30 group-hover:via-[#0F2440]/70 group-hover:to-[#0F2440]/20 transition-all duration-500" />
+      </div>
 
           {/* ── Number indicator ── */}
           <div className="absolute top-4 left-4 z-10">
@@ -219,39 +217,22 @@ function BentoCard({
               ))}
             </div>
 
-            {/* CTA Link */}
-            {hasLink && (
-              <Link
-                href={service.link!}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-mcs-orange hover:text-mcs-orange-light transition-colors group/link"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <span className="relative">
-                  了解更多
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-mcs-orange group-hover/link:w-full transition-all duration-300" />
-                </span>
-                <motion.svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  whileHover={{ x: 4 }}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </motion.svg>
-              </Link>
-            )}
           </div>
 
           {/* ── Hover glow orb ── */}
           <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-mcs-orange/0 group-hover:bg-mcs-orange/10 rounded-full blur-3xl transition-all duration-700 pointer-events-none" />
           <div className="absolute -top-20 -left-20 w-40 h-40 bg-mcs-blue/0 group-hover:bg-mcs-blue/10 rounded-full blur-3xl transition-all duration-700 pointer-events-none" />
         </motion.div>
+  );
+
+  return (
+    <StaggerItem>
+      <TiltCard className="h-full">
+        {hasLink ? (
+          <Link href={service.link!} className="block h-full">{cardInner}</Link>
+        ) : (
+          cardInner
+        )}
       </TiltCard>
     </StaggerItem>
   );
