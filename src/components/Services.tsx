@@ -35,6 +35,22 @@ const services = [
     link: "/products/frozen-microwave",
   },
   {
+    title: "Kiosk 自助點餐繳費機",
+    subtitle: "東方美駁二導入實績 | 月省 1.5 位人力",
+    description:
+      "觸控自助點餐機整合繳費功能，支援悠遊卡、LINE Pay、街口、台灣 Pay 等 10+ 種支付方式。排隊等待時間縮短 35%、降低 30% 人工填單錯誤率，支援最高 11 種點餐語言，1 台抵 3 種外場服務。已於東方美駁二精緻餐酒館新品牌導入。",
+    image: "/images/products/kiosk/kiosk-hero.png",
+    tags: ["自助點餐", "多元支付", "多語言", "繳費整合", "東方美實績"],
+  },
+  {
+    title: "WiXGo QR 掃碼點餐系統",
+    subtitle: "免下載 · AI推薦 · 全通路整合 | 東方美駁二指定方案",
+    description:
+      "顧客手機掃桌上 QR Code 即可點餐，免下載 APP，支援內用外帶切換。AI 商品推薦三重演算法（熱銷品 × 顧客偏好 × 天氣時段）有效提升客單價。與 POS / KDS / GraBox 智取櫃全通路串接，訂單即時同步，東方美駁二新品牌指定採用。",
+    image: "/images/products/wixgo/wixgo-hero.png",
+    tags: ["QR點餐", "AI推薦", "免下載", "多元支付", "POS整合"],
+  },
+  {
     title: "OEM / ODM 貼牌客製",
     subtitle: "可 100% 台灣製造",
     description:
