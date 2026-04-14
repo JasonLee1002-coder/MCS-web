@@ -7,10 +7,14 @@ import { LightboxImage, LightboxVideo } from "@/components/Lightbox";
 
 
 export const metadata: Metadata = {
-  title: "客戶實績 | 麗嬰國際、麥味登、鼎新電腦、首都高速公路合作案例",
+  title: "客戶實績 | 東方美AI轉型、麗嬰國際、麥味登、首都高速公路合作案例",
   description:
-    "銓幻元科技客戶實績：麗嬰國際智能販賣機、麥味登智取櫃、宮廟數位功德箱、日本首都高速公路冷凍微波販賣機。台灣製造，跨產業AI智慧設備整合成功案例。",
+    "銓幻元科技客戶實績：東方美200+門市AI超級店長、麗嬰國際智能販賣機、麥味登智取櫃、宮廟數位功德箱、日本首都高速公路冷凍微波販賣機。跨產業AI智慧設備整合成功案例。",
   keywords: [
+    "東方美AI轉型",
+    "連鎖餐飲AI",
+    "AI超級店長",
+    "A2A代理人",
     "銓幻元科技案例",
     "智能販賣機案例",
     "智取櫃成功案例",
@@ -198,6 +202,32 @@ const cases = [
       { src: "/images/cases/expressway/overview-collage.png", alt: "日本首都高速公路合作案實地考察總覽" },
     ],
     tags: ["國際合作", "日本市場", "高速公路", "智慧交通", "台灣之光"],
+  },
+  {
+    id: "oriental-beauty",
+    client: "東方美實業股份有限公司",
+    title: "連鎖早餐業 AI 全面升級 × A2A 超級店長智慧協作",
+    subtitle: "200+ 門市 × AI代理人 × GraBox智取櫃 × 鼎新ERP整合 — 台灣連鎖餐飲AI轉型標竿",
+    description:
+      "銓幻元科技協助東方美實業推動全集團 AI 智慧化轉型。導入「AI 超級店長」A2A 代理人架構，整合 WiXtar POS、KDS 廚房系統、GraBox 智取櫃與鼎新 ERP，透過 GCP 全雲端架構（<150ms 延遲、99.95% SLA），讓 200+ 門市店長透過自然語言即時查詢營運數據、取得備貨建議、解答 SOP 問題。駁二精緻餐酒館新品牌同步導入 AI 多國語言 Kiosk、WiXGo 掃碼點餐與 AI 商品推薦三重演算法，打造從供應鏈到前台服務的全鏈路 AI 化體驗。",
+    highlights: [
+      "200+ 連鎖門市同步導入 AI 超級店長代理人架構",
+      "WiXtar POS / KDS / GraBox 智取櫃 三系統整合",
+      "鼎新 ERP × GCP 全雲端（<150ms，99.95% SLA）",
+      "RAG 知識庫 + 語音 SOP 助理：大幅縮短新人訓練週期",
+      "AI 叫貨預測：整合天氣、時段、商圈多變數，降低報廢率",
+      "NL2SQL 自然語言查詢，店長口說即得跨系統報表",
+      "A2A 代理人協作：總部策略層 ↔ 分店自治層雙向協同",
+      "駁二新品牌：AI 多國語言 Kiosk + WiXGo 掃碼免下載點餐",
+      "AI 商品推薦三重演算法：熱銷品 × 顧客偏好 × 天氣時段",
+      "客訴自動上報 + 補救行銷自動化，負評轉正向體驗閉環",
+    ],
+    images: [
+      { src: "/images/cases/mwd/grabox-use-cases.png", alt: "東方美早餐店 GraBox 智取櫃 AI智慧取餐應用情境" },
+      { src: "/images/cases/mwd/grabox-use-scenarios.png", alt: "東方美連鎖早餐 AI 超級店長 WiXtar POS KDS 系統整合場景" },
+      { src: "/images/cases/mwd/grabox-locker-closeup.jpg", alt: "GraBox 智取櫃 東方美門市部署 AI智慧取餐" },
+    ],
+    tags: ["AI代理人", "連鎖早餐", "A2A協作", "GraBox智取櫃", "POS整合", "AI轉型", "智慧廚房", "叫貨預測"],
   },
   {
     id: "oem",
