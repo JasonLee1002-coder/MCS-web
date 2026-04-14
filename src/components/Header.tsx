@@ -61,14 +61,6 @@ export default function Header() {
     { label: tr.nav.services,   href: "/#services" },
     { label: tr.nav.consulting, href: "/#consulting" },
     { label: tr.nav.cases,      href: "/cases" },
-    {
-      label: tr.nav.products,
-      href: "/products/frozen-microwave",
-      children: [
-        { label: "📦 GraBox " + (lang === "zh" ? "智取櫃" : lang === "ja" ? "スマートキャビネット" : lang === "id" ? "Lemari Pintar" : "Smart Cabinet"), href: "/products/grabox" },
-        { label: "❄️ " + (lang === "zh" ? "冷凍微波販賣機" : lang === "ja" ? "冷凍電子レンジ自販機" : lang === "id" ? "Vending Microwave Beku" : "Frozen Microwave Vending"), href: "/products/frozen-microwave" },
-      ],
-    },
     { label: tr.nav.blog,  href: "/blog" },
     { label: tr.nav.about, href: "/#about" },
     { label: tr.nav.faq,   href: "/#faq" },
