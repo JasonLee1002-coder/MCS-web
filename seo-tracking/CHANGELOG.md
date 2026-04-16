@@ -4,6 +4,37 @@
 
 ---
 
+## 2026-04-17 — 第十一波：FAQPage×15 + 3 新文章 + 交叉連結
+
+### Round 1 — FAQPage 批量擴充（15 篇）
+
+為以下文章加入 FAQ frontmatter（各 4 個 Q&A）：
+`oriental-beauty`、`convenience-store-smart-pickup-cabinet`、`digital-transformation-restaurant-2026`、`esg-sustainable-vending-machine`、`vending-machine-data-analytics-ai`、`community-unmanned-store-guide`、`taiwan-vending-machine-brands-comparison-2026`、`smart-pickup-cabinet-brand-comparison`、`office-unmanned-store-vending-solution`、`hotel-self-checkin-kiosk`、`smart-restaurant-equipment-guide`、`bento-fresh-food-vending-machine-guide`、`retail-channel-vending-machine-strategy`、`frozen-vending-machine-no-microwave-guide`、`vending-machine-payment-integration`
+
+累計 FAQPage 啟用：52 篇（全站 78 篇的 67%）
+
+### Round 2 — 3 篇填補高意圖缺口的新文章
+
+- `kiosk-self-ordering-complete-guide-2026.md` — 「Kiosk自助點餐機完整指南」（呼應新服務，建立新類別）
+- `vending-machine-transportation-hub-strategy.md` — 「高鐵/捷運/機場販賣機設置攻略」（交通樞紐地點型SEO）
+- `vending-machine-vs-open-shop-cost-comparison.md` — 「開店vs買販賣機：2026創業成本大比拼」（最高商業意圖）
+
+### Round 3 — 交叉連結 + 收尾
+
+- 4 篇舊文章加入延伸閱讀連結指向新文章
+- Build 驗證 ✅（95 頁面全通過）
+- IndexNow ✅ 200 OK
+
+### SEO 評分
+| 項目 | 04-09c | 04-17 |
+|------|--------|-------|
+| 總頁面數 | 79 | 82 |
+| FAQPage 啟用數 | 37 篇 | 52 篇 |
+| FAQPage 覆蓋率 | 50% | 67% |
+| 全站評分 | 9.75/10 | 9.8/10 |
+
+---
+
 ## 2026-04-09b — 第十波：第二輪三波循環（FAQPage ×11 + 3 新文章 + YAML 修復）
 
 ### Round 1 — FAQPage 大規模批量擴展（11 篇）
