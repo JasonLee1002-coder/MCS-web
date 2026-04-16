@@ -214,3 +214,4 @@ faq:
 - [販賣機賣什麼最賺錢？](/blog/vending-machine-best-selling-products)
 - [冷凍販賣機採購5大避坑](/blog/frozen-vending-machine-buying-mistakes)
 - [販賣機 vs 請人：成本效益比較](/blog/vending-machine-vs-hiring-cost-analysis)
+- [開店 vs 買販賣機：2026 創業成本大比拼](/blog/vending-machine-vs-open-shop-cost-comparison)

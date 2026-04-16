@@ -121,4 +121,5 @@ faq:
 - [販賣機創業加盟全攻略：2026 新手必讀](/blog/vending-machine-startup-franchise-guide)
 - [販賣機 vs 請人：成本效益完整比較](/blog/vending-machine-vs-hiring-cost-analysis)
 - [販賣機賣什麼最賺錢？](/blog/vending-machine-best-selling-products)
+- [高鐵站、捷運站、機場販賣機設置攻略](/blog/vending-machine-transportation-hub-strategy)
 - [客戶實績案例](/cases)
