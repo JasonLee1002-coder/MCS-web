@@ -54,6 +54,7 @@ const websiteJsonLd = {
   },
   publisher: {
     "@type": "Organization",
+    "@id": "https://www.mcstation.ai/#organization",
     name: "銓幻元科技股份有限公司",
   },
 };

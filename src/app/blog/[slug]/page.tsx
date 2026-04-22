@@ -63,6 +63,7 @@ export default async function BlogPostPage({
     wordCount,
     author: {
       "@type": "Organization",
+      "@id": "https://www.mcstation.ai/#organization",
       name: "銓幻元科技股份有限公司",
       url: "https://www.mcstation.ai",
       logo: {
@@ -72,10 +73,13 @@ export default async function BlogPostPage({
     },
     publisher: {
       "@type": "Organization",
+      "@id": "https://www.mcstation.ai/#organization",
       name: "銓幻元科技股份有限公司",
       logo: {
         "@type": "ImageObject",
         url: "https://www.mcstation.ai/images/mcs-logo.png",
+        width: 300,
+        height: 100,
       },
     },
     mainEntityOfPage: {
