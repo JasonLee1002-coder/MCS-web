@@ -367,12 +367,29 @@ const jsonLd = {
   description:
     "銓幻元科技客戶成功案例：麗嬰國際、麥味登、宮廟數位功德箱、日本首都高速公路等跨產業 AI 智慧設備整合。",
   url: "https://www.mcstation.ai/cases",
-  mainEntity: cases.map((c) => ({
-    "@type": "CreativeWork",
-    name: `${c.client} — ${c.title}`,
-    description: c.description,
-    url: `https://www.mcstation.ai/cases#${c.id}`,
-  })),
+  publisher: {
+    "@type": "Organization",
+    "@id": "https://www.mcstation.ai/#organization",
+    name: "銓幻元科技股份有限公司",
+  },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: cases.length,
+    itemListElement: cases.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Article",
+        name: `${c.client} — ${c.title}`,
+        description: c.description,
+        url: `https://www.mcstation.ai/cases#${c.id}`,
+        author: {
+          "@type": "Organization",
+          name: "銓幻元科技股份有限公司",
+        },
+      },
+    })),
+  },
 };
 
 export default function CasesPage() {

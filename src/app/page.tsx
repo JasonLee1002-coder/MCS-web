@@ -47,9 +47,41 @@ const websiteJsonLd = {
   name: "銓幻元科技 MCS",
   alternateName: "MCS Meta Clearing Station",
   url: "https://www.mcstation.ai",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://www.mcstation.ai/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
   publisher: {
     "@type": "Organization",
     name: "銓幻元科技股份有限公司",
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.mcstation.ai/#organization",
+  name: "銓幻元科技股份有限公司",
+  alternateName: ["銓幻元科技", "MCS", "Meta Clearing Station", "MCS Meta Clearing Station"],
+  url: "https://www.mcstation.ai",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.mcstation.ai/images/mcs-logo.png",
+    width: 300,
+    height: 100,
+  },
+  description: "銓幻元科技股份有限公司，台灣 100% 自主研發製造，專注 GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機設備，服務台灣、日本、新加坡市場。",
+  foundingDate: "2023",
+  foundingLocation: "Singapore",
+  areaServed: ["TW", "JP", "SG"],
+  knowsAbout: ["AI智取櫃", "智慧取餐櫃", "冷凍微波販賣機", "無人販賣機", "GraBox", "智慧零售設備"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+886-2-2558-8848",
+    email: "service@mcstation.ai",
+    contactType: "customer service",
+    availableLanguage: ["zh-TW", "en", "ja"],
   },
 };
 
@@ -71,10 +103,15 @@ const localBusinessJsonLd = {
   "@type": "LocalBusiness",
   "@id": "https://www.mcstation.ai/#business",
   name: "銓幻元科技股份有限公司",
-  alternateName: ["MCS", "Meta Clearing Station", "銓幻元科技"],
+  alternateName: ["MCS", "Meta Clearing Station", "銓幻元科技", "MCS Meta Clearing Station"],
   image: "https://www.mcstation.ai/images/mcs-logo.png",
   url: "https://www.mcstation.ai",
-  email: "service@transtep.com",
+  email: "service@mcstation.ai",
+  telephone: "+886-2-2558-8848",
+  sameAs: [
+    "https://www.facebook.com/mcstation.ai",
+    "https://www.instagram.com/mcstation.ai",
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "長安西路78巷4弄10號1樓",
@@ -110,6 +147,10 @@ export default function Home() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <script
           type="application/ld+json"

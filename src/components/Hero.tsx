@@ -159,7 +159,7 @@ export default function Hero() {
             <FloatingElement duration={8} distance={12}>
               <LightboxImage
                 src="/images/illustrations/hero.png"
-                alt="MCS Meta Clearing Station — AI Smart Equipment Ecosystem"
+                alt="銓幻元科技 MCS — GraBox AI 智取櫃、冷凍微波販賣機、智慧設備生態系"
                 width={700}
                 height={500}
                 className="w-full max-w-xl drop-shadow-2xl"

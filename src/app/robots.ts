@@ -6,7 +6,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/present", "/present/control", "/api/"],
+        disallow: [
+          "/present",
+          "/present/control",
+          "/api/",
+          "/index.php",
+          "/index.php/",
+        ],
       },
     ],
     sitemap: [

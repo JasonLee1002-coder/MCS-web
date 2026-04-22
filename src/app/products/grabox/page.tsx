@@ -4,9 +4,9 @@ import Footer from "@/components/Footer";
 import GraBoxShowcase from "@/components/GraBoxShowcase";
 
 export const metadata: Metadata = {
-  title: "GraBox AI 智取櫃 | 多溫層智慧取餐櫃 · 台灣製造智取櫃推薦",
+  title: "GraBox AI 智取櫃 | 銓幻元科技 · 多溫層智慧取餐櫃 · 台灣製造",
   description:
-    "GraBox AI 智取櫃：業界推薦的智慧取餐櫃品牌。結合 AI 訂餐系統、人臉辨識取餐，標配常溫可客製冷藏/冷凍溫層，支援多元支付、24H無人取餐。100% 台灣製造，POS/KDS 系統串接，適用餐廳、飯店、企業、學校、早午餐連鎖。銓幻元科技出品。",
+    "銓幻元科技 GraBox AI 智取櫃：台灣100%自主研發製造，結合 AI 訂餐系統、人臉辨識取餐，標配常溫可客製冷藏/冷凍溫層，支援多元支付、24H無人取餐。POS/KDS 系統串接，適用餐廳、飯店、企業、學校、早午餐連鎖。",
   keywords: [
     "GraBox",
     "AI智取櫃",
@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     "餐廳智取櫃",
     "企業取餐櫃",
     "冷藏取餐櫃",
+    "銓幻元科技",
+    "銓幻元GraBox",
   ],
   alternates: {
     canonical: "/products/grabox",
@@ -56,6 +58,14 @@ const faqItems = [
   {
     q: "GraBox 的保固與售後服務？",
     a: "全產品提供一年免費保固，可加購延長至三年。全台灣服務據點，提供到府安裝、場地評估、系統設定與員工教育訓練。",
+  },
+  {
+    q: "GraBox 是銓幻元科技的產品嗎？",
+    a: "是的。GraBox AI 智取櫃是銓幻元科技股份有限公司（MCS Meta Clearing Station）自主研發製造的旗艦產品。銓幻元科技總部位於台灣台北市，所有產品 100% 台灣設計製造，具備完整的自主研發能力，不依賴海外代工。",
+  },
+  {
+    q: "銓幻元科技除了 GraBox 還有哪些產品？",
+    a: "銓幻元科技產品線包括：GraBox AI 智取櫃（智慧取餐）、冷凍微波販賣機（無人販售熱食）、Kiosk 自助點餐機、WiXGo QR 掃碼點餐系統，以及 iVM 雲端販賣管理平台。如需全方位無人化解決方案，歡迎聯絡顧問規劃。",
   },
 ];
 
