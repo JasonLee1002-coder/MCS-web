@@ -35,12 +35,18 @@ faq:
 
 ### 1. GraBox 智取櫃 × 前台體驗升級
 
-東方美門市導入 **GraBox AI 智取櫃（My Express）**，顧客透過 APP 點餐後掃 QR Code 或簽名即可自助取餐，完全不需等候人工叫號。智取櫃與 WiXtar POS、KDS 廚房顯示系統同步整合，出餐流程從廚房到取餐口全程數位化追蹤。
+東方美門市導入 **GraBox AI 智取櫃（My Express）**，顧客透過 APP 點餐後掃 QR Code 或簽名即可自助取餐，完全不需等候人工叫號。
+
+![東方美門市 GraBox AI 智取櫃實景](/images/cases/oriental-beauty/smart-cabinet-01.jpg)智取櫃與 WiXtar POS、KDS 廚房顯示系統同步整合，出餐流程從廚房到取餐口全程數位化追蹤。
+
+![東方美智取櫃格位特寫 — 多格位 LED 指引取餐](/images/cases/oriental-beauty/smart-cabinet-02.jpg)
 
 駁二精緻餐酒館新品牌更進一步導入：
 - **AI 多國語言 Kiosk**（中/英/日等多語言自助點餐）
 - **WiXGo 掃碼點餐**：免下載 APP，手機掃 QR Code 即可點餐付款
 - **AI 商品推薦三重演算法**：結合熱銷品項、顧客偏好、天氣與時段，自動推薦加購商品，有效提升客單價
+
+![東方美駁二新品牌場域 — 銓幻元科技 AI Kiosk 導入](/images/cases/oriental-beauty/pier2-01.jpg)
 
 ### 2. AI 超級店長：A2A 代理人協作架構
 

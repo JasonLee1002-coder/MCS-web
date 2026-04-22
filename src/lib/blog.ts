@@ -12,6 +12,12 @@ export interface FaqItem {
   a: string;
 }
 
+export interface TocItem {
+  text: string;
+  level: number;
+  id: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -21,6 +27,7 @@ export interface BlogPost {
   image?: string;
   faq?: FaqItem[];
   content: string;
+  toc: TocItem[];
 }
 
 export interface BlogPostMeta {
@@ -93,6 +100,27 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
 
   const processed = await remark().use(gfm).use(html).process(markdown);
 
+  // Extract headings and inject anchor IDs
+  const toc: TocItem[] = [];
+  const idCount: Record<string, number> = {};
+  const contentHtml = processed.toString().replace(
+    /<(h[23])>(.*?)<\/h[23]>/g,
+    (_, tag: string, content: string) => {
+      const level = parseInt(tag[1]);
+      const text = content.replace(/<[^>]+>/g, "").trim();
+      let id = text
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\u4e00-\u9fffA-Za-z0-9\-]/g, "")
+        .substring(0, 60);
+      if (!id) id = `heading-${toc.length}`;
+      idCount[id] = (idCount[id] || 0) + 1;
+      if (idCount[id] > 1) id = `${id}-${idCount[id]}`;
+      toc.push({ text, level, id });
+      return `<${tag} id="${id}">${content}</${tag}>`;
+    }
+  );
+
   return {
     slug,
     title: data.title || slug,
@@ -101,6 +129,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
     keywords: data.keywords || [],
     image: data.image,
     faq: data.faq || undefined,
-    content: processed.toString(),
+    content: contentHtml,
+    toc,
   };
 }

@@ -12,6 +12,8 @@ image: "/images/cases/expressway/vending-menu-screen.jpg"
 
 然而，**銓幻元科技**做到了。
 
+![日本首都高速公路服務區銓幻元科技冷凍微波販賣機](/images/cases/expressway/vending-closeup.jpg)
+
 ### 與日本首都高速公路的合作
 
 銓幻元科技的[冷凍微波販賣機](/products/frozen-microwave)成功進駐**日本首都高速公路**（首都高速道路株式會社）的服務區。這是台灣智慧設備品牌首次打入日本高速公路市場，[具有里程碑意義](/cases#expressway)。
