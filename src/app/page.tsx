@@ -30,14 +30,19 @@ export const metadata: Metadata = {
     "智慧販賣機平台",
   ],
   alternates: {
-    canonical: "/",
+    canonical: "https://www.mcstation.ai",
+    languages: {
+      "zh-TW": "https://www.mcstation.ai",
+      "en": "https://www.mcstation.ai/?lang=en",
+    },
   },
   openGraph: {
     title: "銓幻元科技 MCS | GraBox AI 智取櫃 · 冷凍微波販賣機",
     description:
-      "100% 台灣研發製造智慧設備。GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機。知名連鎖通路實績，日本高速公路 MOU 合作。",
+      "銓幻元科技 100% 台灣研發製造智慧設備。GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機。知名連鎖通路實績，日本高速公路 MOU 合作。",
     url: "https://www.mcstation.ai",
-    images: ["/images/mcs-logo.png"],
+    siteName: "銓幻元科技 MCS",
+    images: [{ url: "https://www.mcstation.ai/images/mcs-logo.png", width: 1200, height: 630, alt: "銓幻元科技 MCS Logo" }],
   },
 };
 
