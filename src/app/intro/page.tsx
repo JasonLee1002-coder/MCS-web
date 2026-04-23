@@ -257,7 +257,7 @@ const T = {
         "LINE LIFF 點餐 → GraBox 自取，免等叫號",
         "192 台配送車 GPS 即時追蹤 ＋ 路線優化",
         "970 門市庫存水位即時掌握",
-        "OmniCore 取代 NT$87–197 萬/月自建 IT 成本",
+        "導入 OmniCore 後，企業僅需自建 IT 成本的 5–12%",
       ],
     },
     xiangyao: {
@@ -459,7 +459,7 @@ const T = {
         "LINE LIFF ordering → GraBox self-pickup, no queue",
         "192-truck GPS tracking + route optimization",
         "970 stores inventory levels at a glance",
-        "OmniCore replaces NT$87–197K/month in-house IT",
+        "With OmniCore, enterprises pay only 5–12% of self-build IT costs",
       ],
     },
     xiangyao: {
@@ -661,7 +661,7 @@ const T = {
         "LINE LIFF注文 → GraBox自取、行列不要",
         "192台の配送車GPS追跡＋ルート最適化",
         "970店舗の在庫水準をリアルタイム把握",
-        "OmniCoreで月額87万〜197万NTDの自社IT費用を代替",
+        "OmniCore導入で自社構築費用のわずか5〜12%のコストで運用可能",
       ],
     },
     xiangyao: {
@@ -1974,13 +1974,13 @@ export default function IntroPage() {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="text-center">
-                        <div className="text-red-400 font-black text-sm">NT$87–197萬</div>
-                        <div className="text-white/40 text-[10px]">{lang === "ja" ? "自社構築/月" : lang === "en" ? "Self-build/month" : "自建 IT / 月"}</div>
+                        <div className="text-red-400 font-black text-sm">{lang === "ja" ? "自社構築 IT" : lang === "en" ? "Self-build IT" : "自建 IT"}</div>
+                        <div className="text-white/40 text-[10px]">{lang === "ja" ? "100% のコスト" : lang === "en" ? "100% of cost" : "100% 成本基準"}</div>
                       </div>
                       <div className="text-white/40 text-lg font-bold">→</div>
                       <div className="text-center">
-                        <div className="text-green-400 font-black text-sm">NT$10萬</div>
-                        <div className="text-white/40 text-[10px]">OmniCore (50{lang === "ja" ? "店規模" : lang === "en" ? " stores" : " 店規模"})</div>
+                        <div className="text-green-400 font-black text-sm">5–12%</div>
+                        <div className="text-white/40 text-[10px]">{lang === "ja" ? "OmniCore導入後" : lang === "en" ? "with OmniCore" : "導入 OmniCore 後"}</div>
                       </div>
                     </div>
                   </div>

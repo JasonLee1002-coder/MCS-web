@@ -1,6 +1,6 @@
 /**
  * generate-backend-screenshots.mjs
- * Generates 7 OmniCore backend UI mock screenshots using Puppeteer.
+ * Generates OmniCore backend UI screenshots matching the real MCS IVM system.
  * Run: node generate-backend-screenshots.mjs
  */
 
@@ -11,620 +11,776 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.join(__dirname, "public/images/intro");
 
-// ─── Shared Design Tokens ─────────────────────────────────────────────────────
-const BRAND = "#E8751A";
-const DARK = "#0F172A";
-const SIDEBAR_BG = "#1E293B";
-const WHITE = "#FFFFFF";
-
-// ─── Shared HTML shell ────────────────────────────────────────────────────────
-function shell(title, mainHtml, activeNav) {
+// ─── Shared shell ─────────────────────────────────────────────────────────────
+function shell(content, activeNav) {
   const navItems = [
-    { icon: "📡", label: "設備監控", key: "monitor" },
-    { icon: "📊", label: "銷售報表", key: "sales" },
-    { icon: "📦", label: "庫存補貨", key: "inventory" },
-    { icon: "👤", label: "會員點數", key: "member" },
-    { icon: "🎯", label: "促銷活動", key: "promo" },
-    { icon: "🔧", label: "報修工單", key: "maintenance" },
-    { icon: "🏢", label: "租戶管理", key: "tenant" },
+    { icon: `<svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm8-3a1 1 0 100 2 1 1 0 000-2zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/></svg>`, label: "首頁", key: "home" },
+    { icon: `<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h4a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>`, label: "數據分析", key: "analytics" },
+    { icon: `<svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/></svg>`, label: "設備名單", key: "devices" },
+    { icon: `<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/></svg>`, label: "交易紀錄", key: "transactions" },
+    { icon: `<svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1v-1h3.05a2.5 2.5 0 014.9 0H19a1 1 0 001-1v-2a4 4 0 00-4-4h-3V4a1 1 0 00-1-1H3z"/></svg>`, label: "運補管理", key: "restocking" },
+    { icon: `<svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/></svg>`, label: "Line Notify", key: "notify" },
+    { icon: `<svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>`, label: "店鋪名單", key: "stores" },
   ];
   return `<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OmniCore — ${title}</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F1F5F9; display: flex; height: 100vh; overflow: hidden; }
-  /* Sidebar */
-  .sidebar {
-    width: 220px; background: ${SIDEBAR_BG}; color: #CBD5E1;
-    display: flex; flex-direction: column; flex-shrink: 0; height: 100vh;
-  }
-  .sidebar-logo {
-    padding: 20px 20px 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .logo-mark {
-    width: 32px; height: 32px; border-radius: 8px;
-    background: linear-gradient(135deg, ${BRAND}, #F59E0B);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; font-weight: 900; color: white; letter-spacing: -1px;
-  }
-  .logo-text { font-size: 14px; font-weight: 700; color: white; line-height: 1.2; }
-  .logo-sub { font-size: 10px; color: #64748B; }
-  .sidebar-nav { flex: 1; padding: 12px 8px; overflow: auto; }
-  .nav-section-label { font-size: 10px; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.08em; padding: 8px 12px 4px; }
-  .nav-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 8px 12px; border-radius: 8px; cursor: pointer;
-    font-size: 13px; color: #94A3B8; margin-bottom: 2px;
-    transition: all 0.15s;
-  }
-  .nav-item.active { background: rgba(232,117,26,0.15); color: ${BRAND}; font-weight: 600; }
-  .nav-item:not(.active):hover { background: rgba(255,255,255,0.05); color: #CBD5E1; }
-  .nav-icon { font-size: 15px; width: 20px; text-align: center; }
-  .sidebar-footer { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.08); }
-  .user-row { display: flex; align-items: center; gap: 8px; }
-  .user-avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, ${BRAND}, #F59E0B); display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; font-weight: 700; }
-  .user-name { font-size: 12px; color: #CBD5E1; font-weight: 600; }
-  .user-role { font-size: 10px; color: #64748B; }
-  /* Main */
-  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-  /* Topbar */
-  .topbar {
-    background: white; border-bottom: 1px solid #E2E8F0;
-    padding: 0 24px; height: 56px;
-    display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
-  }
-  .topbar-title { font-size: 16px; font-weight: 700; color: ${DARK}; }
-  .topbar-right { display: flex; align-items: center; gap: 12px; }
-  .topbar-badge { font-size: 11px; background: #FEF3C7; color: #92400E; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
-  .topbar-btn { width: 34px; height: 34px; border-radius: 8px; background: #F8FAFC; border: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; }
-  .topbar-notif { position: relative; }
-  .notif-dot { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; background: #EF4444; border-radius: 50%; border: 1.5px solid white; }
-  /* Content */
-  .content { flex: 1; overflow: auto; padding: 20px 24px; }
-  /* Cards */
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
-  .stat-card { background: white; border-radius: 12px; padding: 16px; border: 1px solid #E2E8F0; }
-  .stat-label { font-size: 11px; color: #64748B; font-weight: 500; margin-bottom: 6px; }
-  .stat-value { font-size: 26px; font-weight: 800; color: ${DARK}; line-height: 1; margin-bottom: 4px; }
-  .stat-change { font-size: 11px; color: #10B981; font-weight: 600; }
-  .stat-change.down { color: #EF4444; }
-  .card { background: white; border-radius: 12px; border: 1px solid #E2E8F0; overflow: hidden; }
-  .card-header { padding: 14px 18px; border-bottom: 1px solid #F1F5F9; display: flex; align-items: center; justify-content: space-between; }
-  .card-title { font-size: 13px; font-weight: 700; color: ${DARK}; }
-  .card-body { padding: 14px 18px; }
-  /* Table */
-  table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  th { text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em; background: #F8FAFC; border-bottom: 1px solid #E2E8F0; }
-  td { padding: 10px 12px; border-bottom: 1px solid #F1F5F9; color: #374151; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #F8FAFC; }
-  /* Status chips */
-  .chip { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; }
-  .chip.green { background: #DCFCE7; color: #166534; }
-  .chip.red { background: #FEE2E2; color: #991B1B; }
-  .chip.orange { background: #FEF3C7; color: #92400E; }
-  .chip.blue { background: #DBEAFE; color: #1E40AF; }
-  .chip.gray { background: #F1F5F9; color: #475569; }
-  /* Bar chart */
-  .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 140px; padding: 0 4px; }
-  .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .bar { width: 100%; border-radius: 4px 4px 0 0; min-height: 4px; }
-  .bar-label { font-size: 10px; color: #64748B; }
-  /* Progress */
-  .progress-row { margin-bottom: 10px; }
-  .progress-meta { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 12px; }
-  .progress-name { color: #374151; font-weight: 500; }
-  .progress-val { color: ${DARK}; font-weight: 700; }
-  .progress-bar-bg { height: 6px; background: #F1F5F9; border-radius: 3px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; border-radius: 3px; }
-  /* Map-like */
-  .map-placeholder { background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); border-radius: 8px; height: 160px; display: flex; align-items: center; justify-content: center; color: #3B82F6; font-size: 13px; font-weight: 600; position: relative; overflow: hidden; }
-  .map-dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 3px rgba(232,117,26,0.3); }
-  /* Grid layouts */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .three-col { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
-  .alert-row { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; margin-bottom: 6px; font-size: 12px; }
-  .alert-row.warn { background: #FEF3C7; color: #92400E; }
-  .alert-row.err { background: #FEE2E2; color: #991B1B; }
-  .alert-row.ok { background: #DCFCE7; color: #166534; }
-  .timeline-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft JhengHei',sans-serif;background:#F5F6FA;display:flex;height:100vh;overflow:hidden;font-size:13px;color:#333}
+/* Sidebar */
+.sb{width:200px;background:#fff;border-right:1px solid #E8ECF0;display:flex;flex-direction:column;height:100vh;flex-shrink:0}
+.sb-logo{padding:16px;border-bottom:1px solid #F0F2F5;display:flex;align-items:center;gap:9px}
+.sb-mark{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,#6C63FF,#8B5CF6);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-mark svg{width:16px;height:16px;fill:white}
+.sb-brand{font-size:13px;font-weight:700;color:#1A1D23;line-height:1.2}
+.sb-sub{font-size:10px;color:#9CA3AF}
+.sb-nav{flex:1;padding:10px 8px;overflow:auto}
+.sb-sec{font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;padding:10px 10px 4px}
+.ni{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:7px;cursor:pointer;color:#6B7280;margin-bottom:1px;transition:all .15s}
+.ni svg{width:15px;height:15px;flex-shrink:0}
+.ni.active{background:#EEF2FF;color:#6C63FF;font-weight:600}
+.ni:not(.active):hover{background:#F9FAFB}
+.sb-foot{padding:12px;border-top:1px solid #F0F2F5}
+.ua{display:flex;align-items:center;gap:8px}
+.av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#6C63FF,#8B5CF6);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700;flex-shrink:0}
+.un{font-size:12px;font-weight:600;color:#374151}
+.ur{font-size:10px;color:#9CA3AF}
+/* Main */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+/* Topbar */
+.tb{background:#fff;border-bottom:1px solid #E8ECF0;padding:0 20px;height:50px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-bc{display:flex;align-items:center;gap:6px;font-size:12px;color:#9CA3AF}
+.tb-bc span{color:#374151;font-weight:600}
+.tb-bc svg{width:12px;height:12px;fill:currentColor}
+.tb-r{display:flex;align-items:center;gap:8px}
+.tb-ico{width:30px;height:30px;border-radius:7px;background:#F5F6FA;border:1px solid #E8ECF0;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
+.tb-ico svg{width:15px;height:15px;fill:#6B7280}
+.tb-dot{position:absolute;top:5px;right:5px;width:6px;height:6px;background:#EF4444;border-radius:50%;border:1.5px solid #fff}
+.tb-tag{font-size:11px;background:#EEF2FF;color:#6C63FF;padding:3px 10px;border-radius:20px;font-weight:600}
+/* Content */
+.cnt{flex:1;overflow:auto;padding:18px 20px}
+/* Cards */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.sc{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid #E8ECF0}
+.sl{font-size:11px;color:#9CA3AF;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.sl svg{width:12px;height:12px;fill:#9CA3AF}
+.sv{font-size:24px;font-weight:800;color:#1A1D23;line-height:1;margin-bottom:3px}
+.sc2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.sa{font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px}
+.sa.up{color:#10B981} .sa.dn{color:#EF4444} .sa.nt{color:#9CA3AF}
+/* Table card */
+.card{background:#fff;border-radius:10px;border:1px solid #E8ECF0;overflow:hidden;margin-bottom:12px}
+.ch{padding:12px 16px;border-bottom:1px solid #F5F6FA;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ct{font-size:13px;font-weight:700;color:#1A1D23;display:flex;align-items:center;gap:8px}
+.ct svg{width:15px;height:15px;fill:#6C63FF}
+.cb{padding:14px 16px}
+/* Table */
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:7px 12px;font-size:11px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.05em;background:#FAFBFC;border-bottom:1px solid #E8ECF0;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F5F6FA;color:#374151;font-size:12px;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFBFC}
+/* Chips */
+.chip{display:inline-flex;align-items:center;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:600;white-space:nowrap}
+.c-g{background:#DCFCE7;color:#15803D}
+.c-r{background:#FEE2E2;color:#B91C1C}
+.c-o{background:#FEF3C7;color:#B45309}
+.c-b{background:#DBEAFE;color:#1D4ED8}
+.c-p{background:#EDE9FE;color:#6D28D9}
+.c-gr{background:#F3F4F6;color:#6B7280}
+/* Tabs */
+.tabs{display:flex;gap:0;border-bottom:1px solid #E8ECF0;margin-bottom:14px}
+.tab{padding:8px 14px;font-size:12px;font-weight:500;color:#9CA3AF;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tab.active{color:#6C63FF;border-bottom-color:#6C63FF;font-weight:600}
+/* Search/filter bar */
+.fbar{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #F5F6FA}
+.finp{flex:1;max-width:220px;display:flex;align-items:center;gap:6px;background:#F5F6FA;border:1px solid #E8ECF0;border-radius:7px;padding:5px 10px;font-size:12px;color:#9CA3AF}
+.finp svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+.fsel{font-size:12px;background:#F5F6FA;border:1px solid #E8ECF0;border-radius:7px;padding:5px 10px;color:#374151;flex-shrink:0}
+.fbtn{font-size:11px;padding:5px 12px;border-radius:7px;border:none;cursor:pointer;display:flex;align-items:center;gap:5px;font-weight:600;flex-shrink:0}
+.fbtn svg{width:12px;height:12px;fill:currentColor}
+.fbtn-sec{background:#F5F6FA;color:#374151;border:1px solid #E8ECF0}
+.fbtn-pri{background:#6C63FF;color:#fff}
+/* Grid layouts */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+/* Breadcrumb inline */
+.bc{display:flex;align-items:center;gap:5px;font-size:11px;color:#9CA3AF;margin-bottom:12px}
+.bc a{color:#6C63FF;font-weight:500}
+.bc svg{width:10px;height:10px;fill:currentColor}
+/* Chart area */
+.chart-wrap{position:relative;overflow:hidden}
+/* Toggle */
+.toggle{width:36px;height:20px;border-radius:10px;background:#10B981;display:flex;align-items:center;padding:2px;cursor:pointer;flex-shrink:0}
+.toggle-dot{width:16px;height:16px;border-radius:50%;background:#fff;margin-left:auto;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+/* Alert row */
+.al{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:8px;margin-bottom:6px;font-size:12px}
+.al-w{background:#FFFBEB;border:1px solid #FDE68A;color:#92400E}
+.al-e{background:#FEF2F2;border:1px solid #FECACA;color:#991B1B}
+.al-g{background:#F0FDF4;border:1px solid #BBF7D0;color:#166534}
+/* Scrollbar thin */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#E2E8F0;border-radius:2px}
 </style>
 </head>
 <body>
-<!-- Sidebar -->
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo-mark">MC</div>
-    <div>
-      <div class="logo-text">OmniCore</div>
-      <div class="logo-sub">銓幻元科技</div>
-    </div>
+<aside class="sb">
+  <div class="sb-logo">
+    <div class="sb-mark"><svg viewBox="0 0 20 20" fill="white"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 11.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg></div>
+    <div><div class="sb-brand">OmniCore</div><div class="sb-sub">銓幻元科技</div></div>
   </div>
-  <nav class="sidebar-nav">
-    <div class="nav-section-label">主要功能</div>
+  <nav class="sb-nav">
+    <div class="sb-sec">主選單</div>
     ${navItems.map(n => `
-    <div class="nav-item${n.key === activeNav ? " active" : ""}">
-      <span class="nav-icon">${n.icon}</span>${n.label}
+    <div class="ni${n.key === activeNav ? " active" : ""}">
+      <svg viewBox="0 0 20 20" fill="currentColor">${n.icon.match(/<svg[^>]*>(.*)<\/svg>/s)?.[1] ?? ""}</svg>
+      ${n.label}
     </div>`).join("")}
-    <div class="nav-section-label" style="margin-top:12px">系統</div>
-    <div class="nav-item"><span class="nav-icon">⚙️</span>系統設定</div>
-    <div class="nav-item"><span class="nav-icon">📋</span>稽核日誌</div>
+    <div class="sb-sec" style="margin-top:10px">系統</div>
+    <div class="ni"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"/></svg>系統設定</div>
   </nav>
-  <div class="sidebar-footer">
-    <div class="user-row">
-      <div class="user-avatar">J</div>
-      <div>
-        <div class="user-name">Jason Lee</div>
-        <div class="user-role">系統管理員</div>
-      </div>
+  <div class="sb-foot">
+    <div class="ua">
+      <div class="av">J</div>
+      <div><div class="un">Jason Lee</div><div class="ur">系統管理員</div></div>
     </div>
   </div>
 </aside>
-<!-- Main -->
 <div class="main">
-  <div class="topbar">
-    <div class="topbar-title">${title}</div>
-    <div class="topbar-right">
-      <div class="topbar-badge">eb-plus 東方美</div>
-      <div class="topbar-btn topbar-notif">🔔<div class="notif-dot"></div></div>
-      <div class="topbar-btn">🌐</div>
+  <div class="tb">
+    <div class="tb-bc">
+      <svg viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+      首頁
+      <svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
+      <span>${{ home:"首頁", analytics:"數據分析", devices:"設備名單", transactions:"交易紀錄", restocking:"運補管理", notify:"Line Notify", stores:"店鋪名單" }[activeNav] ?? activeNav}</span>
+    </div>
+    <div class="tb-r">
+      <div class="tb-tag">eb-plus 東方美</div>
+      <div class="tb-ico">
+        <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/></svg>
+        <div class="tb-dot"></div>
+      </div>
+      <div class="tb-ico">
+        <svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"/></svg>
+      </div>
     </div>
   </div>
-  <div class="content">${mainHtml}</div>
+  <div class="cnt">${content}</div>
 </div>
-</body>
-</html>`;
+</body></html>`;
 }
 
-// ─── Screen Definitions ───────────────────────────────────────────────────────
-
+// ─── Screen Contents ───────────────────────────────────────────────────────────
 const screens = [
 
-  // 1. Device Monitor
+  // 1. 首頁儀表板 (P.34)
   {
-    key: "monitor",
+    key: "home",
     filename: "backend-device-monitor.jpg",
-    title: "設備即時監控",
-    html: () => `
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-label">上線設備</div><div class="stat-value">312</div><div class="stat-change">▲ 3 今日新增</div></div>
-        <div class="stat-card"><div class="stat-label">異常設備</div><div class="stat-value" style="color:#EF4444">7</div><div class="stat-change down">▼ 需要處理</div></div>
-        <div class="stat-card"><div class="stat-label">今日交易筆數</div><div class="stat-value">4,821</div><div class="stat-change">▲ 12.3%</div></div>
-        <div class="stat-card"><div class="stat-label">平均溫度（冷凍）</div><div class="stat-value">-19.2°</div><div class="stat-change">✓ 正常</div></div>
+    content: `
+    <div class="sgrid">
+      <div class="sc">
+        <div class="sl"><svg viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4z"/></svg> 銷售營業額</div>
+        <div class="sv">$284,201</div>
+        <div class="sa up">▲ 12.3% 較上月</div>
       </div>
-      <div class="three-col">
+      <div class="sc">
+        <div class="sl"><svg viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5z"/></svg> 交易筆數</div>
+        <div class="sv">3,276</div>
+        <div class="sa up">▲ 8.7%</div>
+      </div>
+      <div class="sc">
+        <div class="sl"><svg viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v1h8v-1zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-1a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v1h-3zM4.75 14.094A5.973 5.973 0 004 17v1H1v-1a3 3 0 013.75-2.906z"/></svg> 來客數</div>
+        <div class="sv">2,841</div>
+        <div class="sa up">▲ 5.1%</div>
+      </div>
+      <div class="sc">
+        <div class="sl"><svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg> 設備上線率</div>
+        <div class="sv">98.7%</div>
+        <div class="sa nt">312 / 316 台</div>
+      </div>
+    </div>
+    <div class="g3">
+      <div>
         <div class="card">
-          <div class="card-header"><span class="card-title">設備狀態列表</span><span style="font-size:11px;color:#64748B">最後更新：14:32:01</span></div>
-          <div class="card-body" style="padding:0">
+          <div class="ch">
+            <div class="ct"><svg viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>商品銷售排行</div>
+            <div style="display:flex;gap:6px;align-items:center;font-size:11px;color:#9CA3AF">
+              <span>2024/08/01</span><span>—</span><span>2024/08/20</span>
+              <button class="fbtn fbtn-sec" style="font-size:10px;padding:3px 8px"><svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"/></svg>匯出</button>
+            </div>
+          </div>
+          <div class="cb" style="padding:0">
             <table>
-              <thead><tr><th>設備 ID</th><th>門市</th><th>類型</th><th>狀態</th><th>溫度</th><th>庫存</th></tr></thead>
+              <thead><tr><th>排名</th><th>商品名稱</th><th>實補量</th><th>銷售量</th><th>點擊率</th></tr></thead>
               <tbody>
-                <tr><td>GRB-001</td><td>東方美 信義</td><td>GraBox</td><td><span class="chip green">正常</span></td><td>—</td><td>82%</td></tr>
-                <tr><td>GRB-002</td><td>東方美 南港</td><td>GraBox</td><td><span class="chip green">正常</span></td><td>—</td><td>67%</td></tr>
-                <tr><td>VND-031</td><td>台積電 園區</td><td>常溫販賣</td><td><span class="chip orange">低庫存</span></td><td>22.1°</td><td>18%</td></tr>
-                <tr><td>FRZ-012</td><td>翔耀 宿舍A</td><td>冷凍販賣</td><td><span class="chip green">正常</span></td><td>-19.5°</td><td>55%</td></tr>
-                <tr><td>FRZ-013</td><td>翔耀 宿舍B</td><td>冷凍販賣</td><td><span class="chip red">溫控異常</span></td><td>-12.1°</td><td>61%</td></tr>
-                <tr><td>MWV-005</td><td>首都高速 東京</td><td>冷凍微波</td><td><span class="chip green">正常</span></td><td>-18.8°</td><td>44%</td></tr>
-                <tr><td>KSK-008</td><td>麥味登 板橋</td><td>自助點餐</td><td><span class="chip green">正常</span></td><td>—</td><td>—</td></tr>
-                <tr><td>GRB-018</td><td>東方美 三重</td><td>GraBox</td><td><span class="chip red">離線</span></td><td>—</td><td>—</td></tr>
+                ${[
+                  ["1","日式溫泉風味湯","6","4","—"],
+                  ["2","花雕風味溫泉湯","6","4","—"],
+                  ["3","嶺春綜合滋味","6","2","—"],
+                  ["4","蒜香超良風味Q丸","6","4","—"],
+                  ["5","義式經典鹹豬腳","6","4","—"],
+                  ["6","K I R I N生茶","1","1","—"],
+                  ["7","石燒牛肉風味湯","6","2","—"],
+                  ["8","銀座豚骨白湯","4","3","—"],
+                ].map(([r,n,s,sl,c]) => `<tr>
+                  <td style="color:#9CA3AF;font-size:11px">${r}</td>
+                  <td style="font-weight:500">${n}</td>
+                  <td style="text-align:center">${s}</td>
+                  <td style="text-align:center;color:#6C63FF;font-weight:600">${sl}</td>
+                  <td style="text-align:center;color:#9CA3AF">${c}</td>
+                </tr>`).join("")}
               </tbody>
             </table>
           </div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="card">
-            <div class="card-header"><span class="card-title">警報通知</span></div>
-            <div class="card-body" style="padding:10px 14px">
-              <div class="alert-row err">🚨 FRZ-013 溫控異常 -12.1°C（應 &lt; -18°C）</div>
-              <div class="alert-row err">🚨 GRB-018 設備離線 3h 27m</div>
-              <div class="alert-row warn">⚠️ VND-031 庫存低於 20%</div>
-              <div class="alert-row warn">⚠️ VND-044 庫存低於 20%</div>
-              <div class="alert-row ok">✓ MWV-005 溫度恢復正常</div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-title">設備分佈</span></div>
-            <div class="card-body">
-              <div class="map-placeholder">
-                🗺 設備地圖（台灣 + 日本）
-                <div class="map-dot" style="top:35%;left:55%;background:#E8751A"></div>
-                <div class="map-dot" style="top:45%;left:52%;background:#E8751A"></div>
-                <div class="map-dot" style="top:40%;left:58%;background:#3B82F6"></div>
-                <div class="map-dot" style="top:30%;left:60%;background:#10B981"></div>
-                <div class="map-dot" style="top:50%;left:49%;background:#E8751A"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `,
-  },
-
-  // 2. Sales Report
-  {
-    key: "sales",
-    filename: "backend-sales-report.jpg",
-    title: "銷售報表分析",
-    html: () => `
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-label">本月營收</div><div class="stat-value">NT$ 2.4M</div><div class="stat-change">▲ 18.2% vs 上月</div></div>
-        <div class="stat-card"><div class="stat-label">本月訂單數</div><div class="stat-value">38,241</div><div class="stat-change">▲ 9.7%</div></div>
-        <div class="stat-card"><div class="stat-label">客單價</div><div class="stat-value">NT$ 62</div><div class="stat-change">▲ NT$4</div></div>
-        <div class="stat-card"><div class="stat-label">設備坪效</div><div class="stat-value">NT$ 7.7K</div><div class="stat-change">▲ 22% YoY</div></div>
-      </div>
-      <div class="two-col" style="margin-bottom:14px">
         <div class="card">
-          <div class="card-header"><span class="card-title">日銷售趨勢（近 14 天）</span></div>
-          <div class="card-body">
-            <div class="bar-chart">
-              ${[62,71,58,80,95,88,73,92,105,98,87,112,118,124].map((v,i) => `
-              <div class="bar-group">
-                <div class="bar" style="height:${v}%;background:linear-gradient(to top,${BRAND},#F59E0B);opacity:${i===13?1:0.7}"></div>
-                <div class="bar-label">${i+11}/4</div>
+          <div class="ch"><div class="ct">交易紀錄及統計</div><span style="font-size:11px;color:#9CA3AF">最近 30 天</span></div>
+          <div class="cb">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+              ${[["交易筆數","3 / 276",""],["成功","98.2%","c-g"],["退款","0.8%","c-r"]].map(([l,v,c]) => `
+              <div style="background:#F9FAFB;border-radius:8px;padding:10px;text-align:center">
+                <div style="font-size:10px;color:#9CA3AF;margin-bottom:4px">${l}</div>
+                <div class="${c} chip" style="font-size:14px;font-weight:800;display:block;padding:0;background:none;border-radius:0${c?";color:inherit":";"}">${v}</div>
               </div>`).join("")}
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:12px">
+          <div class="ch"><div class="ct">設備即時狀態</div></div>
+          <div class="cb" style="padding:10px 14px">
+            ${[["正常上線","308 台","c-g"],["異常告警","4 台","c-r"],["低庫存","22 台","c-o"],["離線","4 台","c-gr"]].map(([l,v,c]) => `
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F5F6FA">
+              <span style="font-size:12px;color:#6B7280">${l}</span>
+              <span class="chip ${c}">${v}</span>
+            </div>`).join("")}
+          </div>
+        </div>
         <div class="card">
-          <div class="card-header"><span class="card-title">品項銷售排行（本月 Top 8）</span></div>
-          <div class="card-body">
+          <div class="ch"><div class="ct" style="font-size:12px">📱 LINE Notify 最新通報</div></div>
+          <div class="cb" style="padding:10px 14px">
             ${[
-              ["美式咖啡","2,841","#E8751A"],
-              ["拿鐵","2,312","#F59E0B"],
-              ["蛋餅","1,987","#3B82F6"],
-              ["三明治","1,654","#10B981"],
-              ["豆漿","1,421","#8B5CF6"],
-              ["可頌","1,203","#06B6D4"],
-              ["紅茶","998","#6B7280"],
-              ["礦泉水","887","#6B7280"],
-            ].map(([n,v,c],i) => `
-            <div class="progress-row">
-              <div class="progress-meta"><span class="progress-name">${i+1}. ${n}</span><span class="progress-val">${v} 件</span></div>
-              <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${100-i*10}%;background:${c}"></div></div>
+              ["出貨異常","023400-TM4","c-r"],
+              ["4件商品到期","018816-TM4","c-o"],
+              ["低庫存警示","021113-TM5","c-o"],
+              ["溫度恢復正常","015805-TM3","c-g"],
+            ].map(([m,d,c]) => `
+            <div class="al ${c==="c-r"?"al-e":c==="c-o"?"al-w":"al-g"}" style="padding:7px 10px;margin-bottom:4px">
+              <div style="font-size:10px;font-weight:700">${m}</div>
+              <div style="font-size:10px;color:#9CA3AF;margin-top:1px">${d}</div>
             </div>`).join("")}
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-header"><span class="card-title">門市銷售排行</span><span style="font-size:11px;color:#64748B">2026 年 4 月</span></div>
-        <div class="card-body" style="padding:0">
-          <table>
-            <thead><tr><th>排名</th><th>門市名稱</th><th>設備</th><th>訂單數</th><th>營收</th><th>客單價</th><th>vs 上月</th></tr></thead>
-            <tbody>
-              <tr><td>🥇 1</td><td>東方美 信義旗艦</td><td>GraBox × 2</td><td>4,821</td><td>NT$ 298K</td><td>NT$ 62</td><td><span class="chip green">+24%</span></td></tr>
-              <tr><td>🥈 2</td><td>台積電 南科園區</td><td>常溫販賣 × 3</td><td>3,912</td><td>NT$ 241K</td><td>NT$ 62</td><td><span class="chip green">+18%</span></td></tr>
-              <tr><td>🥉 3</td><td>東方美 南港</td><td>GraBox × 1</td><td>3,201</td><td>NT$ 198K</td><td>NT$ 62</td><td><span class="chip green">+11%</span></td></tr>
-              <tr><td>4</td><td>翔耀 宿舍 A 棟</td><td>冷凍 × 2</td><td>2,887</td><td>NT$ 178K</td><td>NT$ 62</td><td><span class="chip orange">+3%</span></td></tr>
-              <tr><td>5</td><td>Garmin 總部</td><td>常溫 × 2</td><td>2,541</td><td>NT$ 157K</td><td>NT$ 62</td><td><span class="chip green">+8%</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    `,
+    </div>
+  `,
   },
 
-  // 3. Inventory
+  // 2. 交易紀錄 (P.35)
   {
-    key: "inventory",
+    key: "transactions",
+    filename: "backend-sales-report.jpg",
+    content: `
+    <div class="card">
+      <div class="ch">
+        <div class="ct"><svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/></svg>交易紀錄</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="fbtn fbtn-sec"><svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"/></svg>匯出</button>
+          <div class="tb-tag" style="background:#F0FDF4;color:#15803D">營業分析</div>
+          <div class="tb-tag" style="background:#F5F3FF;color:#6D28D9">商品排行</div>
+          <div class="tb-tag" style="background:#EEF2FF;color:#4338CA">交易紀錄</div>
+        </div>
+      </div>
+      <div class="cb" style="padding:12px 16px">
+        <div class="fbar">
+          <div class="finp"><svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"/></svg>搜尋...</div>
+          <div class="fsel">2024/08/01</div>
+          <span style="font-size:11px;color:#9CA3AF">—</span>
+          <div class="fsel">2024/08/20</div>
+          <div class="fsel">所有交易</div>
+          <div class="fsel">所有店鋪</div>
+        </div>
+        <table>
+          <thead>
+            <tr><th></th><th>商品</th><th>發票碼</th><th>實付金額</th><th>支付方式</th><th>交易時間</th><th>🏪 店鋪</th><th>⚙ 設備</th><th>設備代碼</th><th>貨道</th></tr>
+          </thead>
+          <tbody>
+            ${[
+              ["☑","二配草莓餐包","$25","信用卡","2024-08-20 19:17:52","XXX店","(設備名稱)","023400-TM4","1C4"],
+              ["☑","瘋狂超司三明治","$39","悠遊卡","2024-08-20 19:17:36","XXX直店","(設備名稱)","018816-TM4","0B5"],
+              ["☑","桂林仔滷排便當","$99","Lin Pay","2024-08-20 19:17:24","XXX店","(設備名稱)","022079-TM6","0C2"],
+              ["☑","排骨爵麵（小碗）","$23","信用卡","2024-08-20 19:17:13","XXX店","(設備名稱)","015805-TM3","1B1"],
+              ["☑","A S A H I 十六茶","$29","悠遊卡","2024-08-20 19:17:01","XXX小店","(設備名稱)","014869-TM4","0E1"],
+              ["☑","草莓炎節可可製品","$55","信用卡","2024-08-20 19:16:12","XXX_店","(設備名稱)","021113-TM5","1D6"],
+              ["☑","統一陽光無糖高纖豆漿","$25","Lin Pay","2024-08-20 19:13:02","XXX店","(設備名稱)","023400-TM4","0F8"],
+              ["☑","義式冷萃咖啡","$45","信用卡","2024-08-20 19:12:44","XXX店","(設備名稱)","018816-TM4","1A2"],
+              ["☑","K I R I N 生茶","$42","悠遊卡","2024-08-20 19:11:30","XXX店","(設備名稱)","023400-TM4","0E1"],
+            ].map(([cb,n,p,py,t,st,dv,dc,sl]) => `
+            <tr>
+              <td style="color:#9CA3AF">${cb}</td>
+              <td style="display:flex;align-items:center;gap:6px"><span style="color:#10B981;font-size:14px">✓</span>${n}</td>
+              <td style="color:#9CA3AF;font-size:11px">—</td>
+              <td style="font-weight:600;color:#1A1D23">${p}</td>
+              <td><span class="chip c-b" style="font-size:10px">${py}</span></td>
+              <td style="font-size:11px;color:#6B7280">${t}</td>
+              <td style="font-size:11px">${st}</td>
+              <td style="font-size:11px;color:#9CA3AF">${dv}</td>
+              <td style="font-size:11px;color:#6C63FF;font-weight:500">${dc}</td>
+              <td style="font-size:11px;font-weight:600">${sl}</td>
+            </tr>`).join("")}
+          </tbody>
+        </table>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid #F5F6FA;margin-top:4px">
+          <span style="font-size:11px;color:#9CA3AF">顯示第 1 ~ 20 筆，共 3,276 筆</span>
+          <div style="display:flex;gap:4px">
+            ${["上一頁","1","2","3","...","163","下一頁"].map((p,i) => `<button class="fbtn ${i===1?"fbtn-pri":"fbtn-sec"}" style="padding:4px 9px;font-size:11px">${p}</button>`).join("")}
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  },
+
+  // 3. 設備狀態監控 (P.36)
+  {
+    key: "devices",
     filename: "backend-inventory.jpg",
-    title: "庫存 / 補貨管理",
-    html: () => `
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-label">需補貨設備</div><div class="stat-value" style="color:#EF4444">12</div><div class="stat-change down">低庫存警報</div></div>
-        <div class="stat-card"><div class="stat-label">本週補貨任務</div><div class="stat-value">48</div><div class="stat-change">31 已完成</div></div>
-        <div class="stat-card"><div class="stat-label">AI 預測補貨準確率</div><div class="stat-value">94.2%</div><div class="stat-change">▲ 2.1%</div></div>
-        <div class="stat-card"><div class="stat-label">平均補貨週期</div><div class="stat-value">2.4天</div><div class="stat-change">▼ 0.3天 優化</div></div>
-      </div>
-      <div class="three-col">
+    content: `
+    <div class="g3">
+      <div>
         <div class="card">
-          <div class="card-header"><span class="card-title">庫存明細 — 需補貨</span><button style="font-size:11px;background:${BRAND};color:white;border:none;padding:4px 12px;border-radius:6px;cursor:pointer">📋 匯出補貨單</button></div>
-          <div class="card-body" style="padding:0">
+          <div class="ch"><div class="ct">設備狀態</div><div class="finp" style="max-width:140px;font-size:11px"><svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"/></svg>尋找</div></div>
+          <div class="cb" style="padding:0">
             <table>
-              <thead><tr><th>設備</th><th>品項</th><th>現況</th><th>容量</th><th>補貨量</th><th>狀態</th></tr></thead>
+              <thead><tr><th></th><th>設備代碼</th><th>名稱</th><th>區域</th><th>上次連線</th><th></th></tr></thead>
               <tbody>
-                <tr><td>VND-031</td><td>美式咖啡膠囊</td><td>4</td><td>60</td><td>+56</td><td><span class="chip red">緊急</span></td></tr>
-                <tr><td>VND-031</td><td>拿鐵膠囊</td><td>6</td><td>60</td><td>+54</td><td><span class="chip red">緊急</span></td></tr>
-                <tr><td>FRZ-012</td><td>雞腿便當</td><td>8</td><td>30</td><td>+22</td><td><span class="chip orange">建議</span></td></tr>
-                <tr><td>FRZ-012</td><td>炒飯</td><td>11</td><td>30</td><td>+19</td><td><span class="chip orange">建議</span></td></tr>
-                <tr><td>GRB-008</td><td>三明治</td><td>3</td><td>20</td><td>+17</td><td><span class="chip red">緊急</span></td></tr>
-                <tr><td>VND-044</td><td>礦泉水</td><td>5</td><td>48</td><td>+43</td><td><span class="chip red">緊急</span></td></tr>
-                <tr><td>VND-044</td><td>可樂 330ml</td><td>9</td><td>36</td><td>+27</td><td><span class="chip orange">建議</span></td></tr>
-                <tr><td>KSK-008</td><td>收據紙</td><td>12%</td><td>—</td><td>—</td><td><span class="chip orange">建議</span></td></tr>
+                ${[
+                  ["●","005989-TM7","XXX門市名稱","","1 分鐘前","🔔"],
+                  ["●","011489-TM4","XXX門市名稱名稱","","剛剛","🔔"],
+                  ["●","012784-TM5","XXX 名稱 名稱名稱","","剛剛","🔔"],
+                  ["●","012848-TM5","名名 名稱","","剛剛","🔔"],
+                  ["●","014117-TM4","XXX名稱名稱","","剛剛","🔔"],
+                  ["●","014827-TM3","XXX名稱名稱","","剛剛","🔔"],
+                  ["●","014998-TM3","XXX名稱名稱名","","剛剛","🔔"],
+                  ["●","015100-TM3","XXX名稱名稱","","剛剛","🔔"],
+                ].map(([s,id,nm,area,last,ico],i) => `
+                <tr style="${i===0?"background:#F0FDF4":""}" >
+                  <td style="color:${i===0?"#10B981":"#10B981"};font-size:16px">${s}</td>
+                  <td style="font-size:11px;color:#6C63FF;font-weight:600">${id}</td>
+                  <td style="font-size:11px;color:#374151">${nm}</td>
+                  <td style="font-size:11px;color:#9CA3AF">${area}</td>
+                  <td style="font-size:11px;color:#9CA3AF">${last}</td>
+                  <td style="font-size:14px">${ico}</td>
+                </tr>`).join("")}
               </tbody>
             </table>
           </div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="card">
-            <div class="card-header"><span class="card-title">AI 補貨預測（明日）</span></div>
-            <div class="card-body">
-              <div style="font-size:12px;color:#64748B;margin-bottom:10px">基於過去 30 天銷售模式分析</div>
-              ${[
-                ["美式咖啡膠囊","高需求","預計消耗 82%","#EF4444"],
-                ["拿鐵膠囊","高需求","預計消耗 74%","#EF4444"],
-                ["礦泉水","中需求","預計消耗 51%","#F59E0B"],
-                ["雞腿便當","中需求","預計消耗 48%","#F59E0B"],
-                ["三明治","低需求","預計消耗 32%","#10B981"],
-              ].map(([n,l,d,c]) => `
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:8px;background:#F8FAFC;border-radius:8px">
-                <div style="width:8px;height:8px;border-radius:50%;background:${c};flex-shrink:0"></div>
-                <div style="flex:1">
-                  <div style="font-size:12px;font-weight:600;color:#1E293B">${n}</div>
-                  <div style="font-size:10px;color:#64748B">${d}</div>
-                </div>
-                <span class="chip ${c==="#EF4444"?"red":c==="#F59E0B"?"orange":"green"}">${l}</span>
-              </div>`).join("")}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card">
+          <div class="ch" style="padding:10px 14px"><div class="ct" style="font-size:12px">005989-TM7 ▾</div><button class="fbtn fbtn-sec" style="font-size:10px;padding:3px 8px">清除貨道資料</button></div>
+          <div style="padding:0 14px">
+            <div class="tabs">
+              ${["貨道/庫存","溫度","控制","設定","Line Notify","設備資訊"].map((t,i) => `<div class="tab${i===0?" active":""}">${t}</div>`).join("")}
             </div>
+          </div>
+          <div class="cb" style="padding:0">
+            <table>
+              <thead><tr><th>貨道</th><th>最大庫存/實補/銷售/庫存</th><th>商品</th><th>過期日</th><th>更新時間</th></tr></thead>
+              <tbody>
+                ${[
+                  ["0A1","6/2/0/2","日式溫泉風味湯","2024-08-26","2024-08-20 19:00"],
+                  ["0A3","6/2/0/2","花雕風味溫泉湯","2024-09-03","2024-08-20 19:00"],
+                  ["0A5","6/2/0/2","嶺春綜合滋味","2024-08-30","2024-08-20 19:00"],
+                  ["0A7","6/2/2/0","東山綜合滋味","2024-08-22","2024-08-20 19:00"],
+                  ["0A9","6/2/0/2","蒜香超良風味Q丸","2024-09-01","2024-08-20 19:00"],
+                  ["0B1","6/2/0/2","義式經典鹹豬腳","2024-09-11","2024-08-20 19:00"],
+                ].map(([slot,qty,nm,exp,upd]) => `
+                <tr>
+                  <td style="font-weight:600;color:#6C63FF;font-size:12px">${slot}</td>
+                  <td style="font-size:11px;color:#6B7280">${qty}</td>
+                  <td style="font-size:11px">${nm}</td>
+                  <td style="font-size:11px;color:#10B981">${exp}</td>
+                  <td style="font-size:10px;color:#9CA3AF">${upd}:10</td>
+                </tr>`).join("")}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ch" style="padding:10px 14px"><div class="ct" style="font-size:12px">溫度監控</div></div>
+          <div class="cb" style="padding:10px 14px">
+            <div style="display:flex;gap:12px;margin-bottom:8px;font-size:11px">
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:20px;height:2px;background:#3B82F6;display:inline-block"></span>主機</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:20px;height:2px;background:#10B981;display:inline-block"></span>副機</span>
+            </div>
+            <svg viewBox="0 0 400 120" style="width:100%;height:90px">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B82F6" stop-opacity=".15"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/></linearGradient>
+                <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10B981" stop-opacity=".15"/><stop offset="100%" stop-color="#10B981" stop-opacity="0"/></linearGradient>
+              </defs>
+              <!-- Grid lines -->
+              ${[0,30,60,90].map(y=>`<line x1="0" y1="${y}" x2="400" y2="${y}" stroke="#F3F4F6" stroke-width="1"/>`).join("")}
+              <!-- Labels -->
+              <text x="2" y="8" font-size="8" fill="#9CA3AF">25°C</text>
+              <text x="2" y="38" font-size="8" fill="#9CA3AF">20°C</text>
+              <text x="2" y="68" font-size="8" fill="#9CA3AF">15°C</text>
+              <text x="2" y="98" font-size="8" fill="#9CA3AF">9°C</text>
+              <!-- Main line (blue) -->
+              <polyline points="20,45 50,40 80,55 110,35 140,50 170,42 200,48 230,38 260,52 290,44 320,40 350,46 380,42" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linejoin="round"/>
+              <!-- Sub line (green) -->
+              <polyline points="20,58 50,62 80,55 110,68 140,60 170,72 200,65 230,58 260,70 290,62 320,68 350,60 380,65" fill="none" stroke="#10B981" stroke-width="1.5" stroke-linejoin="round"/>
+              <!-- Highlight point -->
+              <circle cx="110" cy="35" r="4" fill="#3B82F6" stroke="#fff" stroke-width="1.5"/>
+              <rect x="115" y="22" width="28" height="14" rx="3" fill="#3B82F6"/>
+              <text x="129" y="32" font-size="8" fill="#fff" text-anchor="middle">21</text>
+              <!-- X labels -->
+              <text x="20" y="115" font-size="7" fill="#9CA3AF" text-anchor="middle">8/18</text>
+              <text x="110" y="115" font-size="7" fill="#9CA3AF" text-anchor="middle">8/18 3:30</text>
+              <text x="230" y="115" font-size="7" fill="#9CA3AF" text-anchor="middle">8/18 6:30</text>
+              <text x="380" y="115" font-size="7" fill="#9CA3AF" text-anchor="middle">8/19</text>
+            </svg>
           </div>
         </div>
       </div>
-    `,
+    </div>
+  `,
   },
 
-  // 4. Member
+  // 4. LINE Notify 異常通報設定 (P.37)
   {
-    key: "member",
+    key: "notify",
     filename: "backend-member.jpg",
-    title: "會員 & 點數後台",
-    html: () => `
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-label">總會員數</div><div class="stat-value">184,320</div><div class="stat-change">▲ 2,841 本月</div></div>
-        <div class="stat-card"><div class="stat-label">活躍會員（30天）</div><div class="stat-value">62,181</div><div class="stat-change">33.7% 活躍率</div></div>
-        <div class="stat-card"><div class="stat-label">點數流通量（本月）</div><div class="stat-value">4.2M</div><div class="stat-change">▲ 14%</div></div>
-        <div class="stat-card"><div class="stat-label">LINE 推播到達率</div><div class="stat-value">71.3%</div><div class="stat-change">▲ 3.2%</div></div>
-      </div>
-      <div class="two-col" style="margin-bottom:14px">
+    content: `
+    <div class="g2">
+      <div>
+        <div class="card" style="margin-bottom:12px">
+          <div class="ch"><div class="ct">LINE Notify 通報紀錄</div></div>
+          <div class="cb" style="padding:10px 14px">
+            ${[
+              {type:"出貨異常",device:"023400-TM4",time:"上午 3:50",color:"#EF4444",icon:"🚨"},
+              {type:"4件商品到期",device:"018816-TM4",time:"今天",color:"#F59E0B",icon:"⏰"},
+              {type:"低庫存警示",device:"021113-TM5",time:"上午 8:12",color:"#F59E0B",icon:"⚠️"},
+              {type:"心跳異常（離線）",device:"015805-TM3",time:"昨天",color:"#EF4444",icon:"❌"},
+              {type:"溫度恢復正常",device:"014869-TM4",time:"昨天",color:"#10B981",icon:"✅"},
+            ].map(({type,device,time,color,icon}) => `
+            <div style="display:flex;align-items:flex-start;gap:10px;padding:10px;background:#F9FAFB;border-radius:8px;margin-bottom:6px;border-left:3px solid ${color}">
+              <div style="width:30px;height:30px;border-radius:50%;background:#fff;border:1px solid #E8ECF0;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${icon}</div>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:700;color:#1A1D23">${type}</div>
+                <div style="font-size:10px;color:#9CA3AF;margin-top:2px">${device} · ${time}</div>
+              </div>
+              <a href="#" style="font-size:10px;color:#6C63FF;text-decoration:none">查看詳情</a>
+            </div>`).join("")}
+          </div>
+        </div>
         <div class="card">
-          <div class="card-header"><span class="card-title">會員列表</span><input type="text" placeholder="搜尋會員..." style="font-size:11px;padding:4px 10px;border:1px solid #E2E8F0;border-radius:6px;outline:none"></div>
-          <div class="card-body" style="padding:0">
-            <table>
-              <thead><tr><th>姓名</th><th>電話</th><th>等級</th><th>點數</th><th>最後消費</th><th>狀態</th></tr></thead>
-              <tbody>
-                <tr><td>王小明</td><td>0912-***-456</td><td><span class="chip orange">金卡</span></td><td>3,241</td><td>今天</td><td><span class="chip green">正常</span></td></tr>
-                <tr><td>林美華</td><td>0933-***-781</td><td><span class="chip blue">白金</span></td><td>8,820</td><td>昨天</td><td><span class="chip green">正常</span></td></tr>
-                <tr><td>陳大偉</td><td>0987-***-123</td><td><span class="chip gray">一般</span></td><td>142</td><td>3天前</td><td><span class="chip green">正常</span></td></tr>
-                <tr><td>張淑芬</td><td>0911-***-654</td><td><span class="chip orange">金卡</span></td><td>2,087</td><td>2天前</td><td><span class="chip green">正常</span></td></tr>
-                <tr><td>李建國</td><td>0966-***-321</td><td><span class="chip gray">一般</span></td><td>58</td><td>14天前</td><td><span class="chip orange">沉睡</span></td></tr>
-                <tr><td>黃雅婷</td><td>0922-***-987</td><td><span class="chip blue">白金</span></td><td>12,441</td><td>今天</td><td><span class="chip green">正常</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="card">
-            <div class="card-header"><span class="card-title">推播行銷</span><button style="font-size:11px;background:${BRAND};color:white;border:none;padding:4px 12px;border-radius:6px;cursor:pointer">+ 新增推播</button></div>
-            <div class="card-body">
-              ${[
-                ["週三限定優惠","2026/04/23","全體","已發送 42,381","92.1%"],
-                ["沉睡喚回活動","2026/04/20","沉睡會員","已發送 8,120","68.3%"],
-                ["點數到期提醒","2026/04/18","即將到期","已發送 3,241","81.7%"],
-              ].map(([t,d,s,n,r]) => `
-              <div style="padding:10px;background:#F8FAFC;border-radius:8px;margin-bottom:8px;border-left:3px solid ${BRAND}">
-                <div style="font-size:12px;font-weight:700;color:#1E293B;margin-bottom:4px">${t}</div>
-                <div style="display:flex;gap:8px;flex-wrap:wrap">
-                  <span style="font-size:10px;color:#64748B">${d}</span>
-                  <span class="chip gray">${s}</span>
-                  <span style="font-size:10px;color:#64748B">${n}</span>
-                  <span class="chip green">到達率 ${r}</span>
-                </div>
-              </div>`).join("")}
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-title">會員等級分佈</span></div>
-            <div class="card-body">
-              ${[["白金卡","12,841","7%","#3B82F6"],["金卡","38,210","21%","#F59E0B"],["一般","133,269","72%","#E2E8F0"]].map(([l,n,p,c]) => `
-              <div class="progress-row">
-                <div class="progress-meta"><span class="progress-name">${l}</span><span class="progress-val">${n} 人（${p}）</span></div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${p};background:${c}"></div></div>
-              </div>`).join("")}
-            </div>
+          <div class="ch"><div class="ct">LINE 聊天室模擬</div></div>
+          <div class="cb" style="padding:12px;background:#F0F9FF">
+            <div style="font-size:11px;color:#0369A1;font-weight:600;margin-bottom:8px">[通報群] LINE Notify (9+)</div>
+            ${[
+              {msg:"【IVM設備】\n🚨 出貨異常\nhttps://hotspot.transtep.com...",time:"上午 3:50",warn:true},
+              {msg:"【IVM設備】\n⏰ 4件商品到期\nhttps://hotspot.transtep.com...",time:"今天",warn:false},
+            ].map(({msg,time,warn}) => `
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <div style="width:28px;height:28px;border-radius:50%;background:#06C755;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">L</div>
+              <div>
+                <div style="font-size:10px;color:#9CA3AF;margin-bottom:3px">LINE Notify</div>
+                <div style="background:#fff;border-radius:0 8px 8px 8px;padding:8px 10px;font-size:11px;line-height:1.5;white-space:pre-line;max-width:200px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid ${warn?"#FECACA":"#FDE68A"}">${msg}</div>
+                <div style="font-size:9px;color:#9CA3AF;margin-top:2px">${time}</div>
+              </div>
+            </div>`).join("")}
           </div>
         </div>
       </div>
-    `,
+      <div>
+        <div class="card">
+          <div class="ch"><div class="ct">警示設定</div><span style="font-size:11px;color:#9CA3AF">005989-TM7</span></div>
+          <div style="padding:0 14px">
+            <div class="tabs">
+              ${["貨道/庫存","溫度","控制","設定","Line Notify","設備資訊"].map((t,i) => `<div class="tab${i===4?" active":""}">${t}</div>`).join("")}
+            </div>
+          </div>
+          <div class="cb">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #F5F6FA">
+              <span style="font-size:13px;font-weight:600;color:#1A1D23">啟用警示</span>
+              <div class="toggle"><div class="toggle-dot"></div></div>
+            </div>
+            ${[
+              ["溫度警示","機台內部溫度超標時通知"],
+              ["心跳警示","設備離線或心跳中斷時通知"],
+              ["低庫存率","貨道庫存低於設定比例時通知"],
+              ["空倉率","貨道完全清空時通知"],
+              ["維運警示","設備需要維護保養時通知"],
+            ].map(([title,desc]) => `
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #F5F6FA">
+              <div>
+                <div style="font-size:12px;font-weight:600;color:#374151">${title}</div>
+                <div style="font-size:10px;color:#9CA3AF;margin-top:2px">${desc}</div>
+              </div>
+              <svg viewBox="0 0 20 20" fill="#9CA3AF" style="width:14px;height:14px"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
+            </div>`).join("")}
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
   },
 
-  // 5. Promo
+  // 5. 食安控管 (P.38)
   {
-    key: "promo",
+    key: "devices",
     filename: "backend-promo.jpg",
-    title: "促銷活動模組",
-    html: () => `
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-label">進行中活動</div><div class="stat-value">8</div><div class="stat-change">3 今日到期</div></div>
-        <div class="stat-card"><div class="stat-label">本月折扣使用次數</div><div class="stat-value">12,841</div><div class="stat-change">▲ 31%</div></div>
-        <div class="stat-card"><div class="stat-label">活動帶動營收</div><div class="stat-value">NT$ 284K</div><div class="stat-change">▲ 18.2%</div></div>
-        <div class="stat-card"><div class="stat-label">新客轉換率</div><div class="stat-value">23.4%</div><div class="stat-change">▲ 4.1%</div></div>
-      </div>
-      <div class="two-col" style="margin-bottom:14px">
-        <div class="card">
-          <div class="card-header"><span class="card-title">活動列表</span><button style="font-size:11px;background:${BRAND};color:white;border:none;padding:4px 12px;border-radius:6px;cursor:pointer">+ 新增活動</button></div>
-          <div class="card-body" style="padding:0">
-            <table>
-              <thead><tr><th>活動名稱</th><th>類型</th><th>折扣</th><th>期間</th><th>使用次數</th><th>狀態</th></tr></thead>
-              <tbody>
-                <tr><td>週三咖啡日</td><td>時段折扣</td><td>85折</td><td>每週三</td><td>4,821</td><td><span class="chip green">進行中</span></td></tr>
-                <tr><td>新會員禮</td><td>折扣碼</td><td>9折</td><td>首次消費</td><td>2,341</td><td><span class="chip green">進行中</span></td></tr>
-                <tr><td>滿額贈點</td><td>消費累點</td><td>2倍點</td><td>04/25–04/30</td><td>1,209</td><td><span class="chip blue">即將</span></td></tr>
-                <tr><td>早餐組合優惠</td><td>組合促銷</td><td>NT$5折</td><td>07:00–10:00</td><td>3,412</td><td><span class="chip green">進行中</span></td></tr>
-                <tr><td>午後甜點節</td><td>時段折扣</td><td>88折</td><td>14:00–16:00</td><td>987</td><td><span class="chip green">進行中</span></td></tr>
-                <tr><td>生日特惠</td><td>會員限定</td><td>金卡免運</td><td>當月壽星</td><td>421</td><td><span class="chip green">進行中</span></td></tr>
-                <tr><td>舊客回購</td><td>推播優惠碼</td><td>8折</td><td>04/15–04/22</td><td>1,821</td><td><span class="chip gray">已結束</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="card">
-            <div class="card-header"><span class="card-title">新增活動</span></div>
-            <div class="card-body">
-              <div style="display:flex;flex-direction:column;gap:10px">
-                <div><div style="font-size:11px;font-weight:600;color:#64748B;margin-bottom:4px">活動名稱</div><input style="width:100%;font-size:12px;padding:7px 10px;border:1px solid #E2E8F0;border-radius:7px;outline:none" value="五一勞動節特惠"></div>
-                <div><div style="font-size:11px;font-weight:600;color:#64748B;margin-bottom:4px">活動類型</div>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap">
-                    ${["時段折扣","折扣碼","組合促銷","消費累點"].map((t,i) => `<span style="font-size:11px;padding:4px 10px;border-radius:6px;background:${i===0?"#FEF3C7":"#F1F5F9"};color:${i===0?"#92400E":"#475569"};cursor:pointer;border:${i===0?"1.5px solid #E8751A":"1px solid transparent"}">${t}</span>`).join("")}
-                  </div>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-                  <div><div style="font-size:11px;font-weight:600;color:#64748B;margin-bottom:4px">開始時間</div><input style="width:100%;font-size:12px;padding:7px 10px;border:1px solid #E2E8F0;border-radius:7px;outline:none" value="2026-05-01 00:00"></div>
-                  <div><div style="font-size:11px;font-weight:600;color:#64748B;margin-bottom:4px">結束時間</div><input style="width:100%;font-size:12px;padding:7px 10px;border:1px solid #E2E8F0;border-radius:7px;outline:none" value="2026-05-01 23:59"></div>
-                </div>
-                <div><div style="font-size:11px;font-weight:600;color:#64748B;margin-bottom:4px">折扣設定</div><input style="width:100%;font-size:12px;padding:7px 10px;border:1px solid #E2E8F0;border-radius:7px;outline:none" value="全館 85 折"></div>
-                <button style="background:linear-gradient(135deg,${BRAND},#F59E0B);color:white;border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;width:100%">立即上架活動</button>
-              </div>
-            </div>
-          </div>
+    content: `
+    <div class="card">
+      <div class="ch">
+        <div class="ct">食安控管 — 貨道庫存</div>
+        <div style="display:flex;gap:6px">
+          <button class="fbtn fbtn-sec">清除貨道資料</button>
+          <button class="fbtn fbtn-sec">🖨 列印貨道商品</button>
         </div>
       </div>
-    `,
+      <div style="padding:0 14px">
+        <div class="bc">首頁 / 設備名單 / <a href="#">005989-TM7</a></div>
+        <div class="tabs">
+          ${["貨道/庫存","溫度","控制","設定","Line Notify","設備資訊"].map((t,i) => `<div class="tab${i===0?" active":""}">${t}</div>`).join("")}
+        </div>
+      </div>
+      <div class="cb" style="padding:8px 14px">
+        <div class="fbar" style="margin-bottom:8px;padding-bottom:8px">
+          <div class="finp"><svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"/></svg>尋找</div>
+          <span style="font-size:11px;color:#9CA3AF;margin-left:auto">顯示第 1 ~ 78 筆，共 78 筆</span>
+        </div>
+        <table>
+          <thead><tr><th>貨道 ↕</th><th>實補/銷售/庫存</th><th>商品</th><th style="min-width:100px">過期日 ↕</th><th>更新時間</th></tr></thead>
+          <tbody>
+            ${[
+              ["0D3","1/0/1","石燒牛肉風味湯","2023-08-20",true,"2023-08-21 01:30:16"],
+              ["0D4","1/0/1","銀座豚骨白湯","2023-08-20",true,"2023-08-21 01:30:16"],
+              ["1C0","1/0/1","日式溫泉風味","2023-08-20",true,"2023-08-21 01:30:18"],
+              ["1C1","1/0/1","抹茶拿鐵","2023-08-20",true,"2023-08-21 01:30:18"],
+              ["1C2","1/0/1","美式咖啡無糖","2023-08-20",true,"2023-08-21 01:30:18"],
+              ["1C4","1/0/1","蒜香超良風味Q丸","2023-08-20",true,"2023-08-21 01:30:18"],
+              ["1C3","1/0/1","義式經典鹹豬腳","2023-08-21","","2023-08-21 01:30:18"],
+              ["0C4","1/1/0","花雕風味溫泉湯","2023-08-24","","2023-08-21 01:30:16"],
+              ["0A1","1/0/1","K I R I N 生茶","2023-09-05","","2023-08-21 01:30:10"],
+              ["0A3","1/0/1","統一純喫茶烏龍","2023-09-08","","2023-08-21 01:30:10"],
+              ["0A5","1/0/1","御茶園每朝健康","2023-09-10","","2023-08-21 01:30:12"],
+            ].map(([slot,qty,nm,exp,expired,upd]) => `
+            <tr${expired?" style='background:#FFF5F5'":""}>
+              <td style="font-weight:700;color:#6C63FF">${slot}</td>
+              <td style="font-size:11px;color:#6B7280">${qty}</td>
+              <td style="font-size:12px">${nm}</td>
+              <td>${expired
+                ? `<span style="background:#EF4444;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">${exp}</span>`
+                : `<span style="font-size:11px;color:#374151">${exp}</span>`
+              }</td>
+              <td style="font-size:10px;color:#9CA3AF">${upd}</td>
+            </tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `,
   },
 
-  // 6. Maintenance
+  // 6. 各式營運報表 (P.39)
   {
-    key: "maintenance",
+    key: "analytics",
     filename: "backend-maintenance.jpg",
-    title: "報修 & 維保工單",
-    html: () => `
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-label">待處理工單</div><div class="stat-value" style="color:#EF4444">14</div><div class="stat-change down">3 已逾 SLA</div></div>
-        <div class="stat-card"><div class="stat-label">本月完工率</div><div class="stat-value">96.2%</div><div class="stat-change">▲ 1.8%</div></div>
-        <div class="stat-card"><div class="stat-label">平均響應時間</div><div class="stat-value">1.4h</div><div class="stat-change">SLA ≤ 4h ✓</div></div>
-        <div class="stat-card"><div class="stat-label">本月預防保養</div><div class="stat-value">48台</div><div class="stat-change">按計劃執行</div></div>
-      </div>
-      <div class="three-col">
-        <div class="card">
-          <div class="card-header"><span class="card-title">工單列表</span><button style="font-size:11px;background:${BRAND};color:white;border:none;padding:4px 12px;border-radius:6px;cursor:pointer">+ 新增工單</button></div>
-          <div class="card-body" style="padding:0">
-            <table>
-              <thead><tr><th>工單 #</th><th>設備</th><th>問題描述</th><th>等級</th><th>派工</th><th>狀態</th><th>SLA</th></tr></thead>
-              <tbody>
-                <tr><td>#2024</td><td>FRZ-013</td><td>溫控器異常</td><td><span class="chip red">L4 緊急</span></td><td>歐總工</td><td><span class="chip orange">進行中</span></td><td style="color:#EF4444">⏰ 1h 30m</td></tr>
-                <tr><td>#2023</td><td>GRB-018</td><td>網路模組斷線</td><td><span class="chip red">L3 嚴重</span></td><td>Mozo</td><td><span class="chip orange">進行中</span></td><td style="color:#F59E0B">⏰ 2h 15m</td></tr>
-                <tr><td>#2022</td><td>VND-031</td><td>付款模組卡單</td><td><span class="chip orange">L2 一般</span></td><td>Henry</td><td><span class="chip blue">待派工</span></td><td>4h 00m</td></tr>
-                <tr><td>#2021</td><td>KSK-008</td><td>觸控螢幕無反應</td><td><span class="chip orange">L2 一般</span></td><td>待指派</td><td><span class="chip blue">待派工</span></td><td>4h 00m</td></tr>
-                <tr><td>#2019</td><td>GRB-002</td><td>格子 5 號鎖異常</td><td><span class="chip gray">L1 輕微</span></td><td>歐總工</td><td><span class="chip green">完工</span></td><td style="color:#10B981">✓ 已完成</td></tr>
-                <tr><td>#2018</td><td>VND-044</td><td>定期清潔保養</td><td><span class="chip gray">L0 保養</span></td><td>Nick</td><td><span class="chip green">完工</span></td><td style="color:#10B981">✓ 已完成</td></tr>
-                <tr><td>#2017</td><td>MWV-005</td><td>微波組件更換</td><td><span class="chip red">L3 嚴重</span></td><td>歐總工</td><td><span class="chip green">完工</span></td><td style="color:#10B981">✓ 提前完成</td></tr>
-              </tbody>
-            </table>
+    content: `
+    <div class="g3">
+      <div>
+        <div class="card" style="margin-bottom:12px">
+          <div class="ch">
+            <div class="ct">商品排行</div>
+            <div style="display:flex;gap:6px;align-items:center">
+              <div class="tb-tag" style="background:#EEF2FF;color:#4338CA">營業分析</div>
+              <div class="tb-tag" style="background:#F5F3FF;color:#6D28D9">商品排行</div>
+              <div class="tb-tag" style="background:#F9FAFB;color:#6B7280">交易紀錄</div>
+              <button class="fbtn fbtn-sec" style="font-size:10px;padding:3px 8px">匯出</button>
+            </div>
+          </div>
+          <div class="cb" style="padding:10px 14px">
+            <div style="display:flex;gap:12px;font-size:11px;margin-bottom:8px">
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:3px;background:#6C63FF;display:inline-block;border-radius:2px"></span>銷售額</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:3px;background:#F59E0B;display:inline-block;border-radius:2px"></span>銷售量</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:3px;background:#10B981;display:inline-block;border-radius:2px;border-top:2px dashed #10B981;height:0"></span>點擊率</span>
+            </div>
+            <svg viewBox="0 0 520 160" style="width:100%;height:130px">
+              <!-- Grid -->
+              ${[0,40,80,120,160].map(y=>`<line x1="40" y1="${y}" x2="520" y2="${y}" stroke="#F3F4F6" stroke-width="1"/>`).join("")}
+              <!-- Y labels -->
+              <text x="35" y="5" font-size="8" fill="#9CA3AF" text-anchor="end">1,600</text>
+              <text x="35" y="45" font-size="8" fill="#9CA3AF" text-anchor="end">1,200</text>
+              <text x="35" y="85" font-size="8" fill="#9CA3AF" text-anchor="end">800</text>
+              <text x="35" y="125" font-size="8" fill="#9CA3AF" text-anchor="end">400</text>
+              <!-- Bars for 銷售量 -->
+              ${[52,38,71,44,60,38,28,35,42,55,48,62,35,42,50,48,55,62,45,38].map((v,i)=>`<rect x="${42+i*24}" y="${160-v*1.6}" width="10" height="${v*1.6}" fill="#EEF2FF" rx="2"/>`).join("")}
+              <!-- Line for 銷售額 -->
+              <polyline points="${[38,62,55,78,65,52,42,58,48,72,60,55,42,65,70,58,68,80,52,45].map((v,i)=>`${47+i*24},${160-v*1.8}`).join(" ")}" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linejoin="round"/>
+              <!-- Dashed line for 點擊率 -->
+              <polyline points="${[28,32,35,28,40,30,25,32,28,35,30,38,25,32,35,28,30,32,28,25].map((v,i)=>`${47+i*24},${155-v*0.8}`).join(" ")}" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="3,2" stroke-linejoin="round"/>
+              <!-- X labels -->
+              ${["1月","2月","3月","4月","5月","6月","7月","8月"].map((l,i)=>`<text x="${47+i*60}" y="175" font-size="8" fill="#9CA3AF" text-anchor="middle">${l}</text>`).join("")}
+            </svg>
           </div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="card">
-            <div class="card-header"><span class="card-title">SLA 時效追蹤</span></div>
-            <div class="card-body">
-              ${[["L4 緊急","≤ 2h","#2024 — 1h30m","red"],["L3 嚴重","≤ 4h","#2023 — 2h15m","orange"],["L2 一般","≤ 8h","正常","green"],["L1 輕微","≤ 24h","正常","green"],["L0 保養","計劃排程","按計劃","green"]].map(([l,sla,s,c]) => `
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F1F5F9">
-                <div>
-                  <div style="font-size:12px;font-weight:700;color:#1E293B">${l}</div>
-                  <div style="font-size:10px;color:#64748B">SLA ${sla}</div>
-                </div>
-                <span class="chip ${c}">${s}</span>
+        <div class="card">
+          <div class="ch"><div class="ct">營業分析</div><button class="fbtn fbtn-sec" style="font-size:10px;padding:3px 8px">匯出</button></div>
+          <div class="cb" style="padding:10px 14px">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px">
+              ${[
+                ["累計業績","$1,284,201","67.03%"],
+                ["累計筆數","20,841","67.35%"],
+                ["平內日業績","$42,807","67.00%"],
+                ["平均日來客","694","65.63%"],
+              ].map(([l,v,pct]) => `
+              <div style="background:#F9FAFB;border-radius:8px;padding:8px;border:1px solid #E8ECF0">
+                <div style="font-size:10px;color:#9CA3AF;margin-bottom:3px">${l}</div>
+                <div style="font-size:13px;font-weight:800;color:#1A1D23">${v}</div>
+                <div style="font-size:10px;color:#10B981;font-weight:600">▲ ${pct}</div>
               </div>`).join("")}
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-title">工單狀態分佈</span></div>
-            <div class="card-body">
-              <div style="display:flex;gap:8px;flex-wrap:wrap">
-                ${[["待派工","4","#3B82F6"],["進行中","2","#F59E0B"],["待驗收","3","#8B5CF6"],["本月完工","38","#10B981"],["已逾SLA","3","#EF4444"]].map(([l,n,c]) => `
-                <div style="flex:1;min-width:80px;background:${c}10;border:1px solid ${c}30;border-radius:10px;padding:10px;text-align:center">
-                  <div style="font-size:20px;font-weight:800;color:${c}">${n}</div>
-                  <div style="font-size:10px;color:#64748B">${l}</div>
-                </div>`).join("")}
-              </div>
-            </div>
+            <svg viewBox="0 0 520 120" style="width:100%;height:100px">
+              ${[0,40,80,120].map(y=>`<line x1="0" y1="${y}" x2="520" y2="${y}" stroke="#F3F4F6" stroke-width="1"/>`).join("")}
+              <!-- Bars -->
+              ${[28,42,35,52,38,60,45,72,55,48,65,58,50,62,45,70,55,68,72,65].map((v,i)=>`<rect x="${i*26}" y="${120-v*1.4}" width="18" height="${v*1.4}" fill="#6C63FF" rx="2" opacity="${0.5+v/200}"/>`).join("")}
+              <!-- Trend line -->
+              <polyline points="${[28,42,35,52,38,60,45,72,55,48,65,58,50,62,45,70,55,68,72,65].map((v,i)=>`${9+i*26},${120-v*1.4}`).join(" ")}" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
           </div>
         </div>
       </div>
-    `,
+      <div>
+        <div class="card">
+          <div class="ch"><div class="ct">數據分析</div></div>
+          <div class="cb" style="padding:8px 0">
+            ${[
+              ["機台即時狀態表",""],
+              ["店鋪別銷售彙整表",""],
+              ["產品別銷售彙整表",""],
+              ["場域類別銷售彙整表",""],
+              ["交易工具別銷售彙整表",""],
+              ["機台每日銷售時段分析表",""],
+              ["機台每日庫存變動表",""],
+              ["機台別巡補時效彙整表",""],
+              ["營業分析","active"],
+              ["商品排行",""],
+            ].map(([n,a]) => `
+            <div style="display:flex;align-items:center;gap:8px;padding:8px 14px;cursor:pointer;background:${a?"#EEF2FF":"transparent"};border-left:2px solid ${a?"#6C63FF":"transparent"}">
+              <svg viewBox="0 0 20 20" fill="${a?"#6C63FF":"#9CA3AF"}" style="width:14px;height:14px;flex-shrink:0"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+              <span style="font-size:12px;color:${a?"#4338CA":"#374151"};font-weight:${a?"600":"400"}">${n}</span>
+            </div>`).join("")}
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
   },
 
-  // 7. Tenant
+  // 7. 運補相關表單 (P.40)
   {
-    key: "tenant",
+    key: "restocking",
     filename: "backend-tenant.jpg",
-    title: "多租戶管理",
-    html: () => `
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-label">活躍租戶</div><div class="stat-value">8</div><div class="stat-change">2 試用中</div></div>
-        <div class="stat-card"><div class="stat-label">總設備數</div><div class="stat-value">312</div><div class="stat-change">跨 8 個租戶</div></div>
-        <div class="stat-card"><div class="stat-label">本月平台費收入</div><div class="stat-value">NT$ 84K</div><div class="stat-change">▲ 12%</div></div>
-        <div class="stat-card"><div class="stat-label">API 呼叫量（今日）</div><div class="stat-value">2.1M</div><div class="stat-change">p99 < 80ms</div></div>
-      </div>
-      <div class="two-col" style="margin-bottom:14px">
+    content: `
+    <div class="g3">
+      <div>
         <div class="card">
-          <div class="card-header"><span class="card-title">租戶列表</span><button style="font-size:11px;background:${BRAND};color:white;border:none;padding:4px 12px;border-radius:6px;cursor:pointer">+ 新增租戶</button></div>
-          <div class="card-body" style="padding:0">
+          <div class="ch">
+            <div class="ct">店鋪詳細內容</div>
+            <div style="display:flex;gap:6px">
+              <button class="fbtn fbtn-sec">補貨</button>
+              <button class="fbtn fbtn-sec">稽核</button>
+              <button class="fbtn fbtn-pri">建立設備</button>
+            </div>
+          </div>
+          <div style="padding:0 14px">
+            <div class="bc">首頁 / 店鋪名單 / <a href="#">XXX 門市</a></div>
+            <div class="tabs">
+              ${["管理設備","相關資料"].map((t,i) => `<div class="tab${i===0?" active":""}">${t}</div>`).join("")}
+            </div>
+          </div>
+          <div class="cb" style="padding:0">
+            <div class="fbar" style="padding:8px 14px;margin-bottom:0">
+              <div class="finp"><svg viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"/></svg>尋找</div>
+              <span style="font-size:11px;color:#9CA3AF;margin-left:auto">每頁 10 ▾</span>
+            </div>
             <table>
-              <thead><tr><th>租戶名稱</th><th>方案</th><th>設備數</th><th>本月費用</th><th>狀態</th><th>到期日</th></tr></thead>
+              <thead><tr><th></th><th>設備代碼</th><th>場域</th><th>名稱</th><th>型號</th><th>啟用</th><th>建立時間</th></tr></thead>
               <tbody>
+                ${[
+                  ["023400-TM4","XXX門市","XXX-TM4","TM4","2024-04-26"],
+                  ["023400-TM5","XXX門市","XXX-TM5","TM5","2024-04-26"],
+                  ["023400-TM6","XXX門市","XXX-TM6","TM6","2024-04-26"],
+                  ["023400-TM8","XXX門市","XXX-TM8","TM8","2024-04-29"],
+                  ["023400-TM9","XXX門市","XXX-TM9","TM9","2024-06-24"],
+                  ["023400-TM11","XXX門市","XXX-TM11","TM11","2024-09-13"],
+                  ["023400-TM12","XXX門市","XXX-TM12","TM12","2024-09-29"],
+                  ["023400-TM13","XXX門市","XXX-TM13","TM13","2024-09-29"],
+                ].map(([id,area,nm,model,date]) => `
                 <tr>
-                  <td><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#E8751A;flex-shrink:0"></div><strong>東方美集團</strong></div></td>
-                  <td><span class="chip orange">企業版</span></td><td>148</td><td>NT$ 42,000</td><td><span class="chip green">正常</span></td><td>2027/03/31</td>
-                </tr>
+                  <td><div style="width:8px;height:8px;border-radius:50%;background:#10B981"></div></td>
+                  <td style="font-size:11px;color:#6C63FF;font-weight:600">${id}</td>
+                  <td style="font-size:11px;color:#9CA3AF">${area}</td>
+                  <td style="font-size:11px">${nm}</td>
+                  <td style="font-size:11px;color:#6B7280">${model}</td>
+                  <td><span style="color:#10B981;font-size:16px">✓</span></td>
+                  <td style="font-size:11px;color:#9CA3AF">${date}</td>
+                </tr>`).join("")}
+              </tbody>
+            </table>
+            <div style="padding:8px 14px;border-top:1px solid #F5F6FA;font-size:11px;color:#9CA3AF">顯示第 1 ~ 8 筆，共 8 筆</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="ch">
+            <div class="ct">實補歷史</div>
+            <div style="font-size:18px;font-weight:800;color:#1A1D23">1,084 <span style="font-size:11px;font-weight:400;color:#9CA3AF">實補數</span></div>
+          </div>
+          <div style="padding:0 14px">
+            <div class="bc">首頁 / 實補歷史</div>
+          </div>
+          <div class="cb" style="padding:8px 14px">
+            <div class="fbar" style="padding:0;margin-bottom:10px;padding-bottom:10px">
+              <div class="fsel">2024年08月</div>
+              <div class="fsel" style="max-width:180px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">023400-TM7</div>
+              <span style="font-size:11px;color:#9CA3AF;margin-left:auto">每頁 10 ▾</span>
+            </div>
+            <table>
+              <thead><tr><th>⚙ 設備</th><th>實補數</th><th>貨道數</th><th>補貨時間</th><th>開門時間</th></tr></thead>
+              <tbody>
+                ${[
+                  ["XXX門市-TM7","54","32","7 分鐘","2024-08-01 08:20:28"],
+                  ["XXX門市-TM7","51","30","12 分鐘","2024-08-02 08:11:54"],
+                  ["XXX門市-TM7","41","19","13 分鐘","2024-08-03 08:48:01"],
+                  ["XXX門市-TM7","86","44","12 分鐘","2024-08-05 07:43:23"],
+                  ["XXX門市-TM7","92","45","15 分鐘","2024-08-06 08:31:27"],
+                  ["XXX門市-TM7","67","32","12 分鐘","2024-08-07 08:37:37"],
+                  ["XXX門市-TM7","42","24","11 分鐘","2024-08-08 08:43:49"],
+                ].map(([d,r,s,t,dt]) => `
                 <tr>
-                  <td><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#3B82F6;flex-shrink:0"></div><strong>翔耀實業</strong></div></td>
-                  <td><span class="chip blue">專業版</span></td><td>62</td><td>NT$ 18,600</td><td><span class="chip green">正常</span></td><td>2026/12/31</td>
-                </tr>
-                <tr>
-                  <td><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#8B5CF6;flex-shrink:0"></div><strong>全家超商</strong></div></td>
-                  <td><span class="chip blue">專業版</span></td><td>48</td><td>NT$ 14,400</td><td><span class="chip green">正常</span></td><td>2026/09/30</td>
-                </tr>
-                <tr>
-                  <td><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#10B981;flex-shrink:0"></div><strong>麥味登連鎖</strong></div></td>
-                  <td><span class="chip blue">專業版</span></td><td>28</td><td>NT$ 8,400</td><td><span class="chip green">正常</span></td><td>2026/11/30</td>
-                </tr>
-                <tr>
-                  <td><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex-shrink:0"></div><strong>首都高速 JP</strong></div></td>
-                  <td><span class="chip gray">標準版</span></td><td>12</td><td>¥ 24,000</td><td><span class="chip green">正常</span></td><td>2027/01/31</td>
-                </tr>
-                <tr>
-                  <td><div style="display:flex;align-items:center;gap:8px"><div style="width:8px;height,8px;border-radius:50%;background:#EF4444;flex-shrink:0"></div><strong>麗嬰國際（試用）</strong></div></td>
-                  <td><span class="chip gray">試用版</span></td><td>4</td><td>—</td><td><span class="chip orange">試用</span></td><td>2026/05/15</td>
-                </tr>
+                  <td style="font-size:11px;color:#374151">${d}</td>
+                  <td style="font-weight:700;color:#6C63FF;text-align:center">${r}</td>
+                  <td style="text-align:center;color:#6B7280">${s}</td>
+                  <td style="color:#6B7280">${t}</td>
+                  <td style="font-size:10px;color:#9CA3AF">${dt}</td>
+                </tr>`).join("")}
               </tbody>
             </table>
           </div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="card">
-            <div class="card-header"><span class="card-title">東方美 — 租戶設定</span></div>
-            <div class="card-body">
-              <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#FFF7ED;border-radius:10px;margin-bottom:12px;border:1px solid #FED7AA">
-                <div style="width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#E8751A,#F59E0B);display:flex;align-items:center;justify-content:center;font-size:18px">🌅</div>
-                <div>
-                  <div style="font-size:13px;font-weight:700;color:#1E293B">東方美集團 eb-plus</div>
-                  <div style="font-size:10px;color:#64748B">tenant_id: eb-plus-001 · 企業版</div>
-                </div>
-              </div>
-              ${[["品牌主色","#E8751A（橙）"],["Logo URL","cdn.omnicore.io/eb-plus/"],["語言","繁體中文 + EN"],["付款方式","LINE Pay + 悠遊卡 + 信用卡"],["API Rate Limit","10,000 req/min"],["月報表","每月 1 日自動發送"]].map(([k,v]) => `
-              <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F1F5F9;font-size:12px">
-                <span style="color:#64748B">${k}</span>
-                <span style="color:#1E293B;font-weight:600">${v}</span>
-              </div>`).join("")}
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header"><span class="card-title">資源用量（今日）</span></div>
-            <div class="card-body">
-              ${[["API 呼叫量","1.4M / 10M","14%","#3B82F6"],["儲存空間","42GB / 500GB","8%","#10B981"],["CDN 流量","8.2GB / 100GB","8%","#8B5CF6"]].map(([l,d,p,c]) => `
-              <div class="progress-row">
-                <div class="progress-meta"><span class="progress-name">${l}</span><span class="progress-val">${d}</span></div>
-                <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${p};background:${c}"></div></div>
-              </div>`).join("")}
-            </div>
-          </div>
-        </div>
       </div>
-    `,
+    </div>
+  `,
   },
 ];
 
@@ -635,11 +791,11 @@ const browser = await puppeteer.launch({
   defaultViewport: { width: 1440, height: 900, deviceScaleFactor: 2 },
 });
 
-console.log("OmniCore Backend Screenshot Generator");
-console.log("=====================================");
+console.log("OmniCore Backend Screenshot Generator (PDF-matched)");
+console.log("====================================================");
 
 for (const screen of screens) {
-  const html = shell(screen.title, screen.html(), screen.key);
+  const html = shell(screen.content, screen.key);
   const page = await browser.newPage();
   await page.setContent(html, { waitUntil: "networkidle0" });
   const outPath = path.join(OUT_DIR, screen.filename);
@@ -649,4 +805,4 @@ for (const screen of screens) {
 }
 
 await browser.close();
-console.log("\n✅ 全部完成！請重啟 Next.js dev server 查看效果。");
+console.log("\n✅ 完成！7 張截圖已對齊 PDF 實際功能。");
