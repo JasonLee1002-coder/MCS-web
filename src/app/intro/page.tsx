@@ -1764,87 +1764,146 @@ export default function IntroPage() {
               <p className="text-xs font-bold uppercase tracking-widest text-[#E8751A] mb-1">
                 {lang === "ja" ? "実際の管理画面" : lang === "en" ? "Live Dashboard" : "後台實際畫面"}
               </p>
-              <h3 className="text-2xl font-black text-[#1B3A5C] mb-1">
+              <h3 className="text-2xl font-black text-[#1B3A5C] mb-6">
                 {lang === "ja" ? "OmniCore — 実際の操作UI" : lang === "en" ? "OmniCore in Action — Real UI" : "OmniCore 後台操作介面"}
               </h3>
-              <p className="text-sm text-gray-400 mb-6">
-                {lang === "ja" ? "クリックで拡大表示" : lang === "en" ? "Click any image to enlarge" : "點擊圖片可放大檢視"}
-              </p>
             </FadeIn>
 
-            {/* Main Display */}
+            {/* Main area: 80% screenshot + 20% info panel */}
             <FadeIn delay={0.05}>
-              <div
-                className="relative rounded-2xl overflow-hidden border border-gray-200 bg-[#0d1117] mb-4 cursor-zoom-in group"
-                style={{ aspectRatio: "16/9" }}
-                onClick={() => setLightboxImg(BACKEND_SCREENS[backendSlide].src)}
-              >
-                {/* Browser chrome bar */}
-                <div className="absolute top-0 left-0 right-0 z-10 bg-[#1e1e2e] px-4 py-2.5 flex items-center gap-2 border-b border-white/10">
-                  <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-                  <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                  <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-                  <div className="flex-1 mx-4 bg-white/8 rounded-md px-3 py-1 text-[10px] text-white/30 font-mono select-none">
-                    omnicore.mcstation.ai / dashboard
+              <div className="flex gap-4 mb-4 items-stretch">
+                {/* Screenshot (80%) */}
+                <div
+                  className="relative rounded-2xl overflow-hidden border border-gray-200 bg-[#0d1117] cursor-zoom-in group flex-shrink-0"
+                  style={{ width: "80%", aspectRatio: "16/9" }}
+                  onClick={() => setLightboxImg(BACKEND_SCREENS[backendSlide].src)}
+                >
+                  {/* Browser chrome bar */}
+                  <div className="absolute top-0 left-0 right-0 z-10 bg-[#1e1e2e] px-4 py-2 flex items-center gap-2 border-b border-white/10">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                    <div className="flex-1 mx-3 bg-white/8 rounded px-2 py-0.5 text-[9px] text-white/25 font-mono select-none">
+                      omnicore.mcstation.ai / dashboard
+                    </div>
+                    <div className="text-white/30 text-[9px] select-none">
+                      {backendSlide + 1} / {BACKEND_SCREENS.length}
+                    </div>
+                  </div>
+                  {/* Screenshot */}
+                  <Image
+                    src={BACKEND_SCREENS[backendSlide].src}
+                    alt={BACKEND_SCREENS[backendSlide].label[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].label.zh}
+                    fill
+                    className="object-cover object-top pt-9 transition-transform duration-500 group-hover:scale-[1.015]"
+                    unoptimized
+                  />
+                  {/* Zoom hint */}
+                  <div className="absolute top-10 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/60 rounded-lg px-2 py-1 text-white/80 text-[10px] flex items-center gap-1 select-none">
+                    <span>⊕</span>
+                    <span>{lang === "ja" ? "拡大" : lang === "en" ? "Zoom" : "放大"}</span>
                   </div>
                 </div>
-                {/* Screenshot */}
-                <Image
-                  src={BACKEND_SCREENS[backendSlide].src}
-                  alt={BACKEND_SCREENS[backendSlide].label[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].label.zh}
-                  fill
-                  className="object-cover object-top pt-10 transition-transform duration-500 group-hover:scale-[1.02]"
-                  unoptimized
-                />
-                {/* Caption overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-6 py-5">
-                  <p className="text-white font-bold text-base leading-tight mb-1">
-                    {BACKEND_SCREENS[backendSlide].label[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].label.zh}
-                  </p>
-                  <p className="text-white/65 text-xs leading-relaxed line-clamp-2">
-                    {BACKEND_SCREENS[backendSlide].desc[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].desc.zh}
-                  </p>
-                </div>
-                {/* Zoom hint */}
-                <div className="absolute top-12 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/60 rounded-lg px-2 py-1 text-white/80 text-xs flex items-center gap-1 select-none">
-                  <span>⊕</span>
-                  <span>{lang === "ja" ? "拡大" : lang === "en" ? "Zoom" : "放大"}</span>
+
+                {/* Info panel (20%) */}
+                <div className="flex-1 flex flex-col justify-between border border-gray-200 rounded-2xl bg-gradient-to-b from-[#1B3A5C] to-[#0F2440] p-4 min-w-0">
+                  {/* Header */}
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-[#E8751A] mb-2">
+                      {lang === "ja" ? "機能モジュール" : lang === "en" ? "Module" : "功能模組"}
+                    </div>
+                    {/* Module list as nav */}
+                    <div className="flex flex-col gap-1">
+                      {BACKEND_SCREENS.map((s, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setBackendSlide(i)}
+                          className={`text-left px-2.5 py-2 rounded-lg text-xs transition-all duration-150 leading-tight ${
+                            backendSlide === i
+                              ? "bg-[#E8751A] text-white font-bold shadow-lg"
+                              : "text-white/50 hover:text-white/80 hover:bg-white/8"
+                          }`}
+                        >
+                          <span className={`inline-block w-4 text-center mr-1 ${backendSlide === i ? "text-white" : "text-white/30"}`}>{i + 1}.</span>
+                          {s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Description */}
+                  <div className="mt-3 pt-3 border-t border-white/10">
+                    <p className="text-white/60 text-[10px] leading-relaxed">
+                      {BACKEND_SCREENS[backendSlide].desc[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].desc.zh}
+                    </p>
+                    <button
+                      onClick={() => setLightboxImg(BACKEND_SCREENS[backendSlide].src)}
+                      className="mt-2 text-[10px] text-[#E8751A] hover:text-orange-300 flex items-center gap-1 transition-colors"
+                    >
+                      <span>⊕</span>
+                      <span>{lang === "ja" ? "クリックで拡大" : lang === "en" ? "Click to enlarge" : "點擊放大"}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </FadeIn>
 
-            {/* Thumbnail Strip */}
+            {/* Thumbnail Strip — prominent clickable */}
             <FadeIn delay={0.1}>
-              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-gray-200">
-                {BACKEND_SCREENS.map((s, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setBackendSlide(i)}
-                    className={`flex-shrink-0 relative rounded-xl overflow-hidden border-2 transition-all duration-200 ${
-                      backendSlide === i
-                        ? "border-[#E8751A] shadow-lg shadow-orange-200"
-                        : "border-transparent opacity-60 hover:opacity-100 hover:border-gray-300"
-                    }`}
-                    style={{ width: 120, height: 72 }}
-                    aria-label={s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
-                  >
-                    <Image
-                      src={s.src}
-                      alt={s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
-                      fill
-                      className="object-cover object-top"
-                      unoptimized
-                    />
-                    {backendSlide === i && (
-                      <div className="absolute inset-0 bg-[#E8751A]/10 pointer-events-none" />
-                    )}
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 px-1.5 py-0.5">
-                      <p className="text-[9px] text-white/90 font-semibold truncate">
-                        {s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
-                      </p>
-                    </div>
-                  </button>
-                ))}
+              <div className="border border-gray-200 rounded-2xl bg-gray-50 p-3">
+                {/* Strip header */}
+                <div className="flex items-center justify-between mb-2.5 px-1">
+                  <p className="text-[11px] font-bold text-gray-500 flex items-center gap-1.5">
+                    <span className="text-base">👆</span>
+                    {lang === "ja" ? "クリックして切り替え" : lang === "en" ? "Click to switch screens" : "點擊縮圖切換畫面"}
+                  </p>
+                  <p className="text-[10px] text-gray-400">
+                    {backendSlide + 1} / {BACKEND_SCREENS.length}
+                  </p>
+                </div>
+                {/* Thumbnails */}
+                <div className="flex gap-2 overflow-x-auto pb-1">
+                  {BACKEND_SCREENS.map((s, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setBackendSlide(i)}
+                      className={`flex-shrink-0 relative rounded-xl overflow-hidden transition-all duration-200 group/thumb ${
+                        backendSlide === i
+                          ? "ring-2 ring-[#E8751A] ring-offset-2 shadow-lg scale-[1.04]"
+                          : "ring-1 ring-gray-200 hover:ring-[#E8751A]/50 hover:scale-[1.03] hover:shadow-md opacity-80 hover:opacity-100"
+                      }`}
+                      style={{ width: 140, height: 88 }}
+                      aria-label={s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
+                    >
+                      <Image
+                        src={s.src}
+                        alt={s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
+                        fill
+                        className="object-cover object-top"
+                        unoptimized
+                      />
+                      {/* Number badge */}
+                      <div className={`absolute top-1.5 left-1.5 w-5 h-5 rounded-full text-[9px] font-black flex items-center justify-center ${
+                        backendSlide === i ? "bg-[#E8751A] text-white" : "bg-black/50 text-white/80"
+                      }`}>{i + 1}</div>
+                      {/* Active glow */}
+                      {backendSlide === i && (
+                        <div className="absolute inset-0 bg-[#E8751A]/10 pointer-events-none" />
+                      )}
+                      {/* Hover click hint */}
+                      <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/20 transition-colors duration-150 flex items-center justify-center">
+                        <span className="opacity-0 group-hover/thumb:opacity-100 text-white text-lg transition-opacity duration-150 select-none drop-shadow">▶</span>
+                      </div>
+                      {/* Label */}
+                      <div className={`absolute bottom-0 left-0 right-0 px-1.5 py-1 ${
+                        backendSlide === i ? "bg-[#E8751A]" : "bg-black/60"
+                      }`}>
+                        <p className="text-[9px] text-white font-semibold truncate leading-tight">
+                          {s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </FadeIn>
           </div>
