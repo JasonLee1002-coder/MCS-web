@@ -109,6 +109,7 @@ image: "/images/products/frozen-microwave/th-21ms-catalog.png"
 
 ## 延伸閱讀
 
+- [銓幻元科技完整介紹](/blog/quanhuanyuan-tech-brand-introduction)
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
 - [餐飲業缺工問題的智慧解方](/blog/restaurant-labor-shortage-solution)

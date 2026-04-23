@@ -151,6 +151,7 @@ faq:
 
 ## 延伸閱讀
 
+- [銓幻元科技完整介紹](/blog/quanhuanyuan-tech-brand-introduction)
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
 - [智慧販賣機選點策略指南](/blog/vending-machine-location-strategy)

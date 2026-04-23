@@ -134,6 +134,7 @@ faq:
 ---
 
 延伸閱讀：
+- [銓幻元科技完整介紹](/blog/quanhuanyuan-tech-brand-introduction)
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [販賣機 ROI 投資報酬率分析](/blog/smart-vending-machine-roi-analysis)
 - [販賣機選點策略完整指南](/blog/vending-machine-location-strategy)
