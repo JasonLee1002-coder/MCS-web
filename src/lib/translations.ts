@@ -99,9 +99,9 @@ export const translations: Record<Lang, Translations> = {
     },
     hero: {
       badge: "新加坡 ACRA 認證企業 · UEN 202316403G",
-      subBadge: "🇹🇼 銓幻元科技 | 台灣研發製造 · 全球佈局",
-      headline1: "AI 智慧設備",
-      headline2: "商業系統整合",
+      subBadge: "🇹🇼 台灣研發製造 · 新加坡國際總部 · 全球佈局",
+      headline1: "銓幻元科技",
+      headline2: "AI 智慧設備 · 商業整合",
       tagline:
         "銓幻元科技（Meta Clearing Station）以新加坡為國際總部、台灣為研發製造中心，為亞太企業提供 GraBox AI 智取櫃、冷凍微波販賣機、自助服務設備到 POS/KDS 雲端系統的一站式數位化解決方案。",
       cta1: "探索解決方案",
