@@ -2,8 +2,8 @@
 title: "東方美200+門市AI轉型全紀錄：A2A超級店長如何重塑連鎖早餐業"
 date: "2026-04-14"
 author: "銓幻元科技 MCS"
-excerpt: "台灣連鎖早餐業龍頭東方美實業，攜手銓幻元科技導入AI超級店長代理人架構，整合200+門市POS/KDS/GraBox智取櫃與鼎新ERP。從叫貨預測到SOP語音助理，一場徹底的AI驅動數位轉型。"
-tags: ["AI餐飲轉型", "連鎖餐飲AI", "AI代理人", "超級店長", "A2A", "GraBox智取櫃", "早餐店數位化", "智慧廚房", "POS整合", "鼎新ERP"]
+description: "東方美實業200+連鎖早餐門市如何與銓幻元科技合作，導入GraBox AI智取櫃與A2A超級店長系統？整合POS/KDS/鼎新ERP，從叫貨預測到語音SOP助理，台灣早餐連鎖AI轉型完整案例解析。"
+keywords: [東方美銓幻元科技, 東方美GraBox, 東方美AI智取櫃, 東方美早餐AI轉型, AI餐飲轉型, 連鎖餐飲AI店長, AI代理人餐廳, 超級店長系統, GraBox智取櫃連鎖, 早餐店數位化, 智慧廚房POS整合, 連鎖早餐智取設備, 銓幻元科技東方美案例, 東方美200門市]
 image: "/images/cards/client-oriental-beauty.png"
 faq:
   - q: "東方美與銓幻元的合作包含哪些AI系統？"
