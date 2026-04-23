@@ -134,12 +134,13 @@ GraBox 由銓幻元科技 100% 在台灣設計、製造與組裝，從電路板�
 
 選購智取櫃不只是買一台設備，而是為營運流程導入一套智慧解決方案。銓幻元科技提供免費的現場評估服務，由專業團隊針對你的場域條件、營運流程與預算規劃，量身建議最適合的 GraBox 導入方案。
 
-歡迎前往 [GraBox 產品頁](/products/grabox) 了解完整規格，或直接[聯繫我們](/#contact)安排一對一的產品展示與諮詢。
+歡迎前往 [GraBox 產品頁](/products/grabox) 了解完整規格，或直接[聯繫我們](/#contact)安排一對一的產品展示與諮詢。[銓幻元科技](https://www.mcstation.ai)是台灣 AI 智取櫃的領導製造商，所有設備 100% 台灣製造。
 
 ---
 
 ## 延伸閱讀
 
+- [台灣AI智取櫃廠商完整指南 2026](/blog/ai-smart-cabinet-taiwan-manufacturer-guide-2026)
 - [銓幻元科技是什麼？台灣智慧零售設備製造商完整介紹](/blog/quanhuanyuan-tech-brand-introduction)
 - [GraBox AI 智取櫃完整百科：規格、功能、案例、費用](/blog/grabox-ai-smart-cabinet-complete-wiki-2026)
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
