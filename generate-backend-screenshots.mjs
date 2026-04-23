@@ -590,16 +590,57 @@ const screens = [
   `,
   },
 
-  // 6. 各式營運報表 (P.39)
+  // 6. 各式營運報表 (P.39) — daily 2000–4500 NT$ dummy data
   {
     key: "analytics",
     filename: "backend-maintenance.jpg",
-    content: `
+    content: (() => {
+      // 20 days of Aug 2024 daily revenue (NT$), range 2000–4500
+      const daily = [2841,3205,2654,3842,4121,4380,2987,3124,3456,2765,3021,4203,4456,3102,3287,2934,3456,3087,4312,4098];
+      const total = daily.reduce((a,b)=>a+b,0);           // 66,311
+      const avg   = Math.round(total/daily.length);        // 3,315
+      const txns  = daily.map(v=>Math.round(v/42));        // avg NT$42/txn
+      const totalTxns = txns.reduce((a,b)=>a+b,0);        // ~1,579
+
+      // chart dimensions
+      const W=480, H=110, YMIN=1500, YMAX=4800;
+      const toY = v => H - Math.round((v-YMIN)/(YMAX-YMIN)*H);
+      const barW = Math.floor((W-10)/daily.length)-2;
+      const xOf  = i => 5 + i*Math.floor((W-10)/daily.length);
+
+      // SVG bars + line
+      const bars = daily.map((v,i)=>`<rect x="${xOf(i)}" y="${toY(v)}" width="${barW}" height="${H-toY(v)}" fill="#6C63FF" rx="2" opacity="${0.55+((v-2000)/2500)*0.35}"/>`).join("");
+      const linePts = daily.map((v,i)=>`${xOf(i)+barW/2},${toY(v)}`).join(" ");
+      const xLabels = [0,4,9,14,19].map(i=>`<text x="${xOf(i)+barW/2}" y="${H+14}" font-size="7.5" fill="#9CA3AF" text-anchor="middle">8/${i+1}</text>`).join("");
+      const yGrids  = [2000,2500,3000,3500,4000,4500].map(v=>{
+        const y=toY(v);
+        return `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#F3F4F6" stroke-width="1"/>
+                <text x="-4" y="${y+3}" font-size="7.5" fill="#9CA3AF" text-anchor="end">${(v/1000).toFixed(1)}K</text>`;
+      }).join("");
+
+      // product data (top 8, cumulative)
+      const prods = [
+        ["日式溫泉風味湯",412,0.72],["花雕風味溫泉湯",387,0.68],["嶺春綜合滋味",341,0.59],
+        ["蒜香超良風味Q丸",298,0.52],["義式經典鹹豬腳",274,0.48],["K I R I N生茶",241,0.42],
+        ["石燒牛肉風味湯",219,0.38],["銀座豚骨白湯",198,0.35],
+      ];
+      const maxSale=412;
+      const prodBars=prods.map(([n,s],i)=>{
+        const bw=Math.round(s/maxSale*160);
+        return `<g>
+          <text x="0" y="${14+i*20}" font-size="9" fill="#374151">${n}</text>
+          <rect x="145" y="${3+i*20}" width="${bw}" height="11" fill="#6C63FF" rx="2" opacity="${0.5+s/maxSale*0.45}"/>
+          <text x="${148+bw}" y="${14+i*20}" font-size="9" fill="#6C63FF" font-weight="600">${s}</text>
+          <text x="320" y="${14+i*20}" font-size="9" fill="#10B981">${(prods[i][2]*100).toFixed(0)}%</text>
+        </g>`;
+      }).join("");
+
+      return `
     <div class="g3">
       <div>
         <div class="card" style="margin-bottom:12px">
           <div class="ch">
-            <div class="ct">商品排行</div>
+            <div class="ct">營業分析 — 2024/08/01 ~ 2024/08/20</div>
             <div style="display:flex;gap:6px;align-items:center">
               <div class="tb-tag" style="background:#EEF2FF;color:#4338CA">營業分析</div>
               <div class="tb-tag" style="background:#F5F3FF;color:#6D28D9">商品排行</div>
@@ -607,53 +648,46 @@ const screens = [
               <button class="fbtn fbtn-sec" style="font-size:10px;padding:3px 8px">匯出</button>
             </div>
           </div>
-          <div class="cb" style="padding:10px 14px">
-            <div style="display:flex;gap:12px;font-size:11px;margin-bottom:8px">
-              <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:3px;background:#6C63FF;display:inline-block;border-radius:2px"></span>銷售額</span>
-              <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:3px;background:#F59E0B;display:inline-block;border-radius:2px"></span>銷售量</span>
-              <span style="display:flex;align-items:center;gap:4px"><span style="width:14px;height:3px;background:#10B981;display:inline-block;border-radius:2px;border-top:2px dashed #10B981;height:0"></span>點擊率</span>
+          <div class="cb" style="padding:10px 18px">
+            <!-- KPI row -->
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+              ${[
+                ["累計業績",`NT$${total.toLocaleString()}`,"▲ 18.2% vs 上月","#10B981"],
+                ["累計筆數",totalTxns.toLocaleString(),"▲ 11.7%","#10B981"],
+                ["日均業績",`NT$${avg.toLocaleString()}`,`▲ NT$${(avg-2841).toLocaleString()} vs 上月`,"#10B981"],
+                ["客單價","NT$42","▲ NT$4","#10B981"],
+              ].map(([l,v,c,cc])=>`
+              <div style="background:#F9FAFB;border-radius:8px;padding:9px 10px;border:1px solid #E8ECF0">
+                <div style="font-size:9px;color:#9CA3AF;margin-bottom:4px">${l}</div>
+                <div style="font-size:14px;font-weight:800;color:#1A1D23;margin-bottom:2px">${v}</div>
+                <div style="font-size:9px;font-weight:600;color:${cc}">${c}</div>
+              </div>`).join("")}
             </div>
-            <svg viewBox="0 0 520 160" style="width:100%;height:130px">
-              <!-- Grid -->
-              ${[0,40,80,120,160].map(y=>`<line x1="40" y1="${y}" x2="520" y2="${y}" stroke="#F3F4F6" stroke-width="1"/>`).join("")}
-              <!-- Y labels -->
-              <text x="35" y="5" font-size="8" fill="#9CA3AF" text-anchor="end">1,600</text>
-              <text x="35" y="45" font-size="8" fill="#9CA3AF" text-anchor="end">1,200</text>
-              <text x="35" y="85" font-size="8" fill="#9CA3AF" text-anchor="end">800</text>
-              <text x="35" y="125" font-size="8" fill="#9CA3AF" text-anchor="end">400</text>
-              <!-- Bars for 銷售量 -->
-              ${[52,38,71,44,60,38,28,35,42,55,48,62,35,42,50,48,55,62,45,38].map((v,i)=>`<rect x="${42+i*24}" y="${160-v*1.6}" width="10" height="${v*1.6}" fill="#EEF2FF" rx="2"/>`).join("")}
-              <!-- Line for 銷售額 -->
-              <polyline points="${[38,62,55,78,65,52,42,58,48,72,60,55,42,65,70,58,68,80,52,45].map((v,i)=>`${47+i*24},${160-v*1.8}`).join(" ")}" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linejoin="round"/>
-              <!-- Dashed line for 點擊率 -->
-              <polyline points="${[28,32,35,28,40,30,25,32,28,35,30,38,25,32,35,28,30,32,28,25].map((v,i)=>`${47+i*24},${155-v*0.8}`).join(" ")}" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="3,2" stroke-linejoin="round"/>
-              <!-- X labels -->
-              ${["1月","2月","3月","4月","5月","6月","7月","8月"].map((l,i)=>`<text x="${47+i*60}" y="175" font-size="8" fill="#9CA3AF" text-anchor="middle">${l}</text>`).join("")}
+            <!-- Bar chart + line overlay -->
+            <div style="display:flex;gap:12px;font-size:10px;margin-bottom:6px">
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:10px;background:#6C63FF;display:inline-block;border-radius:2px;opacity:.75"></span>日銷售額（NT$）</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#F59E0B;display:inline-block"></span>趨勢線</span>
+            </div>
+            <svg viewBox="-28 0 ${W+32} ${H+24}" style="width:100%;height:${H+28}px;overflow:visible">
+              ${yGrids}
+              ${bars}
+              <polyline points="${linePts}" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linejoin="round"/>
+              <!-- Highlight max bar -->
+              <rect x="${xOf(12)}" y="${toY(4456)-2}" width="${barW+4}" height="${H-toY(4456)+2}" fill="none" stroke="#E8751A" stroke-width="1.5" rx="2"/>
+              <text x="${xOf(12)+barW/2}" y="${toY(4456)-5}" font-size="8" fill="#E8751A" text-anchor="middle" font-weight="700">最高 4,456</text>
+              ${xLabels}
             </svg>
           </div>
         </div>
         <div class="card">
-          <div class="ch"><div class="ct">營業分析</div><button class="fbtn fbtn-sec" style="font-size:10px;padding:3px 8px">匯出</button></div>
+          <div class="ch"><div class="ct">商品銷售排行（累計）</div><span style="font-size:10px;color:#9CA3AF">2024/08 共 ${totalTxns} 筆</span></div>
           <div class="cb" style="padding:10px 14px">
-            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px">
-              ${[
-                ["累計業績","$1,284,201","67.03%"],
-                ["累計筆數","20,841","67.35%"],
-                ["平內日業績","$42,807","67.00%"],
-                ["平均日來客","694","65.63%"],
-              ].map(([l,v,pct]) => `
-              <div style="background:#F9FAFB;border-radius:8px;padding:8px;border:1px solid #E8ECF0">
-                <div style="font-size:10px;color:#9CA3AF;margin-bottom:3px">${l}</div>
-                <div style="font-size:13px;font-weight:800;color:#1A1D23">${v}</div>
-                <div style="font-size:10px;color:#10B981;font-weight:600">▲ ${pct}</div>
-              </div>`).join("")}
+            <div style="display:flex;gap:16px;font-size:9px;color:#9CA3AF;margin-bottom:6px;padding-left:145px">
+              <span>← 銷售量（件）</span>
+              <span style="margin-left:130px">點擊率</span>
             </div>
-            <svg viewBox="0 0 520 120" style="width:100%;height:100px">
-              ${[0,40,80,120].map(y=>`<line x1="0" y1="${y}" x2="520" y2="${y}" stroke="#F3F4F6" stroke-width="1"/>`).join("")}
-              <!-- Bars -->
-              ${[28,42,35,52,38,60,45,72,55,48,65,58,50,62,45,70,55,68,72,65].map((v,i)=>`<rect x="${i*26}" y="${120-v*1.4}" width="18" height="${v*1.4}" fill="#6C63FF" rx="2" opacity="${0.5+v/200}"/>`).join("")}
-              <!-- Trend line -->
-              <polyline points="${[28,42,35,52,38,60,45,72,55,48,65,58,50,62,45,70,55,68,72,65].map((v,i)=>`${9+i*26},${120-v*1.4}`).join(" ")}" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-linejoin="round"/>
+            <svg viewBox="0 0 340 ${prods.length*20+4}" style="width:100%;height:${prods.length*20+8}px">
+              ${prodBars}
             </svg>
           </div>
         </div>
@@ -675,14 +709,14 @@ const screens = [
               ["商品排行",""],
             ].map(([n,a]) => `
             <div style="display:flex;align-items:center;gap:8px;padding:8px 14px;cursor:pointer;background:${a?"#EEF2FF":"transparent"};border-left:2px solid ${a?"#6C63FF":"transparent"}">
-              <svg viewBox="0 0 20 20" fill="${a?"#6C63FF":"#9CA3AF"}" style="width:14px;height:14px;flex-shrink:0"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
-              <span style="font-size:12px;color:${a?"#4338CA":"#374151"};font-weight:${a?"600":"400"}">${n}</span>
+              <svg viewBox="0 0 20 20" fill="${a?"#6C63FF":"#9CA3AF"}" style="width:13px;height:13px;flex-shrink:0"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+              <span style="font-size:11px;color:${a?"#4338CA":"#374151"};font-weight:${a?"600":"400"}">${n}</span>
             </div>`).join("")}
           </div>
         </div>
       </div>
     </div>
-  `,
+  `})(),
   },
 
   // 7. 運補相關表單 (P.40)
