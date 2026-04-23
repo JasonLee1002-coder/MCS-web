@@ -246,7 +246,7 @@ const T = {
       badge: "970+ 門市・台灣指標早午餐連鎖",
       roleChip: "MCS 角色：軟體整合商 ＋ 平台提供商",
       sub: "MCS 不是東方美的硬體供應商——我們是協助 970+ 連鎖早午餐門市完成全通路「自助化」的技術夥伴。從 GraBox 取餐、LINE 點餐到 192 台配送車調度，全部透過 OmniCore 統一串接。",
-      roleNote: "✦ 自助化 ≠ 無人化。MCS 協助店員從重複人工動作中解放，讓他們專注服務品質。",
+      roleNote: "✦ 自助化 ≠ 無人化。MCS 協助讓我們的合作夥伴從重複人工動作中解放，專注於真正有價值的服務品質。",
       stats: [
         { num: "970+", label: "連鎖門市" },
         { num: "50台", label: "2026 H2 首批 GraBox 出貨" },
@@ -448,7 +448,7 @@ const T = {
       badge: "970+ Stores · Taiwan's Leading Breakfast Chain",
       roleChip: "MCS Role: Software Integrator + Platform Provider",
       sub: "MCS is not EB+'s hardware vendor — we are the technology partner enabling 970+ breakfast chain locations to complete \"Assisted Automation\" across all channels. From GraBox pickup to LINE ordering to 192-vehicle fleet dispatch, all unified through OmniCore.",
-      roleNote: "✦ Assisted Automation ≠ Unmanned. MCS frees staff from repetitive manual tasks so they can focus on service quality.",
+      roleNote: "✦ Assisted Automation ≠ Unmanned. MCS empowers our partners to step away from repetitive manual tasks and focus on delivering genuine service quality.",
       stats: [
         { num: "970+", label: "Chain Locations" },
         { num: "50 Units", label: "First GraBox Batch (H2 2026)" },
@@ -650,7 +650,7 @@ const T = {
       badge: "970店舗以上・台湾トップ朝食チェーン",
       roleChip: "MCSの役割：ソフトウェアインテグレーター＋プラットフォーム提供",
       sub: "MCSはEB+のハードウェア販売会社ではありません。970店舗以上の朝食チェーンが全チャネルで「自助化」を実現するための技術パートナーです。GraBoxでの受取・LINEでの注文・192台配送車管理まで、OmniCoreで一元管理します。",
-      roleNote: "✦ 自助化 ≠ 無人化。スタッフを単純反復作業から解放し、サービス品質に集中させる取り組みです。",
+      roleNote: "✦ 自助化 ≠ 無人化。MCSは私たちのパートナーが単純反復作業から解放され、真のサービス品質に集中できるよう支援します。",
       stats: [
         { num: "970店舗以上", label: "チェーン店舗数" },
         { num: "50台", label: "2026年下半期 初回GraBox出荷" },
