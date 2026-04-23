@@ -406,3 +406,54 @@
 - 取得 GSC 實際排名數據填入追蹤表
 - 完成 Bing Webmaster 驗證
 - 評估反向連結策略
+
+---
+
+## 2026-04-23 — 10輪連續SEO改善計畫（完整執行）
+
+### 執行背景
+用戶指令：搜尋「銓幻元」→分析前5頁→制定改進方案→執行→重複，共10輪。
+
+### 輪次摘要
+
+**R1（前次已完成）** — 首頁 H1 加入「銓幻元科技」品牌名
+
+**R2（前次已完成）** — 新增「GraBox製造商銓幻元科技」文章 + 修復5篇破圖
+
+**R3（前次已完成）** — 新增「餐飲智取櫃 vs 包裹智取櫃」文章解決品類混淆
+
+**R4（前次已完成）** — 新增「台灣智慧販賣機廠商推薦2026」文章
+
+**R5** — 4篇既有文章補充銓幻元科技品牌交叉連結（24h-unmanned、frozen-food-brand、restaurant-chain、vending-machine-best-selling）
+
+**R6** — 新增「台灣AI智取櫃廠商完整指南2026」文章（鎖定「AI智取櫃台灣廠商」空白關鍵字），排名文章補充 mcstation.ai 外連強化品牌Entity
+
+**R7** — 新增「24小時無人熱食販賣機」文章（鎖定「工廠宿舍/醫院/高速公路服務區 24H熱食需求」場域關鍵字）
+
+**R8** — 修復東方美文章 SEO Bug（`tags:` → `keywords:`，補 `description:` 欄位）；blog系統只讀 `keywords`，導致該文章原本無SEO元資料
+
+**R9** — 新增「台灣冷凍食品無人販賣機廠商比較2026」文章（直接對標HGCX競爭者，強調日本首都高速公路外銷實績差異化）
+
+**R10** — 新增「連鎖餐飲導入外帶自取智取櫃完整指南2026」文章（鎖定「連鎖餐飲 外帶 智取」關鍵字空白，附麥味登/東方美案例）
+
+### 關鍵發現
+1. **首頁未對品牌名排名**：搜尋「銓幻元科技」只出現Blog文章，首頁本身未排名
+2. **舊PHP URL仍在Google索引**：index.php/zh、index.php/en 仍出現在搜尋結果（301轉址已設定，等待自然去索引）
+3. **東方美文章有嚴重SEO Bug**：使用 `tags:` 而非 `keywords:`，導致SEO meta完全空白
+4. **grabox.net中國網站干擾**：搜尋「GraBox」時出現中國青島GOGOGO串流內容（已有既有文章澄清，但需持續監控）
+5. **AI智取櫃台灣廠商**、**24小時無人販賣機台灣**、**連鎖餐飲智取**等核心關鍵字空白已填補
+
+### 本次新增/修改
+- 新文章 ×5：
+  - ai-smart-cabinet-taiwan-manufacturer-guide-2026.md
+  - 24h-unmanned-hot-food-vending-taiwan.md
+  - frozen-food-vending-machine-taiwan-comparison-mcs-vs-competitors.md
+  - chain-restaurant-self-pickup-smart-cabinet-guide.md
+  - （前次 R3/R4 已建立 food-pickup-cabinet-vs-parcel-locker-difference.md + taiwan-vending-machine-manufacturer-mcs-grabox.md）
+- 修復文章 ×1：oriental-beauty-ai-breakfast-chain-transformation.md（tags→keywords+description）
+- 品牌內連強化 ×3篇既有文章（smart-pickup-cabinet-brand-comparison + smart-vending-machine-roi-analysis + 4篇24h文章）
+
+### 現況（2026-04-23）
+- 部落格文章總數：91篇
+- IndexNow：已提交所有頁面（×2次提交，涵蓋本次全部新文章）
+- GitHub已推送：所有變更已上線（Vercel自動部署）
