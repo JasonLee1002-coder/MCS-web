@@ -1338,6 +1338,49 @@ const MODULE_DETAILS = [
   },
 ];
 
+// ─── OmniCore Backend Screens ─────────────────────────────────────────────────
+const BACKEND_SCREENS: {
+  src: string;
+  label: { zh: string; en: string; ja: string };
+  desc: { zh: string; en: string; ja: string };
+}[] = [
+  {
+    src: "/images/intro/backend-device-monitor.jpg",
+    label: { zh: "設備即時監控", en: "Device Monitoring", ja: "デバイス監視" },
+    desc: { zh: "所有機台的網路狀態、溫度、格子狀態、庫存水位，一畫面全掌握", en: "Network, temperature, slot status, inventory level — all devices at a glance", ja: "ネット状態・温度・スロット・在庫水位 — 全機器を一画面で管理" },
+  },
+  {
+    src: "/images/intro/backend-sales-report.jpg",
+    label: { zh: "銷售報表分析", en: "Sales Analytics", ja: "売上分析" },
+    desc: { zh: "日／週／月報表，依門市、品項、時段拆分銷售趨勢與排行", en: "Daily / weekly / monthly reports segmented by store, item, and time slot", ja: "店舗・商品・時間帯別の日次/週次/月次レポートと売上ランキング" },
+  },
+  {
+    src: "/images/intro/backend-inventory.jpg",
+    label: { zh: "庫存 / 補貨管理", en: "Inventory & Restocking", ja: "在庫・補充管理" },
+    desc: { zh: "低庫存自動警報、AI 補貨建議清單，掃碼確認補貨完成，閉環管理", en: "Auto low-stock alerts, AI restock pick lists, barcode-confirm completion", ja: "在庫低下アラート・AI補充リスト・バーコード確認でクローズドループ管理" },
+  },
+  {
+    src: "/images/intro/backend-member.jpg",
+    label: { zh: "會員 & 點數", en: "Members & Points", ja: "会員・ポイント" },
+    desc: { zh: "消費紀錄、點數累積兌換、LINE 推播行銷，OMO 線上線下完整串接", en: "Purchase history, points, LINE push marketing, full OMO integration", ja: "購入履歴・ポイント・LINE通知マーケティング、OMO完全統合" },
+  },
+  {
+    src: "/images/intro/backend-promo.jpg",
+    label: { zh: "促銷活動模組", en: "Promotions", ja: "プロモーション" },
+    desc: { zh: "折扣碼、組合促銷、限時活動，店長自行 3 分鐘上架，無需工程師", en: "Discount codes, bundles, timed promos — store owner sets up in 3 min, no engineers", ja: "割引コード・セット・期間限定 — 店長が3分で設定、エンジニア不要" },
+  },
+  {
+    src: "/images/intro/backend-maintenance.jpg",
+    label: { zh: "報修 & 維保工單", en: "Maintenance Tickets", ja: "メンテナンス管理" },
+    desc: { zh: "L0–L4 五級維保架構、自動派工、進度追蹤、SLA 時效紅燈警示", en: "5-tier maintenance (L0–L4), auto dispatch, progress tracking, SLA red alerts", ja: "L0〜L4五段階メンテナンス・自動派遣・進捗追跡・SLAアラート" },
+  },
+  {
+    src: "/images/intro/backend-tenant.jpg",
+    label: { zh: "多租戶管理", en: "Multi-Tenant Admin", ja: "マルチテナント" },
+    desc: { zh: "每租戶獨立後台 + 品牌配色，底層 DB 層 tenant_id 隔離，數據零外洩", en: "Per-tenant isolated dashboard + brand colors, DB-level tenant_id isolation", ja: "テナント毎に独立バックエンド＋ブランドカラー、DB層でのtenant_id隔離" },
+  },
+];
+
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function IntroPage() {
   const { lang } = useLanguage();
@@ -1346,6 +1389,7 @@ export default function IntroPage() {
   const [openModule, setOpenModule] = useState<number | null>(null);
   const [openClient, setOpenClient] = useState<number | null>(null);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const [backendSlide, setBackendSlide] = useState(0);
 
   return (
     <LightboxCtx.Provider value={setLightboxImg}>
@@ -1713,6 +1757,97 @@ export default function IntroPage() {
             </div>
           </div>
         </div>
+
+          {/* ── Backend Screenshot Showcase ── */}
+          <div className="mt-14">
+            <FadeIn>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#E8751A] mb-1">
+                {lang === "ja" ? "実際の管理画面" : lang === "en" ? "Live Dashboard" : "後台實際畫面"}
+              </p>
+              <h3 className="text-2xl font-black text-[#1B3A5C] mb-1">
+                {lang === "ja" ? "OmniCore — 実際の操作UI" : lang === "en" ? "OmniCore in Action — Real UI" : "OmniCore 後台操作介面"}
+              </h3>
+              <p className="text-sm text-gray-400 mb-6">
+                {lang === "ja" ? "クリックで拡大表示" : lang === "en" ? "Click any image to enlarge" : "點擊圖片可放大檢視"}
+              </p>
+            </FadeIn>
+
+            {/* Main Display */}
+            <FadeIn delay={0.05}>
+              <div
+                className="relative rounded-2xl overflow-hidden border border-gray-200 bg-[#0d1117] mb-4 cursor-zoom-in group"
+                style={{ aspectRatio: "16/9" }}
+                onClick={() => setLightboxImg(BACKEND_SCREENS[backendSlide].src)}
+              >
+                {/* Browser chrome bar */}
+                <div className="absolute top-0 left-0 right-0 z-10 bg-[#1e1e2e] px-4 py-2.5 flex items-center gap-2 border-b border-white/10">
+                  <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                  <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                  <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+                  <div className="flex-1 mx-4 bg-white/8 rounded-md px-3 py-1 text-[10px] text-white/30 font-mono select-none">
+                    omnicore.mcstation.ai / dashboard
+                  </div>
+                </div>
+                {/* Screenshot */}
+                <Image
+                  src={BACKEND_SCREENS[backendSlide].src}
+                  alt={BACKEND_SCREENS[backendSlide].label[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].label.zh}
+                  fill
+                  className="object-cover object-top pt-10 transition-transform duration-500 group-hover:scale-[1.02]"
+                  unoptimized
+                />
+                {/* Caption overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-6 py-5">
+                  <p className="text-white font-bold text-base leading-tight mb-1">
+                    {BACKEND_SCREENS[backendSlide].label[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].label.zh}
+                  </p>
+                  <p className="text-white/65 text-xs leading-relaxed line-clamp-2">
+                    {BACKEND_SCREENS[backendSlide].desc[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].desc.zh}
+                  </p>
+                </div>
+                {/* Zoom hint */}
+                <div className="absolute top-12 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/60 rounded-lg px-2 py-1 text-white/80 text-xs flex items-center gap-1 select-none">
+                  <span>⊕</span>
+                  <span>{lang === "ja" ? "拡大" : lang === "en" ? "Zoom" : "放大"}</span>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Thumbnail Strip */}
+            <FadeIn delay={0.1}>
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-gray-200">
+                {BACKEND_SCREENS.map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setBackendSlide(i)}
+                    className={`flex-shrink-0 relative rounded-xl overflow-hidden border-2 transition-all duration-200 ${
+                      backendSlide === i
+                        ? "border-[#E8751A] shadow-lg shadow-orange-200"
+                        : "border-transparent opacity-60 hover:opacity-100 hover:border-gray-300"
+                    }`}
+                    style={{ width: 120, height: 72 }}
+                    aria-label={s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
+                  >
+                    <Image
+                      src={s.src}
+                      alt={s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
+                      fill
+                      className="object-cover object-top"
+                      unoptimized
+                    />
+                    {backendSlide === i && (
+                      <div className="absolute inset-0 bg-[#E8751A]/10 pointer-events-none" />
+                    )}
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 px-1.5 py-0.5">
+                      <p className="text-[9px] text-white/90 font-semibold truncate">
+                        {s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
       </section>
 
       {/* ── EB+ 東方美 × OmniCore ── */}
@@ -2313,11 +2448,7 @@ export default function IntroPage() {
                     <ZoomImg src="/images/products/grabox/dm-features.png" alt="GraBox 核心特色 DM" width={600} height={900} className="w-full h-auto" />
                   </div>
                 </div>
-                {/* Row 4: Use cases DM (full width) — shows MWD + 東方美 + 全家 + 佳德 */}
-                <div className="rounded-xl overflow-hidden bg-gray-50 border border-gray-100 mb-3">
-                  <ZoomImg src="/images/products/grabox/dm-scenarios.png" alt="GraBox 應用場景：麥味登・東方美・全家・佳德" width={1200} height={800} className="w-full h-auto" />
-                </div>
-                {/* Row 5: lockers close-up + prototype demo */}
+                {/* Row 4: lockers close-up + prototype demo */}
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <div className="rounded-xl overflow-hidden aspect-video relative bg-gray-100">
                     <ZoomImg src="/images/intro/mwd-lockers-lit.jpg" alt="GraBox 五色可控燈光格子" fill className="object-cover" />
