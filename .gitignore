@@ -42,3 +42,7 @@ next-env.d.ts
 
 .vercel
 .env*.local
+
+# large media files — serve from CDN, not git
+/public/videos/
+

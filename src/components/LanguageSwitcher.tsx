@@ -6,12 +6,70 @@ import { useLanguage, type Lang } from "@/contexts/LanguageContext";
 
 const LANGS: { code: Lang; flag: string; label: string; short: string }[] = [
   { code: "zh", flag: "🇹🇼", label: "繁體中文", short: "中文" },
-  { code: "en", flag: "🇸🇬", label: "English",  short: "EN"   },
+  { code: "en", flag: "🇺🇸", label: "English",  short: "EN"   },
   { code: "id", flag: "🇮🇩", label: "Bahasa Indonesia", short: "ID" },
   { code: "ja", flag: "🇯🇵", label: "日本語",   short: "JP"   },
 ];
 
-export default function LanguageSwitcher({ dark = false }: { dark?: boolean }) {
+const INTRO_LANGS = LANGS.filter((l) => ["zh", "en", "ja"].includes(l.code));
+
+/** Segmented 3D pill — shown on /intro page */
+function SegmentedSwitcher({ dark = false }: { dark?: boolean }) {
+  const { lang, setLang } = useLanguage();
+
+  return (
+    <div
+      className="flex items-center rounded-2xl p-1 gap-0.5"
+      style={{
+        background: dark
+          ? "rgba(255,255,255,0.08)"
+          : "rgba(30,30,60,0.07)",
+        boxShadow: dark
+          ? "inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.3)"
+          : "inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.12)",
+        backdropFilter: "blur(12px)",
+      }}
+    >
+      {INTRO_LANGS.map((l) => {
+        const isActive = lang === l.code;
+        return (
+          <motion.button
+            key={l.code}
+            onClick={() => setLang(l.code)}
+            whileHover={{ y: isActive ? 0 : -1 }}
+            whileTap={{ scale: 0.96 }}
+            className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-bold select-none transition-colors duration-150 outline-none"
+            style={{
+              background: isActive
+                ? "linear-gradient(135deg, #E8751A 0%, #F59E0B 100%)"
+                : "transparent",
+              color: isActive ? "#fff" : dark ? "rgba(255,255,255,0.65)" : "#555",
+              boxShadow: isActive
+                ? "0 2px 8px rgba(232,117,26,0.45), 0 1px 0 rgba(255,255,255,0.2) inset, 0 -2px 0 rgba(0,0,0,0.15) inset"
+                : "none",
+              textShadow: isActive ? "0 1px 2px rgba(0,0,0,0.2)" : "none",
+            }}
+          >
+            <span className="text-base leading-none">{l.flag}</span>
+            <span className="tracking-wide">{l.short}</span>
+            {isActive && (
+              <motion.div
+                layoutId="lang-active-glow"
+                className="absolute inset-0 rounded-xl pointer-events-none"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%)",
+                }}
+              />
+            )}
+          </motion.button>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Compact dropdown — used everywhere else */
+function DropdownSwitcher({ dark = false }: { dark?: boolean }) {
   const { lang, setLang } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -83,4 +141,15 @@ export default function LanguageSwitcher({ dark = false }: { dark?: boolean }) {
       </AnimatePresence>
     </div>
   );
+}
+
+export default function LanguageSwitcher({
+  dark = false,
+  segmented = false,
+}: {
+  dark?: boolean;
+  segmented?: boolean;
+}) {
+  if (segmented) return <SegmentedSwitcher dark={dark} />;
+  return <DropdownSwitcher dark={dark} />;
 }
