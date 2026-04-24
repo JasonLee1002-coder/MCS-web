@@ -577,9 +577,9 @@ const T = {
       ],
     },
     stack: {
-      label: "中核競争力",
-      title: "5層フルスタック統合能力",
-      sub: "MCSはデバイスの販売代理店ではありません。最下層のハードウェアから最上層のAI意思決定まで、すべてを自社で設計・統合する技術会社です。",
+      label: "コアコンピタンス",
+      title: "5層フルスタック統合力",
+      sub: "MCSはデバイスの販売代理店ではありません。最下層のハードウェアから最上層のAI意思決定まで、すべてを自社で設計・統合・運用する技術企業です。",
       layers: [
         {
           num: "L1", name: "ハードウェア設備", en: "Hardware Devices",
@@ -603,7 +603,7 @@ const T = {
           num: "L4", name: "クラウド管理プラットフォーム", en: "Cloud Management Platform",
           color: "bg-[#5B2D8E] text-white",
           chipColor: "bg-purple-100 text-purple-900",
-          items: ["デバイスリアルタイム監視", "取引・売上レポート分析", "在庫・補充管理", "食品安全温度監査記録", "LINE Notify 能動通報", "マルチテナントアーキテクチャ", "AI 補充予測モジュール", "SLA メンテナンス管理"],
+          items: ["デバイスリアルタイム監視", "取引・売上レポート分析", "在庫・補充管理", "食品安全温度監査記録", "LINE Notify 自動通知", "マルチテナントアーキテクチャ", "AI 補充予測モジュール", "SLA メンテナンス管理"],
         },
         {
           num: "L5", name: "外部システム連携", en: "External System Integration",
@@ -620,7 +620,7 @@ const T = {
       features: [
         { icon: "📡", name: "リアルタイム機器監視", desc: "ネットワーク状態・温度・格子状態・在庫水準をリアルタイムで把握。" },
         { icon: "📊", name: "取引・売上レポート", desc: "機器別・場所別・商品別・日付別で多次元分析。売上トレンドを瞬時に把握。" },
-        { icon: "🔔", name: "能動的異常通報", desc: "LINE Notify 連携：温度異常・低在庫・取引失敗をリアルタイム通知。" },
+        { icon: "🔔", name: "自動異常アラート", desc: "LINE Notify 連携：温度異常・在庫切れ・取引失敗を即時プッシュ通知。" },
         { icon: "🛡️", name: "食品安全温度監査", desc: "上下限設定、超過時自動ロック、完全な監査証跡を保持。" },
         { icon: "🚚", name: "補充・在庫管理", desc: "ピッキングリスト・補充票・棚卸表をワンクリックで出力。AI 予測モジュール内蔵。" },
         { icon: "🎯", name: "プロモーションエンジン", desc: "割引コード・セット割引・期間限定キャンペーンをエンジニア不要で設定可能。" },
@@ -642,18 +642,18 @@ const T = {
           items: ["Ocard", "SHOPLINE", "91APP", "Pointsoft"],
         },
         {
-          title: "場域 & 物流",
+          title: "施設 & 物流",
           items: ["Lalamove", "企業社員カードシステム", "TSMC / Garmin / Novatek"],
         },
       ],
     },
     ebplus: {
       label: "台湾主要顧客",
-      title: "EB+グループ × OmniCore 全チャネル自助化",
+      title: "EB+グループ × OmniCore 全チャネル省人化",
       badge: "970店舗以上・台湾トップ朝食チェーン",
       roleChip: "MCSの役割：ソフトウェアインテグレーター＋プラットフォーム提供",
-      sub: "MCSはEB+のハードウェア販売会社ではありません。970店舗以上の朝食チェーンが全チャネルで「自助化」を実現するための技術パートナーです。GraBoxでの受取・LINEでの注文・192台配送車管理まで、OmniCoreで一元管理します。",
-      roleNote: "✦ 自助化 ≠ 無人化。MCSは私たちのパートナーが単純反復作業から解放され、真のサービス品質に集中できるよう支援します。",
+      sub: "MCSはEB+のハードウェア販売会社ではありません。970店舗以上の朝食チェーンが全チャネルで「省人化」を実現するための技術パートナーです。GraBoxでの受取・LINEでの注文・192台配送車管理まで、OmniCoreで一元管理します。",
+      roleNote: "✦ 省人化 ≠ 無人化。MCSはパートナーが単純な反復作業から解放され、真のサービス品質に集中できる環境を支援します。",
       stats: [
         { num: "970店舗以上", label: "チェーン店舗数" },
         { num: "50台", label: "2026年下半期 初回GraBox出荷" },
@@ -668,12 +668,12 @@ const T = {
       ],
     },
     xiangyao: {
-      label: "閉鎖場域顧客",
-      title: "翔耀実業 × 閉鎖場域スマート自販機",
-      badge: "軍事基地・外国人技能実習生寮・工場",
-      sub: "翔耀実業（親会社の嵩達光電は上場申請中）は閉鎖場域への参入能力で他の追随を許しません。MCSが機器とOmniCoreプラットフォームを提供し、翔耀が場域を提供。収益は比例配分します。",
+      label: "特定施設向け顧客",
+      title: "翔耀実業 × 特定施設向けスマート自販機",
+      badge: "軍施設・外国人労働者寮・工場",
+      sub: "翔耀実業（親会社の嵩達光電は上場申請中）は特定施設への参入能力において他の追随を許しません。MCSが機器とOmniCoreプラットフォームを提供し、翔耀が施設を提供する協業モデルです。収益は成果比例で配分します。",
       stats: [
-        { num: "閉鎖場域", label: "軍 / 寮 / 工場 / 診療所" },
+        { num: "特定施設", label: "軍 / 寮 / 工場 / 診療所" },
         { num: "悠遊卡", label: "スマホ不要・外国人労働者向け決済" },
         { num: "24時間", label: "無人サービス稼働" },
       ],
@@ -687,7 +687,7 @@ const T = {
     weche: {
       label: "製造戦略パートナー",
       title: "微勤電機 — MIT ハードウェア製造の中核",
-      sub: "MCS は微勤電機とソフト・ハードを深く統合。林口組立工場が大量出荷をサポート。100% 台湾研究開発製造。",
+      sub: "MCS は微勤電機とソフトウェア・ハードウェアを深く統合。林口組立工場が量産出荷をサポート。100% 台湾研究開発・製造。",
       badge: "独占 OEM パートナー",
       points: [
         { icon: "🏭", title: "林口組立工場", desc: "大規模組立ラインで量産出荷に対応。カスタム仕様にも迅速に対応可能。" },
@@ -709,7 +709,7 @@ const T = {
     cases: {
       label: "導入実績",
       title: "実証済みの展開事例",
-      sub: "台湾最大のコンビニチェーンから日本の首都高速道路まで、MCS はさまざまな場域で統合能力を実証しています。",
+      sub: "台湾最大のコンビニチェーンから日本の首都高速道路まで、MCS はさまざまな施設・業態で統合能力を実証しています。",
       fm: {
         title: "ファミリーマート 台湾",
         badge: "台湾最大コンビニチェーン",
@@ -724,7 +724,7 @@ const T = {
       mwd: {
         title: "麦味登 朝食チェーン",
         badge: "台湾トップ朝食チェーンブランド",
-        desc: "MCS は麦味登スマートピックアップキャビネットのソフト・ハード統合を90日で完了。機構設計からクラウドバックエンドまで一手に担い、日本の大手競合に勝利した指標的案件。UV除菌・レーザーセンサー・両面アクセスの旗艦モデル。",
+        desc: "MCS は麦味登スマートピックアップキャビネットのソフトウェア・ハードウェア統合を90日で完了。機構設計からクラウドバックエンドまで一括対応し、日本大手メーカーとの競合入札に勝利した実績案件。UV除菌・レーザーセンサー・両面アクセスの旗艦モデル。",
         stats: ["90日で統合完了（ハード開発含む）", "日本大手メーカーとの競合入札に勝利", "UV除菌＋レーザーセンサー旗艦版"],
       },
       frozen: {
@@ -732,7 +732,7 @@ const T = {
         title: "冷凍・冷蔵・電子レンジ一体型自動販売機",
         badge: "通路顧客 · 300台以上稼働中",
         sub: "MCS は冷凍・冷蔵・電子レンジ一体型自販機の制御技術において、多年の実績と商業的検証を積み重ねています。通路顧客の稼働台数は300台以上。",
-        stats: ["300台以上稼働中（通路顧客）", "多年の冷凍 / 冷蔵 / 電子レンジ制御技術", "多様な場域での安定稼働実証済み"],
+        stats: ["300台以上稼働中（通路顧客）", "多年の冷凍 / 冷蔵 / 電子レンジ制御技術", "多様な施設・環境での安定稼働実証済み"],
       },
       shutoko: {
         title: "首都高速道路 日本",
@@ -756,8 +756,8 @@ const T = {
     },
     contact: {
       label: "お問い合わせ",
-      title: "実際の導入事例をご覧になりますか？",
-      sub: "導入場所・課題・目標をお聞かせください。実際の数値とともに、MCSがどのように貢献できるかをご説明します。",
+      title: "デモをご覧になりませんか？",
+      sub: "導入ご予定の施設・課題・目標をお聞かせください。実際の数値をもとに、MCSがどのようにご支援できるかをご説明いたします。",
       cta: "デモをリクエスト",
       email: "メール",
       web: "ウェブサイト",
@@ -1503,103 +1503,233 @@ function DashboardSales() {
 }
 
 function DashboardInventory() {
-  const stocks = [
-    {name:"御便當 (NT$75)", pct:22, alert:true},
-    {name:"茶葉蛋 (NT$15)", pct:65, alert:false},
-    {name:"三角飯糰 (NT$35)", pct:8, alert:true},
-    {name:"咖啡 (NT$45)", pct:45, alert:false},
-    {name:"麵包 (NT$55)", pct:31, alert:true},
+  // Stock depletion chart: day 0-4 historical, day 4-6.8 AI forecast
+  const cX = 18, cW = 248, cY = 66, cH = 108;
+  const toP = (d: number, s: number) => ({ px: cX + (d / 7) * cW, py: cY + cH - (s / 100) * cH });
+  const hist: [number,number][] = [[0,96],[1,83],[2,71],[3,48],[4,22]];
+  const fore: [number,number][] = [[4,22],[5,12],[6,4],[6.6,0]];
+  const hPath = hist.map(([d,s],i) => `${i===0?"M":"L"}${toP(d,s).px.toFixed(1)},${toP(d,s).py.toFixed(1)}`).join(" ");
+  const fPath = fore.map(([d,s],i) => `${i===0?"M":"L"}${toP(d,s).px.toFixed(1)},${toP(d,s).py.toFixed(1)}`).join(" ");
+  const thY = toP(0,20).py;
+  const items = [
+    {name:"御便當", stock:22, days:"2.3", c:"#EF4444"},
+    {name:"三角飯糰", stock:8, days:"0.8", c:"#DC2626"},
+    {name:"麵包", stock:31, days:"3.5", c:"#F59E0B"},
   ];
+  const r = 17, circ = 2 * Math.PI * r;
   return (
     <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
       <rect width="480" height="280" fill="#0d1117" rx="12"/>
       <rect width="480" height="36" fill="#161b22" rx="12"/>
       <rect x="0" y="12" width="480" height="24" fill="#161b22"/>
       <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
-      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Inventory & Restocking</text>
-      <rect x="10" y="44" width="460" height="32" fill="#E8751A15" stroke="#E8751A40" strokeWidth="1" rx="8"/>
-      <motion.circle cx="26" cy="60" r="6" fill="#E8751A" animate={{scale:[1,1.2,1],opacity:[1,0.6,1]}} transition={{duration:1.5,repeat:Infinity}}/>
-      <text x="40" y="57" fontSize="9" fill="#E8751A" fontFamily="monospace" fontWeight="bold">AI Restock Alert</text>
-      <text x="40" y="70" fontSize="8" fill="#8b949e" fontFamily="monospace">3 items below threshold — AI pick list generated automatically</text>
-      <rect x="388" y="50" width="76" height="18" rx="6" fill="#E8751A"/>
-      <text x="426" y="62" textAnchor="middle" fontSize="8" fill="white" fontFamily="monospace" fontWeight="bold">View List →</text>
-      <rect x="10" y="84" width="460" height="22" fill="#161b22" rx="6"/>
-      <text x="20" y="98" fontSize="8" fill="#6e7681" fontFamily="monospace">PRODUCT</text>
-      <text x="210" y="98" fontSize="8" fill="#6e7681" fontFamily="monospace">STOCK LEVEL</text>
-      <text x="400" y="98" fontSize="8" fill="#6e7681" fontFamily="monospace">STATUS</text>
-      {stocks.map(({name,pct,alert},i) => (
-        <g key={i}>
-          <rect x="10" y={112+i*30} width="460" height="28" fill={i%2===0?"#161b2260":"transparent"} rx="4"/>
-          <text x="20" y={130+i*30} fontSize="8" fill="#c9d1d9" fontFamily="sans-serif">{name}</text>
-          <rect x="210" y={117+i*30} width="172" height="10" rx="3" fill="#21262d"/>
-          <motion.rect x="210" y={117+i*30} width={pct*1.72} height="10" rx="3"
-            fill={alert?"#EF4444":pct>50?"#22C55E":"#F59E0B"}
-            initial={{width:0}} animate={{width:pct*1.72}} transition={{duration:0.9,delay:i*0.12,ease:"easeOut"}}/>
-          <text x="390" y={130+i*30} fontSize="9" fill={alert?"#EF4444":pct>50?"#22C55E":"#F59E0B"} fontFamily="monospace" fontWeight="bold">{pct}%</text>
-          {alert ? (
-            <g>
-              <rect x="410" y={119+i*30} width="54" height="14" rx="4" fill="#EF444420" stroke="#EF444440" strokeWidth="0.8"/>
-              <text x="437" y={129+i*30} textAnchor="middle" fontSize="7" fill="#EF4444" fontFamily="monospace">LOW STOCK</text>
-            </g>
-          ) : (
-            <g>
-              <rect x="410" y={119+i*30} width="42" height="14" rx="4" fill="#22C55E20" stroke="#22C55E40" strokeWidth="0.8"/>
-              <text x="431" y={129+i*30} textAnchor="middle" fontSize="7" fill="#22C55E" fontFamily="monospace">OK</text>
-            </g>
-          )}
-        </g>
+      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / AI Inventory Forecast</text>
+      <motion.circle cx="432" cy="18" r="4" fill="#E8751A" animate={{opacity:[1,0.3,1]}} transition={{duration:1.2,repeat:Infinity}}/>
+      <text x="442" y="22" fontSize="8" fill="#E8751A" fontFamily="monospace" fontWeight="bold">AI</text>
+
+      {/* Left panel — Stock forecast chart */}
+      <rect x="10" y="42" width="272" height="232" fill="#161b22" rx="8"/>
+      <text x="20" y="57" fontSize="8.5" fill="#6e7681" fontFamily="monospace">Stock Trend — 御便當</text>
+      <rect x="160" y="45" width="114" height="16" rx="4" fill="#EF444418" stroke="#EF444438" strokeWidth="0.8"/>
+      <text x="217" y="56" textAnchor="middle" fontSize="7.5" fill="#EF4444" fontFamily="monospace" fontWeight="bold">⚠ 残り約2.3日で在庫切れ</text>
+
+      {/* Y-axis grid */}
+      {[0,25,50,75,100].map(pct => {
+        const y = toP(0,pct).py;
+        return (
+          <g key={pct}>
+            <line x1={cX} y1={y} x2={cX+cW} y2={y} stroke="#21262d" strokeWidth="0.7"/>
+            <text x={cX-3} y={y+3} textAnchor="end" fontSize="7" fill="#484f58" fontFamily="monospace">{pct}</text>
+          </g>
+        );
+      })}
+      {/* X-axis labels */}
+      {["月","火","水","木","金","土","日"].map((d,i) => (
+        <text key={i} x={cX+(i/7)*cW+cW/14} y={cY+cH+12} textAnchor="middle" fontSize="7.5"
+          fill={i<5?"#484f58":"#E8751A"} fontFamily="monospace">{d}</text>
       ))}
-      <rect x="10" y="264" width="460" height="12" fill="#161b22" rx="4"/>
-      <text x="20" y="274" fontSize="7" fill="#6e7681" fontFamily="monospace">Last updated: 2 min ago  ·  Total SKUs: 312  ·  Accuracy: 98.1%</text>
+      {/* Reorder threshold line */}
+      <line x1={cX} y1={thY} x2={cX+cW} y2={thY} stroke="#EF4444" strokeWidth="1" strokeDasharray="3,2" opacity="0.55"/>
+      <text x={cX+cW+3} y={thY+3} fontSize="7" fill="#EF4444" fontFamily="monospace">20%</text>
+      {/* Forecast zone fill */}
+      <motion.path d={`${fPath} L${toP(6.6,0).px},${cY+cH} L${toP(4,0).px},${cY+cH} Z`}
+        fill="#EF4444" opacity="0.07" initial={{opacity:0}} animate={{opacity:0.07}} transition={{delay:1.3}}/>
+      {/* Historical area fill */}
+      <motion.path d={`${hPath} L${toP(4,0).px},${cY+cH} L${toP(0,0).px},${cY+cH} Z`}
+        fill="#3B82F6" opacity="0.1" initial={{opacity:0}} animate={{opacity:0.1}} transition={{duration:0.8}}/>
+      {/* Historical line */}
+      <motion.path d={hPath} fill="none" stroke="#3B82F6" strokeWidth="2.2"
+        initial={{pathLength:0}} animate={{pathLength:1}} transition={{duration:1.2,ease:"easeOut"}}/>
+      {/* AI forecast line (dashed) */}
+      <motion.path d={fPath} fill="none" stroke="#EF4444" strokeWidth="2" strokeDasharray="5,3"
+        initial={{pathLength:0}} animate={{pathLength:1}} transition={{duration:0.9,delay:1.2,ease:"easeOut"}}/>
+      {/* Historical data dots */}
+      {hist.map(([d,s],i) => (
+        <motion.circle key={i} cx={toP(d,s).px} cy={toP(d,s).py} r="3.5" fill="#3B82F6"
+          initial={{opacity:0,scale:0}} animate={{opacity:1,scale:1}} transition={{delay:0.1+i*0.18}}/>
+      ))}
+      {/* Forecast endpoint pulse */}
+      <motion.circle cx={toP(6.6,0).px} cy={cY+cH} r="5" fill="#EF4444"
+        animate={{opacity:[1,0.3,1],scale:[1,1.4,1]}} transition={{duration:1.2,repeat:Infinity,delay:2}}/>
+      {/* Legend */}
+      <line x1="20" y1="204" x2="38" y2="204" stroke="#3B82F6" strokeWidth="2"/>
+      <text x="42" y="207" fontSize="7" fill="#484f58" fontFamily="monospace">実績</text>
+      <line x1="78" y1="204" x2="96" y2="204" stroke="#EF4444" strokeWidth="2" strokeDasharray="4,2"/>
+      <text x="100" y="207" fontSize="7" fill="#484f58" fontFamily="monospace">AI予測</text>
+      {/* AI prediction label */}
+      <rect x="10" y="216" width="272" height="52" fill="#E8751A0a" stroke="#E8751A28" strokeWidth="0.8" rx="6"/>
+      <text x="22" y="230" fontSize="8.5" fill="#E8751A" fontFamily="monospace" fontWeight="bold">🤖 AI 補充ピックリスト — 自動生成済み</text>
+      <text x="22" y="244" fontSize="7.5" fill="#8b949e" fontFamily="monospace">御便當 × 24　三角飯糰 × 36　麵包 × 18</text>
+      <text x="22" y="258" fontSize="7.5" fill="#8b949e" fontFamily="monospace">配送確定: 明日 07:00  ·  承認不要・自動発注</text>
+
+      {/* Right panel — Critical stock rings */}
+      <rect x="288" y="42" width="182" height="232" fill="#161b22" rx="8"/>
+      <text x="298" y="57" fontSize="8.5" fill="#6e7681" fontFamily="monospace">Critical Stock Alerts</text>
+      {items.map(({name,stock,days,c},i) => {
+        const cx = 330, cy = 92 + i * 68;
+        const dash = (stock / 100) * circ;
+        const gap = circ - dash;
+        return (
+          <g key={i}>
+            {/* BG ring */}
+            <circle cx={cx} cy={cy} r={r} fill="none" stroke="#21262d" strokeWidth="5"/>
+            {/* Progress ring */}
+            <motion.circle cx={cx} cy={cy} r={r} fill="none" stroke={c} strokeWidth="5"
+              strokeLinecap="round"
+              transform={`rotate(-90 ${cx} ${cy})`}
+              initial={{strokeDasharray:`0 ${circ}`}}
+              animate={{strokeDasharray:`${dash} ${gap}`}}
+              transition={{duration:1,delay:i*0.18,ease:"easeOut"}}/>
+            {/* Percentage label */}
+            <text x={cx} y={cy+4} textAnchor="middle" fontSize="10" fill={c} fontFamily="monospace" fontWeight="bold">{stock}%</text>
+            {/* Item details */}
+            <text x={cx+24} y={cy-10} fontSize="9.5" fill="#c9d1d9" fontFamily="sans-serif" fontWeight="bold">{name}</text>
+            <text x={cx+24} y={cy+4} fontSize="8" fill={c} fontFamily="monospace">⏱ 残り {days} 日</text>
+            {/* Mini stock bar */}
+            <rect x={cx+24} y={cy+10} width="110" height="6" rx="2" fill="#21262d"/>
+            <motion.rect x={cx+24} y={cy+10} width={stock*1.1} height="6" rx="2" fill={c} opacity="0.8"
+              initial={{width:0}} animate={{width:stock*1.1}} transition={{duration:0.9,delay:i*0.18+0.3,ease:"easeOut"}}/>
+            <rect x="298" y={cy+28} width="162" height="0.5" fill="#21262d"/>
+          </g>
+        );
+      })}
+      {/* Accuracy KPI */}
+      <rect x="298" y="248" width="162" height="22" fill="#22C55E12" stroke="#22C55E30" strokeWidth="0.8" rx="5"/>
+      <text x="379" y="262" textAnchor="middle" fontSize="8.5" fill="#22C55E" fontFamily="monospace" fontWeight="bold">在庫精度 98.1%  ·  SKU 312品目</text>
     </svg>
   );
 }
 
 function DashboardPromo() {
-  const promos = [
-    {name:"買一送一（御便當）", active:true, uses:1240, conv:"23%", badge:"限時"},
-    {name:"三件95折", active:true, uses:892, conv:"18%", badge:"全時段"},
-    {name:"會員點數 2倍", active:false, uses:430, conv:"—", badge:"週末"},
-    {name:"新品嚐鮮 NT$15", active:true, uses:208, conv:"31%", badge:"新品"},
+  // Conversion funnel stages
+  const funnel = [
+    {label:"機台表示", en:"Impressions", val:24800, pct:100, c:"#3B82F6"},
+    {label:"商品閲覧", en:"Product View", val:9920, pct:40, c:"#8B5CF6"},
+    {label:"カート追加", en:"Add to Cart", val:4464, pct:18, c:"#E8751A"},
+    {label:"購入完了", en:"Purchase", val:2976, pct:12, c:"#22C55E"},
   ];
-  const convW = [0.23,0.18,0,0.31];
+  const maxW = 200;
+  // Before/after bar chart
+  const bars = [
+    {label:"Mon", before:82, after:108},
+    {label:"Tue", before:95, after:130},
+    {label:"Wed", before:74, after:99},
+    {label:"Thu", before:110, after:148},
+    {label:"Fri", before:128, after:172},
+    {label:"Sat", before:155, after:205},
+    {label:"Sun", before:140, after:188},
+  ];
+  const maxB = 205;
   return (
     <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
       <rect width="480" height="280" fill="#0d1117" rx="12"/>
       <rect width="480" height="36" fill="#161b22" rx="12"/>
       <rect x="0" y="12" width="480" height="24" fill="#161b22"/>
       <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
-      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Promotions</text>
-      <rect x="380" y="8" width="92" height="20" rx="6" fill="#E8751A"/>
-      <text x="426" y="21" textAnchor="middle" fontSize="8" fill="white" fontFamily="monospace" fontWeight="bold">+ New Promo</text>
-      <rect x="10" y="44" width="142" height="58" fill="#161b22" rx="8"/>
-      <text x="20" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Active Promos</text>
-      <text x="20" y="82" fontSize="24" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">3</text>
-      <text x="20" y="96" fontSize="8" fill="#22C55E" fontFamily="monospace">/ 4 running</text>
-      <rect x="160" y="44" width="142" height="58" fill="#161b22" rx="8"/>
-      <text x="170" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Total Redemptions</text>
-      <text x="170" y="82" fontSize="20" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">2,770</text>
-      <text x="170" y="96" fontSize="8" fill="#22C55E" fontFamily="monospace">↑ +31% this week</text>
-      <rect x="310" y="44" width="162" height="58" fill="#161b22" rx="8"/>
-      <text x="320" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Avg Conversion</text>
-      <text x="320" y="82" fontSize="20" fontWeight="bold" fill="#E8751A" fontFamily="monospace">24.0%</text>
-      <text x="320" y="96" fontSize="8" fill="#6e7681" fontFamily="monospace">3 active campaigns</text>
-      {promos.map(({name,active,uses,conv,badge},i) => (
-        <g key={i}>
-          <rect x="10" y={112+i*40} width="460" height="36" fill="#161b22" stroke={active?"#E8751A28":"#30363d"} strokeWidth="1" rx="8"/>
-          <motion.circle cx="24" cy={130+i*40} r="5" fill={active?"#22C55E":"#6b7280"}
-            animate={active?{opacity:[1,0.4,1]}:{opacity:[0.5]}} transition={{duration:1.5,repeat:Infinity}}/>
-          <text x="36" y={125+i*40} fontSize="9" fill="#c9d1d9" fontFamily="sans-serif" fontWeight="bold">{name}</text>
-          <rect x="36" y={129+i*40} width={badge.length*6+8} height="12" rx="4" fill="#3B82F618" stroke="#3B82F638" strokeWidth="0.8"/>
-          <text x={40+badge.length*3} y={138+i*40} textAnchor="middle" fontSize="7" fill="#60A5FA" fontFamily="monospace">{badge}</text>
-          <text x="240" y={125+i*40} fontSize="8" fill="#6e7681" fontFamily="monospace">Uses: <tspan fill="#c9d1d9" fontWeight="bold">{uses.toLocaleString()}</tspan></text>
-          <text x="330" y={125+i*40} fontSize="8" fill="#6e7681" fontFamily="monospace">Conv: <tspan fill="#E8751A" fontWeight="bold">{conv}</tspan></text>
-          <rect x="240" y={131+i*40} width="196" height="6" rx="2" fill="#21262d"/>
-          <motion.rect x="240" y={131+i*40} width={convW[i]*196} height="6" rx="2"
-            fill="#E8751A" opacity={active?0.85:0.2}
-            initial={{width:0}} animate={{width:convW[i]*196}} transition={{duration:0.9,delay:i*0.12,ease:"easeOut"}}/>
-        </g>
-      ))}
+      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Promotion Engine</text>
+      <rect x="386" y="8" width="86" height="20" rx="6" fill="#E8751A"/>
+      <text x="429" y="21" textAnchor="middle" fontSize="8" fill="white" fontFamily="monospace" fontWeight="bold">+ New Promo</text>
+
+      {/* KPI row */}
+      <rect x="10" y="44" width="106" height="52" fill="#161b22" rx="7"/>
+      <text x="18" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">Active Campaigns</text>
+      <text x="18" y="79" fontSize="22" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">3</text>
+      <text x="18" y="90" fontSize="7" fill="#22C55E" fontFamily="monospace">/ 4 configured</text>
+      <rect x="122" y="44" width="114" height="52" fill="#161b22" rx="7"/>
+      <text x="130" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">Total Redemptions</text>
+      <text x="130" y="79" fontSize="18" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">2,770</text>
+      <text x="130" y="90" fontSize="7" fill="#22C55E" fontFamily="monospace">↑ +31% this week</text>
+      <rect x="242" y="44" width="114" height="52" fill="#161b22" rx="7"/>
+      <text x="250" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">Avg Conversion</text>
+      <text x="250" y="79" fontSize="18" fontWeight="bold" fill="#E8751A" fontFamily="monospace">24.0%</text>
+      <text x="250" y="90" fontSize="7" fill="#6e7681" fontFamily="monospace">vs 13.2% baseline</text>
+      <rect x="362" y="44" width="110" height="52" fill="#161b22" rx="7"/>
+      <text x="370" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">Setup Time</text>
+      <text x="370" y="79" fontSize="18" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">3 min</text>
+      <text x="370" y="90" fontSize="7" fill="#22C55E" fontFamily="monospace">No engineers needed</text>
+
+      {/* Left: Conversion Funnel */}
+      <rect x="10" y="104" width="228" height="170" fill="#161b22" rx="8"/>
+      <text x="20" y="119" fontSize="8.5" fill="#6e7681" fontFamily="monospace">Conversion Funnel — 買一送一キャンペーン</text>
+      {funnel.map(({label,val,pct,c},i) => {
+        const fw = (pct / 100) * maxW;
+        const fy = 128 + i * 34;
+        const fx = 20 + (maxW - fw) / 2; // centered
+        return (
+          <g key={i}>
+            {/* bg bar full */}
+            <rect x="20" y={fy} width={maxW} height="20" fill="#21262d" rx="4" opacity="0.5"/>
+            {/* colored bar */}
+            <motion.rect x={fx} y={fy} width={fw} height="20" rx="4" fill={c} opacity="0.85"
+              initial={{width:0,x:20+maxW/2}} animate={{width:fw,x:fx}}
+              transition={{duration:0.8,delay:i*0.15,ease:"easeOut"}}/>
+            {/* Labels */}
+            <text x="228" y={fy+13} textAnchor="end" fontSize="7.5" fill="#c9d1d9" fontFamily="monospace">{val.toLocaleString()}</text>
+            <text x="20" y={fy+13} fontSize="7" fill="white" fontFamily="monospace" fontWeight="bold" opacity="0.9">{label}</text>
+            <text x={fx+fw+3} y={fy+13} fontSize="7" fill={c} fontFamily="monospace">{pct}%</text>
+            {/* Drop-off arrow between steps */}
+            {i < funnel.length - 1 && (
+              <text x="114" y={fy+28} textAnchor="middle" fontSize="8" fill="#484f58">↓</text>
+            )}
+          </g>
+        );
+      })}
+      {/* Funnel bottom note */}
+      <rect x="10" y="266" width="228" height="8" fill="#161b22" rx="3"/>
+      <text x="124" y="273" textAnchor="middle" fontSize="6.5" fill="#484f58" fontFamily="monospace">最終購入転換率 12.0%  ·  業界平均比 +8.8pp</text>
+
+      {/* Right: Before/After bar chart */}
+      <rect x="246" y="104" width="226" height="170" fill="#161b22" rx="8"/>
+      <text x="256" y="119" fontSize="8.5" fill="#6e7681" fontFamily="monospace">Sales: 導入前 vs 導入後</text>
+      {/* Legend */}
+      <rect x="350" y="113" width="8" height="6" rx="1" fill="#484f58"/>
+      <text x="362" y="119" fontSize="6.5" fill="#484f58" fontFamily="monospace">Before</text>
+      <rect x="398" y="113" width="8" height="6" rx="1" fill="#E8751A"/>
+      <text x="410" y="119" fontSize="6.5" fill="#E8751A" fontFamily="monospace">After</text>
+      {/* Grid lines */}
+      {[0,50,100,150,200].map(v => {
+        const gy = 262 - (v / maxB) * 128;
+        return <line key={v} x1="256" y1={gy} x2="464" y2={gy} stroke="#21262d" strokeWidth="0.6"/>;
+      })}
+      {bars.map(({label, before, after}, i) => {
+        const bx = 260 + i * 29;
+        const bh = (before / maxB) * 128;
+        const ah = (after / maxB) * 128;
+        return (
+          <g key={i}>
+            {/* Before bar */}
+            <motion.rect x={bx} y={262-bh} width="11" height={bh} rx="2" fill="#484f58" opacity="0.6"
+              initial={{height:0,y:262}} animate={{height:bh,y:262-bh}} transition={{duration:0.6,delay:i*0.07,ease:"easeOut"}}/>
+            {/* After bar */}
+            <motion.rect x={bx+13} y={262-ah} width="11" height={ah} rx="2" fill="#E8751A" opacity="0.85"
+              initial={{height:0,y:262}} animate={{height:ah,y:262-ah}} transition={{duration:0.6,delay:i*0.07+0.15,ease:"easeOut"}}/>
+            <text x={bx+12} y="274" textAnchor="middle" fontSize="7" fill="#484f58" fontFamily="monospace">{label}</text>
+          </g>
+        );
+      })}
+      {/* +32% uplift badge */}
+      <rect x="330" y="130" width="80" height="20" rx="6" fill="#22C55E18" stroke="#22C55E38" strokeWidth="0.8"/>
+      <text x="370" y="143" textAnchor="middle" fontSize="9" fill="#22C55E" fontFamily="monospace" fontWeight="bold">↑ +32% uplift</text>
     </svg>
   );
 }
@@ -1978,64 +2108,154 @@ export default function IntroPage() {
       </header>
 
       {/* ── Hero ── */}
-      <section className="bg-gradient-to-br from-[#0F2440] via-[#1B3A5C] to-[#0F2440] text-white py-20 px-6 overflow-hidden relative">
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+      <section className="relative bg-[#060D1A] text-white pt-24 pb-28 px-6 overflow-hidden">
+        {/* ── Background layers ── */}
+        {/* Central orange radial glow */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 90% 70% at 48% 45%, rgba(232,117,26,0.22) 0%, rgba(27,58,92,0.18) 38%, transparent 68%)" }} />
+        {/* Top-right blue glow */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 55% 45% at 88% 8%, rgba(59,130,246,0.14) 0%, transparent 60%)" }} />
+        {/* Bottom-left teal hint */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 40% 35% at 5% 90%, rgba(20,184,166,0.10) 0%, transparent 55%)" }} />
+        {/* Grid */}
+        <div className="absolute inset-0 opacity-[0.045]"
+          style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
+        {/* Floating particles */}
+        {[...Array(18)].map((_, i) => {
+          const colors = ["#E8751A","#3B82F6","#F59E0B","#14B8A6","#A855F7"];
+          const sz = 2 + (i % 3);
+          return (
+            <motion.div key={i}
+              className="absolute rounded-full pointer-events-none"
+              style={{
+                width: sz, height: sz,
+                left: `${(i * 5.6) % 96 + 2}%`,
+                top: `${12 + (i * 4.7) % 76}%`,
+                background: colors[i % colors.length],
+                opacity: 0.5,
+              }}
+              animate={{ y: [0, -14, 0], opacity: [0.25, 0.7, 0.25], scale: [1, 1.4, 1] }}
+              transition={{ duration: 2.8 + i * 0.38, repeat: Infinity, ease: "easeInOut", delay: i * 0.22 }}
+            />
+          );
+        })}
+        {/* Horizontal divider glow line at top */}
+        <div className="absolute top-0 left-0 right-0 h-px"
+          style={{ background: "linear-gradient(90deg, transparent 5%, rgba(232,117,26,0.6) 30%, rgba(59,130,246,0.6) 70%, transparent 95%)" }} />
+
         <div className="max-w-5xl mx-auto relative">
+          {/* Animated gradient border badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-block bg-[#E8751A]/20 border border-[#E8751A]/40 text-[#f5a87a] text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.55, ease: [0.22,1,0.36,1] }}
+            className="relative inline-flex mb-7"
           >
-            {t.hero.badge}
+            <motion.div className="absolute inset-0 rounded-full"
+              style={{ background: "linear-gradient(90deg, #E8751A, #F59E0B, #A855F7, #3B82F6, #E8751A)", backgroundSize: "300% 100%", padding: "1.5px" }}
+              animate={{ backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+            <div className="relative bg-[#060D1A]/95 rounded-full px-5 py-2 m-[1.5px]">
+              <span className="text-[11px] font-black tracking-[0.22em] uppercase text-[#f5a87a]">{t.hero.badge}</span>
+            </div>
           </motion.div>
+
+          {/* H1 — massive */}
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black leading-tight mb-4"
+            transition={{ duration: 0.7, delay: 0.08, ease: [0.22,1,0.36,1] }}
+            className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.06] tracking-tight mb-5"
           >
             {t.hero.title}<br />
-            <span className="text-[#E8751A]">{t.hero.titleAccent}</span>
+            {/* Shimmer gradient accent */}
+            <motion.span
+              style={{
+                background: "linear-gradient(105deg, #E8751A 0%, #FBBF24 38%, #F97316 55%, #E8751A 100%)",
+                backgroundSize: "200% 100%",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              } as React.CSSProperties}
+              animate={{ backgroundPosition: ["200% 0", "-100% 0"] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear", repeatDelay: 0.5 }}
+            >
+              {t.hero.titleAccent}
+            </motion.span>
           </motion.h1>
+
+          {/* Sub */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/70 text-base md:text-lg max-w-3xl mb-12 leading-relaxed"
+            transition={{ duration: 0.65, delay: 0.22 }}
+            className="text-white/65 text-base md:text-lg max-w-2xl mb-12 leading-relaxed"
           >
             {t.hero.sub}
           </motion.p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+          {/* Stats — glowing cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             {t.hero.stats.map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
+              <motion.div key={i}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
+                transition={{ duration: 0.55, delay: 0.3 + i * 0.09, ease: [0.22,1,0.36,1] }}
+                className="group relative"
               >
-                <div className="text-3xl md:text-4xl font-black text-[#E8751A]">
-                  <CountUp target={s.num} />
+                <div className="relative bg-white/[0.04] border border-white/[0.08] rounded-2xl p-4 md:p-5 overflow-hidden hover:border-[#E8751A]/40 transition-all duration-300">
+                  {/* Top shimmer line */}
+                  <div className="absolute inset-x-0 top-0 h-[1px]"
+                    style={{ background: "linear-gradient(90deg, transparent, rgba(232,117,26,0.6), transparent)" }} />
+                  {/* Inner glow */}
+                  <div className="absolute inset-0 rounded-2xl"
+                    style={{ background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(232,117,26,0.14), transparent 70%)" }} />
+                  {/* Number */}
+                  <div className="text-4xl md:text-5xl font-black text-[#E8751A] leading-none mb-2 relative">
+                    <CountUp target={s.num} duration={2.2} />
+                  </div>
+                  <div className="text-white/50 text-xs leading-snug relative">{s.label}</div>
                 </div>
-                <div className="text-white/60 text-xs mt-1 leading-snug">{s.label}</div>
               </motion.div>
             ))}
           </div>
-          {/* Hero CTA */}
+
+          {/* CTA — glowing button */}
           {t.hero.cta && (
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.65 }}
-              className="mt-10"
+              transition={{ duration: 0.55, delay: 0.65 }}
+              className="flex items-center gap-4 flex-wrap"
             >
               <a
                 href="mailto:service@mcstation.ai?subject=Demo Request"
-                className="inline-flex items-center gap-2 bg-[#E8751A] hover:bg-[#d4651a] text-white font-bold px-7 py-3 rounded-full shadow-lg transition-colors duration-200"
+                className="relative inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full text-sm overflow-hidden group/cta"
               >
-                {t.hero.cta} →
+                {/* Button bg */}
+                <span className="absolute inset-0 rounded-full bg-[#E8751A] group-hover/cta:bg-[#d4651a] transition-colors duration-200" />
+                {/* Glow halo */}
+                <motion.span className="absolute inset-0 rounded-full"
+                  style={{ background: "#E8751A", filter: "blur(14px)", opacity: 0 }}
+                  whileHover={{ opacity: 0.55 }}
+                  transition={{ duration: 0.3 }}
+                />
+                {/* Pulse ring */}
+                <motion.span className="absolute inset-0 rounded-full border-2 border-[#E8751A]"
+                  animate={{ scale: [1, 1.25, 1.5], opacity: [0.6, 0.2, 0] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
+                />
+                <span className="relative">{t.hero.cta} →</span>
               </a>
+              <motion.p
+                className="text-white/30 text-xs"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
+              >
+                {lang === "ja" ? "返信は通常 24 時間以内" : lang === "en" ? "Reply within 24 hours" : "24 小時內回覆"}
+              </motion.p>
             </motion.div>
           )}
         </div>
@@ -2561,15 +2781,20 @@ export default function IntroPage() {
                     <div className="text-[#f5a87a] text-xs font-bold mb-1">
                       {lang === "ja" ? "コスト比較" : lang === "en" ? "Cost Comparison" : "成本比較"}
                     </div>
-                    <div className="flex items-center justify-between">
-                      <div className="text-center">
-                        <div className="text-red-400 font-black text-sm">{lang === "ja" ? "自社構築 IT" : lang === "en" ? "Self-build IT" : "自建 IT"}</div>
-                        <div className="text-white/40 text-[10px]">{lang === "ja" ? "100% のコスト" : lang === "en" ? "100% of cost" : "100% 成本基準"}</div>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="text-center flex-1">
+                        <div className="text-red-400 font-black text-base">{lang === "ja" ? "自社構築 IT" : lang === "en" ? "Self-build IT" : "自建 IT"}</div>
+                        <div className="text-white/50 text-[11px] font-semibold mt-0.5">{lang === "ja" ? "基準コスト 100%" : lang === "en" ? "Baseline: 100%" : "基準成本 100%"}</div>
                       </div>
-                      <div className="text-white/40 text-lg font-bold">→</div>
-                      <div className="text-center">
-                        <div className="text-green-400 font-black text-sm">5–12%</div>
-                        <div className="text-white/40 text-[10px]">{lang === "ja" ? "OmniCore導入後" : lang === "en" ? "with OmniCore" : "導入 OmniCore 後"}</div>
+                      <div className="flex flex-col items-center gap-0.5 flex-shrink-0">
+                        <div className="text-white/30 text-xl font-bold">→</div>
+                        <div className="text-[9px] text-white/25 font-mono">{lang === "ja" ? "導入後" : lang === "en" ? "with OmniCore" : "導入後"}</div>
+                      </div>
+                      <div className="text-center flex-1">
+                        <div className="text-green-400 font-black text-2xl leading-tight">5–12%</div>
+                        <div className="text-white/50 text-[11px] font-semibold mt-0.5">
+                          {lang === "ja" ? "原価の5〜12%で運用" : lang === "en" ? "of original IT cost" : "原有成本的 5～12%"}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2648,12 +2873,12 @@ export default function IntroPage() {
             <FadeIn delay={0.15}>
               <div className="rounded-2xl border border-white/15 bg-white/5 p-5 h-full flex flex-col justify-center">
                 <div className="text-white/40 text-xs font-bold uppercase tracking-wider mb-4">
-                  {lang === "ja" ? "合作モデル" : lang === "en" ? "Partnership Model" : "合作模式"}
+                  {lang === "ja" ? "協業モデル" : lang === "en" ? "Partnership Model" : "合作模式"}
                 </div>
                 {[
-                  { from: lang === "ja" ? "翔耀が提供" : lang === "en" ? "Xiangyao provides" : "翔耀提供", item: lang === "ja" ? "閉鎖場域のアクセス権" : lang === "en" ? "Closed venue access" : "封閉場域進場能力", color: "bg-[#5B2D8E]/30 text-[#c084fc]" },
-                  { from: lang === "ja" ? "MCSが提供" : lang === "en" ? "MCS provides" : "MCS 提供", item: lang === "ja" ? "設備 + OmniCoreプラットフォーム" : lang === "en" ? "Equipment + OmniCore platform" : "設備 ＋ OmniCore 平台", color: "bg-[#E8751A]/20 text-[#f5a87a]" },
-                  { from: lang === "ja" ? "収益配分" : lang === "en" ? "Revenue split" : "收益分潤", item: lang === "ja" ? "比例配分（GMVに基づく）" : lang === "en" ? "Proportional (GMV-based)" : "按 GMV 比例分潤", color: "bg-green-500/20 text-green-400" },
+                  { from: lang === "ja" ? "翔耀が提供" : lang === "en" ? "Xiangyao provides" : "翔耀提供", item: lang === "ja" ? "特定施設へのアクセス権" : lang === "en" ? "Closed venue access" : "封閉場域進場能力", color: "bg-[#5B2D8E]/30 text-[#c084fc]" },
+                  { from: lang === "ja" ? "MCSが提供" : lang === "en" ? "MCS provides" : "MCS 提供", item: lang === "ja" ? "機器 + OmniCoreプラットフォーム" : lang === "en" ? "Equipment + OmniCore platform" : "設備 ＋ OmniCore 平台", color: "bg-[#E8751A]/20 text-[#f5a87a]" },
+                  { from: lang === "ja" ? "収益配分" : lang === "en" ? "Revenue split" : "收益分潤", item: lang === "ja" ? "GMVベースの成果比例分配" : lang === "en" ? "Proportional (GMV-based)" : "按 GMV 比例分潤", color: "bg-green-500/20 text-green-400" },
                 ].map((row, i) => (
                   <div key={i} className="mb-3">
                     <div className="text-white/35 text-[10px] font-bold uppercase mb-1">{row.from}</div>
