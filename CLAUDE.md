@@ -59,3 +59,41 @@
 ## 部署 & Git
 - 推上 GitHub → Vercel 自動部署
 - 合併多個改動再一次 push
+
+---
+
+## LINE 通知指令
+本專案已安裝 Yuzu-san LINE 通知系統：
+- `/notify {訊息}` — 即時通知 Jason
+- `/report` — 工作進度報告
+- `/ask-boss {問題}` — 需要 Jason 決策時提問
+
+**自動通知規則：**
+- 頁面部署完成 → `/notify`
+- 文案/素材完成 → `/notify`
+- 需要 Jason 確認設計方向 → `/ask-boss`
+
+---
+
+## 可用技能（Skills）
+
+> 這些是全域可用技能，直接呼叫即可
+
+### 前端模式
+| 技能 | 用途 |
+|------|------|
+| `frontend-design` | 避免 AI 通用美學，產出有設計感的 UI |
+| `yuzu-uiux` | Yuzu 活潑 UI 設計規範 |
+| `pwa-install` | PWA 安裝引導（iOS Safari + Android）|
+| `webview-detect` | LINE/FB WebView 偵測 |
+
+### 行銷模式
+| 技能 | 用途 |
+|------|------|
+| `market-copy` | 文案分析與生成 |
+| `market-landing` | Landing Page CRO 分析 |
+| `market-social` | 社群媒體內容日曆 |
+| `market-ads` | 廣告素材生成 |
+| `seo-audit` | 網站 SEO 全面稽核 |
+| `seo-technical` | 技術 SEO 審查 |
+| `positioning-statement` | 品牌定位聲明 |
