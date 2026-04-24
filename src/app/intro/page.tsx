@@ -158,10 +158,11 @@ const T = {
   zh: {
     nav: { home: "首頁", back: "← 返回官網" },
     hero: {
-      badge: "全棧智慧設備整合商",
+      badge: "AI × 硬體 × 平台 — 全自主掌控",
       title: "從硬體設計到 AI 雲端平台",
       titleAccent: "全自主掌控",
-      sub: "MCS 銓幻元科技 — 二十年業界經驗，提供硬體設計、機電整合、韌體控制、前端軟體、雲端平台、系統介接的一站式智慧設備解決方案。",
+      sub: "MCS 銓幻元科技 — 不是賣設備，是以 AI + IoT 取代人工服務流程的智慧設備平台。從機構設計、韌體控制到 OmniCore 雲端 AI，每一層都自主設計、整合、維運。",
+      cta: "預約產品展示",
       stats: [
         { num: "20+", label: "年業界經驗" },
         { num: "200+", label: "全家超商智販機（2026起）" },
@@ -360,12 +361,13 @@ const T = {
   en: {
     nav: { home: "Home", back: "← Back to Website" },
     hero: {
-      badge: "Full-Stack Smart Device Integrator",
-      title: "From Hardware Design to AI Cloud Platform",
-      titleAccent: "End-to-End In-House",
-      sub: "MCS Meta Clearing Station — 20+ years of industry experience delivering smart device solutions: hardware design, electromechanics, firmware, on-device software, cloud platform, and third-party system integration.",
+      badge: "AI · Hardware · Platform — Fully In-House",
+      title: "We Don't Sell Hardware.",
+      titleAccent: "We Replace Manual Workflows with AI.",
+      sub: "MCS builds smart device platforms — from cabinet mechanism to cloud AI — entirely in-house. One partner for hardware, firmware, on-device software, OmniCore cloud, and third-party integrations.",
+      cta: "Request a Demo",
       stats: [
-        { num: "20+", label: "Years Experience" },
+        { num: "20+", label: "Years of Industry Experience" },
         { num: "200+", label: "FamilyMart Units (from 2026)" },
         { num: "10+", label: "Device Types" },
         { num: "100%", label: "Made in Taiwan" },
@@ -443,12 +445,12 @@ const T = {
       ],
     },
     ebplus: {
-      label: "Taiwan Anchor Client",
-      title: "EB+ Group × OmniCore Omnichannel Transformation",
-      badge: "970+ Stores · Taiwan's Leading Breakfast Chain",
+      label: "Taiwan Anchor Case",
+      title: "How EB+ Automated 970+ Stores with OmniCore",
+      badge: "970+ Locations · Taiwan's #1 Breakfast Chain",
       roleChip: "MCS Role: Software Integrator + Platform Provider",
-      sub: "MCS is not EB+'s hardware vendor — we are the technology partner enabling 970+ breakfast chain locations to complete \"Assisted Automation\" across all channels. From GraBox pickup to LINE ordering to 192-vehicle fleet dispatch, all unified through OmniCore.",
-      roleNote: "✦ Assisted Automation ≠ Unmanned. MCS empowers our partners to step away from repetitive manual tasks and focus on delivering genuine service quality.",
+      sub: "MCS is not EB+'s hardware vendor — we are the technology partner enabling 970+ breakfast chain locations to step away from manual workflows. GraBox pickup, LINE ordering, and 192-vehicle GPS dispatch — all unified through OmniCore, at 5–12% of self-build IT cost.",
+      roleNote: "✦ Assisted Automation ≠ Fully Unmanned. MCS frees our partners from repetitive tasks so they can focus on delivering real service quality.",
       stats: [
         { num: "970+", label: "Chain Locations" },
         { num: "50 Units", label: "First GraBox Batch (H2 2026)" },
@@ -550,11 +552,11 @@ const T = {
       },
     },
     contact: {
-      label: "Contact",
-      title: "Let's Build Together",
-      sub: "Whether you need complete device procurement, OEM/ODM customization, software licensing, or system integration — we'd love to discuss your requirements.",
-      cta: "Visit Our Website",
-      email: "Email",
+      label: "Talk to Us",
+      title: "Ready to See It in Action?",
+      sub: "Tell us your venue, your challenge, and your goal. We'll walk you through real deployments and show you exactly how MCS fits.",
+      cta: "Request a Demo",
+      email: "Email Us",
       web: "Website",
     },
   },
@@ -562,10 +564,11 @@ const T = {
   ja: {
     nav: { home: "ホーム", back: "← ウェブサイトへ戻る" },
     hero: {
-      badge: "フルスタック・スマートデバイスインテグレーター",
+      badge: "AI × ハードウェア × プラットフォーム — すべて自社開発",
       title: "ハードウェア設計から AI クラウドプラットフォームまで",
       titleAccent: "すべて自社で設計・統合",
-      sub: "MCS 銓幻元科技 — 20年以上の業界経験。ハードウェア設計・機電統合・ファームウェア・フロントエンドソフトウェア・クラウドプラットフォーム・システム連携をワンストップで提供するスマートデバイスソリューションプロバイダーです。",
+      sub: "MCS 銓幻元科技 — 単なる機器販売ではありません。AI + IoT により手作業のサービスフローをスマートデバイスプラットフォームに置き換えます。機構設計からOmniCore クラウド AI まで、全レイヤーを自社で設計・統合・運用します。",
+      cta: "デモを予約する",
       stats: [
         { num: "20+", label: "年の業界経験" },
         { num: "200+", label: "台ファミリーマート設置（2026年〜）" },
@@ -753,9 +756,9 @@ const T = {
     },
     contact: {
       label: "お問い合わせ",
-      title: "共に構築しましょう",
-      sub: "設備購入・OEM/ODMカスタマイズ・ソフトウェアライセンス・システム統合など、お気軽にご相談ください。",
-      cta: "公式ウェブサイトへ",
+      title: "実際の導入事例をご覧になりますか？",
+      sub: "導入場所・課題・目標をお聞かせください。実際の数値とともに、MCSがどのように貢献できるかをご説明します。",
+      cta: "デモをリクエスト",
       email: "メール",
       web: "ウェブサイト",
     },
@@ -1495,6 +1498,22 @@ export default function IntroPage() {
               </motion.div>
             ))}
           </div>
+          {/* Hero CTA */}
+          {t.hero.cta && (
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.65 }}
+              className="mt-10"
+            >
+              <a
+                href="mailto:service@mcstation.ai?subject=Demo Request"
+                className="inline-flex items-center gap-2 bg-[#E8751A] hover:bg-[#d4651a] text-white font-bold px-7 py-3 rounded-full shadow-lg transition-colors duration-200"
+              >
+                {t.hero.cta} →
+              </a>
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -2817,9 +2836,7 @@ export default function IntroPage() {
             <p className="text-white/80 max-w-2xl mx-auto mb-10">{t.contact.sub}</p>
             <div className="flex flex-wrap gap-4 justify-center items-center">
               <motion.a
-                href="https://www.mcstation.ai"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:service@mcstation.ai?subject=Demo Request — MCS"
                 animate={{ scale: [1, 1.03, 1] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
                 whileHover={{ scale: 1.06 }}
@@ -2827,6 +2844,14 @@ export default function IntroPage() {
               >
                 {t.contact.cta} →
               </motion.a>
+              <a
+                href="https://www.mcstation.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/80 text-sm hover:text-white transition-colors underline underline-offset-2"
+              >
+                {t.contact.web}: www.mcstation.ai
+              </a>
               <div className="text-white/80 text-sm">
                 <span className="font-semibold">{t.contact.email}：</span>
                 service@mcstation.ai
