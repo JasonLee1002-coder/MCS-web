@@ -1386,11 +1386,12 @@ const BACKEND_SCREENS: {
 
 // ─── Backend Dashboard SVGs ───────────────────────────────────────────────────
 
-function DashboardDevice() {
+function DashboardDevice({ lang = "zh" }: { lang?: string }) {
   const statuses = ["#22C55E","#22C55E","#F59E0B","#22C55E","#22C55E","#EF4444","#22C55E","#22C55E"];
   const temps = ["24°C","23°C","31°C","25°C","22°C","—","24°C","26°C"];
   const ids = ["GBX-001","GBX-002","GBX-003","GBX-004","TH-101","TH-102","GBX-007","GBX-008"];
   const netW = [28,28,18,28,28,2,28,28];
+  const ysday = lang==="ja" ? "昨日比 +12台" : lang==="en" ? "↑ +12 vs yesterday" : "↑ 較昨日 +12台";
   return (
     <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
       <rect width="480" height="280" fill="#0d1117" rx="12"/>
@@ -1404,7 +1405,7 @@ function DashboardDevice() {
       <circle cx="28" cy="56" r="4" fill="#22C55E"/><text x="38" y="60" fontSize="8" fill="#8b949e" fontFamily="monospace">Online: 847</text>
       <circle cx="128" cy="56" r="4" fill="#F59E0B"/><text x="138" y="60" fontSize="8" fill="#8b949e" fontFamily="monospace">Warning: 12</text>
       <circle cx="228" cy="56" r="4" fill="#EF4444"/><text x="238" y="60" fontSize="8" fill="#8b949e" fontFamily="monospace">Offline: 3</text>
-      <text x="340" y="60" fontSize="8" fill="#22C55E" fontFamily="monospace">↑ +12 vs yesterday</text>
+      <text x="340" y="60" fontSize="8" fill="#22C55E" fontFamily="monospace">{ysday}</text>
       {[...Array(8)].map((_, i) => {
         const col = i % 4, row = Math.floor(i/4);
         const x = 10 + col * 117, y = 76 + row * 96;
@@ -1439,9 +1440,20 @@ function DashboardDevice() {
   );
 }
 
-function DashboardSales() {
+function DashboardSales({ lang = "zh" }: { lang?: string }) {
   const bars = [62,78,45,90,110,85,95];
-  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const days = lang==="ja"
+    ? ["月","火","水","木","金","土","日"]
+    : lang==="zh"
+    ? ["一","二","三","四","五","六","日"]
+    : ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const labels = {
+    revenue: lang==="ja"?"月次売上":lang==="en"?"Monthly Revenue":"月營收",
+    txn: lang==="ja"?"月次取引":lang==="en"?"Transactions":"月交易筆數",
+    basket: lang==="ja"?"平均客単価":lang==="en"?"Avg Basket":"平均客單價",
+    top: lang==="ja"?"売れ筋":lang==="en"?"Top Sellers":"熱銷品項",
+    trend: lang==="ja"?"週次売上トレンド":lang==="en"?"Weekly Sales Trend":"每週銷售趨勢",
+  };
   const maxH = 72;
   return (
     <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -1451,20 +1463,20 @@ function DashboardSales() {
       <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
       <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Sales Analytics</text>
       <rect x="10" y="44" width="152" height="66" fill="#161b22" rx="8"/>
-      <text x="20" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Monthly Revenue</text>
+      <text x="20" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">{labels.revenue}</text>
       <text x="20" y="82" fontSize="19" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">NT$2,847K</text>
       <rect x="20" y="88" width="48" height="14" rx="5" fill="#22C55E20"/>
       <text x="44" y="98" textAnchor="middle" fontSize="8" fill="#22C55E" fontFamily="monospace" fontWeight="bold">↑ +18%</text>
       <rect x="170" y="44" width="96" height="66" fill="#161b22" rx="8"/>
-      <text x="180" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Transactions</text>
+      <text x="180" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">{labels.txn}</text>
       <text x="180" y="82" fontSize="16" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">14,293</text>
       <text x="180" y="100" fontSize="8" fill="#22C55E" fontFamily="monospace">↑ +9% MoM</text>
       <rect x="274" y="44" width="96" height="66" fill="#161b22" rx="8"/>
-      <text x="284" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Avg Basket</text>
+      <text x="284" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">{labels.basket}</text>
       <text x="284" y="82" fontSize="16" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">NT$199</text>
       <text x="284" y="100" fontSize="8" fill="#3B82F6" fontFamily="monospace">→ Stable</text>
       <rect x="378" y="44" width="100" height="66" fill="#161b22" rx="8"/>
-      <text x="388" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Top Sellers</text>
+      <text x="388" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">{labels.top}</text>
       {["御便當","飯糰","咖啡","茶葉蛋"].map((item,i) => (
         <g key={i}>
           <text x="388" y={74+i*14} fontSize="7" fill="#8b949e" fontFamily="sans-serif">{item}</text>
@@ -1472,7 +1484,7 @@ function DashboardSales() {
         </g>
       ))}
       <rect x="10" y="120" width="460" height="150" fill="#161b22" rx="8"/>
-      <text x="20" y="136" fontSize="9" fill="#6e7681" fontFamily="monospace">Weekly Sales Trend</text>
+      <text x="20" y="136" fontSize="9" fill="#6e7681" fontFamily="monospace">{labels.trend}</text>
       {[0,1,2,3].map(i => (
         <line key={i} x1="30" y1={148+i*26} x2="460" y2={148+i*26} stroke="#21262d" strokeWidth="0.8"/>
       ))}
@@ -1502,7 +1514,7 @@ function DashboardSales() {
   );
 }
 
-function DashboardInventory() {
+function DashboardInventory({ lang = "zh" }: { lang?: string }) {
   // Stock depletion chart: day 0-4 historical, day 4-6.8 AI forecast
   const cX = 18, cW = 248, cY = 66, cH = 108;
   const toP = (d: number, s: number) => ({ px: cX + (d / 7) * cW, py: cY + cH - (s / 100) * cH });
@@ -1516,6 +1528,20 @@ function DashboardInventory() {
     {name:"三角飯糰", stock:8, days:"0.8", c:"#DC2626"},
     {name:"麵包", stock:31, days:"3.5", c:"#F59E0B"},
   ];
+  const L = {
+    header: lang==="ja"?"OmniCore / AI在庫予測":lang==="en"?"OmniCore / AI Inventory Forecast":"OmniCore / AI 庫存預測",
+    stockout: lang==="ja"?"⚠ 残り約2.3日で在庫切れ":lang==="en"?"⚠ Stockout in ~2.3 days":"⚠ 約2.3天後將缺貨",
+    chartTitle: lang==="ja"?"在庫トレンド — 御便當":lang==="en"?"Stock Trend — 御便當":"庫存趨勢 — 御便當",
+    xDays: lang==="ja"?["月","火","水","木","金","土","日"]:lang==="en"?["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]:["一","二","三","四","五","六","日"],
+    actual: lang==="ja"?"実績":lang==="en"?"Actual":"實際",
+    forecast: lang==="ja"?"AI予測":lang==="en"?"AI Forecast":"AI預測",
+    pickList: lang==="ja"?"🤖 AI補充リスト — 自動生成":lang==="en"?"🤖 AI Pick List — Auto-generated":"🤖 AI 補貨清單 — 已自動生成",
+    pickItems: lang==="ja"?"御便當×24　三角飯糰×36　麵包×18":lang==="en"?"御便當 ×24  三角飯糰 ×36  麵包 ×18":"御便當×24　三角飯糰×36　麵包×18",
+    delivery: lang==="ja"?"配送確定: 明日07:00 · 承認不要":lang==="en"?"Delivery: Tomorrow 07:00 · Auto-confirmed":"配送確定: 明日07:00 · 無需確認",
+    alerts: lang==="ja"?"Critical Stock Alerts":lang==="en"?"Critical Stock Alerts":"庫存緊急警示",
+    daysLeft: (d: string) => lang==="ja"?`⏱ 残り${d}日`:lang==="en"?`⏱ ${d}d left`:`⏱ 剩餘${d}天`,
+    accuracy: lang==="ja"?"在庫精度 98.1%  ·  SKU 312品目":lang==="en"?"Accuracy 98.1%  ·  SKU 312 items":"庫存精準度 98.1%  ·  SKU 312 品項",
+  };
   const r = 17, circ = 2 * Math.PI * r;
   return (
     <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -1523,15 +1549,15 @@ function DashboardInventory() {
       <rect width="480" height="36" fill="#161b22" rx="12"/>
       <rect x="0" y="12" width="480" height="24" fill="#161b22"/>
       <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
-      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / AI Inventory Forecast</text>
+      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">{L.header}</text>
       <motion.circle cx="432" cy="18" r="4" fill="#E8751A" animate={{opacity:[1,0.3,1]}} transition={{duration:1.2,repeat:Infinity}}/>
       <text x="442" y="22" fontSize="8" fill="#E8751A" fontFamily="monospace" fontWeight="bold">AI</text>
 
       {/* Left panel — Stock forecast chart */}
       <rect x="10" y="42" width="272" height="232" fill="#161b22" rx="8"/>
-      <text x="20" y="57" fontSize="8.5" fill="#6e7681" fontFamily="monospace">Stock Trend — 御便當</text>
-      <rect x="160" y="45" width="114" height="16" rx="4" fill="#EF444418" stroke="#EF444438" strokeWidth="0.8"/>
-      <text x="217" y="56" textAnchor="middle" fontSize="7.5" fill="#EF4444" fontFamily="monospace" fontWeight="bold">⚠ 残り約2.3日で在庫切れ</text>
+      <text x="20" y="57" fontSize="8.5" fill="#6e7681" fontFamily="monospace">{L.chartTitle}</text>
+      <rect x="150" y="45" width="124" height="16" rx="4" fill="#EF444418" stroke="#EF444438" strokeWidth="0.8"/>
+      <text x="212" y="56" textAnchor="middle" fontSize="7.5" fill="#EF4444" fontFamily="monospace" fontWeight="bold">{L.stockout}</text>
 
       {/* Y-axis grid */}
       {[0,25,50,75,100].map(pct => {
@@ -1544,7 +1570,7 @@ function DashboardInventory() {
         );
       })}
       {/* X-axis labels */}
-      {["月","火","水","木","金","土","日"].map((d,i) => (
+      {L.xDays.map((d,i) => (
         <text key={i} x={cX+(i/7)*cW+cW/14} y={cY+cH+12} textAnchor="middle" fontSize="7.5"
           fill={i<5?"#484f58":"#E8751A"} fontFamily="monospace">{d}</text>
       ))}
@@ -1573,18 +1599,18 @@ function DashboardInventory() {
         animate={{opacity:[1,0.3,1],scale:[1,1.4,1]}} transition={{duration:1.2,repeat:Infinity,delay:2}}/>
       {/* Legend */}
       <line x1="20" y1="204" x2="38" y2="204" stroke="#3B82F6" strokeWidth="2"/>
-      <text x="42" y="207" fontSize="7" fill="#484f58" fontFamily="monospace">実績</text>
-      <line x1="78" y1="204" x2="96" y2="204" stroke="#EF4444" strokeWidth="2" strokeDasharray="4,2"/>
-      <text x="100" y="207" fontSize="7" fill="#484f58" fontFamily="monospace">AI予測</text>
+      <text x="42" y="207" fontSize="7" fill="#484f58" fontFamily="monospace">{L.actual}</text>
+      <line x1={42+L.actual.length*5} y1="204" x2={56+L.actual.length*5} y2="204" stroke="#EF4444" strokeWidth="2" strokeDasharray="4,2"/>
+      <text x={60+L.actual.length*5} y="207" fontSize="7" fill="#484f58" fontFamily="monospace">{L.forecast}</text>
       {/* AI prediction label */}
       <rect x="10" y="216" width="272" height="52" fill="#E8751A0a" stroke="#E8751A28" strokeWidth="0.8" rx="6"/>
-      <text x="22" y="230" fontSize="8.5" fill="#E8751A" fontFamily="monospace" fontWeight="bold">🤖 AI 補充ピックリスト — 自動生成済み</text>
-      <text x="22" y="244" fontSize="7.5" fill="#8b949e" fontFamily="monospace">御便當 × 24　三角飯糰 × 36　麵包 × 18</text>
-      <text x="22" y="258" fontSize="7.5" fill="#8b949e" fontFamily="monospace">配送確定: 明日 07:00  ·  承認不要・自動発注</text>
+      <text x="22" y="230" fontSize="8.5" fill="#E8751A" fontFamily="monospace" fontWeight="bold">{L.pickList}</text>
+      <text x="22" y="244" fontSize="7.5" fill="#8b949e" fontFamily="monospace">{L.pickItems}</text>
+      <text x="22" y="258" fontSize="7.5" fill="#8b949e" fontFamily="monospace">{L.delivery}</text>
 
       {/* Right panel — Critical stock rings */}
       <rect x="288" y="42" width="182" height="232" fill="#161b22" rx="8"/>
-      <text x="298" y="57" fontSize="8.5" fill="#6e7681" fontFamily="monospace">Critical Stock Alerts</text>
+      <text x="298" y="57" fontSize="8.5" fill="#6e7681" fontFamily="monospace">{L.alerts}</text>
       {items.map(({name,stock,days,c},i) => {
         const cx = 330, cy = 92 + i * 68;
         const dash = (stock / 100) * circ;
@@ -1604,7 +1630,7 @@ function DashboardInventory() {
             <text x={cx} y={cy+4} textAnchor="middle" fontSize="10" fill={c} fontFamily="monospace" fontWeight="bold">{stock}%</text>
             {/* Item details */}
             <text x={cx+24} y={cy-10} fontSize="9.5" fill="#c9d1d9" fontFamily="sans-serif" fontWeight="bold">{name}</text>
-            <text x={cx+24} y={cy+4} fontSize="8" fill={c} fontFamily="monospace">⏱ 残り {days} 日</text>
+            <text x={cx+24} y={cy+4} fontSize="8" fill={c} fontFamily="monospace">{L.daysLeft(days)}</text>
             {/* Mini stock bar */}
             <rect x={cx+24} y={cy+10} width="110" height="6" rx="2" fill="#21262d"/>
             <motion.rect x={cx+24} y={cy+10} width={stock*1.1} height="6" rx="2" fill={c} opacity="0.8"
@@ -1615,18 +1641,34 @@ function DashboardInventory() {
       })}
       {/* Accuracy KPI */}
       <rect x="298" y="248" width="162" height="22" fill="#22C55E12" stroke="#22C55E30" strokeWidth="0.8" rx="5"/>
-      <text x="379" y="262" textAnchor="middle" fontSize="8.5" fill="#22C55E" fontFamily="monospace" fontWeight="bold">在庫精度 98.1%  ·  SKU 312品目</text>
+      <text x="379" y="262" textAnchor="middle" fontSize="8.5" fill="#22C55E" fontFamily="monospace" fontWeight="bold">{L.accuracy}</text>
     </svg>
   );
 }
 
-function DashboardPromo() {
+function DashboardPromo({ lang = "zh" }: { lang?: string }) {
+  const P = {
+    header: lang==="ja"?"OmniCore / プロモーション管理":lang==="en"?"OmniCore / Promotion Engine":"OmniCore / 促銷活動引擎",
+    funnelTitle: lang==="ja"?"転換ファネル — 買一送一キャンペーン":lang==="en"?"Conversion Funnel — BOGO Campaign":"轉換漏斗 — 買一送一活動",
+    funnelStages: lang==="ja"
+      ? ["機台表示","商品閲覧","カート追加","購入完了"]
+      : lang==="en"
+      ? ["Impressions","Product View","Add to Cart","Purchase"]
+      : ["設備展示","商品瀏覽","加入購物車","完成購買"],
+    bottomNote: lang==="ja"?"最終購入転換率 12.0%  ·  業界平均比 +8.8pp":lang==="en"?"Final conversion 12.0%  ·  +8.8pp vs industry avg":"最終轉換率 12.0%  ·  高於業界平均 +8.8pp",
+    chartTitle: lang==="ja"?"日次売上: 導入前 vs 導入後":lang==="en"?"Daily Sales: Before vs After":"每日銷售: 導入前 vs 導入後",
+    activeCampaigns: lang==="ja"?"有効キャンペーン":lang==="en"?"Active Campaigns":"進行中活動",
+    totalRedemptions: lang==="ja"?"クーポン利用数":lang==="en"?"Total Redemptions":"兌換次數",
+    avgConversion: lang==="ja"?"平均転換率":lang==="en"?"Avg Conversion":"平均轉換率",
+    setupTime: lang==="ja"?"設定時間":lang==="en"?"Setup Time":"上架時間",
+    noEngineers: lang==="ja"?"エンジニア不要":lang==="en"?"No engineers needed":"無需工程師",
+  };
   // Conversion funnel stages
   const funnel = [
-    {label:"機台表示", en:"Impressions", val:24800, pct:100, c:"#3B82F6"},
-    {label:"商品閲覧", en:"Product View", val:9920, pct:40, c:"#8B5CF6"},
-    {label:"カート追加", en:"Add to Cart", val:4464, pct:18, c:"#E8751A"},
-    {label:"購入完了", en:"Purchase", val:2976, pct:12, c:"#22C55E"},
+    {label:P.funnelStages[0], val:24800, pct:100, c:"#3B82F6"},
+    {label:P.funnelStages[1], val:9920, pct:40, c:"#8B5CF6"},
+    {label:P.funnelStages[2], val:4464, pct:18, c:"#E8751A"},
+    {label:P.funnelStages[3], val:2976, pct:12, c:"#22C55E"},
   ];
   const maxW = 200;
   // Before/after bar chart
@@ -1646,31 +1688,31 @@ function DashboardPromo() {
       <rect width="480" height="36" fill="#161b22" rx="12"/>
       <rect x="0" y="12" width="480" height="24" fill="#161b22"/>
       <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
-      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Promotion Engine</text>
+      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">{P.header}</text>
       <rect x="386" y="8" width="86" height="20" rx="6" fill="#E8751A"/>
       <text x="429" y="21" textAnchor="middle" fontSize="8" fill="white" fontFamily="monospace" fontWeight="bold">+ New Promo</text>
 
       {/* KPI row */}
       <rect x="10" y="44" width="106" height="52" fill="#161b22" rx="7"/>
-      <text x="18" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">Active Campaigns</text>
+      <text x="18" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">{P.activeCampaigns}</text>
       <text x="18" y="79" fontSize="22" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">3</text>
       <text x="18" y="90" fontSize="7" fill="#22C55E" fontFamily="monospace">/ 4 configured</text>
       <rect x="122" y="44" width="114" height="52" fill="#161b22" rx="7"/>
-      <text x="130" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">Total Redemptions</text>
+      <text x="130" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">{P.totalRedemptions}</text>
       <text x="130" y="79" fontSize="18" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">2,770</text>
       <text x="130" y="90" fontSize="7" fill="#22C55E" fontFamily="monospace">↑ +31% this week</text>
       <rect x="242" y="44" width="114" height="52" fill="#161b22" rx="7"/>
-      <text x="250" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">Avg Conversion</text>
+      <text x="250" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">{P.avgConversion}</text>
       <text x="250" y="79" fontSize="18" fontWeight="bold" fill="#E8751A" fontFamily="monospace">24.0%</text>
       <text x="250" y="90" fontSize="7" fill="#6e7681" fontFamily="monospace">vs 13.2% baseline</text>
       <rect x="362" y="44" width="110" height="52" fill="#161b22" rx="7"/>
-      <text x="370" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">Setup Time</text>
+      <text x="370" y="59" fontSize="7.5" fill="#6e7681" fontFamily="monospace">{P.setupTime}</text>
       <text x="370" y="79" fontSize="18" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">3 min</text>
-      <text x="370" y="90" fontSize="7" fill="#22C55E" fontFamily="monospace">No engineers needed</text>
+      <text x="370" y="90" fontSize="7" fill="#22C55E" fontFamily="monospace">{P.noEngineers}</text>
 
       {/* Left: Conversion Funnel */}
       <rect x="10" y="104" width="228" height="170" fill="#161b22" rx="8"/>
-      <text x="20" y="119" fontSize="8.5" fill="#6e7681" fontFamily="monospace">Conversion Funnel — 買一送一キャンペーン</text>
+      <text x="20" y="119" fontSize="8.5" fill="#6e7681" fontFamily="monospace">{P.funnelTitle}</text>
       {funnel.map(({label,val,pct,c},i) => {
         const fw = (pct / 100) * maxW;
         const fy = 128 + i * 34;
@@ -1696,11 +1738,11 @@ function DashboardPromo() {
       })}
       {/* Funnel bottom note */}
       <rect x="10" y="266" width="228" height="8" fill="#161b22" rx="3"/>
-      <text x="124" y="273" textAnchor="middle" fontSize="6.5" fill="#484f58" fontFamily="monospace">最終購入転換率 12.0%  ·  業界平均比 +8.8pp</text>
+      <text x="124" y="273" textAnchor="middle" fontSize="6.5" fill="#484f58" fontFamily="monospace">{P.bottomNote}</text>
 
       {/* Right: Before/After bar chart */}
       <rect x="246" y="104" width="226" height="170" fill="#161b22" rx="8"/>
-      <text x="256" y="119" fontSize="8.5" fill="#6e7681" fontFamily="monospace">Sales: 導入前 vs 導入後</text>
+      <text x="256" y="119" fontSize="8.5" fill="#6e7681" fontFamily="monospace">{P.chartTitle}</text>
       {/* Legend */}
       <rect x="350" y="113" width="8" height="6" rx="1" fill="#484f58"/>
       <text x="362" y="119" fontSize="6.5" fill="#484f58" fontFamily="monospace">Before</text>
@@ -1739,7 +1781,7 @@ const BACKEND_TABS: {
   label: { zh: string; en: string; ja: string };
   desc: { zh: string; en: string; ja: string };
   stats: { value: string; label: { zh: string; en: string; ja: string } }[];
-  Dashboard: () => React.ReactElement;
+  Dashboard: (lang: string) => React.ReactElement;
 }[] = [
   {
     icon: "📡",
@@ -1750,7 +1792,7 @@ const BACKEND_TABS: {
       { value: "99.6%", label: { zh: "稼動率", en: "Uptime", ja: "稼働率" } },
       { value: "<3s", label: { zh: "告警響應", en: "Alert Response", ja: "アラート応答" } },
     ],
-    Dashboard: DashboardDevice,
+    Dashboard: (lang) => DashboardDevice({ lang }),
   },
   {
     icon: "📊",
@@ -1761,7 +1803,7 @@ const BACKEND_TABS: {
       { value: "+18%", label: { zh: "環比增長", en: "MoM Growth", ja: "前月比" } },
       { value: "14,293", label: { zh: "月交易筆數", en: "Transactions", ja: "月次取引" } },
     ],
-    Dashboard: DashboardSales,
+    Dashboard: (lang) => DashboardSales({ lang }),
   },
   {
     icon: "🤖",
@@ -1772,7 +1814,7 @@ const BACKEND_TABS: {
       { value: "-34%", label: { zh: "補貨人工成本", en: "Labor Saved", ja: "人件費削減" } },
       { value: "3 min", label: { zh: "平均補貨時間", en: "Avg Restock Time", ja: "平均補充時間" } },
     ],
-    Dashboard: DashboardInventory,
+    Dashboard: (lang) => DashboardInventory({ lang }),
   },
   {
     icon: "🎯",
@@ -1783,7 +1825,7 @@ const BACKEND_TABS: {
       { value: "+24%", label: { zh: "平均轉換率", en: "Avg Conversion", ja: "平均転換率" } },
       { value: "0", label: { zh: "需要工程師", en: "Engineers Needed", ja: "エンジニア不要" } },
     ],
-    Dashboard: DashboardPromo,
+    Dashboard: (lang) => DashboardPromo({ lang }),
   },
 ];
 
@@ -2648,7 +2690,7 @@ export default function IntroPage() {
                         </div>
                         {/* Dashboard */}
                         <div style={{ aspectRatio: "480 / 280" }}>
-                          <Dash />
+                          {Dash(lang)}
                         </div>
                       </motion.div>
                     );

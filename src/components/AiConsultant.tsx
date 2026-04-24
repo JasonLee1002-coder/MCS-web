@@ -65,6 +65,9 @@ export default function AiConsultant() {
   const pathname = usePathname();
   const ctx = pageContexts[pathname] || defaultContext;
   const [isOpen, setIsOpen] = useState(false);
+
+  // Hide on /intro (pitch page — clean presentation)
+  if (pathname === "/intro") return null;
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
