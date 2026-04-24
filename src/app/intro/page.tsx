@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, createContext, useContext } from "react";
+import React, { useState, useEffect, useRef, createContext, useContext } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -1384,6 +1384,279 @@ const BACKEND_SCREENS: {
   },
 ];
 
+// ─── Backend Dashboard SVGs ───────────────────────────────────────────────────
+
+function DashboardDevice() {
+  const statuses = ["#22C55E","#22C55E","#F59E0B","#22C55E","#22C55E","#EF4444","#22C55E","#22C55E"];
+  const temps = ["24°C","23°C","31°C","25°C","22°C","—","24°C","26°C"];
+  const ids = ["GBX-001","GBX-002","GBX-003","GBX-004","TH-101","TH-102","GBX-007","GBX-008"];
+  const netW = [28,28,18,28,28,2,28,28];
+  return (
+    <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="480" height="280" fill="#0d1117" rx="12"/>
+      <rect width="480" height="36" fill="#161b22" rx="12"/>
+      <rect x="0" y="12" width="480" height="24" fill="#161b22"/>
+      <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
+      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Devices</text>
+      <motion.circle cx="420" cy="18" r="4" fill="#22C55E" animate={{opacity:[1,0.3,1]}} transition={{duration:1.2,repeat:Infinity}}/>
+      <text x="430" y="22" fontSize="9" fill="#22C55E" fontFamily="monospace">LIVE</text>
+      <rect x="10" y="44" width="460" height="24" fill="#161b22" rx="6"/>
+      <circle cx="28" cy="56" r="4" fill="#22C55E"/><text x="38" y="60" fontSize="8" fill="#8b949e" fontFamily="monospace">Online: 847</text>
+      <circle cx="128" cy="56" r="4" fill="#F59E0B"/><text x="138" y="60" fontSize="8" fill="#8b949e" fontFamily="monospace">Warning: 12</text>
+      <circle cx="228" cy="56" r="4" fill="#EF4444"/><text x="238" y="60" fontSize="8" fill="#8b949e" fontFamily="monospace">Offline: 3</text>
+      <text x="340" y="60" fontSize="8" fill="#22C55E" fontFamily="monospace">↑ +12 vs yesterday</text>
+      {[...Array(8)].map((_, i) => {
+        const col = i % 4, row = Math.floor(i/4);
+        const x = 10 + col * 117, y = 76 + row * 96;
+        const st = statuses[i];
+        return (
+          <g key={i}>
+            <rect x={x} y={y} width="112" height="88" fill="#161b22" stroke={`${st}30`} strokeWidth="1" rx="8"/>
+            <rect x={x} y={y} width="112" height="22" fill={`${st}18`} rx="8"/>
+            <rect x={x} y={y+12} width="112" height="10" fill={`${st}18`}/>
+            <motion.circle cx={x+12} cy={y+11} r="4" fill={st} animate={{opacity:[1,0.4,1]}} transition={{duration:1.5,repeat:Infinity,delay:i*0.2}}/>
+            <text x={x+22} y={y+15} fontSize="8" fill="#c9d1d9" fontFamily="monospace" fontWeight="bold">{ids[i]}</text>
+            <text x={x+8} y={y+34} fontSize="7" fill="#6e7681" fontFamily="monospace">TEMP</text>
+            <text x={x+46} y={y+34} fontSize="9" fill="#c9d1d9" fontFamily="monospace" fontWeight="bold">{temps[i]}</text>
+            <text x={x+8} y={y+48} fontSize="7" fill="#6e7681" fontFamily="monospace">NET</text>
+            <rect x={x+46} y={y+40} width="36" height="7" rx="2" fill="#21262d"/>
+            <motion.rect x={x+46} y={y+40} width={netW[i]} height="7" rx="2" fill={st}
+              animate={{opacity:[1,0.65,1]}} transition={{duration:2,repeat:Infinity,delay:i*0.25}}/>
+            <text x={x+8} y={y+62} fontSize="7" fill="#6e7681" fontFamily="monospace">SLOTS</text>
+            {[0,1,2,3,4].map(s => (
+              <rect key={s} x={x+46+s*13} y={y+54} width="10" height="10" rx="2"
+                fill={st==="#EF4444"?"#21262d":s<4?"#1f6feb":"#21262d"} stroke="#30363d" strokeWidth="0.5"/>
+            ))}
+            <text x={x+8} y={y+82} fontSize="7" fill={st} fontFamily="monospace" fontWeight="bold">
+              {st==="#22C55E"?"● ONLINE":st==="#F59E0B"?"⚠ WARNING":"✕ OFFLINE"}
+            </text>
+          </g>
+        );
+      })}
+      <motion.rect x="10" y="76" width="460" height="2" fill="#E8751A" opacity="0.5"
+        animate={{y:[76,258,76]}} transition={{duration:5,repeat:Infinity,ease:"linear"}}/>
+    </svg>
+  );
+}
+
+function DashboardSales() {
+  const bars = [62,78,45,90,110,85,95];
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const maxH = 72;
+  return (
+    <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="480" height="280" fill="#0d1117" rx="12"/>
+      <rect width="480" height="36" fill="#161b22" rx="12"/>
+      <rect x="0" y="12" width="480" height="24" fill="#161b22"/>
+      <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
+      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Sales Analytics</text>
+      <rect x="10" y="44" width="152" height="66" fill="#161b22" rx="8"/>
+      <text x="20" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Monthly Revenue</text>
+      <text x="20" y="82" fontSize="19" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">NT$2,847K</text>
+      <rect x="20" y="88" width="48" height="14" rx="5" fill="#22C55E20"/>
+      <text x="44" y="98" textAnchor="middle" fontSize="8" fill="#22C55E" fontFamily="monospace" fontWeight="bold">↑ +18%</text>
+      <rect x="170" y="44" width="96" height="66" fill="#161b22" rx="8"/>
+      <text x="180" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Transactions</text>
+      <text x="180" y="82" fontSize="16" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">14,293</text>
+      <text x="180" y="100" fontSize="8" fill="#22C55E" fontFamily="monospace">↑ +9% MoM</text>
+      <rect x="274" y="44" width="96" height="66" fill="#161b22" rx="8"/>
+      <text x="284" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Avg Basket</text>
+      <text x="284" y="82" fontSize="16" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">NT$199</text>
+      <text x="284" y="100" fontSize="8" fill="#3B82F6" fontFamily="monospace">→ Stable</text>
+      <rect x="378" y="44" width="100" height="66" fill="#161b22" rx="8"/>
+      <text x="388" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Top Sellers</text>
+      {["御便當","飯糰","咖啡","茶葉蛋"].map((item,i) => (
+        <g key={i}>
+          <text x="388" y={74+i*14} fontSize="7" fill="#8b949e" fontFamily="sans-serif">{item}</text>
+          <rect x="430" y={66+i*14} width={[40,32,24,16][i]} height="7" rx="2" fill="#1f6feb" opacity="0.7"/>
+        </g>
+      ))}
+      <rect x="10" y="120" width="460" height="150" fill="#161b22" rx="8"/>
+      <text x="20" y="136" fontSize="9" fill="#6e7681" fontFamily="monospace">Weekly Sales Trend</text>
+      {[0,1,2,3].map(i => (
+        <line key={i} x1="30" y1={148+i*26} x2="460" y2={148+i*26} stroke="#21262d" strokeWidth="0.8"/>
+      ))}
+      {bars.map((v,i) => {
+        const bh = (v/110)*maxH;
+        const bx = 32 + i*58, by = 226 - bh;
+        return (
+          <g key={i}>
+            <rect x={bx} y={226-maxH} width="40" height={maxH} fill="#21262d" rx="4" opacity="0.4"/>
+            <motion.rect x={bx} y={by} width="40" height={bh} rx="4"
+              fill={i===3||i===4?"#E8751A":"#1f6feb"}
+              initial={{height:0,y:226}} animate={{height:bh,y:by}}
+              transition={{duration:0.7,delay:i*0.09,ease:"easeOut"}}/>
+            <text x={bx+20} y={246} textAnchor="middle" fontSize="8" fill="#8b949e" fontFamily="monospace">{days[i]}</text>
+          </g>
+        );
+      })}
+      <motion.path
+        d={bars.map((v,i) => `${i===0?"M":"L"}${32+i*58+20},${226-(v/110)*maxH}`).join(" ")}
+        fill="none" stroke="#E8751A" strokeWidth="1.5" strokeDasharray="4,3" opacity="0.7"
+        initial={{pathLength:0}} animate={{pathLength:1}} transition={{duration:1.8,delay:0.8,ease:"easeOut"}}/>
+      {bars.map((v,i) => (
+        <motion.circle key={i} cx={32+i*58+20} cy={226-(v/110)*maxH} r="3" fill="#E8751A"
+          initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.8+i*0.09}}/>
+      ))}
+    </svg>
+  );
+}
+
+function DashboardInventory() {
+  const stocks = [
+    {name:"御便當 (NT$75)", pct:22, alert:true},
+    {name:"茶葉蛋 (NT$15)", pct:65, alert:false},
+    {name:"三角飯糰 (NT$35)", pct:8, alert:true},
+    {name:"咖啡 (NT$45)", pct:45, alert:false},
+    {name:"麵包 (NT$55)", pct:31, alert:true},
+  ];
+  return (
+    <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="480" height="280" fill="#0d1117" rx="12"/>
+      <rect width="480" height="36" fill="#161b22" rx="12"/>
+      <rect x="0" y="12" width="480" height="24" fill="#161b22"/>
+      <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
+      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Inventory & Restocking</text>
+      <rect x="10" y="44" width="460" height="32" fill="#E8751A15" stroke="#E8751A40" strokeWidth="1" rx="8"/>
+      <motion.circle cx="26" cy="60" r="6" fill="#E8751A" animate={{scale:[1,1.2,1],opacity:[1,0.6,1]}} transition={{duration:1.5,repeat:Infinity}}/>
+      <text x="40" y="57" fontSize="9" fill="#E8751A" fontFamily="monospace" fontWeight="bold">AI Restock Alert</text>
+      <text x="40" y="70" fontSize="8" fill="#8b949e" fontFamily="monospace">3 items below threshold — AI pick list generated automatically</text>
+      <rect x="388" y="50" width="76" height="18" rx="6" fill="#E8751A"/>
+      <text x="426" y="62" textAnchor="middle" fontSize="8" fill="white" fontFamily="monospace" fontWeight="bold">View List →</text>
+      <rect x="10" y="84" width="460" height="22" fill="#161b22" rx="6"/>
+      <text x="20" y="98" fontSize="8" fill="#6e7681" fontFamily="monospace">PRODUCT</text>
+      <text x="210" y="98" fontSize="8" fill="#6e7681" fontFamily="monospace">STOCK LEVEL</text>
+      <text x="400" y="98" fontSize="8" fill="#6e7681" fontFamily="monospace">STATUS</text>
+      {stocks.map(({name,pct,alert},i) => (
+        <g key={i}>
+          <rect x="10" y={112+i*30} width="460" height="28" fill={i%2===0?"#161b2260":"transparent"} rx="4"/>
+          <text x="20" y={130+i*30} fontSize="8" fill="#c9d1d9" fontFamily="sans-serif">{name}</text>
+          <rect x="210" y={117+i*30} width="172" height="10" rx="3" fill="#21262d"/>
+          <motion.rect x="210" y={117+i*30} width={pct*1.72} height="10" rx="3"
+            fill={alert?"#EF4444":pct>50?"#22C55E":"#F59E0B"}
+            initial={{width:0}} animate={{width:pct*1.72}} transition={{duration:0.9,delay:i*0.12,ease:"easeOut"}}/>
+          <text x="390" y={130+i*30} fontSize="9" fill={alert?"#EF4444":pct>50?"#22C55E":"#F59E0B"} fontFamily="monospace" fontWeight="bold">{pct}%</text>
+          {alert ? (
+            <g>
+              <rect x="410" y={119+i*30} width="54" height="14" rx="4" fill="#EF444420" stroke="#EF444440" strokeWidth="0.8"/>
+              <text x="437" y={129+i*30} textAnchor="middle" fontSize="7" fill="#EF4444" fontFamily="monospace">LOW STOCK</text>
+            </g>
+          ) : (
+            <g>
+              <rect x="410" y={119+i*30} width="42" height="14" rx="4" fill="#22C55E20" stroke="#22C55E40" strokeWidth="0.8"/>
+              <text x="431" y={129+i*30} textAnchor="middle" fontSize="7" fill="#22C55E" fontFamily="monospace">OK</text>
+            </g>
+          )}
+        </g>
+      ))}
+      <rect x="10" y="264" width="460" height="12" fill="#161b22" rx="4"/>
+      <text x="20" y="274" fontSize="7" fill="#6e7681" fontFamily="monospace">Last updated: 2 min ago  ·  Total SKUs: 312  ·  Accuracy: 98.1%</text>
+    </svg>
+  );
+}
+
+function DashboardPromo() {
+  const promos = [
+    {name:"買一送一（御便當）", active:true, uses:1240, conv:"23%", badge:"限時"},
+    {name:"三件95折", active:true, uses:892, conv:"18%", badge:"全時段"},
+    {name:"會員點數 2倍", active:false, uses:430, conv:"—", badge:"週末"},
+    {name:"新品嚐鮮 NT$15", active:true, uses:208, conv:"31%", badge:"新品"},
+  ];
+  const convW = [0.23,0.18,0,0.31];
+  return (
+    <svg viewBox="0 0 480 280" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="480" height="280" fill="#0d1117" rx="12"/>
+      <rect width="480" height="36" fill="#161b22" rx="12"/>
+      <rect x="0" y="12" width="480" height="24" fill="#161b22"/>
+      <circle cx="16" cy="18" r="4" fill="#ff5f57"/><circle cx="28" cy="18" r="4" fill="#ffbd2e"/><circle cx="40" cy="18" r="4" fill="#28c840"/>
+      <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Promotions</text>
+      <rect x="380" y="8" width="92" height="20" rx="6" fill="#E8751A"/>
+      <text x="426" y="21" textAnchor="middle" fontSize="8" fill="white" fontFamily="monospace" fontWeight="bold">+ New Promo</text>
+      <rect x="10" y="44" width="142" height="58" fill="#161b22" rx="8"/>
+      <text x="20" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Active Promos</text>
+      <text x="20" y="82" fontSize="24" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">3</text>
+      <text x="20" y="96" fontSize="8" fill="#22C55E" fontFamily="monospace">/ 4 running</text>
+      <rect x="160" y="44" width="142" height="58" fill="#161b22" rx="8"/>
+      <text x="170" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Total Redemptions</text>
+      <text x="170" y="82" fontSize="20" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">2,770</text>
+      <text x="170" y="96" fontSize="8" fill="#22C55E" fontFamily="monospace">↑ +31% this week</text>
+      <rect x="310" y="44" width="162" height="58" fill="#161b22" rx="8"/>
+      <text x="320" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">Avg Conversion</text>
+      <text x="320" y="82" fontSize="20" fontWeight="bold" fill="#E8751A" fontFamily="monospace">24.0%</text>
+      <text x="320" y="96" fontSize="8" fill="#6e7681" fontFamily="monospace">3 active campaigns</text>
+      {promos.map(({name,active,uses,conv,badge},i) => (
+        <g key={i}>
+          <rect x="10" y={112+i*40} width="460" height="36" fill="#161b22" stroke={active?"#E8751A28":"#30363d"} strokeWidth="1" rx="8"/>
+          <motion.circle cx="24" cy={130+i*40} r="5" fill={active?"#22C55E":"#6b7280"}
+            animate={active?{opacity:[1,0.4,1]}:{opacity:[0.5]}} transition={{duration:1.5,repeat:Infinity}}/>
+          <text x="36" y={125+i*40} fontSize="9" fill="#c9d1d9" fontFamily="sans-serif" fontWeight="bold">{name}</text>
+          <rect x="36" y={129+i*40} width={badge.length*6+8} height="12" rx="4" fill="#3B82F618" stroke="#3B82F638" strokeWidth="0.8"/>
+          <text x={40+badge.length*3} y={138+i*40} textAnchor="middle" fontSize="7" fill="#60A5FA" fontFamily="monospace">{badge}</text>
+          <text x="240" y={125+i*40} fontSize="8" fill="#6e7681" fontFamily="monospace">Uses: <tspan fill="#c9d1d9" fontWeight="bold">{uses.toLocaleString()}</tspan></text>
+          <text x="330" y={125+i*40} fontSize="8" fill="#6e7681" fontFamily="monospace">Conv: <tspan fill="#E8751A" fontWeight="bold">{conv}</tspan></text>
+          <rect x="240" y={131+i*40} width="196" height="6" rx="2" fill="#21262d"/>
+          <motion.rect x="240" y={131+i*40} width={convW[i]*196} height="6" rx="2"
+            fill="#E8751A" opacity={active?0.85:0.2}
+            initial={{width:0}} animate={{width:convW[i]*196}} transition={{duration:0.9,delay:i*0.12,ease:"easeOut"}}/>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+const BACKEND_TABS: {
+  icon: string;
+  label: { zh: string; en: string; ja: string };
+  desc: { zh: string; en: string; ja: string };
+  stats: { value: string; label: { zh: string; en: string; ja: string } }[];
+  Dashboard: () => React.ReactElement;
+}[] = [
+  {
+    icon: "📡",
+    label: { zh: "設備即時監控", en: "Device Monitoring", ja: "デバイス監視" },
+    desc: { zh: "全台所有機台狀態一畫面掌握——網路、溫度、格子庫存、支付模組健康度，異常秒級推播。", en: "All devices on one screen — network, temperature, slot inventory, and payment health. Instant anomaly alerts.", ja: "全機器の状態を一画面で把握。ネット・温度・スロット在庫・決済モジュールを秒単位で監視。" },
+    stats: [
+      { value: "847", label: { zh: "在線機台", en: "Devices Online", ja: "オンライン機器" } },
+      { value: "99.6%", label: { zh: "稼動率", en: "Uptime", ja: "稼働率" } },
+      { value: "<3s", label: { zh: "告警響應", en: "Alert Response", ja: "アラート応答" } },
+    ],
+    Dashboard: DashboardDevice,
+  },
+  {
+    icon: "📊",
+    label: { zh: "銷售報表分析", en: "Sales Analytics", ja: "売上分析" },
+    desc: { zh: "日、週、月多維度報表，依門市 / 品項 / 時段自動切片。AI 自動找出異常時段與爆品機會。", en: "Daily/weekly/monthly reports auto-sliced by store, item, and time slot. AI flags anomalies and top-seller opportunities.", ja: "日次・週次・月次レポートを店舗/商品/時間帯で自動集計。AI が異常と売れ筋機会を検出。" },
+    stats: [
+      { value: "NT$2.8M", label: { zh: "月營收", en: "Monthly Revenue", ja: "月次売上" } },
+      { value: "+18%", label: { zh: "環比增長", en: "MoM Growth", ja: "前月比" } },
+      { value: "14,293", label: { zh: "月交易筆數", en: "Transactions", ja: "月次取引" } },
+    ],
+    Dashboard: DashboardSales,
+  },
+  {
+    icon: "🤖",
+    label: { zh: "AI 庫存補貨", en: "AI Inventory", ja: "AI在庫補充" },
+    desc: { zh: "低庫存自動警報，AI 預測補貨時機與數量，掃碼確認補貨完成，達到閉環庫存管理。", en: "Auto low-stock alerts, AI predicts when and how much to restock. Barcode-confirm closes the loop.", ja: "在庫低下を自動アラート。AI が補充タイミングと数量を予測。バーコード確認でクローズドループ管理。" },
+    stats: [
+      { value: "98.1%", label: { zh: "庫存準確率", en: "Inventory Accuracy", ja: "在庫精度" } },
+      { value: "-34%", label: { zh: "補貨人工成本", en: "Labor Saved", ja: "人件費削減" } },
+      { value: "3 min", label: { zh: "平均補貨時間", en: "Avg Restock Time", ja: "平均補充時間" } },
+    ],
+    Dashboard: DashboardInventory,
+  },
+  {
+    icon: "🎯",
+    label: { zh: "促銷活動引擎", en: "Promo Engine", ja: "プロモーション" },
+    desc: { zh: "折扣碼、組合促銷、限時活動——店長 3 分鐘自行上架，無需工程師，轉換率即時追蹤。", en: "Discount codes, bundles, timed promos — store owners set up in 3 min, no engineers needed. Real-time conversion tracking.", ja: "割引・セット・期間限定プロモ。店長が3分で設定、エンジニア不要。転換率をリアルタイムで追跡。" },
+    stats: [
+      { value: "3 min", label: { zh: "上架時間", en: "Setup Time", ja: "設定時間" } },
+      { value: "+24%", label: { zh: "平均轉換率", en: "Avg Conversion", ja: "平均転換率" } },
+      { value: "0", label: { zh: "需要工程師", en: "Engineers Needed", ja: "エンジニア不要" } },
+    ],
+    Dashboard: DashboardPromo,
+  },
+];
+
 // ─── Layer Illustrations ──────────────────────────────────────────────────────
 
 function IllustrationL1() {
@@ -1864,21 +2137,35 @@ export default function IntroPage() {
                         </div>
                       </div>
 
-                      {/* Chips */}
+                      {/* Capability Cards */}
                       <div className="p-5">
                         <div className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color:accent, opacity:0.8 }}>
                           {lang==="ja" ? "主な機能・対応" : lang==="en" ? "Capabilities" : "技術能力"}
                         </div>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {layer.items.map((item, j) => (
-                            <motion.span key={j}
-                              initial={{ opacity:0, scale:0.85 }}
-                              animate={{ opacity:1, scale:1 }}
-                              transition={{ duration:0.25, delay:j*0.04 }}
-                              className="text-xs font-bold px-3 py-1.5 rounded-xl"
-                              style={{ background:`${accent}18`, border:`1px solid ${accent}40`, color:"white" }}>
-                              {item}
-                            </motion.span>
+                            <motion.div key={j}
+                              initial={{ opacity:0, x:-10 }}
+                              animate={{ opacity:1, x:0 }}
+                              transition={{ duration:0.22, delay:j*0.05 }}
+                              className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 select-none"
+                              style={{
+                                background:`linear-gradient(110deg, ${accent}14 0%, ${accent}06 100%)`,
+                                border:`1px solid ${accent}28`,
+                                borderLeft:`3px solid ${accent}`,
+                              }}
+                            >
+                              <span className="text-[10px] font-black tabular-nums min-w-[18px]" style={{color:accent}}>
+                                {String(j + 1).padStart(2, "0")}
+                              </span>
+                              <span className="text-xs font-semibold text-white/90 leading-snug flex-1">{item}</span>
+                              <motion.div
+                                className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                                style={{ background: accent }}
+                                animate={{ opacity:[1,0.25,1] }}
+                                transition={{ duration:2, repeat:Infinity, delay:j*0.28 }}
+                              />
+                            </motion.div>
                           ))}
                         </div>
                       </div>
@@ -2035,154 +2322,120 @@ export default function IntroPage() {
           </div>
         </div>
 
-          {/* ── Backend Screenshot Showcase ── */}
+          {/* ── Backend Showcase (Master-Detail) ── */}
           <div className="mt-14">
             <FadeIn>
               <p className="text-xs font-bold uppercase tracking-widest text-[#E8751A] mb-1">
                 {lang === "ja" ? "実際の管理画面" : lang === "en" ? "Live Dashboard" : "後台實際畫面"}
               </p>
               <h3 className="text-2xl font-black text-[#1B3A5C] mb-6">
-                {lang === "ja" ? "OmniCore — 実際の操作UI" : lang === "en" ? "OmniCore in Action — Real UI" : "OmniCore 後台操作介面"}
+                {lang === "ja" ? "OmniCore — 実際の操作UI" : lang === "en" ? "OmniCore in Action" : "OmniCore 後台操作介面"}
               </h3>
             </FadeIn>
 
-            {/* Main area: 80% screenshot + 20% info panel */}
-            <FadeIn delay={0.05}>
-              <div className="flex gap-4 mb-4 items-stretch">
-                {/* Screenshot (80%) */}
-                <div
-                  className="relative rounded-2xl overflow-hidden border border-gray-200 bg-[#0d1117] cursor-zoom-in group flex-shrink-0"
-                  style={{ width: "80%", aspectRatio: "16/9" }}
-                  onClick={() => setLightboxImg(BACKEND_SCREENS[backendSlide].src)}
-                >
-                  {/* Browser chrome bar */}
-                  <div className="absolute top-0 left-0 right-0 z-10 bg-[#1e1e2e] px-4 py-2 flex items-center gap-2 border-b border-white/10">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-                    <div className="flex-1 mx-3 bg-white/8 rounded px-2 py-0.5 text-[9px] text-white/25 font-mono select-none">
-                      omnicore.mcstation.ai / dashboard
-                    </div>
-                    <div className="text-white/30 text-[9px] select-none">
-                      {backendSlide + 1} / {BACKEND_SCREENS.length}
-                    </div>
-                  </div>
-                  {/* Screenshot */}
-                  <Image
-                    src={BACKEND_SCREENS[backendSlide].src}
-                    alt={BACKEND_SCREENS[backendSlide].label[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].label.zh}
-                    fill
-                    className="object-cover object-top pt-9 transition-transform duration-500 group-hover:scale-[1.015]"
-                    unoptimized
-                  />
-                  {/* Zoom hint */}
-                  <div className="absolute top-10 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/60 rounded-lg px-2 py-1 text-white/80 text-[10px] flex items-center gap-1 select-none">
-                    <span>⊕</span>
-                    <span>{lang === "ja" ? "拡大" : lang === "en" ? "Zoom" : "放大"}</span>
-                  </div>
-                </div>
-
-                {/* Info panel (20%) */}
-                <div className="flex-1 flex flex-col justify-between border border-gray-200 rounded-2xl bg-gradient-to-b from-[#1B3A5C] to-[#0F2440] p-4 min-w-0">
-                  {/* Header */}
-                  <div>
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-[#E8751A] mb-2">
-                      {lang === "ja" ? "機能モジュール" : lang === "en" ? "Module" : "功能模組"}
-                    </div>
-                    {/* Module list as nav */}
-                    <div className="flex flex-col gap-1">
-                      {BACKEND_SCREENS.map((s, i) => (
-                        <button
-                          key={i}
-                          onClick={() => setBackendSlide(i)}
-                          className={`text-left px-2.5 py-2 rounded-lg text-xs transition-all duration-150 leading-tight ${
-                            backendSlide === i
-                              ? "bg-[#E8751A] text-white font-bold shadow-lg"
-                              : "text-white/50 hover:text-white/80 hover:bg-white/8"
-                          }`}
-                        >
-                          <span className={`inline-block w-4 text-center mr-1 ${backendSlide === i ? "text-white" : "text-white/30"}`}>{i + 1}.</span>
-                          {s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  {/* Description */}
-                  <div className="mt-3 pt-3 border-t border-white/10">
-                    <p className="text-white/60 text-[10px] leading-relaxed">
-                      {BACKEND_SCREENS[backendSlide].desc[lang as "zh" | "en" | "ja"] ?? BACKEND_SCREENS[backendSlide].desc.zh}
-                    </p>
-                    <button
-                      onClick={() => setLightboxImg(BACKEND_SCREENS[backendSlide].src)}
-                      className="mt-2 text-[10px] text-[#E8751A] hover:text-orange-300 flex items-center gap-1 transition-colors"
-                    >
-                      <span>⊕</span>
-                      <span>{lang === "ja" ? "クリックで拡大" : lang === "en" ? "Click to enlarge" : "點擊放大"}</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Thumbnail Strip — prominent clickable */}
-            <FadeIn delay={0.1}>
-              <div className="border border-gray-200 rounded-2xl bg-gray-50 p-3">
-                {/* Strip header */}
-                <div className="flex items-center justify-between mb-2.5 px-1">
-                  <p className="text-[11px] font-bold text-gray-500 flex items-center gap-1.5">
-                    <span className="text-base">👆</span>
-                    {lang === "ja" ? "クリックして切り替え" : lang === "en" ? "Click to switch screens" : "點擊縮圖切換畫面"}
-                  </p>
-                  <p className="text-[10px] text-gray-400">
-                    {backendSlide + 1} / {BACKEND_SCREENS.length}
-                  </p>
-                </div>
-                {/* Thumbnails */}
-                <div className="flex gap-2 overflow-x-auto pb-1">
-                  {BACKEND_SCREENS.map((s, i) => (
-                    <button
+            <div className="flex flex-col md:flex-row gap-5 items-start">
+              {/* Left: tab cards (sticky) */}
+              <div className="w-full md:w-[36%] flex flex-col gap-2.5 md:sticky md:top-20 md:self-start">
+                {BACKEND_TABS.map((tab, i) => {
+                  const isActive = backendSlide === i;
+                  const l = lang as "zh" | "en" | "ja";
+                  return (
+                    <motion.button
                       key={i}
                       onClick={() => setBackendSlide(i)}
-                      className={`flex-shrink-0 relative rounded-xl overflow-hidden transition-all duration-200 group/thumb ${
-                        backendSlide === i
-                          ? "ring-2 ring-[#E8751A] ring-offset-2 shadow-lg scale-[1.04]"
-                          : "ring-1 ring-gray-200 hover:ring-[#E8751A]/50 hover:scale-[1.03] hover:shadow-md opacity-80 hover:opacity-100"
+                      initial={{ opacity: 0, x: -12 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: i * 0.06 }}
+                      className={`w-full text-left rounded-2xl border-2 transition-all duration-200 overflow-hidden ${
+                        isActive
+                          ? "border-[#E8751A] shadow-xl bg-[#FFF8F4]"
+                          : "border-gray-100 bg-gray-50 hover:border-[#E8751A]/30 hover:bg-orange-50/20"
                       }`}
-                      style={{ width: 140, height: 88 }}
-                      aria-label={s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
                     >
-                      <Image
-                        src={s.src}
-                        alt={s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
-                        fill
-                        className="object-cover object-top"
-                        unoptimized
-                      />
-                      {/* Number badge */}
-                      <div className={`absolute top-1.5 left-1.5 w-5 h-5 rounded-full text-[9px] font-black flex items-center justify-center ${
-                        backendSlide === i ? "bg-[#E8751A] text-white" : "bg-black/50 text-white/80"
-                      }`}>{i + 1}</div>
-                      {/* Active glow */}
-                      {backendSlide === i && (
-                        <div className="absolute inset-0 bg-[#E8751A]/10 pointer-events-none" />
-                      )}
-                      {/* Hover click hint */}
-                      <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/20 transition-colors duration-150 flex items-center justify-center">
-                        <span className="opacity-0 group-hover/thumb:opacity-100 text-white text-lg transition-opacity duration-150 select-none drop-shadow">▶</span>
+                      {/* Card header */}
+                      <div className={`px-4 py-3 flex items-center gap-3 ${isActive ? "bg-[#E8751A]" : "bg-transparent"}`}>
+                        <span className="text-xl">{tab.icon}</span>
+                        <span className={`font-black text-sm leading-tight ${isActive ? "text-white" : "text-[#1B3A5C]"}`}>
+                          {tab.label[l] ?? tab.label.zh}
+                        </span>
+                        {isActive && (
+                          <motion.div className="ml-auto w-2 h-2 rounded-full bg-white"
+                            animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
+                        )}
                       </div>
-                      {/* Label */}
-                      <div className={`absolute bottom-0 left-0 right-0 px-1.5 py-1 ${
-                        backendSlide === i ? "bg-[#E8751A]" : "bg-black/60"
-                      }`}>
-                        <p className="text-[9px] text-white font-semibold truncate leading-tight">
-                          {s.label[lang as "zh" | "en" | "ja"] ?? s.label.zh}
-                        </p>
-                      </div>
-                    </button>
-                  ))}
-                </div>
+                      {/* Expanded content */}
+                      <AnimatePresence initial={false}>
+                        {isActive && (
+                          <motion.div
+                            key="content"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.22 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-4 py-3">
+                              <p className="text-xs text-gray-500 leading-relaxed mb-3">
+                                {tab.desc[l] ?? tab.desc.zh}
+                              </p>
+                              <div className="flex gap-2">
+                                {tab.stats.map((s, j) => (
+                                  <div key={j} className="flex-1 bg-white rounded-xl p-2 border border-orange-100 text-center shadow-sm">
+                                    <div className="font-black text-sm text-[#E8751A] leading-tight">{s.value}</div>
+                                    <div className="text-[9px] text-gray-400 mt-0.5 leading-tight">{s.label[l] ?? s.label.zh}</div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.button>
+                  );
+                })}
               </div>
-            </FadeIn>
+
+              {/* Right: animated dashboard SVG */}
+              <div className="flex-1 md:sticky md:top-20 md:self-start">
+                <AnimatePresence mode="wait">
+                  {(() => {
+                    const tab = BACKEND_TABS[backendSlide];
+                    const Dash = tab.Dashboard;
+                    const routes = ["devices", "analytics", "inventory", "promotions"];
+                    return (
+                      <motion.div
+                        key={backendSlide}
+                        initial={{ opacity: 0, y: 18 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -18 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="rounded-2xl overflow-hidden border border-gray-200 shadow-2xl bg-[#0d1117]"
+                      >
+                        {/* Browser chrome */}
+                        <div className="bg-[#161b22] px-4 py-2.5 flex items-center gap-2 border-b border-white/10">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                          <div className="flex-1 mx-3 bg-white/8 rounded px-2 py-0.5 text-[9px] text-white/30 font-mono select-none">
+                            omnicore.mcstation.ai / {routes[backendSlide]}
+                          </div>
+                          <motion.span
+                            className="text-[9px] text-[#22C55E] font-mono select-none"
+                            animate={{ opacity: [1, 0.3, 1] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          >● LIVE</motion.span>
+                        </div>
+                        {/* Dashboard */}
+                        <div style={{ aspectRatio: "480 / 280" }}>
+                          <Dash />
+                        </div>
+                      </motion.div>
+                    );
+                  })()}
+                </AnimatePresence>
+              </div>
+            </div>
           </div>
       </section>
 
