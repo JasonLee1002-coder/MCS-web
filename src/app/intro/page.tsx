@@ -1389,7 +1389,7 @@ export default function IntroPage() {
   const { lang } = useLanguage();
   const t = T[lang as keyof typeof T] ?? T.zh;
   const [fmTab, setFmTab] = useState(0);
-  const [openModule, setOpenModule] = useState<number | null>(null);
+  const [openModule, setOpenModule] = useState<number>(0);
   const [openClient, setOpenClient] = useState<number | null>(null);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
   const [backendSlide, setBackendSlide] = useState(0);
@@ -1637,152 +1637,121 @@ export default function IntroPage() {
           <FadeIn delay={0.05}><h2 className="text-3xl md:text-4xl font-black text-[#1B3A5C] mb-3">{t.platform.title}</h2></FadeIn>
           <FadeIn delay={0.1}><p className="text-gray-500 mb-10 max-w-2xl">{t.platform.sub}</p></FadeIn>
 
-          {/* Accordion hint */}
-          <div className="flex items-center gap-3 mb-4 -mt-6">
-            <div className="flex-1 h-px bg-gray-100" />
-            <span className="text-xs font-semibold text-[#E8751A] bg-orange-50 border border-orange-100 rounded-full px-3 py-1 select-none">
-              {lang === "ja" ? "👇 タップして各機能の詳細を見る" : lang === "en" ? "👇 Tap to expand each module" : "👇 點擊每列展開詳細功能"}
-            </span>
-            <div className="flex-1 h-px bg-gray-100" />
-          </div>
+          {/* Master-Detail: Left list + Right sticky panel */}
+          <div className="flex flex-col md:flex-row gap-4 mb-4 items-start">
 
-          {/* Accordion rows */}
-          <div className="flex flex-col gap-2 mb-4">
-            {t.platform.features.map((f, i) => {
-              const isOpen = openModule === i;
-              const detail = MODULE_DETAILS[i];
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: i * 0.07 }}
-                >
-                  {/* Row trigger */}
-                  <button
-                    onClick={() => setOpenModule(isOpen ? null : i)}
-                    className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border-2 transition-all duration-200 text-left group select-none ${
-                      isOpen
+            {/* ── Left: feature list ── */}
+            <div className="w-full md:w-[42%] flex flex-col gap-1.5 md:sticky md:top-20 md:self-start">
+              {t.platform.features.map((f, i) => {
+                const isActive = openModule === i;
+                const detail = MODULE_DETAILS[i];
+                return (
+                  <motion.button
+                    key={i}
+                    onClick={() => setOpenModule(i)}
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: i * 0.05 }}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl border-2 transition-all duration-200 text-left group select-none ${
+                      isActive
                         ? `${detail.light} border-[#E8751A] shadow-md`
-                        : "bg-gray-50 border-gray-150 hover:border-[#E8751A]/50 hover:bg-orange-50/30 hover:shadow-sm"
+                        : "bg-gray-50 border-transparent hover:border-[#E8751A]/40 hover:bg-orange-50/30"
                     }`}
                   >
                     {/* Left accent bar */}
-                    <div className={`w-1 self-stretch rounded-full flex-shrink-0 transition-colors duration-200 ${isOpen ? "bg-[#E8751A]" : "bg-gray-200 group-hover:bg-[#E8751A]/40"}`} />
-
+                    <div className={`w-1 h-8 rounded-full flex-shrink-0 transition-colors duration-200 ${isActive ? "bg-[#E8751A]" : "bg-gray-200 group-hover:bg-[#E8751A]/40"}`} />
                     {/* Icon */}
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 transition-colors duration-200 ${isOpen ? detail.color + " shadow-md" : "bg-gray-200"}`}>
+                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center text-lg flex-shrink-0 transition-all duration-200 ${isActive ? detail.color + " shadow-md" : "bg-gray-200"}`}>
                       {f.icon}
                     </div>
-
                     {/* Text */}
                     <div className="flex-1 min-w-0">
-                      <div className={`font-bold text-base leading-tight mb-0.5 transition-colors ${isOpen ? "text-[#1B3A5C]" : "text-gray-800"}`}>{f.name}</div>
-                      <div className={`text-xs leading-relaxed transition-colors ${isOpen ? "text-gray-600" : "text-gray-400"}`}>{f.desc}</div>
+                      <div className={`font-bold text-sm leading-tight transition-colors ${isActive ? "text-[#1B3A5C]" : "text-gray-700"}`}>{f.name}</div>
+                      <div className={`text-xs leading-relaxed mt-0.5 transition-colors line-clamp-1 ${isActive ? "text-gray-500" : "text-gray-400"}`}>{f.desc}</div>
                     </div>
-
-                    {/* Status chip */}
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full flex-shrink-0 transition-all duration-200 ${
-                      isOpen ? "bg-[#E8751A] text-white shadow-sm" : "bg-gray-200 text-gray-500 group-hover:bg-orange-100 group-hover:text-[#E8751A]"
-                    }`}>
-                      {isOpen
-                        ? (lang === "ja" ? "閉じる" : lang === "en" ? "Close ↑" : "收起 ↑")
-                        : (lang === "ja" ? "詳細を見る" : lang === "en" ? "Details ↓" : "展開 ↓")}
-                    </span>
-
-                    {/* Chevron */}
+                    {/* Active indicator */}
                     <motion.div
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
-                      className={`flex-shrink-0 transition-colors duration-200 ${isOpen ? "text-[#E8751A]" : "text-gray-300 group-hover:text-[#E8751A]/60"}`}
+                      animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 4 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-[#E8751A] flex-shrink-0"
                     >
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M6 9l6 6 6-6" />
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 18l6-6-6-6" />
                       </svg>
                     </motion.div>
-                  </button>
+                  </motion.button>
+                );
+              })}
+            </div>
 
-                  {/* Inline expanded detail — opens right below clicked row */}
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        key={`detail-${i}`}
-                        initial={{ opacity: 0, height: 0, y: -8 }}
-                        animate={{ opacity: 1, height: "auto", y: 0 }}
-                        exit={{ opacity: 0, height: 0, y: -8 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <div className="mt-2 ml-6 relative rounded-2xl p-[2px]"
-                          style={{
-                            background: "linear-gradient(135deg, #2563EB, #E8751A, #2563EB)",
-                            backgroundSize: "300% 300%",
-                            animation: "gradientShift 4s ease infinite",
-                          }}
-                        >
-                          <div className={`rounded-[14px] p-6 ${detail.light}`}>
-                            {/* Header */}
-                            <div className="flex items-center gap-3 mb-5">
-                              <div className={`w-12 h-12 rounded-xl ${detail.color} flex items-center justify-center text-2xl shadow-lg`}>
-                                {f.icon}
-                              </div>
-                              <div>
-                                <div className="font-black text-[#1B3A5C] text-xl leading-tight">{f.name}</div>
-                                <div className="text-xs text-gray-500 mt-0.5">{f.desc}</div>
-                              </div>
-                            </div>
+            {/* ── Right: detail panel ── */}
+            <div className="w-full md:w-[58%] md:sticky md:top-20 md:self-start">
+              <AnimatePresence mode="wait">
+                {(() => {
+                  const i = openModule;
+                  const f = t.platform.features[i];
+                  const detail = MODULE_DETAILS[i];
+                  const Illus = MODULE_ILLUSTRATIONS[i];
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: 16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -8 }}
+                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                      className={`rounded-2xl border-2 border-[#E8751A]/30 overflow-hidden ${detail.light}`}
+                    >
+                      {/* Panel header */}
+                      <div className={`${detail.color} px-5 py-4 flex items-center gap-3`}>
+                        <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl flex-shrink-0">
+                          {f.icon}
+                        </div>
+                        <div>
+                          <div className="font-black text-white text-lg leading-tight">{f.name}</div>
+                          <div className="text-white/70 text-xs mt-0.5">{f.desc}</div>
+                        </div>
+                      </div>
 
-                            {/* Illustration */}
-                            {(() => {
-                              const Illus = MODULE_ILLUSTRATIONS[i];
-                              return Illus ? (
-                                <motion.div
-                                  initial={{ opacity: 0, y: 8 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ duration: 0.4, delay: 0.1 }}
-                                  className="rounded-xl overflow-hidden mb-5 shadow-sm"
-                                  style={{ aspectRatio: "2/1" }}
-                                >
-                                  <Illus />
-                                </motion.div>
-                              ) : null;
-                            })()}
+                      <div className="p-5 space-y-4">
+                        {/* Illustration */}
+                        {Illus && (
+                          <div className="rounded-xl overflow-hidden shadow-sm" style={{ aspectRatio: "2/1" }}>
+                            <Illus />
+                          </div>
+                        )}
 
-                            <div className="grid md:grid-cols-2 gap-5">
-                              {/* Scenario */}
-                              <div>
-                                <div className="text-xs font-bold text-[#E8751A] uppercase tracking-wider mb-2">
-                                  {lang === "ja" ? "実際の使用シナリオ" : lang === "en" ? "Real Usage Scenario" : "真實使用情境"}
-                                </div>
-                                <div className="bg-white rounded-xl px-4 py-3 text-sm text-gray-700 leading-relaxed border border-gray-100 italic shadow-sm">
-                                  「{MODULE_DETAILS[i].scenario[lang as "zh" | "en" | "ja"] ?? MODULE_DETAILS[i].scenario.zh}」
-                                </div>
-                              </div>
-                              {/* Key capabilities */}
-                              <div>
-                                <div className="text-xs font-bold text-[#1B3A5C] uppercase tracking-wider mb-2">
-                                  {lang === "ja" ? "主要機能" : lang === "en" ? "Key Capabilities" : "核心能力"}
-                                </div>
-                                <ul className="space-y-1.5">
-                                  {(MODULE_DETAILS[i].bullets[lang as "zh" | "en" | "ja"] ?? MODULE_DETAILS[i].bullets.zh).map((b, j) => (
-                                    <li key={j} className="flex items-start gap-2 text-xs text-gray-700">
-                                      <span className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-black flex-shrink-0 shadow-sm ${detail.color}`}>{j + 1}</span>
-                                      {b}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </div>
+                        {/* Scenario */}
+                        <div>
+                          <div className="text-xs font-bold text-[#E8751A] uppercase tracking-wider mb-2">
+                            {lang === "ja" ? "実際の使用シナリオ" : lang === "en" ? "Real Usage Scenario" : "真實使用情境"}
+                          </div>
+                          <div className="bg-white rounded-xl px-4 py-3 text-sm text-gray-700 leading-relaxed border border-gray-100 italic shadow-sm">
+                            「{detail.scenario[lang as "zh" | "en" | "ja"] ?? detail.scenario.zh}」
                           </div>
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </div>
+
+                        {/* Key capabilities */}
+                        <div>
+                          <div className="text-xs font-bold text-[#1B3A5C] uppercase tracking-wider mb-2">
+                            {lang === "ja" ? "主要機能" : lang === "en" ? "Key Capabilities" : "核心能力"}
+                          </div>
+                          <ul className="space-y-1.5">
+                            {(detail.bullets[lang as "zh" | "en" | "ja"] ?? detail.bullets.zh).map((b, j) => (
+                              <li key={j} className="flex items-start gap-2 text-xs text-gray-700">
+                                <span className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-black flex-shrink-0 shadow-sm ${detail.color}`}>{j + 1}</span>
+                                {b}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>{/* end p-5 */}
+                    </motion.div>
+                  );
+                })()}
+              </AnimatePresence>
+            </div>{/* end right panel */}
+          </div>{/* end master-detail */}
 
           {/* Integration grid */}
           <div className="border border-gray-200 rounded-2xl overflow-hidden">
