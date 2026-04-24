@@ -86,14 +86,70 @@
 | `yuzu-uiux` | Yuzu 活潑 UI 設計規範 |
 | `pwa-install` | PWA 安裝引導（iOS Safari + Android）|
 | `webview-detect` | LINE/FB WebView 偵測 |
+| `vercel:nextjs` | Next.js App Router 最佳實踐 |
+| `vercel:shadcn` | shadcn/ui 元件整合 |
+| `vercel:react-best-practices` | React 程式碼品質審查 |
+| `vercel:ai-sdk` | Vercel AI SDK 整合（Yuzu chatbot）|
+| `simplify` | 程式碼重構與品質提升 |
+
+### SEO 核心（每次 SEO 工作必選）
+| 技能 | 用途 |
+|------|------|
+| `seo-audit` | 網站 SEO 全面稽核（起點）|
+| `seo-technical` | 技術 SEO 審查（Core Web Vitals, robots, sitemap）|
+| `seo-page` | 單頁深度 SEO 分析 |
+| `seo-content` | 內容品質與 E-E-A-T 分析 |
+| `seo-schema` | 結構化資料偵測與生成（JSON-LD）|
+| `seo-sitemap` | XML Sitemap 分析與優化 |
+| `seo-drift` | SEO 排名飄移監控（基準線追蹤）|
+
+### SEO 進階（依需求選用）
+| 技能 | 用途 |
+|------|------|
+| `seo-geo` | AI Overview / GEO 優化 |
+| `seo-plan` | SEO 策略規劃（新專案/新頁面）|
+| `seo-cluster` | SERP 語意主題集群 |
+| `seo-images` | 圖片 SEO 優化 |
+| `seo-local` | 在地 SEO（Google 商家檔案）|
+| `seo-hreflang` | 多語言/國際 SEO（zh/en/ja）|
+| `seo-programmatic` | 程式化 SEO 規劃 |
+| `seo-backlinks` | 反向連結分析 |
+| `seo-ecommerce` | 電商 SEO（產品頁、品類頁）|
+| `seo-competitor-pages` | 競品 SEO 頁面生成 |
+| `seo-sxo` | 搜尋體驗優化（SEO + UX）|
 
 ### 行銷模式
 | 技能 | 用途 |
 |------|------|
+| `positioning-statement` | 品牌定位聲明（Geoffrey Moore 框架）|
 | `market-copy` | 文案分析與生成 |
 | `market-landing` | Landing Page CRO 分析 |
 | `market-social` | 社群媒體內容日曆 |
 | `market-ads` | 廣告素材生成 |
-| `seo-audit` | 網站 SEO 全面稽核 |
-| `seo-technical` | 技術 SEO 審查 |
-| `positioning-statement` | 品牌定位聲明 |
+| `market-brand` | 品牌聲音分析與指南 |
+| `market-emails` | Email 序列生成 |
+| `market-funnel` | 銷售漏斗分析與優化 |
+| `market-launch` | 產品/服務上市策略 |
+| `market-audit` | 行銷全面稽核 |
+| `market-competitors` | 競品行銷打法分析 |
+| `market-proposal` | 客戶提案生成 |
+| `market-report` | 行銷月報生成 |
+| `market-report-pdf` | PDF 行銷報告 |
+
+### 策略工具
+| 技能 | 用途 |
+|------|------|
+| `competitor-scan` | 快速競品掃描 |
+| `company-research` | 公司研究簡報 |
+| `pestel-analysis` | PESTEL 環境分析 |
+| `tam-sam-som-calculator` | 市場規模估算 |
+| `product-teardown` | 產品策略拆解分析 |
+
+### MCP 配備
+| MCP | 用途 |
+|-----|------|
+| Google Drive | 讀寫提案、報告、素材 |
+| Google Calendar | 行銷活動排程、截止日管理 |
+| Gmail | 客戶往來信件、EDM 草稿 |
+| Notion | 內容日曆、SEO 追蹤、任務板 |
+| Canva | 廣告素材、社群圖卡設計 |
