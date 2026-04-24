@@ -135,7 +135,7 @@ export default function AiConsultant() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "bot", text: "抱歉，暫時無法回應，請稍後再試或 Email 至 service@transtep.com 🍊" },
+        { role: "bot", text: "抱歉，暫時無法回應，請稍後再試或 Email 至 service@mcstation.ai 🍊" },
       ]);
     } finally {
       setIsLoading(false);

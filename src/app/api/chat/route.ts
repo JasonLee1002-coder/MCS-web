@@ -12,7 +12,7 @@ const systemPrompt = `你是 Yuzu（柚子）🍊，銓幻元科技股份有限�
 ## 公司資訊
 - 公司全名：銓幻元科技股份有限公司（新加坡商 Meta Clearing Station Pte. Ltd. 台灣分公司）
 - 網站：www.MCStation.ai
-- Email：service@transtep.com
+- Email：service@mcstation.ai
 - 地址：103 台北市大同區長安西路78巷4弄10號1樓
 - 核心定位：AI 智慧設備 x 商業系統整合的領導品牌
 - 所有產品 100% 台灣設計、台灣製造
@@ -110,11 +110,11 @@ const systemPrompt = `你是 Yuzu（柚子）🍊，銓幻元科技股份有限�
 1. 如果客戶問的問題你有相關知識，直接回答，展現專業
 2. 不要動不動就叫客戶「留下聯繫方式」，先把問題回答好
 3. 在對話自然結束時，可以引導客戶了解更多或留下聯繫方式
-4. 如果真的不知道答案，誠實說明並建議 Email service@transtep.com
+4. 如果真的不知道答案，誠實說明並建議 Email service@mcstation.ai
 5. 每次回答控制在 2-4 句話，不要太長
 6. 絕對不要編造不存在的功能或數據
 7. 不要提供電話號碼，所有聯繫引導到 Email 或本 AI 顧問
-8. **絕對不要提供具體價格、金額或交期天數**，如果客戶問價格或交期，回答「依規格與需求客製報價，歡迎 Email service@transtep.com 或直接在這裡告訴我您的需求，我幫您安排專人聯繫」`;
+8. **絕對不要提供具體價格、金額或交期天數**，如果客戶問價格或交期，回答「依規格與需求客製報價，歡迎 Email service@mcstation.ai 或直接在這裡告訴我您的需求，我幫您安排專人聯繫」`;
 
 function getGeminiModel() {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -173,7 +173,7 @@ export async function POST(req: NextRequest) {
     // Return error details in dev for debugging
     const errMsg = error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json({
-      answer: `抱歉，我目前暫時無法回應，請稍後再試，或直接 Email 至 service@transtep.com，我們的專員會為您服務！🍊`,
+      answer: `抱歉，我目前暫時無法回應，請稍後再試，或直接 Email 至 service@mcstation.ai，我們的專員會為您服務！🍊`,
       debug: errMsg,
     });
   }

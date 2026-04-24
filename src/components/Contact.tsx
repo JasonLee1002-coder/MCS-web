@@ -71,7 +71,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="font-medium">Email</div>
-                    <div className="text-gray-300">service@transtep.com</div>
+                    <div className="text-gray-300">service@mcstation.ai</div>
                   </div>
                 </div>
 
@@ -197,7 +197,7 @@ export default function Contact() {
 
                   {status === "error" && (
                     <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
-                      送出失敗，請稍後再試或直接寄信至 service@transtep.com
+                      送出失敗，請稍後再試或直接寄信至 service@mcstation.ai
                     </div>
                   )}
 

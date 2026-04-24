@@ -165,7 +165,7 @@ export default function RootLayout({
                 postalCode: "103",
                 addressCountry: "TW",
               },
-              contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "service@transtep.com" },
+              contactPoint: { "@type": "ContactPoint", contactType: "customer service", email: "service@mcstation.ai" },
               sameAs: [
                 "https://www.mcstation.ai",
               ],

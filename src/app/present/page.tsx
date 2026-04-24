@@ -218,7 +218,7 @@ const slides = [
     subtitle: "銓幻元科技股份有限公司",
     image: "",
     bullets: [
-      "Email：service@transtep.com",
+      "Email：service@mcstation.ai",
       "AI 智慧顧問：www.MCStation.ai（右下角對話）",
       "地址：103 台北市大同區長安西路78巷4弄10號1樓",
       "網站：www.MCStation.ai",
@@ -236,7 +236,7 @@ const qaKnowledge: Record<string, string> = {
   "尺寸": "GraBox 智取櫃提供多種規格：6格、12格、18格、24格，也可依場地需求客製尺寸。標準寬度 60-120cm。",
   "溫控": "標配常溫（15-25°C），可依需求客製冷藏（2-8°C）、冷凍（-18°C 以下）溫層。",
   "安裝": "我們提供全台到府安裝服務，含場地評估、設備安裝、系統設定、員工教育訓練，一站式完成。",
-  "經銷": "歡迎加入 MCS 經銷夥伴計畫！推薦成功可獲得積分獎勵，兌換商品、電商點數或 LINE 點數。詳情請洽 service@transtep.com。",
+  "經銷": "歡迎加入 MCS 經銷夥伴計畫！推薦成功可獲得積分獎勵，兌換商品、電商點數或 LINE 點數。詳情請洽 service@mcstation.ai。",
 };
 
 function findAnswer(question: string): string {
@@ -245,7 +245,7 @@ function findAnswer(question: string): string {
       return answer;
     }
   }
-  return `感謝您的提問！關於「${question}」的問題，我們的專員會為您詳細說明。歡迎來電 (02) 2558-8848 或 Email 至 service@transtep.com 取得更多資訊。`;
+  return `感謝您的提問！關於「${question}」的問題，我們的專員會為您詳細說明。歡迎來電 (02) 2558-8848 或 Email 至 service@mcstation.ai 取得更多資訊。`;
 }
 
 export default function PresentPage() {

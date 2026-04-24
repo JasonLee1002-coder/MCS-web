@@ -43,10 +43,10 @@ export default function Footer() {
                 <p className="flex items-center gap-2 mt-3">
                   <span className="text-base shrink-0">✉</span>
                   <a
-                    href="mailto:service@transtep.com"
+                    href="mailto:service@mcstation.ai"
                     className="text-xs hover:text-mcs-orange transition-colors duration-300"
                   >
-                    service@transtep.com
+                    service@mcstation.ai
                   </a>
                 </p>
               </address>

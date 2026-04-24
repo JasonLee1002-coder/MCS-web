@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "freshcontext": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://freshcontext-mcp.gimmanuel73.workers.dev/mcp"]
+    }
+  }
+}
