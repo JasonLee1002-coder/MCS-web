@@ -1384,11 +1384,262 @@ const BACKEND_SCREENS: {
   },
 ];
 
+// ─── Layer Illustrations ──────────────────────────────────────────────────────
+
+function IllustrationL1() {
+  return (
+    <svg viewBox="0 0 400 220" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="220" fill="#0a1628" rx="14"/>
+      {/* Grid bg */}
+      <defs>
+        <pattern id="g1" width="28" height="28" patternUnits="userSpaceOnUse">
+          <path d="M28 0L0 0 0 28" fill="none" stroke="#3B82F6" strokeWidth="0.3" opacity="0.25"/>
+        </pattern>
+      </defs>
+      <rect width="400" height="220" fill="url(#g1)" rx="14"/>
+      {/* Smart Locker (GraBox) */}
+      <motion.g initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6, delay:0.1 }}>
+        <rect x="30" y="50" width="90" height="140" rx="10" fill="#0F2440" stroke="#3B82F6" strokeWidth="1.5"/>
+        <rect x="30" y="50" width="90" height="22" rx="10" fill="#3B82F6"/>
+        <rect x="30" y="62" width="90" height="10" fill="#3B82F6"/>
+        <rect x="38" y="58" width="60" height="8" rx="4" fill="white" opacity="0.3"/>
+        {[0,1,2,3,4].map(r => [0,1].map(c => (
+          <motion.rect key={r*2+c} x={38+c*38} y={82+r*20} width="34" height="16" rx="5" fill="#1B3A5C" stroke="#3B82F6" strokeWidth="0.8"
+            animate={{ borderColor: ["#3B82F6","#60A5FA","#3B82F6"] }} transition={{ duration:2+r*0.3, repeat:Infinity, delay:r*0.2+c*0.1 }}/>
+        )))}
+        {/* scan line */}
+        <motion.line x1="30" y1="100" x2="120" y2="100" stroke="#3B82F6" strokeWidth="1.5" opacity="0.6"
+          animate={{ y1:[80,190,80], y2:[80,190,80] }} transition={{ duration:3, repeat:Infinity, ease:"linear" }}/>
+      </motion.g>
+      {/* Vending Machine */}
+      <motion.g initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6, delay:0.25 }}>
+        <rect x="155" y="40" width="90" height="150" rx="10" fill="#0F2440" stroke="#3B82F6" strokeWidth="1.5"/>
+        <rect x="163" y="48" width="74" height="48" rx="6" fill="#1B3A5C"/>
+        <motion.rect x="163" y="48" width="74" height="48" rx="6" fill="#3B82F6" opacity="0.08"
+          animate={{ opacity:[0.08,0.18,0.08] }} transition={{ duration:2.5, repeat:Infinity }}/>
+        {/* screen content */}
+        <rect x="170" y="56" width="50" height="6" rx="3" fill="#60A5FA" opacity="0.8"/>
+        <rect x="170" y="66" width="36" height="5" rx="2.5" fill="#93C5FD" opacity="0.5"/>
+        <rect x="170" y="75" width="44" height="5" rx="2.5" fill="#93C5FD" opacity="0.5"/>
+        {[0,1,2].map(r => [0,1,2].map(c => (
+          <rect key={r*3+c} x={165+c*22} y={106+r*22} width="18" height="18" rx="4" fill="#1B3A5C" stroke="#3B82F6" strokeWidth="0.7"/>
+        )))}
+        <rect x="163" y="174" width="74" height="8" rx="4" fill="#3B82F6" opacity="0.4"/>
+      </motion.g>
+      {/* Kiosk */}
+      <motion.g initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6, delay:0.4 }}>
+        <rect x="280" y="60" width="90" height="130" rx="10" fill="#0F2440" stroke="#3B82F6" strokeWidth="1.5"/>
+        <rect x="288" y="68" width="74" height="80" rx="6" fill="#1B3A5C"/>
+        <motion.circle cx="325" cy="90" r="20" fill="#3B82F6" opacity="0.15"
+          animate={{ scale:[1,1.2,1], opacity:[0.15,0.3,0.15] }} transition={{ duration:2, repeat:Infinity }}/>
+        <circle cx="325" cy="90" r="14" fill="#3B82F6" opacity="0.4"/>
+        <path d="M315 90 l6 6 12-12" stroke="white" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+        <rect x="296" y="116" width="58" height="5" rx="2.5" fill="#60A5FA" opacity="0.6"/>
+        <rect x="296" y="125" width="40" height="5" rx="2.5" fill="#93C5FD" opacity="0.4"/>
+        <rect x="288" y="162" width="74" height="20" rx="5" fill="#3B82F6" opacity="0.3"/>
+        <rect x="298" y="167" width="54" height="10" rx="5" fill="#3B82F6" opacity="0.5"/>
+      </motion.g>
+      {/* floating labels */}
+      {[{x:75,y:200,t:"GraBox"},{x:200,y:200,t:"Vending"},{x:325,y:200,t:"Kiosk"}].map(({x,y,t:label},i) => (
+        <motion.text key={i} x={x} y={y} textAnchor="middle" fontSize="10" fontWeight="bold" fill="#3B82F6" fontFamily="monospace" opacity="0.8"
+          animate={{ opacity:[0.6,1,0.6] }} transition={{ duration:2, repeat:Infinity, delay:i*0.4 }}>{label}</motion.text>
+      ))}
+      {/* glow */}
+      <ellipse cx="200" cy="215" rx="160" ry="8" fill="#3B82F6" opacity="0.07"/>
+    </svg>
+  );
+}
+
+function IllustrationL2() {
+  return (
+    <svg viewBox="0 0 400 220" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="220" fill="#0a1628" rx="14"/>
+      {/* PCB board */}
+      <motion.rect x="60" y="30" width="280" height="160" rx="10" fill="#0d2010" stroke="#E8751A" strokeWidth="1.5" strokeDasharray="6 3"
+        initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.5 }}/>
+      {/* traces */}
+      {[
+        "M90,60 L180,60 L180,100", "M180,100 L280,100 L280,60 L320,60",
+        "M90,130 L150,130 L150,160 L280,160", "M200,60 L200,140 L240,140",
+        "M120,160 L120,100 L160,100", "M300,130 L300,80 L320,80",
+      ].map((d, i) => (
+        <g key={i}>
+          <path d={d} fill="none" stroke="#E8751A" strokeWidth="1.5" opacity="0.25"/>
+          <motion.path d={d} fill="none" stroke="#FDBA74" strokeWidth="2" strokeLinecap="round"
+            initial={{ pathLength:0, opacity:0 }} animate={{ pathLength:[0,1,0] }}
+            transition={{ duration:2.5, repeat:Infinity, delay:i*0.4, ease:"easeInOut" }}/>
+        </g>
+      ))}
+      {/* chips */}
+      {[{x:155,y:45,w:50,h:30,label:"MCU"},{x:255,y:45,w:50,h:30,label:"PWR"},{x:100,y:110,w:40,h:40,label:"SAM"},{x:220,y:115,w:60,h:35,label:"EMV"}].map(({x,y,w,h,label},i) => (
+        <motion.g key={i} initial={{ opacity:0, scale:0.7 }} animate={{ opacity:1, scale:1 }} transition={{ duration:0.4, delay:0.3+i*0.15 }}>
+          <rect x={x} y={y} width={w} height={h} rx="5" fill="#1a2e10" stroke="#E8751A" strokeWidth="1.5"/>
+          {[...Array(Math.floor(h/8))].map((_,p) => (
+            <g key={p}>
+              <rect x={x-4} y={y+6+p*8} width="4" height="3" rx="1" fill="#E8751A" opacity="0.6"/>
+              <rect x={x+w} y={y+6+p*8} width="4" height="3" rx="1" fill="#E8751A" opacity="0.6"/>
+            </g>
+          ))}
+          <text x={x+w/2} y={y+h/2+4} textAnchor="middle" fontSize="9" fontWeight="bold" fill="#FDBA74" fontFamily="monospace">{label}</text>
+          <motion.rect x={x+2} y={y+2} width={w-4} height={h-4} rx="3" fill="#E8751A" opacity="0"
+            animate={{ opacity:[0,0.12,0] }} transition={{ duration:1.5, repeat:Infinity, delay:i*0.5 }}/>
+        </motion.g>
+      ))}
+      {/* TOF sensor */}
+      <motion.circle cx="320" cy="130" r="18" fill="#1a2e10" stroke="#E8751A" strokeWidth="1.5"
+        initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.7 }}/>
+      <motion.circle cx="320" cy="130" r="8" fill="#E8751A" opacity="0.5"
+        animate={{ scale:[1,1.4,1], opacity:[0.5,0.2,0.5] }} transition={{ duration:1.8, repeat:Infinity }}/>
+      <text x="320" y="158" textAnchor="middle" fontSize="8" fill="#FDBA74" fontFamily="monospace" opacity="0.8">TOF</text>
+      {/* status dots */}
+      {[{cx:90,cy:60},{cx:280,cy:60},{cx:150,cy:160},{cx:280,cy:160}].map(({cx,cy},i) => (
+        <motion.circle key={i} cx={cx} cy={cy} r="4" fill="#22C55E"
+          animate={{ opacity:[1,0.3,1] }} transition={{ duration:1.2, repeat:Infinity, delay:i*0.3 }}/>
+      ))}
+    </svg>
+  );
+}
+
+function IllustrationL3() {
+  return (
+    <svg viewBox="0 0 400 220" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="220" fill="#0a1628" rx="14"/>
+      {/* device screen */}
+      <motion.rect x="80" y="20" width="240" height="180" rx="20" fill="#071a10" stroke="#22C55E" strokeWidth="2"
+        initial={{ opacity:0, scale:0.9 }} animate={{ opacity:1, scale:1 }} transition={{ duration:0.5 }}/>
+      <rect x="80" y="20" width="240" height="40" rx="20" fill="#22C55E" opacity="0.25"/>
+      <rect x="80" y="44" width="240" height="16" fill="#22C55E" opacity="0.15"/>
+      {/* top bar content */}
+      <circle cx="106" cy="40" r="10" fill="#22C55E" opacity="0.5"/>
+      <rect x="124" y="34" width="80" height="6" rx="3" fill="#4ADE80" opacity="0.7"/>
+      <rect x="124" y="44" width="50" height="5" rx="2.5" fill="#86EFAC" opacity="0.5"/>
+      {/* product grid */}
+      {[0,1,2,3,4,5].map(i => {
+        const row = Math.floor(i/3), col = i%3;
+        return (
+          <motion.g key={i} initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.2+i*0.08 }}>
+            <rect x={96+col*70} y={72+row*56} width="58" height="48" rx="10" fill="#0d2a18" stroke="#22C55E" strokeWidth="1"/>
+            <rect x={103+col*70} y={79+row*56} width="44" height="26" rx="6" fill="#1a3d22" opacity="0.8"/>
+            <motion.rect x={103+col*70} y={79+row*56} width="44" height="26" rx="6" fill="#22C55E" opacity="0"
+              animate={{ opacity:[0,0.15,0] }} transition={{ duration:2, repeat:Infinity, delay:i*0.3 }}/>
+            <rect x={99+col*70} y={109+row*56} width="54" height="7" rx="3.5" fill="#22C55E" opacity="0.25"/>
+          </motion.g>
+        );
+      })}
+      {/* tap ripple */}
+      <motion.g>
+        {[1,2,3].map(r => (
+          <motion.circle key={r} cx="200" cy="110" r={r*16} fill="none" stroke="#22C55E" strokeWidth="1.5"
+            animate={{ scale:[0.5,1.5], opacity:[0.8,0] }} transition={{ duration:1.6, repeat:Infinity, delay:r*0.28, ease:"easeOut" }}
+            style={{ transformOrigin:"200px 110px" }}/>
+        ))}
+        <motion.circle cx="200" cy="110" r="8" fill="#22C55E"
+          animate={{ scale:[1,0.8,1] }} transition={{ duration:0.8, repeat:Infinity }}/>
+      </motion.g>
+      {/* payment strip */}
+      <rect x="88" y="178" width="224" height="16" rx="8" fill="#22C55E" opacity="0.2"/>
+      {["💳","📱","QR","💰"].map((icon,i) => (
+        <text key={i} x={110+i*52} y="190" textAnchor="middle" fontSize="9" fill="#4ADE80" fontFamily="sans-serif" opacity="0.9">{icon}</text>
+      ))}
+    </svg>
+  );
+}
+
+function IllustrationL4() {
+  return (
+    <svg viewBox="0 0 400 220" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="220" fill="#0a1628" rx="14"/>
+      {/* cloud shape */}
+      <motion.g animate={{ y:[0,-5,0] }} transition={{ duration:4, repeat:Infinity, ease:"easeInOut" }}
+        style={{ transformOrigin:"200px 70px" }}>
+        <ellipse cx="200" cy="72" rx="68" ry="36" fill="#1a0f2e" stroke="#A855F7" strokeWidth="2"/>
+        <ellipse cx="165" cy="82" rx="48" ry="28" fill="#1a0f2e" stroke="#A855F7" strokeWidth="1.5"/>
+        <ellipse cx="235" cy="82" rx="48" ry="28" fill="#1a0f2e" stroke="#A855F7" strokeWidth="1.5"/>
+        <ellipse cx="200" cy="90" rx="80" ry="26" fill="#1a0f2e" stroke="#A855F7" strokeWidth="1.5"/>
+        {/* OmniCore label */}
+        <text x="200" y="78" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#C084FC" fontFamily="monospace">OmniCore</text>
+        <motion.text x="200" y="90" textAnchor="middle" fontSize="8" fill="#A855F7" fontFamily="monospace" opacity="0.7"
+          animate={{ opacity:[0.5,1,0.5] }} transition={{ duration:2, repeat:Infinity }}>● LIVE</motion.text>
+      </motion.g>
+      {/* data lines from devices to cloud */}
+      {[{x:60,y:170},{x:150,y:180},{x:250,y:180},{x:340,y:170}].map(({x,y},i) => (
+        <g key={i}>
+          <line x1={x} y1={y-20} x2={200} y2={112} stroke="#A855F7" strokeWidth="1" strokeDasharray="4 3" opacity="0.3"/>
+          <motion.circle cx={x+(200-x)*0.5} cy={(y-20+(112))*0.5} r="3" fill="#A855F7"
+            animate={{ cx:[x,200], cy:[y-20,112], opacity:[1,0] }} transition={{ duration:1.5, repeat:Infinity, delay:i*0.4 }}/>
+        </g>
+      ))}
+      {/* devices at bottom */}
+      {[{x:30,label:"機台A"},{x:118,label:"機台B"},{x:218,label:"機台C"},{x:308,label:"機台D"}].map(({x,label},i) => (
+        <motion.g key={i} initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.2+i*0.12 }}>
+          <rect x={x} y={148} width="60" height="42" rx="8" fill="#160a2e" stroke="#A855F7" strokeWidth="1.2"/>
+          <rect x={x} y={148} width="60" height="14" rx="8" fill="#A855F7" opacity="0.3"/>
+          <rect x={x} y={155} width="60" height="7" fill="#A855F7" opacity="0.2"/>
+          <motion.circle cx={x+50} cy={153} r="4" fill="#22C55E"
+            animate={{ opacity:[1,0.3,1] }} transition={{ duration:1.2, repeat:Infinity, delay:i*0.25 }}/>
+          <text x={x+30} y={183} textAnchor="middle" fontSize="8" fill="#C084FC" fontFamily="monospace" opacity="0.8">{label}</text>
+        </motion.g>
+      ))}
+      {/* dashboard cards floating near cloud */}
+      {[{x:22,y:40,c:"#A855F7"},{x:316,y:40,c:"#7C3AED"}].map(({x,y,c},i) => (
+        <motion.g key={i} initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.5+i*0.2 }}>
+          <rect x={x} y={y} width="56" height="36" rx="7" fill="#160a2e" stroke={c} strokeWidth="1.2"/>
+          <rect x={x+4} y={y+6} width="30" height="5" rx="2.5" fill={c} opacity="0.6"/>
+          <rect x={x+4} y={y+15} width="48" height="4" rx="2" fill={c} opacity="0.35"/>
+          <rect x={x+4} y={y+23} width="36" height="4" rx="2" fill={c} opacity="0.25"/>
+        </motion.g>
+      ))}
+    </svg>
+  );
+}
+
+function IllustrationL5() {
+  const nodes = [
+    {x:200,y:110,label:"OmniCore",r:28,c:"#14B8A6",main:true},
+    {x:80,y:50,label:"ERP",r:20,c:"#14B8A6"},
+    {x:200,y:30,label:"POS",r:20,c:"#14B8A6"},
+    {x:320,y:50,label:"LINE Pay",r:20,c:"#14B8A6"},
+    {x:340,y:150,label:"91APP",r:20,c:"#14B8A6"},
+    {x:240,y:195,label:"Lalamove",r:20,c:"#14B8A6"},
+    {x:100,y:185,label:"EasyCard",r:20,c:"#14B8A6"},
+    {x:50,y:130,label:"Ocard",r:20,c:"#14B8A6"},
+  ];
+  return (
+    <svg viewBox="0 0 400 220" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="220" fill="#0a1628" rx="14"/>
+      {/* connection lines */}
+      {nodes.slice(1).map((n,i) => (
+        <g key={i}>
+          <line x1="200" y1="110" x2={n.x} y2={n.y} stroke="#14B8A6" strokeWidth="1" strokeDasharray="5 3" opacity="0.25"/>
+          <motion.circle cx="200" cy="110" r="3" fill="#14B8A6"
+            animate={{ cx:[200,n.x], cy:[110,n.y], opacity:[0.9,0] }}
+            transition={{ duration:1.6, repeat:Infinity, delay:i*0.3, ease:"easeIn" }}/>
+        </g>
+      ))}
+      {/* node circles */}
+      {nodes.map((n,i) => (
+        <motion.g key={i} initial={{ opacity:0, scale:0.6 }} animate={{ opacity:1, scale:1 }}
+          transition={{ duration:0.4, delay:i*0.1, type:"spring", stiffness:300 }}
+          style={{ transformOrigin:`${n.x}px ${n.y}px` }}>
+          <motion.circle cx={n.x} cy={n.y} r={n.r+6} fill="none" stroke={n.c} strokeWidth="1"
+            animate={{ scale:[1,1.25,1], opacity:[0.3,0,0.3] }} transition={{ duration:2.5, repeat:Infinity, delay:i*0.35 }}
+            style={{ transformOrigin:`${n.x}px ${n.y}px` }}/>
+          <circle cx={n.x} cy={n.y} r={n.r} fill={n.main?"#0d2e2c":"#0d2020"} stroke={n.c} strokeWidth={n.main?2.5:1.5}/>
+          <text x={n.x} y={n.y+(n.main?4:3)} textAnchor="middle" fontSize={n.main?10:8} fontWeight="bold" fill={n.main?"#2DD4BF":"#5EEAD4"} fontFamily="monospace">{n.label}</text>
+        </motion.g>
+      ))}
+    </svg>
+  );
+}
+
+const LAYER_ILLUSTRATIONS = [IllustrationL1, IllustrationL2, IllustrationL3, IllustrationL4, IllustrationL5];
+
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function IntroPage() {
   const { lang } = useLanguage();
   const t = T[lang as keyof typeof T] ?? T.zh;
   const [fmTab, setFmTab] = useState(0);
+  const [activeLayer, setActiveLayer] = useState<number>(0);
   const [openModule, setOpenModule] = useState<number>(0);
   const [openClient, setOpenClient] = useState<number | null>(null);
   const [lightboxImg, setLightboxImg] = useState<string | null>(null);
@@ -1524,108 +1775,118 @@ export default function IntroPage() {
           <FadeIn delay={0.05}><h2 className="text-3xl md:text-5xl font-black text-white mb-3">{t.stack.title}</h2></FadeIn>
           <FadeIn delay={0.1}><p className="text-white/50 mb-12 max-w-2xl">{t.stack.sub}</p></FadeIn>
 
-          {/* 3D perspective stack */}
-          <div style={{ perspective: "1200px" }}>
-            {t.stack.layers.map((layer, i) => {
-              // Layer color stops for the gradient border
-              const accents: Record<number, string> = { 0:"#3B82F6", 1:"#E8751A", 2:"#22C55E", 3:"#A855F7", 4:"#14B8A6" };
-              const accent = accents[i] ?? "#E8751A";
-              const offsetY = (4 - i) * 6; // top layers appear "higher"
+          {/* Master-Detail: Left L1~L5 list + Right illustration panel */}
+          <div className="flex flex-col md:flex-row gap-5 items-start">
 
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, rotateX: -20, y: 40 }}
-                  whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.55, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ y: -6, scale: 1.01 }}
-                  style={{
-                    transformStyle: "preserve-3d",
-                    marginBottom: "12px",
-                  }}
-                  className="relative"
-                >
-                  {/* 3D depth slab behind */}
-                  <div
-                    className="absolute inset-0 rounded-2xl"
+            {/* Left: layer buttons */}
+            <div className="w-full md:w-[38%] flex flex-col gap-2 md:sticky md:top-20 md:self-start">
+              {t.stack.layers.map((layer, i) => {
+                const accents: Record<number, string> = { 0:"#3B82F6", 1:"#E8751A", 2:"#22C55E", 3:"#A855F7", 4:"#14B8A6" };
+                const accent = accents[i] ?? "#E8751A";
+                const isActive = activeLayer === i;
+                const Illus = LAYER_ILLUSTRATIONS[i];
+                return (
+                  <motion.button
+                    key={i}
+                    onClick={() => setActiveLayer(i)}
+                    initial={{ opacity:0, x:-16 }}
+                    whileInView={{ opacity:1, x:0 }}
+                    viewport={{ once:true }}
+                    transition={{ duration:0.35, delay:i*0.07 }}
+                    className="w-full text-left rounded-2xl overflow-hidden transition-all duration-200 select-none"
                     style={{
-                      transform: "translateZ(-12px) translateY(10px)",
-                      background: accent,
-                      opacity: 0.18,
-                      filter: "blur(2px)",
-                    }}
-                  />
-                  {/* Bottom edge for 3D illusion */}
-                  <div
-                    className="absolute left-4 right-4 bottom-0 rounded-b-2xl"
-                    style={{
-                      height: "10px",
-                      background: accent,
-                      opacity: 0.35,
-                      transform: "translateY(6px) scaleY(0.5)",
-                      filter: "blur(3px)",
-                    }}
-                  />
-                  {/* Main card face */}
-                  <div
-                    className="relative rounded-2xl overflow-hidden"
-                    style={{
-                      background: "linear-gradient(135deg, #1B2B40 0%, #0F1D2E 100%)",
-                      border: `1px solid ${accent}44`,
-                      boxShadow: `0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 ${accent}33`,
+                      border: `2px solid ${isActive ? accent : accent+"30"}`,
+                      background: isActive ? `${accent}15` : "rgba(255,255,255,0.03)",
+                      boxShadow: isActive ? `0 4px 24px ${accent}25` : "none",
                     }}
                   >
-                    {/* Top accent line */}
-                    <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl"
-                      style={{ background: `linear-gradient(90deg, ${accent}, ${accent}00)` }}
-                    />
-
-                    <div className="grid md:grid-cols-[220px_1fr]">
-                      {/* Left: Layer label */}
-                      <div className="p-6 flex flex-col justify-center gap-2 relative"
-                        style={{ borderRight: `1px solid ${accent}30` }}
-                      >
-                        {/* L-number badge */}
-                        <div className="flex items-center gap-2 mb-1">
-                          <span
-                            className="text-xs font-black px-2.5 py-0.5 rounded-full"
-                            style={{ background: accent, color: "#fff", letterSpacing: "0.1em" }}
-                          >
-                            {layer.num}
-                          </span>
-                        </div>
-                        <span className="font-black text-xl text-white leading-tight">{layer.name}</span>
-                        <span className="text-sm font-medium" style={{ color: accent }}>{layer.en}</span>
+                    <div className="flex items-center gap-3 px-4 py-3">
+                      {/* L-badge */}
+                      <span className="text-xs font-black w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
+                        style={{ background: isActive ? accent : `${accent}30`, color: "#fff" }}>
+                        {layer.num}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-black text-sm text-white leading-tight">{layer.name}</div>
+                        <div className="text-xs mt-0.5 truncate" style={{ color: accent, opacity:0.7 }}>{layer.en}</div>
                       </div>
-
-                      {/* Right: Chips */}
-                      <div className="p-5 flex flex-wrap gap-2.5 items-center">
-                        {layer.items.map((item, j) => (
-                          <motion.span
-                            key={j}
-                            initial={{ opacity: 0, scale: 0.85 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.3, delay: i * 0.07 + j * 0.04 }}
-                            whileHover={{ scale: 1.06, y: -2 }}
-                            className="text-sm font-bold px-4 py-2 rounded-xl cursor-default select-none"
-                            style={{
-                              background: `${accent}18`,
-                              border: `1px solid ${accent}40`,
-                              color: "white",
-                              boxShadow: `0 2px 8px ${accent}20`,
-                            }}
-                          >
-                            {item}
-                          </motion.span>
-                        ))}
-                      </div>
+                      <motion.div animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 6 }} transition={{ duration:0.2 }}
+                        style={{ color: accent }}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                          <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                      </motion.div>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                    {/* mini SVG thumbnail only when active on mobile */}
+                    {isActive && (
+                      <div className="md:hidden px-3 pb-3 h-32 rounded-xl overflow-hidden">
+                        <Illus />
+                      </div>
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {/* Right: detail panel */}
+            <div className="w-full md:w-[62%] md:sticky md:top-20 md:self-start">
+              <AnimatePresence mode="wait">
+                {(() => {
+                  const accents: Record<number, string> = { 0:"#3B82F6", 1:"#E8751A", 2:"#22C55E", 3:"#A855F7", 4:"#14B8A6" };
+                  const layer = t.stack.layers[activeLayer];
+                  const accent = accents[activeLayer] ?? "#E8751A";
+                  const Illus = LAYER_ILLUSTRATIONS[activeLayer];
+                  return (
+                    <motion.div
+                      key={activeLayer}
+                      initial={{ opacity:0, x:20 }}
+                      animate={{ opacity:1, x:0 }}
+                      exit={{ opacity:0, x:-10 }}
+                      transition={{ duration:0.28, ease:[0.22,1,0.36,1] }}
+                      className="rounded-2xl overflow-hidden"
+                      style={{ border:`2px solid ${accent}40`, background:"rgba(255,255,255,0.03)" }}
+                    >
+                      {/* Header */}
+                      <div className="px-5 py-4 flex items-center gap-3"
+                        style={{ background:`${accent}20`, borderBottom:`1px solid ${accent}30` }}>
+                        <span className="text-xs font-black px-3 py-1 rounded-full"
+                          style={{ background:accent, color:"#fff" }}>{layer.num}</span>
+                        <div>
+                          <div className="font-black text-white text-lg leading-tight">{layer.name}</div>
+                          <div className="text-xs mt-0.5" style={{ color:accent }}>{layer.en}</div>
+                        </div>
+                      </div>
+
+                      {/* SVG Illustration */}
+                      <div className="p-4 pb-0" style={{ aspectRatio:"16/7" }}>
+                        <div className="rounded-xl overflow-hidden h-full">
+                          <Illus />
+                        </div>
+                      </div>
+
+                      {/* Chips */}
+                      <div className="p-5">
+                        <div className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color:accent, opacity:0.8 }}>
+                          {lang==="ja" ? "主な機能・対応" : lang==="en" ? "Capabilities" : "技術能力"}
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {layer.items.map((item, j) => (
+                            <motion.span key={j}
+                              initial={{ opacity:0, scale:0.85 }}
+                              animate={{ opacity:1, scale:1 }}
+                              transition={{ duration:0.25, delay:j*0.04 }}
+                              className="text-xs font-bold px-3 py-1.5 rounded-xl"
+                              style={{ background:`${accent}18`, border:`1px solid ${accent}40`, color:"white" }}>
+                              {item}
+                            </motion.span>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })()}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </section>
