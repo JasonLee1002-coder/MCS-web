@@ -1618,124 +1618,152 @@ export default function IntroPage() {
           <FadeIn delay={0.05}><h2 className="text-3xl md:text-4xl font-black text-[#1B3A5C] mb-3">{t.platform.title}</h2></FadeIn>
           <FadeIn delay={0.1}><p className="text-gray-500 mb-10 max-w-2xl">{t.platform.sub}</p></FadeIn>
 
-          <p className="text-[10px] text-gray-400 mb-3 -mt-6">
-            {lang === "ja" ? "▼ 各機能をクリックすると詳細と実際の使用シナリオが表示されます" : lang === "en" ? "▼ Click each module to see detailed capabilities and real usage scenarios" : "▼ 點擊每個模組查看詳細功能說明與真實使用情境"}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          {/* Accordion hint */}
+          <div className="flex items-center gap-3 mb-4 -mt-6">
+            <div className="flex-1 h-px bg-gray-100" />
+            <span className="text-xs font-semibold text-[#E8751A] bg-orange-50 border border-orange-100 rounded-full px-3 py-1 select-none">
+              {lang === "ja" ? "👇 タップして各機能の詳細を見る" : lang === "en" ? "👇 Tap to expand each module" : "👇 點擊每列展開詳細功能"}
+            </span>
+            <div className="flex-1 h-px bg-gray-100" />
+          </div>
+
+          {/* Accordion rows */}
+          <div className="flex flex-col gap-2 mb-4">
             {t.platform.features.map((f, i) => {
               const isOpen = openModule === i;
               const detail = MODULE_DETAILS[i];
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.06 }}
-                  onClick={() => setOpenModule(isOpen ? null : i)}
-                  className={`rounded-xl p-5 border transition-all cursor-pointer select-none ${
-                    isOpen
-                      ? `${detail.light} border-transparent ring-2 ring-[#E8751A]/60 shadow-lg`
-                      : "bg-gray-50 border-gray-100 hover:border-[#E8751A]/40 hover:shadow-md"
-                  }`}
+                  transition={{ duration: 0.35, delay: i * 0.07 }}
                 >
-                  <div className="flex items-start justify-between mb-2">
-                    <span className="text-2xl">{f.icon}</span>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full transition-colors ${isOpen ? "bg-[#E8751A] text-white" : "bg-gray-200 text-gray-500"}`}>
-                      {isOpen ? (lang === "ja" ? "閉じる" : lang === "en" ? "Close" : "收起") : (lang === "ja" ? "詳細" : lang === "en" ? "Details" : "展開")}
+                  {/* Row trigger */}
+                  <button
+                    onClick={() => setOpenModule(isOpen ? null : i)}
+                    className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border-2 transition-all duration-200 text-left group select-none ${
+                      isOpen
+                        ? `${detail.light} border-[#E8751A] shadow-md`
+                        : "bg-gray-50 border-gray-150 hover:border-[#E8751A]/50 hover:bg-orange-50/30 hover:shadow-sm"
+                    }`}
+                  >
+                    {/* Left accent bar */}
+                    <div className={`w-1 self-stretch rounded-full flex-shrink-0 transition-colors duration-200 ${isOpen ? "bg-[#E8751A]" : "bg-gray-200 group-hover:bg-[#E8751A]/40"}`} />
+
+                    {/* Icon */}
+                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 transition-colors duration-200 ${isOpen ? detail.color + " shadow-md" : "bg-gray-200"}`}>
+                      {f.icon}
+                    </div>
+
+                    {/* Text */}
+                    <div className="flex-1 min-w-0">
+                      <div className={`font-bold text-base leading-tight mb-0.5 transition-colors ${isOpen ? "text-[#1B3A5C]" : "text-gray-800"}`}>{f.name}</div>
+                      <div className={`text-xs leading-relaxed transition-colors ${isOpen ? "text-gray-600" : "text-gray-400"}`}>{f.desc}</div>
+                    </div>
+
+                    {/* Status chip */}
+                    <span className={`text-xs font-bold px-3 py-1 rounded-full flex-shrink-0 transition-all duration-200 ${
+                      isOpen ? "bg-[#E8751A] text-white shadow-sm" : "bg-gray-200 text-gray-500 group-hover:bg-orange-100 group-hover:text-[#E8751A]"
+                    }`}>
+                      {isOpen
+                        ? (lang === "ja" ? "閉じる" : lang === "en" ? "Close ↑" : "收起 ↑")
+                        : (lang === "ja" ? "詳細を見る" : lang === "en" ? "Details ↓" : "展開 ↓")}
                     </span>
-                  </div>
-                  <div className={`font-bold text-sm mb-1.5 ${isOpen ? "text-[#1B3A5C]" : "text-[#1B3A5C]"}`}>{f.name}</div>
-                  <div className="text-gray-500 text-xs leading-relaxed">{f.desc}</div>
+
+                    {/* Chevron */}
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className={`flex-shrink-0 transition-colors duration-200 ${isOpen ? "text-[#E8751A]" : "text-gray-300 group-hover:text-[#E8751A]/60"}`}
+                    >
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </motion.div>
+                  </button>
+
+                  {/* Inline expanded detail — opens right below clicked row */}
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        key={`detail-${i}`}
+                        initial={{ opacity: 0, height: 0, y: -8 }}
+                        animate={{ opacity: 1, height: "auto", y: 0 }}
+                        exit={{ opacity: 0, height: 0, y: -8 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-2 ml-6 relative rounded-2xl p-[2px]"
+                          style={{
+                            background: "linear-gradient(135deg, #2563EB, #E8751A, #2563EB)",
+                            backgroundSize: "300% 300%",
+                            animation: "gradientShift 4s ease infinite",
+                          }}
+                        >
+                          <div className={`rounded-[14px] p-6 ${detail.light}`}>
+                            {/* Header */}
+                            <div className="flex items-center gap-3 mb-5">
+                              <div className={`w-12 h-12 rounded-xl ${detail.color} flex items-center justify-center text-2xl shadow-lg`}>
+                                {f.icon}
+                              </div>
+                              <div>
+                                <div className="font-black text-[#1B3A5C] text-xl leading-tight">{f.name}</div>
+                                <div className="text-xs text-gray-500 mt-0.5">{f.desc}</div>
+                              </div>
+                            </div>
+
+                            {/* Illustration */}
+                            {(() => {
+                              const Illus = MODULE_ILLUSTRATIONS[i];
+                              return Illus ? (
+                                <motion.div
+                                  initial={{ opacity: 0, y: 8 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ duration: 0.4, delay: 0.1 }}
+                                  className="rounded-xl overflow-hidden mb-5 shadow-sm"
+                                  style={{ aspectRatio: "2/1" }}
+                                >
+                                  <Illus />
+                                </motion.div>
+                              ) : null;
+                            })()}
+
+                            <div className="grid md:grid-cols-2 gap-5">
+                              {/* Scenario */}
+                              <div>
+                                <div className="text-xs font-bold text-[#E8751A] uppercase tracking-wider mb-2">
+                                  {lang === "ja" ? "実際の使用シナリオ" : lang === "en" ? "Real Usage Scenario" : "真實使用情境"}
+                                </div>
+                                <div className="bg-white rounded-xl px-4 py-3 text-sm text-gray-700 leading-relaxed border border-gray-100 italic shadow-sm">
+                                  「{MODULE_DETAILS[i].scenario[lang as "zh" | "en" | "ja"] ?? MODULE_DETAILS[i].scenario.zh}」
+                                </div>
+                              </div>
+                              {/* Key capabilities */}
+                              <div>
+                                <div className="text-xs font-bold text-[#1B3A5C] uppercase tracking-wider mb-2">
+                                  {lang === "ja" ? "主要機能" : lang === "en" ? "Key Capabilities" : "核心能力"}
+                                </div>
+                                <ul className="space-y-1.5">
+                                  {(MODULE_DETAILS[i].bullets[lang as "zh" | "en" | "ja"] ?? MODULE_DETAILS[i].bullets.zh).map((b, j) => (
+                                    <li key={j} className="flex items-start gap-2 text-xs text-gray-700">
+                                      <span className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-black flex-shrink-0 shadow-sm ${detail.color}`}>{j + 1}</span>
+                                      {b}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               );
             })}
           </div>
-
-          {/* Expanded module detail panel */}
-          <AnimatePresence>
-            {openModule !== null && (
-              <motion.div
-                key={openModule}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="overflow-hidden mb-10"
-              >
-                {/* Glowing border wrapper */}
-                <div className="relative rounded-2xl p-[2px]"
-                  style={{
-                    background: `linear-gradient(135deg, var(--mod-a, #2563EB), #E8751A, var(--mod-b, #2563EB))`,
-                    backgroundSize: "300% 300%",
-                    animation: "gradientShift 4s ease infinite",
-                  }}
-                >
-                  <style>{`
-                    @keyframes gradientShift {
-                      0%   { background-position: 0% 50%; }
-                      50%  { background-position: 100% 50%; }
-                      100% { background-position: 0% 50%; }
-                    }
-                  `}</style>
-                  <div className={`rounded-[14px] p-6 ${MODULE_DETAILS[openModule].light}`}>
-                    {/* Header */}
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className={`w-12 h-12 rounded-xl ${MODULE_DETAILS[openModule].color} flex items-center justify-center text-2xl shadow-lg`}>
-                        {t.platform.features[openModule].icon}
-                      </div>
-                      <div>
-                        <div className="font-black text-[#1B3A5C] text-xl leading-tight">{t.platform.features[openModule].name}</div>
-                        <div className="text-xs text-gray-500 mt-0.5">{t.platform.features[openModule].desc}</div>
-                      </div>
-                    </div>
-
-                    {/* Illustration */}
-                    {(() => {
-                      const Illus = MODULE_ILLUSTRATIONS[openModule];
-                      return Illus ? (
-                        <motion.div
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.4, delay: 0.1 }}
-                          className="rounded-xl overflow-hidden mb-5 shadow-sm"
-                          style={{ aspectRatio: "2/1" }}
-                        >
-                          <Illus />
-                        </motion.div>
-                      ) : null;
-                    })()}
-
-                    <div className="grid md:grid-cols-2 gap-5">
-                      {/* Scenario */}
-                      <div>
-                        <div className="text-xs font-bold text-[#E8751A] uppercase tracking-wider mb-2">
-                          {lang === "ja" ? "実際の使用シナリオ" : lang === "en" ? "Real Usage Scenario" : "真實使用情境"}
-                        </div>
-                        <div className="bg-white rounded-xl px-4 py-3 text-sm text-gray-700 leading-relaxed border border-gray-100 italic shadow-sm">
-                          「{MODULE_DETAILS[openModule].scenario[lang as "zh" | "en" | "ja"] ?? MODULE_DETAILS[openModule].scenario.zh}」
-                        </div>
-                      </div>
-                      {/* Key capabilities */}
-                      <div>
-                        <div className="text-xs font-bold text-[#1B3A5C] uppercase tracking-wider mb-2">
-                          {lang === "ja" ? "主要機能" : lang === "en" ? "Key Capabilities" : "核心能力"}
-                        </div>
-                        <ul className="space-y-1.5">
-                          {(MODULE_DETAILS[openModule].bullets[lang as "zh" | "en" | "ja"] ?? MODULE_DETAILS[openModule].bullets.zh).map((b, j) => (
-                            <li key={j} className="flex items-start gap-2 text-xs text-gray-700">
-                              <span className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-black flex-shrink-0 shadow-sm ${MODULE_DETAILS[openModule].color}`}>{j + 1}</span>
-                              {b}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           {/* Integration grid */}
           <div className="border border-gray-200 rounded-2xl overflow-hidden">
