@@ -34,7 +34,7 @@ const DATA = {
         badge: "台灣最大連鎖超商",
         color: "bg-[#1B3A5C]",
         accentColor: "#3B82F6",
-        stats: ["200+ 台部署（2026起）", "整合全家 POS 系統", "科學園區 / 大學 / 觀光飯店"],
+        stats: ["上百台部署"],
       },
       {
         name: "麥味登",
@@ -87,7 +87,7 @@ const DATA = {
         badge: "Taiwan's Largest Convenience Chain",
         color: "bg-[#1B3A5C]",
         accentColor: "#3B82F6",
-        stats: ["200+ units (from 2026)", "Full FamilyMart POS integration", "Science parks / Universities / Hotels"],
+        stats: ["Hundreds of units deployed"],
       },
       {
         name: "MWD Breakfast Chain",
@@ -140,7 +140,7 @@ const DATA = {
         badge: "台湾最大コンビニチェーン",
         color: "bg-[#1B3A5C]",
         accentColor: "#3B82F6",
-        stats: ["200台+導入（2026年〜）", "ファミリーマートPOS完全統合", "サイエンスパーク / 大学 / ホテル"],
+        stats: ["数百台を導入済み"],
       },
       {
         name: "MWD朝食チェーン",
@@ -193,7 +193,7 @@ const DATA = {
         badge: "Jaringan Minimarket Terbesar Taiwan",
         color: "bg-[#1B3A5C]",
         accentColor: "#3B82F6",
-        stats: ["200+ unit (dari 2026)", "Integrasi penuh FamilyMart POS", "Science parks / Universitas / Hotel"],
+        stats: ["Ratusan unit telah terpasang"],
       },
       {
         name: "MWD Breakfast Chain",

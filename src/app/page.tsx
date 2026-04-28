@@ -1,17 +1,5 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import OmniCoreSection from "@/components/OmniCoreSection";
-import EnterpriseClients from "@/components/EnterpriseClients";
-import Services from "@/components/Services";
-import GlobalPresence from "@/components/GlobalPresence";
-import Consulting from "@/components/Consulting";
-import Clients from "@/components/Clients";
-import Numbers from "@/components/Numbers";
-import About from "@/components/About";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import IntroPage from "@/app/intro/page";
 
 export const metadata: Metadata = {
   title: "銓幻元科技 MCS | 唯一整合線上線下 × 供應鏈 × 全通道+會員的 AI 零售作業系統",
@@ -148,39 +136,5 @@ const localBusinessJsonLd = {
 };
 
 export default function Home() {
-  return (
-    <>
-      <Header />
-      <main>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-        />
-        <Hero />
-        <OmniCoreSection />
-        <EnterpriseClients />
-        <Services />
-        <GlobalPresence />
-        <Consulting />
-        <Clients />
-        <Numbers />
-        <About />
-        <FAQ />
-        <Contact />
-      </main>
-      <Footer />
-    </>
-  );
+  return <IntroPage />;
 }
