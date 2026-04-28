@@ -262,14 +262,14 @@ const T = {
       ],
     },
     xiangyao: {
-      label: "封閉場域客戶",
-      title: "翔耀實業 × 封閉場域智販機",
+      label: "特定場域客戶",
+      title: "翔耀實業 × 特定場域智販機",
       badge: "軍事基地・移工宿舍・工廠",
-      sub: "翔耀實業（母公司嵩達光電，上櫃申請中）在封閉場域擁有無可複製的進場能力。MCS 提供設備與 OmniCore 平台，翔耀出場域，合作公式：場域換技術，收入按比例分潤。",
+      sub: "翔耀實業（母公司嵩達光電，上櫃申請中）在特定場域擁有無可複製的進場能力。MCS 提供設備與 OmniCore 平台，翔耀出場域，合作公式：場域換技術，收入按比例分潤。",
       stats: [
-        { num: "封閉場域", label: "軍方・移工宿舍・工廠・診所" },
+        { num: "特定場域", label: "軍方・移工宿舍・工廠・診所" },
         { num: "悠遊卡", label: "移工最熟悉的支付，無需手機" },
-        { num: "24hr", label: "封閉場域全天候無人服務" },
+        { num: "24hr", label: "特定場域全天候無人服務" },
       ],
       features: [
         "常溫 / 冷藏販賣機：零食、飲料、泡麵、日用品",
@@ -465,14 +465,14 @@ const T = {
       ],
     },
     xiangyao: {
-      label: "Closed-Venue Client",
-      title: "Xiangyao × Closed-Venue Smart Vending",
+      label: "Targeted-Venue Client",
+      title: "Xiangyao × Targeted-Venue Smart Vending",
       badge: "Military Base · Migrant Worker Dorms · Factories",
-      sub: "Xiangyao (parent company Sonda Optoelectronics — OTC listing application in progress) holds unmatched access to closed venues. MCS supplies equipment and OmniCore. Formula: venue access meets technology — revenue shared proportionally.",
+      sub: "Xiangyao (parent company Sonda Optoelectronics — OTC listing application in progress) holds unmatched access to targeted venues. MCS supplies equipment and OmniCore. Formula: venue access meets technology — revenue shared proportionally.",
       stats: [
         { num: "Closed Venues", label: "Military · Dorms · Factories · Clinics" },
         { num: "EasyCard", label: "Migrant worker-friendly, no smartphone needed" },
-        { num: "24hr", label: "Unmanned service in closed venues" },
+        { num: "24hr", label: "Unmanned service in targeted venues" },
       ],
       features: [
         "Ambient / chilled vending: snacks, drinks, daily essentials",
@@ -1306,7 +1306,7 @@ const MODULE_DETAILS = [
   },
   {
     color: "bg-purple-600", light: "bg-purple-50 border-purple-200",
-    scenario: { zh: "翔耀封閉場域管理者查看本週 3 個宿舍各機台銷售排行，發現週五晚 9 點飲料銷量特別高，決定提前補貨。", en: "Xiangyao manager reviews 3 dormitory vending machines weekly. Spots Friday 9pm drink spike — schedules early restocking.", ja: "翔耀の管理者が3つの寮の週間売上を確認。金曜21時の飲料急増を発見し、早めに補充手配。" },
+    scenario: { zh: "翔耀特定場域管理者查看本週 3 個宿舍各機台銷售排行，發現週五晚 9 點飲料銷量特別高，決定提前補貨。", en: "Xiangyao manager reviews 3 dormitory vending machines weekly. Spots Friday 9pm drink spike — schedules early restocking.", ja: "翔耀の管理者が3つの寮の週間売上を確認。金曜21時の飲料急増を発見し、早めに補充手配。" },
     bullets: { zh: ["機台 / 場域 / 商品 / 日期多維切片", "熱銷商品排行 ＋ 庫存消耗速率", "月 GMV 趨勢圖，支援 CSV / Excel 匯出", "自訂報表週期（日 / 週 / 月）"], en: ["Slice by device, venue, product, date", "Best-sellers + inventory depletion rate", "Monthly GMV trend, CSV / Excel export", "Custom report periods (daily/weekly/monthly)"], ja: ["機器・場所・商品・日付でスライス", "ベストセラー＋在庫消費速度", "月次GMVトレンド、CSV/Excelエクスポート", "レポート周期カスタム（日/週/月）"] },
   },
   {
@@ -2205,6 +2205,22 @@ export default function IntroPage() {
             </div>
           </motion.div>
 
+          {/* Positioning Slogan */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-6"
+          >
+            <div className="inline-block px-5 py-2 rounded-full border border-[#E8751A]/40 bg-[#E8751A]/10 text-[#f5a87a] text-sm font-bold tracking-wide">
+              {lang === "ja"
+                ? "オンライン×オフライン × サプライチェーン × 全チャネル+会員を統合する唯一のAI小売OS"
+                : lang === "en"
+                ? "The Only AI Retail OS Integrating Online-Offline × Supply Chain × Omnichannel + Membership"
+                : "唯一整合線上線下 × 供應鏈 × 全通道+會員的 AI 零售作業系統"}
+            </div>
+          </motion.div>
+
           {/* H1 — massive */}
           <motion.h1
             initial={{ opacity: 0, y: 32 }}
@@ -2563,23 +2579,75 @@ export default function IntroPage() {
             </div>{/* end right panel */}
           </div>{/* end master-detail */}
 
-          {/* Integration grid */}
+          {/* 系統串接生態 */}
           <div className="border border-gray-200 rounded-2xl overflow-hidden">
-            <SubBanner bg="bg-[#1B3A5C]" title={t.platform.integLabel} accentLine="#E8751A" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-gray-100">
-              {t.platform.integGroups.map((group, i) => (
-                <div key={i} className="p-5">
-                  <div className="text-xs font-bold text-[#E8751A] uppercase tracking-wider mb-3">{group.title}</div>
-                  <ul className="space-y-1.5">
-                    {group.items.map((item, j) => (
-                      <li key={j} className="flex items-center gap-2 text-xs text-gray-600">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#1B3A5C] flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+            <SubBanner bg="bg-[#1B3A5C]" title={
+              lang === "ja" ? "システム連携エコシステム — 既存システムをそのまま活かす" :
+              lang === "en" ? "Integration Ecosystem — We Connect What You Already Have" :
+              "系統串接生態 — 讓你現有的系統全部說同一種語言"
+            } accentLine="#E8751A" />
+            <div className="p-6">
+              <p className="text-gray-500 text-sm mb-6 max-w-2xl">
+                {lang === "ja"
+                  ? "OmniCoreは新しいサイロではありません。既存のERP・会員・電商・物流システムをつなぐミドルウェアです。社内ITチームを抱える必要はありません。"
+                  : lang === "en"
+                  ? "OmniCore isn't another silo — it's the middleware that connects your existing ERP, loyalty, e-commerce, and logistics systems. No in-house IT team required."
+                  : "OmniCore 不是要你換掉現有系統，而是串在中間，讓 ERP、會員、電商、物流全部自動流通。企業不需要自養資訊團隊。"}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+                {[
+                  {
+                    icon: "🏭",
+                    title: lang === "en" ? "ERP Integration" : lang === "ja" ? "ERP連携" : "ERP 串接",
+                    value: lang === "en" ? "Inventory auto-syncs — no manual reconciliation" : lang === "ja" ? "在庫自動同期、手動作業不要" : "庫存數據自動同步，免人工對帳",
+                    items: ["富士通 Fujitsu ERP", "鼎新 Digiwin", lang === "en" ? "Convenience store mgmt" : "超商內部管理平台"],
+                  },
+                  {
+                    icon: "👤",
+                    title: lang === "en" ? "Loyalty & E-Commerce" : lang === "ja" ? "会員・EC" : "會員 & 電商",
+                    value: lang === "en" ? "Online order → offline pickup, full OMO loop" : lang === "ja" ? "オンライン注文→オフライン受取のOMO" : "線上下單、線下取貨，OMO 閉環完整",
+                    items: ["Ocard", "SHOPLINE", "91APP", "Pointsoft"],
+                  },
+                  {
+                    icon: "💳",
+                    title: lang === "en" ? "Payment" : lang === "ja" ? "決済" : "金流支付",
+                    value: lang === "en" ? "10+ payment methods, one integration" : lang === "ja" ? "10種以上の決済を一元管理" : "10+ 種支付，一次整合到位",
+                    items: ["精誠", "悠遊卡 EasyCard", "LINE Pay / 街口", "Apple/Google Pay", "EMV 信用卡"],
+                  },
+                  {
+                    icon: "🚚",
+                    title: lang === "en" ? "Logistics & Venue" : lang === "ja" ? "物流・場域" : "物流 & 場域",
+                    value: lang === "en" ? "AI restock predictions auto-trigger dispatch" : lang === "ja" ? "AI補充予測と自動配車を連動" : "補貨預測自動觸發車隊調度",
+                    items: ["Lalamove", lang === "en" ? "TSMC / Garmin employee card" : "台積電 / Garmin 員工卡", "MPS Japan"],
+                  },
+                ].map((cat, i) => (
+                  <div key={i} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <div className="text-2xl mb-2">{cat.icon}</div>
+                    <div className="font-bold text-[#1B3A5C] text-sm mb-1">{cat.title}</div>
+                    <div className="text-[#E8751A] text-xs font-medium mb-3 leading-snug">{cat.value}</div>
+                    <ul className="space-y-1">
+                      {cat.items.map((item, j) => (
+                        <li key={j} className="flex items-center gap-1.5 text-xs text-gray-500">
+                          <span className="w-1 h-1 rounded-full bg-[#E8751A] flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <div className="p-4 bg-[#1B3A5C]/5 border border-[#1B3A5C]/15 rounded-xl">
+                <div className="text-[#1B3A5C] font-bold text-sm mb-1">
+                  {lang === "en" ? "💡 No in-house IT team needed" : lang === "ja" ? "💡 社内ITチーム不要" : "💡 不需要自養資訊團隊"}
                 </div>
-              ))}
+                <div className="text-gray-500 text-xs leading-relaxed">
+                  {lang === "en"
+                    ? "A full-scale IT team capable of OmniCore-level systems costs NT$800K–1.2M/month in salaries alone. OmniCore gives you a usage-based fee — and a system that keeps improving with every device."
+                    : lang === "ja"
+                    ? "OmniCoreレベルのITチームを内製すると月額人件費だけで80〜120万台湾ドル以上。OmniCoreなら使った分だけ支払い、設備が増えるほどシステムも賢くなります。"
+                    : "一個能做 OmniCore 規模系統的資訊團隊，月薪成本至少 NT$80-120 萬起跳。OmniCore 讓企業按使用量付費，設備越多、系統越精準。"}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -2847,7 +2915,7 @@ export default function IntroPage() {
         </div>
       </section>
 
-      {/* ── 翔耀 封閉場域 ── */}
+      {/* ── 翔耀 特定場域 ── */}
       <section className="py-16 px-6 bg-[#1a1a2e]">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
@@ -2918,7 +2986,7 @@ export default function IntroPage() {
                   {lang === "ja" ? "協業モデル" : lang === "en" ? "Partnership Model" : "合作模式"}
                 </div>
                 {[
-                  { from: lang === "ja" ? "翔耀が提供" : lang === "en" ? "Xiangyao provides" : "翔耀提供", item: lang === "ja" ? "特定施設へのアクセス権" : lang === "en" ? "Closed venue access" : "封閉場域進場能力", color: "bg-[#5B2D8E]/30 text-[#c084fc]" },
+                  { from: lang === "ja" ? "翔耀が提供" : lang === "en" ? "Xiangyao provides" : "翔耀提供", item: lang === "ja" ? "特定施設へのアクセス権" : lang === "en" ? "Targeted venue access" : "特定場域進場能力", color: "bg-[#5B2D8E]/30 text-[#c084fc]" },
                   { from: lang === "ja" ? "MCSが提供" : lang === "en" ? "MCS provides" : "MCS 提供", item: lang === "ja" ? "機器 + OmniCoreプラットフォーム" : lang === "en" ? "Equipment + OmniCore platform" : "設備 ＋ OmniCore 平台", color: "bg-[#E8751A]/20 text-[#f5a87a]" },
                   { from: lang === "ja" ? "収益配分" : lang === "en" ? "Revenue split" : "收益分潤", item: lang === "ja" ? "GMVベースの成果比例分配" : lang === "en" ? "Proportional (GMV-based)" : "按 GMV 比例分潤", color: "bg-green-500/20 text-green-400" },
                 ].map((row, i) => (
@@ -3052,57 +3120,6 @@ export default function IntroPage() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 100% MIT Section ── */}
-      <section className="py-20 px-6 bg-gray-900">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <p className="text-xs font-bold uppercase tracking-widest text-[#E8751A] mb-2">{t.mit.label}</p>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">{t.mit.title}</h2>
-            <p className="text-white/60 mb-10 max-w-2xl">{t.mit.sub}</p>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 gap-8 items-start">
-            {/* Photo grid */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="col-span-2 rounded-xl overflow-hidden aspect-video bg-gray-800 relative">
-                <ZoomImg src="/images/intro/mit-lab.jpg" alt="MCS 整機測試實驗室" fill className="object-cover" />
-              </div>
-              <div className="rounded-xl overflow-hidden aspect-square bg-gray-800 relative">
-                <ZoomImg src="/images/intro/mit-engineering.jpg" alt="MCS 工程師 PCB 研發" fill className="object-cover" />
-              </div>
-              <div className="rounded-xl overflow-hidden aspect-square bg-gray-800 relative">
-                <ZoomImg src="/images/intro/mit-production.jpg" alt="台灣工廠量產" fill className="object-cover" />
-              </div>
-            </div>
-
-            {/* Points */}
-            <div className="space-y-4">
-              {t.mit.points.map((p, i) => (
-                <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-5">
-                  <div className="flex items-start gap-3">
-                    <span className="text-2xl flex-shrink-0">{p.icon}</span>
-                    <div>
-                      <div className="font-bold text-white mb-1">{p.title}</div>
-                      <div className="text-white/60 text-sm leading-relaxed">{p.desc}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              <div className="mt-4 p-4 bg-[#E8751A]/15 border border-[#E8751A]/30 rounded-xl">
-                <div className="text-[#f5a87a] font-bold text-sm mb-1">MIT · Made in Taiwan</div>
-                <div className="text-white/60 text-xs leading-relaxed">
-                  {lang === "ja"
-                    ? "設計・製造・検査まで一気通貫。台湾のエンジニアリング能力を世界へ。"
-                    : lang === "en"
-                    ? "End-to-end ownership: design → build → test. Taiwan engineering delivered globally."
-                    : "從設計、製造到測試，全程掌控，台灣品質輸出全球。"}
-                </div>
-              </div>
             </div>
           </div>
         </div>
