@@ -1,10 +1,165 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { LightboxImage } from "@/components/Lightbox";
-import { FloatingElement, MagneticHover } from "@/components/motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { MagneticHover } from "@/components/motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/translations";
+import OmniCoreViz from "@/components/OmniCoreViz";
+
+// Count-up hook
+function useCountUp(target: number, duration = 1.4) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+  const [display, setDisplay] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const steps = 36;
+    const stepTime = (duration * 1000) / steps;
+    const inc = target / steps;
+    const t = setInterval(() => {
+      start += inc;
+      if (start >= target) { setDisplay(target); clearInterval(t); }
+      else setDisplay(Math.floor(start));
+    }, stepTime);
+    return () => clearInterval(t);
+  }, [inView, target, duration]);
+  return { ref, display };
+}
+
+// Word-stagger animation
+const wordVariants = {
+  hidden: { opacity: 0, y: 14 },
+  show: (i: number) => ({
+    opacity: 1 as number, y: 0 as number,
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay: 0.75 + i * 0.08 },
+  }),
+} as const;
+
+const TAGLINE = {
+  zh: {
+    line1: [
+      { text: "唯一整合", style: "text-gray-300" },
+      { text: "硬體設備", style: "text-white font-semibold" },
+      { text: "×", style: "text-mcs-orange font-bold mx-1" },
+      { text: "OmniCore AI 雲端平台", style: "text-white font-semibold" },
+      { text: "×", style: "text-mcs-orange font-bold mx-1" },
+      { text: "ERP/會員/金流/物流串接", style: "text-white font-semibold" },
+      { text: "的智慧零售作業系統", style: "text-gray-300" },
+    ],
+    line2pre: "一個平台讓連鎖品牌省下",
+    countTarget: 88,
+    countSuffix: "%",
+    line2post: " 的 IT 建置成本",
+    line3: "真正讓每一個場域的營運效益最大化",
+  },
+  en: {
+    line1: [
+      { text: "Integrating", style: "text-gray-300" },
+      { text: " Smart Devices", style: "text-white font-semibold" },
+      { text: " ×", style: "text-mcs-orange font-bold" },
+      { text: " OmniCore AI Cloud", style: "text-white font-semibold" },
+      { text: " ×", style: "text-mcs-orange font-bold" },
+      { text: " ERP/Loyalty/Payment/Logistics", style: "text-white font-semibold" },
+      { text: " — one AI Retail OS.", style: "text-gray-300" },
+    ],
+    line2pre: "Enterprise partners save",
+    countTarget: 88,
+    countSuffix: "%",
+    line2post: " on IT infrastructure costs",
+    line3: "— maximizing revenue at every venue.",
+  },
+  ja: {
+    line1: [
+      { text: "統合するのは", style: "text-gray-300" },
+      { text: "スマート機器", style: "text-white font-semibold" },
+      { text: "×", style: "text-mcs-orange font-bold mx-1" },
+      { text: "OmniCore AI クラウド", style: "text-white font-semibold" },
+      { text: "×", style: "text-mcs-orange font-bold mx-1" },
+      { text: "ERP/会員/決済/物流", style: "text-white font-semibold" },
+      { text: "——AI小売OSで一元管理。", style: "text-gray-300" },
+    ],
+    line2pre: "企業パートナーのITコストを",
+    countTarget: 88,
+    countSuffix: "%",
+    line2post: "削減",
+    line3: "——すべての拠点で収益を最大化。",
+  },
+  id: {
+    line1: [
+      { text: "Mengintegrasikan", style: "text-gray-300" },
+      { text: " Perangkat Cerdas", style: "text-white font-semibold" },
+      { text: " ×", style: "text-mcs-orange font-bold" },
+      { text: " OmniCore AI Cloud", style: "text-white font-semibold" },
+      { text: " ×", style: "text-mcs-orange font-bold" },
+      { text: " ERP/Loyalitas/Pembayaran/Logistik", style: "text-white font-semibold" },
+      { text: " — satu AI Retail OS.", style: "text-gray-300" },
+    ],
+    line2pre: "Hemat",
+    countTarget: 88,
+    countSuffix: "%",
+    line2post: " biaya IT infrastruktur",
+    line3: "— maksimalkan pendapatan di setiap venue.",
+  },
+};
+
+function AnimatedTagline({ lang }: { lang: string }) {
+  const tl = TAGLINE[lang as keyof typeof TAGLINE] ?? TAGLINE.zh;
+  const { ref, display } = useCountUp(tl.countTarget, 1.4);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const containerInView = useInView(containerRef, { once: true });
+
+  return (
+    <div ref={containerRef} className="mb-10 space-y-4 max-w-2xl mx-auto lg:mx-0">
+      {/* Line 1 — integrations */}
+      <p className="text-lg sm:text-xl leading-relaxed">
+        {tl.line1.map((chunk, i) => (
+          <motion.span
+            key={i}
+            custom={i}
+            variants={wordVariants}
+            initial="hidden"
+            animate={containerInView ? "show" : "hidden"}
+            className={chunk.style}
+          >
+            {chunk.text}
+          </motion.span>
+        ))}
+      </p>
+
+      {/* Line 2 — 88% callout */}
+      <motion.p
+        className="text-xl sm:text-2xl font-medium leading-relaxed"
+        initial={{ opacity: 0, y: 14 }}
+        animate={containerInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 1.55 }}
+      >
+        <span className="text-gray-300">{tl.line2pre} </span>
+        <span className="inline-flex items-baseline gap-0.5">
+          <span
+            ref={ref}
+            className="text-4xl sm:text-5xl font-black text-mcs-orange drop-shadow-[0_0_16px_rgba(232,117,26,0.5)]"
+          >
+            {display}
+          </span>
+          <span className="text-3xl font-black text-mcs-orange">{tl.countSuffix}</span>
+        </span>
+        <span className="text-gray-300">{tl.line2post}</span>
+      </motion.p>
+
+      {/* Line 3 */}
+      <motion.p
+        className="text-base sm:text-lg text-gray-400 leading-relaxed"
+        initial={{ opacity: 0, y: 10 }}
+        animate={containerInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 1.75 }}
+      >
+        {tl.line3}
+      </motion.p>
+    </div>
+  );
+}
 
 export default function Hero() {
   const { lang } = useLanguage();
@@ -83,22 +238,15 @@ export default function Hero() {
               </h1>
             </motion.div>
 
-            {/* Tagline */}
-            <motion.p
-              className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.7 }}
-            >
-              {tr.hero.tagline}
-            </motion.p>
+            {/* Animated tagline */}
+            <AnimatedTagline lang={lang} />
 
             {/* CTAs */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
+              transition={{ duration: 0.6, delay: 2.0 }}
             >
               <MagneticHover>
                 <a
@@ -123,7 +271,7 @@ export default function Hero() {
               className="mt-12 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
+              transition={{ duration: 0.8, delay: 2.1 }}
             >
               {[
                 { val: tr.hero.stat1v, label: tr.hero.stat1l },
@@ -135,7 +283,7 @@ export default function Hero() {
                   className="glass-card rounded-xl p-4 text-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.2 + i * 0.15 }}
+                  transition={{ duration: 0.5, delay: 2.15 + i * 0.12 }}
                   whileHover={{ scale: 1.05, borderColor: "rgba(232,117,26,0.3)" }}
                 >
                   <div className="text-2xl font-bold text-mcs-orange">{s.val}</div>
@@ -145,22 +293,14 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right — Hero illustration */}
+          {/* Right — OmniCore platform visualization */}
           <motion.div
-            className="flex justify-center"
+            className="flex justify-center items-center"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <FloatingElement duration={8} distance={12}>
-              <LightboxImage
-                src="/images/illustrations/hero.png"
-                alt="銓幻元科技 MCS — AI 零售作業系統 OmniCore · GraBox 智取櫃 · 冷凍微波販賣機"
-                width={700}
-                height={500}
-                className="w-full max-w-xl drop-shadow-2xl"
-              />
-            </FloatingElement>
+            <OmniCoreViz />
           </motion.div>
         </div>
       </div>
