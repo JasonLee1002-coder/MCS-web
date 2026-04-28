@@ -170,12 +170,6 @@ const PLATFORM_DATA = {
   },
 };
 
-const typeColor: Record<string, string> = {
-  recurring: "border-blue-500/30 bg-blue-500/5",
-  aligned: "border-mcs-orange/30 bg-mcs-orange/5",
-  onetime: "border-purple-500/30 bg-purple-500/5",
-};
-
 export default function OmniCoreSection() {
   const { lang } = useLanguage();
   const d = PLATFORM_DATA[lang] ?? PLATFORM_DATA.zh;
@@ -248,27 +242,6 @@ export default function OmniCoreSection() {
           </div>
         </FadeIn>
 
-        {/* Business model */}
-        <FadeIn>
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-white mb-2">{d.businessModel.title}</h3>
-            <p className="text-gray-400">{d.businessModel.sub}</p>
-          </div>
-        </FadeIn>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {d.businessModel.items.map((item, i) => (
-            <FadeIn key={item.label} delay={i * 0.08}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                className={`rounded-xl border p-5 h-full flex flex-col gap-3 ${typeColor[item.type] ?? "border-white/10 bg-white/5"}`}
-              >
-                <span className="text-3xl">{item.icon}</span>
-                <p className="text-white font-bold text-sm">{item.label}</p>
-                <p className="text-gray-400 text-xs leading-relaxed flex-1">{item.desc}</p>
-              </motion.div>
-            </FadeIn>
-          ))}
-        </div>
 
       </div>
     </section>
