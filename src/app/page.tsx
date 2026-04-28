@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import OmniCoreSection from "@/components/OmniCoreSection";
+import EnterpriseClients from "@/components/EnterpriseClients";
 import Services from "@/components/Services";
 import GlobalPresence from "@/components/GlobalPresence";
 import Consulting from "@/components/Consulting";
@@ -12,9 +14,9 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "銓幻元科技 MCS | GraBox AI 智取櫃 · 冷凍微波販賣機 · 台灣製造智慧設備領導品牌",
+  title: "銓幻元科技 MCS | 唯一整合線上線下 × 供應鏈 × 全通道+會員的 AI 零售作業系統",
   description:
-    "銓幻元科技 100% 台灣研發製造 GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機。服務知名連鎖通路實績，日本首都高速公路 MOU 指定合作。提供 AI 訂餐、人臉辨識取餐、多溫層控制、雲端營運管理平台。",
+    "MCS 銓幻元科技是台灣唯一整合硬體設備 × OmniCore AI 雲端平台 × ERP/會員/金流串接的智慧零售作業系統。全家超商 200台、麥味登 90天完整整合、日本首都高速 MOU。企業 IT 成本節省 88%。",
   keywords: [
     "銓幻元科技",
     "MCS",
@@ -167,6 +169,8 @@ export default function Home() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
         <Hero />
+        <OmniCoreSection />
+        <EnterpriseClients />
         <Services />
         <GlobalPresence />
         <Consulting />

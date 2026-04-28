@@ -32,26 +32,29 @@ export default function Hero() {
           {/* Left — Text */}
           <div className="text-center lg:text-left">
 
-            {/* Badges */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-2 justify-center lg:justify-start mb-6">
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-white/80 backdrop-blur-sm"
-              >
-                <span className="text-base">🇸🇬</span>
-                <span className="font-medium">{tr.hero.badge}</span>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.25 }}
-                className="inline-flex items-center gap-2 bg-mcs-orange/15 border border-mcs-orange/40 rounded-full px-4 py-1.5 text-sm text-mcs-orange font-semibold backdrop-blur-sm"
-              >
-                <span>{tr.hero.subBadge}</span>
-              </motion.div>
-            </div>
+            {/* Positioning slogan pill */}
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-4 flex justify-center lg:justify-start"
+            >
+              <div className="inline-block px-5 py-2 rounded-full border border-[#E8751A]/40 bg-[#E8751A]/10 text-[#f5a87a] text-sm font-bold tracking-wide text-center">
+                {tr.hero.badge}
+              </div>
+            </motion.div>
+
+            {/* Credibility badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mb-6 flex justify-center lg:justify-start"
+            >
+              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-white/70 backdrop-blur-sm">
+                <span className="font-medium">{tr.hero.subBadge}</span>
+              </div>
+            </motion.div>
 
             {/* Headline */}
             <motion.div
@@ -68,14 +71,7 @@ export default function Hero() {
                 >
                   {tr.hero.headline1}
                 </motion.span>
-                <motion.span
-                  className="mx-3 text-white/40 inline-block"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.6 }}
-                >
-                  ×
-                </motion.span>
+                <br />
                 <motion.span
                   className="text-white inline-block"
                   initial={{ opacity: 0, x: 20 }}
@@ -106,7 +102,7 @@ export default function Hero() {
             >
               <MagneticHover>
                 <a
-                  href="#services"
+                  href="#contact"
                   className="btn-shine bg-mcs-orange text-white px-8 py-3.5 rounded-full text-lg font-medium hover:bg-mcs-orange-light transition-all shadow-lg shadow-mcs-orange/25 hover:shadow-xl hover:shadow-mcs-orange/30 inline-block"
                 >
                   {tr.hero.cta1}
@@ -114,7 +110,7 @@ export default function Hero() {
               </MagneticHover>
               <MagneticHover>
                 <a
-                  href="#contact"
+                  href="#services"
                   className="border border-white/20 text-white px-8 py-3.5 rounded-full text-lg font-medium hover:bg-white/10 hover:border-white/40 transition-all inline-block backdrop-blur-sm"
                 >
                   {tr.hero.cta2}
@@ -124,7 +120,7 @@ export default function Hero() {
 
             {/* Stats */}
             <motion.div
-              className="mt-12 grid grid-cols-3 gap-8 max-w-lg mx-auto lg:mx-0"
+              className="mt-12 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.1 }}
@@ -142,8 +138,8 @@ export default function Hero() {
                   transition={{ duration: 0.5, delay: 1.2 + i * 0.15 }}
                   whileHover={{ scale: 1.05, borderColor: "rgba(232,117,26,0.3)" }}
                 >
-                  <div className="text-3xl font-bold text-mcs-orange">{s.val}</div>
-                  <div className="text-sm text-gray-400 mt-1">{s.label}</div>
+                  <div className="text-2xl font-bold text-mcs-orange">{s.val}</div>
+                  <div className="text-xs text-gray-400 mt-1 leading-snug">{s.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -159,7 +155,7 @@ export default function Hero() {
             <FloatingElement duration={8} distance={12}>
               <LightboxImage
                 src="/images/illustrations/hero.png"
-                alt="銓幻元科技 MCS — GraBox AI 智取櫃、冷凍微波販賣機、智慧設備生態系"
+                alt="銓幻元科技 MCS — AI 零售作業系統 OmniCore · GraBox 智取櫃 · 冷凍微波販賣機"
                 width={700}
                 height={500}
                 className="w-full max-w-xl drop-shadow-2xl"
