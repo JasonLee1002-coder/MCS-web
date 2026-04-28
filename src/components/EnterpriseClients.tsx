@@ -28,11 +28,42 @@ const DATA = {
     label: "企業客戶實績",
     title: "已驗證的落地實績",
     sub: "從台灣最大超商到日本高速公路，MCS 在不同場域持續驗證整合能力。",
-    anchor: { label: "錨定客戶", title: "東方美集團 × OmniCore 全通路自助化", badge: "970+ 門市 · 台灣指標早午餐連鎖", role: "MCS 角色：軟體整合商 + 平台提供商", sub: "MCS 是協助 970+ 連鎖門市完成全通路「自助化」的技術夥伴。GraBox 取餐、LINE 點餐到 192 台配送車調度，全部透過 OmniCore 統一串接，IT 成本僅需自建的 5–12%。", stats: [{ num: "970+", label: "連鎖門市" }, { num: "50台", label: "2026 H2 首批 GraBox" }, { num: "192台", label: "配送車 GPS 調度" }, { num: "5-12%", label: "IT 成本比" }] },
     clients: [
-      { name: "全家超商 FamilyMart", badge: "台灣最大連鎖超商", color: "bg-[#1B3A5C]", stats: ["200+ 台部署（2026起）", "整合全家 POS 系統", "科學園區 / 大學 / 觀光飯店"] },
-      { name: "麥味登", badge: "台灣最大早餐連鎖之一", color: "bg-[#E8751A]", stats: ["90 天完整整合（含硬體）", "贏過外國知名大廠競標", "UV 殺菌 + 雷射感應旗艦版"] },
-      { name: "日本首都高速道路", badge: "NDA + MOU 已簽訂", color: "bg-[#1a7a4a]", stats: ["PSE 認證進行中", "MPS Japan 支付整合", "SA/PA 877 據點展開計畫"] },
+      {
+        name: "全家超商 FamilyMart",
+        badge: "台灣最大連鎖超商",
+        color: "bg-[#1B3A5C]",
+        accentColor: "#3B82F6",
+        stats: ["200+ 台部署（2026起）", "整合全家 POS 系統", "科學園區 / 大學 / 觀光飯店"],
+      },
+      {
+        name: "麥味登",
+        badge: "台灣最大早餐連鎖之一",
+        color: "bg-[#9A3B1A]",
+        accentColor: "#E8751A",
+        stats: ["90 天完整整合（含硬體）", "贏過外國知名大廠競標", "UV 殺菌 + 雷射感應旗艦版"],
+      },
+      {
+        name: "東方美集團",
+        badge: "970+ 門市 · 早午餐連鎖",
+        color: "bg-[#7B4A1A]",
+        accentColor: "#F59E0B",
+        stats: ["50台 2026 H2 GraBox 首批", "192台配送車 GPS 調度", "LINE點餐→GraBox取餐 OMO"],
+      },
+      {
+        name: "翔耀實業集團",
+        badge: "特定場域 · 軍事/移工/工廠",
+        color: "bg-[#0A4A50]",
+        accentColor: "#06B6D4",
+        stats: ["軍事基地 · 移工宿舍 · 工廠", "悠遊卡移工友善支付", "OmniCore 遠端補貨預測"],
+      },
+      {
+        name: "日本首都高速道路",
+        badge: "NDA + MOU 已簽訂",
+        color: "bg-[#1a4a2e]",
+        accentColor: "#10B981",
+        stats: ["PSE 認證進行中", "MPS Japan 支付整合", "SA/PA 877 據點展開計畫"],
+      },
     ],
     more: ["必勝客", "麗嬰國際", "昇恆昌機場", "台灣高鐵", "N&W Group", "全省 15 個郵局", "霹靂布袋戲", "滙聚食品"],
     si: {
@@ -50,11 +81,42 @@ const DATA = {
     label: "Enterprise Client Track Record",
     title: "Proven Deployments",
     sub: "From Taiwan's largest convenience chain to Japan's expressways, MCS validates integration capabilities across diverse venues.",
-    anchor: { label: "Anchor Client", title: "EB+ Group × OmniCore Omnichannel Automation", badge: "970+ Locations · Taiwan's #1 Breakfast Chain", role: "MCS Role: Software Integrator + Platform Provider", sub: "MCS is the technology partner enabling 970+ breakfast chain locations to step away from manual workflows. GraBox pickup, LINE ordering, and 192-vehicle fleet dispatch — all unified through OmniCore at just 5–12% of self-build IT cost.", stats: [{ num: "970+", label: "Chain Locations" }, { num: "50 Units", label: "First GraBox Batch H2 2026" }, { num: "192 Trucks", label: "GPS Fleet Dispatch" }, { num: "5-12%", label: "of Self-Build IT Cost" }] },
     clients: [
-      { name: "FamilyMart Taiwan", badge: "Taiwan's Largest Convenience Chain", color: "bg-[#1B3A5C]", stats: ["200+ units (from 2026)", "Full FamilyMart POS integration", "Science parks / Universities / Hotels"] },
-      { name: "MWD Breakfast Chain", badge: "One of Taiwan's Top Breakfast Chains", color: "bg-[#E8751A]", stats: ["90-day full integration (incl. hardware)", "Won over a major Japanese competitor", "UV sterilization + laser sensor flagship"] },
-      { name: "Shuto Expressway Japan", badge: "NDA + MOU Signed", color: "bg-[#1a7a4a]", stats: ["PSE certification in progress", "MPS Japan payment integration", "SA/PA 877-location expansion roadmap"] },
+      {
+        name: "FamilyMart Taiwan",
+        badge: "Taiwan's Largest Convenience Chain",
+        color: "bg-[#1B3A5C]",
+        accentColor: "#3B82F6",
+        stats: ["200+ units (from 2026)", "Full FamilyMart POS integration", "Science parks / Universities / Hotels"],
+      },
+      {
+        name: "MWD Breakfast Chain",
+        badge: "One of Taiwan's Top Breakfast Chains",
+        color: "bg-[#9A3B1A]",
+        accentColor: "#E8751A",
+        stats: ["90-day full integration (incl. hardware)", "Won over a major Japanese competitor", "UV sterilization + laser sensor flagship"],
+      },
+      {
+        name: "EB+ Group",
+        badge: "970+ Locations · Breakfast Chain",
+        color: "bg-[#7B4A1A]",
+        accentColor: "#F59E0B",
+        stats: ["50 GraBox units H2 2026 (first batch)", "192-truck GPS fleet dispatch", "LINE order → GraBox pickup OMO"],
+      },
+      {
+        name: "Xiangyao Group",
+        badge: "Targeted Venue · Military/Workers/Factories",
+        color: "bg-[#0A4A50]",
+        accentColor: "#06B6D4",
+        stats: ["Military bases · Migrant dorms · Factories", "EasyCard — migrant worker-friendly", "OmniCore AI restocking prediction"],
+      },
+      {
+        name: "Shuto Expressway Japan",
+        badge: "NDA + MOU Signed",
+        color: "bg-[#1a4a2e]",
+        accentColor: "#10B981",
+        stats: ["PSE certification in progress", "MPS Japan payment integration", "SA/PA 877-location expansion roadmap"],
+      },
     ],
     more: ["Pizza Hut", "Lihpao International", "Everrich Duty Free", "Taiwan HSR", "N&W Group", "15 Post Offices", "Pili Animation", "Huiju Food"],
     si: {
@@ -72,11 +134,42 @@ const DATA = {
     label: "エンタープライズ実績",
     title: "実証済み導入実績",
     sub: "台湾最大のコンビニチェーンから日本の高速道路まで、MCSは多様な拠点で統合能力を実証しています。",
-    anchor: { label: "アンカークライアント", title: "EB+グループ × OmniCoreオムニチャネル自動化", badge: "970+店舗 · 台湾No.1朝食チェーン", role: "MCS役割：ソフトウェアインテグレーター＋プラットフォームプロバイダー", sub: "MCSは970+の朝食チェーン店舗が手動業務から解放されるための技術パートナーです。GraBox受取、LINE注文、192台の配送車GPS管理——すべてOmniCoreで統合、自社構築比5〜12%のコストで実現。", stats: [{ num: "970+", label: "チェーン店舗" }, { num: "50台", label: "初回GraBoxバッチ 2026H2" }, { num: "192台", label: "GPS配送車管理" }, { num: "5-12%", label: "自社IT費用比" }] },
     clients: [
-      { name: "ファミリーマート台湾", badge: "台湾最大コンビニチェーン", color: "bg-[#1B3A5C]", stats: ["200台+導入（2026年〜）", "ファミリーマートPOS完全統合", "サイエンスパーク / 大学 / ホテル"] },
-      { name: "MWD朝食チェーン", badge: "台湾トップ朝食チェーンの一つ", color: "bg-[#E8751A]", stats: ["90日で完全統合（ハード含む）", "日本大手競合に勝利", "UV殺菌＋レーザーセンサーフラッグシップ"] },
-      { name: "首都高速道路日本", badge: "NDA＋MOU締結済", color: "bg-[#1a7a4a]", stats: ["PSE認証進行中", "MPS Japan決済統合", "SA/PA 877拠点展開ロードマップ"] },
+      {
+        name: "ファミリーマート台湾",
+        badge: "台湾最大コンビニチェーン",
+        color: "bg-[#1B3A5C]",
+        accentColor: "#3B82F6",
+        stats: ["200台+導入（2026年〜）", "ファミリーマートPOS完全統合", "サイエンスパーク / 大学 / ホテル"],
+      },
+      {
+        name: "MWD朝食チェーン",
+        badge: "台湾トップ朝食チェーンの一つ",
+        color: "bg-[#9A3B1A]",
+        accentColor: "#E8751A",
+        stats: ["90日で完全統合（ハード含む）", "日本大手競合に勝利", "UV殺菌＋レーザーセンサーフラッグシップ"],
+      },
+      {
+        name: "EB+グループ",
+        badge: "970+店舗 · 朝食チェーン",
+        color: "bg-[#7B4A1A]",
+        accentColor: "#F59E0B",
+        stats: ["50台 2026年H2 GraBox初回", "192台GPS配送車管理", "LINE注文→GraBox受取 OMO"],
+      },
+      {
+        name: "翔耀実業グループ",
+        badge: "特定拠点 · 軍・寮・工場",
+        color: "bg-[#0A4A50]",
+        accentColor: "#06B6D4",
+        stats: ["軍事基地・移民労働者寮・工場", "悠遊カード——スマホ不要", "OmniCore AI補充予測"],
+      },
+      {
+        name: "首都高速道路日本",
+        badge: "NDA＋MOU締結済",
+        color: "bg-[#1a4a2e]",
+        accentColor: "#10B981",
+        stats: ["PSE認証進行中", "MPS Japan決済統合", "SA/PA 877拠点展開ロードマップ"],
+      },
     ],
     more: ["ピザハット", "麗嬰国際", "エバーリッチ免税", "台湾新幹線", "N&Wグループ", "郵便局15か所", "霹靂動画", "滙聚食品"],
     si: {
@@ -94,11 +187,42 @@ const DATA = {
     label: "Rekam Jejak Klien Enterprise",
     title: "Implementasi yang Terbukti",
     sub: "Dari jaringan minimarket terbesar Taiwan hingga jalan tol Jepang, MCS memvalidasi kemampuan integrasi di berbagai venue.",
-    anchor: { label: "Klien Anchor", title: "EB+ Group × Otomasi Omnichannel OmniCore", badge: "970+ Lokasi · Rantai Sarapan #1 Taiwan", role: "Peran MCS: Integrator Perangkat Lunak + Penyedia Platform", sub: "MCS adalah mitra teknologi yang memungkinkan 970+ lokasi rantai sarapan beralih dari alur kerja manual. GraBox pickup, pemesanan LINE, dan pengiriman armada 192 kendaraan — semua disatukan melalui OmniCore hanya 5–12% dari biaya IT mandiri.", stats: [{ num: "970+", label: "Lokasi Rantai" }, { num: "50 Unit", label: "Batch GraBox Pertama H2 2026" }, { num: "192 Truk", label: "Manajemen Armada GPS" }, { num: "5-12%", label: "dari Biaya IT Mandiri" }] },
     clients: [
-      { name: "FamilyMart Taiwan", badge: "Jaringan Minimarket Terbesar Taiwan", color: "bg-[#1B3A5C]", stats: ["200+ unit (dari 2026)", "Integrasi penuh FamilyMart POS", "Science parks / Universitas / Hotel"] },
-      { name: "MWD Breakfast Chain", badge: "Salah Satu Rantai Sarapan Terbaik Taiwan", color: "bg-[#E8751A]", stats: ["Integrasi 90 hari (termasuk hardware)", "Mengalahkan pesaing Jepang ternama", "UV sterilisasi + sensor laser"] },
-      { name: "Shuto Expressway Jepang", badge: "NDA + MOU Ditandatangani", color: "bg-[#1a7a4a]", stats: ["Sertifikasi PSE sedang berlangsung", "Integrasi pembayaran MPS Japan", "Peta jalan ekspansi 877 lokasi"] },
+      {
+        name: "FamilyMart Taiwan",
+        badge: "Jaringan Minimarket Terbesar Taiwan",
+        color: "bg-[#1B3A5C]",
+        accentColor: "#3B82F6",
+        stats: ["200+ unit (dari 2026)", "Integrasi penuh FamilyMart POS", "Science parks / Universitas / Hotel"],
+      },
+      {
+        name: "MWD Breakfast Chain",
+        badge: "Salah Satu Rantai Sarapan Terbaik Taiwan",
+        color: "bg-[#9A3B1A]",
+        accentColor: "#E8751A",
+        stats: ["Integrasi 90 hari (termasuk hardware)", "Mengalahkan pesaing Jepang ternama", "UV sterilisasi + sensor laser"],
+      },
+      {
+        name: "EB+ Group",
+        badge: "970+ Lokasi · Rantai Sarapan",
+        color: "bg-[#7B4A1A]",
+        accentColor: "#F59E0B",
+        stats: ["50 unit GraBox H2 2026 (batch pertama)", "Pengiriman armada GPS 192 truk", "Pesan LINE → ambil GraBox OMO"],
+      },
+      {
+        name: "Xiangyao Group",
+        badge: "Venue Tertarget · Militer/Pekerja/Pabrik",
+        color: "bg-[#0A4A50]",
+        accentColor: "#06B6D4",
+        stats: ["Pangkalan militer · Asrama pekerja migran · Pabrik", "EasyCard — ramah pekerja migran", "Prediksi pengisian OmniCore AI"],
+      },
+      {
+        name: "Shuto Expressway Jepang",
+        badge: "NDA + MOU Ditandatangani",
+        color: "bg-[#1a4a2e]",
+        accentColor: "#10B981",
+        stats: ["Sertifikasi PSE sedang berlangsung", "Integrasi pembayaran MPS Japan", "Peta jalan ekspansi 877 lokasi"],
+      },
     ],
     more: ["Pizza Hut", "Lihpao International", "Everrich Duty Free", "Taiwan HSR", "N&W Group", "15 Kantor Pos", "Pili Animation", "Huiju Food"],
     si: {
@@ -116,14 +240,14 @@ const DATA = {
 
 export default function EnterpriseClients() {
   const { lang } = useLanguage();
-  const d = DATA[lang] ?? DATA.zh;
+  const d = DATA[lang as keyof typeof DATA] ?? DATA.zh;
 
   return (
     <section id="enterprise" className="py-24 bg-[#111820]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
-        <FadeIn className="text-center mb-16">
+        <FadeIn className="text-center mb-14">
           <div className="inline-block px-4 py-1.5 rounded-full bg-mcs-orange/10 border border-mcs-orange/30 text-mcs-orange text-sm font-semibold mb-4">
             {d.label}
           </div>
@@ -131,52 +255,38 @@ export default function EnterpriseClients() {
           <p className="text-gray-400 max-w-2xl mx-auto text-lg">{d.sub}</p>
         </FadeIn>
 
-        {/* Anchor client — EB+ */}
-        <FadeIn delay={0.05} className="mb-12">
-          <div className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="bg-gradient-to-r from-[#1B3A5C] to-[#0e2035] px-6 py-5 flex items-center justify-between flex-wrap gap-3 relative">
-              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-mcs-orange" />
-              <div className="pl-2">
-                <span className="text-xs font-bold bg-mcs-orange/80 text-white px-2.5 py-0.5 rounded-full mr-3">{d.anchor.label}</span>
-                <span className="font-black text-xl text-white">{d.anchor.title}</span>
-              </div>
-              <span className="text-sm text-white/70 bg-white/10 border border-white/20 px-3 py-1 rounded-full">{d.anchor.badge}</span>
-            </div>
-            <div className="bg-white/3 p-6">
-              <p className="text-sm text-mcs-orange font-semibold mb-3">{d.anchor.role}</p>
-              <p className="text-gray-300 text-sm leading-relaxed mb-6">{d.anchor.sub}</p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {d.anchor.stats.map((s) => (
-                  <div key={s.label} className="text-center glass-card rounded-xl p-3">
-                    <div className="text-2xl font-bold text-mcs-orange">{s.num}</div>
-                    <div className="text-xs text-gray-400 mt-1">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* 3 key client cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {/* 5 client cards — 3 col grid, last row centered */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
           {d.clients.map((c, i) => (
-            <FadeIn key={c.name} delay={i * 0.08}>
+            <FadeIn key={c.name} delay={i * 0.07}>
               <motion.div
-                whileHover={{ y: -4 }}
-                className="rounded-xl overflow-hidden border border-white/10 h-full flex flex-col"
+                whileHover={{ y: -5, boxShadow: `0 8px 32px ${c.accentColor}22` }}
+                className="rounded-2xl overflow-hidden border border-white/10 h-full flex flex-col transition-shadow"
               >
+                {/* Card header */}
                 <div className={`${c.color} px-5 py-4 relative`}>
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-mcs-orange" />
+                  {/* Left accent bar */}
+                  <div
+                    className="absolute left-0 top-0 bottom-0 w-1"
+                    style={{ background: c.accentColor }}
+                  />
                   <div className="pl-2">
-                    <div className="text-xs font-bold text-white/60 mb-1">{c.badge}</div>
+                    <div className="text-xs font-semibold mb-1" style={{ color: c.accentColor }}>
+                      {c.badge}
+                    </div>
                     <div className="font-black text-white text-lg leading-snug">{c.name}</div>
                   </div>
                 </div>
-                <div className="bg-white/5 p-5 flex-1">
-                  <ul className="space-y-2">
+
+                {/* Card body */}
+                <div className="bg-white/[0.04] p-5 flex-1">
+                  <ul className="space-y-2.5">
                     {c.stats.map((s) => (
-                      <li key={s} className="text-xs text-gray-300 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-mcs-orange flex-shrink-0" />
+                      <li key={s} className="text-sm text-gray-300 flex items-start gap-2">
+                        <span
+                          className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          style={{ background: c.accentColor }}
+                        />
                         {s}
                       </li>
                     ))}
@@ -188,29 +298,29 @@ export default function EnterpriseClients() {
         </div>
 
         {/* More clients chips */}
-        <FadeIn delay={0.1} className="mb-16">
+        <FadeIn delay={0.1} className="mb-14">
           <div className="flex flex-wrap gap-2 justify-center">
             {d.more.map((name) => (
-              <span key={name} className="px-3 py-1.5 rounded-full border border-white/20 text-white/60 text-xs bg-white/5">
+              <span key={name} className="px-3 py-1.5 rounded-full border border-white/15 text-white/50 text-xs bg-white/5">
                 {name}
               </span>
             ))}
           </div>
         </FadeIn>
 
-        {/* SI partners — listed companies */}
+        {/* SI partners */}
         <FadeIn delay={0.05} className="mb-8">
           <div className="rounded-2xl border border-white/10 bg-white/3 p-8">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-white mb-2">{d.si.title}</h3>
               <p className="text-gray-400 text-sm">{d.si.sub}</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {d.si.items.map((item, i) => (
                 <FadeIn key={item.name} delay={i * 0.08}>
                   <motion.div
                     whileHover={{ y: -4 }}
-                    className="rounded-xl border border-white/10 bg-white/5 p-5 flex flex-col gap-3"
+                    className="rounded-xl border border-white/10 bg-white/5 p-5 flex flex-col gap-2"
                   >
                     <div>
                       <div className="font-bold text-white text-base">{item.name}</div>
@@ -227,13 +337,15 @@ export default function EnterpriseClients() {
 
         {/* Japan partner */}
         <FadeIn delay={0.1}>
-          <div className="rounded-xl border border-[#1a7a4a]/40 bg-[#1a7a4a]/5 p-5 flex items-center justify-between flex-wrap gap-4">
+          <div className="rounded-xl border border-emerald-700/40 bg-emerald-900/10 p-5 flex items-center justify-between flex-wrap gap-4">
             <div>
-              <div className="text-xs text-[#4ade80] font-semibold mb-1">{d.japan.title}</div>
+              <div className="text-xs text-emerald-400 font-semibold mb-1">{d.japan.title}</div>
               <div className="font-bold text-white text-lg">{d.japan.name}</div>
               <div className="text-sm text-gray-400">{d.japan.role}</div>
             </div>
-            <span className="text-xs border border-[#1a7a4a]/60 text-[#4ade80] px-3 py-1.5 rounded-full">{d.japan.badge}</span>
+            <span className="text-xs border border-emerald-700/60 text-emerald-400 px-3 py-1.5 rounded-full">
+              {d.japan.badge}
+            </span>
           </div>
         </FadeIn>
 
