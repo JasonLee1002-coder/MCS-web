@@ -19,7 +19,6 @@ const nextConfig: NextConfig = {
       { source: "/index.php", destination: "/", permanent: true },
       { source: "/index", destination: "/", permanent: true },
       { source: "/index.html", destination: "/", permanent: true },
-      { source: "/intro", destination: "/", permanent: false },
     ];
   },
   async headers() {
