@@ -280,14 +280,14 @@ const T = {
     },
     weche: {
       label: "戰略製造夥伴",
-      title: "微勤電機 — MIT 機電製造核心",
-      sub: "MCS 與微勤電機深度整合軟硬體，林口整備廠支援大量出貨，100% 台灣研發製造。",
-      badge: "獨家 OEM 合作夥伴",
+      title: "100% 台灣在地製造",
+      sub: "MCS 與台灣在地製造夥伴深度整合軟硬體，本地組裝產線支援大量出貨，100% 台灣研發製造。",
+      badge: "100% 台灣製造",
       points: [
-        { icon: "🏭", title: "林口整備廠", desc: "大型組裝產線，支援量產出貨需求，快速回應客製規格。" },
+        { icon: "🏭", title: "台灣在地組裝廠", desc: "大型組裝產線，支援量產出貨需求，快速回應客製規格。" },
         { icon: "⚙️", title: "機電整合專業", desc: "機構設計、製冷系統、機電控制，超過 20 年硬體製造經驗。" },
-        { icon: "📋", title: "多元設備認證", desc: "展示間備有各項設備認證文件，支援出口合規需求。" },
-        { icon: "🤝", title: "OEM 啟動合作", desc: "2023 年正式啟動 OEM 合作計畫，軟體 + 硬體客製一站完成。" },
+        { icon: "📋", title: "多元設備認證", desc: "備有各項設備認證文件，支援出口合規需求。" },
+        { icon: "🤝", title: "深度 OEM 合作", desc: "正式啟動 OEM 合作計畫，軟體 + 硬體客製一站完成。" },
       ],
     },
     mit: {
@@ -483,14 +483,14 @@ const T = {
     },
     weche: {
       label: "Manufacturing Partner",
-      title: "WECHE — MIT Hardware Manufacturing Core",
-      sub: "Deep hardware-software integration with WECHE. LinKou assembly facility supports high-volume production. 100% Taiwan R&D and manufacturing.",
-      badge: "Exclusive OEM Partner",
+      title: "100% Made in Taiwan",
+      sub: "Deep hardware-software integration with our Taiwan-based manufacturing partner. Local assembly facility supports high-volume production. 100% Taiwan R&D and manufacturing.",
+      badge: "100% Made in Taiwan",
       points: [
-        { icon: "🏭", title: "LinKou Assembly Facility", desc: "Full-scale assembly line for mass production. Rapid turnaround on custom specifications." },
+        { icon: "🏭", title: "Taiwan Assembly Facility", desc: "Full-scale assembly line for mass production. Rapid turnaround on custom specifications." },
         { icon: "⚙️", title: "Electromechanics Expertise", desc: "Mechanical design, refrigeration systems, electromechanical control — 20+ years of hardware manufacturing." },
-        { icon: "📋", title: "Multi-Device Certifications", desc: "Showroom with full certification documentation. Export-ready compliance support." },
-        { icon: "🤝", title: "OEM Partnership Since 2023", desc: "Formal OEM collaboration launched in 2023. Software + hardware customization under one roof." },
+        { icon: "📋", title: "Multi-Device Certifications", desc: "Full certification documentation. Export-ready compliance support." },
+        { icon: "🤝", title: "Deep OEM Collaboration", desc: "Formal OEM collaboration. Software + hardware customization under one roof." },
       ],
     },
     mit: {
@@ -686,14 +686,14 @@ const T = {
     },
     weche: {
       label: "製造戦略パートナー",
-      title: "微勤電機 — MIT ハードウェア製造の中核",
-      sub: "MCS は微勤電機とソフトウェア・ハードウェアを深く統合。林口組立工場が量産出荷をサポート。100% 台湾研究開発・製造。",
-      badge: "独占 OEM パートナー",
+      title: "100% 台湾製造",
+      sub: "MCS は台湾在地の製造パートナーとソフトウェア・ハードウェアを深く統合。現地組立工場が量産出荷をサポート。100% 台湾研究開発・製造。",
+      badge: "100% 台湾製造",
       points: [
-        { icon: "🏭", title: "林口組立工場", desc: "大規模組立ラインで量産出荷に対応。カスタム仕様にも迅速に対応可能。" },
+        { icon: "🏭", title: "台湾在地組立工場", desc: "大規模組立ラインで量産出荷に対応。カスタム仕様にも迅速に対応可能。" },
         { icon: "⚙️", title: "機電統合の専門性", desc: "機構設計・冷却システム・機電制御。20年以上のハードウェア製造実績。" },
-        { icon: "📋", title: "多様な設備認証", desc: "ショールームに各種認証文書完備。輸出コンプライアンス対応可能。" },
-        { icon: "🤝", title: "2023年 OEM 協業開始", desc: "2023年に正式 OEM 協業を開始。ソフトウェア + ハードウェアのカスタマイズをワンストップで提供。" },
+        { icon: "📋", title: "多様な設備認証", desc: "各種認証文書完備。輸出コンプライアンス対応可能。" },
+        { icon: "🤝", title: "深度 OEM 協業", desc: "正式 OEM 協業を開始。ソフトウェア + ハードウェアのカスタマイズをワンストップで提供。" },
       ],
     },
     mit: {
@@ -2587,13 +2587,36 @@ export default function IntroPage() {
               "系統串接生態 — 讓你現有的系統全部說同一種語言"
             } accentLine="#E8751A" />
             <div className="p-6">
-              <p className="text-gray-500 text-sm mb-6 max-w-2xl">
-                {lang === "ja"
-                  ? "OmniCoreは新しいサイロではありません。既存のERP・会員・電商・物流システムをつなぐミドルウェアです。社内ITチームを抱える必要はありません。"
-                  : lang === "en"
-                  ? "OmniCore isn't another silo — it's the middleware that connects your existing ERP, loyalty, e-commerce, and logistics systems. No in-house IT team required."
-                  : "OmniCore 不是要你換掉現有系統，而是串在中間，讓 ERP、會員、電商、物流全部自動流通。企業不需要自養資訊團隊。"}
-              </p>
+              {/* Key value proposition — enlarged callout */}
+              <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#1B3A5C] to-[#0F2440] p-6 md:p-8 relative overflow-hidden">
+                {/* background glow */}
+                <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 80% 50%, rgba(232,117,26,0.12) 0%, transparent 60%)" }} />
+                <div className="relative z-10">
+                  <p className="text-[#E8751A] text-xs font-bold uppercase tracking-widest mb-3">
+                    {lang === "ja" ? "OmniCore とは" : lang === "en" ? "What OmniCore Is" : "OmniCore 核心定位"}
+                  </p>
+                  <p className="text-white text-xl md:text-2xl font-black leading-snug mb-3">
+                    {lang === "ja"
+                      ? "既存システムを\u200B置き換えない。\u200Bつなぐ。"
+                      : lang === "en"
+                      ? "Not a replacement.\nA bridge."
+                      : "不是要你換掉現有系統\u200B，而是串在中間的 AI 平台"}
+                  </p>
+                  <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
+                    {lang === "ja"
+                      ? "OmniCoreは新しいサイロではありません。既存のERP・会員・電商・物流システムをつなぐミドルウェアです。社内ITチームを抱える必要はありません。"
+                      : lang === "en"
+                      ? "OmniCore is the middleware layer that connects your existing ERP, loyalty, e-commerce, and logistics systems — so data flows automatically. No in-house IT team required."
+                      : "讓 ERP、會員、電商、物流全部自動流通。企業不需要自養資訊團隊，也不需要打掉重練。"}
+                  </p>
+                  <div className="mt-5 inline-flex items-center gap-2 bg-[#E8751A]/15 border border-[#E8751A]/40 rounded-full px-4 py-2">
+                    <span className="w-2 h-2 rounded-full bg-[#E8751A] animate-pulse flex-shrink-0" />
+                    <span className="text-[#f5a87a] text-sm font-bold">
+                      {lang === "ja" ? "企業 IT コスト 88% 削減" : lang === "en" ? "88% lower IT build cost" : "企業 IT 建置成本節省 88%"}
+                    </span>
+                  </div>
+                </div>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
                 {[
                   {
@@ -2636,16 +2659,30 @@ export default function IntroPage() {
                   </div>
                 ))}
               </div>
-              <div className="p-4 bg-[#1B3A5C]/5 border border-[#1B3A5C]/15 rounded-xl">
-                <div className="text-[#1B3A5C] font-bold text-sm mb-1">
-                  {lang === "en" ? "💡 No in-house IT team needed" : lang === "ja" ? "💡 社内ITチーム不要" : "💡 不需要自養資訊團隊"}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1 p-5 bg-[#1B3A5C] rounded-2xl">
+                  <div className="text-[#E8751A] font-black text-base mb-1.5">
+                    {lang === "en" ? "💡 No in-house IT team needed" : lang === "ja" ? "💡 社内ITチーム不要" : "💡 企業不需要自養資訊團隊"}
+                  </div>
+                  <div className="text-white/70 text-sm leading-relaxed">
+                    {lang === "en"
+                      ? "A full-scale IT team capable of OmniCore-level systems costs NT$800K–1.2M/month in salaries alone. OmniCore gives you a usage-based fee — and a system that keeps improving with every device."
+                      : lang === "ja"
+                      ? "OmniCoreレベルのITチームを内製すると月額人件費だけで80〜120万台湾ドル以上。OmniCoreなら使った分だけ支払い、設備が増えるほどシステムも賢くなります。"
+                      : "一個能做 OmniCore 規模系統的資訊團隊，月薪成本至少 NT$80-120 萬起跳。OmniCore 讓企業按使用量付費，設備越多、系統越精準。"}
+                  </div>
                 </div>
-                <div className="text-gray-500 text-xs leading-relaxed">
-                  {lang === "en"
-                    ? "A full-scale IT team capable of OmniCore-level systems costs NT$800K–1.2M/month in salaries alone. OmniCore gives you a usage-based fee — and a system that keeps improving with every device."
-                    : lang === "ja"
-                    ? "OmniCoreレベルのITチームを内製すると月額人件費だけで80〜120万台湾ドル以上。OmniCoreなら使った分だけ支払い、設備が増えるほどシステムも賢くなります。"
-                    : "一個能做 OmniCore 規模系統的資訊團隊，月薪成本至少 NT$80-120 萬起跳。OmniCore 讓企業按使用量付費，設備越多、系統越精準。"}
+                <div className="flex-1 p-5 bg-[#E8751A]/10 border border-[#E8751A]/30 rounded-2xl">
+                  <div className="text-[#E8751A] font-black text-base mb-1.5">
+                    {lang === "en" ? "🔁 Data flows automatically" : lang === "ja" ? "🔁 データが自動で流通" : "🔁 資料自動流通，不再孤島"}
+                  </div>
+                  <div className="text-gray-600 text-sm leading-relaxed">
+                    {lang === "en"
+                      ? "OmniCore sits in the middle — your ERP, loyalty, e-commerce, and logistics systems talk to each other without manual exports or reconciliation."
+                      : lang === "ja"
+                      ? "OmniCoreが中間に入ることで、ERP・会員・EC・物流が自動的に連携。手動のエクスポートや照合作業は不要です。"
+                      : "OmniCore 串在中間，讓 ERP、會員、電商、物流自動說同一種語言。不需要人工匯出、比對，資料即時同步。"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -2653,7 +2690,7 @@ export default function IntroPage() {
         </div>
 
           {/* ── Backend Showcase (Master-Detail) ── */}
-          <div className="mt-14">
+          <div className="max-w-5xl mx-auto mt-14">
             <FadeIn>
               <p className="text-xs font-bold uppercase tracking-widest text-[#E8751A] mb-1">
                 {lang === "ja" ? "実際の管理画面" : lang === "en" ? "Live Dashboard" : "後台實際畫面"}
@@ -3006,7 +3043,7 @@ export default function IntroPage() {
         </div>
       </section>
 
-      {/* ── 微勤 ── */}
+      {/* ── 台灣製造夥伴 ── */}
       <section className="py-20 px-6 bg-[#1B3A5C]">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
@@ -3023,13 +3060,13 @@ export default function IntroPage() {
           <div className="grid md:grid-cols-2 gap-8 items-start">
             {/* Photo grid */}
             <div className="grid grid-cols-2 gap-3">
-              {/* Official WECHE HQ group photo */}
+              {/* Official factory group photo */}
               <div className="col-span-2 rounded-xl overflow-hidden bg-gray-800 relative" style={{ aspectRatio: "16/7" }}>
-                <ZoomImg src="/images/intro/weche-official-group.jpg" alt="MCS × 微勤電機 官方合影" fill className="object-cover object-center" />
+                <ZoomImg src="/images/intro/weche-official-group.jpg" alt="MCS × 台灣製造夥伴 官方合影" fill className="object-cover object-center" />
               </div>
-              {/* Japanese Shutoko delegation visiting WECHE factory */}
+              {/* Japanese Shutoko delegation visiting Taiwan factory */}
               <div className="rounded-xl overflow-hidden aspect-video bg-gray-800 relative">
-                <ZoomImg src="/images/intro/weche-japan-visit-1.jpg" alt="日本首都高速代表團參訪微勤工廠" fill className="object-cover" />
+                <ZoomImg src="/images/intro/weche-japan-visit-1.jpg" alt="日本首都高速代表團參訪台灣製造工廠" fill className="object-cover" />
               </div>
               <div className="rounded-xl overflow-hidden aspect-video bg-gray-800 relative">
                 <ZoomImg src="/images/intro/weche-japan-visit-2.jpg" alt="MIT 設備現場驗證" fill className="object-cover" />
@@ -3039,10 +3076,10 @@ export default function IntroPage() {
                 <div className="text-[#f5a87a] text-xs font-bold">📸 2024.10.18</div>
                 <div className="text-white text-sm font-semibold mt-0.5">
                   {lang === "ja"
-                    ? "首都高速道路㈱の視察団が微勤工場を訪問 — MIT設備を直接確認"
+                    ? "首都高速道路㈱の視察団が台湾製造工場を訪問 — MIT設備を直接確認"
                     : lang === "en"
-                    ? "Shuto Expressway delegation visited WECHE factory — MIT equipment verified on-site"
-                    : "日本首都高速代表團親訪微勤工廠 — MIT 設備現場驗證"}
+                    ? "Shuto Expressway delegation visited MCS Taiwan factory — MIT equipment verified on-site"
+                    : "日本首都高速代表團親訪台灣製造工廠 — MIT 設備現場驗證"}
                 </div>
               </div>
               {/* Factory visit video — 20241018 日本代表團 */}
@@ -3078,10 +3115,10 @@ export default function IntroPage() {
                 <div className="px-3 py-2 bg-black/80 rounded-b-xl">
                   <div className="text-white/50 text-xs">
                     {lang === "ja"
-                      ? "▶ MCS × 微勤 安全性能テスト ─ 出荷前の全機器品質検証プロセス"
+                      ? "▶ MCS 安全性能テスト ─ 出荷前の全機器品質検証プロセス"
                       : lang === "en"
-                      ? "▶ MCS × WECHE Safety Performance Test — Pre-shipment full-unit QC process"
-                      : "▶ MCS × 微勤 安全性能測試 ─ 出貨前整機品質驗收流程"}
+                      ? "▶ MCS Safety Performance Test — Pre-shipment full-unit QC process"
+                      : "▶ MCS 安全性能測試 ─ 出貨前整機品質驗收流程"}
                   </div>
                 </div>
               </div>
@@ -3098,10 +3135,10 @@ export default function IntroPage() {
                 <div className="px-3 py-2 bg-black/80 rounded-b-xl">
                   <div className="text-white/50 text-xs">
                     {lang === "ja"
-                      ? "▶ MCS × 微勤 OEM工場起動 ─ 製造ライン立上げ・量産準備（2024.12）"
+                      ? "▶ MCS 台湾製造工場起動 ─ 製造ライン立上げ・量産準備（2024.12）"
                       : lang === "en"
-                      ? "▶ MCS × WECHE OEM Factory Launch — Production line setup & mass production prep (Dec 2024)"
-                      : "▶ MCS × 微勤 OEM 工廠啟動 ─ 生產線建立 × 量產準備（2024.12）"}
+                      ? "▶ MCS Taiwan Factory Launch — Production line setup & mass production prep (Dec 2024)"
+                      : "▶ MCS 台灣製造工廠啟動 ─ 生產線建立 × 量產準備（2024.12）"}
                   </div>
                 </div>
               </div>
@@ -3342,45 +3379,45 @@ export default function IntroPage() {
 
                 {/* ── MWD Videos ── */}
                 <SubBanner bg="bg-[#1B3A5C]" title={lang === "ja" ? "現場・展示映像" : lang === "en" ? "On-Site & Exhibition Footage" : "現場 × 展覽影片"} accentLine="#E8751A" />
-                <div className="space-y-3 mt-3">
+                <div className="grid grid-cols-2 gap-3 mt-3">
                   {/* 高雄加盟展 Aug 2025 */}
                   <div className="rounded-xl overflow-hidden bg-black">
-                    <video src="/videos/mwd-kaohsiung-expo.mp4" controls playsInline preload="metadata" className="w-full" poster="/images/intro/thumb-mwd-kaohsiung-expo.jpg" />
+                    <video src="/videos/mwd-kaohsiung-expo.mp4" controls playsInline preload="metadata" className="w-full aspect-video object-cover" poster="/images/intro/thumb-mwd-kaohsiung-expo.jpg" />
                     <div className="px-3 py-2 bg-black/80">
                       <span className="text-white/60 text-xs">
-                        {lang === "ja" ? "▶ 高雄加盟博覧会 GraBox 展示（2025.08）" : lang === "en" ? "▶ Kaohsiung Franchise Expo — GraBox Demo (Aug 2025)" : "▶ 高雄加盟展 GraBox 展示（2025.08）"}
+                        {lang === "ja" ? "▶ 高雄加盟展 GraBox 展示（2025.08）" : lang === "en" ? "▶ Kaohsiung Expo — GraBox Demo (Aug 2025)" : "▶ 高雄加盟展 GraBox 展示（2025.08）"}
                       </span>
                     </div>
                   </div>
                   {/* 門市 demo Oct 2025 — clip 1 */}
                   <div className="rounded-xl overflow-hidden bg-black">
-                    <video src="/videos/mwd-store-demo-1.mp4" controls playsInline preload="metadata" className="w-full" poster="/images/intro/thumb-mwd-store-demo-1.jpg" />
+                    <video src="/videos/mwd-store-demo-1.mp4" controls playsInline preload="metadata" className="w-full aspect-video object-cover" poster="/images/intro/thumb-mwd-store-demo-1.jpg" />
                     <div className="px-3 py-2 bg-black/80">
                       <span className="text-white/60 text-xs">
-                        {lang === "ja" ? "▶ 麦味登 My Express 店舗実機デモ①（2025.10）" : lang === "en" ? "▶ MWD My Express Store Live Demo ① (Oct 2025)" : "▶ 麥味登 My Express 門市實機 Demo①（2025.10）"}
+                        {lang === "ja" ? "▶ 店舗実機デモ①（2025.10）" : lang === "en" ? "▶ Store Live Demo ① (Oct 2025)" : "▶ 門市實機 Demo①（2025.10）"}
                       </span>
                     </div>
                   </div>
                   {/* 門市 demo Oct 2025 — clip 2 */}
                   <div className="rounded-xl overflow-hidden bg-black">
-                    <video src="/videos/mwd-store-demo-2.mp4" controls playsInline preload="metadata" className="w-full" poster="/images/intro/thumb-mwd-store-demo-2.jpg" />
+                    <video src="/videos/mwd-store-demo-2.mp4" controls playsInline preload="metadata" className="w-full aspect-video object-cover" poster="/images/intro/thumb-mwd-store-demo-2.jpg" />
                     <div className="px-3 py-2 bg-black/80">
                       <span className="text-white/60 text-xs">
-                        {lang === "ja" ? "▶ 麦味登 My Express 店舗実機デモ②（2025.10）" : lang === "en" ? "▶ MWD My Express Store Live Demo ② (Oct 2025)" : "▶ 麥味登 My Express 門市實機 Demo②（2025.10）"}
+                        {lang === "ja" ? "▶ 店舗実機デモ②（2025.10）" : lang === "en" ? "▶ Store Live Demo ② (Oct 2025)" : "▶ 門市實機 Demo②（2025.10）"}
                       </span>
                     </div>
                   </div>
                   {/* GraBox 實地操作 Oct 2025 */}
                   <div className="rounded-xl overflow-hidden bg-black">
-                    <video src="/videos/mwd-grabox-operation.mp4" controls playsInline preload="metadata" className="w-full" poster="/images/intro/thumb-mwd-grabox-operation.jpg" />
+                    <video src="/videos/mwd-grabox-operation.mp4" controls playsInline preload="metadata" className="w-full aspect-video object-cover" poster="/images/intro/thumb-mwd-grabox-operation.jpg" />
                     <div className="px-3 py-2 bg-black/80">
                       <span className="text-white/60 text-xs">
-                        {lang === "ja" ? "▶ GraBox 実地操作・取り出しフロー（2025.10）" : lang === "en" ? "▶ GraBox On-Site Operation & Pickup Flow (Oct 2025)" : "▶ GraBox 實地操作 × 取餐流程（2025.10）"}
+                        {lang === "ja" ? "▶ GraBox 実地操作（2025.10）" : lang === "en" ? "▶ GraBox Pickup Flow (Oct 2025)" : "▶ GraBox 實地操作 × 取餐流程（2025.10）"}
                       </span>
                     </div>
                   </div>
                   {/* Short highlight clip */}
-                  <div className="rounded-xl overflow-hidden bg-black">
+                  <div className="col-span-2 rounded-xl overflow-hidden bg-black">
                     <video src="/videos/mwd-short-clip.mp4" controls playsInline preload="metadata" className="w-full" poster="/images/intro/thumb-mwd-short-clip.jpg" />
                     <div className="px-3 py-2 bg-black/80">
                       <span className="text-white/60 text-xs">
