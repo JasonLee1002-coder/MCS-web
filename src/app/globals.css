@@ -259,6 +259,174 @@ html {
   transform: scale(1.15);
 }
 
+/* ============================================
+   Blog Prose — 文章內文視覺樣式（MCS 橘色主題）
+   ============================================ */
+.blog-prose {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: #374151;
+  letter-spacing: 0.01em;
+}
+
+/* H2：大標題，左側橘色 accent bar */
+.blog-prose h2 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0F2440;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid #E8751A;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 5rem;
+}
+
+/* H3：小標題，帶橘色底色 */
+.blog-prose h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1B3A5C;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(232, 117, 26, 0.07);
+  border-radius: 6px;
+  scroll-margin-top: 5rem;
+}
+
+/* H4 */
+.blog-prose h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1B3A5C;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  scroll-margin-top: 5rem;
+}
+
+/* 段落 */
+.blog-prose p {
+  margin-top: 0;
+  margin-bottom: 1.4rem;
+  color: #374151;
+}
+
+/* 粗體 */
+.blog-prose strong {
+  color: #0F2440;
+  font-weight: 700;
+}
+
+/* 連結 */
+.blog-prose a {
+  color: #E8751A;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(232, 117, 26, 0.3);
+  transition: border-color 0.15s;
+}
+.blog-prose a:hover {
+  border-color: #E8751A;
+}
+
+/* Blockquote */
+.blog-prose blockquote {
+  margin: 2rem 0;
+  padding: 1.1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(232, 117, 26, 0.05), rgba(232, 117, 26, 0.03));
+  border-left: 4px solid #E8751A;
+  border-radius: 0 12px 12px 0;
+  color: #1B3A5C;
+  font-size: 1.05rem;
+  font-style: normal;
+  box-shadow: 0 2px 12px rgba(232, 117, 26, 0.06);
+}
+.blog-prose blockquote p {
+  margin-bottom: 0;
+}
+
+/* 分隔線 */
+.blog-prose hr {
+  border: none;
+  border-top: 2px solid rgba(232, 117, 26, 0.12);
+  margin: 2.5rem 0;
+}
+
+/* 表格 */
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+.blog-prose th {
+  background: #1B3A5C;
+  color: #ffffff;
+  padding: 0.7rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+}
+.blog-prose td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgba(232, 117, 26, 0.1);
+  color: #374151;
+}
+.blog-prose tr:last-child td { border-bottom: none; }
+.blog-prose tr:nth-child(even) td { background: rgba(232, 117, 26, 0.03); }
+
+/* 列表 */
+.blog-prose ul, .blog-prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.4rem;
+}
+.blog-prose li {
+  margin-bottom: 0.45rem;
+  color: #374151;
+  line-height: 1.75;
+}
+.blog-prose ul li::marker { color: #E8751A; }
+.blog-prose ol li::marker { color: #E8751A; font-weight: 700; }
+
+/* 程式碼區塊 */
+.blog-prose pre {
+  background: #0F2440;
+  color: #fbd38d;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.blog-prose code {
+  background: rgba(232, 117, 26, 0.08);
+  color: #E8751A;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+.blog-prose pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* 圖片 */
+.blog-prose img {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin: 1.5rem auto;
+  display: block;
+}
+
 /* ── Noise texture overlay ── */
 .noise-overlay {
   position: fixed;

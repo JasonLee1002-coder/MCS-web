@@ -228,7 +228,7 @@ export default async function BlogPostPage({
             <article>
               <TocMobile items={post.toc} />
               <div
-                className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:scroll-mt-24 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:scroll-mt-24 prose-h4:text-lg prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-mcs-orange prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-table:border-collapse prose-th:bg-gray-50 prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:border prose-th:border-gray-200 prose-td:px-4 prose-td:py-2 prose-td:border prose-td:border-gray-200 prose-blockquote:border-l-mcs-orange prose-blockquote:text-gray-600 prose-li:text-gray-600 prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-img:rounded-xl prose-img:shadow-md"
+                className="blog-prose"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </article>
