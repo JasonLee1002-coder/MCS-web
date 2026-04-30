@@ -78,7 +78,7 @@ const PLATFORM_DATA = {
     integLabel: "Integration Ecosystem",
     integNote: "No in-house IT team needed — OmniCore already integrates with:",
     integGroups: [
-      { icon: "🏭", title: "ERP Systems", items: ["Fujitsu ERP", "Digiwin ERP", "FamilyMart Internal Platform"] },
+      { icon: "🏭", title: "ERP Systems", items: ["Fujitsu ERP", "Digiwin ERP", "Leading Chain Internal Platform"] },
       { icon: "👥", title: "Loyalty & E-Commerce", items: ["Ocard", "SHOPLINE", "91APP", "Pointsoft"] },
       { icon: "💳", title: "Payment", items: ["Systex / Intella", "EasyCard", "LINE Pay", "JKO / Apple Pay", "Credit Card EMV"] },
       { icon: "🚛", title: "Logistics & Venue", items: ["Lalamove Express", "TSMC Employee Card", "Garmin / Novatek Cards", "MPS Japan Cashless"] },
@@ -150,7 +150,7 @@ const PLATFORM_DATA = {
     integLabel: "Ekosistem Integrasi",
     integNote: "Tidak perlu tim IT internal — OmniCore sudah terintegrasi dengan:",
     integGroups: [
-      { icon: "🏭", title: "Sistem ERP", items: ["Fujitsu ERP", "Digiwin ERP", "Platform Internal FamilyMart"] },
+      { icon: "🏭", title: "Sistem ERP", items: ["Fujitsu ERP", "Digiwin ERP", "Platform Internal Leading Chain"] },
       { icon: "👥", title: "Loyalitas & E-Commerce", items: ["Ocard", "SHOPLINE", "91APP", "Pointsoft"] },
       { icon: "💳", title: "Pembayaran", items: ["Systex / Intella", "EasyCard", "LINE Pay", "JKO / Apple Pay", "Kartu Kredit EMV"] },
       { icon: "🚛", title: "Logistik & Venue", items: ["Lalamove Express", "Kartu Karyawan TSMC", "Kartu Garmin / Novatek", "MPS Japan Cashless"] },

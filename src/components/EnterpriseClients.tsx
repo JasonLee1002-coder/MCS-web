@@ -70,7 +70,7 @@ const DATA = {
       title: "上市公司 SI 夥伴",
       sub: "三家上市公司共同推廣、安裝、維護 MCS 設備",
       items: [
-        { name: "華經資訊", stock: "2468.TW", role: "全家超商 SI", scope: "業務推廣 · 安裝 · 維護" },
+        { name: "華經資訊", stock: "2468.TW", role: "連鎖超商 SI", scope: "業務推廣 · 安裝 · 維護" },
         { name: "永璋科技", stock: "4523.TW", role: "麥味登 GraBox SI", scope: "業務推廣 · 安裝 · 維護" },
         { name: "精誠資訊", stock: "6214.TW", role: "金流整合商", scope: "EMV · 行動支付 · 電子發票" },
       ],

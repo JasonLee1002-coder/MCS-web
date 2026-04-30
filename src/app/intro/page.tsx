@@ -432,7 +432,7 @@ const T = {
         },
         {
           title: "ERP & Backend",
-          items: ["Fujitsu ERP", "Digiwin ERP", "FamilyMart Internal Platform"],
+          items: ["Fujitsu ERP", "Digiwin ERP", "Leading Chain Internal Platform"],
         },
         {
           title: "Loyalty & E-Commerce",
