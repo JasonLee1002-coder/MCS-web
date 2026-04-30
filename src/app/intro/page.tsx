@@ -165,7 +165,7 @@ const T = {
       cta: "預約產品展示",
       stats: [
         { num: "20+", label: "年業界經驗" },
-        { num: "200+", label: "全家超商智販機（2026起）" },
+        { num: "200+", label: "知名連鎖通路智販機（2026起）" },
         { num: "10+", label: "智慧設備機型" },
         { num: "100%", label: "MIT 台灣研發製造" },
       ],
@@ -303,17 +303,17 @@ const T = {
     cases: {
       label: "成功案例",
       title: "已驗證的落地實績",
-      sub: "從台灣最大超商到日本高速公路，MCS 在不同場域持續驗證整合能力。",
+      sub: "從台灣知名連鎖通路到日本高速公路，MCS 在不同場域持續驗證整合能力。",
       fm: {
-        title: "全家超商 FamilyMart",
+        title: "台灣知名連鎖超商",
         badge: "台灣最大連鎖超商",
-        tabs: ["智慧販賣機", "智取櫃 FamiNow"],
-        vendingTitle: "全家超商智慧販賣機",
-        vendingDesc: "與全家超商合作，將販賣機部署至科學園區、大學、觀光飯店等場域，整合全家 POS 系統、時控條碼、友善食光折扣、員工卡支付（台積電、Garmin 等）。",
-        vendingStats: ["200+ 台部署（2026 起，每年 +100 台）", "整合全家 POS 系統", "多元場域：科學園區 / 大學 / 觀光飯店"],
-        pickupTitle: "FamiNow 智取櫃整合",
-        pickupDesc: "全家 FamiNow 平台與 MCS 智取櫃整合，實現 APP 下單 → 格子取貨 O2O 流程，部署於捷運十四張站，整合全家 POS、APP 商品追蹤、自取點選擇介面。",
-        pickupStats: ["App 下單 → 格子取貨 O2O", "整合 FamiNow APP & 全家 POS", "捷運站場域試營運"],
+        tabs: ["智慧販賣機", "APP 智取整合"],
+        vendingTitle: "知名連鎖超商智慧販賣機",
+        vendingDesc: "與台灣知名連鎖超商合作，將販賣機部署至科學園區、大學、觀光飯店等場域，整合超商 POS 系統、時控條碼、友善食光折扣、員工卡支付（台積電、Garmin 等）。",
+        vendingStats: ["200+ 台部署（2026 起，每年 +100 台）", "整合超商 POS 系統", "多元場域：科學園區 / 大學 / 觀光飯店"],
+        pickupTitle: "APP 智取櫃整合",
+        pickupDesc: "與知名超商 APP 平台整合，實現 APP 下單 → 格子取貨 O2O 流程，部署於捷運站場域，整合超商 POS、APP 商品追蹤、自取點選擇介面。",
+        pickupStats: ["App 下單 → 格子取貨 O2O", "整合超商 APP & POS 系統", "捷運站場域試營運"],
       },
       mwd: {
         title: "麥味登 知名早餐連鎖",
@@ -368,7 +368,7 @@ const T = {
       cta: "Request a Demo",
       stats: [
         { num: "20+", label: "Years of Industry Experience" },
-        { num: "200+", label: "FamilyMart Units (from 2026)" },
+        { num: "200+", label: "Major Chain Units (from 2026)" },
         { num: "10+", label: "Device Types" },
         { num: "100%", label: "Made in Taiwan" },
       ],
@@ -506,17 +506,17 @@ const T = {
     cases: {
       label: "Case Studies",
       title: "Proven Deployments",
-      sub: "From Taiwan's largest convenience chain to Japan's expressways, MCS validates integration capabilities across diverse venues.",
+      sub: "From Taiwan's leading retail chains to Japan's expressways, MCS validates integration capabilities across diverse venues.",
       fm: {
-        title: "FamilyMart Taiwan",
+        title: "Leading Convenience Chain",
         badge: "Taiwan's Largest Convenience Chain",
-        tabs: ["Smart Vending Machines", "FamiNow Smart Lockers"],
-        vendingTitle: "FamilyMart Smart Vending Machines",
-        vendingDesc: "Deployed across science parks, universities, and tourist hotels. Integrates FamilyMart POS, time-controlled barcodes, discounted food programs, and employee card payment (TSMC, Garmin, etc.).",
-        vendingStats: ["200+ units (from 2026, +100/yr)", "Full FamilyMart POS integration", "Science parks / Universities / Hotels"],
-        pickupTitle: "FamiNow Smart Locker Integration",
-        pickupDesc: "MCS smart lockers integrated with FamilyMart's FamiNow platform for O2O pickup: app order → locker collection. Piloted at Shihjhang MRT Station with FamilyMart POS, app item tracking, and pickup point selection.",
-        pickupStats: ["App-order → locker O2O flow", "FamiNow APP & POS integrated", "MRT station pilot deployment"],
+        tabs: ["Smart Vending Machines", "App O2O Locker Integration"],
+        vendingTitle: "Smart Vending Machines — Major Chain",
+        vendingDesc: "Deployed across science parks, universities, and tourist hotels. Integrates chain POS, time-controlled barcodes, discounted food programs, and employee card payment (TSMC, Garmin, etc.).",
+        vendingStats: ["200+ units (from 2026, +100/yr)", "Full POS integration", "Science parks / Universities / Hotels"],
+        pickupTitle: "App O2O Locker Integration",
+        pickupDesc: "MCS smart lockers integrated with a major chain's app platform for O2O pickup: app order → locker collection. Piloted at an MRT station with POS, app item tracking, and pickup point selection.",
+        pickupStats: ["App-order → locker O2O flow", "Chain APP & POS integrated", "MRT station pilot deployment"],
       },
       mwd: {
         title: "MWD Breakfast Chain",
@@ -571,7 +571,7 @@ const T = {
       cta: "デモを予約する",
       stats: [
         { num: "20+", label: "年の業界経験" },
-        { num: "200+", label: "台ファミリーマート設置（2026年〜）" },
+        { num: "200+", label: "台 大手コンビニ設置（2026年〜）" },
         { num: "10+", label: "スマートデバイス機種" },
         { num: "100%", label: "台湾製（MIT）" },
       ],
@@ -709,17 +709,17 @@ const T = {
     cases: {
       label: "導入実績",
       title: "実証済みの展開事例",
-      sub: "台湾最大のコンビニチェーンから日本の首都高速道路まで、MCS はさまざまな施設・業態で統合能力を実証しています。",
+      sub: "台湾の大手小売チェーンから日本の首都高速道路まで、MCS はさまざまな施設・業態で統合能力を実証しています。",
       fm: {
-        title: "ファミリーマート 台湾",
+        title: "台湾大手コンビニチェーン",
         badge: "台湾最大コンビニチェーン",
-        tabs: ["スマート自動販売機", "FamiNow スマートロッカー"],
-        vendingTitle: "ファミリーマート スマート自動販売機",
-        vendingDesc: "サイエンスパーク・大学・観光ホテルなどに展開。ファミリーマートPOS・時限バーコード・割引プログラム・社員カード決済（TSMC、Garmin等）を統合。",
-        vendingStats: ["200台以上設置（2026年〜、毎年+100台）", "ファミリーマートPOSフル統合", "サイエンスパーク / 大学 / ホテル"],
-        pickupTitle: "FamiNow スマートロッカー統合",
-        pickupDesc: "ファミリーマートのFamiNowプラットフォームとMCSスマートロッカーを統合したO2Oピックアップフロー。十四張駅でパイロット展開。アプリ注文 → ロッカー受取を実現。",
-        pickupStats: ["アプリ注文 → ロッカー受取 O2O", "FamiNow APP & POS 統合", "MRT 駅でのパイロット展開"],
+        tabs: ["スマート自動販売機", "アプリ O2O ロッカー統合"],
+        vendingTitle: "スマート自動販売機 — 大手コンビニ",
+        vendingDesc: "サイエンスパーク・大学・観光ホテルなどに展開。コンビニPOS・時限バーコード・割引プログラム・社員カード決済（TSMC、Garmin等）を統合。",
+        vendingStats: ["200台以上設置（2026年〜、毎年+100台）", "コンビニPOSフル統合", "サイエンスパーク / 大学 / ホテル"],
+        pickupTitle: "アプリ O2O ロッカー統合",
+        pickupDesc: "大手コンビニのアプリプラットフォームとMCSスマートロッカーを統合したO2Oピックアップフロー。MRT駅でパイロット展開。アプリ注文 → ロッカー受取を実現。",
+        pickupStats: ["アプリ注文 → ロッカー受取 O2O", "コンビニ APP & POS 統合", "MRT 駅でのパイロット展開"],
       },
       mwd: {
         title: "麦味登 朝食チェーン",
@@ -3171,7 +3171,7 @@ export default function IntroPage() {
             <p className="text-gray-500 mb-12 max-w-2xl">{t.cases.sub}</p>
           </FadeIn>
 
-          {/* FamilyMart */}
+          {/* 知名連鎖超商 */}
           <FadeIn delay={0.1}>
           <div className="mb-12 border border-gray-200 rounded-2xl overflow-hidden">
             <CaseHeader
@@ -3208,13 +3208,13 @@ export default function IntroPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="col-span-2 rounded-xl overflow-hidden aspect-video relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-vending-itri.jpg" alt="全家超商工研院" fill className="object-cover" />
+                    <ZoomImg src="/images/intro/fm-vending-itri.jpg" alt="智慧販賣機部署場域" fill className="object-cover" />
                   </div>
                   <div className="rounded-xl overflow-hidden aspect-square relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-vending-hotel.jpg" alt="全家超商煙波飯店" fill className="object-cover" />
+                    <ZoomImg src="/images/intro/fm-vending-hotel.jpg" alt="智慧販賣機觀光飯店場域" fill className="object-cover" />
                   </div>
                   <div className="rounded-xl overflow-hidden aspect-square relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-vending-univ.jpg" alt="全家超商東華大學" fill className="object-cover" />
+                    <ZoomImg src="/images/intro/fm-vending-univ.jpg" alt="智慧販賣機大學場域" fill className="object-cover" />
                   </div>
                 </div>
               </div>
@@ -3237,7 +3237,7 @@ export default function IntroPage() {
                     <ZoomImg src="/images/intro/fm-pickup-faminow.png" alt="FamiNow整合" fill className="object-cover" />
                   </div>
                   <div className="col-span-2 rounded-xl overflow-hidden aspect-video relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-pickup-pos.jpg" alt="全家POS整合" fill className="object-cover" />
+                    <ZoomImg src="/images/intro/fm-pickup-pos.jpg" alt="超商POS整合" fill className="object-cover" />
                   </div>
                 </div>
               </div>

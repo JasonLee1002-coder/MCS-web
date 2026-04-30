@@ -27,10 +27,10 @@ const DATA = {
   zh: {
     label: "企業客戶實績",
     title: "已驗證的落地實績",
-    sub: "從台灣最大超商到日本高速公路，MCS 在不同場域持續驗證整合能力。",
+    sub: "從台灣知名連鎖通路到日本高速公路，MCS 在不同場域持續驗證整合能力。",
     clients: [
       {
-        name: "全家超商 FamilyMart",
+        name: "台灣知名連鎖超商",
         badge: "台灣最大連鎖超商",
         color: "bg-[#1B3A5C]",
         accentColor: "#3B82F6",
@@ -80,10 +80,10 @@ const DATA = {
   en: {
     label: "Enterprise Client Track Record",
     title: "Proven Deployments",
-    sub: "From Taiwan's largest convenience chain to Japan's expressways, MCS validates integration capabilities across diverse venues.",
+    sub: "From Taiwan's leading retail chains to Japan's expressways, MCS validates integration capabilities across diverse venues.",
     clients: [
       {
-        name: "FamilyMart Taiwan",
+        name: "Leading Convenience Chain",
         badge: "Taiwan's Largest Convenience Chain",
         color: "bg-[#1B3A5C]",
         accentColor: "#3B82F6",
@@ -123,7 +123,7 @@ const DATA = {
       title: "Listed-Company SI Partners",
       sub: "Three public companies co-promoting, installing, and maintaining MCS equipment",
       items: [
-        { name: "Huajing Information", stock: "2468.TW", role: "FamilyMart SI", scope: "Sales · Installation · Maintenance" },
+        { name: "Huajing Information", stock: "2468.TW", role: "超商通路 SI", scope: "Sales · Installation · Maintenance" },
         { name: "Yongzhang Technology", stock: "4523.TW", role: "MWD GraBox SI", scope: "Sales · Installation · Maintenance" },
         { name: "Systex Corporation", stock: "6214.TW", role: "Payment Integrator", scope: "EMV · Mobile Pay · E-Invoice" },
       ],
@@ -133,10 +133,10 @@ const DATA = {
   ja: {
     label: "エンタープライズ実績",
     title: "実証済み導入実績",
-    sub: "台湾最大のコンビニチェーンから日本の高速道路まで、MCSは多様な拠点で統合能力を実証しています。",
+    sub: "台湾の大手小売チェーンから日本の高速道路まで、MCSは多様な拠点で統合能力を実証しています。",
     clients: [
       {
-        name: "ファミリーマート台湾",
+        name: "台湾大手コンビニチェーン",
         badge: "台湾最大コンビニチェーン",
         color: "bg-[#1B3A5C]",
         accentColor: "#3B82F6",
@@ -176,7 +176,7 @@ const DATA = {
       title: "上場企業SIパートナー",
       sub: "3社の上場企業がMCS機器の販促・設置・保守を担当",
       items: [
-        { name: "華経資訊", stock: "2468.TW", role: "ファミリーマートSI", scope: "営業・設置・保守" },
+        { name: "華経資訊", stock: "2468.TW", role: "超商通路 SI", scope: "営業・設置・保守" },
         { name: "永璋科技", stock: "4523.TW", role: "MWD GraBox SI", scope: "営業・設置・保守" },
         { name: "精誠資訊", stock: "6214.TW", role: "決済インテグレーター", scope: "EMV・モバイル決済・電子請求書" },
       ],
@@ -189,7 +189,7 @@ const DATA = {
     sub: "Dari jaringan minimarket terbesar Taiwan hingga jalan tol Jepang, MCS memvalidasi kemampuan integrasi di berbagai venue.",
     clients: [
       {
-        name: "FamilyMart Taiwan",
+        name: "Jaringan Minimarket Terkemuka",
         badge: "Jaringan Minimarket Terbesar Taiwan",
         color: "bg-[#1B3A5C]",
         accentColor: "#3B82F6",
@@ -229,7 +229,7 @@ const DATA = {
       title: "Mitra SI Perusahaan Tercatat",
       sub: "Tiga perusahaan publik mempromosikan, memasang, dan memelihara perangkat MCS",
       items: [
-        { name: "Huajing Information", stock: "2468.TW", role: "FamilyMart SI", scope: "Penjualan · Instalasi · Pemeliharaan" },
+        { name: "Huajing Information", stock: "2468.TW", role: "超商通路 SI", scope: "Penjualan · Instalasi · Pemeliharaan" },
         { name: "Yongzhang Technology", stock: "4523.TW", role: "MWD GraBox SI", scope: "Penjualan · Instalasi · Pemeliharaan" },
         { name: "Systex Corporation", stock: "6214.TW", role: "Integrator Pembayaran", scope: "EMV · Pembayaran Mobile · E-Faktur" },
       ],

@@ -4,7 +4,7 @@ import IntroPage from "@/app/intro/page";
 export const metadata: Metadata = {
   title: "銓幻元科技 MCS | 唯一整合線上線下 × 供應鏈 × 全通道+會員的 AI 零售作業系統",
   description:
-    "MCS 銓幻元科技是台灣唯一整合硬體設備 × OmniCore AI 雲端平台 × ERP/會員/金流串接的智慧零售作業系統。全家超商 200台、麥味登 90天完整整合、日本首都高速 MOU。企業 IT 成本節省 88%。",
+    "MCS 銓幻元科技是台灣唯一整合硬體設備 × OmniCore AI 雲端平台 × ERP/會員/金流串接的智慧零售作業系統。知名連鎖超商上百台、麥味登 90天完整整合、日本首都高速 MOU。企業 IT 成本節省 88%。",
   keywords: [
     "銓幻元科技",
     "MCS",
