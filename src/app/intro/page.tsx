@@ -2079,6 +2079,203 @@ function IllustrationL5() {
 
 const LAYER_ILLUSTRATIONS = [IllustrationL1, IllustrationL2, IllustrationL3, IllustrationL4, IllustrationL5];
 
+// ─── B2B Navigation Components ───────────────────────────────────────────────
+
+const NAV_ITEMS = [
+  { label: "產品設備", labelEn: "Products", labelJa: "製品", href: "#products", icon: "📦" },
+  { label: "AI 平台", labelEn: "Platform", labelJa: "プラットフォーム", href: "#platform", icon: "⚙️" },
+  { label: "成功案例", labelEn: "Cases", labelJa: "導入事例", href: "#cases", icon: "✅" },
+  { label: "聯絡諮詢", labelEn: "Contact", labelJa: "お問い合わせ", href: "#contact", icon: "💬" },
+];
+
+function SectionNav({ lang }: { lang: string }) {
+  const [visible, setVisible] = React.useState(false);
+  const [activeIdx, setActiveIdx] = React.useState(-1);
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      setVisible(window.scrollY > 520);
+
+      // Determine active section
+      const ids = ["products", "platform", "cases", "contact"];
+      let found = -1;
+      for (let i = ids.length - 1; i >= 0; i--) {
+        const el = document.getElementById(ids[i]);
+        if (el && window.scrollY >= el.offsetTop - 120) {
+          found = i;
+          break;
+        }
+      }
+      setActiveIdx(found);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const getLabel = (item: typeof NAV_ITEMS[0]) => {
+    if (lang === "en") return item.labelEn;
+    if (lang === "ja") return item.labelJa;
+    return item.label;
+  };
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          key="section-nav"
+          initial={{ y: -48, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -48, opacity: 0 }}
+          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          className="sticky top-14 z-40 bg-[#0F1B2D]/95 backdrop-blur border-b border-white/10 shadow-lg"
+        >
+          <div className="max-w-5xl mx-auto px-4 flex items-center gap-1 h-11 overflow-x-auto scrollbar-none">
+            {NAV_ITEMS.map((item, i) => {
+              const isActive = activeIdx === i;
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 flex-shrink-0 ${
+                    isActive
+                      ? "bg-[#E8751A] text-white shadow-md shadow-[#E8751A]/30"
+                      : "text-white/60 hover:text-white hover:bg-white/10"
+                  }`}
+                >
+                  <span className="text-[11px] leading-none">{item.icon}</span>
+                  {getLabel(item)}
+                </a>
+              );
+            })}
+            {/* Right edge: 快速諮詢 CTA */}
+            <div className="ml-auto flex-shrink-0">
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-[#E8751A]/15 border border-[#E8751A]/40 text-[#f5a87a] hover:bg-[#E8751A] hover:text-white transition-all duration-200 whitespace-nowrap"
+              >
+                {lang === "en" ? "Get Quote" : lang === "ja" ? "見積依頼" : "預約諮詢 →"}
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function HeroQuickPicks({ lang }: { lang: string }) {
+  const picks = lang === "en"
+    ? [
+        { label: "GraBox Smart Locker", sub: "AI pickup cabinet", href: "/products/grabox", icon: "🗄️", color: "#1B3A5C" },
+        { label: "Frozen Microwave VM", sub: "24H hot food, unmanned", href: "/products/frozen-microwave", icon: "❄️", color: "#0A9396" },
+        { label: "OmniCore Platform", sub: "Cloud management system", href: "#platform", icon: "⚙️", color: "#5B2D8E" },
+      ]
+    : lang === "ja"
+    ? [
+        { label: "GraBox スマートロッカー", sub: "AI受取キャビネット", href: "/products/grabox", icon: "🗄️", color: "#1B3A5C" },
+        { label: "冷凍電子レンジ自販機", sub: "24Hホットフード・無人", href: "/products/frozen-microwave", icon: "❄️", color: "#0A9396" },
+        { label: "OmniCore プラットフォーム", sub: "クラウド管理システム", href: "#platform", icon: "⚙️", color: "#5B2D8E" },
+      ]
+    : [
+        { label: "GraBox AI 智取櫃", sub: "多溫層取餐 · 人臉辨識", href: "/products/grabox", icon: "🗄️", color: "#1B3A5C" },
+        { label: "冷凍微波販賣機", sub: "24H熱食 · 全自動無人", href: "/products/frozen-microwave", icon: "❄️", color: "#0A9396" },
+        { label: "OmniCore 管理平台", sub: "雲端後台 · 多租戶整合", href: "#platform", icon: "⚙️", color: "#5B2D8E" },
+      ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay: 0.8 }}
+      className="mt-10 pt-10 border-t border-white/10"
+    >
+      <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-4">
+        {lang === "en" ? "I'm looking for →" : lang === "ja" ? "探している →" : "我在找 →"}
+      </p>
+      <div className="flex flex-wrap gap-3">
+        {picks.map((p) => (
+          <a
+            key={p.href}
+            href={p.href}
+            onClick={(e) => {
+              if (p.href.startsWith("#")) {
+                e.preventDefault();
+                document.getElementById(p.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-white/10 bg-white/[0.04] hover:border-white/25 hover:bg-white/[0.08] transition-all duration-200"
+          >
+            <span
+              className="w-9 h-9 rounded-lg flex items-center justify-center text-lg flex-shrink-0"
+              style={{ background: `${p.color}66` }}
+            >
+              {p.icon}
+            </span>
+            <div>
+              <div className="text-white font-bold text-sm leading-none mb-1 group-hover:text-[#f5a87a] transition-colors">{p.label}</div>
+              <div className="text-white/40 text-xs leading-none">{p.sub}</div>
+            </div>
+            <span className="text-white/25 group-hover:text-white/50 text-sm ml-1 transition-colors">›</span>
+          </a>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function FloatingCTA({ lang }: { lang: string }) {
+  const [visible, setVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const label = lang === "en" ? "Get Quote" : lang === "ja" ? "見積依頼" : "預約諮詢";
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          key="float-cta"
+          initial={{ opacity: 0, scale: 0.7, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.7, y: 20 }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed bottom-6 right-5 z-50"
+        >
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="relative flex items-center gap-2 bg-[#E8751A] text-white font-black text-sm px-5 py-3 rounded-full shadow-xl shadow-[#E8751A]/40 hover:bg-[#d4651a] transition-colors duration-200 group"
+          >
+            {/* Pulse ring */}
+            <motion.span
+              className="absolute inset-0 rounded-full border-2 border-[#E8751A]"
+              animate={{ scale: [1, 1.3, 1.6], opacity: [0.7, 0.3, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+            />
+            <span className="text-base leading-none">💬</span>
+            <span className="relative">{label}</span>
+          </a>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function IntroPage() {
   const { lang } = useLanguage();
@@ -2316,11 +2513,18 @@ export default function IntroPage() {
               </motion.p>
             </motion.div>
           )}
+
+          {/* ── Quick picks ── */}
+          <HeroQuickPicks lang={lang} />
+
         </div>
       </section>
 
+      {/* ── B2B Section Nav ── */}
+      <SectionNav lang={lang} />
+
       {/* ── 5-Layer Stack ── */}
-      <section className="py-20 px-6 bg-[#0F1B2D] overflow-hidden">
+      <section id="products" className="py-20 px-6 bg-[#0F1B2D] overflow-hidden">
         <div className="max-w-5xl mx-auto">
           <FadeIn><p className="text-xs font-bold uppercase tracking-widest text-[#E8751A] mb-2">{t.stack.label}</p></FadeIn>
           <FadeIn delay={0.05}><h2 className="text-3xl md:text-5xl font-black text-white mb-3">{t.stack.title}</h2></FadeIn>
@@ -2457,7 +2661,7 @@ export default function IntroPage() {
       </section>
 
       {/* ── OmniCore Platform ── */}
-      <section className="py-20 px-6 bg-white">
+      <section id="platform" className="py-20 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <FadeIn><p className="text-xs font-bold uppercase tracking-widest text-[#E8751A] mb-2">{t.platform.label}</p></FadeIn>
           <FadeIn delay={0.05}><h2 className="text-3xl md:text-4xl font-black text-[#1B3A5C] mb-3">{t.platform.title}</h2></FadeIn>
@@ -3163,7 +3367,7 @@ export default function IntroPage() {
       </section>
 
       {/* ── 成功案例 ── */}
-      <section className="py-20 px-6 bg-white">
+      <section id="cases" className="py-20 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <p className="text-xs font-bold uppercase tracking-widest text-[#E8751A] mb-2">{t.cases.label}</p>
@@ -3609,7 +3813,7 @@ export default function IntroPage() {
       </section>
 
       {/* ── Contact ── */}
-      <section className="py-20 px-6 bg-gradient-to-br from-[#E8751A] to-[#c05e0f]">
+      <section id="contact" className="py-20 px-6 bg-gradient-to-br from-[#E8751A] to-[#c05e0f]">
         <div className="max-w-5xl mx-auto text-center">
           <FadeIn>
             <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-3">{t.contact.label}</p>
@@ -3646,6 +3850,10 @@ export default function IntroPage() {
       <footer className="bg-[#0F2440] text-white/50 text-xs text-center py-6 px-6">
         © 2026 MCS 銓幻元科技 Meta Clearing Station Pte. Ltd. · Taiwan · Singapore
       </footer>
+
+      {/* ── Floating CTA ── */}
+      <FloatingCTA lang={lang} />
+
     </div>
     </>
     </LightboxCtx.Provider>
