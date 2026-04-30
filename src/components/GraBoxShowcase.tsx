@@ -634,6 +634,74 @@ function ShowcaseScene() {
   );
 }
 
+/* ───── VideoSection ───── */
+const mwdVideos = [
+  { src: "/videos/mwd-kaohsiung-expo.mp4", label: "高雄加盟展 GraBox 展示" },
+  { src: "/videos/mwd-store-demo-1.mp4", label: "門市實機 Demo ①" },
+  { src: "/videos/mwd-store-demo-2.mp4", label: "門市實機 Demo ②" },
+  { src: "/videos/mwd-grabox-operation.mp4", label: "GraBox 實地操作" },
+  { src: "/videos/mwd-short-clip.mp4", label: "GraBox 精選片段" },
+];
+
+function VideoSection() {
+  return (
+    <section className="py-32 bg-[#050a15]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="text-center mb-16">
+          <p className="text-orange-400 text-sm font-mono tracking-widest uppercase mb-4">
+            In Action
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            GraBox 實況影片
+          </h2>
+          <p className="text-white/30">
+            麥味登門市實際導入 GraBox 智取櫃全紀錄
+          </p>
+        </ScrollReveal>
+
+        {/* 2-column grid for first 4 videos */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+          {mwdVideos.slice(0, 4).map((v, i) => (
+            <ScrollReveal key={v.src} delay={i * 0.1}>
+              <div className="rounded-2xl overflow-hidden border border-white/10 bg-black/40">
+                <video
+                  src={v.src}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full aspect-video object-cover"
+                />
+                <div className="px-4 py-2 text-xs text-white/30 text-center">
+                  {v.label}
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Full-width for the highlight clip */}
+        <ScrollReveal>
+          <div className="rounded-2xl overflow-hidden border border-orange-500/20 bg-black/40 relative">
+            <div className="absolute top-3 left-3 z-10 bg-orange-500/80 text-white text-xs px-3 py-1 rounded-full font-medium backdrop-blur-sm">
+              精選
+            </div>
+            <video
+              src="/videos/mwd-short-clip.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full aspect-video object-cover"
+            />
+            <div className="px-4 py-2 text-xs text-white/30 text-center">
+              GraBox 精選片段
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}
+
 /* ───── FAQSection ───── */
 function FAQSection() {
   return (
@@ -765,6 +833,8 @@ export default function GraBoxShowcase() {
       <UseCasesSection />
       <SectionDivider />
       <ShowcaseScene />
+      <SectionDivider />
+      <VideoSection />
       <SectionDividerDark />
       <FAQSection />
       <CTASection />
