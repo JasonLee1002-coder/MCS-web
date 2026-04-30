@@ -3193,53 +3193,30 @@ export default function IntroPage() {
             />
 
             {fmTab === 0 ? (
-              <div className="p-6 grid md:grid-cols-2 gap-6 items-start">
-                <div>
-                  <h3 className="font-black text-lg text-[#1B3A5C] mb-3">{t.cases.fm.vendingTitle}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{t.cases.fm.vendingDesc}</p>
-                  <ul className="space-y-2">
-                    {t.cases.fm.vendingStats.map((s, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-[#1B3A5C] font-semibold">
-                        <span className="w-2 h-2 rounded-full bg-[#007B40] flex-shrink-0" />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="col-span-2 rounded-xl overflow-hidden aspect-video relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-vending-itri.jpg" alt="智慧販賣機部署場域" fill className="object-cover" />
-                  </div>
-                  <div className="rounded-xl overflow-hidden aspect-square relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-vending-hotel.jpg" alt="智慧販賣機觀光飯店場域" fill className="object-cover" />
-                  </div>
-                  <div className="rounded-xl overflow-hidden aspect-square relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-vending-univ.jpg" alt="智慧販賣機大學場域" fill className="object-cover" />
-                  </div>
-                </div>
+              <div className="p-6">
+                <h3 className="font-black text-lg text-[#1B3A5C] mb-3">{t.cases.fm.vendingTitle}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">{t.cases.fm.vendingDesc}</p>
+                <ul className="space-y-2">
+                  {t.cases.fm.vendingStats.map((s, i) => (
+                    <li key={i} className="flex items-center gap-2 text-sm text-[#1B3A5C] font-semibold">
+                      <span className="w-2 h-2 rounded-full bg-[#007B40] flex-shrink-0" />
+                      {s}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ) : (
-              <div className="p-6 grid md:grid-cols-2 gap-6 items-start">
-                <div>
-                  <h3 className="font-black text-lg text-[#1B3A5C] mb-3">{t.cases.fm.pickupTitle}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{t.cases.fm.pickupDesc}</p>
-                  <ul className="space-y-2">
-                    {t.cases.fm.pickupStats.map((s, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-[#1B3A5C] font-semibold">
-                        <span className="w-2 h-2 rounded-full bg-[#007B40] flex-shrink-0" />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="col-span-2 rounded-xl overflow-hidden aspect-video relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-pickup-faminow.png" alt="FamiNow整合" fill className="object-cover" />
-                  </div>
-                  <div className="col-span-2 rounded-xl overflow-hidden aspect-video relative bg-gray-100">
-                    <ZoomImg src="/images/intro/fm-pickup-pos.jpg" alt="超商POS整合" fill className="object-cover" />
-                  </div>
-                </div>
+              <div className="p-6">
+                <h3 className="font-black text-lg text-[#1B3A5C] mb-3">{t.cases.fm.pickupTitle}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-4">{t.cases.fm.pickupDesc}</p>
+                <ul className="space-y-2">
+                  {t.cases.fm.pickupStats.map((s, i) => (
+                    <li key={i} className="flex items-center gap-2 text-sm text-[#1B3A5C] font-semibold">
+                      <span className="w-2 h-2 rounded-full bg-[#007B40] flex-shrink-0" />
+                      {s}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>
