@@ -1,0 +1,141 @@
+{
+  "brand": {
+    "name": "EB+ VitaNet",
+    "trademark": "EB+ VitaNet™",
+    "abbreviation": "EBVN",
+    "tagline": "Where Technology Nourishes Life",
+    "tagline_zh": "科技滋養生命的每一刻"
+  },
+
+  "colors": {
+    "primary": {
+      "name": "Forest Deep",
+      "hex": "#0D2818",
+      "rgb": "rgb(13, 40, 24)",
+      "hsl": "hsl(147, 51%, 10%)",
+      "use": "Background, deep base, text on light"
+    },
+    "secondary": {
+      "name": "Vita Emerald",
+      "hex": "#00B894",
+      "rgb": "rgb(0, 184, 148)",
+      "hsl": "hsl(162, 100%, 36%)",
+      "use": "CTA buttons, icon outlines, highlight"
+    },
+    "energy": {
+      "name": "VitaRed",
+      "hex": "#D63031",
+      "rgb": "rgb(214, 48, 49)",
+      "hsl": "hsl(360, 63%, 52%)",
+      "use": "Energy, vitality, limited accent"
+    },
+    "accent": {
+      "name": "Biotech Gold",
+      "hex": "#F9CA24",
+      "rgb": "rgb(249, 202, 36)",
+      "hsl": "hsl(46, 95%, 56%)",
+      "use": "Network nodes, badges, premium detail"
+    },
+    "white": "#FFFFFF",
+    "light_text": "#E8F5F0"
+  },
+
+  "css_variables": ":root {\n  --ebvn-primary: #0D2818;\n  --ebvn-emerald: #00B894;\n  --ebvn-red: #D63031;\n  --ebvn-gold: #F9CA24;\n  --ebvn-white: #FFFFFF;\n  --ebvn-light: #E8F5F0;\n}",
+
+  "typography": {
+    "heading": {
+      "font_family": "'Inter', 'Helvetica Neue', Arial, sans-serif",
+      "weight": "800",
+      "letter_spacing": "-0.5px",
+      "color_on_dark": "#FFFFFF"
+    },
+    "subheading": {
+      "font_family": "'Inter', 'Helvetica Neue', Arial, sans-serif",
+      "weight": "600",
+      "color_on_dark": "#00B894"
+    },
+    "body": {
+      "font_family": "'Inter', 'Noto Sans TC', sans-serif",
+      "weight": "400",
+      "color_on_dark": "#E8F5F0"
+    },
+    "tagline": {
+      "font_family": "'Inter', Arial, sans-serif",
+      "weight": "300",
+      "letter_spacing": "2px",
+      "text_transform": "uppercase",
+      "color": "#00B894"
+    },
+    "data_numbers": {
+      "font_family": "'Geist Mono', 'JetBrains Mono', monospace",
+      "weight": "700",
+      "color": "#F9CA24"
+    },
+    "google_fonts_import": "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+TC:wght@400;700&display=swap');"
+  },
+
+  "logo": {
+    "icon_svg_path": "/brand/EBVN/logo-icon.svg",
+    "horizontal_svg_path": "/brand/EBVN/logo-horizontal.svg",
+    "vertical_svg_path": "/brand/EBVN/logo-vertical.svg",
+    "concept": "Leaf silhouette with gold data-network veins — nature + technology",
+    "min_size_px": 32,
+    "safe_zone": "8px clearance on all sides",
+    "backgrounds": {
+      "preferred": "#0D2818",
+      "allowed": ["#0D2818", "#FFFFFF", "transparent (dark context)"],
+      "forbidden": ["busy photos", "low-contrast colors"]
+    }
+  },
+
+  "messaging": {
+    "tagline": "Where Technology Nourishes Life",
+    "tagline_zh": "科技滋養生命的每一刻",
+    "value_props": [
+      "科學配方，數據支撐 — Every formula backed by traceable research",
+      "智能個人化 — Technology that understands your unique needs",
+      "自然來源，科技淬煉 — Natural origins, precision-engineered"
+    ],
+    "elevator_pitch": "EB+ VitaNet 將前沿生技與精準營養學融合，為每個人打造量身定制的健康解決方案。科技最美好的使命，是滋養生命。",
+    "elevator_pitch_en": "EB+ VitaNet merges cutting-edge biotech with precision nutrition to deliver personalized health solutions. We believe technology's greatest purpose is to nourish life.",
+    "cta_primary": "立即選購",
+    "cta_primary_en": "Shop Now",
+    "cta_secondary": "了解更多",
+    "cta_secondary_en": "Learn More"
+  },
+
+  "applications": {
+    "smart_pickup_cabinet": {
+      "name_zh": "EB+ VitaNet 智取站",
+      "name_en": "EB+ VitaNet Smart Pickup",
+      "background": "#0D2818",
+      "logo_version": "vertical",
+      "must_include": ["brand logo", "智取站 label", "QR code", "tagline"],
+      "font_size_headline": "48px+",
+      "note": "High contrast, readable from 10m+"
+    },
+    "ecommerce_banner": {
+      "dimensions": "1200x400px",
+      "background": "#0D2818",
+      "layout": "logo left | headline center | CTA right",
+      "cta_color": "#00B894",
+      "headline_zh": "科技滋養 精準補給",
+      "headline_en": "Technology-Powered Nutrition"
+    },
+    "instagram_post": {
+      "dimensions": "1080x1080px",
+      "background": "#0D2818",
+      "layout": "centered icon + large text",
+      "hashtags": ["#EBVitaNet", "#科技滋養", "#精準營養", "#VitaNet", "#健康科技"]
+    },
+    "business_card": {
+      "front": "Dark #0D2818, vertical logo, white contact info",
+      "back": "Solid #00B894, tagline white centered large",
+      "dimensions": "90x54mm"
+    }
+  },
+
+  "generated_at": "2026-05-02",
+  "version": "1.0",
+  "status": "Draft — awaiting CPO logo direction confirmation"
+}
