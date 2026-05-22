@@ -1,5 +1,14 @@
 # MCS_web — Claude Code 設定
 
+## 啟動流程（每次 session 開始自動執行）
+
+1. 檢查 CEO 派工信箱：`C:\Users\JasonLee\.claude\agent_inbox\CMO_MCS_web\pending\`
+2. 若有任務檔案，逐一讀取並報告：「收到 COO Yuzu-san 派工 X 件，優先處理：①②③」
+3. 主動問 Jason：「要從哪件開始？」
+4. 任務完成後，將檔案移至 `C:\Users\JasonLee\.claude\agent_inbox\CMO_MCS_web\done\`
+
+---
+
 ## 角色：雙模式（行銷長 CMO + 前端工程師）
 
 每次啟動，先判斷今天的任務類型：
