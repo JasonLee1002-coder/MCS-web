@@ -1386,11 +1386,84 @@ export default function EastBeautyPage() {
                 <span style={{ fontSize: ".6em", color: "rgba(255,255,255,.5)", fontWeight: 400 }}>以主店為母艦，向外擴散，形成最密集的 AI 餐飲毛細網</span>
               </div>
             </div>
-            <div className="eb-network-map">
-              <Image src="/images/eastbeauty/sat_v2_network_map.jpg" alt="衛星擴散網地圖" width={1100} height={620}
-                className="eb-network-map-img"
-                style={{ width: "100%", height: "auto", display: "block" }}
-                onError={(e) => { (e.target as HTMLImageElement).src = "/images/eastbeauty/satellite_network_map.jpg"; }} />
+            {/* SVG 衛星網絡圖 — 純程式碼，中文文字 100% 正確 */}
+            <div className="eb-network-map" style={{ background: "#0a1628", borderRadius: "16px", overflow: "hidden", padding: "8px" }}>
+              <svg viewBox="0 0 900 520" style={{ width: "100%", height: "auto", display: "block" }}
+                xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#f5c842" stopOpacity="0.35" />
+                    <stop offset="100%" stopColor="#f5c842" stopOpacity="0" />
+                  </radialGradient>
+                  <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#1a3a5c" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#0d2240" stopOpacity="1" />
+                  </radialGradient>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+
+                {/* 背景 */}
+                <rect width="900" height="520" fill="#0a1628" />
+
+                {/* 標題 */}
+                <text x="450" y="38" textAnchor="middle" fill="#f5c842" fontSize="15" fontWeight="700" fontFamily="'Noto Sans TC', sans-serif" letterSpacing="2">
+                  智取冰櫃 衛星擴散網
+                </text>
+                <text x="450" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="10" fontFamily="'Noto Sans TC', sans-serif">
+                  GraBox Satellite Network — 以東方美旗艦為母艦，向外輻射 8 大場域
+                </text>
+
+                {/* 連線 — 中心到各衛星 */}
+                {[
+                  [450, 280, 180, 140], [450, 280, 310, 100], [450, 280, 590, 100], [450, 280, 720, 140],
+                  [450, 280, 760, 280], [450, 280, 680, 410], [450, 280, 310, 410], [450, 280, 140, 300],
+                ].map(([x1,y1,x2,y2], i) => (
+                  <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
+                    stroke="#f5c842" strokeOpacity="0.25" strokeWidth="1.5" strokeDasharray="5 4" />
+                ))}
+
+                {/* 中心光暈 */}
+                <circle cx="450" cy="280" r="70" fill="url(#centerGlow)" />
+                <circle cx="450" cy="280" r="46" fill="#0d2240" stroke="#f5c842" strokeWidth="2" filter="url(#glow)" />
+                <circle cx="450" cy="280" r="43" fill="#0d2240" stroke="#f5c842" strokeOpacity="0.4" strokeWidth="1" />
+                <text x="450" y="271" textAnchor="middle" fill="#f5c842" fontSize="18">🏪</text>
+                <text x="450" y="287" textAnchor="middle" fill="#fff" fontSize="9" fontWeight="700" fontFamily="'Noto Sans TC', sans-serif">東方美</text>
+                <text x="450" y="299" textAnchor="middle" fill="#f5c842" fontSize="8" fontFamily="'Noto Sans TC', sans-serif">AI 旗艦主店</text>
+                <text x="450" y="311" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="7.5" fontFamily="'Noto Sans TC', sans-serif">MCS AI 管理中台</text>
+
+                {/* 8 個衛星節點 */}
+                {[
+                  { x: 180, y: 140, icon: "🏨", name: "中小旅館", sub: "民宿", num: "01" },
+                  { x: 310, y: 100, icon: "🎓", name: "學生宿舍", sub: "大學校園", num: "02" },
+                  { x: 590, y: 100, icon: "🏭", name: "移工宿舍", sub: "廠區", num: "03" },
+                  { x: 720, y: 140, icon: "🏥", name: "診所候診", sub: "醫療場域", num: "04" },
+                  { x: 760, y: 280, icon: "💼", name: "共享辦公", sub: "WeWork", num: "05" },
+                  { x: 680, y: 410, icon: "🏢", name: "企業大樓", sub: "商辦", num: "06" },
+                  { x: 310, y: 410, icon: "🏘️", name: "社區大廳", sub: "公寓", num: "07" },
+                  { x: 140, y: 300, icon: "🏥", name: "醫院", sub: "家屬候診", num: "08" },
+                ].map((n) => (
+                  <g key={n.num}>
+                    <circle cx={n.x} cy={n.y} r="38" fill="url(#nodeGlow)" stroke="#f5c842" strokeOpacity="0.45" strokeWidth="1.5" />
+                    <text x={n.x} y={n.y - 8} textAnchor="middle" fontSize="16">{n.icon}</text>
+                    <text x={n.x} y={n.y + 7} textAnchor="middle" fill="#fff" fontSize="9" fontWeight="700" fontFamily="'Noto Sans TC', sans-serif">{n.name}</text>
+                    <text x={n.x} y={n.y + 19} textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="7.5" fontFamily="'Noto Sans TC', sans-serif">{n.sub}</text>
+                    {/* 編號 badge */}
+                    <circle cx={n.x + 26} cy={n.y - 26} r="10" fill="#f5c842" />
+                    <text x={n.x + 26} y={n.y - 22} textAnchor="middle" fill="#0d2240" fontSize="8" fontWeight="900" fontFamily="monospace">{n.num}</text>
+                    {/* GraBox 小 icon */}
+                    <rect x={n.x - 14} y={n.y + 24} width="28" height="12" rx="4" fill="rgba(245,200,66,0.12)" stroke="#f5c842" strokeOpacity="0.3" strokeWidth="1" />
+                    <text x={n.x} y={n.y + 33} textAnchor="middle" fill="#f5c842" fontSize="7" fontFamily="'Noto Sans TC', sans-serif">GraBox ❄</text>
+                  </g>
+                ))}
+
+                {/* 底部說明 */}
+                <text x="450" y="500" textAnchor="middle" fill="rgba(255,255,255,0.3)" fontSize="9" fontFamily="'Noto Sans TC', sans-serif">
+                  ▲ 以東方美 AI 主店為核心，8 大場域輻射部署 · MCS 銓幻元 統一管理
+                </text>
+              </svg>
             </div>
             <div className="eb-network-caption">▲ 智取冰櫃衛星擴散網 — 以東方美 AI 主店為核心，8 大場域輻射部署</div>
 
