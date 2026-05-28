@@ -123,12 +123,12 @@ const DEVICES = [
     tag: "員工放杯，機器搞定",
   },
   {
-    src: "/images/eastbeauty/locker_003.jpg",
+    src: "/images/eastbeauty/grabox_cold_unit.jpg",
     fallback: "/images/eastbeauty/locker_001.jpg",
-    name: "GraBox 智取冰櫃",
+    name: "GraBox 自取冰櫃",
     badge: "⭐ MCS 自研",
     badgeColor: "#f5c842",
-    desc: "常溫智取 · 掃碼自開艙 · 24H 無人運作",
+    desc: "冷藏 / 常溫雙層 · 掃碼自開艙 · 24H 無人運作",
     tag: "🏭 台灣自主製造",
   },
   {
@@ -148,6 +148,15 @@ const DEVICES = [
     badgeColor: "#06c167",
     desc: "掃碼自動開門 · 自動微波 · 顧客自取",
     tag: "MCS 雲端串接",
+  },
+  {
+    src: "/images/eastbeauty/device_vending_machine.jpg",
+    fallback: "/images/eastbeauty/scene1.png",
+    name: "觸控螢幕智慧販賣機",
+    badge: "⭐ MCS 自研",
+    badgeColor: "#f5c842",
+    desc: "21吋全觸控介面 · 掃碼 / NFC 結帳 · AI 補貨預測",
+    tag: "🏭 台灣自主製造",
   },
 ];
 
@@ -818,7 +827,7 @@ export default function EastBeautyPage() {
       <div ref={sDevices} className="eb-fade">
         <section className="eb-section" id="devices">
           <div className="eb-label">SEMI-AUTO DEVICES</div>
-          <div className="eb-title">六大<em>半自助設備</em></div>
+          <div className="eb-title">八大<em>半自助設備</em></div>
           <div className="eb-rule" />
           <p className="eb-lead">
             每一台設備都代表一個可以省下的人力崗位。
