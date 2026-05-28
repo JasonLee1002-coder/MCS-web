@@ -74,8 +74,8 @@ export default function AiConsultant() {
   const isPresenterMode = pathname === "/present/control";
   const roomCodeRef = useRef("");
 
-  // Hide on /intro (pitch page — clean presentation)
-  if (pathname === "/intro") return null;
+  // Hide on /intro and /east-beauty (clean presentation pages)
+  if (pathname === "/intro" || pathname === "/east-beauty") return null;
 
   useEffect(() => {
     if (isPresenterMode) {
