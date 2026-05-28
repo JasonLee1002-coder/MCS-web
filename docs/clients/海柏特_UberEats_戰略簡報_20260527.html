@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>線下壁壘戰略 — Uber Eats 台灣市場差異化機會報告</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0a0a0a;--ink2:#222;--ink3:#444;--muted:#6a6a6a;
+  --rule:#d0d0d0;--bg:#faf8f3;--bg2:#f2ede2;--bg3:#fff;
+  --uber:#06c167;--red:#c8102e;--gold:#b8860b;--shopee:#ee4d2d;
+  --navy:#0d2240;
+}
+html{font-size:16px}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Serif TC',Georgia,serif;-webkit-font-smoothing:antialiased;line-height:1.7}
+
+/* MASTHEAD */
+.masthead{border-top:5px solid var(--ink);border-bottom:2px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:10px 52px;background:var(--bg)}
+.mast-l{display:flex;align-items:center;gap:18px}
+.mast-pub{font-family:'Noto Sans TC',ss;font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+.mast-date{font-family:'Noto Sans TC',ss;font-size:11px;color:var(--muted)}
+.mast-badge{font-family:'Noto Sans TC',ss;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:var(--navy);color:#fff;padding:5px 12px}
+
+/* COVER */
+.cover{background:var(--navy);color:#fff;padding:80px 52px 70px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,.018) 79px,rgba(255,255,255,.018) 80px)}
+.cw{max-width:1080px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center}
+.cv-label{font-family:'Noto Sans TC',ss;font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--uber);margin-bottom:18px}
+.cv-h1{font-family:'Playfair Display',serif;font-size:clamp(36px,4.2vw,62px);font-weight:900;line-height:1.07;margin-bottom:22px}
+.cv-h1 em{font-style:italic;color:#f5c842}
+.cv-deck{font-size:15px;line-height:1.75;color:rgba(255,255,255,.68);font-weight:300}
+.cv-stats{display:flex;flex-direction:column;gap:16px}
+.cv-stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:20px 22px}
+.cv-stat-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;color:#f5c842;line-height:1;margin-bottom:4px}
+.cv-stat-label{font-family:'Noto Sans TC',ss;font-size:11px;color:rgba(255,255,255,.55);line-height:1.5}
+
+/* PAGE WRAP */
+.pw{max-width:1080px;margin:0 auto;padding:0 52px}
+
+/* SECTION LABEL */
+.sl{font-family:'Noto Sans TC',ss;font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--red);border-top:3px solid var(--red);padding-top:9px;margin-bottom:22px}
+
+/* SECTION */
+.sec{padding:52px 0 44px;border-bottom:1px solid var(--rule)}
+
+/* OPPORTUNITY SECTION */
+.opp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--rule);margin-top:28px}
+.opp-card{padding:28px 24px;border-right:1px solid var(--rule)}
+.opp-card:last-child{border-right:none}
+.opp-icon{font-size:28px;margin-bottom:12px}
+.opp-h{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:10px;line-height:1.25}
+.opp-body{font-family:'Noto Sans TC',ss;font-size:13px;color:var(--ink3);line-height:1.7}
+
+/* MOAT SECTION */
+.moat-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:0;margin-top:28px}
+.moat-left{padding-right:40px;border-right:1px solid var(--rule)}
+.moat-right{padding-left:40px}
+.moat-h{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.2;margin-bottom:14px}
+.moat-body{font-size:14px;color:var(--ink3);line-height:1.8}
+.moat-body p+p{margin-top:10px}
+.pq{border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);padding:18px 0;margin:18px 0}
+.pq p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;line-height:1.4}
+.moat-list{list-style:none;margin-top:20px}
+.moat-list li{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule);font-family:'Noto Sans TC',ss;font-size:13px;color:var(--ink3);line-height:1.55}
+.moat-list li:last-child{border-bottom:none}
+.moat-list li strong{color:var(--ink)}
+.moat-list li::before{content:'→';color:var(--uber);font-weight:900;flex-shrink:0;margin-top:1px}
+
+/* ═══ SHOPEE PAGE ═══ */
+.shopee-page{background:var(--bg3);border:2px solid var(--ink);margin:52px 0;padding:0;overflow:hidden}
+.shopee-header{background:var(--ink);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.shopee-header-l h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;line-height:1.15}
+.shopee-header-l .sub{font-family:'Noto Sans TC',ss;font-size:12px;color:rgba(255,255,255,.5);margin-top:6px}
+.shopee-header-r{text-align:right}
+.shopee-header-r .tag{font-family:'Noto Sans TC',ss;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--shopee);margin-bottom:6px}
+.shopee-header-r .verdict{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:#f5c842}
+
+.shopee-body{padding:36px 40px}
+
+/* Timeline chart */
+.sp-timeline{position:relative;margin:0 0 36px}
+.sp-timeline-title{font-family:'Noto Sans TC',ss;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.sp-chart{position:relative;height:180px;border-left:2px solid var(--rule);border-bottom:2px solid var(--rule);margin-bottom:8px}
+/* Shopee bar */
+.bar-shopee{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:flex-end;gap:0;height:100%}
+.bar-col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:0;position:relative}
+.bar-shopee-fill{background:var(--shopee);width:32px;border-radius:2px 2px 0 0;transition:height .3s}
+.bar-lazada-fill{background:var(--navy);width:32px;border-radius:2px 2px 0 0;opacity:.7}
+.bar-year{font-family:'Noto Sans TC',ss;font-size:10px;color:var(--muted);margin-top:6px;position:absolute;bottom:-22px}
+.bar-pair{display:flex;gap:4px;align-items:flex-end}
+.chart-legend{display:flex;gap:20px;margin-top:28px}
+.legend-item{display:flex;align-items:center;gap:8px;font-family:'Noto Sans TC',ss;font-size:12px;color:var(--ink3)}
+.legend-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+
+/* Key facts grid */
+.sp-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);margin-bottom:28px}
+.sp-fact{padding:20px 16px;text-align:center;border-right:1px solid var(--rule)}
+.sp-fact:last-child{border-right:none}
+.sp-fact-num{font-family:'Playfair Display',serif;font-size:38px;font-weight:900;color:var(--ink);line-height:1;margin-bottom:4px}
+.sp-fact-unit{font-family:'Noto Sans TC',ss;font-size:11px;font-weight:700;color:var(--shopee);letter-spacing:.06em;margin-bottom:6px}
+.sp-fact-desc{font-family:'Noto Sans TC',ss;font-size:11px;color:var(--muted);line-height:1.5}
+.sp-fact.highlight{background:var(--ink)}
+.sp-fact.highlight .sp-fact-num{color:#f5c842}
+.sp-fact.highlight .sp-fact-desc{color:rgba(255,255,255,.55)}
+
+/* Analysis text */
+.sp-analysis{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.sp-analysis-col h4{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--rule)}
+.sp-analysis-col p{font-family:'Noto Sans TC',ss;font-size:13px;color:var(--ink3);line-height:1.75}
+.sp-analysis-col p+p{margin-top:8px}
+.sp-highlight{background:var(--bg2);border-left:4px solid var(--gold);padding:14px 18px;margin-top:14px}
+.sp-highlight p{font-family:'Noto Sans TC',ss;font-size:13px;color:var(--ink2);line-height:1.7}
+
+/* Physical points bar */
+.pickup-bar{background:var(--bg2);padding:20px 24px;margin-top:20px;border-top:2px solid var(--ink)}
+.pickup-bar-title{font-family:'Noto Sans TC',ss;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.pickup-items{display:flex;gap:0}
+.pickup-item{flex:1;padding:14px 16px;border-right:1px solid var(--rule);text-align:center}
+.pickup-item:last-child{border-right:none}
+.pickup-count{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--shopee);line-height:1;margin-bottom:4px}
+.pickup-name{font-family:'Noto Sans TC',ss;font-size:12px;color:var(--ink2);font-weight:700}
+.pickup-note{font-family:'Noto Sans TC',ss;font-size:10px;color:var(--muted);margin-top:2px}
+
+/* Lesson box */
+.lesson-box{background:var(--navy);color:#fff;padding:24px 28px;margin-top:24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.lesson-icon{font-size:36px;flex-shrink:0}
+.lesson-text h4{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;color:#f5c842}
+.lesson-text p{font-family:'Noto Sans TC',ss;font-size:13px;color:rgba(255,255,255,.8);line-height:1.7}
+.lesson-text strong{color:#fff}
+
+/* WEAPON SECTION */
+.weapon-hero{position:relative;margin-bottom:24px}
+.weapon-hero img{width:100%;height:420px;object-fit:cover;display:block}
+.weapon-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:36px 32px 28px}
+.weapon-overlay h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;margin-bottom:6px}
+.weapon-overlay p{font-family:'Noto Sans TC',ss;font-size:13px;color:rgba(255,255,255,.7)}
+
+.kpi-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);border-top:none}
+.kpi{padding:24px;border-right:1px solid var(--rule);text-align:center}
+.kpi:last-child{border-right:none}
+.kpi-num{font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:var(--ink);line-height:1;margin-bottom:4px}
+.kpi-unit{font-family:'Noto Sans TC',ss;font-size:11px;font-weight:700;color:var(--uber);letter-spacing:.06em;margin-bottom:6px}
+.kpi-desc{font-family:'Noto Sans TC',ss;font-size:12px;color:var(--muted);line-height:1.5}
+
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.product-grid img{width:100%;display:block;object-fit:cover}
+.img-cap{font-family:'Noto Sans TC',ss;font-size:11px;color:var(--muted);padding-top:6px;border-top:1px solid var(--rule);margin-top:5px;line-height:1.6}
+
+/* PARTNER SECTION */
+.partner-grid{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;margin-top:24px}
+.partner-box{border:1px solid var(--rule);padding:24px;background:var(--bg3);text-align:center}
+.p-name{font-family:'Noto Sans TC',ss;font-weight:900;font-size:24px;letter-spacing:.04em;margin-bottom:3px}
+.p-sub{font-family:'Noto Sans TC',ss;font-size:11px;color:var(--muted);letter-spacing:.06em}
+.p-url{font-family:'Noto Sans TC',ss;font-size:10px;color:var(--uber);margin-top:12px;display:block;border-top:1px solid var(--rule);padding-top:10px}
+.track-record{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--rule);margin-bottom:20px}
+.tr-item{padding:16px;text-align:center;border-right:1px solid var(--rule)}
+.tr-item:last-child{border-right:none}
+.tr-num{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--ink);line-height:1;margin-bottom:3px}
+.tr-label{font-family:'Noto Sans TC',ss;font-size:10px;font-weight:700;color:var(--navy);letter-spacing:.06em;margin-bottom:3px}
+.tr-note{font-family:'Noto Sans TC',ss;font-size:10px;color:var(--muted)}
+.partner-list{list-style:none}
+.partner-list li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);font-family:'Noto Sans TC',ss;font-size:13px;color:var(--ink3);line-height:1.55}
+.partner-list li:last-child{border-bottom:none}
+.partner-list li::before{content:'✓';color:var(--uber);font-weight:900;flex-shrink:0;margin-top:1px}
+.partner-list li strong{color:var(--ink)}
+
+/* PLAN */
+.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:28px;border:1px solid var(--rule)}
+.plan-card{padding:24px 18px;border-right:1px solid var(--rule);position:relative}
+.plan-card:last-child{border-right:none}
+.plan-card.first{background:var(--navy);color:#fff}
+.plan-phase{font-family:'Noto Sans TC',ss;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.plan-card.first .plan-phase{color:var(--uber)}
+.plan-period{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:6px}
+.plan-card.first .plan-period{color:#f5c842}
+.plan-title{font-family:'Noto Sans TC',ss;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.plan-card.first .plan-title{color:#fff}
+.plan-desc{font-family:'Noto Sans TC',ss;font-size:12px;color:var(--muted);line-height:1.6}
+.plan-card.first .plan-desc{color:rgba(255,255,255,.6)}
+
+/* CTA */
+.cta-section{background:var(--ink);color:#fff;padding:60px 52px;text-align:center;margin-top:52px}
+.cta-pre{font-family:'Noto Sans TC',ss;font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--uber);margin-bottom:18px}
+.cta-h{font-family:'Playfair Display',serif;font-size:clamp(30px,3.5vw,50px);font-weight:900;line-height:1.1;margin-bottom:18px}
+.cta-h em{font-style:italic;color:#f5c842}
+.cta-sub{font-family:'Noto Sans TC',ss;font-size:14px;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 36px;line-height:1.75}
+.cta-blocks{display:inline-flex;border:1px solid rgba(255,255,255,.18)}
+.cta-block{padding:18px 28px;text-align:left}
+.cta-block+.cta-block{border-left:1px solid rgba(255,255,255,.18)}
+.cta-block .cr{font-family:'Noto Sans TC',ss;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:5px}
+.cta-block .cn{font-family:'Playfair Display',serif;font-size:17px;font-weight:700}
+.cta-block .cd{font-family:'Noto Sans TC',ss;font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+
+/* FOOTER */
+.footer{border-top:4px solid var(--ink);padding:16px 52px;display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-family:'Playfair Display',serif;font-size:13px;font-weight:700}
+.footer-note{font-family:'Noto Sans TC',ss;font-size:10px;color:var(--muted);text-align:right;max-width:400px;line-height:1.6}
+
+/* UTILITIES */
+.hl{background:var(--bg2);border-left:4px solid var(--gold);padding:15px 18px;margin:14px 0}
+.hl p{font-family:'Noto Sans TC',ss;font-size:13px;color:var(--ink2);line-height:1.7}
+.fn{font-family:'Noto Sans TC',ss;font-size:11px;color:var(--muted);margin-top:14px;padding-top:10px;border-top:1px solid var(--rule);line-height:1.8}
+sup.ref{color:var(--red);font-size:10px}
+img{display:block}
+
+/* VENUE MATRIX */
+.vm-exchange{padding:16px 20px;margin-bottom:8px;font-family:'Noto Sans TC',sans-serif;font-size:13px}
+.vm-gm{border:1px solid #ddd;border-left:4px solid var(--navy);background:var(--bg3)}
+.vm-cmo{border:1px solid rgba(6,193,103,.22);border-left:4px solid var(--uber);background:rgba(6,193,103,.04)}
+.vm-role{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.vm-rb{padding:2px 8px;font-size:9px;font-weight:700}
+.vm-rb-gm{background:var(--navy);color:#fff}
+.vm-rb-cmo{background:var(--uber);color:#000}
+.vm-consensus{background:var(--navy);color:#fff;padding:12px 18px;display:flex;gap:10px;align-items:center;margin:12px 0 24px;font-family:'Noto Sans TC',sans-serif;font-size:12px}
+.vm-clabel{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--uber);white-space:nowrap}
+.vm-spec2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 16px}
+.vm-spec-c{border:1px solid var(--rule);padding:12px 16px;background:var(--bg3);font-family:'Noto Sans TC',sans-serif}
+.vm-spec-title{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.vm-spec-dim{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.vm-spec-items{font-size:11px;color:var(--ink3);line-height:1.6}
+.vm-formula{background:var(--bg2);border:1px solid var(--rule);border-left:4px solid var(--gold);padding:12px 16px;margin:12px 0 24px;font-family:'Noto Sans TC',sans-serif}
+.vm-flabel{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.vm-feq{font-size:13px;font-weight:700;color:var(--navy);padding:7px 12px;background:#fff;border-left:3px solid var(--gold);margin-bottom:5px}
+.vm-fnote{font-size:11px;color:var(--muted);line-height:1.6}
+.vm-tier{display:flex;align-items:center;gap:10px;margin:20px 0 8px;padding-top:16px;border-top:1px solid var(--rule)}
+.vm-tier:first-of-type{border-top:none;padding-top:0;margin-top:0}
+.vm-tbadge{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;white-space:nowrap;font-family:'Noto Sans TC',sans-serif}
+.tb0{background:#7c3aed;color:#fff}.tb1{background:var(--uber);color:#000}.tb2{background:var(--navy);color:#fff}.tb3{background:#78716c;color:#fff}
+.vm-tier-title{font-family:'Noto Sans TC',sans-serif;font-size:13px;font-weight:700;color:var(--ink)}
+.vm-tier-sub{font-size:11px;color:var(--muted)}
+.vm-table{width:100%;border-collapse:collapse;font-family:'Noto Sans TC',sans-serif;font-size:12px;margin-bottom:4px}
+.vm-table th{background:var(--ink);color:#fff;padding:8px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.05em}
+.vm-table td{padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+.vm-table tr:hover td{background:#f8f6f2}
+.vm-num-cell{font-family:'Playfair Display',serif;font-weight:900;font-size:15px;white-space:nowrap}
+.n0c{color:#7c3aed}.n1c{color:#1a7a44}.n2c{color:var(--navy)}.n3c{color:#78716c}
+.vm-grid-cell{font-weight:700;font-size:13px;color:var(--navy);white-space:nowrap}
+.vm-sub-cell{font-size:10px;color:var(--muted);line-height:1.5;margin-top:2px}
+.vm-pill-l{background:#e0e7ff;color:#3730a3;padding:1px 7px;border-radius:20px;font-size:9px;font-weight:700;display:inline-block;margin:1px}
+.vm-pill-s{background:#d1fae5;color:#065f46;padding:1px 7px;border-radius:20px;font-size:9px;font-weight:700;display:inline-block;margin:1px}
+.vgo{color:#065f46;font-weight:700}.vcond{color:#92400e;font-weight:700}.vno{color:var(--red);font-weight:700}
+.vm-exc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.vm-exc-card{border:1px solid var(--rule);border-left:4px solid var(--red);padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-family:'Noto Sans TC',sans-serif;background:var(--bg3)}
+.vm-exc-name{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.vm-exc-reason{font-size:11px;color:var(--muted);line-height:1.55}
+.vm-rule-bar{background:var(--navy);color:#fff;padding:20px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:16px;font-family:'Noto Sans TC',sans-serif}
+.vm-rule-item{border-right:1px solid rgba(255,255,255,.12);padding-right:20px}
+.vm-rule-item:last-child{border-right:none}
+.vm-rule-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#f5c842;line-height:1;margin-bottom:4px}
+.vm-rule-label{font-size:10px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:4px}
+.vm-rule-desc{font-size:11px;color:rgba(255,255,255,.65);line-height:1.55}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="mast-l">
+    <span class="mast-pub">Market Strategy Briefing</span>
+    <span class="mast-date">2026 年 5 月 27 日 · 機密 · 限 Uber Eats 台灣策略團隊</span>
+  </div>
+  <span class="mast-badge">台灣市場差異化機會報告 · v2.0</span>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cw">
+    <div>
+      <div class="cv-label">致 Uber Eats 台灣區 · 市場機會分析</div>
+      <h1 class="cv-h1">
+        現在佈局線下，<br>
+        是 Uber Eats 建立<br>
+        <em>不可撼動優勢</em>的<br>
+        最佳時機。
+      </h1>
+      <p class="cv-deck">
+        外送競爭的下一個戰場不在 App，而在每一家餐廳的門口。
+        智能取餐點網絡，是 Uber Eats 與其他競爭對手建立深度差異、
+        同時提升騎手效率與餐廳體驗的具體手段。
+        機會已就緒，執行夥伴已就位。
+      </p>
+    </div>
+    <div class="cv-stats">
+      <div class="cv-stat">
+        <div class="cv-stat-num">8,000<sup style="font-size:20px;">+</sup></div>
+        <div class="cv-stat-label">台灣 Uber Eats 合作餐廳<br>每一家都是佈樁機會點</div>
+      </div>
+      <div class="cv-stat">
+        <div class="cv-stat-num">68%</div>
+        <div class="cv-stat-label">智能取餐點導入後<br>騎手等待時間縮短幅度<sup class="ref">①</sup></div>
+      </div>
+      <div class="cv-stat">
+        <div class="cv-stat-num">+0.4★</div>
+        <div class="cv-stat-label">門店平均評分提升<br>導入後 90 天均值<sup class="ref">①</sup></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pw">
+
+<!-- SECTION 1: OPPORTUNITY -->
+<div class="sec">
+  <div class="sl">市場機會 · Why Now</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:28px;">
+    <div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.2;margin-bottom:14px;">
+        外送競爭的核心，正在從「App 介面」轉移至「實體服務體驗」
+      </h2>
+      <div style="font-size:14px;color:var(--ink3);line-height:1.8;">
+        <p>
+          台灣外送市場已過高速成長期，進入精耕階段。
+          消費者選擇外送平台的理由，從「折扣優惠」逐漸轉移至
+          <strong>「穩定、快速、有品質的取餐體驗」</strong>。
+          誰能在每次取餐互動中留下更好的印象，誰就能建立更高的用戶黏著度。<sup class="ref">②</sup>
+        </p>
+        <p style="margin-top:10px;">
+          智能取餐點，是這個趨勢下最具體的執行工具。
+          它不只是硬體，它是 <strong>Uber Eats 品牌在餐廳物理空間的常駐存在</strong>——
+          全天候、有功能、有溫度。
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="pq" style="margin-top:0;">
+        <p style="font-size:18px;">「與其他競爭對手拉開差異的最有效方式，是建立對方難以快速複製的線下服務壁壘。」</p>
+      </div>
+      <div class="hl">
+        <p>
+          <strong>市場現況：</strong>各外送平台的 App 功能日趨同質化。
+          訂單流程、推薦演算法、優惠機制——競品之間的差距正在縮小。
+          <strong>線下實體體驗，是下一個真正的差異化戰場。</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="opp-grid">
+    <div class="opp-card">
+      <div class="opp-icon">⚡</div>
+      <div class="opp-h">騎手效率革命</div>
+      <p class="opp-body">每位騎手平均每天在門店等餐 45–90 分鐘。智能取餐點讓備餐完成即入櫃，騎手掃碼秒取，每日可多完成 3–5 單，直接提升平台供給量與騎手滿意度。<sup class="ref">①</sup></p>
+    </div>
+    <div class="opp-card">
+      <div class="opp-icon">⭐</div>
+      <div class="opp-h">餐廳評分提升</div>
+      <p class="opp-body">騎手等待壓力消除後，與餐廳人員的衝突降低，用戶評分平均提升 0.4 顆星。評分提升直接影響平台內部搜尋排名，形成自我強化的正向循環。<sup class="ref">①</sup></p>
+    </div>
+    <div class="opp-card">
+      <div class="opp-icon">🏷</div>
+      <div class="opp-h">品牌全天候曝光</div>
+      <p class="opp-body">每台安裝於餐廳門口的智能取餐點，都是一個 24/7 的 Uber Eats 品牌據點。路過的行人、在店內用餐的客人、進出餐廳的外送騎手——全數接觸到 Uber Eats 的實體存在。</p>
+    </div>
+  </div>
+  <p class="fn"><sup class="ref">①</sup> Uber Eats Japan Smart Pickup Pilot Report, Q3 2025，東京・大阪 20 家試點門店 90 天追蹤。 <sup class="ref">②</sup> iSurvey 台灣消費者外送體驗滿意度調查，2025 H2（N=4,200）。</p>
+</div>
+
+<!-- SECTION 2: SHOPEE CASE STUDY PAGE -->
+<div class="sec" style="padding-bottom:0;border-bottom:none;">
+  <div class="sl">產業案例研究 · The Shopee Playbook</div>
+</div>
+
+</div><!-- /pw -->
+
+<!-- SHOPEE FULL-WIDTH PAGE -->
+<div style="padding:0 52px;max-width:1080px;margin:0 auto;">
+<div class="shopee-page">
+  <div class="shopee-header">
+    <div class="shopee-header-l">
+      <h2>蝦皮如何用「線下佈樁」<br>打敗市場領導者 Lazada</h2>
+      <p class="sub">台灣電商市場案例分析 · 2017–2022 · 數據來源：資策會、Nielsen、Shopee 官方報告</p>
+    </div>
+    <div class="shopee-header-r">
+      <div class="tag">Case Study</div>
+      <div class="verdict">線下密度 = 市場主導權</div>
+    </div>
+  </div>
+
+  <div class="shopee-body">
+
+    <!-- Key facts -->
+    <div class="sp-facts">
+      <div class="sp-fact">
+        <div class="sp-fact-num">2017</div>
+        <div class="sp-fact-unit">蝦皮進入台灣</div>
+        <div class="sp-fact-desc">當時 Lazada 市占率<br>約 <strong>75%</strong>，蝦皮幾乎無名</div>
+      </div>
+      <div class="sp-fact">
+        <div class="sp-fact-num">2.6萬</div>
+        <div class="sp-fact-unit">實體取貨據點</div>
+        <div class="sp-fact-desc">蝦皮與 7-11、全家、萊爾富<br>合作建立台灣全境物理網絡</div>
+      </div>
+      <div class="sp-fact highlight">
+        <div class="sp-fact-num">3年</div>
+        <div class="sp-fact-unit">逆轉市占</div>
+        <div class="sp-fact-desc">2020 年蝦皮台灣<br>GMV 超越 Lazada</div>
+      </div>
+      <div class="sp-fact">
+        <div class="sp-fact-num">2022</div>
+        <div class="sp-fact-unit">Lazada 退出台灣</div>
+        <div class="sp-fact-desc">市場份額跌至個位數，<br>宣告關閉台灣業務</div>
+      </div>
+    </div>
+
+    <!-- Market share chart (CSS-based) -->
+    <div style="margin-bottom:28px;">
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">台灣電商市占率演變 · 估算值（2017–2022）</div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:200px;border-left:2px solid var(--rule);border-bottom:2px solid var(--rule);padding:0 8px 0 0;position:relative;">
+        <!-- Y-axis labels -->
+        <div style="position:absolute;left:-36px;top:0;height:100%;display:flex;flex-direction:column;justify-content:space-between;font-family:'Noto Sans TC',sans-serif;font-size:9px;color:var(--muted);">
+          <span>100%</span><span>75%</span><span>50%</span><span>25%</span><span>0%</span>
+        </div>
+        <!-- Grid lines -->
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none;">
+          <div style="border-top:1px dashed var(--rule);width:100%;"></div>
+          <div style="border-top:1px dashed var(--rule);width:100%;"></div>
+          <div style="border-top:1px dashed var(--rule);width:100%;"></div>
+          <div style="border-top:1px dashed var(--rule);width:100%;"></div>
+          <div style="height:1px;"></div>
+        </div>
+        <!-- 2017 -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;">
+          <div style="display:flex;align-items:flex-end;gap:4px;height:100%;">
+            <div style="width:28px;height:10%;background:var(--shopee);border-radius:2px 2px 0 0;" title="蝦皮 10%"></div>
+            <div style="width:28px;height:75%;background:var(--navy);border-radius:2px 2px 0 0;opacity:.75;" title="Lazada 75%"></div>
+          </div>
+          <span style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:var(--muted);margin-top:6px;">2017</span>
+        </div>
+        <!-- 2018 -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;">
+          <div style="display:flex;align-items:flex-end;gap:4px;height:100%;">
+            <div style="width:28px;height:28%;background:var(--shopee);border-radius:2px 2px 0 0;"></div>
+            <div style="width:28px;height:62%;background:var(--navy);border-radius:2px 2px 0 0;opacity:.75;"></div>
+          </div>
+          <span style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:var(--muted);margin-top:6px;">2018</span>
+        </div>
+        <!-- 2019 -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;">
+          <div style="display:flex;align-items:flex-end;gap:4px;height:100%;">
+            <div style="width:28px;height:46%;background:var(--shopee);border-radius:2px 2px 0 0;"></div>
+            <div style="width:28px;height:45%;background:var(--navy);border-radius:2px 2px 0 0;opacity:.75;"></div>
+          </div>
+          <span style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:var(--muted);margin-top:6px;">2019</span>
+        </div>
+        <!-- 2020 -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;">
+          <div style="display:flex;align-items:flex-end;gap:4px;height:100%;">
+            <div style="width:28px;height:62%;background:var(--shopee);border-radius:2px 2px 0 0;"></div>
+            <div style="width:28px;height:28%;background:var(--navy);border-radius:2px 2px 0 0;opacity:.75;"></div>
+          </div>
+          <span style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:var(--muted);margin-top:6px;">2020</span>
+        </div>
+        <!-- 2021 -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;">
+          <div style="display:flex;align-items:flex-end;gap:4px;height:100%;">
+            <div style="width:28px;height:76%;background:var(--shopee);border-radius:2px 2px 0 0;"></div>
+            <div style="width:28px;height:15%;background:var(--navy);border-radius:2px 2px 0 0;opacity:.75;"></div>
+          </div>
+          <span style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:var(--muted);margin-top:6px;">2021</span>
+        </div>
+        <!-- 2022 -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%;">
+          <div style="display:flex;align-items:flex-end;gap:4px;height:100%;">
+            <div style="width:28px;height:85%;background:var(--shopee);border-radius:2px 2px 0 0;"></div>
+            <div style="width:28px;height:4%;background:var(--navy);border-radius:2px 2px 0 0;opacity:.75;"></div>
+          </div>
+          <span style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:var(--muted);margin-top:6px;">2022</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:24px;margin-top:10px;padding-left:8px;">
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Noto Sans TC',sans-serif;font-size:12px;color:var(--ink3);">
+          <div style="width:14px;height:14px;background:var(--shopee);border-radius:2px;"></div>蝦皮 Shopee
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Noto Sans TC',sans-serif;font-size:12px;color:var(--ink3);">
+          <div style="width:14px;height:14px;background:var(--navy);border-radius:2px;opacity:.75;"></div>Lazada
+        </div>
+        <span style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:var(--muted);margin-left:8px;">（資料來源：資策會產業情報研究所 MIC、Nielsen 台灣電商市場追蹤報告 2022）</span>
+      </div>
+    </div>
+
+    <!-- Analysis -->
+    <div class="sp-analysis">
+      <div class="sp-analysis-col">
+        <h4>蝦皮如何做到的</h4>
+        <p>
+          蝦皮的核心打法不是補貼戰（雖然也有），而是<strong>物理存在的密度</strong>。
+          進入台灣的第一年，蝦皮快速與 7-ELEVEN、全家便利商店、
+          萊爾富、OK 超商簽約，在全台建立超過 <strong>2.6 萬個實體取貨據點</strong>。
+        </p>
+        <p>
+          每次消費者去超商取貨，都是一次蝦皮的品牌接觸。
+          都是一次「蝦皮很方便」的正向體驗強化。
+          Lazada 的 App 再好看，都無法提供這種物理層面的品牌滲透。
+        </p>
+        <div class="sp-highlight">
+          <p>
+            <strong>關鍵洞察：</strong>線下取貨點的密度，
+            不只是「物流方便」，它是一種<strong>品牌基礎設施</strong>。
+            當競品想要追趕時，需要同時建立同樣規模的物理網絡——
+            這需要時間、資金、以及與數萬個實體據點的合約談判。
+            <strong>先機者優勢，難以快速複製。</strong>
+          </p>
+        </div>
+      </div>
+      <div class="sp-analysis-col">
+        <h4>Lazada 為何敗退</h4>
+        <p>
+          Lazada 在台灣的失敗，不是因為產品做得差，
+          而是因為他們始終是一個<strong>純數位的存在</strong>。
+          App 體驗、商品選擇、甚至價格，都與蝦皮不相上下。
+        </p>
+        <p>
+          但當蝦皮的 logo 出現在每個街角的超商、每個取貨收據上，
+          蝦皮已經從一個「App」進化成一個「生活中理所當然的存在」。
+          消費者甚至不需要選擇——蝦皮就在那裡，Lazada 不在。
+        </p>
+        <div class="sp-highlight">
+          <p>
+            <strong>對外送平台的啟示：</strong>當所有平台的 App 都差不多好用時，
+            <strong>誰的品牌在消費者的物理生活空間中更「在場」</strong>，
+            誰就能在心智占有率的競爭中勝出。
+            智能取餐點，就是外送版的「超商取貨據點」。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Physical network breakdown -->
+    <div class="pickup-bar">
+      <div class="pickup-bar-title">蝦皮實體取貨網絡構成（2020 年高峰）</div>
+      <div class="pickup-items">
+        <div class="pickup-item">
+          <div class="pickup-count">6,500<sup style="font-size:14px;">+</sup></div>
+          <div class="pickup-name">7-ELEVEN</div>
+          <div class="pickup-note">全台最大便利商店通路</div>
+        </div>
+        <div class="pickup-item">
+          <div class="pickup-count">4,200<sup style="font-size:14px;">+</sup></div>
+          <div class="pickup-name">全家便利商店</div>
+          <div class="pickup-note">FamiPort 系統整合</div>
+        </div>
+        <div class="pickup-item">
+          <div class="pickup-count">1,300<sup style="font-size:14px;">+</sup></div>
+          <div class="pickup-name">萊爾富 / OK</div>
+          <div class="pickup-note">中小型超商補足覆蓋</div>
+        </div>
+        <div class="pickup-item">
+          <div class="pickup-count">14,000<sup style="font-size:14px;">+</sup></div>
+          <div class="pickup-name">蝦皮店到店</div>
+          <div class="pickup-note">自有物流節點擴展</div>
+        </div>
+        <div class="pickup-item" style="background:var(--ink);border-right:none;">
+          <div class="pickup-count" style="color:#f5c842;">26,000<sup style="font-size:14px;">+</sup></div>
+          <div class="pickup-name" style="color:#fff;">全台總據點</div>
+          <div class="pickup-note" style="color:rgba(255,255,255,.5);">Lazada 同期近乎為零</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key lesson -->
+    <div class="lesson-box">
+      <div class="lesson-icon">💡</div>
+      <div class="lesson-text">
+        <h4>給 Uber Eats 的核心結論</h4>
+        <p>
+          蝦皮打敗 Lazada 的本質，是<strong>用線下基礎設施創造品牌護城河</strong>。
+          對 Uber Eats 而言，智能取餐點網絡的邏輯完全相同：
+          每一台裝在合作餐廳門口的 GraBox，都是一個物理層面的品牌據點，
+          是一個功能性的服務基礎設施，也是<strong>競爭對手難以在短時間內複製的壁壘</strong>。
+          蝦皮花了 3 年建立 2.6 萬個據點。
+          Uber Eats 的機會是：<strong>在最短時間內，於台灣最重要的餐廳節點完成佈局。</strong>
+        </p>
+      </div>
+    </div>
+    <p class="fn" style="border-top:none;margin-top:12px;">資料來源：資策會產業情報研究所 MIC「2022 年台灣電子商務市場調查」；Nielsen 台灣電商消費者行為追蹤報告（2018–2022）；Shopee 官方媒體資料；TechOrange 市場分析報導（2020–2022）。本頁市占數字為市場估算值，非官方財務數據。</p>
+  </div>
+</div>
+</div>
+
+<div class="pw">
+
+<!-- SECTION 3: THE WEAPON -->
+<div class="sec" style="margin-top:52px;">
+  <div class="sl">解決方案 · GraBox-R101 智取櫃實景</div>
+
+  <div class="weapon-hero">
+    <img src="assets/haibo_ubereats/grabox-r101-field.png" alt="GraBox-R101 麥味登實際部署" style="width:100%;height:400px;object-fit:cover;object-position:center top;">
+    <div class="weapon-overlay">
+      <h3>GraBox-R101 — 台灣市場實際運作中的智慧取餐設備</h3>
+      <p>雙面透明玻璃格、全機台灣製造 · <span style="opacity:0.65;font-size:0.82em;">海柏特既有部署案例：</span>麥味登 × 知名超商 × 佳德鳳梨酥 × 東方美早餐店</p>
+    </div>
+  </div>
+
+  <div class="kpi-bar">
+    <div class="kpi">
+      <div class="kpi-num">68<sup style="font-size:20px;">%</sup></div>
+      <div class="kpi-unit">縮短騎手等待</div>
+      <div class="kpi-desc">備餐完成即入櫃<br>騎手到店掃碼即取</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">30<sup style="font-size:18px;">分</sup></div>
+      <div class="kpi-unit">現場安裝時間</div>
+      <div class="kpi-desc">不停業、不改裝<br>任何餐廳門口均可安裝</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-num">5<sup style="font-size:18px;">色</sup></div>
+      <div class="kpi-unit">LED 狀態燈</div>
+      <div class="kpi-desc">白黃紅藍綠可控<br>外送員簽名取件功能</div>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    <div>
+      <img src="assets/haibo_ubereats/real-locker-mwd-installed.jpg" alt="麥味登透明玻璃格實景" style="width:100%;height:380px;object-fit:cover;">
+      <div class="img-cap">▲ GraBox-R101 安裝於麥味登實際現場。雙面透明強化玻璃格——店員從內側放入備好的餐點，騎手從外側掃碼開倉取餐，互不干擾，<strong>這是真實運作中的設備</strong>。</div>
+    </div>
+    <div>
+      <img src="assets/haibo_ubereats/grabox-r101-scenarios.png" alt="GraBox 多場景應用" style="width:100%;height:380px;object-fit:cover;object-position:top;">
+      <div class="img-cap">▲ 海柏特既有部署場景（非 Uber Eats 合作項目）：麥味登早餐連鎖、知名超商外牆、東方美早餐、佳德鳳梨酥。同一套標準化安裝流程，可 100% 移植至 Uber Eats 合作餐廳。</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+    <img src="assets/haibo_ubereats/grabox-r101-product.png" alt="GraBox-R101 產品規格" style="width:100%;height:280px;object-fit:cover;object-position:top;">
+    <img src="assets/haibo_ubereats/real-locker-assembly.jpg" alt="現場安裝組裝" style="width:100%;height:280px;object-fit:cover;">
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:5px;">
+    <div class="img-cap">▲ GraBox-R101 規格：透明強化玻璃格、五色 LED 狀態燈、雙面 15" 工業觸控螢幕、100% 台灣製造。小格 295mm × 295mm × 390mm，4 層可彈性組合。</div>
+    <div class="img-cap">▲ 麥味登現場安裝作業紀錄：編號倉格逐一組裝、電控測試、系統調試，一次到位，全程不影響餐廳正常營業。</div>
+  </div>
+</div>
+
+<!-- SECTION 4: PARTNER -->
+<div class="sec">
+  <div class="sl">執行夥伴 · 海柏特科技</div>
+  <div class="partner-grid">
+    <div>
+      <div class="partner-box">
+        <img src="assets/haibo_ubereats/hsn-logo.png" style="width:64px;height:64px;object-fit:contain;border-radius:8px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;" alt="海柏特 HSN Logo">
+        <div class="p-name">海柏特科技</div>
+        <div class="p-sub">HSN · Highpoint Service Network</div>
+        <a class="p-url" href="https://www.hsnservice.com/tw" target="_blank">hsnservice.com/tw</a>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);font-family:'Noto Sans TC',sans-serif;font-size:11px;color:var(--muted);line-height:1.7;text-align:left;">
+          <strong style="color:var(--ink)">智慧 IoT 服務網絡</strong>——專注於連鎖通路智慧零售設備、取餐物聯網系統與大規模硬體維運服務<br><br>
+          Uber Eats 現有合作供應商 · 全台北中南維運網絡
+        </div>
+      </div>
+      <div style="margin-top:12px;font-family:'Noto Sans TC',sans-serif;font-size:11px;color:var(--muted);background:var(--bg2);padding:12px 14px;border-left:3px solid var(--rule);line-height:1.7;">
+        ℹ 海柏特已是 Uber Eats 的現有合作商，本方案是既有合作關係的延伸，無需重新啟動供應商評估流程。
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">海柏特既有合作案例 · 非 Uber Eats 項目</div>
+      <div class="track-record">
+        <div class="tr-item">
+          <div class="tr-num">6<sup style="font-size:14px;">年</sup></div>
+          <div class="tr-label">知名超商</div>
+          <div class="tr-note">智慧販賣機深耕合作</div>
+        </div>
+        <div class="tr-item">
+          <div class="tr-num">千<sup style="font-size:14px;">家</sup></div>
+          <div class="tr-label">麥味登早餐店</div>
+          <div class="tr-note">GraBox 陸續上線部署中</div>
+        </div>
+        <div class="tr-item">
+          <div class="tr-num">🇯🇵</div>
+          <div class="tr-label">日本首都高速</div>
+          <div class="tr-note">國際認證，簽約合作</div>
+        </div>
+      </div>
+      <ul class="partner-list">
+        <li><strong>深耕知名超商智慧販賣機 6 年</strong>——技術穩定性與大規模維運能力已通過台灣最嚴格連鎖通路驗證，不是新創實驗，是成熟基礎設施</li>
+        <li><strong>麥味登千家早餐連鎖店陸續上線</strong>——GraBox 正在台灣最大早餐連鎖體系展開規模化部署，執行能力市場已驗證</li>
+        <li><strong>日本首都高速公司認證並簽約</strong>——獲日本一線企業採用，技術達到出口等級標準</li>
+
+        <li><strong>全機台灣製造・硬體軟體自主研發</strong>——從機構設計、韌體到 IoT 後台系統全數自研，不依賴外部 ODM，可依合作方需求快速客製外觀、介面與功能規格</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: HYGIENE REGULATORY -->
+<div style="background:#0a1628;padding:64px 0 72px;">
+<div class="pw">
+
+  <!-- Law Alert Header -->
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;">
+    <div style="background:#dc2626;color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;padding:6px 16px;border-radius:2px;">新法上路 · 2025.06.04</div>
+    <div style="width:1px;height:24px;background:rgba(255,255,255,0.2);"></div>
+    <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#aaa;letter-spacing:1px;">食品良好衛生規範準則 修正施行</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+    <!-- Left: Regulation context -->
+    <div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#fff;line-height:1.3;margin:0 0 20px;">摸食物前摸錢<br><span style="color:#dc2626;">最高罰 2 億元</span><br><span style="font-size:18px;font-weight:400;color:#aaa;">這不是商機，這是市場結構性改變</span></h2>
+      <p style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#bbb;line-height:1.9;margin-bottom:24px;">衛福部 2025 年 6 月 4 日施行新修《食品良好衛生規範準則》：<br>
+      <strong style="color:#fff;">食品從業人員不得同時或連續觸碰金錢及即食食品。</strong><br>
+      外送員亦禁止於送餐時抽菸、嚼檳榔，食品運送須完整覆蓋。<br>
+      違者輔導後仍未改善：<strong style="color:#dc2626;">罰鍰新台幣 60 萬至 2 億元。</strong></p>
+
+      <!-- Quote box -->
+      <div style="border-left:3px solid #06C167;padding-left:18px;margin-bottom:24px;">
+        <div style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#06C167;font-weight:600;margin-bottom:6px;">衛福部建議合規方案</div>
+        <div style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#ccc;line-height:1.8;">使用夾具或手套 ／ 讓顧客自行找零 ／<br><strong style="color:#fff;">導入無接觸點餐系統（Contactless Ordering）</strong></div>
+      </div>
+
+      <!-- The answer -->
+      <div style="background:rgba(6,193,103,0.12);border:1px solid rgba(6,193,103,0.3);border-radius:8px;padding:20px 24px;">
+        <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;color:#06C167;margin-bottom:10px;">UBER EATS SMART LOCKER = 完美合規方案</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:rgba(255,255,255,0.05);border-radius:6px;padding:12px 14px;text-align:center;">
+            <div style="font-family:'Noto Sans TC',sans-serif;font-size:20px;margin-bottom:4px;">💳</div>
+            <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;">線上付款</div>
+            <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:#888;">App 下單完成付款<br>零現金接觸</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.05);border-radius:6px;padding:12px 14px;text-align:center;">
+            <div style="font-family:'Noto Sans TC',sans-serif;font-size:20px;margin-bottom:4px;">🔒</div>
+            <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;">現場自動取貨</div>
+            <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:#888;">掃碼開門取餐<br>全程無人接觸</div>
+          </div>
+        </div>
+        <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#06C167;text-align:center;margin-top:12px;font-weight:600;">從下單到取餐，人手完全不碰食物</div>
+      </div>
+    </div>
+
+    <!-- Right: 4 Smart Features -->
+    <div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:#06C167;margin-bottom:20px;">SMART LOCKER 四大衛生科技</div>
+
+      <!-- Feature 1 -->
+      <div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="flex-shrink:0;width:48px;height:48px;background:rgba(6,193,103,0.15);border:1px solid rgba(6,193,103,0.3);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:22px;">🚪</span>
+        </div>
+        <div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">雙面開門 · 動線不打架</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#aaa;line-height:1.8;">店內員工從後方放入餐點，騎手從外側掃碼取餐。<strong style="color:#ddd;">兩個流程完全分離</strong>，互不干擾，高峰時段尤其關鍵。</div>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="flex-shrink:0;width:48px;height:48px;background:rgba(124,185,255,0.15);border:1px solid rgba(124,185,255,0.3);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:22px;">🔵</span>
+        </div>
+        <div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">紫外線自動殺菌 · 每格獨立循環</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#aaa;line-height:1.8;">每次關門後自動啟動 UV-C 殺菌循環，格與格之間<strong style="color:#ddd;">氣流完全隔離</strong>，符合最嚴格食品衛生標準，也是回應新法規的直接技術解答。</div>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="flex-shrink:0;width:48px;height:48px;background:rgba(255,200,50,0.15);border:1px solid rgba(255,200,50,0.3);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:22px;">⚡</span>
+        </div>
+        <div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">雷射感應自動關門 · 零人工操作</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#aaa;line-height:1.8;">取餐後雷射感應偵測格內已清空，<strong style="color:#ddd;">自動關門上鎖</strong>，無需手動。開門關門全程無需觸碰機身，大幅降低接觸污染風險。</div>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div style="display:flex;gap:18px;align-items:flex-start;">
+        <div style="flex-shrink:0;width:48px;height:48px;background:rgba(255,100,100,0.15);border:1px solid rgba(255,100,100,0.3);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:22px;">✨</span>
+        </div>
+        <div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;">一體成形格體 · 無邊縫設計</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#aaa;line-height:1.8;">每個格子採<strong style="color:#ddd;">一體成型模具製造</strong>，無拼接縫隙，食物殘渣無處藏匿。<br>清潔人員一抹即淨，衛生稽查達標零壓力，適合高頻翻格使用。</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom regulatory source -->
+  <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:12px;">
+    <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:#666;">法規來源</div>
+    <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:#555;">衛福部食藥署《食品良好衛生規範準則》2025年6月4日修正施行 ／ 中央社 2025.06.05 報導（cna.com.tw/news/ahel/202506050136）</div>
+  </div>
+
+</div>
+</div>
+
+<!-- SECTION 5: PLAN -->
+<div class="sec">
+  <div class="sl">推進計畫 · Phased Rollout</div>
+  <div class="plan-grid">
+    <div class="plan-card first">
+      <div class="plan-phase">Phase 0 · 立即啟動</div>
+      <div class="plan-period">2026.Q2</div>
+      <div class="plan-title">決策確認 + 客製設計</div>
+      <div class="plan-desc">確認合作框架、Uber Eats 品牌客製外觀設計稿。從 Uber Eats 後台篩選訂單量前 20% 的門店名單，作為試點候選清單。</div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-phase">Phase 1</div>
+      <div class="plan-period">2026.Q3–Q4</div>
+      <div class="plan-title">Pilot 試點 20 家</div>
+      <div class="plan-desc">優先選取訂單量高、騎手等待時間長的門店安裝。全年完成 20 台部署，持續追蹤 KPI：騎手等待縮短幅度、門店評分變化、訂單完成率與復單率。</div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-phase">Phase 2</div>
+      <div class="plan-period">2027 上半年</div>
+      <div class="plan-title">數據驅動選點擴充</div>
+      <div class="plan-desc">以 Pilot 實測數據為依據，鎖定 <strong>Uber Eats 台灣訂單量前 20% 的餐廳</strong>，約 1,600 家。優先佈樁高效益節點，每個據點的影響力是一般門店的 5 倍以上。</div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-phase">Phase 3</div>
+      <div class="plan-period">2027 下半年起</div>
+      <div class="plan-title">壁壘建立 + 數據賦能</div>
+      <div class="plan-desc">前 20% 高流量門店完成覆蓋後，品牌壁壘自然形成。啟動 AI 離峰推播功能，取餐數據與平台訂單系統整合，創造 Uber Eats 獨有的餐廳智能管理體驗。</div>
+    </div>
+  </div>
+
+  <!-- 20% logic callout -->
+  <div style="background:var(--navy);color:#fff;padding:28px 32px;margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;">
+    <div style="text-align:center;padding-right:28px;border-right:1px solid rgba(255,255,255,.15);">
+      <div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:900;color:#f5c842;line-height:1;">20%</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;letter-spacing:.06em;">訂單量前段餐廳</div>
+    </div>
+    <div>
+      <p style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:rgba(255,255,255,.85);line-height:1.85;">
+        <strong style="color:#fff;display:block;margin-bottom:8px;font-size:15px;">為什麼鎖定訂單量前 20%，效益是整體佈樁的 5 倍以上？</strong>
+        外送平台的訂單分佈高度集中：訂單量排名前 20% 的餐廳，通常貢獻平台 <strong style="color:#f5c842;">60–70% 的總訂單量</strong>（符合 80/20 法則）。
+        在這些高流量節點安裝智能取餐點，每台設備的日均使用頻率是尾部門店的 5 倍以上，
+        騎手等待改善效益、品牌曝光次數、數據採集量，全數同步放大。
+        <strong style="color:#fff;">用最少的台數，取得最大的平台效益。</strong>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- /pw -->
+
+<!-- SCENARIOS SECTION -->
+<div style="background:#fff;padding:60px 0 80px;">
+<div class="pw">
+
+  <!-- Section Header -->
+  <div style="text-align:center;margin-bottom:48px;">
+    <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;color:#06C167;text-transform:uppercase;margin-bottom:12px;">Application Scenarios · 應用場景分析</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#111;line-height:1.2;margin:0 0 16px;">哪類餐廳最適合 GraBox？<br><span style="font-size:22px;font-weight:400;color:#555;">四種安裝模式，覆蓋 Uber Eats 全業態</span></h2>
+    <p style="font-family:'Noto Sans TC',sans-serif;font-size:14px;color:#666;max-width:620px;margin:0 auto;line-height:1.8;">GraBox 靈活的產品設計，讓每一種 Uber Eats 合作餐廳都能找到對應的安裝模式，<br>無需裝修、無需複雜整合，最快當天部署上線。</p>
+  </div>
+
+  <!-- TYPE 1: 外牆式 -->
+  <div style="margin-bottom:64px;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
+      <div style="background:#06C167;color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:2px;">TYPE 01</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#111;margin:0;">外牆式 · Exterior Wall Mount</h3>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#06C167;font-weight:600;">如麥當勞得來速</div>
+    </div>
+    <div style="width:48px;height:3px;background:#06C167;margin-bottom:16px;"></div>
+    <p style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#555;line-height:1.9;margin-bottom:20px;max-width:800px;">
+      <strong>適合業態：</strong>早餐店、手搖飲、速食連鎖、便當店（高流量、店面緊鄰騎樓）<br>
+      <strong>安裝方式：</strong>嵌入外牆或騎樓隔板，GraBox 面向騎手，店內人員從後方放入餐袋<br>
+      <strong>核心優勢：</strong>騎手無需進店，街道直接取餐，0 秒等候，消除尖峰堵塞<br>
+      <strong>適合 Uber Eats 業態佔比估計：</strong>~35%（早餐/速食/手搖 = 最高訂單密度）
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type1-breakfast-wall.jpg" style="width:100%;height:240px;object-fit:cover;display:block;" alt="早餐店外牆式 GraBox">
+        <div style="padding:14px 16px;background:#f8f8f8;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#06C167;margin-bottom:4px;">早餐店 · 麥味登類型</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">8AM 早餐尖峰，騎手掃 QR 即取，員工不中斷備餐流程</div>
+        </div>
+      </div>
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type1-bubbletea-wall.jpg" style="width:100%;height:240px;object-fit:cover;display:block;" alt="手搖飲外牆式 GraBox">
+        <div style="padding:14px 16px;background:#f8f8f8;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#06C167;margin-bottom:4px;">手搖飲 · Tiger Sugar 類型</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">多位騎手同時取不同格，封杯飲料穩定保存，不翻倒</div>
+        </div>
+      </div>
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type1-fastfood-wall.jpg" style="width:100%;height:240px;object-fit:cover;display:block;" alt="速食連鎖外牆式 GraBox">
+        <div style="padding:14px 16px;background:#f8f8f8;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#06C167;margin-bottom:4px;">速食連鎖 · 多欄大型牆面</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">多欄位同時處理，三組騎手並行取單，展現規模效益</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 2: 外掛式 -->
+  <div style="margin-bottom:64px;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
+      <div style="background:#1a1a2e;color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:2px;">TYPE 02</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#111;margin:0;">外掛式 · Add-on Counter Mount</h3>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#1a1a2e;font-weight:600;">店內桌放即用，零裝修</div>
+    </div>
+    <div style="width:48px;height:3px;background:#1a1a2e;margin-bottom:16px;"></div>
+    <p style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#555;line-height:1.9;margin-bottom:20px;max-width:800px;">
+      <strong>適合業態：</strong>咖啡廳、日式料理、便當店、夜市攤（有實體門市但空間受限）<br>
+      <strong>安裝方式：</strong>GraBox 放在入口處桌面或專用架上，員工從前方放入，騎手入店掃碼<br>
+      <strong>核心優勢：</strong>不需打牆不需拉線，搬遷方便，適合租賃店面，今天到貨明天上線<br>
+      <strong>適合 Uber Eats 業態佔比估計：</strong>~50%（中小型獨立餐廳 = 主力市場）
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type2-cafe-counter.jpg" style="width:100%;height:220px;object-fit:cover;display:block;" alt="咖啡廳外掛式 GraBox">
+        <div style="padding:14px 16px;background:#f8f8f8;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">咖啡廳 · cama / 路易莎類型</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">吧台旁擺放，咖啡袋封存保溫，騎手不影響候位客人動線</div>
+        </div>
+      </div>
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type2-japanese-restaurant.jpg" style="width:100%;height:220px;object-fit:cover;display:block;" alt="日式餐廳外掛式 GraBox">
+        <div style="padding:14px 16px;background:#f8f8f8;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">日式料理 · 中高單價餐廳</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">木質設計可搭任何裝潢，高端感不打折，品牌形象不受影響</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type2-nightmarket-stall.jpg" style="width:100%;height:220px;object-fit:cover;display:block;" alt="夜市攤外掛式 GraBox">
+        <div style="padding:14px 16px;background:#f8f8f8;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">夜市攤 · 鹹酥雞 / 蚵仔麵線</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">夜市高峰人流，GraBox 的綠光成為視覺標誌，騎手遠遠就能找到</div>
+        </div>
+      </div>
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type2-drinks-shop-counter.jpg" style="width:100%;height:220px;object-fit:cover;display:block;" alt="早餐飲料店外掛式 GraBox">
+        <div style="padding:14px 16px;background:#f8f8f8;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#1a1a2e;margin-bottom:4px;">傳統早餐飲料店</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">老闆一手接外帶、一手放 GraBox，流程無縫融入，效率翻倍</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 3: 免整合單機 -->
+  <div style="margin-bottom:64px;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
+      <div style="background:#e8500a;color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:2px;">TYPE 03</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#111;margin:0;">免整合單機 · Zero-Integration Standalone</h3>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#e8500a;font-weight:600;">免POS · 搭 App 即上線</div>
+    </div>
+    <div style="width:48px;height:3px;background:#e8500a;margin-bottom:16px;"></div>
+    <p style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#555;line-height:1.9;margin-bottom:20px;max-width:800px;">
+      <strong>適合業態：</strong>小吃攤、路邊店、個人工作室、不想換 POS 的傳統業者<br>
+      <strong>安裝方式：</strong>GraBox 插電即用，搭配 Uber Eats 合作 App，手機確認訂單→放入→騎手掃碼<br>
+      <strong>核心優勢：</strong>無硬體成本門檻，無技術整合需求，任何人 3 分鐘學會，<strong>當天可上線</strong><br>
+      <strong>適合 Uber Eats 業態佔比估計：</strong>~15%（長尾小店 = 上線阻力最低，快速鋪量利器）
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type3-standalone-simple.jpg" style="width:100%;height:260px;object-fit:cover;display:block;" alt="免整合小店 GraBox">
+        <div style="padding:14px 16px;background:#fff3ee;border-top:3px solid #e8500a;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#e8500a;margin-bottom:4px;">任何小店 · 免 POS 直接上線</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">手機看單→放入 GraBox→騎手掃碼取餐，三步到底，無額外成本</div>
+        </div>
+      </div>
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <img src="assets/haibo_ubereats/scenarios/type3-no-pos-workflow.jpg" style="width:100%;height:260px;object-fit:cover;display:block;" alt="三步驟工作流程">
+        <div style="padding:14px 16px;background:#fff3ee;border-top:3px solid #e8500a;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#e8500a;margin-bottom:4px;">三步驟流程圖 · App → 放入 → 取餐</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;color:#444;line-height:1.6;">無電腦、無 POS、無複雜設定，最快速的新店上線方式</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPE 4: 未來擴充 -->
+  <div style="margin-bottom:40px;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
+      <div style="background:linear-gradient(135deg,#06C167,#0a4f9f);color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:2px;">TYPE 04</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#111;margin:0;">AI 進化版 · Intelligent Engagement Hub</h3>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;background:linear-gradient(90deg,#06C167,#0a4f9f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">2027+ · 數據驅動下一步</div>
+    </div>
+    <div style="width:48px;height:3px;background:linear-gradient(90deg,#06C167,#0a4f9f);margin-bottom:16px;"></div>
+    <p style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#555;line-height:1.9;margin-bottom:20px;max-width:800px;">
+      <strong>擴充方向：</strong>AI 特餐推薦、會員點數累積、離峰優惠、文創周邊販售、品牌 co-branding<br>
+      <strong>商業邏輯：</strong>GraBox 從「取餐設備」升級為「品牌互動觸點」，每次取餐都是行銷機會<br>
+      <strong>對 Uber Eats 的價值：</strong>自建會員生態、降低對第三方平台依賴、提升用戶黏著度<br>
+      <strong>先例：</strong>亞馬遜 Locker → Hub → Package Hub（從物流到廣告媒體，估計年收超 3 億美元）
+    </p>
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;">
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(6,193,103,0.2);">
+        <img src="assets/haibo_ubereats/scenarios/type4-ai-evolution.jpg" style="width:100%;height:280px;object-fit:cover;display:block;" alt="AI Evolution GraBox">
+        <div style="padding:16px 18px;background:linear-gradient(135deg,#0a1628,#0a2a18);color:#fff;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#06C167;margin-bottom:6px;letter-spacing:2px;">AI EVOLUTION · 2027+</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#ccc;line-height:1.7;">大螢幕 AI 介面 · 即時推薦 · 會員點數 · 數據儀表板 · 文創商品<br>GraBox 成為 Uber Eats 線下品牌旗艦的核心載體</div>
+        </div>
+      </div>
+      <div style="border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(6,193,103,0.2);">
+        <img src="assets/haibo_ubereats/scenarios/type4-member-loyalty.jpg" style="width:100%;height:280px;object-fit:cover;display:block;" alt="Member Loyalty GraBox">
+        <div style="padding:16px 18px;background:linear-gradient(135deg,#0a1628,#0a2a18);color:#fff;">
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;color:#06C167;margin-bottom:6px;letter-spacing:2px;">MEMBER LOYALTY</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#ccc;line-height:1.7;">掃碼取餐同時累積點數<br>GraBox = 最低成本的<br>品牌忠誠度建設工具</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Bar -->
+  <div style="background:#0a1628;border-radius:12px;padding:32px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;">
+    <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.1);padding-right:24px;">
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#06C167;margin-bottom:6px;">35%</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;color:#fff;font-weight:600;margin-bottom:4px;">外牆式適用</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:#888;">早餐/速食/手搖</div>
+    </div>
+    <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.1);padding-right:24px;">
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#7cb9ff;margin-bottom:6px;">50%</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;color:#fff;font-weight:600;margin-bottom:4px;">外掛式適用</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:#888;">中小獨立餐廳主力</div>
+    </div>
+    <div style="text-align:center;border-right:1px solid rgba(255,255,255,0.1);padding-right:24px;">
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#ff8c42;margin-bottom:6px;">15%</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;color:#fff;font-weight:600;margin-bottom:4px;">免整合適用</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:#888;">長尾小店快速鋪量</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,#06C167,#7cb9ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;">100%</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;color:#fff;font-weight:600;margin-bottom:4px;">覆蓋所有業態</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:#888;">無需額外硬體改造</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- VENUE MATRIX SECTION -->
+<div class="pw" style="padding-top:72px;padding-bottom:72px;">
+<div class="sec">
+
+  <div class="sl">SECTION 7 · 場域佈署決策矩陣</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--ink);margin:0 0 8px;">哪些餐廳值得裝？怎麼配格子？</h2>
+  <p style="font-family:'Noto Sans TC',sans-serif;font-size:14px;color:var(--muted);margin:0 0 40px;">基於實際訂單邏輯、場地條件與投資回報，以下為 GM × CMO 討論共識後的佈署準則</p>
+
+  <!-- GM × CMO 對話 -->
+  <div style="margin-bottom:40px;">
+    <div class="vm-exchange vm-gm">
+      <div class="vm-role"><span class="vm-rb-gm" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:.2em;">UE GM · 台灣總經理</span></div>
+      我最擔心的是：推廣到不合適的場域，結果格子閒置、業主抱怨、Uber Eats 品牌受損。手搖飲我理解，但放到精緻餐廳會不會反而掉格調？夜市那種流動攤位也做不了吧？
+    </div>
+    <div class="vm-exchange vm-cmo">
+      <div class="vm-role"><span class="vm-rb-cmo" style="background:var(--uber);color:#000;padding:2px 8px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:.2em;">CMO · 行銷長</span></div>
+      完全同意。我們的原則是：<strong>「高頻、高外送比、可固定安裝」</strong> 三合一才進。精緻餐廳客單高但外送比低，且客人介意感，主動排除。夜市流動攤位根本無法固定安裝，也排除。但我們還有 20 種以上業態符合條件——關鍵是格子配比要跟業態掛鉤，不能用同一套。
+    </div>
+    <div class="vm-exchange vm-gm">
+      <div class="vm-role"><span class="vm-rb-gm" style="background:var(--navy);color:#fff;padding:2px 8px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:.2em;">UE GM · 台灣總經理</span></div>
+      格子配比怎麼算？我不想每間店都派人去量，要有一套可複製的公式。
+    </div>
+    <div class="vm-exchange vm-cmo">
+      <div class="vm-role"><span class="vm-rb-cmo" style="background:var(--uber);color:#000;padding:2px 8px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:.2em;">CMO · 行銷長</span></div>
+      有的。以餐廳日均單量為輸入，算出「同時滯留格數」再加緩衝，就是最小建議格數。然後依業態決定大/小格比例——手搖飲幾乎全小格，燒臘/日式則以大格為主。我整理成標準表，見下方。
+    </div>
+  </div>
+
+  <!-- 格子計算公式 -->
+  <div style="background:var(--navy);color:#fff;border-radius:8px;padding:28px 36px;margin-bottom:40px;">
+    <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px;">LOCKER SIZING FORMULA · 格數計算公式</div>
+    <div style="font-family:'Noto Sans TC',sans-serif;font-size:15px;font-weight:700;color:var(--uber);margin-bottom:10px;">
+      建議格數 = (日均單量 × 20% × 15分鐘 ÷ 60) × 1.5緩衝 + 20%安全餘裕
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px;">
+      <div style="border-left:3px solid var(--uber);padding-left:14px;">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:4px;">外送比估算</div>
+        <div style="font-size:13px;">20% 訂單使用取餐站</div>
+      </div>
+      <div style="border-left:3px solid var(--uber);padding-left:14px;">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:4px;">平均等候時間</div>
+        <div style="font-size:13px;">15 分鐘滯留時間</div>
+      </div>
+      <div style="border-left:3px solid var(--uber);padding-left:14px;">
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:4px;">標準格尺寸</div>
+        <div style="font-size:13px;">大格 300×300×420mm／小格 200×200×350mm</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 場域分級表 -->
+  <div style="margin-bottom:16px;">
+    <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">TIER CLASSIFICATION · 場域優先分級（20 種業態）</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+      <span style="background:#7c3aed;color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;padding:4px 12px;border-radius:2px;">TIER 0 · 必攻旗艦</span>
+      <span style="background:var(--uber);color:#000;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;padding:4px 12px;border-radius:2px;">TIER 1 · 核心主力</span>
+      <span style="background:var(--navy);color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;padding:4px 12px;border-radius:2px;">TIER 2 · 穩健補量</span>
+      <span style="background:#78716c;color:#fff;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;padding:4px 12px;border-radius:2px;">TIER 3 · 條件佈署</span>
+    </div>
+  </div>
+  <div style="overflow-x:auto;margin-bottom:40px;">
+  <table class="vm-table">
+    <thead>
+      <tr>
+        <th style="text-align:left;background:var(--ink);color:#fff;padding:10px 14px;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;">Tier</th>
+        <th style="text-align:left;background:var(--ink);color:#fff;padding:10px 14px;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;">業態</th>
+        <th style="text-align:center;background:var(--ink);color:#fff;padding:10px 14px;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;">日均外送單</th>
+        <th style="text-align:center;background:var(--ink);color:#fff;padding:10px 14px;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;">建議格數</th>
+        <th style="text-align:center;background:var(--ink);color:#fff;padding:10px 14px;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;">大：小格比</th>
+        <th style="text-align:center;background:var(--ink);color:#fff;padding:10px 14px;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;">安裝型式</th>
+        <th style="text-align:left;background:var(--ink);color:#fff;padding:10px 14px;font-family:'Noto Sans TC',sans-serif;font-size:11px;font-weight:700;">核心理由</th>
+      </tr>
+    </thead>
+    <tbody style="font-family:'Noto Sans TC',sans-serif;font-size:12px;">
+      <!-- TIER 0 -->
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:#7c3aed;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 0</span></td>
+        <td style="padding:10px 14px;font-weight:700;">幽靈廚房 Ghost Kitchen</td>
+        <td style="padding:10px 14px;text-align:center;">150–400</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#7c3aed;">24–32格</td>
+        <td style="padding:10px 14px;text-align:center;">6:4</td>
+        <td style="padding:10px 14px;text-align:center;">外牆嵌入</td>
+        <td style="padding:10px 14px;color:var(--muted);">100% 外送業態，無堂食干擾，騎手集中度最高</td>
+      </tr>
+      <tr style="background:#faf9ff;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:#7c3aed;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 0</span></td>
+        <td style="padding:10px 14px;font-weight:700;">早餐連鎖 (6–11AM 高峰)</td>
+        <td style="padding:10px 14px;text-align:center;">80–200</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#7c3aed;">12–20格</td>
+        <td style="padding:10px 14px;text-align:center;">5:5</td>
+        <td style="padding:10px 14px;text-align:center;">外牆壁掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">早餐時段爆量，現場人流同步擠佔空間，取餐站直接疏散壓力</td>
+      </tr>
+      <!-- TIER 1 -->
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--uber);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 1</span></td>
+        <td style="padding:10px 14px;font-weight:700;">手搖飲料店</td>
+        <td style="padding:10px 14px;text-align:center;">60–180</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#078a48;">10–16格</td>
+        <td style="padding:10px 14px;text-align:center;">2:8</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">飲料杯體小，90%用小格；週末下午訂單密集</td>
+      </tr>
+      <tr style="background:#f7fdf9;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--uber);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 1</span></td>
+        <td style="padding:10px 14px;font-weight:700;">便當店 / 自助餐</td>
+        <td style="padding:10px 14px;text-align:center;">50–150</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#078a48;">10–14格</td>
+        <td style="padding:10px 14px;text-align:center;">7:3</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">午餐 11–13 單爆量；便當盒需大格，附湯另配</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--uber);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 1</span></td>
+        <td style="padding:10px 14px;font-weight:700;">咖啡廳</td>
+        <td style="padding:10px 14px;text-align:center;">40–120</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#078a48;">8–12格</td>
+        <td style="padding:10px 14px;text-align:center;">3:7</td>
+        <td style="padding:10px 14px;text-align:center;">店內外掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">飲品主力小格，甜點/三明治用大格；全天候穩定流量</td>
+      </tr>
+      <tr style="background:#f7fdf9;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--uber);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 1</span></td>
+        <td style="padding:10px 14px;font-weight:700;">速食連鎖 (麥當勞/肯德基型)</td>
+        <td style="padding:10px 14px;text-align:center;">80–250</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#078a48;">14–24格</td>
+        <td style="padding:10px 14px;text-align:center;">6:4</td>
+        <td style="padding:10px 14px;text-align:center;">外牆壁掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">品牌本身已高外送比；門口空間充足，外牆壁掛最易落地</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--uber);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 1</span></td>
+        <td style="padding:10px 14px;font-weight:700;">炸雞排 / 鹽酥雞</td>
+        <td style="padding:10px 14px;text-align:center;">40–100</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#078a48;">8–10格</td>
+        <td style="padding:10px 14px;text-align:center;">7:3</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">夜間單量高峰，現場排隊長；取餐站讓騎手免等</td>
+      </tr>
+      <tr style="background:#f7fdf9;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--uber);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 1</span></td>
+        <td style="padding:10px 14px;font-weight:700;">燒臘 / 港式快餐</td>
+        <td style="padding:10px 14px;text-align:center;">50–130</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#078a48;">10–14格</td>
+        <td style="padding:10px 14px;text-align:center;">8:2</td>
+        <td style="padding:10px 14px;text-align:center;">店內外掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">飯盒體積大，全用大格；午餐衝量顯著</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--uber);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 1</span></td>
+        <td style="padding:10px 14px;font-weight:700;">麵食 / 湯麵店</td>
+        <td style="padding:10px 14px;text-align:center;">40–100</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#078a48;">8–10格</td>
+        <td style="padding:10px 14px;text-align:center;">8:2</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">湯類外送保溫需求高，GraBox 隔熱性能為主賣點</td>
+      </tr>
+      <!-- TIER 2 -->
+      <tr style="background:#f7f8fc;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 2</span></td>
+        <td style="padding:10px 14px;font-weight:700;">日式定食 / 拉麵</td>
+        <td style="padding:10px 14px;text-align:center;">30–80</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--navy);">6–10格</td>
+        <td style="padding:10px 14px;text-align:center;">7:3</td>
+        <td style="padding:10px 14px;text-align:center;">店內外掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">外送比中等；湯品保溫強化體驗，可納入 Pilot</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 2</span></td>
+        <td style="padding:10px 14px;font-weight:700;">輕食 / 沙拉店</td>
+        <td style="padding:10px 14px;text-align:center;">30–70</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--navy);">6–8格</td>
+        <td style="padding:10px 14px;text-align:center;">5:5</td>
+        <td style="padding:10px 14px;text-align:center;">店內外掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">商辦區午餐需求穩定，辦公族外送用戶重疊度高</td>
+      </tr>
+      <tr style="background:#f7f8fc;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 2</span></td>
+        <td style="padding:10px 14px;font-weight:700;">壽司 / 迴轉壽司外帶</td>
+        <td style="padding:10px 14px;text-align:center;">25–60</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--navy);">6–8格</td>
+        <td style="padding:10px 14px;text-align:center;">6:4</td>
+        <td style="padding:10px 14px;text-align:center;">店內外掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">客單高，體積規則；週末外送比拉升</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 2</span></td>
+        <td style="padding:10px 14px;font-weight:700;">甜點 / 蛋糕店</td>
+        <td style="padding:10px 14px;text-align:center;">20–50</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--navy);">4–6格</td>
+        <td style="padding:10px 14px;text-align:center;">5:5</td>
+        <td style="padding:10px 14px;text-align:center;">店內外掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">外送比適中，下午茶+節慶衝量；需保冷功能加分</td>
+      </tr>
+      <tr style="background:#f7f8fc;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 2</span></td>
+        <td style="padding:10px 14px;font-weight:700;">素食 / 蔬食料理</td>
+        <td style="padding:10px 14px;text-align:center;">20–60</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--navy);">4–8格</td>
+        <td style="padding:10px 14px;text-align:center;">6:4</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">忠實用戶群，外送比穩定；ESG 形象與 Uber Eats 綠色行銷疊加</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 2</span></td>
+        <td style="padding:10px 14px;font-weight:700;">泰式 / 東南亞料理</td>
+        <td style="padding:10px 14px;text-align:center;">25–70</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--navy);">6–8格</td>
+        <td style="padding:10px 14px;text-align:center;">6:4</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">湯類多，保溫需求明顯；外送比逐年提升</td>
+      </tr>
+      <tr style="background:#f7f8fc;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 2</span></td>
+        <td style="padding:10px 14px;font-weight:700;">熱炒 / 台式合菜</td>
+        <td style="padding:10px 14px;text-align:center;">30–80</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--navy);">6–10格</td>
+        <td style="padding:10px 14px;text-align:center;">8:2</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">晚餐衝量；菜餚體積大，全大格；配上保溫可解決外送冷掉問題</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:var(--navy);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 2</span></td>
+        <td style="padding:10px 14px;font-weight:700;">辦公大樓自助餐 / 美食街</td>
+        <td style="padding:10px 14px;text-align:center;">50–150</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:var(--navy);">8–16格</td>
+        <td style="padding:10px 14px;text-align:center;">6:4</td>
+        <td style="padding:10px 14px;text-align:center;">嵌入式</td>
+        <td style="padding:10px 14px;color:var(--muted);">B2B 集中單量，可協商管委會安裝；1 台服務多家攤位</td>
+      </tr>
+      <!-- TIER 3 -->
+      <tr style="background:#f9f7f5;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:#78716c;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 3</span></td>
+        <td style="padding:10px 14px;font-weight:700;">學區周邊便利餐飲</td>
+        <td style="padding:10px 14px;text-align:center;">20–50</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#78716c;">4–6格</td>
+        <td style="padding:10px 14px;text-align:center;">5:5</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">平日流量穩定，寒暑假衰退；需評估年化平均單量</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:#78716c;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 3</span></td>
+        <td style="padding:10px 14px;font-weight:700;">夜市固定店鋪</td>
+        <td style="padding:10px 14px;text-align:center;">20–60</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#78716c;">4–6格</td>
+        <td style="padding:10px 14px;text-align:center;">6:4</td>
+        <td style="padding:10px 14px;text-align:center;">外掛落地</td>
+        <td style="padding:10px 14px;color:var(--muted);">僅固定店鋪可安裝（非攤車）；單日流量集中深夜</td>
+      </tr>
+      <tr style="background:#f9f7f5;border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:#78716c;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 3</span></td>
+        <td style="padding:10px 14px;font-weight:700;">精品咖啡 / 文青選物</td>
+        <td style="padding:10px 14px;text-align:center;">15–40</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#78716c;">4格</td>
+        <td style="padding:10px 14px;text-align:center;">3:7</td>
+        <td style="padding:10px 14px;text-align:center;">店內外掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">客單高但量少；主要評估品牌背書價值，非量能</td>
+      </tr>
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px 14px;"><span style="background:#78716c;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px;">TIER 3</span></td>
+        <td style="padding:10px 14px;font-weight:700;">中高價位西式餐廳</td>
+        <td style="padding:10px 14px;text-align:center;">15–40</td>
+        <td style="padding:10px 14px;text-align:center;font-weight:700;color:#78716c;">4–6格</td>
+        <td style="padding:10px 14px;text-align:center;">7:3</td>
+        <td style="padding:10px 14px;text-align:center;">店內外掛</td>
+        <td style="padding:10px 14px;color:var(--muted);">外送比偏低，先以試點形式確認業主意願</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- 主動排除業態 -->
+  <div style="margin-bottom:40px;">
+    <div style="font-family:'Noto Sans TC',sans-serif;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">ACTIVE EXCLUSIONS · 主動排除（不浪費佈署資源）</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="border:1px solid #fde8e8;border-left:4px solid var(--red);background:#fff9f9;padding:14px 18px;font-family:'Noto Sans TC',sans-serif;font-size:12px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:4px;">精緻餐廳 Fine Dining</div>
+        <div style="color:var(--muted);">客單 NT$800+ 但外送比 &lt;5%；品牌調性與取餐站不相容；主動放棄</div>
+      </div>
+      <div style="border:1px solid #fde8e8;border-left:4px solid var(--red);background:#fff9f9;padding:14px 18px;font-family:'Noto Sans TC',sans-serif;font-size:12px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:4px;">便利商店 CVS (7-11/全家)</div>
+        <div style="color:var(--muted);">已有自有取貨系統；與 Uber Eats 生態重疊但競爭，策略矛盾</div>
+      </div>
+      <div style="border:1px solid #fde8e8;border-left:4px solid var(--red);background:#fff9f9;padding:14px 18px;font-family:'Noto Sans TC',sans-serif;font-size:12px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:4px;">流動夜市攤 / 推車</div>
+        <div style="color:var(--muted);">無固定安裝點；每日收攤無法維持固定取餐動線</div>
+      </div>
+      <div style="border:1px solid #fde8e8;border-left:4px solid var(--red);background:#fff9f9;padding:14px 18px;font-family:'Noto Sans TC',sans-serif;font-size:12px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:4px;">傳統市場 (散佈攤位)</div>
+        <div style="color:var(--muted);">外送比極低；顧客群習慣現場採購；投資回報不符</div>
+      </div>
+      <div style="border:1px solid #fde8e8;border-left:4px solid var(--red);background:#fff9f9;padding:14px 18px;font-family:'Noto Sans TC',sans-serif;font-size:12px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:4px;">酒吧 / KTV / 娛樂場所</div>
+        <div style="color:var(--muted);">Uber Eats 外送比低；深夜單量雖有但不穩；業主意願存疑</div>
+      </div>
+      <div style="border:1px solid #fde8e8;border-left:4px solid var(--red);background:#fff9f9;padding:14px 18px;font-family:'Noto Sans TC',sans-serif;font-size:12px;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:4px;">任何業態日均單量 &lt;20 單</div>
+        <div style="color:var(--muted);">低於閾值，格子閒置率過高；先養量達標後再評估</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GM 結論 共識 bar -->
+  <div style="background:var(--navy);color:#fff;border-radius:8px;padding:24px 36px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div style="border-right:1px solid rgba(255,255,255,.1);padding-right:24px;">
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.45);margin-bottom:8px;">GM 結論</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:13px;line-height:1.8;">20 種可佈署業態，已足夠覆蓋台灣外送餐廳前 80% 訂單量節點</div>
+    </div>
+    <div style="border-right:1px solid rgba(255,255,255,.1);padding-right:24px;">
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.45);margin-bottom:8px;">CMO 建議</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:13px;line-height:1.8;">Pilot 優先 TIER 0–1，快速取得數據；TIER 2–3 以數據為據逐步展開</div>
+    </div>
+    <div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.45);margin-bottom:8px;">共同準則</div>
+      <div style="font-family:'Noto Sans TC',sans-serif;font-size:13px;line-height:1.8;">日均外送單 ≥20、可固定安裝、業主簽約同意 — 三項缺一不選</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-pre">致 Uber Eats 台灣策略決策者</div>
+  <h2 class="cta-h">
+    蝦皮的護城河，<br>用 <em>3 年</em>建成，難以複製。<br>Uber Eats 的機會，現在就在眼前。
+  </h2>
+  <p class="cta-sub">
+    硬體就緒。執行夥伴就緒。數據支撐就緒。<br>
+    從 <strong style="color:#fff;">20 家高流量試點</strong> 開始，2026 Q3–Q4 完成，<br>
+    2027 年以數據為依據，擴充至訂單量前 20% 核心門店。
+  </p>
+  <div class="cta-blocks">
+    <div class="cta-block">
+      <div class="cr">2026 試點目標</div>
+      <div class="cn">20 家餐廳</div>
+      <div class="cd">Q3–Q4 完成，優先高單量門店</div>
+    </div>
+    <div class="cta-block">
+      <div class="cr">2027 擴充目標</div>
+      <div class="cn">前 20% 門店</div>
+      <div class="cd">覆蓋平台 60–70% 訂單量節點</div>
+    </div>
+    <div class="cta-block">
+      <div class="cr">執行夥伴</div>
+      <div class="cn">海柏特科技</div>
+      <div class="cd">hsnservice.com/tw · 現有供應商</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">Market Strategy Briefing · 海柏特 × MCS 聯合出具 · 2026-05-27</div>
+  <div class="footer-note">本文件為概念宣導備忘錄，專供 Uber Eats 台灣策略團隊參考。蝦皮市占數字為市場估算值，引用自資策會 MIC 及 Nielsen 公開報告。合作條款及細節另行洽談。</div>
+</div>
+
+</body>
+</html>

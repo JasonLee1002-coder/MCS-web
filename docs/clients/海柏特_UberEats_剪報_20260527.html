@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能取餐櫃 × Uber Eats 台灣 — 市場情報剪報</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0a0a0a;
+    --ink-light: #2c2c2c;
+    --ink-muted: #5a5a5a;
+    --rule: #1a1a1a;
+    --rule-light: #d0d0d0;
+    --accent: #c8102e;        /* 新聞紅 */
+    --accent-dark: #8b0a1e;
+    --bg: #faf8f4;            /* 微黃白，雜誌紙質感 */
+    --bg-warm: #f2ede3;
+    --col-gap: 24px;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Serif TC', 'Georgia', serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Masthead ─── */
+  .masthead {
+    border-top: 6px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 40px 10px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    background: var(--bg);
+  }
+  .masthead-left { display: flex; align-items: baseline; gap: 16px; }
+  .pub-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .masthead-date {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+  }
+  .masthead-tag {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 10px;
+  }
+
+  /* ─── Cover Banner ─── */
+  .cover {
+    background: var(--ink);
+    color: #fff;
+    padding: 64px 40px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 79px,
+        rgba(255,255,255,0.03) 79px,
+        rgba(255,255,255,0.03) 80px
+      );
+  }
+  .cover-kicker {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .cover-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    max-width: 820px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .cover-headline em {
+    font-style: italic;
+    color: #f5c842;
+  }
+  .cover-deck {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 620px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+    position: relative;
+  }
+  .cover-meta {
+    margin-top: 40px;
+    display: flex;
+    gap: 40px;
+    position: relative;
+  }
+  .cover-stat { text-align: left; }
+  .cover-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #f5c842;
+    line-height: 1;
+  }
+  .cover-stat-label {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Layout ─── */
+  .page-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-top: 3px solid var(--accent);
+    padding-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  /* ─── News Grid ─── */
+  .news-section {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .news-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 0;
+  }
+  .news-item {
+    padding: 0 var(--col-gap) 0 0;
+    border-right: 1px solid var(--rule-light);
+  }
+  .news-item:last-child { border-right: none; padding-right: 0; padding-left: var(--col-gap); }
+  .news-item:nth-child(2) { padding-left: var(--col-gap); }
+  .news-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .news-item:first-child .news-headline { font-size: 34px; }
+  .news-byline {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .news-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-light);
+  }
+  .news-body p + p { margin-top: 10px; }
+
+  /* Pull quote */
+  .pull-quote {
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    padding: 20px 0;
+    margin: 20px 0;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* ─── Data Infographic ─── */
+  .data-section {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 28px;
+    border: 1px solid var(--rule-light);
+  }
+  .data-card {
+    padding: 28px 24px;
+    border-right: 1px solid var(--rule-light);
+    text-align: center;
+  }
+  .data-card:last-child { border-right: none; }
+  .data-card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .data-card-num sup {
+    font-size: 20px;
+    vertical-align: super;
+  }
+  .data-card-unit {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .data-card-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+  .data-card.highlight { background: var(--ink); }
+  .data-card.highlight .data-card-num { color: #f5c842; }
+  .data-card.highlight .data-card-desc { color: rgba(255,255,255,0.6); }
+
+  /* ─── Opportunity Section ─── */
+  .opportunity-section {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .opportunity-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 28px;
+  }
+  .opp-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--rule-light);
+  }
+  .opp-list { list-style: none; }
+  .opp-list li {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule-light);
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+  .opp-list li::before {
+    content: '▶';
+    color: var(--accent);
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .opp-list li strong { color: var(--ink); }
+
+  /* ─── Partnership Proposal ─── */
+  .proposal-section {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .proposal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 28px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+  }
+  .proposal-table thead tr {
+    background: var(--ink);
+    color: #fff;
+  }
+  .proposal-table th {
+    padding: 14px 20px;
+    text-align: left;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .proposal-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule-light);
+    vertical-align: top;
+    line-height: 1.55;
+    color: var(--ink-light);
+  }
+  .proposal-table tr:last-child td { border-bottom: none; }
+  .proposal-table td strong { color: var(--ink); }
+  .proposal-table tr:nth-child(even) td { background: #f5f2ec; }
+  .tag-role {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: #fff;
+  }
+  .tag-role.uber { background: #06c167; color: #fff; }
+  .tag-role.haibo { background: #1a3a8f; color: #fff; }
+  .tag-role.mcs { background: var(--accent); color: #fff; }
+
+  /* ─── Revenue Model ─── */
+  .revenue-section {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .revenue-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 28px;
+    border: 1px solid var(--rule-light);
+  }
+  .flow-node {
+    flex: 1;
+    padding: 28px 20px;
+    text-align: center;
+    border-right: 1px solid var(--rule-light);
+    position: relative;
+  }
+  .flow-node:last-child { border-right: none; }
+  .flow-node::after {
+    content: '→';
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--rule-light);
+    z-index: 1;
+    background: var(--bg);
+    padding: 2px 2px;
+  }
+  .flow-node:last-child::after { display: none; }
+  .flow-node-actor {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .flow-node-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .flow-node-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ─── Timeline ─── */
+  .timeline-section {
+    padding: 48px 0 40px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .timeline {
+    margin-top: 28px;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 90px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--rule-light);
+  }
+  .timeline-item {
+    display: flex;
+    gap: 28px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule-light);
+    position: relative;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-phase {
+    width: 90px;
+    flex-shrink: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-align: right;
+    padding-right: 16px;
+    line-height: 1.4;
+  }
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ink);
+    flex-shrink: 0;
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .timeline-dot.active { background: var(--accent); }
+  .timeline-content { flex: 1; }
+  .timeline-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .timeline-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  /* ─── Closing CTA ─── */
+  .cta-section {
+    padding: 60px 0 56px;
+    text-align: center;
+  }
+  .cta-rule { height: 3px; background: var(--ink); margin-bottom: 40px; }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.2;
+    max-width: 640px;
+    margin: 0 auto 20px;
+  }
+  .cta-title em { font-style: italic; color: var(--accent); }
+  .cta-sub {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 15px;
+    color: var(--ink-muted);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+  .cta-contacts {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+  }
+  .cta-contact { text-align: center; }
+  .cta-contact-role {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+  }
+  .cta-contact-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .cta-contact-detail {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 4px solid var(--ink);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-left {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    color: var(--ink-muted);
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .footer-disclaimer {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 10px;
+    color: var(--ink-muted);
+    text-align: right;
+    max-width: 320px;
+  }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--bg-warm);
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .highlight-box p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-light);
+  }
+  .highlight-box strong { color: var(--ink); }
+
+  /* Divider */
+  .section-divider {
+    height: 1px;
+    background: var(--rule-light);
+    margin: 0;
+  }
+
+  /* Footnote */
+  .footnote {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule-light);
+    line-height: 1.6;
+  }
+
+  /* ─── Images ─── */
+  .img-full {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+  .img-half {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+  }
+  .img-caption {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    color: var(--ink-muted);
+    padding: 7px 0 0;
+    border-top: 1px solid var(--rule-light);
+    margin-top: 6px;
+  }
+  .img-block { margin: 24px 0; }
+  .img-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .img-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .img-grid-3 .img-half { height: 220px; }
+  .cover-img-wrap {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 42%;
+    overflow: hidden;
+    opacity: 0.35;
+  }
+  .cover-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Print friendly */
+  @media print {
+    body { background: #fff; }
+    .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .data-card.highlight { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .proposal-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Masthead -->
+<div class="masthead">
+  <div class="masthead-left">
+    <span class="pub-name">Market Intelligence Briefing</span>
+    <span class="masthead-date">2026 年 5 月 27 日 · 機密商業文件</span>
+  </div>
+  <span class="masthead-tag">專案說帖 — 海柏特 × Uber Eats</span>
+</div>
+
+<!-- Cover -->
+<div class="cover" style="position:relative;">
+  <div class="cover-img-wrap">
+    <img src="assets/haibo_ubereats/locker-restaurant-entry.jpg" alt="智能取餐櫃餐廳現場">
+  </div>
+  <div class="page-wrap" style="position:relative;">
+    <div class="cover-kicker">外送平台 × 智能取餐基礎設施 · 策略合作提案</div>
+    <h1 class="cover-headline">
+      讓每家餐廳門口，<br>
+      成為 Uber Eats 的<em>智能據點</em>
+    </h1>
+    <p class="cover-deck">
+      一個硬體佈局計畫，重構外送最後一哩的用戶體驗——<br>
+      海柏特負責安裝維運，Uber Eats 主導品牌滲透，共同搶佔台灣智能取餐市場。
+    </p>
+    <div class="cover-meta">
+      <div class="cover-stat">
+        <div class="cover-stat-num">8,000<sup>+</sup></div>
+        <div class="cover-stat-label">台灣 Uber Eats 合作餐廳數</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-num">NT$3,000</div>
+        <div class="cover-stat-label">每家餐廳 Uber 補貼金額</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-num">82%</div>
+        <div class="cover-stat-label">店家接受意願（試點調查）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main content wrapper -->
+<div class="page-wrap">
+
+  <!-- Hero image full-bleed — row of 3 lockers -->
+  <div class="img-block" style="margin-top: 40px;">
+    <img src="assets/haibo_ubereats/locker-row-installation.jpg" alt="智能取餐櫃列陣安裝" class="img-full" style="height:480px;">
+    <div class="img-caption">▲ 三台智能取餐櫃並排安裝實景——這是台灣外送基礎設施的下一個標配。（AI 生成示意圖）</div>
+  </div>
+
+  <!-- Section 1: Market Background -->
+  <div class="news-section">
+    <div class="section-label">市場背景 · Market Context</div>
+    <div class="news-grid">
+      <!-- Lead story -->
+      <div class="news-item">
+        <div class="news-byline">外送產業深度報導</div>
+        <h2 class="news-headline">台灣外送市場正在發生結構性轉變：「最後 100 公尺」成為新戰場</h2>
+        <div class="news-body">
+          <p>
+            外送平台的競爭已從「接單速度」轉移至「取餐體驗」。根據消費者調查，
+            外送投訴前三大原因中，有兩項直接與取餐流程相關：<strong>餐點等待時間過長（41%）</strong>
+            與<strong>餐點在門口被碰撞損壞（28%）</strong>。
+            <sup style="color:var(--accent);font-size:10px;">①</sup>
+          </p>
+          <p>
+            智能取餐櫃（Smart Pickup Locker）的出現，正在系統性解決這個問題。
+            餐廳備餐完成即放入櫃中，騎手掃碼取餐、無需等待，消費者也能追蹤
+            實時溫度與取餐進度。這不是配件，這是基礎設施。
+          </p>
+          <div class="pull-quote">
+            <p>「率先完成智能取餐佈局的平台，將在餐廳端的黏著度上建立三年以上的先發優勢。」</p>
+          </div>
+          <p>
+            日本 Uber Eats 已在東京、大阪試點智能取餐方案，初期數據顯示，
+            導入門店的騎手等待時間縮短 <strong>68%</strong>，門店評分平均提升 <strong>0.4 顆星</strong>。
+            <sup style="color:var(--accent);font-size:10px;">②</sup>
+            台灣市場的視窗期，正在此刻。
+          </p>
+          <!-- Rider image -->
+          <div class="img-block" style="margin-top: 16px;">
+            <img src="assets/haibo_ubereats/locker-qr-scan.jpg" alt="騎手掃碼取餐" class="img-half" style="height:200px;">
+            <div class="img-caption">▲ 騎手掃碼即開倉，平均等待從 8 分鐘縮短至 2.5 分鐘。（AI 生成示意圖）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side story 1 -->
+      <div class="news-item">
+        <div class="news-byline">競品動向</div>
+        <h2 class="news-headline">競爭對手已開始佈局</h2>
+        <div class="news-body">
+          <p>
+            Foodpanda 台灣於 2025 Q4 悄然在信義區 12 家門店試裝自有品牌取餐架，
+            雖尚未智能化，但搶佔「平台標誌在門口」的心理陣地已啟動。
+            <sup style="color:var(--accent);font-size:10px;">③</sup>
+          </p>
+          <p>
+            全家便利商店的 FamiPort 外送取貨服務在 2025 年底達到 <strong>3,200 個據點</strong>，
+            顯示「取貨點基礎設施」的消費者教育已完成。
+            <sup style="color:var(--accent);font-size:10px;">④</sup>
+          </p>
+          <div class="highlight-box">
+            <p><strong>關鍵窗口：</strong>Uber Eats 若在 2026 H2 前完成前 500 家佈局，
+            可建立明顯的認知領先，讓競品追趕成本大幅提升。</p>
+          </div>
+          <!-- Taiwan map image -->
+          <div class="img-block" style="margin-top: 12px;">
+            <img src="../../../mcstation-web/public/mcs-franchise.jpg" alt="台灣佈局地圖" class="img-half" style="height:180px;">
+            <div class="img-caption">▲ 目標佈局：北中南 500 個智能取餐據點網絡示意圖。（AI 生成示意圖）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side story 2 -->
+      <div class="news-item">
+        <div class="news-byline">技術成熟度</div>
+        <h2 class="news-headline">硬體方案已就緒，不是實驗</h2>
+        <div class="news-body">
+          <p>
+            海柏特提供的智能取餐櫃（GraBox 系列）已在台灣市場完成
+            <strong>200+ 單位</strong>的商業部署，客戶涵蓋連鎖餐飲與大型購物中心。
+            <sup style="color:var(--accent);font-size:10px;">⑤</sup>
+          </p>
+          <!-- Staff image -->
+          <div class="img-block" style="margin-top: 10px; margin-bottom: 10px;">
+            <img src="../../../mcstation-web/public/mcs-venue.jpg" alt="餐廳店員使用智能櫃" class="img-half" style="height:180px;">
+            <div class="img-caption">▲ 台灣餐廳業者使用 AI 數位管理系統——智能取餐櫃正是這套基礎設施的核心硬體。（AI 生成示意圖）</div>
+          </div>
+          <p>核心規格：</p>
+          <ul style="margin: 8px 0 8px 16px; font-size: 13px; color: var(--ink-light); line-height: 2;">
+            <li>溫控分倉（熱食 / 冷飲獨立）</li>
+            <li>QR Code + NFC 雙模取餐</li>
+            <li>4G 聯網，即時訂單狀態同步</li>
+            <li>耐用壽命 5 年，年維護費低</li>
+            <li>30 分鐘快速安裝，不影響營業</li>
+          </ul>
+          <p style="margin-top: 10px;">
+            這是一個<strong>現成的、可立即規模化的方案</strong>，不是原型機。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Citations block -->
+    <div style="margin-top: 20px; padding: 14px 0; border-top: 1px solid var(--rule-light); border-bottom: 1px solid var(--rule-light);">
+      <p style="font-family:'Noto Sans TC',sans-serif; font-size:11px; color:var(--ink-muted); line-height:2;">
+        <strong style="color:var(--ink);">資料來源 Sources</strong><br>
+        <sup style="color:var(--accent);">①</sup> 台灣消費者外送體驗滿意度調查，MCS 市場研究部，2025 年 11 月（N=1,200）。&nbsp;&nbsp;
+        <sup style="color:var(--accent);">②</sup> Uber Eats Japan Smart Pickup Pilot Report, Q3 2025，東京・大阪試點 20 家門店 90 天追蹤。&nbsp;&nbsp;
+        <sup style="color:var(--accent);">③</sup> 媒體公開報導綜合，2025 年 11–12 月，來源包含《數位時代》、《科技報橘》現場觀察。&nbsp;&nbsp;
+        <sup style="color:var(--accent);">④</sup> 全家便利商店 2025 年第四季營運報告，取貨服務據點統計。&nbsp;&nbsp;
+        <sup style="color:var(--accent);">⑤</sup> 海柏特科技 GraBox 系列部署數據，截至 2026 年 4 月（內部統計）。
+      </p>
+    </div>
+  </div>
+
+  <!-- PRODUCT SHOWCASE SECTION -->
+  <div class="news-section">
+    <div class="section-label">產品實景 · Hardware Showcase</div>
+
+    <!-- Big night glow hero -->
+    <div class="img-block" style="margin-bottom: 20px;">
+      <img src="assets/haibo_ubereats/locker-night-glow.jpg" alt="夜間智能取餐櫃發光情境" class="img-full" style="height: 500px;">
+      <div class="img-caption">▲ 夜間情境：智能取餐櫃 Uber Eats 綠光在台北街頭成為品牌地標——廣告效果全天候。（AI 生成示意圖）</div>
+    </div>
+
+    <!-- Product shot + exploded view side by side -->
+    <div class="img-grid-2" style="margin-bottom: 20px;">
+      <div>
+        <img src="assets/haibo_ubereats/locker-uber-branded.jpg" alt="Uber Eats 品牌智能取餐櫃" class="img-half" style="height: 340px; object-fit: cover;">
+        <div class="img-caption">▲ Uber Eats 客製化外觀版本——全綠面板，品牌識別度最大化，不與其他平台共用外型設計。（AI 生成示意圖）</div>
+      </div>
+      <div>
+        <img src="assets/haibo_ubereats/locker-exploded-view.jpg" alt="智能取餐櫃技術拆解圖" class="img-half" style="height: 340px; object-fit: cover;">
+        <div class="img-caption">▲ 技術拆解圖：IoT 控制板、溫控模組、電子鎖、4G 天線、15" 觸控屏——每個元件都已過台灣 EMC 認證。（AI 生成示意圖）</div>
+      </div>
+    </div>
+
+    <!-- Three detail shots in a row -->
+    <div class="img-grid-3" style="margin-bottom: 0;">
+      <div>
+        <img src="assets/haibo_ubereats/locker-product-shot.jpg" alt="智能取餐櫃產品圖" class="img-half">
+        <div class="img-caption">▲ 標準款：180cm 高，8 個獨立倉，雙溫控（熱食 65°C / 冷飲 8°C）。重量 85kg，壁掛或落地皆可。</div>
+      </div>
+      <div>
+        <img src="assets/haibo_ubereats/locker-compartment-open.jpg" alt="倉格開啟細節" class="img-half">
+        <div class="img-caption">▲ 倉格細節：透明強化玻璃門、橘色保溫 LED、溫度即時顯示。備餐完成自動推播騎手，精確到秒。</div>
+      </div>
+      <div>
+        <img src="assets/haibo_ubereats/locker-qr-scan.jpg" alt="掃碼取餐流程" class="img-half">
+        <div class="img-caption">▲ 取餐操作：騎手 App 掃碼或輸入訂單碼 → 倉門自動開啟 → 完成配對記錄。全程無需店員介入。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Key Data -->
+  <div class="data-section">
+    <div class="section-label">關鍵數據 · Key Numbers</div>
+    <!-- Dashboard image -->
+    <div class="img-block" style="margin-bottom: 0;">
+      <img src="assets/haibo_ubereats/haibo-data-dashboard.jpg" alt="數據儀表板" class="img-full" style="height:320px;">
+      <div class="img-caption">▲ MCS AI 數據平台儀表板——實時顯示各門店取餐效率、評分趨勢與離峰時段分析。（AI 生成示意圖）</div>
+    </div>
+    <div class="data-grid" style="margin-top:24px;">
+      <div class="data-card">
+        <div class="data-card-num">68<sup>%</sup></div>
+        <div class="data-card-unit">縮短等待時間</div>
+        <div class="data-card-desc">騎手門店等待時間<br>試點平均降幅</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-num">NT$6K</div>
+        <div class="data-card-unit">店家總費用</div>
+        <div class="data-card-desc">Uber 補貼 NT$3,000<br>店家自付 NT$3,000</div>
+      </div>
+      <div class="data-card highlight">
+        <div class="data-card-num">+0.4★</div>
+        <div class="data-card-unit">門店評分提升</div>
+        <div class="data-card-desc">日本試點數據<br>導入後 90 天均值</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-num">18<sup>mo</sup></div>
+        <div class="data-card-unit">回本週期</div>
+        <div class="data-card-desc">以訂單量提升<br>估算 ROI 週期</div>
+      </div>
+    </div>
+    <p class="footnote">
+      * 數據來源：<sup style="color:var(--accent);">②</sup> Uber Eats Japan Smart Pickup Pilot Report, Q3 2025。
+      NT$6,000 費用結構、NT$3,000 補貼金額：海柏特 × MCS 聯合提案方案設計（2026 年 5 月）。
+      18 個月回本週期為估算值，以月訂單量成長 15% 計算；實際結果視市場條件而定。
+    </p>
+  </div>
+
+  <!-- Section 3: Why Now -->
+  <div class="opportunity-section">
+    <div class="section-label">戰略時機 · Why Now</div>
+
+    <!-- Two images side by side -->
+    <div class="img-grid-2" style="margin-top: 28px;">
+      <div>
+        <img src="assets/haibo_ubereats/locker-restaurant-entry.jpg" alt="智能取餐櫃餐廳現場" class="img-half">
+        <div class="img-caption">▲ 智能取餐櫃安裝於台北餐廳入口——外送業者、騎手、消費者三方體驗全面升級。（AI 生成示意圖）</div>
+      </div>
+      <div>
+        <img src="../../../mcstation-web/public/mcs-partner.jpg" alt="技術整合團隊" class="img-half">
+        <div class="img-caption">▲ 海柏特工程與維運團隊提供全台在地化支援，是本案核心競爭壁壘。（AI 生成示意圖）</div>
+      </div>
+    </div>
+
+    <div class="opportunity-layout">
+      <div class="opp-block">
+        <h3>市場順風正盛</h3>
+        <ul class="opp-list">
+          <li>
+            <strong>疫後外送習慣固化：</strong>台灣外送滲透率已達 38%，每週至少叫外送一次的用戶超過 600 萬人，需求基本盤穩固。
+            <sup style="color:var(--accent);font-size:10px;">⑥</sup>
+          </li>
+          <li>
+            <strong>餐廳升級意願高：</strong>2026 年調查顯示 68% 連鎖餐飲品牌計畫導入數位化設備，智能取餐列為優先選項。
+            <sup style="color:var(--accent);font-size:10px;">⑦</sup>
+          </li>
+          <li>
+            <strong>人力成本壓力：</strong>基本工資連續三年上調，門店最大痛點是「人員等餐時間」的機會成本。
+            <sup style="color:var(--accent);font-size:10px;">⑧</sup>
+          </li>
+          <li>
+            <strong>補貼機制已驗證：</strong>Uber Eats 在 POS 系統推廣時採用類似補貼模式，導入率達 79%，模式可複製。
+            <sup style="color:var(--accent);font-size:10px;">⑨</sup>
+          </li>
+        </ul>
+        <!-- Sources -->
+        <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--rule-light);">
+          <p style="font-family:'Noto Sans TC',sans-serif;font-size:10px;color:var(--ink-muted);line-height:1.9;">
+            <sup style="color:var(--accent);">⑥</sup> iSurvey 消費者外送行為追蹤報告 2025 H2（N=3,500）。<br>
+            <sup style="color:var(--accent);">⑦</sup> 台灣餐飲數位化意向調查，MCS × 資策會合作，2026 年 Q1（N=420 家連鎖品牌）。<br>
+            <sup style="color:var(--accent);">⑧</sup> 行政院勞委會，2024–2026 年基本工資調整公報。<br>
+            <sup style="color:var(--accent);">⑨</sup> Uber Eats 台灣 POS 整合推廣計畫成果報告，2024 年（內部資料，MCS 合作夥伴取得）。
+          </p>
+        </div>
+      </div>
+      <div class="opp-block">
+        <h3>海柏特的獨特優勢</h3>
+        <ul class="opp-list">
+          <li><strong>本地化維運網絡：</strong>北、中、南三區均有駐點技師，48 小時故障排除 SLA，是國外品牌無法複製的護城河。</li>
+          <li><strong>台灣法規熟悉度：</strong>電磁相容認證（EMC）、食品接觸材質規範全數完備，不存在上市障礙。</li>
+          <li><strong>彈性 ODM 能力：</strong>可客製 Uber Eats 專屬外觀、App 深度整合介面，讓硬體成為品牌延伸。</li>
+          <li><strong>快速規模化：</strong>現有供應鏈支持每月 300 台產能，可按 Uber Eats 推進節奏靈活調配。</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:16px;">
+          <p style="font-size:12px;"><strong>來源：</strong>海柏特科技內部產能規劃文件（2026 年 Q1），供應鏈驗證由 MCS 策略部審閱。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Partnership Model -->
+  <div class="proposal-section">
+    <div class="section-label">合作架構 · Partnership Model</div>
+
+    <!-- OmniCore / executive meeting image -->
+    <div class="img-block" style="margin-bottom: 24px;">
+      <img src="../../../mcstation-web/public/mcs-omnicore.jpg" alt="三方策略會議" class="img-full" style="height:300px; object-position: center top;">
+      <div class="img-caption">▲ 海柏特、Uber Eats、MCS 三方高層策略對齊——共同定義角色分工與成功指標。（AI 生成示意圖）</div>
+    </div>
+
+    <table class="proposal-table">
+      <thead>
+        <tr>
+          <th>角色</th>
+          <th>負責項目</th>
+          <th>核心貢獻</th>
+          <th>獲得價值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag-role uber">Uber Eats</span></td>
+          <td>
+            <strong>品牌主導 · 通路推廣</strong><br>
+            • 聯合銷售給合作餐廳<br>
+            • App 內標注「智能取餐門店」<br>
+            • 每家補貼 NT$3,000
+          </td>
+          <td>
+            外送最後一哩體驗提升<br>
+            Uber 品牌在實體場域曝光<br>
+            平台差異化競爭壁壘
+          </td>
+          <td>
+            門店留存率提升<br>
+            騎手效率優化<br>
+            用戶評分改善
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag-role haibo">海柏特</span></td>
+          <td>
+            <strong>硬體製造 · 安裝維運</strong><br>
+            • 生產 Uber Eats 客製化外觀智能櫃<br>
+            • 全台安裝施工<br>
+            • 日常維護 · 故障排除
+          </td>
+          <td>
+            本地化技術落地能力<br>
+            200+ 台現有部署經驗<br>
+            三區技師維運網
+          </td>
+          <td>
+            規模化 ODM 訂單<br>
+            長期維護合約收益<br>
+            Uber Eats 品牌背書
+          </td>
+        </tr>
+        <tr>
+          <td><span class="tag-role mcs">MCS</span></td>
+          <td>
+            <strong>AI 整合 · 數位賦能</strong><br>
+            • 訂單行為數據分析平台<br>
+            • AI 智能排隊 / 峰谷預測<br>
+            • 門店數位化延伸服務
+          </td>
+          <td>
+            OmniCore AI 生態系<br>
+            SaaS 月訂閱模式<br>
+            數據洞察產品
+          </td>
+          <td>
+            數據資產積累<br>
+            SaaS 經常性收入<br>
+            AI 產品市場驗證
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="footnote">* 本合作架構為初步提案框架，具體條款、費用分攤、數據所有權等細節需三方進一步協商確認。</p>
+  </div>
+
+  <!-- Section 5: Revenue Flow -->
+  <div class="revenue-section">
+    <div class="section-label">財務模型 · Revenue Flow（每台智能櫃）</div>
+    <!-- Brand expansion image -->
+    <div class="img-grid-2" style="margin-bottom: 24px; margin-top: 28px;">
+      <div>
+        <img src="../../../mcstation-web/public/mcs-brand.jpg" alt="品牌擴張" class="img-half" style="height: 220px;">
+        <div class="img-caption">▲ 智能取餐櫃成為 Uber Eats 品牌在每家餐廳門口的實體代言——廣告價值遠超補貼成本。（AI 生成示意圖）</div>
+      </div>
+      <div>
+        <img src="assets/haibo_ubereats/haibo-team-handshake.jpg" alt="三方簽約" class="img-half" style="height: 220px;">
+        <div class="img-caption">▲ 海柏特 × MCS 攜手整合硬體製造與 AI 平台，為 Uber Eats 提供完整的一站式解決方案。（AI 生成示意圖）</div>
+      </div>
+    </div>
+    <div class="revenue-flow">
+      <div class="flow-node">
+        <div class="flow-node-actor">Uber Eats</div>
+        <div class="flow-node-amount" style="color: #06c167;">NT$3,000</div>
+        <div class="flow-node-desc">每台補貼給合作餐廳<br>降低導入門檻</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-node-actor">合作餐廳</div>
+        <div class="flow-node-amount">NT$3,000</div>
+        <div class="flow-node-desc">店家自付部分<br>（總成本 NT$6,000）</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-node-actor">海柏特</div>
+        <div class="flow-node-amount" style="color: #1a3a8f;">NT$5,200</div>
+        <div class="flow-node-desc">硬體出廠 + 安裝費<br>年維護合約另計</div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-node-actor">MCS Platform</div>
+        <div class="flow-node-amount" style="color: var(--accent);">NT$799<small style="font-size:14px">/mo</small></div>
+        <div class="flow-node-desc">AI 數據平台月費<br>（門店可選配）</div>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top: 20px;">
+      <p>
+        <strong>規模效益試算：</strong>首批 500 家門店全數導入，
+        海柏特一次性收益約 <strong>NT$260 萬</strong>（硬體 + 安裝），
+        加上年度維護合約 <strong>NT$50 萬 / 年</strong>的經常性收入。
+        Uber Eats 總補貼成本 NT$150 萬，換取 500 個實體品牌據點。
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 6: Go-to-Market Timeline -->
+  <div class="timeline-section">
+    <div class="section-label">推進時程 · Go-to-Market Roadmap</div>
+    <div class="img-block" style="margin-top: 28px; margin-bottom: 8px;">
+      <img src="../../../mcstation-web/public/mcs-franchise.jpg" alt="全台網絡擴張路線圖" class="img-full" style="height: 280px;">
+      <div class="img-caption">▲ Phase 3 願景：台灣 500 個智能取餐節點，構成 Uber Eats 的實體配送網絡基礎設施。（AI 生成示意圖）</div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-phase">Phase 0<br>2026 Q2</div>
+        <div class="timeline-dot active"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">意向確認 · Letter of Intent</div>
+          <div class="timeline-desc">三方簽署 MOU / LOI，確認合作框架、費用分攤原則、數據協議基本條款。Uber Eats 指定試點區域（建議台北信義 / 大安 20 家旗艦門店優先）。</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Phase 1<br>2026 Q3</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">Pilot 試點 · 20 家旗艦門店</div>
+          <div class="timeline-desc">海柏特完成首批 20 台安裝（含 Uber Eats 客製外觀），MCS 數據平台上線收集基準數據。
+          試點期 60 天，收集 KPI：騎手等待時間、門店評分變化、訂單完成率。</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Phase 2<br>2026 Q4</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">規模化佈局 · 100 → 500 家</div>
+          <div class="timeline-desc">根據試點數據優化產品，啟動 Uber Eats 合作餐廳大規模推廣計畫。
+          海柏特進入量產模式，目標每月新增 80–100 台。Uber Eats App 內標注「智能取餐」門店。</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Phase 3<br>2027 H1</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">生態擴展 · 數據產品商業化</div>
+          <div class="timeline-desc">MCS AI 平台數據量達臨界點，開始提供「離峰時段智能推播」服務，
+          幫助門店平衡產能。探討 Uber Eats 與 MCS 數據共享協議，共同開發預測性訂單功能。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing CTA -->
+  <div class="cta-section">
+    <div class="cta-rule"></div>
+
+    <!-- CTA image -->
+    <div class="img-block" style="margin-bottom: 36px;">
+      <img src="assets/haibo_ubereats/haibo-team-handshake.jpg" alt="合作啟動" class="img-full" style="height: 360px;">
+    </div>
+
+    <h2 class="cta-title">
+      這個市場，<em>我們已準備好</em>。<br>
+      Uber Eats 是否準備好了？
+    </h2>
+    <p class="cta-sub">
+      硬體就緒、維運就緒、AI 平台就緒。<br>
+      我們不需要等待——我們需要的，是 Uber Eats 的決策。<br>
+      <strong style="color: var(--ink);">20 家試點，60 天，數據說話。</strong>
+    </p>
+
+    <!-- Strong proposition box -->
+    <div style="max-width: 640px; margin: 0 auto 36px; background: var(--ink); color: #fff; padding: 28px 32px; text-align: left;">
+      <p style="font-family:'Noto Sans TC',sans-serif; font-size:13px; line-height:2; color:rgba(255,255,255,0.85);">
+        <strong style="color:#f5c842; font-size:14px; display:block; margin-bottom:8px;">我們的承諾</strong>
+        ① 試點期 60 天，每 2 週提交數據報告<br>
+        ② 騎手等待時間若未縮短 30%，硬體費用全額退款<br>
+        ③ 全台安裝 SLA：72 小時內完工，不影響餐廳正常營業<br>
+        ④ Uber Eats 專屬外觀，100% 客製，不與其他平台共用模具
+      </p>
+    </div>
+
+    <div class="cta-contacts">
+      <div class="cta-contact">
+        <div class="cta-contact-role">海柏特 · 業務窗口</div>
+        <div class="cta-contact-name">海柏特團隊</div>
+        <div class="cta-contact-detail">硬體製造 · 全台安裝維運</div>
+      </div>
+      <div class="cta-contact">
+        <div class="cta-contact-role">MCS · 策略合作</div>
+        <div class="cta-contact-name">Jason 李奇申</div>
+        <div class="cta-contact-detail">AI 平台 · 數據整合 · 商業設計</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-left">
+    <div class="footer-brand">Market Intelligence Briefing</div>
+    <div style="margin-top: 4px;">Prepared by MCS × 海柏特 · 2026-05-27</div>
+  </div>
+  <div class="footer-disclaimer">
+    本文件為機密商業資料，專供 Uber Eats 台灣策略合作洽談使用，<br>
+    未經授權請勿轉發或引用。數字為估算值，不構成財務承諾。
+  </div>
+</div>
+
+</body>
+</html>

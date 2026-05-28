@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>藥局智行銷 — 系統畫面 Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'Noto Sans TC', sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+  /* Navigation */
+  .top-nav {
+    background: #1a1a2e;
+    color: white;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .top-nav .logo { font-size: 18px; font-weight: 700; color: #00C6AD; }
+  .top-nav .screens { display: flex; gap: 8px; margin-left: auto; }
+  .top-nav button {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+  }
+  .top-nav button:hover, .top-nav button.active { background: #00C6AD; }
+
+  /* Screen container */
+  .screen { display: none; padding: 32px; max-width: 1400px; margin: 0 auto; }
+  .screen.active { display: block; }
+
+  /* Screen title */
+  .screen-title {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .screen-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+  }
+
+  /* === SCREEN 1: 行銷策略師（詩娟）=== */
+  .admin-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    min-height: 680px;
+  }
+  .sidebar {
+    background: #0f172a;
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar .brand {
+    padding: 0 20px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #00C6AD;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 16px;
+  }
+  .sidebar .brand small { display: block; color: #64748b; font-size: 11px; font-weight: 400; margin-top: 2px; }
+  .sidebar-item {
+    padding: 12px 20px;
+    color: #94a3b8;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.15s;
+  }
+  .sidebar-item:hover { background: rgba(255,255,255,0.05); color: white; }
+  .sidebar-item.active { background: rgba(0,198,173,0.15); color: #00C6AD; border-right: 3px solid #00C6AD; }
+  .sidebar-item .icon { font-size: 16px; }
+  .sidebar-item .badge {
+    margin-left: auto;
+    background: #ef4444;
+    color: white;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+  .main-content { padding: 28px; background: #f8fafc; }
+  .content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .content-header h2 { font-size: 20px; font-weight: 700; }
+  .btn-primary {
+    background: #00C6AD;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
+  .tab {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #64748b;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    font-weight: 500;
+  }
+  .tab.active { color: #00C6AD; border-bottom-color: #00C6AD; }
+  .tab .count {
+    background: #e2e8f0;
+    color: #64748b;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+  }
+  .tab.active .count { background: rgba(0,198,173,0.15); color: #00C6AD; }
+
+  /* Article list */
+  .article-list { display: flex; flex-direction: column; gap: 12px; }
+  .article-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid #e2e8f0;
+    transition: box-shadow 0.15s;
+  }
+  .article-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .article-card .status-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-draft { background: #94a3b8; }
+  .dot-review { background: #f59e0b; }
+  .dot-published { background: #10b981; }
+  .article-info { flex: 1; }
+  .article-info h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .article-info .meta { font-size: 12px; color: #94a3b8; display: flex; gap: 12px; }
+  .violation-tag {
+    background: #fef2f2;
+    color: #ef4444;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .safe-tag {
+    background: #f0fdf4;
+    color: #10b981;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .article-actions { display: flex; gap: 8px; flex-shrink: 0; }
+  .btn-sm {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-send { background: #00C6AD; color: white; }
+  .btn-edit { background: #f1f5f9; color: #475569; }
+  .btn-del { background: #fef2f2; color: #ef4444; }
+
+  /* Editor panel */
+  .editor-panel {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    margin-top: 16px;
+  }
+  .editor-panel h4 { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #475569; }
+  .editor-content {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #334155;
+  }
+  .highlight-red {
+    background: #fecaca;
+    color: #dc2626;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+    text-decoration: underline wavy #dc2626;
+  }
+  .highlight-warn {
+    background: #fef3c7;
+    color: #d97706;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+  .violation-notice {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #dc2626;
+  }
+  .violation-notice strong { display: block; margin-bottom: 6px; }
+
+  /* === SCREEN 2: 藥師手機畫面 === */
+  .mobile-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .mobile-frame {
+    width: 360px;
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 8px #1a1a2e;
+  }
+  .mobile-status-bar {
+    background: #0f172a;
+    color: white;
+    padding: 12px 20px 8px;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .mobile-nav {
+    background: #0f172a;
+    color: white;
+    padding: 12px 20px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mobile-nav .title { font-size: 17px; font-weight: 700; flex: 1; }
+  .mobile-nav .subtitle { font-size: 12px; color: #00C6AD; }
+  .mobile-body { padding: 16px; background: #f8fafc; min-height: 500px; }
+
+  .pending-label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .mobile-card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .mobile-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .mobile-card .meta { font-size: 12px; color: #94a3b8; margin-bottom: 12px; }
+  .mobile-card .preview {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 3px solid #00C6AD;
+  }
+  .mobile-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mobile-btn {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .mobile-btn-approve { background: #00C6AD; color: white; }
+  .mobile-btn-reject { background: #fef2f2; color: #ef4444; border: 1px solid #fecaca; }
+
+  .notification-banner {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+  }
+  .notification-banner .notif-icon {
+    width: 36px; height: 36px;
+    background: #00C6AD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .notification-banner .notif-text { font-size: 13px; line-height: 1.4; }
+  .notification-banner .notif-text strong { display: block; font-size: 14px; }
+
+  /* === SCREEN 3: 管理者儀表板 === */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .stat-card .label { font-size: 12px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .stat-card .value { font-size: 28px; font-weight: 800; color: #0f172a; }
+  .stat-card .change {
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .change-up { color: #10b981; }
+  .change-down { color: #ef4444; }
+
+  .ranking-table {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 24px;
+  }
+  .ranking-table .table-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ranking-table .table-header h3 { font-size: 16px; font-weight: 700; }
+  .ranking-row {
+    display: grid;
+    grid-template-columns: 24px 1fr 80px 80px 80px 100px;
+    gap: 16px;
+    padding: 14px 20px;
+    align-items: center;
+    font-size: 14px;
+    border-bottom: 1px solid #f8fafc;
+  }
+  .ranking-row:hover { background: #f8fafc; }
+  .ranking-row.header { background: #f8fafc; font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .rank-num { font-weight: 800; color: #94a3b8; }
+  .rank-1 .rank-num { color: #f59e0b; }
+  .rank-2 .rank-num { color: #64748b; }
+  .rank-3 .rank-num { color: #b45309; }
+  .article-title-cell { font-weight: 600; }
+  .article-title-cell small { display: block; font-size: 12px; color: #94a3b8; font-weight: 400; margin-top: 2px; }
+  .rank-badge {
+    background: #f0fdf4;
+    color: #10b981;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+  }
+  .rank-mid { background: #fefce8; color: #ca8a04; }
+  .rank-low { background: #f8fafc; color: #64748b; }
+
+  .flow-diagram {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .flow-diagram h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
+  .flow-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .flow-step {
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .flow-step .step-box {
+    width: 120px;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 16px 12px;
+    border: 2px solid #e2e8f0;
+    position: relative;
+  }
+  .flow-step .step-icon { font-size: 24px; margin-bottom: 8px; }
+  .flow-step .step-label { font-size: 13px; font-weight: 700; color: #334155; }
+  .flow-step .step-sub { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+  .flow-arrow {
+    width: 48px;
+    text-align: center;
+    color: #cbd5e1;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .step-active .step-box {
+    background: rgba(0,198,173,0.08);
+    border-color: #00C6AD;
+  }
+  .step-active .step-label { color: #00C6AD; }
+  .step-warn .step-box { background: #fef2f2; border-color: #fecaca; }
+
+  /* Pill tags */
+  .pill { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .pill-green { background: #f0fdf4; color: #10b981; }
+  .pill-red { background: #fef2f2; color: #ef4444; }
+  .pill-yellow { background: #fefce8; color: #ca8a04; }
+
+  /* Pharmacy selector */
+  .pharmacy-bar {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .pharmacy-bar label { font-size: 13px; color: #64748b; font-weight: 600; }
+  .pharmacy-chip {
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .pharmacy-chip.selected { background: #0f172a; color: white; }
+  .pharmacy-chip:not(.selected) { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="logo">💊 藥局智行銷</div>
+  <div class="screens">
+    <button class="active" onclick="showScreen('s1')">① 行銷策略師（詩娟）</button>
+    <button onclick="showScreen('s2')">② 藥師手機（黃維德）</button>
+    <button onclick="showScreen('s3')">③ 管理者儀表板（Jason）</button>
+  </div>
+</div>
+
+<!-- SCREEN 1: 行銷策略師 -->
+<div id="s1" class="screen active">
+  <div class="screen-title">① 行銷策略師視角 — 電腦版（詩娟使用）</div>
+
+  <div class="admin-layout">
+    <div class="sidebar">
+      <div class="brand">藥局智行銷<small>長青連鎖藥局</small></div>
+      <div class="sidebar-item"><span class="icon">📊</span>總覽</div>
+      <div class="sidebar-item active"><span class="icon">📝</span>文章管理 <span class="badge">2</span></div>
+      <div class="sidebar-item"><span class="icon">🌿</span>症狀主題樹</div>
+      <div class="sidebar-item"><span class="icon">👤</span>藥局設定</div>
+      <div class="sidebar-item"><span class="icon">🚫</span>法規資料庫</div>
+      <div class="sidebar-item"><span class="icon">📈</span>SEO 報告</div>
+    </div>
+
+    <div class="main-content">
+      <div class="content-header">
+        <h2>文章管理</h2>
+        <button class="btn-primary">✨ 請 AI 產文</button>
+      </div>
+
+      <div class="tabs">
+        <div class="tab">草稿 <span class="count">3</span></div>
+        <div class="tab active">待藥師審核 <span class="count">2</span></div>
+        <div class="tab">已發布 <span class="count">18</span></div>
+      </div>
+
+      <div class="article-list">
+        <div class="article-card">
+          <div class="status-dot dot-review"></div>
+          <div class="article-info">
+            <h4>過敏性鼻炎懶人包：換季必看的 5 個保養習慣</h4>
+            <div class="meta">
+              <span>🏷 過敏・鼻炎</span>
+              <span>📅 2026-05-22</span>
+              <span>✏️ 詩娟</span>
+            </div>
+          </div>
+          <div class="violation-tag">⚠️ 1 個禁字</div>
+          <div class="article-actions">
+            <button class="btn-sm btn-edit">編輯</button>
+            <button class="btn-sm btn-send">送審核</button>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="status-dot dot-review"></div>
+          <div class="article-info">
+            <h4>失眠睡不著？藥師推薦的 3 種睡前保養方式</h4>
+            <div class="meta">
+              <span>🏷 睡眠・失眠</span>
+              <span>📅 2026-05-22</span>
+              <span>✏️ 詩娟</span>
+            </div>
+          </div>
+          <div class="violation-tag">⚠️ 2 個禁字</div>
+          <div class="article-actions">
+            <button class="btn-sm btn-edit">編輯</button>
+            <button class="btn-sm btn-send">送審核</button>
+          </div>
+        </div>
+
+        <div class="article-card">
+          <div class="status-dot dot-draft"></div>
+          <div class="article-info">
+            <h4>異位性皮膚炎不想一直擦藥？日常保養這樣做</h4>
+            <div class="meta">
+              <span>🏷 皮膚・過敏</span>
+              <span>📅 2026-05-21</span>
+              <span>✏️ AI 產文</span>
+            </div>
+          </div>
+          <div class="safe-tag">✅ 合規</div>
+          <div class="article-actions">
+            <button class="btn-sm btn-edit">編輯</button>
+            <button class="btn-sm btn-send">送審核</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editor with violation highlight -->
+      <div class="editor-panel">
+        <h4>📄 文章預覽（禁字高亮模式）</h4>
+        <div class="editor-content">
+          過敏性鼻炎是許多人每到換季就必須面對的困擾。根據統計，台灣有近 30% 的人口有過敏問題。
+          <br><br>
+          長期下來，若沒有好好保養，可能讓鼻子<span class="highlight-red">症狀</span>越來越嚴重。
+          許多人會嘗試用藥物來<span class="highlight-red">改善</span>，但其實日常的保養習慣同樣重要。
+          <br><br>
+          以下是藥師推薦的 5 個換季鼻腔保養方式，幫助您舒緩不適、維持良好的生活品質。
+        </div>
+        <div class="violation-notice">
+          <strong>⚠️ 發現 2 個違規詞，請修改後再送藥師審核</strong>
+          「改善」→ 建議改為「舒緩」或「保養」<br>
+          「症狀」→ 建議改為「不適」或「困擾」
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2: 藥師手機 -->
+<div id="s2" class="screen">
+  <div class="screen-title">② 藥師視角 — 手機版（黃維德使用，目標：5 分鐘內完成審核）</div>
+
+  <div class="mobile-wrapper">
+    <!-- Phone: 通知進來 -->
+    <div>
+      <p style="text-align:center;font-size:13px;color:#888;margin-bottom:12px;">收到推播通知</p>
+      <div class="mobile-frame">
+        <div class="mobile-status-bar">
+          <span>9:41</span>
+          <span>●●●◯◯ 📶 🔋</span>
+        </div>
+        <div style="background:#f0f2f5;padding:16px;min-height:560px;">
+          <div class="notification-banner">
+            <div class="notif-icon">💊</div>
+            <div class="notif-text">
+              <strong>藥局智行銷</strong>
+              詩娟送來 1 篇文章待您審核<br>
+              <span style="color:#00C6AD;font-size:12px;">過敏性鼻炎懶人包…</span>
+            </div>
+          </div>
+          <div style="background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.08);">
+            <div style="background:#0f172a;color:white;padding:14px 16px;">
+              <div style="font-size:11px;color:#00C6AD;font-weight:600;">待審核</div>
+              <div style="font-size:17px;font-weight:700;margin-top:4px;">過敏性鼻炎懶人包</div>
+            </div>
+            <div style="padding:16px;">
+              <div style="font-size:12px;color:#94a3b8;margin-bottom:10px;">詩娟 · 剛剛送來 · 約 800 字</div>
+              <div style="font-size:13px;line-height:1.7;color:#334155;padding:12px;background:#f8fafc;border-radius:10px;border-left:3px solid #00C6AD;margin-bottom:14px;">
+                過敏性鼻炎是許多人每到換季就必須面對的困擾…幫助您<strong>舒緩</strong>不適、維持良好的生活品質。
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <button style="padding:14px;background:#00C6AD;color:white;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;">✅ 合規確認</button>
+                <button style="padding:14px;background:#fef2f2;color:#ef4444;border:1.5px solid #fecaca;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;">✏️ 需要修改</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone: 審核列表 -->
+    <div>
+      <p style="text-align:center;font-size:13px;color:#888;margin-bottom:12px;">待審核列表</p>
+      <div class="mobile-frame">
+        <div class="mobile-status-bar">
+          <span>9:41</span>
+          <span>●●●◯◯ 📶 🔋</span>
+        </div>
+        <div class="mobile-nav">
+          <div>
+            <div class="title">待審核</div>
+            <div class="subtitle">長青連鎖藥局</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1);padding:6px 12px;border-radius:8px;font-size:13px;">黃維德 ▼</div>
+        </div>
+        <div class="mobile-body">
+          <div class="pending-label">待審核 (2)</div>
+          <div class="mobile-card">
+            <h4>過敏性鼻炎懶人包</h4>
+            <div class="meta">詩娟 · 10 分鐘前 · 🏷 過敏・鼻炎</div>
+            <div class="preview">換季必看的 5 個保養習慣，幫助您舒緩鼻腔不適…</div>
+            <div class="mobile-btns">
+              <button class="mobile-btn mobile-btn-approve">✅ 合規確認</button>
+              <button class="mobile-btn mobile-btn-reject">✏️ 需修改</button>
+            </div>
+          </div>
+          <div class="mobile-card">
+            <h4>失眠睡不著？藥師推薦保養</h4>
+            <div class="meta">詩娟 · 1 小時前 · 🏷 睡眠</div>
+            <div class="preview">3 種睡前保養方式，調理睡眠品質…</div>
+            <div class="mobile-btns">
+              <button class="mobile-btn mobile-btn-approve">✅ 合規確認</button>
+              <button class="mobile-btn mobile-btn-reject">✏️ 需修改</button>
+            </div>
+          </div>
+          <div class="pending-label" style="margin-top:20px;">本月完成 (18)</div>
+          <div style="background:white;border-radius:12px;padding:14px 16px;font-size:13px;color:#475569;">
+            ✅ 異位性皮膚炎保養指南<br>
+            <span style="color:#94a3b8;font-size:12px;">2026-05-20 · 已發布至部落格 + Google</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3: 管理者儀表板 -->
+<div id="s3" class="screen">
+  <div class="screen-title">③ 管理者視角 — 全局儀表板（Jason 使用）</div>
+
+  <div class="pharmacy-bar">
+    <label>藥局：</label>
+    <div class="pharmacy-chip selected">長青連鎖（台北）</div>
+    <div class="pharmacy-chip">＋ 新增藥局</div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="stat-card">
+      <div class="label">本月流量</div>
+      <div class="value" style="color:#00C6AD;">4,821</div>
+      <div class="change change-up">↑ +34% vs 上月</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">已發布文章</div>
+      <div class="value">18</div>
+      <div class="change change-up">↑ +6 篇</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Google 排名文章</div>
+      <div class="value">8</div>
+      <div class="change change-up">Top 20 以內</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">待審核</div>
+      <div class="value" style="color:#f59e0b;">2</div>
+      <div class="change" style="color:#94a3b8;">藥師未確認</div>
+    </div>
+  </div>
+
+  <div class="ranking-table">
+    <div class="table-header">
+      <h3>📈 文章排名追蹤（Google Search Console）</h3>
+      <span style="font-size:13px;color:#94a3b8;">更新時間：今天 09:00</span>
+    </div>
+    <div class="ranking-row header">
+      <div>#</div>
+      <div>文章標題</div>
+      <div>排名</div>
+      <div>28天點擊</div>
+      <div>曝光</div>
+      <div>狀態</div>
+    </div>
+    <div class="ranking-row rank-1">
+      <div class="rank-num">1</div>
+      <div class="article-title-cell">過敏性鼻炎換季保養<small>發布：2026-04-10</small></div>
+      <div><span class="rank-badge">#4</span></div>
+      <div>142</div>
+      <div>3,420</div>
+      <div><span class="pill pill-green">● 上升中</span></div>
+    </div>
+    <div class="ranking-row rank-2">
+      <div class="rank-num">2</div>
+      <div class="article-title-cell">失眠怎麼辦藥師建議<small>發布：2026-04-18</small></div>
+      <div><span class="rank-badge rank-mid">#9</span></div>
+      <div>87</div>
+      <div>1,890</div>
+      <div><span class="pill pill-green">● 穩定</span></div>
+    </div>
+    <div class="ranking-row rank-3">
+      <div class="rank-num">3</div>
+      <div class="article-title-cell">皮膚過敏舒緩保養<small>發布：2026-05-01</small></div>
+      <div><span class="rank-badge rank-mid">#12</span></div>
+      <div>53</div>
+      <div>980</div>
+      <div><span class="pill pill-yellow">● 爬升中</span></div>
+    </div>
+    <div class="ranking-row">
+      <div class="rank-num">4</div>
+      <div class="article-title-cell">長青藥局在哪裡怎麼去<small>發布：2026-04-05（GBP）</small></div>
+      <div><span class="rank-badge">#3</span></div>
+      <div>201</div>
+      <div>2,100</div>
+      <div><span class="pill pill-green">● Local SEO</span></div>
+    </div>
+  </div>
+
+  <div class="flow-diagram">
+    <h3>🔄 發布流程狀態</h3>
+    <div class="flow-steps">
+      <div class="flow-step step-active">
+        <div class="step-box">
+          <div class="step-icon">🤖</div>
+          <div class="step-label">AI 產文</div>
+          <div class="step-sub">症狀 + TA → 初稿</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step step-warn">
+        <div class="step-box">
+          <div class="step-icon">🚫</div>
+          <div class="step-label">禁字過濾</div>
+          <div class="step-sub">自動標記紅字</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step step-active">
+        <div class="step-box">
+          <div class="step-icon">✏️</div>
+          <div class="step-label">行銷審稿</div>
+          <div class="step-sub">詩娟 · 電腦</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step step-active">
+        <div class="step-box">
+          <div class="step-icon">👨‍⚕️</div>
+          <div class="step-label">藥師確認</div>
+          <div class="step-sub">黃維德 · 手機</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step step-active">
+        <div class="step-box">
+          <div class="step-icon">🚀</div>
+          <div class="step-label">自動發布</div>
+          <div class="step-sub">部落格 + Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.top-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = parseInt(id[1]) - 1;
+  document.querySelectorAll('.top-nav button')[idx].classList.add('active');
+}
+</script>
+</body>
+</html>

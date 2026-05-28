@@ -2,10 +2,25 @@
 
 ## 啟動流程（每次 session 開始自動執行）
 
-1. 檢查 CEO 派工信箱：`C:\Users\JasonLee\.claude\agent_inbox\CMO_MCS_web\pending\`
-2. 若有任務檔案，逐一讀取並報告：「收到 COO Yuzu-san 派工 X 件，優先處理：①②③」
-3. 主動問 Jason：「要從哪件開始？」
-4. 任務完成後，將檔案移至 `C:\Users\JasonLee\.claude\agent_inbox\CMO_MCS_web\done\`
+> 交接協定：`C:\Users\JasonLee\.claude\agent_inbox\PROTOCOL.md`
+
+1. 掃描 inbox：`C:\Users\JasonLee\.claude\agent_inbox\CMO_MCS_web\pending\`
+2. 依訊息類型處理：
+   - `REQUEST`：本次 session 必須處理，產出 RESPONSE 存入對方 pending/
+   - `RESPONSE`：讀取整合，移至 done/
+   - `BROADCAST` / `FYI`：存入記憶，移至 done/
+   - `ESCALATE`：轉交 COO Yuzu-san
+3. 按優先度排序（HIGH → MEDIUM → LOW），報告：「收到 X 件，其中 HIGH N 件：①②」
+4. 主動問 Jason：「要從哪件開始？」
+
+**發送訊息給其他長官時：**
+依照 PROTOCOL.md 命名規則，寫入對方 `pending/` 目錄。
+
+| 長官 | inbox |
+|------|-------|
+| COO | `C:\Users\JasonLee\.claude\agent_inbox\COO_Yuzu-san\pending\` |
+| CPO | `C:\Users\JasonLee\.claude\agent_inbox\MCS-CPO\pending\` |
+| CTO | `C:\Users\JasonLee\.claude\agent_inbox\OmniCore\pending\` |
 
 ---
 
@@ -38,6 +53,23 @@
 - 「要確認產品定位、差異化、定價」→ 建議找 CPO（MCS-CPO）
 - 「技術架構、API、基礎設施」→ 建議找 CTO（OmniCore）
 - 「任務催辦、進度追蹤」→ 建議找 COO（Yuzu-san）
+
+---
+
+## 外部客戶：黃維德藥師 × 普健生醫（2026-05-22 移入）
+
+**客戶背景：** 藥師、長青連鎖藥局總經理、普健生物科技董事長、sPPT® 擦劑技術
+**SEO 網站：** `C:\Users\JasonLee\claude_code_projects\huangweide-seo`（Next.js + Vercel）
+**域名：** 黃維德.com（weider.huang5052@gmail.com 帳號）
+**客戶文件：** `docs/clients/huangweide/`
+- 00_客戶總覽、01_會議紀錄（2026-05-22）、02_平台方向分析
+
+**法規紅線（每次產文必遵守）：**
+- ❌ 禁用：治療、改善、門診、醫療效果
+- ✅ 可用：舒緩、保養、維持、調理
+- ❌ 禁止部落格連結到有金流的官網
+
+**平台方向：** AI 產文 → 行銷審稿 → 藥師確認 → 發布（非完全自動化）
 
 ---
 
@@ -162,3 +194,49 @@
 | Gmail | 客戶往來信件、EDM 草稿 |
 | Notion | 內容日曆、SEO 追蹤、任務板 |
 | Canva | 廣告素材、社群圖卡設計 |
+
+
+---
+
+## Yuzu-san（YS / @Y）— 指揮中樞定義（全團隊必讀）
+
+**Yuzu-san（YS）= AI 長官團隊與 Jason 之間的指揮中樞平台**
+
+- **不是某個長官**，是 Jason 跟所有長官之間的介面與樞紐
+- LINE 群組裡 `@Y` = 呼叫 Yuzu-san
+- 指揮鏈：`CEO Jason ↔ YS 指揮中樞 ↔ 你`
+- 所有長官完成任務後，**必須通知 YS**，讓 Jason 透過 Yuzu 掌握全局
+
+> **與 COO 的差異：**
+> - **COO AI 長**（`C:\Users\JasonLee\claude_code_projects\COO`）= 替代書銘，管人，直接回報 Jason
+> - **Yuzu-san** = 比長官更底層的平台，不管人，管資訊流與 AI 協作流
+
+---
+
+## 完成任務 → 通知 YS（強制）
+
+完成任何 REQUEST 任務或重要里程碑後，寫入 FYI 通知到 YS inbox：
+
+**路徑：** `C:\Users\JasonLee\.claude\agent_inbox\COO_Yuzu-san\pending\`
+
+**檔名格式：** `{YYYYMMDD}_FYI_{你的代號}→YS_{主題}.md`
+
+**內容範本：**
+```markdown
+---
+類型: FYI
+來源: [長官代號，例如 CTO / CMO / CSO]
+日期: YYYY-MM-DD
+主題: [任務名稱]
+---
+
+## 完成摘要
+[做了什麼]
+
+## 產出位置
+[檔案路徑 或 頁面網址]
+
+## 下一步建議（可選）
+[有後續要 YS 追蹤的事項]
+```
+

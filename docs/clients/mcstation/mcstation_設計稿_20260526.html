@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mcstation.ai — 完整設計稿 v1 | 2026-05-26</title>
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --teal: #00C6AD;
+  --teal-light: #4DFFD9;
+  --navy: #0A1628;
+  --navy-2: #0d1f3c;
+  --navy-3: #1a2d4a;
+  --white: #f0f6ff;
+  --muted: rgba(240,246,255,0.55);
+  --font-h: 'Segoe UI', 'Noto Sans TC', sans-serif;
+  --font-b: 'Noto Sans TC', 'Segoe UI', sans-serif;
+}
+body { background: var(--navy); color: var(--white); font-family: var(--font-b); overflow-x: hidden; }
+img { display: block; width: 100%; object-fit: cover; }
+
+/* ── Design Annotation Layer ── */
+.anno {
+  position: relative; border: 2px dashed rgba(0,198,173,0.35);
+  border-radius: 12px; margin: 0 0 0.5rem;
+}
+.anno-label {
+  position: absolute; top: -14px; left: 16px; z-index: 10;
+  background: var(--teal); color: #000; font-size: 0.65rem; font-weight: 900;
+  padding: 2px 10px; border-radius: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.anno-note {
+  background: rgba(0,198,173,0.08); border-radius: 0 0 10px 10px;
+  padding: 0.6rem 1rem; font-size: 0.75rem; color: var(--teal);
+  border-top: 1px dashed rgba(0,198,173,0.25); line-height: 1.6;
+}
+
+/* ── Section Header ── */
+.spec-header {
+  background: linear-gradient(90deg, rgba(0,198,173,0.15) 0%, transparent 100%);
+  border-left: 4px solid var(--teal); padding: 1rem 1.5rem; margin: 2.5rem 0 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+.spec-header h2 { font-size: 1rem; font-weight: 900; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; }
+.spec-header p { font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem; }
+
+/* ── NAV PREVIEW ── */
+.nav-mock {
+  background: rgba(10,22,40,0.97); border-bottom: 2px solid rgba(0,198,173,0.35);
+  padding: 0 2.5rem; height: 64px; display: flex; align-items: center;
+  justify-content: space-between; position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px);
+}
+.nav-logo { font-size: 1.2rem; font-weight: 900; color: #fff; letter-spacing: -0.03em; }
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 0.25rem; align-items: center; }
+.nav-link { color: rgba(240,246,255,0.8); font-size: 0.9rem; font-weight: 600; padding: 6px 14px; border-radius: 6px; text-decoration: none; transition: all 0.15s; cursor: pointer; }
+.nav-link:hover { background: rgba(0,198,173,0.12); color: var(--teal); }
+.nav-cta { background: var(--teal); color: #0A1628; font-weight: 900; font-size: 0.9rem; padding: 8px 20px; border-radius: 8px; text-decoration: none; margin-left: 8px; }
+.nav-ai-badge { background: rgba(0,198,173,0.15); border: 1px solid rgba(0,198,173,0.4); color: var(--teal); font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.1em; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 100vh; display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+}
+.hero-bg img { height: 100%; object-fit: cover; object-position: center; opacity: 0.45; }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(135deg, rgba(10,22,40,0.88) 0%, rgba(10,22,40,0.65) 50%, rgba(10,22,40,0.82) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+  padding-top: 80px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(0,198,173,0.12); border: 1px solid rgba(0,198,173,0.35);
+  color: var(--teal); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em;
+  padding: 6px 16px; border-radius: 20px; margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+.hero-badge::before { content: '●'; font-size: 0.5rem; color: #4DFFD9; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero-title {
+  font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 900;
+  line-height: 1.05; letter-spacing: -0.035em; color: #fff;
+  margin-bottom: 1.5rem;
+}
+.hero-title .accent { color: var(--teal); display: block; }
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.25rem); color: var(--muted);
+  max-width: 600px; line-height: 1.7; margin-bottom: 2.5rem;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.btn-primary {
+  background: var(--teal); color: #0A1628; font-weight: 900;
+  font-size: 1rem; padding: 14px 32px; border-radius: 10px;
+  border: none; cursor: pointer; letter-spacing: 0.03em;
+  transition: all 0.2s; text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent; color: #fff; font-weight: 700;
+  font-size: 1rem; padding: 14px 32px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25); cursor: pointer;
+  transition: all 0.2s; text-decoration: none; display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+.hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; }
+.hero-stat h3 { font-size: 2rem; font-weight: 900; color: var(--teal); }
+.hero-stat p { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+/* ── AI FLOAT BUTTON ── */
+.ai-float {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+  background: linear-gradient(135deg, var(--teal), #007a6b);
+  color: #0A1628; font-weight: 900; font-size: 0.9rem;
+  padding: 14px 22px; border-radius: 50px;
+  box-shadow: 0 8px 32px rgba(0,198,173,0.45);
+  display: flex; align-items: center; gap: 0.5rem;
+  cursor: pointer; border: none;
+  animation: floatPulse 3s ease-in-out infinite;
+}
+@keyframes floatPulse { 0%,100%{box-shadow: 0 8px 32px rgba(0,198,173,0.45)} 50%{box-shadow: 0 12px 48px rgba(0,198,173,0.7)} }
+.ai-float .dot { width: 8px; height: 8px; background: #0A1628; border-radius: 50%; animation: pulse 1.5s infinite; }
+
+/* ── OMNICORE SECTION ── */
+.section { max-width: 1200px; margin: 0 auto; padding: 6rem 2.5rem; }
+.section-eyebrow { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.25em; color: var(--teal); text-transform: uppercase; margin-bottom: 1rem; }
+.section-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.03em; color: #fff; margin-bottom: 1rem; line-height: 1.1; }
+.section-sub { font-size: 1.05rem; color: var(--muted); max-width: 580px; line-height: 1.7; margin-bottom: 3.5rem; }
+
+.omnicore-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.omnicore-img { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); border: 1px solid rgba(0,198,173,0.2); }
+.omnicore-img img { height: 380px; }
+.omnicore-cards { display: grid; grid-template-rows: 1fr 1fr; gap: 1rem; }
+.exec-card {
+  background: var(--navy-2); border-radius: 14px; padding: 1.4rem 1.6rem;
+  border-left: 3px solid var(--exec-color, var(--teal));
+  display: flex; gap: 1rem; align-items: flex-start;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  transition: transform 0.2s; cursor: default;
+}
+.exec-card:hover { transform: translateX(4px); }
+.exec-icon { font-size: 1.8rem; flex-shrink: 0; }
+.exec-card h4 { font-size: 0.72rem; font-weight: 800; color: var(--exec-color, var(--teal)); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.25rem; }
+.exec-card h3 { font-size: 0.95rem; font-weight: 800; color: #fff; margin-bottom: 0.3rem; }
+.exec-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* ── ROLES SECTION ── */
+.roles-bg { background: linear-gradient(180deg, var(--navy) 0%, #071020 50%, var(--navy) 100%); }
+.roles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.role-card {
+  position: relative; border-radius: 20px; overflow: hidden;
+  cursor: pointer; transition: transform 0.25s, box-shadow 0.25s;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.role-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.5); }
+.role-card img { height: 260px; transition: transform 0.4s; }
+.role-card:hover img { transform: scale(1.04); }
+.role-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,10,25,0.95) 0%, rgba(5,10,25,0.3) 60%, transparent 100%);
+}
+.role-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.8rem; }
+.role-tag { display: inline-block; background: var(--role-color, var(--teal)); color: #000; font-size: 0.65rem; font-weight: 900; padding: 3px 10px; border-radius: 10px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+.role-content h3 { font-size: 1.2rem; font-weight: 900; color: #fff; margin-bottom: 0.4rem; }
+.role-content p { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.5; margin-bottom: 1rem; }
+.role-cta { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--role-color, var(--teal)); font-size: 0.82rem; font-weight: 700; }
+
+/* ── AI ADVISOR SECTION ── */
+.ai-section { background: var(--navy-2); }
+.ai-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.ai-chat-mock {
+  background: #050d1a; border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(0,198,173,0.25);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,198,173,0.1);
+}
+.chat-header {
+  background: rgba(0,198,173,0.08); border-bottom: 1px solid rgba(0,198,173,0.15);
+  padding: 1rem 1.5rem; display: flex; align-items: center; gap: 0.75rem;
+}
+.chat-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), #007a6b); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.chat-header h4 { font-size: 0.88rem; font-weight: 800; color: #fff; }
+.chat-header p { font-size: 0.72rem; color: var(--teal); }
+.chat-status { margin-left: auto; display: flex; align-items: center; gap: 0.4rem; font-size: 0.65rem; color: var(--teal); font-weight: 700; }
+.chat-status::before { content: ''; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; display: block; animation: pulse 1.5s infinite; }
+.chat-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; min-height: 340px; }
+.msg { max-width: 80%; }
+.msg-ai { align-self: flex-start; }
+.msg-user { align-self: flex-end; }
+.msg-bubble {
+  padding: 0.75rem 1rem; border-radius: 14px; font-size: 0.82rem; line-height: 1.6;
+}
+.msg-ai .msg-bubble { background: rgba(0,198,173,0.1); border: 1px solid rgba(0,198,173,0.2); color: var(--white); border-radius: 4px 14px 14px 14px; }
+.msg-user .msg-bubble { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); border-radius: 14px 4px 14px 14px; }
+.msg-time { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 4px; padding: 0 4px; }
+.msg-user .msg-time { text-align: right; }
+.chat-input {
+  border-top: 1px solid rgba(255,255,255,0.06); padding: 1rem 1.5rem;
+  display: flex; gap: 0.75rem; align-items: center;
+}
+.chat-input input {
+  flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 10px 14px; color: #fff; font-size: 0.85rem;
+  outline: none;
+}
+.chat-input button {
+  background: var(--teal); color: #0A1628; font-weight: 900; font-size: 0.82rem;
+  padding: 10px 16px; border-radius: 10px; border: none; cursor: pointer;
+}
+
+/* ── NUMBERS ── */
+.numbers-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden; margin: 4rem 0; }
+.number-item { background: var(--navy); padding: 2rem; text-align: center; }
+.number-item h3 { font-size: 2.8rem; font-weight: 900; color: var(--teal); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.number-item p { font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.4; }
+
+/* ── CASES ── */
+.cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.case-card { background: var(--navy-2); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); transition: transform 0.2s; }
+.case-card:hover { transform: translateY(-4px); }
+.case-img { height: 180px; overflow: hidden; }
+.case-img img { height: 100%; transition: transform 0.4s; }
+.case-card:hover .case-img img { transform: scale(1.06); }
+.case-body { padding: 1.2rem; }
+.case-tag { font-size: 0.65rem; font-weight: 800; color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.case-body h4 { font-size: 0.95rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem; }
+.case-body p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* ── FOOTER ── */
+.footer { background: #040a14; border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 2.5rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+.footer-brand h3 { font-size: 1.3rem; font-weight: 900; color: #fff; margin-bottom: 0.5rem; }
+.footer-brand h3 span { color: var(--teal); }
+.footer-brand p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+.footer-link-block h4 { font-size: 0.72rem; font-weight: 800; color: rgba(255,255,255,0.4); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
+.footer-link-block a { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.15s; }
+.footer-link-block a:hover { color: var(--teal); }
+.footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+.seo-note { background: rgba(0,198,173,0.06); border: 1px dashed rgba(0,198,173,0.2); border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.72rem; color: var(--teal); }
+
+/* ── Design Doc Header ── */
+.doc-header { background: linear-gradient(135deg, #070f1f 0%, #0d1f3c 100%); border-bottom: 2px solid rgba(0,198,173,0.3); padding: 2rem 2.5rem; }
+.doc-header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.doc-meta h1 { font-size: 1.4rem; font-weight: 900; color: var(--teal); }
+.doc-meta p { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; }
+.doc-status { display: flex; flex-direction: column; gap: 0.4rem; }
+.status-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+.status-design { background: rgba(246,173,85,0.15); color: #f6ad55; border: 1px solid rgba(246,173,85,0.3); }
+.status-seo { background: rgba(104,211,145,0.15); color: #68d391; border: 1px solid rgba(104,211,145,0.3); }
+.status-ai { background: rgba(0,198,173,0.15); color: var(--teal); border: 1px solid rgba(0,198,173,0.3); }
+
+/* ── Legend Panel ── */
+.legend { max-width: 1200px; margin: 0 auto; padding: 1.5rem 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted); }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ── SEO Page Architecture ── */
+.seo-arch { max-width: 1200px; margin: 0 auto; padding: 2rem 2.5rem; }
+.url-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.url-card { background: var(--navy-2); border-radius: 12px; padding: 1.2rem; border: 1px solid rgba(255,255,255,0.06); border-top: 3px solid var(--url-color, var(--teal)); }
+.url-card .url { font-family: 'Consolas', monospace; font-size: 0.82rem; color: var(--url-color, var(--teal)); font-weight: 700; margin-bottom: 0.5rem; }
+.url-card h4 { font-size: 0.88rem; font-weight: 800; color: #fff; margin-bottom: 0.25rem; }
+.url-card p { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+.url-kw { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.6rem; }
+.kw { font-size: 0.65rem; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); padding: 2px 8px; border-radius: 10px; }
+
+/* ── dividers ── */
+.divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,198,173,0.3), transparent); margin: 0; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     DESIGN DOC HEADER
+═══════════════════════════════════ -->
+<div class="doc-header">
+  <div class="doc-header-inner">
+    <div class="doc-meta">
+      <h1>mcstation.ai — 完整設計稿 v1</h1>
+      <p>CMO × CTO × CPO × COO 四長官妥協共識版本 · 2026-05-26</p>
+      <p style="margin-top:0.5rem;font-size:0.78rem;color:rgba(255,255,255,0.35);">設計稿含：頁面佈局 · SEO 架構 · AI 功能規格 · Gemini 插圖預覽</p>
+    </div>
+    <div class="doc-status">
+      <span class="status-badge status-design">● 設計稿 v1</span>
+      <span class="status-badge status-seo">✓ SEO 架構已規劃</span>
+      <span class="status-badge status-ai">AI 顧問功能已定義</span>
+    </div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#00C6AD"></div>設計規格說明</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f6ad55"></div>圖片說明（Gemini Imagen 4 生成）</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#68d391"></div>SEO 技術備註</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#b794f4"></div>AI 功能說明</div>
+</div>
+
+<!-- ══════════════════════════════════
+     0. SEO 頁面架構
+═══════════════════════════════════ -->
+<div class="spec-header" style="max-width:1200px;margin:2rem auto 1rem;border-radius:0 8px 8px 0;">
+  <h2>0 · SEO 著陸頁架構（技術架構決策）</h2>
+  <p>每個 URL 獨立 SSG 渲染 · 各自 metadata · JSON-LD · 覆蓋不同搜尋意圖</p>
+</div>
+<div class="seo-arch">
+  <div class="url-grid">
+    <div class="url-card" style="--url-color:#00C6AD;">
+      <div class="url">/ 首頁</div>
+      <h4>AI 場館生態系 · OmniCore</h4>
+      <p>品牌認知 + 角色分流入口</p>
+      <div class="url-kw">
+        <span class="kw">場館管理系統</span><span class="kw">AI 餐廳</span><span class="kw">OmniCore</span><span class="kw">mcstation</span>
+      </div>
+    </div>
+    <div class="url-card" style="--url-color:#f6ad55;">
+      <div class="url">/venue</div>
+      <h4>場館老闆專屬頁</h4>
+      <p>數位化痛點 + AI 解法 + 案例</p>
+      <div class="url-kw">
+        <span class="kw">場館數位化</span><span class="kw">AI點餐系統</span><span class="kw">智能管理</span>
+      </div>
+    </div>
+    <div class="url-card" style="--url-color:#68d391;">
+      <div class="url">/brand</div>
+      <h4>品牌商專屬頁</h4>
+      <p>進駐場館 · 品牌合作 · 通路</p>
+      <div class="url-kw">
+        <span class="kw">品牌進駐</span><span class="kw">場館合作</span><span class="kw">B2B通路</span>
+      </div>
+    </div>
+    <div class="url-card" style="--url-color:#b794f4;">
+      <div class="url">/franchise</div>
+      <h4>加盟商專屬頁</h4>
+      <p>連鎖管理 · MCS 加盟體系</p>
+      <div class="url-kw">
+        <span class="kw">加盟系統</span><span class="kw">連鎖管理</span><span class="kw">MCS加盟</span>
+      </div>
+    </div>
+    <div class="url-card" style="--url-color:#fc8181;">
+      <div class="url">/partner</div>
+      <h4>技術夥伴 / 人才頁</h4>
+      <p>OmniCore API · 工程師合作</p>
+      <div class="url-kw">
+        <span class="kw">AI工程師</span><span class="kw">OmniCore API</span><span class="kw">技術合作</span>
+      </div>
+    </div>
+    <div class="url-card" style="--url-color:#4fc3f7;">
+      <div class="url">/cases</div>
+      <h4>案例頁（長尾 SEO 大補帖）</h4>
+      <p>各產業場館案例 · 具體數字</p>
+      <div class="url-kw">
+        <span class="kw">場館AI化案例</span><span class="kw">數位轉型成效</span>
+      </div>
+    </div>
+  </div>
+  <div class="anno-note" style="margin-top:1rem;background:rgba(104,211,145,0.06);border:1px dashed rgba(104,211,145,0.25);border-radius:8px;padding:0.8rem 1.2rem;color:#68d391;font-size:0.78rem;">
+    ✓ 技術備註 CTO：全部 SSG（generateStaticParams） · 首頁 JSON-LD Organization · 各頁 FAQPage schema · transtep.com 相互內鏈
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════
+     1. NAV
+═══════════════════════════════════ -->
+<div class="spec-header" style="max-width:1200px;margin:2rem auto 1rem;border-radius:0 8px 8px 0;">
+  <h2>1 · 導覽列</h2>
+  <p>固定頂部 · 毛玻璃效果 · 全程浮動 AI 顧問按鈕 · 手機版漢堡選單</p>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:0 2.5rem 1rem;">
+  <div class="anno">
+    <div class="anno-label">NAV</div>
+    <nav class="nav-mock" style="position:relative;top:auto;">
+      <div class="nav-logo"><span>MCS</span>tation.ai</div>
+      <div class="nav-links">
+        <a class="nav-link">關於我們</a>
+        <a class="nav-link">OmniCore</a>
+        <a class="nav-link">場館解方</a>
+        <a class="nav-link">案例</a>
+        <span class="nav-ai-badge">● AI 顧問線上</span>
+        <a class="nav-cta">AI 諮詢 →</a>
+      </div>
+    </nav>
+    <div class="anno-note">
+      背景：rgba(10,22,40,0.97) + backdrop-filter:blur(20px) · 高度 64px · border-bottom 2px solid teal 30% · 右側 「AI 顧問線上」 badge 有呼吸動畫
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     2. HERO
+═══════════════════════════════════ -->
+<div class="spec-header" style="max-width:1200px;margin:2rem auto 1rem;border-radius:0 8px 8px 0;">
+  <h2>2 · Hero — 第一屏</h2>
+  <p>全螢幕 · 寫實 AI 城市插圖 · 呼應 SEO 搜尋意圖標題 · 兩個 CTA + 數字牆</p>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:0 2.5rem 1rem;">
+  <div class="anno">
+    <div class="anno-label">HERO SECTION</div>
+    <div class="hero" style="min-height:85vh;">
+      <div class="hero-bg"><img src="/mcs-hero.jpg" alt="Hero" style="height:100%;object-fit:cover;"/></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content" style="max-width:1200px;">
+        <div class="hero-badge">OmniCore AI 生態系 · 2026</div>
+        <h1 class="hero-title">
+          場館數位化<br>
+          <span class="accent">不只是系統，<br>是你的 AI 團隊</span>
+        </h1>
+        <p class="hero-sub">
+          MCS Station AI 為場館、品牌商、加盟業者打造完整的 OmniCore AI 生態系統。
+          從行銷到技術，AI 長官 7×24 待命，讓你的場館跑在競爭對手前面。
+        </p>
+        <div class="hero-ctas">
+          <a class="btn-primary">與 AI 顧問對談 →</a>
+          <a class="btn-ghost">認識 OmniCore ↓</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><h3>70%</h3><p>詢問由 AI<br>自動處理</p></div>
+          <div class="hero-stat"><h3>7×24</h3><p>AI 顧問<br>全時待命</p></div>
+          <div class="hero-stat"><h3>4+</h3><p>OmniCore<br>AI 長官</p></div>
+          <div class="hero-stat"><h3>∞</h3><p>可服務<br>場館規模</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="anno-note" style="background:rgba(246,173,85,0.06);border-color:rgba(246,173,85,0.25);color:#f6ad55;">
+      📸 插圖：Gemini Imagen 4 生成 — 台灣智慧城市夜景，AI 數據流連接各場館節點，科技感強，teal + 金色燈光。<br>
+      實際圖片路徑：<code>/mcs-hero.jpg</code>（已生成至 mcstation-web/public/）
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     3. OMNICORE ECOSYSTEM
+═══════════════════════════════════ -->
+<div class="spec-header" style="max-width:1200px;margin:2rem auto 1rem;border-radius:0 8px 8px 0;">
+  <h2>3 · OmniCore 生態系 — 最強差異化</h2>
+  <p>圖片 + 4 位 AI 長官說明 · 讓訪客一眼看出「這間公司不一樣」</p>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:0 2.5rem 1rem;">
+  <div class="anno">
+    <div class="anno-label">OMNICORE SECTION</div>
+    <div style="padding:3rem 2rem;background:var(--navy);">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <div class="section-eyebrow">OmniCore 生態系</div>
+        <div class="section-title" style="text-align:center;">不只是工具，是你的<br><span style="color:var(--teal)">AI 經營團隊</span></div>
+        <p style="color:var(--muted);max-width:560px;margin:1rem auto 0;font-size:1rem;line-height:1.7;">
+          我們的 OmniCore 架構由 CMO、CTO、CPO、COO 四位 AI 長官協同運作，
+          各自專責不同面向，7×24 為你的場館提供完整策略與執行支援。
+        </p>
+      </div>
+      <div class="omnicore-grid">
+        <div class="omnicore-img">
+          <img src="/mcs-omnicore.jpg" alt="OmniCore AI Team" style="height:380px;"/>
+        </div>
+        <div class="omnicore-cards">
+          <div class="exec-card" style="--exec-color:#f6ad55;">
+            <div class="exec-icon">📣</div>
+            <div>
+              <h4>CMO · 行銷長</h4>
+              <h3>品牌策略 × SEO × 文案</h3>
+              <p>分析市場，制定行銷策略，自動產出 SEO 內容，讓你的場館被更多人找到。</p>
+            </div>
+          </div>
+          <div class="exec-card" style="--exec-color:#68d391;">
+            <div class="exec-icon">⚙️</div>
+            <div>
+              <h4>CTO · 技術長</h4>
+              <h3>系統架構 × API × 部署</h3>
+              <p>設計技術架構，確保系統穩定運作，API 整合，基礎設施維護。</p>
+            </div>
+          </div>
+          <div class="exec-card" style="--exec-color:#b794f4;">
+            <div class="exec-icon">🎯</div>
+            <div>
+              <h4>CPO · 產品長</h4>
+              <h3>產品定位 × 用戶體驗 × 功能</h3>
+              <p>定義產品方向，競品分析，確保每個功能解決真實的場館痛點。</p>
+            </div>
+          </div>
+          <div class="exec-card" style="--exec-color:#fc8181;">
+            <div class="exec-icon">📋</div>
+            <div>
+              <h4>COO · 營運長</h4>
+              <h3>進度追蹤 × 任務派工 × 通知</h3>
+              <p>確保所有任務按時完成，自動推 LINE 通知，讓你永遠掌握進度。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="anno-note" style="background:rgba(246,173,85,0.06);border-color:rgba(246,173,85,0.25);color:#f6ad55;">
+      📸 插圖：Gemini Imagen 4 — 4 位 AI 長官全息投影，圍坐圓形指揮台，科技感指揮中心，teal 光源。<br>
+      路徑：<code>/mcs-omnicore.jpg</code>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     4. ROLE CARDS
+═══════════════════════════════════ -->
+<div class="spec-header" style="max-width:1200px;margin:2rem auto 1rem;border-radius:0 8px 8px 0;">
+  <h2>4 · 角色選擇 — 4 入口</h2>
+  <p>每張卡片各自有 Gemini 寫實插圖 · 各自連到獨立 SEO 著陸頁 · hover 縮放效果</p>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:0 2.5rem 1rem;">
+  <div class="anno">
+    <div class="anno-label">ROLE CARDS</div>
+    <div style="padding:3rem 2rem;background:#071020;">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <div class="section-eyebrow">你是哪種客戶？</div>
+        <div class="section-title" style="text-align:center;">選擇你的身份<br><span style="color:var(--teal)">進入專屬旅程</span></div>
+      </div>
+      <div class="roles-grid">
+        <div class="role-card" style="--role-color:#f6ad55;">
+          <img src="/mcs-venue.jpg" alt="場館老闆"/>
+          <div class="role-overlay"></div>
+          <div class="role-content">
+            <span class="role-tag" style="background:#f6ad55;">場館老闆</span>
+            <h3>我想讓場館數位化</h3>
+            <p>點餐系統、AI 管理、數據分析——讓場館省時省力，業績更好</p>
+            <span class="role-cta" style="color:#f6ad55;">了解場館解方 →</span>
+          </div>
+        </div>
+        <div class="role-card" style="--role-color:#68d391;">
+          <img src="/mcs-brand.jpg" alt="品牌商"/>
+          <div class="role-overlay"></div>
+          <div class="role-content">
+            <span class="role-tag" style="background:#68d391;">品牌商</span>
+            <h3>我想進駐更多場館</h3>
+            <p>品牌合作、通路佈局、聯名策略——用 AI 找到最佳合作場館</p>
+            <span class="role-cta" style="color:#68d391;">品牌合作方案 →</span>
+          </div>
+        </div>
+        <div class="role-card" style="--role-color:#b794f4;">
+          <img src="/mcs-franchise.jpg" alt="加盟商"/>
+          <div class="role-overlay"></div>
+          <div class="role-content">
+            <span class="role-tag" style="background:#b794f4;">加盟商</span>
+            <h3>我想加入 MCS 體系</h3>
+            <p>連鎖管理系統、加盟支援、AI 營運——讓每個據點都跑得順</p>
+            <span class="role-cta" style="color:#b794f4;">加盟詳情 →</span>
+          </div>
+        </div>
+        <div class="role-card" style="--role-color:#4fc3f7;">
+          <img src="/mcs-partner.jpg" alt="技術夥伴"/>
+          <div class="role-overlay"></div>
+          <div class="role-content">
+            <span class="role-tag" style="background:#4fc3f7;color:#0A1628;">技術夥伴</span>
+            <h3>我想加入 OmniCore</h3>
+            <p>AI 工程師、系統整合商——加入 OmniCore 生態，一起打造未來場館</p>
+            <span class="role-cta" style="color:#4fc3f7;">夥伴計畫 →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="anno-note" style="background:rgba(246,173,85,0.06);border-color:rgba(246,173,85,0.25);color:#f6ad55;">
+      📸 4 張 Gemini Imagen 4 插圖：<br>
+      場館老闆：餐廳老闆拿 AI 平板 · 品牌商：商務會議 + 全息地圖 · 加盟商：鳥瞰多點連線圖 · 技術夥伴：工程師科技辦公室<br>
+      路徑：<code>/mcs-venue.jpg · /mcs-brand.jpg · /mcs-franchise.jpg · /mcs-partner.jpg</code>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     5. AI ADVISOR MOCK
+═══════════════════════════════════ -->
+<div class="spec-header" style="max-width:1200px;margin:2rem auto 1rem;border-radius:0 8px 8px 0;">
+  <h2>5 · AI 顧問對談 — 核心功能</h2>
+  <p>流式回應 · 選完角色後 AI 知道你是誰 · 對話後自動評分並推 LINE 通知給業務</p>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:0 2.5rem 1rem;">
+  <div class="anno">
+    <div class="anno-label">AI ADVISOR UI</div>
+    <div class="ai-section" style="padding:3rem 2rem;">
+      <div class="ai-inner">
+        <div>
+          <div class="section-eyebrow">AI 顧問系統</div>
+          <div class="section-title">你問，AI 答<br><span style="color:var(--teal)">業務只出現在值得的商機</span></div>
+          <p style="color:var(--muted);margin:1.5rem 0;line-height:1.7;font-size:0.95rem;">
+            選擇身份後，OmniCore AI 顧問已了解你的角色。
+            無論是詢問費用、了解功能、還是複雜的技術問題，
+            AI 7×24 即時回應。
+          </p>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            <div style="display:flex;gap:0.75rem;align-items:center;">
+              <div style="width:36px;height:36px;border-radius:50%;background:rgba(0,198,173,0.15);border:1px solid rgba(0,198,173,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div>
+              <p style="font-size:0.88rem;color:var(--white);">自動識別訪客角色，提供個人化回應</p>
+            </div>
+            <div style="display:flex;gap:0.75rem;align-items:center;">
+              <div style="width:36px;height:36px;border-radius:50%;background:rgba(0,198,173,0.15);border:1px solid rgba(0,198,173,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div>
+              <p style="font-size:0.88rem;color:var(--white);">收集需求後自動評分商機（A/B/C 級）</p>
+            </div>
+            <div style="display:flex;gap:0.75rem;align-items:center;">
+              <div style="width:36px;height:36px;border-radius:50%;background:rgba(0,198,173,0.15);border:1px solid rgba(0,198,173,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div>
+              <p style="font-size:0.88rem;color:var(--white);">A 級商機自動推 LINE 通知 Jason + 業務</p>
+            </div>
+            <div style="display:flex;gap:0.75rem;align-items:center;">
+              <div style="width:36px;height:36px;border-radius:50%;background:rgba(0,198,173,0.15);border:1px solid rgba(0,198,173,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">✓</div>
+              <p style="font-size:0.88rem;color:var(--white);">對話紀錄存 Neon DB，業務接手有完整脈絡</p>
+            </div>
+          </div>
+        </div>
+        <div class="ai-chat-mock">
+          <div class="chat-header">
+            <div class="chat-avatar">🤖</div>
+            <div>
+              <h4>OmniCore AI 顧問</h4>
+              <p>MCS Station 智能業務代表</p>
+            </div>
+            <div class="chat-status">線上中</div>
+          </div>
+          <div class="chat-body">
+            <div class="msg msg-ai">
+              <div class="msg-bubble">您好！我是 OmniCore AI 顧問。我看到您對場館數位化感興趣——請問您目前的場館規模大概是多少個座位？這樣我可以幫您推薦最適合的方案。</div>
+              <div class="msg-time">今天 14:32</div>
+            </div>
+            <div class="msg msg-user">
+              <div class="msg-bubble">我有一間 80 個座位的餐廳，目前還在用紙本點餐，想了解有什麼可以改善的</div>
+              <div class="msg-time">今天 14:33</div>
+            </div>
+            <div class="msg msg-ai">
+              <div class="msg-bubble">80 座的餐廳是很適合數位化的規模！我們有三個方向可以討論：<br><br>① <strong>QR 點餐系統</strong>——客人掃碼自助點餐，減少服務員走動次數<br>② <strong>AI 營收分析</strong>——自動分析哪些菜最賣、哪個時段最忙<br>③ <strong>OmniCore 完整套件</strong>——以上全部加行銷 AI<br><br>您最想先解決哪個問題呢？</div>
+              <div class="msg-time">今天 14:33</div>
+            </div>
+            <div class="msg msg-user">
+              <div class="msg-bubble">先了解一下費用大概是多少？</div>
+              <div class="msg-time">今天 14:34</div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <input type="text" placeholder="輸入你的問題..." disabled/>
+            <button>傳送</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="anno-note" style="background:rgba(183,148,244,0.06);border-color:rgba(183,148,244,0.25);color:#b794f4;">
+      🤖 AI 功能規格：Gemini 2.5 Flash · 流式回應（streaming） · Zustand 狀態管理 · 角色 system prompt 切換 · 商機評分後 Resend email + Yuzu-san LINE 推送 · 對話存 Neon PostgreSQL
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     6. NUMBERS BAR
+═══════════════════════════════════ -->
+<div style="max-width:1200px;margin:0 auto;padding:0 2.5rem;">
+  <div class="numbers-row">
+    <div class="number-item"><h3>70%</h3><p>詢問由 AI<br>自動處理完成</p></div>
+    <div class="number-item"><h3>4+</h3><p>OmniCore<br>AI 長官協作</p></div>
+    <div class="number-item"><h3>7×24</h3><p>全天候<br>AI 顧問在線</p></div>
+    <div class="number-item"><h3>&lt;2s</h3><p>AI 回應<br>平均時間</p></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     7. FLOATING AI BUTTON
+═══════════════════════════════════ -->
+<div class="spec-header" style="max-width:1200px;margin:2rem auto 1rem;border-radius:0 8px 8px 0;">
+  <h2>6 · 浮動 AI 按鈕 — 全程可見</h2>
+  <p>從 Hero 開始全程固定右下角 · 確保急性子訪客隨時可以開口問</p>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:0 2.5rem 1rem;">
+  <div class="anno" style="padding:2rem;min-height:120px;display:flex;align-items:center;justify-content:flex-end;">
+    <div class="anno-label">FLOAT BUTTON（固定右下角，全頁可見）</div>
+    <button class="ai-float" style="position:relative;bottom:auto;right:auto;">
+      <span class="dot"></span>
+      AI 顧問，現在可談
+    </button>
+  </div>
+  <div class="anno-note">
+    position: fixed · bottom: 2rem · right: 2rem · z-index: 200 · 呼吸發光動畫 · 點擊後開啟 AI 對談側邊欄或跳轉 /ai-advisor
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     8. FOOTER
+═══════════════════════════════════ -->
+<div class="spec-header" style="max-width:1200px;margin:2rem auto 1rem;border-radius:0 8px 8px 0;">
+  <h2>7 · Footer — 含 transtep.com 內鏈</h2>
+  <p>SEO 內鏈：mcstation.ai ↔ transtep.com 互相傳遞 Domain Authority</p>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:0 2.5rem 1rem;">
+  <div class="anno">
+    <div class="anno-label">FOOTER</div>
+    <footer class="footer" style="margin:0;border-radius:0;">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h3><span>MCS</span>tation.ai</h3>
+          <p>OmniCore AI 生態系統 — 為場館、品牌商、加盟業者提供完整的 AI 數位化解決方案。</p>
+          <div class="seo-note">技術執行夥伴：<a href="https://www.transtep.com" style="color:var(--teal);">龍雲數位 transtep.com</a> ← SEO 內鏈</div>
+        </div>
+        <div class="footer-link-block">
+          <h4>解決方案</h4>
+          <a href="/venue">場館老闆</a>
+          <a href="/brand">品牌商</a>
+          <a href="/franchise">加盟商</a>
+          <a href="/partner">技術夥伴</a>
+        </div>
+        <div class="footer-link-block">
+          <h4>OmniCore</h4>
+          <a href="#">關於我們</a>
+          <a href="#">AI 長官團隊</a>
+          <a href="/cases">成功案例</a>
+          <a href="#">最新消息</a>
+        </div>
+        <div class="footer-link-block">
+          <h4>聯絡</h4>
+          <a href="mailto:service@mcstation.ai">service@mcstation.ai</a>
+          <a href="#">LINE 諮詢</a>
+          <a href="#">AI 顧問</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 MCS Station AI · 龍雲數位股份有限公司</p>
+        <p style="font-size:0.72rem;color:rgba(255,255,255,0.2);">隱私權政策 · 服務條款</p>
+      </div>
+    </footer>
+    <div class="anno-note" style="background:rgba(104,211,145,0.06);border-color:rgba(104,211,145,0.25);color:#68d391;">
+      ✓ SEO 重點：Footer 含 transtep.com 可點擊外鏈 · 公司名稱與 Google 商家一致 · 信箱 service@mcstation.ai 與 Google Search Console 帳號一致
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SUMMARY TABLE
+═══════════════════════════════════ -->
+<div style="max-width:1200px;margin:3rem auto;padding:0 2.5rem 4rem;">
+  <div style="background:var(--navy-2);border-radius:16px;padding:2rem;border:1px solid rgba(0,198,173,0.2);">
+    <h2 style="font-size:1rem;font-weight:900;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem;">實作優先順序（給 CTO 參考）</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+          <th style="text-align:left;padding:0.6rem 1rem;color:rgba(255,255,255,0.4);font-weight:600;">優先</th>
+          <th style="text-align:left;padding:0.6rem 1rem;color:rgba(255,255,255,0.4);font-weight:600;">功能</th>
+          <th style="text-align:left;padding:0.6rem 1rem;color:rgba(255,255,255,0.4);font-weight:600;">技術</th>
+          <th style="text-align:left;padding:0.6rem 1rem;color:rgba(255,255,255,0.4);font-weight:600;">SEO 效益</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:0.8rem 1rem;color:#f6ad55;font-weight:800;">P0</td>
+          <td style="padding:0.8rem 1rem;color:#fff;">首頁 SSG + metadata</td>
+          <td style="padding:0.8rem 1rem;color:var(--muted);">Next.js App Router generateMetadata</td>
+          <td style="padding:0.8rem 1rem;color:#68d391;">⬆ 爬蟲直讀 HTML</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:0.8rem 1rem;color:#f6ad55;font-weight:800;">P0</td>
+          <td style="padding:0.8rem 1rem;color:#fff;">4 個角色 SEO 著陸頁</td>
+          <td style="padding:0.8rem 1rem;color:var(--muted);">/venue /brand /franchise /partner</td>
+          <td style="padding:0.8rem 1rem;color:#68d391;">⬆ 長尾關鍵字覆蓋</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:0.8rem 1rem;color:#f6ad55;font-weight:800;">P0</td>
+          <td style="padding:0.8rem 1rem;color:#fff;">AI 顧問 API route</td>
+          <td style="padding:0.8rem 1rem;color:var(--muted);">Gemini 2.5 Flash · Zustand · streaming</td>
+          <td style="padding:0.8rem 1rem;color:var(--muted);">—</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:0.8rem 1rem;color:rgba(246,173,85,0.6);">P1</td>
+          <td style="padding:0.8rem 1rem;color:#fff;">商機評分 + LINE 通知</td>
+          <td style="padding:0.8rem 1rem;color:var(--muted);">Neon DB + Resend + Yuzu-san webhook</td>
+          <td style="padding:0.8rem 1rem;color:var(--muted);">—</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+          <td style="padding:0.8rem 1rem;color:rgba(246,173,85,0.6);">P1</td>
+          <td style="padding:0.8rem 1rem;color:#fff;">JSON-LD 結構化資料</td>
+          <td style="padding:0.8rem 1rem;color:var(--muted);">Organization + FAQPage schema</td>
+          <td style="padding:0.8rem 1rem;color:#68d391;">⬆ AI Overview 曝光</td>
+        </tr>
+        <tr>
+          <td style="padding:0.8rem 1rem;color:rgba(246,173,85,0.4);">P2</td>
+          <td style="padding:0.8rem 1rem;color:#fff;">/cases 案例頁</td>
+          <td style="padding:0.8rem 1rem;color:var(--muted);">SSG + 程式化 SEO</td>
+          <td style="padding:0.8rem 1rem;color:#68d391;">⬆ 長尾流量大補帖</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

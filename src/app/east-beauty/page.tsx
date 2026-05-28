@@ -61,7 +61,7 @@ const SEMI_STATIONS = [
     icon: "🍵",
     name: "半自助調飲",
     human: "補充原料",
-    machine: "落地茶飲機自動調配 · 出杯計量",
+    machine: "半自助智慧茶飲機自動調配 · 出杯計量",
     color: "#f5c842cc",
     saving: "省 1 位吧台人員",
   },
@@ -98,7 +98,7 @@ const DEVICES = [
   {
     src: "/images/eastbeauty/device_tea_dispenser.jpg",
     fallback: "/images/eastbeauty/milk_tea2.jpg",
-    name: "落地茶飲機",
+    name: "半自助智慧茶飲機",
     badge: "半自助",
     badgeColor: "#06c167",
     desc: "1.5m 商用等級 · 多口味自動調配 · 員工補料即可",
@@ -169,6 +169,8 @@ export default function EastBeautyPage() {
   const sRamen = useFadeIn();
   const sAi = useFadeIn();
   const sStrategy = useFadeIn();
+  const s1000hero = useFadeIn();
+  const s1000body = useFadeIn();
 
   useEffect(() => {
     const handle = () => {
@@ -448,6 +450,162 @@ export default function EastBeautyPage() {
         .eb-contact{margin-top:28px;color:rgba(255,255,255,.45);font-size:.78rem;line-height:2;}
         .eb-footer{background:#040a12;text-align:center;padding:24px;color:rgba(255,255,255,.25);font-size:.68rem;}
 
+        /* ── 千店計畫 ── */
+        .eb-1000-wrap{
+          background:linear-gradient(180deg,#040a12 0%,#0a1830 40%,#0d2240 100%);
+          padding:0;overflow:hidden;
+        }
+        .eb-1000-hero{
+          position:relative;min-height:60vh;
+          display:flex;flex-direction:column;justify-content:center;align-items:center;
+          text-align:center;padding:80px 24px 60px;
+          background:linear-gradient(to bottom,rgba(4,10,18,.3) 0%,rgba(4,10,18,.7) 100%);
+        }
+        .eb-1000-hero-bg{position:absolute;inset:0;z-index:0;}
+        .eb-1000-hero-content{position:relative;z-index:1;}
+        .eb-1000-eyebrow{
+          display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;
+          background:rgba(245,200,66,.15);border:1px solid rgba(245,200,66,.45);
+          border-radius:999px;padding:6px 20px;
+          font-size:.72rem;font-weight:700;color:#f5c842;letter-spacing:.14em;
+        }
+        .eb-1000-title{
+          font-family:var(--font-playfair),'Playfair Display',serif;
+          font-size:clamp(3rem,8vw,7rem);font-weight:900;
+          color:#fff;line-height:.95;margin-bottom:12px;
+          text-shadow:0 4px 40px rgba(0,0,0,.6);
+        }
+        .eb-1000-title em{color:#f5c842;font-style:normal;}
+        .eb-1000-title .sub{font-size:clamp(1.2rem,3vw,2.2rem);display:block;color:rgba(255,255,255,.75);margin-top:8px;font-weight:700;}
+        .eb-1000-tagline{font-size:1rem;color:rgba(255,255,255,.6);margin-top:16px;font-style:italic;}
+
+        /* stats bar */
+        .eb-1000-stats{
+          display:flex;justify-content:center;gap:0;
+          border-top:1px solid rgba(245,200,66,.15);
+          border-bottom:1px solid rgba(245,200,66,.15);
+          background:rgba(0,0,0,.3);
+        }
+        .eb-1000-stat{
+          flex:1;max-width:220px;
+          padding:24px 16px;text-align:center;
+          border-right:1px solid rgba(245,200,66,.12);
+        }
+        .eb-1000-stat:last-child{border-right:none;}
+        .eb-1000-stat-num{font-size:2.2rem;font-weight:900;color:#f5c842;font-variant-numeric:tabular-nums;line-height:1;}
+        .eb-1000-stat-label{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:4px;line-height:1.4;}
+
+        /* body */
+        .eb-1000-body{max-width:1100px;margin:0 auto;padding:64px 24px;}
+
+        /* pillar grid */
+        .eb-pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(245,200,66,.12);border:1px solid rgba(245,200,66,.12);border-radius:12px;overflow:hidden;margin-bottom:56px;}
+        @media(max-width:750px){.eb-pillar-grid{grid-template-columns:1fr;}}
+        .eb-pillar{background:#080f1a;padding:28px 24px;}
+        .eb-pillar-icon{font-size:2rem;margin-bottom:12px;}
+        .eb-pillar-title{font-weight:700;color:#f5c842;font-size:1rem;margin-bottom:8px;}
+        .eb-pillar-desc{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.75;}
+        .eb-pillar-tag{
+          display:inline-block;margin-top:12px;
+          background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);
+          border-radius:4px;padding:3px 10px;
+          font-size:.68rem;font-weight:700;color:#f5c842;
+        }
+
+        /* supply chain visual */
+        .eb-supply-chain{
+          background:rgba(255,255,255,.03);border:1px solid rgba(245,200,66,.1);
+          border-radius:12px;padding:28px 32px;margin-bottom:48px;
+        }
+        .eb-supply-flow{
+          display:flex;align-items:center;justify-content:center;
+          gap:0;flex-wrap:wrap;margin-top:20px;
+        }
+        .eb-supply-node{
+          background:#0d2240;border:1px solid rgba(245,200,66,.25);
+          border-radius:10px;padding:16px 18px;text-align:center;
+          min-width:130px;flex-shrink:0;
+        }
+        .eb-supply-node-icon{font-size:1.6rem;margin-bottom:6px;}
+        .eb-supply-node-title{font-size:.78rem;font-weight:700;color:#f5c842;}
+        .eb-supply-node-desc{font-size:.66rem;color:rgba(255,255,255,.5);margin-top:2px;line-height:1.4;}
+        .eb-supply-arrow{
+          font-size:1.2rem;color:#f5c842;padding:0 8px;flex-shrink:0;
+        }
+        @media(max-width:700px){.eb-supply-arrow{transform:rotate(90deg);padding:6px 0;}}
+
+        /* sub-brand */
+        .eb-subbrand{
+          display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;
+          margin-bottom:48px;
+        }
+        @media(max-width:700px){.eb-subbrand{grid-template-columns:1fr;}}
+        .eb-subbrand-img{border-radius:10px;overflow:hidden;position:relative;aspect-ratio:4/3;}
+        .eb-subbrand-text{}
+        .eb-subbrand-badge{
+          display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;
+          background:rgba(6,193,103,.12);border:1px solid rgba(6,193,103,.35);
+          border-radius:999px;padding:4px 14px;
+          font-size:.68rem;font-weight:700;color:#06c167;letter-spacing:.08em;
+        }
+        .eb-subbrand-title{
+          font-family:var(--font-playfair),'Playfair Display',serif;
+          font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:#fff;margin-bottom:12px;
+        }
+        .eb-subbrand-title em{color:#f5c842;font-style:normal;}
+        .eb-subbrand-desc{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:16px;}
+        .eb-subbrand-points{display:flex;flex-direction:column;gap:8px;}
+        .eb-subbrand-point{
+          display:flex;align-items:flex-start;gap:10px;
+          font-size:.8rem;color:rgba(255,255,255,.75);
+        }
+        .eb-subbrand-point-dot{width:6px;height:6px;border-radius:50%;background:#f5c842;flex-shrink:0;margin-top:6px;}
+
+        /* HQ flywheel */
+        .eb-flywheel{
+          background:linear-gradient(135deg,rgba(13,34,64,.8) 0%,rgba(8,15,26,.9) 100%);
+          border:1px solid rgba(245,200,66,.18);border-radius:16px;
+          padding:36px 32px;text-align:center;
+        }
+        .eb-flywheel-title{
+          font-family:var(--font-playfair),'Playfair Display',serif;
+          font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:8px;
+        }
+        .eb-flywheel-title em{color:#f5c842;font-style:normal;}
+        .eb-flywheel-sub{font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:28px;}
+        .eb-flywheel-steps{
+          display:flex;justify-content:center;align-items:center;
+          flex-wrap:wrap;gap:0;
+        }
+        .eb-fw-step{text-align:center;padding:12px 16px;min-width:110px;}
+        .eb-fw-icon{font-size:1.5rem;margin-bottom:6px;}
+        .eb-fw-title{font-size:.72rem;font-weight:700;color:#f5c842;}
+        .eb-fw-desc{font-size:.64rem;color:rgba(255,255,255,.5);line-height:1.4;margin-top:2px;}
+        .eb-fw-arrow{font-size:1rem;color:rgba(245,200,66,.4);padding:0 2px;align-self:center;}
+        @media(max-width:600px){.eb-fw-arrow{transform:rotate(90deg);}}
+
+        /* franchise card */
+        .eb-franchise-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;}
+        @media(max-width:650px){.eb-franchise-grid{grid-template-columns:1fr;}}
+        .eb-franchise-img{border-radius:10px;overflow:hidden;position:relative;aspect-ratio:16/9;}
+        .eb-franchise-card{
+          background:rgba(255,255,255,.04);border:1px solid rgba(245,200,66,.15);
+          border-radius:10px;padding:24px;
+          display:flex;flex-direction:column;justify-content:space-between;
+        }
+        .eb-franchise-card-title{font-weight:700;color:#f5c842;font-size:1.05rem;margin-bottom:10px;}
+        .eb-franchise-card-items{display:flex;flex-direction:column;gap:7px;}
+        .eb-franchise-card-item{
+          display:flex;align-items:flex-start;gap:8px;
+          font-size:.8rem;color:rgba(255,255,255,.72);
+        }
+        .eb-franchise-card-item::before{content:'✓';color:#06c167;flex-shrink:0;font-weight:700;}
+        .eb-franchise-card-bottom{
+          margin-top:16px;padding-top:14px;
+          border-top:1px solid rgba(245,200,66,.12);
+          font-size:.72rem;color:rgba(255,255,255,.4);
+        }
+
         /* ── GALLERY ── */
         .eb-gallery-main{aspect-ratio:16/9;position:relative;border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(13,34,64,.22);margin-bottom:14px;}
         .eb-gallery-thumbs{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;}
@@ -472,7 +630,8 @@ export default function EastBeautyPage() {
           <a href="#flagship">旗艦店</a>
           <a href="#devices">設備陣列</a>
           <a href="#strategy">展店策略</a>
-          <a href="#cta">立即洽談</a>
+          <a href="#thousand" style={{ color: "#f5c842", fontWeight: 700 }}>千店計畫</a>
+          <a href="#cta">洽談合作</a>
         </div>
       </nav>
 
@@ -769,6 +928,202 @@ export default function EastBeautyPage() {
               ))}
             </div>
           </section>
+        </div>
+      </div>
+
+      {/* ⑩ 10億千店計畫 */}
+      <div className="eb-1000-wrap" id="thousand">
+
+        {/* HERO BANNER */}
+        <div className="eb-1000-hero">
+          <div className="eb-1000-hero-bg">
+            <Image src="/images/eastbeauty/thousand_stores_hero.jpg" alt="千店計畫" fill
+              style={{ objectFit: "cover", opacity: .45 }}
+              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+          </div>
+          <div ref={s1000hero} className="eb-fade eb-1000-hero-content">
+            <div className="eb-1000-eyebrow">🚀 VISION 2027+ — 終極目標</div>
+            <div className="eb-1000-title">
+              <em>10億</em><br />
+              <span className="sub">千店計畫</span>
+            </div>
+            <p className="eb-1000-tagline">每家只需 100 萬貸款 · 2 人運作 · 3 天開業</p>
+          </div>
+        </div>
+
+        {/* STATS */}
+        <div className="eb-1000-stats">
+          {[
+            { num: "100", unit: "萬", label: "每店最低貸款門檻" },
+            { num: "2",   unit: "人", label: "全店最低運作人力" },
+            { num: "1000",unit: "家", label: "千店展店目標" },
+            { num: "10",  unit: "億", label: "品牌估值目標" },
+          ].map((s, i) => (
+            <div key={i} className="eb-1000-stat">
+              <div className="eb-1000-stat-num"><Counter to={parseInt(s.num)} suffix={s.unit} /></div>
+              <div className="eb-1000-stat-label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* BODY */}
+        <div ref={s1000body} className="eb-fade eb-1000-body">
+
+          {/* 三大支柱 */}
+          <div style={{ marginBottom: "16px" }}>
+            <div className="eb-label" style={{ color: "#f5c842aa" }}>THREE PILLARS</div>
+            <div className="eb-title" style={{ color: "#fff", marginBottom: "28px" }}>千店成立的<em>三大基礎</em></div>
+          </div>
+          <div className="eb-pillar-grid">
+            {[
+              {
+                icon: "💰",
+                title: "低門檻開店",
+                desc: "每家店只需貸款 100 萬即可啟動。\n小坪數（15–30坪）、少人力（2人）、設備半自助化，大幅壓低固定成本，讓加盟者快速回本、獲利。",
+                tag: "貸款 100萬起",
+              },
+              {
+                icon: "🚛",
+                title: "東方美實業 物流支援",
+                desc: "東方美實業提供上百台車隊，每日定時配送新鮮半成品到各加盟店。店家無需採購、備料、處理食材——只需蒸煮、烤、擺盤，SOP 極度簡化。",
+                tag: "每日新鮮配送",
+              },
+              {
+                icon: "🤖",
+                title: "MCS AI 持續優化",
+                desc: "每家店的銷售數據、備料消耗、顧客行為，全部即時回報 MCS 管理中台。AI 不斷分析 → 總部修改細部流程 → 推送給所有門店，越開越聰明。",
+                tag: "AI 即時回報總部",
+              },
+            ].map((p, i) => (
+              <div key={i} className="eb-pillar">
+                <div className="eb-pillar-icon">{p.icon}</div>
+                <div className="eb-pillar-title">{p.title}</div>
+                <div className="eb-pillar-desc" style={{ whiteSpace: "pre-line" }}>{p.desc}</div>
+                <div className="eb-pillar-tag">{p.tag}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* 供應鏈飛輪 */}
+          <div className="eb-supply-chain">
+            <div style={{ color: "#f5c842", fontWeight: 700, fontSize: "1rem", marginBottom: "6px" }}>供應鏈飛輪 — 越多店越強壯</div>
+            <div style={{ color: "rgba(255,255,255,.5)", fontSize: ".78rem", marginBottom: "20px" }}>東方美實業 × MCS AI 中台 × 千家門店，形成自我強化的飛輪效應</div>
+            <div style={{ marginBottom: "20px", borderRadius: "8px", overflow: "hidden" }}>
+              <Image src="/images/eastbeauty/supply_chain_hub.jpg" alt="物流供應鏈" width={1000} height={400}
+                style={{ width: "100%", height: "auto", display: "block" }}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            </div>
+            <div className="eb-supply-flow">
+              {[
+                { icon: "🏭", title: "東方美實業總部", desc: "中央廚房 · 備料" },
+                { icon: "🚛", title: "上百台車隊", desc: "每日定時配送" },
+                { icon: "🍜", title: "千家門店", desc: "蒸煮烤 · 半自助出餐" },
+                { icon: "📊", title: "AI 數據回報", desc: "即時回傳 MCS" },
+                { icon: "⚙️", title: "流程持續優化", desc: "AI 推送新 SOP" },
+              ].map((n, i, arr) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 0 }}>
+                  <div className="eb-supply-node">
+                    <div className="eb-supply-node-icon">{n.icon}</div>
+                    <div className="eb-supply-node-title">{n.title}</div>
+                    <div className="eb-supply-node-desc">{n.desc}</div>
+                  </div>
+                  {i < arr.length - 1 && <div className="eb-supply-arrow">→</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 副品牌咖啡茶飲 BAR */}
+          <div style={{ marginBottom: "16px" }}>
+            <div className="eb-label" style={{ color: "#f5c842aa" }}>SUB-BRAND EXPANSION</div>
+            <div className="eb-title" style={{ color: "#fff", marginBottom: "24px" }}>副品牌：<em>半自助咖啡茶飲 BAR</em></div>
+          </div>
+          <div className="eb-subbrand">
+            <div className="eb-subbrand-img">
+              <Image src="/images/eastbeauty/coffee_bar_subbrand.jpg" alt="茶飲 BAR 副品牌" fill
+                style={{ objectFit: "cover" }}
+                onError={(e) => { (e.target as HTMLImageElement).src = "/images/eastbeauty/locker_001.jpg"; }} />
+            </div>
+            <div className="eb-subbrand-text">
+              <div className="eb-subbrand-badge">🔀 副品牌策略</div>
+              <div className="eb-subbrand-title">以主店為基地，<br /><em>向外輻射擴充</em></div>
+              <p className="eb-subbrand-desc">
+                每家東方美 AI 門店，同時作為「半自助咖啡茶飲 BAR」的後勤據點——
+                提供設備存貨、補貨、清潔維護服務，讓副品牌 BAR 可以用極低成本快速落地，
+                形成主副品牌相互支撐的最強連鎖網絡。
+              </p>
+              <div className="eb-subbrand-points">
+                {[
+                  "主店承擔庫存與補貨責任，BAR 只需專注銷售",
+                  "半自助設備（茶飲機 + 咖啡機）+ 1 人即可操作",
+                  "品牌共用 MCS AI 後台，數據統一管理",
+                  "副品牌可快速進駐商圈、辦公樓、學區等高流量點",
+                  "主副品牌形成「實體後勤網」× 「數位 AI 網」雙層防禦",
+                ].map((pt, i) => (
+                  <div key={i} className="eb-subbrand-point">
+                    <div className="eb-subbrand-point-dot" />
+                    <span>{pt}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 加盟店 + 飛輪收尾 */}
+          <div className="eb-flywheel">
+            <div className="eb-flywheel-title">從一家店，到<em>最強 AI 餐飲連鎖</em></div>
+            <p className="eb-flywheel-sub">每開一家新店，整個系統就變得更聰明、更有競爭力</p>
+            <div className="eb-flywheel-steps">
+              {[
+                { icon: "🏪", title: "加盟店開業", desc: "100萬貸款 · 2人啟動" },
+                { icon: "🚛", title: "每日配送", desc: "東方美車隊 · 半成品到店" },
+                { icon: "🤖", title: "AI 數據回收", desc: "MCS 即時分析" },
+                { icon: "⚙️", title: "流程優化", desc: "推送全體門店" },
+                { icon: "📈", title: "品牌增值", desc: "規模越大越強" },
+                { icon: "☕", title: "BAR 副品牌", desc: "主店輻射擴充" },
+              ].map((s, i, arr) => (
+                <div key={i} style={{ display: "flex", alignItems: "center" }}>
+                  <div className="eb-fw-step">
+                    <div className="eb-fw-icon">{s.icon}</div>
+                    <div className="eb-fw-title">{s.title}</div>
+                    <div className="eb-fw-desc">{s.desc}</div>
+                  </div>
+                  {i < arr.length - 1 && <div className="eb-fw-arrow">→</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 加盟店外觀 + 開店條件 */}
+          <div className="eb-franchise-grid">
+            <div className="eb-franchise-img">
+              <Image src="/images/eastbeauty/franchise_store_small.jpg" alt="加盟門店示意" fill
+                style={{ objectFit: "cover" }}
+                onError={(e) => { (e.target as HTMLImageElement).src = "/images/eastbeauty/scene2.png"; }} />
+            </div>
+            <div className="eb-franchise-card">
+              <div>
+                <div className="eb-franchise-card-title">💼 加盟開店條件</div>
+                <div className="eb-franchise-card-items">
+                  {[
+                    "貸款 100 萬即可啟動，門檻低",
+                    "小坪數（15–30 坪）· 租金成本低",
+                    "MCS 半自助設備一站到位",
+                    "東方美實業每日供應半成品",
+                    "無需廚師資格，SOP 極度標準化",
+                    "GraBox 智取櫃 + 茶飲機 + 蒸煮機即為完整配備",
+                    "副品牌 BAR 可同址延伸，提升坪效",
+                  ].map((item, i) => (
+                    <div key={i} className="eb-franchise-card-item">{item}</div>
+                  ))}
+                </div>
+              </div>
+              <div className="eb-franchise-card-bottom">
+                目標：全台 1,000 家門店 · 品牌估值 10 億 · 打造台灣最強 AI 餐飲連鎖
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 

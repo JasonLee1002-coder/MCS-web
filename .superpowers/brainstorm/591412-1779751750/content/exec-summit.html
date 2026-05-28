@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 長官峰會 — mcstation.ai 重新定義</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0f1e; color: #e2e8f0; font-family: 'Segoe UI', sans-serif; padding: 2rem; min-height: 100vh; }
+
+  .summit-header {
+    text-align: center; margin-bottom: 2.5rem;
+    padding: 2rem; background: linear-gradient(135deg, #0d1f3c 0%, #1a2d4a 100%);
+    border: 1px solid rgba(99,179,237,0.25); border-radius: 16px;
+  }
+  .summit-header h1 { font-size: 2rem; font-weight: 900; color: #63b3ed; letter-spacing: -0.03em; }
+  .summit-header p { color: rgba(255,255,255,0.55); margin-top: 0.5rem; font-size: 0.95rem; }
+  .badge { display: inline-block; background: rgba(99,179,237,0.15); border: 1px solid rgba(99,179,237,0.4); color: #63b3ed; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; }
+
+  .exec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
+  .exec-card {
+    background: #0d1120; border-radius: 14px; padding: 1.5rem;
+    border-left: 4px solid var(--accent); border-top: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+  }
+  .exec-card::before {
+    content: ''; position: absolute; top: -30px; right: -30px;
+    width: 100px; height: 100px; border-radius: 50%;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%); opacity: 0.08;
+  }
+  .exec-title { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 0.3rem; text-transform: uppercase; }
+  .exec-name { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+  .exec-point { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.6rem; }
+  .exec-point .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 0.35rem; flex-shrink: 0; }
+  .exec-point p { font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .exec-concern { margin-top: 1rem; padding: 0.8rem; background: rgba(255,255,255,0.04); border-radius: 8px; }
+  .exec-concern .label { font-size: 0.65rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 0.3rem; }
+  .exec-concern p { font-size: 0.82rem; color: var(--accent); font-style: italic; }
+
+  .cmo { --accent: #f6ad55; }
+  .cto { --accent: #68d391; }
+  .cpo { --accent: #b794f4; }
+  .coo { --accent: #fc8181; }
+
+  .consensus-box {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    border: 1px solid rgba(99,179,237,0.3); border-radius: 14px;
+    padding: 1.8rem; margin-bottom: 2rem;
+  }
+  .consensus-box h2 { font-size: 1.1rem; font-weight: 800; color: #63b3ed; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+  .consensus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .consensus-item { text-align: center; padding: 1rem; background: rgba(255,255,255,0.04); border-radius: 10px; }
+  .consensus-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .consensus-item h4 { font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+  .consensus-item p { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
+
+  .next-label { text-align: center; color: rgba(255,255,255,0.35); font-size: 0.78rem; margin-top: 1.5rem; letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+
+<div class="summit-header">
+  <div class="badge">AI 長官峰會 · 2026-05-26</div>
+  <h1>mcstation.ai — 重新定義</h1>
+  <p>CMO × CTO × CPO × COO 四位長官從各自角度分析，最終共識方向</p>
+</div>
+
+<!-- 四位長官 -->
+<div class="exec-grid">
+
+  <!-- CMO -->
+  <div class="exec-card cmo">
+    <div class="exec-title">CMO · 行銷長</div>
+    <div class="exec-name">行銷角度</div>
+    <div class="exec-point"><div class="dot"></div><p>現在網站像「型錄」，看完不知道要做什麼——轉換率極低</p></div>
+    <div class="exec-point"><div class="dot"></div><p>進來的人身份混雜：場館老闆、品牌商、加盟商、想找我們合作的工程師</p></div>
+    <div class="exec-point"><div class="dot"></div><p>沒有一個「立刻行動」的入口——每個人離開時都帶著問題沒解決</p></div>
+    <div class="exec-concern">
+      <div class="label">我的核心主張</div>
+      <p>「網站要成為 24 小時業務員，不是電子型錄。」</p>
+    </div>
+  </div>
+
+  <!-- CTO -->
+  <div class="exec-card cto">
+    <div class="exec-title">CTO · 技術長</div>
+    <div class="exec-name">技術角度</div>
+    <div class="exec-point"><div class="dot"></div><p>OmniCore 生態系要被看見：我們有 AI 長官協作架構，這是最強差異化</p></div>
+    <div class="exec-point"><div class="dot"></div><p>AI 對談要真實有效——不是 FAQ bot，是能理解業務需求的智能顧問</p></div>
+    <div class="exec-point"><div class="dot"></div><p>後端已就緒：Gemini 2.5 Flash + Neon + S3 + Resend，可立即接業務</p></div>
+    <div class="exec-concern">
+      <div class="label">我的核心主張</div>
+      <p>「讓 AI 做完資格審查，人只出現在值得的商機。」</p>
+    </div>
+  </div>
+
+  <!-- CPO -->
+  <div class="exec-card cpo">
+    <div class="exec-title">CPO · 產品長</div>
+    <div class="exec-name">產品角度</div>
+    <div class="exec-point"><div class="dot"></div><p>用戶第一眼要「認出自己」——場館老闆看到自己的問題，不是我們的服務清單</p></div>
+    <div class="exec-point"><div class="dot"></div><p>AI 對話要有「角色感」：選擇身份後，整個頁面跟著變，體驗個人化</p></div>
+    <div class="exec-point"><div class="dot"></div><p>插圖要說故事，不是裝飾——每張圖對應一個業務場景的痛點</p></div>
+    <div class="exec-concern">
+      <div class="label">我的核心主張</div>
+      <p>「四種客戶，四種旅程，一個網站裡同時存在。」</p>
+    </div>
+  </div>
+
+  <!-- COO -->
+  <div class="exec-card coo">
+    <div class="exec-title">COO · 營運長</div>
+    <div class="exec-name">營運角度</div>
+    <div class="exec-point"><div class="dot"></div><p>業務目前每個詢問都要手動回覆，花 3-5 小時做背景研究再報價</p></div>
+    <div class="exec-point"><div class="dot"></div><p>AI 要做資格過濾：把「好奇的路人」跟「真正的商機」分開</p></div>
+    <div class="exec-point"><div class="dot"></div><p>通知系統要串聯：AI 確認商機後，自動推 LINE 給 Jason + 業務</p></div>
+    <div class="exec-concern">
+      <div class="label">我的核心主張</div>
+      <p>「業務只花時間在 80 分以上的商機，其餘 AI 搞定。」</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- 四方妥協共識 -->
+<div class="consensus-box">
+  <h2>⚡ 四方妥協共識 — mcstation.ai 應該是什麼</h2>
+  <div class="consensus-grid">
+    <div class="consensus-item">
+      <div class="consensus-icon">🎯</div>
+      <h4>AI 業務前台</h4>
+      <p>網站本身就是第一線業務，AI 完成 70% 的前期溝通，不需要人出面</p>
+    </div>
+    <div class="consensus-item">
+      <div class="consensus-icon">🌐</div>
+      <h4>OmniCore 生態展示廳</h4>
+      <p>讓外部人看到我們 AI 長官協作體系——這是最大的信任建立工具</p>
+    </div>
+    <div class="consensus-item">
+      <div class="consensus-icon">🔗</div>
+      <h4>智能轉單系統</h4>
+      <p>AI 收集需求 → 評分商機 → 自動推通知給業務，人只做收尾</p>
+    </div>
+  </div>
+</div>
+
+<div class="next-label">↓ 下一步：選擇頁面架構方向</div>
+
+</body>
+</html>

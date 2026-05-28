@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>普健生醫 × 過敏健康管理中心 — 數位戰略提案</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+  :root {
+    --bg: #0A1628;
+    --bg2: #0f1e35;
+    --card: #132040;
+    --accent: #00C6AD;
+    --gold: #F5A623;
+    --red: #FF6B6B;
+    --text: #F0F4F8;
+    --muted: #7A9ABB;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,198,173,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, #fff 0%, var(--accent) 50%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer {
+    from { background-position: -200% center; }
+    to   { background-position:  200% center; }
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+  .hero-vs {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 14px;
+  }
+  .vs-tag {
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .vs-bad  { background: rgba(255,107,107,0.15); color: var(--red); border: 1px solid rgba(255,107,107,0.3); }
+  .vs-good { background: rgba(0,198,173,0.15);   color: var(--accent); border: 1px solid rgba(0,198,173,0.3); }
+  .vs-arrow { color: var(--muted); font-size: 20px; }
+
+  /* ── SECTION ── */
+  section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    margin-bottom: 40px;
+    line-height: 1.3;
+  }
+  h2 .dim { color: rgba(255,255,255,0.3); }
+
+  /* ── FLOW ── */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .flow-item:last-child { border-bottom: none; }
+  .flow-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0,198,173,0.15);
+    border: 1px solid rgba(0,198,173,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .flow-content h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .flow-content p  { font-size: 14px; color: var(--muted); }
+
+  /* ── CARDS ── */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 8px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .card:hover { border-color: rgba(0,198,173,0.4); transform: translateY(-4px); }
+  .card-icon { font-size: 32px; margin-bottom: 12px; }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .card p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── TABLE ── */
+  .compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .compare thead tr { background: rgba(0,198,173,0.1); }
+  .compare th { padding: 12px 16px; text-align: left; color: var(--accent); font-weight: 700; font-size: 12px; letter-spacing: 0.05em; }
+  .compare td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--muted); }
+  .compare td:first-child { color: var(--text); font-weight: 500; }
+  .compare td.good { color: var(--accent); font-weight: 700; }
+  .compare td.bad  { color: var(--red); }
+
+  /* ── METRICS ── */
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 8px; }
+  .metric {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .metric-val { font-size: 44px; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+  .metric-label { font-size: 13px; color: var(--muted); }
+
+  /* ── FORMULA ── */
+  .formula {
+    background: var(--card);
+    border: 1px solid rgba(0,198,173,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .formula-step {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(0,198,173,0.1);
+    border: 1px solid rgba(0,198,173,0.3);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 6px;
+  }
+  .formula-arrow { color: var(--muted); font-size: 20px; margin: 0 8px; }
+  .formula-result {
+    margin-top: 24px;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--text);
+  }
+  .formula-result span { color: var(--accent); }
+
+  /* ── CONTENT RULE ── */
+  .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+  .rule-box {
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .rule-ok  { background: rgba(0,198,173,0.08); border: 1px solid rgba(0,198,173,0.25); }
+  .rule-no  { background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.25); }
+  .rule-title { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .rule-ok .rule-title  { color: var(--accent); }
+  .rule-no .rule-title  { color: var(--red); }
+  .rule-item { font-size: 13px; color: var(--muted); padding: 4px 0; display: flex; gap: 8px; align-items: flex-start; }
+  .rule-item::before { flex-shrink: 0; margin-top: 2px; }
+  .rule-ok .rule-item::before { content: '✓'; color: var(--accent); font-weight: 700; }
+  .rule-no .rule-item::before { content: '✗'; color: var(--red); font-weight: 700; }
+
+  /* ── FLYWHEEL ── */
+  .flywheel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 32px;
+    margin-top: 8px;
+  }
+  .fw-items { display: flex; flex-direction: column; gap: 0; }
+  .fw-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .fw-item:last-child { border-bottom: none; }
+  .fw-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .fw-text { font-size: 15px; font-weight: 500; }
+  .fw-text span { color: var(--accent); font-weight: 700; }
+  .fw-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section h2 { font-size: clamp(28px, 4vw, 48px); margin-bottom: 16px; }
+  .cta-section p { font-size: 16px; color: var(--muted); max-width: 500px; margin: 0 auto 40px; }
+  .cta-steps {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .cta-step {
+    padding: 10px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .cta-step .num { color: var(--accent); margin-right: 6px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer strong { color: var(--accent); }
+
+  /* ── DIVIDER ── */
+  .divider { width: 100%; height: 1px; background: var(--border); }
+
+  @media (max-width: 600px) {
+    .rule-grid { grid-template-columns: 1fr; }
+    .hero-vs { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">普健生醫 數位戰略提案 · 2026</div>
+  <h1>
+    不是賣藥，<br>
+    <span>是健康管理的入口</span>
+  </h1>
+  <p class="hero-sub">以「過敏健康管理中心」為核心，串聯全台加盟藥局，建立 Google 無法撼動的 SEO 霸權網絡</p>
+  <div class="hero-vs">
+    <span class="vs-tag vs-bad">大樹靠資本</span>
+    <span class="vs-arrow">→</span>
+    <span class="vs-tag vs-good">普健靠網絡</span>
+  </div>
+  <div style="margin-top: 48px; width: 100%; max-width: 900px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(0,198,173,0.2); box-shadow: 0 0 60px rgba(0,198,173,0.15);">
+    <img src="img_hero.png" alt="過敏健康管理中心網絡" style="width: 100%; display: block;">
+  </div>
+</div>
+
+<!-- 普健生醫背景 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">About</div>
+  <h2>普健生醫是誰？<br><span class="dim">不只是藥局，是生技研發核心</span></h2>
+  <div class="metrics" style="margin-top: 8px;">
+    <div class="metric">
+      <div class="metric-val">1992</div>
+      <div class="metric-label">創立年份，逾 30 年歷史</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">NT$6億</div>
+      <div class="metric-label" style="color: var(--gold);">sPPT® 技術總投資，技術護城河</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">長青連鎖</div>
+      <div class="metric-label">旗下藥局品牌，屹立台灣 30 年</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">sPPT®</div>
+      <div class="metric-label">自主研發專利生醫傳導平台</div>
+    </div>
+  </div>
+  <div class="flywheel" style="margin-top: 32px;">
+    <div style="font-size: 13px; color: var(--accent); font-weight: 800; letter-spacing: 0.12em; margin-bottom: 20px;">🔬 sPPT® 生醫傳導平台技術</div>
+    <div class="fw-items">
+      <div class="fw-item">
+        <div class="fw-dot"></div>
+        <div>
+          <div class="fw-text"><span>Speed &amp; Prompt Permeation Technology</span></div>
+          <div class="fw-sub">奈米包覆 + 親膚脂質層工程 + 分子量分層控制，三層傳導結構確保有效成分穿透皮膚屏障</div>
+        </div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-dot"></div>
+        <div>
+          <div class="fw-text"><span>馬偕紀念醫院聯合研究</span> — 第二階段驗證進行中</div>
+          <div class="fw-sub">聚焦皮膚科學與健康照護領域，2025 台灣醫療科技展公開展示技術成果</div>
+        </div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-dot"></div>
+        <div>
+          <div class="fw-text"><span>「擦的」保健品——全台首創</span></div>
+          <div class="fw-sub">突破傳統口服模式，打造睡眠霜、體態管理 soso 霜、眼周葉黃素擦劑等革命性品類</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 20px; padding: 20px 24px; background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(245,166,35,0.03)); border-radius: 16px; border: 1px solid rgba(245,166,35,0.3);">
+      <div style="font-size: 32px; font-weight: 900; color: var(--gold); margin-bottom: 4px;">NT$ 6 億</div>
+      <div style="font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px;">sPPT® 技術累計總投資</div>
+      <div style="font-size: 13px; color: var(--muted);">這不是保健食品公司隨便掛的技術 logo。六億的研發投入、馬偕醫院第二階段驗證、2025 醫療科技展展出——這是對手抄不走的技術護城河，也是我們「馬偕 × 普健聯合背書」的底氣。</div>
+    </div>
+    <div style="margin-top: 16px; padding: 16px; background: rgba(0,198,173,0.06); border-radius: 12px; font-size: 13px; color: var(--muted); border-left: 3px solid var(--accent);">
+      💬 <em>「核心策略是科學先行，透過臨床夥伴關係累積研究數據，讓跨機構合作驅動技術進步。」</em><br>
+      <span style="color: var(--accent); font-weight: 700;">— 黃維德 藥師 · 普健生物科技董事長</span>
+    </div>
+    <div style="margin-top: 32px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,198,173,0.15); box-shadow: 0 0 40px rgba(0,198,173,0.1);">
+      <img src="img_sppt.png" alt="sPPT® 生醫傳導平台技術示意" style="width: 100%; display: block;">
+      <div style="padding: 12px 16px; background: rgba(0,198,173,0.05); font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.08em;">sPPT® 多層傳導結構 — 奈米包覆技術示意圖</div>
+    </div>
+  </div>
+</section>
+
+<!-- 問題 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">Problem</div>
+  <h2>獨立藥局面對的困境<br><span class="dim">大型連鎖的威脅</span></h2>
+  <table class="compare">
+    <thead>
+      <tr>
+        <th>項目</th>
+        <th>大樹藥局（大型連鎖）</th>
+        <th>普健體系藥局</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>品牌形象</td>
+        <td>標準化、無個性</td>
+        <td class="good">藥師親自推薦、專業健康管理</td>
+      </tr>
+      <tr>
+        <td>網路曝光</td>
+        <td>靠廣告預算砸</td>
+        <td class="good">AI 內容 × 百家連結 × 免費 SEO</td>
+      </tr>
+      <tr>
+        <td>消費者信任</td>
+        <td>商品多雜、無專業背書</td>
+        <td class="good">馬偕紀念醫院 × 普健 sPPT® 聯合技術背書</td>
+      </tr>
+      <tr>
+        <td>在地關係</td>
+        <td>沒有社區連結</td>
+        <td class="good">社區藥師信任、熟客深耕、回頭率高</td>
+      </tr>
+      <tr>
+        <td>技術壁壘</td>
+        <td>無自主研發，只賣包裝</td>
+        <td class="good">sPPT® 專利技術，全台首創「擦的」保健品</td>
+      </tr>
+      <tr>
+        <td>研究背書</td>
+        <td>零臨床研究</td>
+        <td class="good">馬偕醫院第二階段合作驗證，2025 醫療科技展展出</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 解法 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">Solution</div>
+  <h2>過敏健康管理中心<br><span class="dim">一個主題，全台制霸</span></h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <h3>集中攻打「過敏」</h3>
+      <p>不分散打100個主題，就打過敏打透。台灣過敏人口 40%+，市場夠大，位置是空的。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗺️</div>
+      <h3>封閉生態地圖</h3>
+      <p>消費者找附近藥局，地圖只顯示加盟/經銷藥局。不加盟，就不存在這張地圖上。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h3>AI 每天 10 篇</h3>
+      <p>自動掃描國內外過敏新聞，整理成文章，同步發布到所有加盟藥局的 blog。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔗</div>
+      <h3>百家交叉連結</h3>
+      <p>所有藥局網站互相連結，連回母站。Google 看到的是一片森林，砍不倒。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">👨‍⚕️</div>
+      <h3>百大藥師見證</h3>
+      <p>每位加盟藥師有個人頁面，審稿文章署名，E-E-A-T 滿分，廣告費買不到。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚖️</div>
+      <h3>完全合法合規</h3>
+      <p>只寫症狀、保養、衛教，不提產品療效。引導「諮詢藥師」，藥師說才合法。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 內容規則 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">Content Rules</div>
+  <h2>內容合規設計<br><span class="dim">法規紅線完全不踩</span></h2>
+  <div class="rule-grid">
+    <div class="rule-box rule-ok">
+      <div class="rule-title">✅ 可以寫</div>
+      <div class="rule-item">過敏症狀描述（癢、紅、腫）</div>
+      <div class="rule-item">症狀成因分析</div>
+      <div class="rule-item">日常保養、環境改善建議</div>
+      <div class="rule-item">飲食注意事項</div>
+      <div class="rule-item">馬偕醫院 × 普健生醫 聯合技術</div>
+      <div class="rule-item">「建議諮詢附近藥師」</div>
+    </div>
+    <div class="rule-box rule-no">
+      <div class="rule-title">❌ 不能寫</div>
+      <div class="rule-item">產品名稱</div>
+      <div class="rule-item">治療、改善、療效</div>
+      <div class="rule-item">任何醫療效果宣稱</div>
+      <div class="rule-item">直接推薦購買</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 24px;">
+    <div class="formula">
+      <div style="font-size: 13px; color: var(--muted); margin-bottom: 20px; letter-spacing: 0.1em;">每篇文章公式</div>
+      <span class="formula-step">症狀描述（共鳴）</span>
+      <span class="formula-arrow">→</span>
+      <span class="formula-step">成因分析（專業感）</span>
+      <span class="formula-arrow">→</span>
+      <span class="formula-step">日常處理建議</span>
+      <span class="formula-arrow">→</span>
+      <span class="formula-step">馬偕×普健背書</span>
+      <span class="formula-arrow">→</span>
+      <span class="formula-step">找附近藥師諮詢</span>
+      <div class="formula-result">合規 × 有效 × <span>可量產</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 消費者旅程 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">Consumer Journey</div>
+  <h2>消費者如何找到你<br><span class="dim">從 Google 到藥局，全程 AI 帶路</span></h2>
+
+  <div style="margin: 24px 0 32px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,198,173,0.15); box-shadow: 0 0 40px rgba(0,198,173,0.1);">
+    <img src="img_journey.png" alt="消費者旅程示意" style="width: 100%; display: block;">
+    <div style="padding: 10px 16px; background: rgba(0,198,173,0.05); font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.08em;">O2O 轉換漏斗 — 線上搜尋 → AI 諮詢 → 實體到店</div>
+  </div>
+
+  <!-- 6步驟流程 -->
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-num" style="background: linear-gradient(135deg, #00C6AD, #00a896);">1</div>
+      <div class="flow-content">
+        <h3>消費者 Google「過敏」「過敏藥局推薦」</h3>
+        <p>AI 每天產出的文章爬滿 Google 第一頁，消費者找過敏資訊，就找到健康管理中心，而不是大樹。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num" style="background: linear-gradient(135deg, #00C6AD, #00a896);">2</div>
+      <div class="flow-content">
+        <h3>讀完文章 → 看到「附近藥局地圖」</h3>
+        <p>每篇文章底部嵌入互動地圖，只顯示加盟/經銷藥局。<strong style="color: var(--accent);">不加盟，就不在這張地圖上。</strong>消費者點選離家最近的藥局。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num" style="background: linear-gradient(135deg, #F5A623, #e09418);">3</div>
+      <div class="flow-content">
+        <h3>進入藥局專屬網站 → AI 諮詢浮現</h3>
+        <p>每間加盟藥局有自己的網站頁面，右下角 AI 顧問自動詢問：「您的過敏主要是哪種症狀？」引導深入對話，了解需求。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num" style="background: linear-gradient(135deg, #F5A623, #e09418);">4</div>
+      <div class="flow-content">
+        <h3>AI 諮詢過程中邀約到店</h3>
+        <p>AI 在對話中自然帶入：「我們藥師可以幫您做<strong style="color: var(--accent);">免費過敏體質評估</strong>，需要預約到店嗎？」不推銷，只邀請，轉換率高。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num" style="background: linear-gradient(135deg, #F5A623, #e09418);">5</div>
+      <div class="flow-content">
+        <h3>消費者預約 → 實體到店諮詢</h3>
+        <p>藥師親自接待，信任感已在線上建立好。到店後依需求提供專業建議，<strong style="color: var(--accent);">銷售自然發生</strong>，不是硬推。</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num" style="background: linear-gradient(135deg, #7B61FF, #6348f5);">6</div>
+      <div class="flow-content">
+        <h3>成為回頭客 → 留下評價 → 更多人找到</h3>
+        <p>滿意的顧客 Google 留評，帶動更多在地 SEO 排行，更多人搜尋時找到這間藥局。<strong style="color: var(--accent);">飛輪自轉。</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI 諮詢說明框 -->
+  <div class="flywheel" style="margin-top: 32px;">
+    <div style="font-size: 13px; color: var(--gold); font-weight: 800; letter-spacing: 0.12em; margin-bottom: 20px;">💬 藥局網站內建 AI 諮詢示意對話</div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; justify-content: flex-start; gap: 10px; align-items: flex-start;">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0,198,173,0.2); border: 1px solid rgba(0,198,173,0.4); display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;">AI</div>
+        <div style="background: rgba(255,255,255,0.08); border-radius: 16px 16px 16px 4px; padding: 12px 16px; font-size: 14px; max-width: 75%;">您好！我是過敏健康管理中心的 AI 諮詢顧問。請問您目前有哪些過敏困擾呢？（皮膚癢、鼻子、呼吸道...）</div>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; align-items: flex-start;">
+        <div style="background: rgba(0,198,173,0.25); border-radius: 16px 16px 4px 16px; padding: 12px 16px; font-size: 14px; max-width: 75%;">皮膚過敏，季節交替特別嚴重，看了醫生也反覆發作</div>
+      </div>
+      <div style="display: flex; justify-content: flex-start; gap: 10px; align-items: flex-start;">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(0,198,173,0.2); border: 1px solid rgba(0,198,173,0.4); display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;">AI</div>
+        <div style="background: rgba(255,255,255,0.08); border-radius: 16px 16px 16px 4px; padding: 12px 16px; font-size: 14px; max-width: 75%;">了解，季節性過敏反覆的情況很常見，通常與免疫調節和皮膚屏障有關。您附近的「<span style="color: var(--accent); font-weight: 700;">XX 藥局</span>」有提供<span style="color: var(--gold); font-weight: 700;">過敏體質評估</span>，藥師可以根據您的狀況給出個人化建議。要幫您預約嗎？</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEO 關鍵字覆蓋 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">SEO Coverage</div>
+  <h2>消費者查什麼，你就出現在那裡<br><span class="dim">台灣過敏全關鍵字制霸</span></h2>
+  <p style="color: var(--muted); font-size: 15px; margin-bottom: 28px; max-width: 640px;">不只是「過敏」兩個字。只要與過敏相關的任何搜尋，健康管理中心都要出現在 Google 第一頁。每天 AI 產文就是在佈局這張網。</p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 32px;">
+    <div style="background: var(--card); border: 1px solid rgba(0,198,173,0.2); border-radius: 14px; padding: 16px;">
+      <div style="font-size: 11px; color: var(--accent); font-weight: 800; letter-spacing: 0.1em; margin-bottom: 10px;">🌸 皮膚過敏</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.9;">異位性皮膚炎<br>蕁麻疹<br>接觸性皮膚炎<br>皮膚癢紅腫<br>濕疹<br>乾癬</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid rgba(0,198,173,0.2); border-radius: 14px; padding: 16px;">
+      <div style="font-size: 11px; color: var(--accent); font-weight: 800; letter-spacing: 0.1em; margin-bottom: 10px;">👃 鼻部過敏</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.9;">過敏性鼻炎<br>鼻塞打噴嚏<br>鼻水流不停<br>季節性鼻過敏<br>塵螨過敏<br>早起鼻過敏</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid rgba(0,198,173,0.2); border-radius: 14px; padding: 16px;">
+      <div style="font-size: 11px; color: var(--accent); font-weight: 800; letter-spacing: 0.1em; margin-bottom: 10px;">😮 呼吸道過敏</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.9;">過敏性氣喘<br>慢性咳嗽<br>喉嚨癢咳嗽<br>換季咳嗽<br>夜間咳嗽<br>支氣管敏感</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid rgba(0,198,173,0.2); border-radius: 14px; padding: 16px;">
+      <div style="font-size: 11px; color: var(--accent); font-weight: 800; letter-spacing: 0.1em; margin-bottom: 10px;">👁️ 眼睛過敏</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.9;">過敏性結膜炎<br>眼睛癢紅腫<br>眼睛乾澀<br>花粉過敏眼睛<br>春季眼過敏</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid rgba(0,198,173,0.2); border-radius: 14px; padding: 16px;">
+      <div style="font-size: 11px; color: var(--accent); font-weight: 800; letter-spacing: 0.1em; margin-bottom: 10px;">🍜 食物過敏</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.9;">食物過敏反應<br>牛奶過敏<br>海鮮過敏<br>麩質不耐受<br>蛋白質過敏</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid rgba(0,198,173,0.2); border-radius: 14px; padding: 16px;">
+      <div style="font-size: 11px; color: var(--gold); font-weight: 800; letter-spacing: 0.1em; margin-bottom: 10px;">🔍 在地搜尋</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.9;">台北過敏藥局<br>新北過敏推薦<br>附近過敏藥局<br>過敏體質評估<br>過敏諮詢哪裡</div>
+    </div>
+  </div>
+
+  <div style="background: var(--card); border: 1px solid rgba(245,166,35,0.25); border-radius: 16px; padding: 24px 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+    <div style="font-size: 40px; font-weight: 900; color: var(--gold); flex-shrink: 0;">40%</div>
+    <div>
+      <div style="font-size: 15px; font-weight: 700; margin-bottom: 4px;">台灣過敏人口比例</div>
+      <div style="font-size: 13px; color: var(--muted);">全台 2,300 萬人中約 920 萬人有過敏困擾，每年固定搜尋相關資訊。這是一個永不消失的搜尋需求，也是我們 SEO 佈局的核心戰場。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 流量飛輪 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">Flywheel</div>
+  <h2>流量飛輪<br><span class="dim">啟動之後，自己轉</span></h2>
+  <p style="color: var(--muted); font-size: 15px; margin-bottom: 32px; max-width: 600px;">飛輪的特點：越轉越快，越轉越難被追上。每一個環節互相驅動，不需要不斷投入廣告預算。</p>
+
+  <!-- SVG 飛輪圖 -->
+  <div style="width: 100%; max-width: 680px; margin: 0 auto 40px;">
+    <svg viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+      <defs>
+        <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#132040;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0A1628;stop-opacity:1" />
+        </radialGradient>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#00C6AD" opacity="0.7"/>
+        </marker>
+      </defs>
+      <!-- Background -->
+      <rect width="680" height="520" fill="url(#bgGrad)" rx="20"/>
+      <!-- Center circle -->
+      <circle cx="340" cy="260" r="72" fill="none" stroke="#00C6AD" stroke-width="1.5" opacity="0.3"/>
+      <circle cx="340" cy="260" r="48" fill="rgba(0,198,173,0.08)" stroke="#00C6AD" stroke-width="1" opacity="0.5"/>
+      <text x="340" y="252" text-anchor="middle" fill="#00C6AD" font-size="12" font-weight="800" font-family="Noto Sans TC, sans-serif">過敏健康</text>
+      <text x="340" y="270" text-anchor="middle" fill="#00C6AD" font-size="12" font-weight="800" font-family="Noto Sans TC, sans-serif">管理中心</text>
+      <!-- Orbit arrows (curved) -->
+      <path d="M 340 188 A 72 72 0 0 1 412 260" fill="none" stroke="#00C6AD" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.4" marker-end="url(#arrow)"/>
+      <path d="M 412 260 A 72 72 0 0 1 340 332" fill="none" stroke="#00C6AD" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.4" marker-end="url(#arrow)"/>
+      <path d="M 340 332 A 72 72 0 0 1 268 260" fill="none" stroke="#00C6AD" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.4" marker-end="url(#arrow)"/>
+      <path d="M 268 260 A 72 72 0 0 1 340 188" fill="none" stroke="#00C6AD" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.4" marker-end="url(#arrow)"/>
+      <!-- Node 1: Top — AI內容產出 -->
+      <circle cx="340" cy="90" r="44" fill="#132040" stroke="#00C6AD" stroke-width="1.5"/>
+      <text x="340" y="84" text-anchor="middle" fill="#00C6AD" font-size="13" font-weight="700" font-family="Noto Sans TC, sans-serif">AI 每日</text>
+      <text x="340" y="100" text-anchor="middle" fill="#00C6AD" font-size="13" font-weight="700" font-family="Noto Sans TC, sans-serif">產文</text>
+      <line x1="340" y1="134" x2="340" y2="188" stroke="#00C6AD" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+      <!-- Node 2: Right — Google排名上升 -->
+      <circle cx="556" cy="260" r="44" fill="#132040" stroke="#F5A623" stroke-width="1.5"/>
+      <text x="556" y="254" text-anchor="middle" fill="#F5A623" font-size="12" font-weight="700" font-family="Noto Sans TC, sans-serif">Google</text>
+      <text x="556" y="270" text-anchor="middle" fill="#F5A623" font-size="12" font-weight="700" font-family="Noto Sans TC, sans-serif">排名上升</text>
+      <line x1="512" y1="260" x2="412" y2="260" stroke="#F5A623" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+      <!-- Node 3: Bottom — 消費者到店 -->
+      <circle cx="340" cy="430" r="44" fill="#132040" stroke="#00C6AD" stroke-width="1.5"/>
+      <text x="340" y="424" text-anchor="middle" fill="#00C6AD" font-size="12" font-weight="700" font-family="Noto Sans TC, sans-serif">消費者</text>
+      <text x="340" y="440" text-anchor="middle" fill="#00C6AD" font-size="12" font-weight="700" font-family="Noto Sans TC, sans-serif">到店諮詢</text>
+      <line x1="340" y1="386" x2="340" y2="332" stroke="#00C6AD" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+      <!-- Node 4: Left — 更多藥局加盟 -->
+      <circle cx="124" cy="260" r="44" fill="#132040" stroke="#7B61FF" stroke-width="1.5"/>
+      <text x="124" y="254" text-anchor="middle" fill="#7B61FF" font-size="12" font-weight="700" font-family="Noto Sans TC, sans-serif">更多藥局</text>
+      <text x="124" y="270" text-anchor="middle" fill="#7B61FF" font-size="12" font-weight="700" font-family="Noto Sans TC, sans-serif">加盟</text>
+      <line x1="168" y1="260" x2="268" y2="260" stroke="#7B61FF" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+      <!-- Labels on arrows -->
+      <text x="468" y="210" text-anchor="middle" fill="#F5A623" font-size="10" font-family="Noto Sans TC, sans-serif" opacity="0.8">流量增加</text>
+      <text x="468" y="320" text-anchor="middle" fill="#00C6AD" font-size="10" font-family="Noto Sans TC, sans-serif" opacity="0.8">AI 諮詢邀約</text>
+      <text x="210" y="320" text-anchor="middle" fill="#7B61FF" font-size="10" font-family="Noto Sans TC, sans-serif" opacity="0.8">口碑&amp;評價</text>
+      <text x="210" y="210" text-anchor="middle" fill="#00C6AD" font-size="10" font-family="Noto Sans TC, sans-serif" opacity="0.8">交叉連結更強</text>
+      <!-- Title -->
+      <text x="340" y="498" text-anchor="middle" fill="rgba(120,160,187,0.6)" font-size="11" font-family="Noto Sans TC, sans-serif">越多加盟 → 越多內容 → 越高排名 → 越多消費者 → 越多加盟</text>
+    </svg>
+  </div>
+
+  <!-- 飛輪四驅動力 -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+    <div style="background: var(--card); border: 1px solid rgba(0,198,173,0.2); border-radius: 14px; padding: 20px;">
+      <div style="color: var(--accent); font-size: 22px; font-weight: 900; margin-bottom: 4px;">① AI 每日產文</div>
+      <div style="font-size: 13px; color: var(--muted);">每天 10 篇 × 100 家 = 1,000 篇新文章，不斷餵給 Google 新鮮內容，排名持續累積。</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid rgba(245,166,35,0.2); border-radius: 14px; padding: 20px;">
+      <div style="color: var(--gold); font-size: 22px; font-weight: 900; margin-bottom: 4px;">② Google 排名提升</div>
+      <div style="font-size: 13px; color: var(--muted);">文章多 + 交叉連結 + 百位藥師 E-E-A-T，Google 認定為過敏權威來源，自然流量免費進來。</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid rgba(0,198,173,0.2); border-radius: 14px; padding: 20px;">
+      <div style="color: var(--accent); font-size: 22px; font-weight: 900; margin-bottom: 4px;">③ 消費者到店</div>
+      <div style="font-size: 13px; color: var(--muted);">流量進來 → AI 諮詢 → 邀約過敏體質評估 → 到店轉換。每間加盟藥局收益提升，更願意推廣。</div>
+    </div>
+    <div style="background: var(--card); border: 1px solid rgba(123,97,255,0.2); border-radius: 14px; padding: 20px;">
+      <div style="color: #7B61FF; font-size: 22px; font-weight: 900; margin-bottom: 4px;">④ 更多藥局加盟</div>
+      <div style="font-size: 13px; color: var(--muted);">看到加盟藥局的成果，更多藥局想加入 → 更多網站 → 更多內容 → 飛輪越轉越快。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 規模效應 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">Scale</div>
+  <h2>規模就是護城河<br><span class="dim">大樹的資本追不上</span></h2>
+  <div style="margin-bottom: 32px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,198,173,0.15); box-shadow: 0 0 40px rgba(0,198,173,0.08);">
+    <img src="img_network.png" alt="全台過敏健康管理中心藥局網絡" style="width: 100%; display: block;">
+    <div style="padding: 12px 16px; background: rgba(0,198,173,0.05); font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.08em;">全台加盟藥局 SEO 交叉連結網絡示意</div>
+  </div>
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-val">10篇</div>
+      <div class="metric-label">每家藥局 × 每天</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">100家</div>
+      <div class="metric-label">加盟藥局目標</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">1,000篇</div>
+      <div class="metric-label">每天新內容上線</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">30,000篇</div>
+      <div class="metric-label">每月累積文章量</div>
+    </div>
+  </div>
+</section>
+
+<!-- 飛輪 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">Business Model</div>
+  <h2>四個價值層次<br><span class="dim">商業閉環，缺一不可</span></h2>
+  <div class="flywheel">
+    <div class="fw-items">
+      <div class="fw-item">
+        <div class="fw-dot"></div>
+        <div>
+          <div class="fw-text">① <span>健康管理中心知名度提升</span></div>
+          <div class="fw-sub">Google 認定過敏權威來源，消費者主動搜尋</div>
+        </div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-dot"></div>
+        <div>
+          <div class="fw-text">② <span>消費者找到加盟藥局</span></div>
+          <div class="fw-sub">地圖導流，只顯示加盟/經銷藥局，自動篩選</div>
+        </div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-dot"></div>
+        <div>
+          <div class="fw-text">③ <span>引流平台效應</span></div>
+          <div class="fw-sub">加盟越多 → SEO越強 → 流量越大 → 更多藥局想加入</div>
+        </div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-dot"></div>
+        <div>
+          <div class="fw-text">④ <span>藥品採購量大，利潤提高</span></div>
+          <div class="fw-sub">普健 + 加盟藥局雙贏，規模越大成本越低</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 成長路徑 -->
+<div class="divider"></div>
+<section>
+  <div class="section-label">Roadmap</div>
+  <h2>1家 → 10家 → 100家<br><span class="dim">商圈滾動複製</span></h2>
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-num">1</div>
+      <div class="flow-content">
+        <h3>示範旗艦店上線</h3>
+        <p>第一間健康管理中心網站上線，過敏專區跑 SEO，驗證「消費者來找解決方案」的流量模型</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">2</div>
+      <div class="flow-content">
+        <h3>AI 內容中台建立</h3>
+        <p>自動掃描國內外過敏新聞 → 黃總/藥師10分鐘審稿 → 自動同步發布到所有加盟藥局 blog</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">3</div>
+      <div class="flow-content">
+        <h3>商圈招募加盟藥局</h3>
+        <p>每間加盟藥局：免費獲得網站 + 內容 + SEO + 百大藥師名錄，只需要讓普健操盤</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">4</div>
+      <div class="flow-content">
+        <h3>交叉連結網絡啟動</h3>
+        <p>所有藥局網站互連，形成 Google 無法忽視的主題權威網絡，大樹永遠追不上</p>
+      </div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">5</div>
+      <div class="flow-content">
+        <h3>百大藥師見證完成</h3>
+        <p>100位藥師掛名，每篇文章有真實藥師署名，E-E-A-T 滿分，成為台灣過敏第一品牌</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="divider"></div>
+<div class="cta-section">
+  <p class="section-label" style="text-align:center; margin-bottom:16px;">Next Steps</p>
+  <h2>大樹是一棵樹<br>你們是一片森林</h2>
+  <p>森林的根系互相連接，砍不倒。<br>第一步，從示範店開始。</p>
+  <div class="cta-steps">
+    <div class="cta-step"><span class="num">01</span>確認第一間示範藥局</div>
+    <div class="cta-step"><span class="num">02</span>建立過敏健康管理中心網站</div>
+    <div class="cta-step"><span class="num">03</span>AI 產文系統上線</div>
+    <div class="cta-step"><span class="num">04</span>招募第一批 10 家加盟藥局</div>
+    <div class="cta-step"><span class="num">05</span>交叉連結，SEO 飛輪啟動</div>
+  </div>
+</div>
+
+<footer>
+  本提案由 <strong>CMO AI 行銷顧問</strong> 整理 · 普健生醫 × 過敏健康管理中心 · 2026-05-24<br>
+  <span style="color: var(--accent); font-size: 12px; margin-top: 8px; display: block;">普健生物科技股份有限公司 | 臺北市中山區南京東路二段 72 號 | <a href="https://progen.com.tw" style="color: var(--accent);">progen.com.tw</a> | <a href="https://www.ai-drugstore.com" style="color: var(--accent);">ai-drugstore.com</a></span>
+  <span style="opacity:0.5; font-size:11px; margin-top:6px; display:block;">Confidential — 僅供普健生醫內部決策使用</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GraBox 場域決策矩陣 — Uber Eats × 海柏特 · 20 場域格局分析</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0a0a;--ink3:#444;--muted:#6a6a6a;--rule:#d0d0d0;--bg:#faf8f3;--bg2:#f2ede2;--bg3:#fff;--uber:#06c167;--red:#c8102e;--gold:#b8860b;--navy:#0d2240;--amber:#f59e0b}
+html{font-size:15px}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.7}
+
+.masthead{border-top:5px solid var(--ink);border-bottom:2px solid var(--ink);display:flex;align-items:center;justify-content:space-between;padding:10px 52px;background:var(--bg)}
+.mast-l{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.mast-badge{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;background:var(--navy);color:#fff;padding:4px 10px}
+
+.cover{background:var(--navy);color:#fff;padding:64px 52px 56px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 79px,rgba(255,255,255,.015) 79px,rgba(255,255,255,.015) 80px)}
+.cw{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.cv-label{font-size:11px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--uber);margin-bottom:16px}
+.cv-h1{font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,56px);font-weight:900;line-height:1.1;margin-bottom:18px}
+.cv-h1 em{font-style:italic;color:#f5c842}
+.cv-deck{font-size:14px;line-height:1.8;color:rgba(255,255,255,.65);max-width:680px;margin-bottom:28px}
+.cv-meta{display:flex;gap:24px;flex-wrap:wrap}
+.cv-meta-item{text-align:center;padding:16px 22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.cv-meta-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:#f5c842;line-height:1;margin-bottom:4px}
+.cv-meta-label{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.06em}
+
+.discussion{max-width:1080px;margin:0 auto;padding:48px 52px}
+.d-header{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red);border-top:3px solid var(--red);padding-top:8px;margin-bottom:28px}
+.exchange{margin-bottom:20px;padding:22px 26px}
+.exchange.gm{background:#fff;border:1px solid #ddd;border-left:4px solid var(--navy)}
+.exchange.cmo{background:rgba(6,193,103,.05);border:1px solid rgba(6,193,103,.2);border-left:4px solid var(--uber)}
+.ex-role{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.badge{padding:3px 9px;font-size:9px;border-radius:2px;font-weight:700}
+.badge-gm{background:var(--navy);color:#fff}
+.badge-cmo{background:var(--uber);color:#000}
+.ex-body{font-size:13px;color:var(--ink3);line-height:1.85}
+.ex-body ul{padding-left:18px;margin:8px 0}
+.ex-body li{margin-bottom:5px}
+.consensus{background:var(--navy);color:#fff;padding:18px 26px;display:flex;align-items:center;gap:16px;margin-bottom:36px}
+.consensus-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--uber);white-space:nowrap}
+.consensus-text{font-size:13px;color:rgba(255,255,255,.85);line-height:1.6}
+
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0 28px}
+.spec-card{border:1px solid var(--rule);padding:18px 20px;background:var(--bg3)}
+.sc-title{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.sc-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.sc-dim{font-size:12px;color:var(--muted);margin-bottom:8px}
+.sc-items{font-size:12px;color:var(--ink3);line-height:1.8}
+
+.formula-box{background:var(--bg2);border:1px solid var(--rule);padding:18px 22px;margin:16px 0;font-size:13px}
+.f-title{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.f-eq{font-size:14px;color:var(--navy);font-weight:700;padding:8px 14px;background:#fff;border-left:3px solid var(--gold);margin-bottom:6px}
+.f-note{font-size:11px;color:var(--muted);line-height:1.7}
+
+.matrix-section{background:var(--bg3);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:48px 0}
+.matrix-inner{max-width:1080px;margin:0 auto;padding:0 52px}
+
+.tier-header{display:flex;align-items:center;gap:14px;margin:32px 0 18px;padding-top:28px;border-top:1px solid var(--rule)}
+.tier-header:first-of-type{border-top:none;padding-top:0;margin-top:0}
+.tier-badge{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:5px 13px;border-radius:2px;white-space:nowrap}
+.t0b{background:#7c3aed;color:#fff}
+.t1b{background:var(--uber);color:#000}
+.t2b{background:var(--navy);color:#fff}
+.t3b{background:#78716c;color:#fff}
+.tier-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ink)}
+.tier-sub{font-size:12px;color:var(--muted)}
+
+.venue-card{background:#fff;border:1px solid var(--rule);margin-bottom:10px;overflow:hidden}
+.vc-head{display:grid;grid-template-columns:54px 1fr auto;border-bottom:1px solid #eee}
+.vc-num{display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:19px;font-weight:900;min-height:60px}
+.n0{background:#7c3aed;color:#fff}.n1{background:var(--uber);color:#000}.n2{background:var(--navy);color:#fff}.n3{background:#78716c;color:#fff}
+.vc-info{padding:11px 18px;display:flex;flex-direction:column;justify-content:center}
+.vc-name{font-weight:700;font-size:14px;color:var(--ink);margin-bottom:2px}
+.vc-sub{font-size:11px;color:var(--muted)}
+.vc-config{padding:11px 18px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:5px;min-width:190px}
+.config-label{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.config-main{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.config-total{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;line-height:1}
+.c0{color:#7c3aed}.c1{color:var(--uber)}.c2{color:var(--navy)}.c3{color:#78716c}
+.config-unit{font-size:10px;color:var(--muted)}
+.pill{padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;white-space:nowrap}
+.pl{background:#e0e7ff;color:#3730a3}
+.ps{background:#d1fae5;color:#065f46}
+
+.vc-body{display:grid;grid-template-columns:1fr 1fr 1fr;font-size:12px}
+.vc-col{padding:11px 18px;border-right:1px solid #eee}
+.vc-col:last-child{border-right:none}
+.vc-col-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.vc-col-value{color:var(--ink3);line-height:1.6}
+.vgo{color:#065f46;font-weight:700}
+.vcond{color:#92400e;font-weight:700}
+.vno{color:var(--red);font-weight:700}
+
+.exc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:1080px;margin:20px auto 0;padding:0 52px}
+.exc-card{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--red);padding:14px 18px;display:flex;gap:12px;align-items:flex-start}
+.exc-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.exc-name{font-weight:700;font-size:13px;color:var(--ink);margin-bottom:3px}
+.exc-reason{font-size:11px;color:var(--muted);line-height:1.6}
+
+.formula-board{background:var(--navy);padding:44px 52px;color:#fff}
+.fb-inner{max-width:1080px;margin:0 auto}
+.fb-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:22px}
+.fb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fb-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:18px 20px}
+.fb-card-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px}
+.fb-card-val{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:#f5c842;line-height:1;margin-bottom:4px}
+.fb-card-desc{font-size:11px;color:rgba(255,255,255,.6);line-height:1.6}
+
+.page-footer{border-top:2px solid var(--ink);padding:16px 52px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--muted);background:var(--bg)}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="mast-l">海柏特科技 × Uber Eats Taiwan — GraBox 場域決策矩陣</div>
+  <div><span class="mast-badge">機密策略文件</span>&nbsp;&nbsp;<span style="font-size:10px;color:var(--muted)">2026-05-27 · 定稿版</span></div>
+</div>
+
+<div class="cover">
+  <div class="cw">
+    <div class="cv-label">GraBox 場域決策矩陣 · Venue Decision Matrix v2.0</div>
+    <h1 class="cv-h1">20 個場域，逐一攤牌<br><em>哪裡放、放幾格、為什麼</em></h1>
+    <p class="cv-deck">本文件為 Uber Eats 台灣總經理與海柏特 CMO 策略討論後之定稿。以「日均外送單量」為基準，制定各業態合理格數配比，並主動排除 6 類不適合場域，確保每台 GraBox 的部署都能通過業務合理性檢驗。</p>
+    <div class="cv-meta">
+      <div class="cv-meta-item"><div class="cv-meta-num">20</div><div class="cv-meta-label">分析場域類型</div></div>
+      <div class="cv-meta-item"><div class="cv-meta-num">6</div><div class="cv-meta-label">主動排除類型</div></div>
+      <div class="cv-meta-item"><div class="cv-meta-num">4–20</div><div class="cv-meta-label">格數範圍（依業態）</div></div>
+      <div class="cv-meta-item"><div class="cv-meta-num">TIER 0–3</div><div class="cv-meta-label">四級優先度分類</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DISCUSSION -->
+<div class="discussion">
+  <div class="d-header">策略討論紀錄 · UE 台灣總經理 GM × CMO 行銷長</div>
+
+  <div class="exchange gm">
+    <div class="ex-role"><span class="badge badge-gm">UE 台灣總經理 GM</span> 第一輪挑戰</div>
+    <div class="ex-body">方向認同，但四件事說不服自己：<ul>
+      <li><strong>夜市攤要刪</strong> — 沒固定電源、沒固定外牆，攤主一人手忙腳亂，誰來管 GraBox？</li>
+      <li><strong>格子配比沒邏輯</strong> — 早餐店尖峰 30 分鐘出 100 份，8 格爆掉；咖啡廳一小時 20 杯，12 格在閒置。每個場域格數要有依據。</li>
+      <li><strong>幽靈廚房完全沒提</strong> — 純外送廚房 100% 外送流量，不是 TIER 0 是什麼？</li>
+      <li><strong>高級餐廳直接刪</strong> — 米其林門口放綠光閃爍機器，你能說服我嗎？</li>
+    </ul></div>
+  </div>
+
+  <div class="exchange cmo">
+    <div class="ex-role"><span class="badge badge-cmo">CMO 行銷長</span> 回應第一輪</div>
+    <div class="ex-body">全數接受，提出格子計算公式：<br>
+    <strong>尖峰小時單量 = 日均 × 20%　→　同時佔格 = 尖峰單量 × 15min ÷ 60　→　建議格數 = 同時佔格 × 1.5 緩衝</strong><br><br>
+    幽靈廚房升 TIER 0；夜市流動攤刪除，保留固定店鋪（最小 4 格）；高級 fine dining（&gt;500元/人）主動排除，中高價可提供黑色低調款。</div>
+  </div>
+
+  <div class="exchange gm">
+    <div class="ex-role"><span class="badge badge-gm">GM</span> 第二輪追問</div>
+    <div class="ex-body"><strong>便利商店（全家/7-11）怎麼辦？速食大型連鎖 API 整合談判要多久？</strong></div>
+  </div>
+
+  <div class="exchange cmo">
+    <div class="ex-role"><span class="badge badge-cmo">CMO</span> 最終回應</div>
+    <div class="ex-body">
+      <strong>便利商店：主動排除。</strong>三大超商自有取貨系統，本提案不碰，避免訊號混亂與談判複雜化。<br>
+      <strong>速食連鎖：Phase 1 以 App 免整合模式先上線，Phase 2 推進 API 整合談判</strong>，不阻塞第一波部署。
+    </div>
+  </div>
+
+  <div class="consensus">
+    <div class="consensus-label">✓ 共識達成</div>
+    <div class="consensus-text">以上邏輯 GM 確認接受。下方為依共識生成之 20 場域決策矩陣，含格子配比、推薦理由與主動排除清單。</div>
+  </div>
+
+  <div style="font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);border-top:3px solid var(--gold);padding-top:8px;margin-bottom:14px;">格子尺寸定義</div>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="sc-title">大格 · Large Compartment</div>
+      <div class="sc-name">300 × 300 × 420 mm</div>
+      <div class="sc-dim">寬 × 深 × 高</div>
+      <div class="sc-items">便當盒、炒飯外帶、多件套餐、家庭餐、鍋物外帶、大型飲料（1000ml＋）</div>
+    </div>
+    <div class="spec-card">
+      <div class="sc-title">小格 · Small Compartment</div>
+      <div class="sc-name">200 × 200 × 350 mm</div>
+      <div class="sc-dim">寬 × 深 × 高</div>
+      <div class="sc-items">封口飲料袋（700ml）、三明治、包子饅頭、餅乾點心、個人份甜點、小型飯糰</div>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <div class="f-title">格數計算公式</div>
+    <div class="f-eq">建議格數 = (日均單量 × 20% × 15 ÷ 60) × 1.5 + 20% 緩衝</div>
+    <div class="f-note">說明：尖峰小時 ≈ 日均 × 20%；平均置格等候時間 15 分鐘（騎手接單→到店均值）；1.5 倍安全緩衝；大/小格比例依業態主力品項決定。實際部署前以門市真實外送報表驗證。</div>
+  </div>
+</div>
+
+<!-- MATRIX -->
+<div class="matrix-section">
+<div class="matrix-inner">
+  <div style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red);border-top:3px solid var(--red);padding-top:8px;margin-bottom:8px;">場域決策矩陣 · 20 Business Types</div>
+
+  <!-- TIER 0 -->
+  <div class="tier-header">
+    <span class="tier-badge t0b">TIER 0</span>
+    <div><div class="tier-title">最高優先 — 每台效益最大化</div><div class="tier-sub">外送佔比 90%+，立刻推進</div></div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n0">01</div>
+      <div class="vc-info"><div class="vc-name">幽靈廚房 / 純外送廚房</div><div class="vc-sub">Ghost Kitchen · 無內用、100% 外送流量</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c0">16–20</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 10</span><span class="pill ps">小格 × 8</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>150 – 300 單</strong><br>無內用稀釋，全量外送</div></div>
+      <div class="vc-col"><div class="vc-col-label">為什麼最高優先</div><div class="vc-col-value">100% 外送場域，空間可完全配合，無品牌形象顧慮，單台日均翻格次數全場景最高</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vgo">✓ 強力推薦</span><br>優先鎖定 UE 後台月訂單 &gt;3,000 單的幽靈廚房</div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n0">02</div>
+      <div class="vc-info"><div class="vc-name">知名早餐連鎖旗艦店</div><div class="vc-sub">麥味登 / 拿坡里 / 弘爺 — 訂單量前段門市</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c0">12</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 6</span><span class="pill ps">小格 × 6</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>80 – 150 單</strong><br>集中 7:00–10:00 AM，尖峰強度最高</div></div>
+      <div class="vc-col"><div class="vc-col-label">為什麼值得放</div><div class="vc-col-value">早餐尖峰騎手等待投訴佔比最高；外牆安裝讓騎手不進店，動線完全分離</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vgo">✓ 強力推薦</span><br>海柏特已有麥味登千家合作先例，可直接帶單進場</div></div>
+    </div>
+  </div>
+
+  <!-- TIER 1 -->
+  <div class="tier-header">
+    <span class="tier-badge t1b">TIER 1</span>
+    <div><div class="tier-title">高適合 — 第一波擴張主力</div><div class="tier-sub">外送佔比高、空間配合度佳，Pilot 後大規模展開的核心場域</div></div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n1">03</div>
+      <div class="vc-info"><div class="vc-name">手搖飲連鎖頂店</div><div class="vc-sub">50嵐 / CoCo / Tiger Sugar — 訂單量前段門市</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c1">12</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 2</span><span class="pill ps">小格 × 10</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>100 – 200 單</strong><br>下午 2–4PM + 晚 7–9PM 雙峰</div></div>
+      <div class="vc-col"><div class="vc-col-label">格型邏輯</div><div class="vc-col-value">飲料袋體積統一且小，<strong>以小格為主（2:10）</strong>，翻格速度快，效率最高</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vgo">✓ 推薦</span><br>飲料包裝標準化，GraBox 使用體驗最流暢</div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n1">04</div>
+      <div class="vc-info"><div class="vc-name">便當 / 快餐主力店</div><div class="vc-sub">池上便當 / 自助餐 / 爌肉飯連鎖</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c1">10</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 8</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>60 – 120 單</strong><br>午餐 + 晚餐雙峰</div></div>
+      <div class="vc-col"><div class="vc-col-label">格型邏輯</div><div class="vc-col-value">便當盒體積大，<strong>大格為主（8:2）</strong>；附湯備少量小格</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vgo">✓ 推薦</span><br>UE 便當類訂單比例最高，痛點明確</div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n1">05</div>
+      <div class="vc-info"><div class="vc-name">連鎖咖啡廳中型門市</div><div class="vc-sub">cama / 路易莎 / 伯朗 — 非精品店</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c1">8</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 4</span><span class="pill ps">小格 × 4</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>40 – 80 單</strong><br>早餐 + 下午茶兩段</div></div>
+      <div class="vc-col"><div class="vc-col-label">格型邏輯</div><div class="vc-col-value">咖啡袋用小格；若有餐食套餐需大格；4:4 均衡配置</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vgo">✓ 推薦</span><br>吧台旁外掛即可，安裝難度最低</div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n1">06</div>
+      <div class="vc-info"><div class="vc-name">速食連鎖（非旗艦店）</div><div class="vc-sub">麥當勞 / 肯德基 / 摩斯 — Phase 1 App 模式 / Phase 2 API</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c1">16</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 10</span><span class="pill ps">小格 × 6</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>100 – 200 單</strong><br>午晚尖峰，套餐件數多</div></div>
+      <div class="vc-col"><div class="vc-col-label">條件說明</div><div class="vc-col-value"><strong>Phase 1：App 免整合上線。Phase 2：API 整合談判。</strong>不阻塞部署進度</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 有條件推薦</span><br>日均單量最高，接受 Phase 分步策略</div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n1">07</div>
+      <div class="vc-info"><div class="vc-name">炸雞排 / 鹹酥雞品牌店</div><div class="vc-sub">無敵雞排 / 四季 / 四兩雞 — 有固定店面</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c1">8</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 5</span><span class="pill ps">小格 × 3</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>60 – 120 單</strong><br>下午茶 + 晚餐尖峰</div></div>
+      <div class="vc-col"><div class="vc-col-label">格型邏輯</div><div class="vc-col-value">炸物包裝中等，大格為主；飲料搭配用小格</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vgo">✓ 推薦</span><br>高頻外送品項，騎手等待是核心痛點</div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n1">08</div>
+      <div class="vc-info"><div class="vc-name">中式快餐 / 燒臘飯店</div><div class="vc-sub">廣式燒臘 / 滷肉飯 / 雞腿飯 — 外送主力門市</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c1">10</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 8</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>50 – 100 單</strong><br>午晚明顯雙峰</div></div>
+      <div class="vc-col"><div class="vc-col-label">格型邏輯</div><div class="vc-col-value">燒臘盒份量大，幾乎全大格；湯品備少量小格</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vgo">✓ 推薦</span></div></div>
+    </div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="tier-header">
+    <span class="tier-badge t2b">TIER 2</span>
+    <div><div class="tier-title">中適合 — 有條件成立，需逐一評估門市</div><div class="tier-sub">業態整體適合，但個別門市外送量 / 空間 / 品牌契合度需確認</div></div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n2">09</div>
+      <div class="vc-info"><div class="vc-name">日式拉麵 / 丼飯（平價）</div><div class="vc-sub">晴天拉麵 / 三田製麵所 / 牛丼連鎖</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c2">8</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 6</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>40 – 80 單</strong></div></div>
+      <div class="vc-col"><div class="vc-col-label">條件說明</div><div class="vc-col-value">湯麵外送品質由店家解決（密封盒）；GraBox 只負責交接環節，不影響溫度責任</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 有條件推薦</span><br>確認門市外送量前段才部署</div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n2">10</div>
+      <div class="vc-info"><div class="vc-name">義式 / 西式輕食（平價）</div><div class="vc-sub">義大利麵 / 輕食沙拉 / 潛艇堡品牌店</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c2">6</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 4</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>30 – 60 單</strong><br>午餐主力</div></div>
+      <div class="vc-col"><div class="vc-col-label">條件說明</div><div class="vc-col-value">輕食餐盒標準化程度高，非常適合 GraBox；需確認門市有足夠入口空間</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 有條件推薦</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n2">11</div>
+      <div class="vc-info"><div class="vc-name">壽司 / 日式外帶便當</div><div class="vc-sub">平價壽司連鎖 / 日式便當專門店</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c2">8</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 6</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>40 – 70 單</strong></div></div>
+      <div class="vc-col"><div class="vc-col-label">注意事項</div><div class="vc-col-value"><strong>⚠ 常溫置格不超過 20 分鐘</strong>，壽司需快速取餐；騎手到店後格子閒置時間需監控</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 有條件推薦</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n2">12</div>
+      <div class="vc-info"><div class="vc-name">甜點 / 烘焙外帶（常溫品項）</div><div class="vc-sub">85度C / 統一麵包外帶據點 — 僅限常溫品項</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c2">6</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 2</span><span class="pill ps">小格 × 4</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>30 – 60 單</strong><br>下午茶尖峰</div></div>
+      <div class="vc-col"><div class="vc-col-label">注意事項</div><div class="vc-col-value"><strong>⚠ 需冷藏品項禁止</strong>（奶油蛋糕等）；只適合常溫麵包、餅乾、包裝甜點</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 品項確認後才部署</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n2">13</div>
+      <div class="vc-info"><div class="vc-name">素食 / 蔬食便當店</div><div class="vc-sub">平價素食自助 / 素食外帶便當</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c2">6</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 5</span><span class="pill ps">小格 × 1</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>30 – 60 單</strong><br>午餐為主</div></div>
+      <div class="vc-col"><div class="vc-col-label">格型邏輯</div><div class="vc-col-value">素食便當通常一盒（大格），無太多飲料附餐，小格需求低</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 有條件推薦</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n2">14</div>
+      <div class="vc-info"><div class="vc-name">泰式 / 東南亞料理</div><div class="vc-sub">泰式咖哩 / 越南料理 / 印度咖哩 — 外送量明確的門市</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c2">6</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 4</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>30 – 50 單</strong></div></div>
+      <div class="vc-col"><div class="vc-col-label">條件說明</div><div class="vc-col-value">只選 UE 後台月訂單 &gt;1,000 的門市；外送量偏中段，低於此門檻不部署</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 有條件推薦</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n2">15</div>
+      <div class="vc-info"><div class="vc-name">台式熱炒 / 快炒小館</div><div class="vc-sub">有外送功能的台式快炒 — 限晚餐時段</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c2">8</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 6</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>40 – 70 單</strong><br>限晚餐 5–9PM</div></div>
+      <div class="vc-col"><div class="vc-col-label">問題說明</div><div class="vc-col-value">非全天候，格子白天閒置率高（約 60%）；只部署日均外送量高的門市</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 有條件推薦</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n2">16</div>
+      <div class="vc-info"><div class="vc-name">辦公大樓樓下便利型餐廳</div><div class="vc-sub">大型商辦 B1 / 1F — 商業區高度集中</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c2">8</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 6</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>40 – 80 單</strong><br>午餐時段極度集中</div></div>
+      <div class="vc-col"><div class="vc-col-label">加分理由</div><div class="vc-col-value">騎手停樓下取餐免進大樓安保；大樓品牌要求 → 可推黑色低調款機身</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 有條件推薦</span></div></div>
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="tier-header">
+    <span class="tier-badge t3b">TIER 3</span>
+    <div><div class="tier-title">低優先 — 特殊條件才考慮，不主動推進</div><div class="tier-sub">使用率偏低或條件苛刻，觀察等候，不納入第一波選點清單</div></div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n3">17</div>
+      <div class="vc-info"><div class="vc-name">大學學區周邊餐廳</div><div class="vc-sub">大學正門外快餐 — 學生外送量受學期影響</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c3">8</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 5</span><span class="pill ps">小格 × 3</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>50–100（學期中）</strong><br>寒暑假跌至 &lt;10 單</div></div>
+      <div class="vc-col"><div class="vc-col-label">風險說明</div><div class="vc-col-value">一年 4 個月閒置；只在台大/政大/成大等高流量學區且外送量穩定的門市考慮</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 低優先，觀察</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n3">18</div>
+      <div class="vc-info"><div class="vc-name">夜市常設固定店鋪</div><div class="vc-sub">⚠ 非流動攤！需固定外牆 + 固定電源 + 全年無休三條件全滿足</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c3">4</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill ps">小格 × 4</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>20 – 50 單</strong><br>僅限晚間 6–11PM</div></div>
+      <div class="vc-col"><div class="vc-col-label">嚴格條件</div><div class="vc-col-value">① 固定磚牆店面 ② 220V 固定電源 ③ 日均外送 &gt;30 單 — 三者缺一不部署</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 嚴格篩選後才考慮</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n3">19</div>
+      <div class="vc-info"><div class="vc-name">精品咖啡廳（獨立店）</div><div class="vc-sub">單杯 &gt;180元、以內用為主、重視空間美學</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c3">4</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 2</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>15 – 30 單</strong><br>外送比例極低</div></div>
+      <div class="vc-col"><div class="vc-col-label">問題說明</div><div class="vc-col-value">格子閒置率 &gt;70%；店主對美學敏感可能拒絕；除非月訂單 &gt;800 單，否則不主動推</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 不主動推，被動接受</span></div></div>
+    </div>
+  </div>
+
+  <div class="venue-card">
+    <div class="vc-head">
+      <div class="vc-num n3">20</div>
+      <div class="vc-info"><div class="vc-name">中高價餐廳（$$ 段，人均 300–500元）</div><div class="vc-sub">提供「黑色低調款」選項，不強推，由門市主動申請</div></div>
+      <div class="vc-config">
+        <div class="config-label">建議格數</div>
+        <div class="config-main"><div><div class="config-total c3">6</div><div class="config-unit">格</div></div></div>
+        <div class="config-main"><span class="pill pl">大格 × 4</span><span class="pill ps">小格 × 2</span></div>
+      </div>
+    </div>
+    <div class="vc-body">
+      <div class="vc-col"><div class="vc-col-label">日均外送單量</div><div class="vc-col-value"><strong>20 – 40 單</strong></div></div>
+      <div class="vc-col"><div class="vc-col-label">條件說明</div><div class="vc-col-value">機身改為啞光黑（無綠光跑馬）；只有門市主動提出才安裝，不主動推銷</div></div>
+      <div class="vc-col"><div class="vc-col-label">判定</div><div class="vc-col-value"><span class="vcond">△ 被動接受，不主動推</span></div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- EXCLUDED -->
+<div style="background:#fff8f8;border-top:4px solid var(--red);padding:40px 0 48px;">
+  <div style="max-width:1080px;margin:0 auto;padding:0 52px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--red);border-top:3px solid var(--red);padding-top:8px;margin-bottom:6px;">主動排除場域 · Do Not Deploy</div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:18px;">以下場域不納入部署清單。業務若接到詢問，主動引導至 TIER 1/2 場域。</p>
+    <div class="exc-grid">
+      <div class="exc-card">
+        <div class="exc-icon">🍽️</div>
+        <div><div class="exc-name">高級 Fine Dining（人均 &gt;500元）</div><div class="exc-reason">每日外送單量 &lt;10 單；GraBox 放在米其林門口與品牌形象嚴重衝突；ROI 完全無法成立。不接受特例。</div></div>
+      </div>
+      <div class="exc-card">
+        <div class="exc-icon">🏪</div>
+        <div><div class="exc-name">便利商店（7-11 / 全家 / 萊爾富）</div><div class="exc-reason">三大超商自有智慧取貨系統（i-go Box 等）；談判複雜、訊號重疊，本提案不碰。</div></div>
+      </div>
+      <div class="exc-card">
+        <div class="exc-icon">🛒</div>
+        <div><div class="exc-name">流動夜市攤（無固定店面）</div><div class="exc-reason">無固定電源、無固定外牆、位置每日不固定；設備損壞責任歸屬不清，硬體無法安裝。</div></div>
+      </div>
+      <div class="exc-card">
+        <div class="exc-icon">🏙️</div>
+        <div><div class="exc-name">傳統市場攤販</div><div class="exc-reason">環境潮濕、電源不穩、不符合 IoT 設備安裝條件；外送訂單量極低（&lt;5 單/日）。</div></div>
+      </div>
+      <div class="exc-card">
+        <div class="exc-icon">🍺</div>
+        <div><div class="exc-name">酒吧 / KTV / 夜店</div><div class="exc-reason">外送以酒水為主，時段集中深夜；騎手在夜店入口等候的體驗問題無解；品牌形象不符。</div></div>
+      </div>
+      <div class="exc-card">
+        <div class="exc-icon">📊</div>
+        <div><div class="exc-name">日均外送單量 &lt;20 單（任何業態）</div><div class="exc-reason">通用排除準則：日均 &lt;20 單，格子使用率 &lt;30%，設備成本無法攤銷。從 UE 後台篩選時直接過濾。</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMULA BOARD -->
+<div class="formula-board">
+  <div class="fb-inner">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--uber);margin-bottom:8px;">部署決策通則</div>
+    <div class="fb-title">三個數字，決定每一台要不要放</div>
+    <div class="fb-grid">
+      <div class="fb-card">
+        <div class="fb-card-label">門檻線</div>
+        <div class="fb-card-val">20</div>
+        <div class="fb-card-desc">日均外送單量必須 &gt;20 單，否則格子閒置率超過 70%，設備無法回本</div>
+      </div>
+      <div class="fb-card">
+        <div class="fb-card-label">格數公式緩衝</div>
+        <div class="fb-card-val">×1.5</div>
+        <div class="fb-card-desc">同時佔格需求（尖峰 × 15min ÷ 60）× 1.5 = 建議格數。不要過配，也不要剛剛好。</div>
+      </div>
+      <div class="fb-card">
+        <div class="fb-card-label">大小格預設比例</div>
+        <div class="fb-card-val">7:3</div>
+        <div class="fb-card-desc">預設大格 70% / 小格 30%。飲料主力場域反轉為 2:8。依品項組合微調。</div>
+      </div>
+    </div>
+    <div style="margin-top:22px;padding:16px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:13px;color:rgba(255,255,255,.75);line-height:1.8;">
+      <strong style="color:#fff;">Pilot 選點建議：</strong>從 Uber Eats 後台導出月訂單 &gt;2,000 單（日均 &gt;67 單）的餐廳清單，與 TIER 0 / TIER 1 業態交叉比對，即為第一波 20 家最佳 Pilot 選點清單。
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div>場域決策矩陣 v2.0 · 海柏特科技 × Uber Eats Taiwan · GM × CMO 討論後定稿</div>
+  <div>2026-05-27 · 機密商業策略文件，專供雙方決策團隊使用</div>
+</div>
+
+</body>
+</html>

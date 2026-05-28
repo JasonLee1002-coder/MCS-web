@@ -65,9 +65,6 @@ export default function AiConsultant() {
   const pathname = usePathname();
   const ctx = pageContexts[pathname] || defaultContext;
   const [isOpen, setIsOpen] = useState(false);
-
-  // Hide on /intro (pitch page — clean presentation)
-  if (pathname === "/intro") return null;
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -76,6 +73,9 @@ export default function AiConsultant() {
   // Get room code from URL if on /present/control
   const isPresenterMode = pathname === "/present/control";
   const roomCodeRef = useRef("");
+
+  // Hide on /intro (pitch page — clean presentation)
+  if (pathname === "/intro") return null;
 
   useEffect(() => {
     if (isPresenterMode) {

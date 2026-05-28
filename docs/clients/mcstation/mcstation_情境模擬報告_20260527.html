@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>mcstation.ai — 訪客情境模擬 × 10輪迭代報告</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00C6AD;--teal2:#4DFFD9;--navy:#0A1628;--navy2:#0d1f3c;--navy3:#111d35;
+  --muted:rgba(224,240,255,0.55);--white:#e0f0ff;
+  --r1:#ef4444;--r2:#f97316;--r3:#eab308;--r4:#84cc16;--r5:#22c55e;
+  --r6:#10b981;--r7:#14b8a6;--r8:#06b6d4;--r9:#3b82f6;--r10:#00C6AD;
+}
+body{background:var(--navy);color:var(--white);font-family:'Segoe UI','Noto Sans TC',sans-serif;display:flex;min-height:100vh}
+
+/* Sidebar */
+.sidebar{width:220px;flex-shrink:0;background:#050d1a;border-right:1px solid rgba(0,198,173,0.15);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;padding:1.5rem 0;z-index:100}
+.sidebar-title{font-size:0.65rem;font-weight:800;letter-spacing:0.2em;color:rgba(255,255,255,0.3);padding:0 1.2rem;margin-bottom:1rem;text-transform:uppercase}
+.sidebar a{display:block;padding:0.55rem 1.2rem;font-size:0.8rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:all 0.15s;border-left:3px solid transparent}
+.sidebar a:hover,.sidebar a.active{color:var(--teal);border-left-color:var(--teal);background:rgba(0,198,173,0.06)}
+.sidebar .round-link{display:flex;align-items:center;gap:0.5rem}
+.round-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* Main */
+.main{margin-left:220px;flex:1;padding:2rem 2.5rem}
+
+/* Doc header */
+.doc-header{background:linear-gradient(135deg,var(--navy2),#0f2a4a);border:1px solid rgba(0,198,173,0.2);border-radius:16px;padding:2rem;margin-bottom:2rem}
+.doc-header h1{font-size:1.6rem;font-weight:900;color:var(--teal);letter-spacing:-0.03em}
+.doc-header p{color:var(--muted);margin-top:0.4rem;font-size:0.88rem}
+.meta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+.meta-badge{font-size:0.7rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:0.1em}
+
+/* Round section */
+.round{margin-bottom:4rem;scroll-margin-top:2rem}
+.round-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding:1rem 1.5rem;border-radius:12px;border-left:5px solid var(--rc)}
+.round-badge{font-size:0.65rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;background:var(--rc);color:#000;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.round-header h2{font-size:1.1rem;font-weight:900;color:#fff}
+.round-header p{font-size:0.78rem;color:var(--muted);margin-top:0.2rem}
+
+/* Role block */
+.role-block{margin-bottom:2rem}
+.role-title{font-size:0.72rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+.role-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.08)}
+
+/* Scenario table */
+.stbl{width:100%;border-collapse:collapse;font-size:0.75rem;margin-bottom:1rem}
+.stbl thead tr{background:rgba(255,255,255,0.04)}
+.stbl th{padding:0.5rem 0.7rem;text-align:left;color:rgba(255,255,255,0.4);font-weight:600;font-size:0.68rem;letter-spacing:0.1em;border-bottom:1px solid rgba(255,255,255,0.06);white-space:nowrap}
+.stbl td{padding:0.5rem 0.7rem;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;line-height:1.4}
+.stbl tr:hover{background:rgba(255,255,255,0.02)}
+.s-num{color:rgba(255,255,255,0.3);font-weight:700;width:30px}
+.s-persona{color:#fff;font-weight:600;width:130px}
+.s-entry{color:rgba(100,180,255,0.8);width:140px}
+.s-journey{color:var(--muted);width:200px}
+.s-moment{color:#fbbf24;width:150px}
+.result-tag{display:inline-block;font-size:0.65rem;font-weight:800;padding:2px 8px;border-radius:8px;white-space:nowrap}
+.rt-convert{background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.3)}
+.rt-partial{background:rgba(234,179,8,0.2);color:#fbbf24;border:1px solid rgba(234,179,8,0.3)}
+.rt-bounce{background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3)}
+.rt-explore{background:rgba(99,179,237,0.2);color:#93c5fd;border:1px solid rgba(99,179,237,0.3)}
+.s-gap{color:#f87171;font-size:0.7rem;width:130px}
+
+/* CMO review */
+.cmo-review{background:linear-gradient(135deg,rgba(246,173,85,0.08),rgba(246,173,85,0.04));border:1px solid rgba(246,173,85,0.25);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.cmo-review h3{font-size:0.78rem;font-weight:900;color:#f6ad55;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+.cmo-review ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.cmo-review li{font-size:0.82rem;color:rgba(246,173,85,0.85);padding-left:1.2rem;position:relative;line-height:1.5}
+.cmo-review li::before{content:'⚠';position:absolute;left:0;font-size:0.65rem}
+
+/* Design change */
+.design-change{background:linear-gradient(135deg,rgba(0,198,173,0.08),rgba(0,198,173,0.04));border:1px solid rgba(0,198,173,0.25);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.design-change h3{font-size:0.78rem;font-weight:900;color:var(--teal);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem}
+.design-change .change-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:0.75rem}
+.before-box,.after-box{padding:0.75rem;border-radius:8px;font-size:0.78rem;line-height:1.5}
+.before-box{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);color:#fca5a5}
+.after-box{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);color:#86efac}
+.before-label,.after-label{font-size:0.62rem;font-weight:800;letter-spacing:0.15em;margin-bottom:0.3rem;opacity:0.6}
+
+/* Conversion bar */
+.conv-bar{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem}
+.conv-label{font-size:0.72rem;color:var(--muted);width:80px;flex-shrink:0}
+.conv-track{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
+.conv-fill{height:100%;border-radius:4px;transition:width 0.3s}
+.conv-pct{font-size:0.72rem;font-weight:800;width:36px;text-align:right;flex-shrink:0}
+
+/* Final report */
+.final-report{background:linear-gradient(135deg,var(--navy2),#0a2040);border:2px solid rgba(0,198,173,0.35);border-radius:20px;padding:2.5rem;margin-bottom:2rem}
+.final-report h2{font-size:1.3rem;font-weight:900;color:var(--teal);margin-bottom:1.5rem}
+.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.decision-kept,.decision-dropped{border-radius:10px;padding:1.2rem}
+.decision-kept{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2)}
+.decision-dropped{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2)}
+.decision-kept h4{color:#4ade80;font-size:0.72rem;font-weight:800;letter-spacing:0.15em;margin-bottom:0.75rem}
+.decision-dropped h4{color:#f87171;font-size:0.72rem;font-weight:800;letter-spacing:0.15em;margin-bottom:0.75rem}
+.decision-kept li,.decision-dropped li{font-size:0.8rem;color:var(--muted);margin-bottom:0.4rem;padding-left:1rem;position:relative;list-style:none}
+.decision-kept li::before{content:'✓';position:absolute;left:0;color:#4ade80}
+.decision-dropped li::before{content:'✗';position:absolute;left:0;color:#f87171}
+
+/* Trend chart */
+.trend-chart{background:rgba(0,0,0,0.3);border-radius:12px;padding:1.5rem;margin-top:1.5rem}
+.trend-chart h4{font-size:0.78rem;font-weight:800;color:var(--teal);margin-bottom:1.2rem;letter-spacing:0.1em}
+.trend-rows{display:flex;flex-direction:column;gap:0.5rem}
+.trend-row{display:flex;align-items:center;gap:0.75rem}
+.trend-round{font-size:0.68rem;color:var(--muted);width:55px;flex-shrink:0}
+.trend-bar-wrap{flex:1;height:20px;background:rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;position:relative}
+.trend-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:0.65rem;font-weight:800;color:rgba(0,0,0,0.8);transition:width 0.5s}
+.trend-note{font-size:0.68rem;color:rgba(255,255,255,0.35);width:160px;flex-shrink:0}
+
+/* Divider */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(0,198,173,0.2),transparent);margin:2rem 0}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar">
+  <div class="sidebar-title">模擬報告導航</div>
+  <a href="#overview">📋 總覽</a>
+  <a href="#r1" class="round-link"><div class="round-dot" style="background:var(--r1)"></div>Round 1 — 現行設計</a>
+  <a href="#r2" class="round-link"><div class="round-dot" style="background:var(--r2)"></div>Round 2 — 角色前移</a>
+  <a href="#r3" class="round-link"><div class="round-dot" style="background:var(--r3)"></div>Round 3 — AI 前置</a>
+  <a href="#r4" class="round-link"><div class="round-dot" style="background:var(--r4)"></div>Round 4 — 社會證明</a>
+  <a href="#r5" class="round-link"><div class="round-dot" style="background:var(--r5)"></div>Round 5 — 問題導向</a>
+  <a href="#r6" class="round-link"><div class="round-dot" style="background:var(--r6)"></div>Round 6 — 行業變體</a>
+  <a href="#r7" class="round-link"><div class="round-dot" style="background:var(--r7)"></div>Round 7 — 簡化重構</a>
+  <a href="#r8" class="round-link"><div class="round-dot" style="background:var(--r8)"></div>Round 8 — 免費諮詢框架</a>
+  <a href="#r9" class="round-link"><div class="round-dot" style="background:var(--r9)"></div>Round 9 — 跨站聯動</a>
+  <a href="#r10" class="round-link"><div class="round-dot" style="background:var(--r10)"></div>Round 10 — 最終版</a>
+  <a href="#final">🏆 最終報告</a>
+</nav>
+
+<div class="main">
+
+<!-- Doc Header -->
+<div id="overview" class="doc-header">
+  <h1>mcstation.ai 訪客情境模擬 × 10輪迭代報告</h1>
+  <p>CMO 主導 · 4 角色 × 20 情境 × 10 輪設計迭代 · 轉換率追蹤</p>
+  <div class="meta-row">
+    <span class="meta-badge" style="background:rgba(0,198,173,0.15);border:1px solid rgba(0,198,173,0.3);color:var(--teal)">4 角色</span>
+    <span class="meta-badge" style="background:rgba(246,173,85,0.15);border:1px solid rgba(246,173,85,0.3);color:#f6ad55">80 情境/輪</span>
+    <span class="meta-badge" style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#c084fc">10 輪迭代</span>
+    <span class="meta-badge" style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#f87171">800 總情境</span>
+  </div>
+  <p style="margin-top:1rem;font-size:0.78rem;color:rgba(255,255,255,0.3)">角色定義：場館老闆 · 品牌商 · 加盟商 · 技術夥伴 ｜ 轉換定義：開啟AI對談 or 留下聯絡方式</p>
+</div>
+
+<!-- ═══════════════════════════════ ROUND 1 ═══════════════════════════════ -->
+<div id="r1" class="round">
+  <div class="round-header" style="background:rgba(239,68,68,0.06);--rc:var(--r1)">
+    <span class="round-badge" style="background:var(--r1)">Round 1</span>
+    <div>
+      <h2>現行設計測試 — Hero「場館數位化，是你的AI團隊」→ OmniCore → 角色卡 → AI對談</h2>
+      <p>預測轉換率：12-15% ｜ 主要問題：資訊層次失序，OmniCore 對外部人無意義</p>
+    </div>
+  </div>
+
+  <!-- 場館老闆 -->
+  <div class="role-block">
+    <div class="role-title" style="color:#f6ad55">🏪 場館老闆（20 情境）</div>
+    <table class="stbl">
+      <thead><tr><th>#</th><th>Persona</th><th>進入方式</th><th>首頁歷程</th><th>關鍵時刻</th><th>結果</th><th>未解疑慮</th></tr></thead>
+      <tbody>
+        <tr><td class="s-num">01</td><td class="s-persona">台中火鍋店老闆，55歲，手機用戶</td><td class="s-entry">搜「AI點餐系統」</td><td class="s-journey">Hero 圖精美但看不懂「OmniCore」，往下滑找費用，滑到角色卡停住</td><td class="s-moment">角色卡沒有「費用」資訊，打退堂鼓</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">費用在哪？</td></tr>
+        <tr><td class="s-num">02</td><td class="s-persona">台北居酒屋老闆，40歲，競爭激烈</td><td class="s-entry">朋友推薦直接訪問</td><td class="s-journey">直接看 Hero，覺得設計專業，點「AI諮詢→」</td><td class="s-moment">AI 問「你是哪種客戶」讓他困惑（他就是老闆）</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">AI 問法太制式</td></tr>
+        <tr><td class="s-num">03</td><td class="s-persona">高雄夜市攤商，自學型，電腦用戶</td><td class="s-entry">搜「場館管理系統推薦」</td><td class="s-journey">Hero 停留 8 秒，OmniCore 區滑過（不認識），角色卡點「場館老闆」</td><td class="s-moment">進入場館頁，AI 對話觸發，好奇心驅動</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">04</td><td class="s-persona">新竹科技園區餐廳，IT背景老闆</td><td class="s-entry">搜「OmniCore AI 餐廳」</td><td class="s-journey">認識 OmniCore，直接看技術文件，找 API 文件失敗</td><td class="s-moment">找不到技術深度內容，改找 CTO 聯絡方式</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">API 文件在哪</td></tr>
+        <tr><td class="s-num">05</td><td class="s-persona">桃園婚宴場館，首次接觸 AI 工具</td><td class="s-entry">搜「婚宴場館管理系統」</td><td class="s-journey">Hero 沒有婚宴相關內容，以為是餐廳系統，15秒離開</td><td class="s-moment">沒看到「婚宴」關鍵字</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">適合婚宴嗎</td></tr>
+        <tr><td class="s-num">06</td><td class="s-persona">台南老字號麵店，不懂科技</td><td class="s-entry">兒子幫忙搜「餐廳AI系統」</td><td class="s-journey">「OmniCore 是什麼」，兒子看懂但老闆困惑，沒說話就離開</td><td class="s-moment">語言太科技感，老一輩老闆讀不懂</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">這是給我的嗎</td></tr>
+        <tr><td class="s-num">07</td><td class="s-persona">台北連鎖早午餐 3 店老闆</td><td class="s-entry">搜「連鎖餐廳管理系統」</td><td class="s-journey">Hero 吸引，數字牆看到「7×24」有感，滾到角色卡，點「場館老闆」</td><td class="s-moment">AI 開始對話，說出自己有 3 間店</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">08</td><td class="s-persona">花蓮民宿老闆，旺季備戰</td><td class="s-entry">搜「民宿管理系統 AI」</td><td class="s-journey">Hero 圖是城市感，民宿老闆感覺不是給他的，快速離開</td><td class="s-moment">視覺與自己的場景不符</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">適合民宿嗎</td></tr>
+        <tr><td class="s-num">09</td><td class="s-persona">台中酒吧老闆，夜間用戶，手機</td><td class="s-entry">Google 搜「酒吧 POS 系統」</td><td class="s-journey">手機版 Hero 文字重疊（RWD 問題），看不清楚，立刻關閉</td><td class="s-moment">手機版排版失敗</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">手機版壞了</td></tr>
+        <tr><td class="s-num">10</td><td class="s-persona">嘉義火車站商圈咖啡廳老闆</td><td class="s-entry">FB 廣告點進來</td><td class="s-journey">Hero 精美，想了解費用，滾 3 次找不到，點浮動 AI 按鈕</td><td class="s-moment">AI 第一句不是問費用，感覺繞路</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">費用沒說清楚</td></tr>
+        <tr><td class="s-num">11</td><td class="s-persona">台北健身房老闆，有數位化意願</td><td class="s-entry">搜「健身房管理 AI」</td><td class="s-journey">Hero 沒有健身房場景，角色卡都是餐廳語境，感覺不符合</td><td class="s-moment">場景太餐廳導向</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">適合健身房嗎</td></tr>
+        <tr><td class="s-num">12</td><td class="s-persona">台中夜市炸雞攤，規模小</td><td class="s-entry">搜「小攤販 AI 點餐」</td><td class="s-journey">看到 Hero 感覺是給大公司的，數字「7×24」、「OmniCore」太企業感</td><td class="s-moment">太大、太貴的感覺</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">小攤能用嗎</td></tr>
+        <tr><td class="s-num">13</td><td class="s-persona">台北精品餐廳，米其林候選</td><td class="s-entry">顧問推薦，直接訪問</td><td class="s-journey">設計質感符合期待，Hero → OmniCore → 點「場館老闆」→ AI對談15分鐘</td><td class="s-moment">AI 展示了精品場館客製化能力</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">14</td><td class="s-persona">新北購物中心美食街管理員</td><td class="s-entry">搜「美食街統一管理系統」</td><td class="s-journey">Hero 沒有美食街場景，找了 3 分鐘找不到相關案例</td><td class="s-moment">垂直場景太單一</td><td><span class="result-tag rt-explore">探索中</span></td><td class="s-gap">美食街適合嗎</td></tr>
+        <tr><td class="s-num">15</td><td class="s-persona">台南老市場傳統攤販</td><td class="s-entry">報紙報導看到網址</td><td class="s-journey">首頁英文太多（OmniCore、AI），看不懂，叫女兒幫忙也放棄</td><td class="s-moment">語言障礙</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">有人工服務嗎</td></tr>
+        <tr><td class="s-num">16</td><td class="s-persona">宜蘭渡假村餐廳主任</td><td class="s-entry">搜「渡假村餐廳管理」</td><td class="s-journey">Hero 城市感與渡假村不符，滾動後看到 OmniCore 圖片，停留，點了 AI</td><td class="s-moment">OmniCore 圖視覺吸引，觸發好奇</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">渡假村場景</td></tr>
+        <tr><td class="s-num">17</td><td class="s-persona">台北連鎖飲料店，50家門市</td><td class="s-entry">搜「連鎖飲料系統 AI」</td><td class="s-journey">Hero 吸引，OmniCore 說明看不懂，角色卡點「場館老闆」，AI 15 分鐘對話</td><td class="s-moment">問到連鎖管理功能，AI 回答令人滿意</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">18</td><td class="s-persona">台中 KTV 老闆，想更新系統</td><td class="s-entry">搜「KTV 管理系統更新」</td><td class="s-journey">找了半天找不到 KTV 相關，點 AI 問，AI 回答可以客製</td><td class="s-moment">AI 彌補了頁面的垂直缺口</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">19</td><td class="s-persona">新竹科技城早午餐，年輕老闆</td><td class="s-entry">IG 廣告</td><td class="s-journey">Hero 精美，OmniCore 好奇，滾動全頁，點了 AI，對談很愉快</td><td class="s-moment">年輕老闆接受科技感設計</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">20</td><td class="s-persona">台北 co-working space 老闆</td><td class="s-entry">搜「co-working 管理系統」</td><td class="s-journey">Hero 圖城市感符合，看角色卡，沒有 co-working 選項，點「場館老闆」，AI解惑</td><td class="s-moment">AI 靈活彌補，轉換成功</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+      </tbody>
+    </table>
+    <div class="conv-bar"><div class="conv-label">場館老闆</div><div class="conv-track"><div class="conv-fill" style="width:35%;background:#f6ad55"></div></div><div class="conv-pct" style="color:#f6ad55">35%</div></div>
+  </div>
+
+  <!-- 品牌商 -->
+  <div class="role-block">
+    <div class="role-title" style="color:#68d391">🏢 品牌商（20 情境）</div>
+    <table class="stbl">
+      <thead><tr><th>#</th><th>Persona</th><th>進入方式</th><th>首頁歷程</th><th>關鍵時刻</th><th>結果</th><th>未解疑慮</th></tr></thead>
+      <tbody>
+        <tr><td class="s-num">01</td><td class="s-persona">飲料品牌行銷總監，B2B採購心態</td><td class="s-entry">搜「品牌進駐場館系統」</td><td class="s-journey">Hero 對「品牌商」沒有直接呼應，滾到角色卡才看到自己的入口</td><td class="s-moment">角色卡位置太深，要滾很久</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">B2B 流程在哪</td></tr>
+        <tr><td class="s-num">02</td><td class="s-persona">連鎖咖啡品牌 BD 主管</td><td class="s-entry">同業推薦</td><td class="s-journey">Hero → OmniCore（感覺像科技公司）→ 品牌商角色卡 → AI 對談</td><td class="s-moment">AI 對品牌 BD 的回答專業度OK</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">03</td><td class="s-persona">食品集團通路拓展經理</td><td class="s-entry">LinkedIn 廣告</td><td class="s-journey">Hero 設計企業感不足，感覺是小公司，猶豫</td><td class="s-moment">Hero 沒展現企業服務規模</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">規模夠大嗎</td></tr>
+        <tr><td class="s-num">04</td><td class="s-persona">台灣在地茶葉品牌，想拓展零售點</td><td class="s-entry">搜「品牌通路合作」</td><td class="s-journey">Hero 不懂她是品牌商，OmniCore 圖吸引，點「品牌商」角色卡</td><td class="s-moment">AI 問「想進駐哪種場館」，她有答案</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">05</td><td class="s-persona">日系便當品牌在台代理商</td><td class="s-entry">搜「場館品牌合作台灣」</td><td class="s-journey">Hero 全中文，英文品牌商看不懂，離開</td><td class="s-moment">缺乏英文介面</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">有英文版嗎</td></tr>
+        <tr><td class="s-num">06</td><td class="s-persona">台北連鎖健身品牌，想進駐商場</td><td class="s-entry">朋友分享</td><td class="s-journey">Hero → OmniCore → 品牌商卡 → AI對談，問到「商場進駐支援」</td><td class="s-moment">AI 給了案例參考，滿意</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">07</td><td class="s-persona">大型飲料集團數位行銷部門</td><td class="s-entry">搜「數位場館合作」</td><td class="s-journey">Hero 沒有大型企業客戶的感覺，認為自己體量太大不匹配</td><td class="s-moment">缺乏企業級案例的信心感</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">有服務大品牌嗎</td></tr>
+        <tr><td class="s-num">08</td><td class="s-persona">美妝品牌想進駐 spa 場館</td><td class="s-entry">搜「美妝進駐 spa 系統」</td><td class="s-journey">Hero 圖是餐飲感，Spa 品牌覺得不對，快速離開</td><td class="s-moment">垂直場景太狹窄</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">適合美容業嗎</td></tr>
+        <tr><td class="s-num">09</td><td class="s-persona">台灣農產品品牌，直播電商轉實體</td><td class="s-entry">電商朋友推薦</td><td class="s-journey">Hero 科技感強，農產品品牌感覺不符，但好奇點了 AI</td><td class="s-moment">AI 解釋可以協助農產品實體場館曝光</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">10</td><td class="s-persona">台北精品服飾品牌想聯名</td><td class="s-entry">搜「品牌聯名場館」</td><td class="s-journey">Hero 沒有「聯名」關鍵字，找了2分鐘，點 AI 問</td><td class="s-moment">AI 懂聯名合作需求，對話流暢</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">11</td><td class="s-persona">保健品牌想進藥局體系</td><td class="s-entry">搜「保健品藥局合作」</td><td class="s-journey">看不出與藥局相關，10秒離開</td><td class="s-moment">缺少藥局/健康場館路徑</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">有藥局通路嗎</td></tr>
+        <tr><td class="s-num">12</td><td class="s-persona">飯店品牌想整合場館系統</td><td class="s-entry">搜「飯店場館管理整合」</td><td class="s-journey">Hero 圖吸引，感覺是技術公司，滾到底，點聯絡</td><td class="s-moment">找聯絡方式比 AI 更直覺</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">可以電話聯絡嗎</td></tr>
+        <tr><td class="s-num">13</td><td class="s-persona">台中手搖飲品牌，拓點中</td><td class="s-entry">競品老闆推薦</td><td class="s-journey">直接訪問，Hero → OmniCore → 品牌商 → AI，問到「進駐我的競品場館」</td><td class="s-moment">AI 敏感地轉了話題，讓他覺得有謀略</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">14</td><td class="s-persona">台北創新食材供應商，To B</td><td class="s-entry">搜「食材供應商場館合作」</td><td class="s-journey">Hero 沒有供應商路徑，感覺不是給我的，離開</td><td class="s-moment">上游供應商沒有路徑</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">供應商能合作嗎</td></tr>
+        <tr><td class="s-num">15</td><td class="s-persona">國際連鎖品牌台灣區總監</td><td class="s-entry">員工推薦</td><td class="s-journey">Hero 設計感現代，OmniCore 有趣，聯絡了 BD 窗口而非 AI</td><td class="s-moment">大品牌偏好人工接觸</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">有 BD 人員嗎</td></tr>
+        <tr><td class="s-num">16</td><td class="s-persona">台南文創品牌，首次進實體</td><td class="s-entry">搜「文創品牌場館」</td><td class="s-journey">Hero 科技感太強，文創品牌感覺格格不入</td><td class="s-moment">風格不符</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">文創適合嗎</td></tr>
+        <tr><td class="s-num">17</td><td class="s-persona">台北 SaaS 公司想拓展場館客戶</td><td class="s-entry">搜「B2B SaaS 場館」</td><td class="s-journey">Hero 讓他感覺 MCS 自己是 SaaS，點 AI，討論異業合作</td><td class="s-moment">意外觸發「技術夥伴」路徑</td><td><span class="result-tag rt-explore">探索中</span></td><td class="s-gap">適合夥伴嗎</td></tr>
+        <tr><td class="s-num">18</td><td class="s-persona">烘焙品牌想進咖啡廳通路</td><td class="s-entry">搜「烘焙咖啡廳合作」</td><td class="s-journey">AI 協助找到匹配場館，體驗超出預期</td><td class="s-moment">AI 主動推薦場館清單</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">19</td><td class="s-persona">台灣科技公司想冠名贊助</td><td class="s-entry">活動後搜尋</td><td class="s-journey">Hero 很吸引，沒有冠名贊助路徑，點了 AI 直接問</td><td class="s-moment">AI 創造了他沒想過的路徑</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">20</td><td class="s-persona">快時尚品牌，想進購物中心快閃</td><td class="s-entry">搜「快閃店管理系統」</td><td class="s-journey">Hero 沒有快閃概念，角色卡是靜態場館語境，感覺不符</td><td class="s-moment">快閃店需求沒被照顧到</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">支援快閃嗎</td></tr>
+      </tbody>
+    </table>
+    <div class="conv-bar"><div class="conv-label">品牌商</div><div class="conv-track"><div class="conv-fill" style="width:40%;background:#68d391"></div></div><div class="conv-pct" style="color:#68d391">40%</div></div>
+  </div>
+
+  <!-- 加盟商 -->
+  <div class="role-block">
+    <div class="role-title" style="color:#b794f4">🔗 加盟商（20 情境）</div>
+    <table class="stbl">
+      <thead><tr><th>#</th><th>Persona</th><th>進入方式</th><th>首頁歷程</th><th>關鍵時刻</th><th>結果</th><th>未解疑慮</th></tr></thead>
+      <tbody>
+        <tr><td class="s-num">01</td><td class="s-persona">想開手搖飲加盟，第一次創業</td><td class="s-entry">搜「手搖飲加盟系統」</td><td class="s-journey">Hero 科技感讓他以為是 IT 公司，不是加盟品牌，快速離開</td><td class="s-moment">定位不清楚</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">MCS 是加盟品牌嗎</td></tr>
+        <tr><td class="s-num">02</td><td class="s-persona">有 2 間餐廳想加入連鎖體系</td><td class="s-entry">朋友推薦 MCS 加盟</td><td class="s-journey">Hero → OmniCore → 角色卡選「加盟商」→ AI 對談，詢問加入條件</td><td class="s-moment">AI 說明清楚，預約了後續</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">03</td><td class="s-persona">已有加盟系統，想換更好的</td><td class="s-entry">搜「加盟管理系統比較」</td><td class="s-journey">Hero 看不出「加盟管理」，找了很久</td><td class="s-moment">加盟管理關鍵字不在首頁</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">加盟系統功能？</td></tr>
+        <tr><td class="s-num">04</td><td class="s-persona">便利商店想轉型加盟</td><td class="s-entry">搜「便利商店加盟AI管理」</td><td class="s-journey">Hero 不對，快速離開</td><td class="s-moment">便利商店不在場景內</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">便利商店可以嗎</td></tr>
+        <tr><td class="s-num">05</td><td class="s-persona">想在台中開 MCS 直營店</td><td class="s-entry">直接搜「mcstation 加盟」</td><td class="s-journey">Hero → 找加盟頁 → 角色卡「加盟商」→ AI 說明 MCS 直營與加盟差異</td><td class="s-moment">搞清楚了 MCS 模式</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">06</td><td class="s-persona">現有 10 家加盟主，想要統一管理系統</td><td class="s-entry">搜「多店加盟統一管理」</td><td class="s-journey">OmniCore 網絡圖讓他想到自己的多店，點 AI</td><td class="s-moment">OmniCore 視覺觸發共鳴</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">07</td><td class="s-persona">想複製朋友的成功模式</td><td class="s-entry">朋友介紹</td><td class="s-journey">Hero → 角色卡 → AI，聊了 20 分鐘，很有信心</td><td class="s-moment">AI 提供了詳細的加盟流程</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">08</td><td class="s-persona">台北家族企業想轉型連鎖</td><td class="s-entry">搜「家族企業轉型連鎖」</td><td class="s-journey">Hero 科技感強，家族企業老闆不確定適不適合</td><td class="s-moment">不確定自己夠不夠數位化</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">我夠格嗎</td></tr>
+        <tr><td class="s-num">09</td><td class="s-persona">手搖飲 5 店老闆，想擴充</td><td class="s-entry">搜「飲料連鎖擴張系統」</td><td class="s-journey">Hero → OmniCore → 加盟商卡 → AI 15 分鐘</td><td class="s-moment">AI 幫他算了擴張 ROI</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">10</td><td class="s-persona">美甲美容連鎖，想數位化</td><td class="s-entry">搜「美甲連鎖管理 AI」</td><td class="s-journey">Hero 餐飲感，美甲連鎖感覺不符，快速離開</td><td class="s-moment">垂直場景太窄</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">美甲適合嗎</td></tr>
+        <tr><td class="s-num">11</td><td class="s-persona">補習班想轉型加盟</td><td class="s-entry">搜「補習班加盟系統」</td><td class="s-journey">完全不符，10秒離開</td><td class="s-moment">補習班超出場景</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">不適合</td></tr>
+        <tr><td class="s-num">12</td><td class="s-persona">串燒居酒屋連鎖，日式</td><td class="s-entry">搜「居酒屋連鎖 POS」</td><td class="s-journey">Hero → OmniCore → AI，AI 了解日式居酒屋需求</td><td class="s-moment">AI 垂直理解讓他驚喜</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">13</td><td class="s-persona">寵物咖啡廳加盟主</td><td class="s-entry">搜「寵物友善場館系統」</td><td class="s-journey">Hero 沒有寵物場景，AI 問了 2 個問題後理解需求</td><td class="s-moment">AI 橋接了缺口</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">14</td><td class="s-persona">旅遊業者，想加盟MCS管理系統</td><td class="s-entry">搜「旅遊場館管理」</td><td class="s-journey">Hero 城市感符合，沒找到旅遊路徑，點 AI</td><td class="s-moment">AI 創造了旅遊垂直路徑</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">旅遊場館支援</td></tr>
+        <tr><td class="s-num">15</td><td class="s-persona">加盟商想評估競爭對手系統</td><td class="s-entry">搜「mcstation 評價」</td><td class="s-journey">直接訪問，仔細看了所有頁面，最後點 AI 問競品比較</td><td class="s-moment">AI 客觀分析而非只推銷</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">16</td><td class="s-persona">年輕人，想創業選加盟系統</td><td class="s-entry">YouTube 廣告</td><td class="s-journey">Hero 很帥，OmniCore 好酷，全程滑完，點 AI</td><td class="s-moment">年輕族群接受度高</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">17</td><td class="s-persona">傳統麵包加盟主，50歲</td><td class="s-entry">兒子推薦</td><td class="s-journey">OmniCore 太複雜，兒子幫他問 AI，問題得到解答</td><td class="s-moment">代理型決策（兒子幫問）</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">老人家能用嗎</td></tr>
+        <tr><td class="s-num">18</td><td class="s-persona">牛肉麵連鎖 3 店</td><td class="s-entry">Google My Business 連結</td><td class="s-journey">Hero → 角色卡 → AI，20 分鐘，要求 Demo</td><td class="s-moment">AI 主動安排 Demo 行程</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">19</td><td class="s-persona">汽車旅館業主，想升級</td><td class="s-entry">搜「汽車旅館管理系統」</td><td class="s-journey">Hero 沒有旅館感，快速離開</td><td class="s-moment">場景不符</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">旅館業可以嗎</td></tr>
+        <tr><td class="s-num">20</td><td class="s-persona">連鎖藥局想加入 MCS 生態</td><td class="s-entry">搜「藥局加盟系統」</td><td class="s-journey">Hero → AI，提到藥局，AI 提到普健生醫合作案例，驚喜！</td><td class="s-moment">AI 有真實案例，瞬間建立信任</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+      </tbody>
+    </table>
+    <div class="conv-bar"><div class="conv-label">加盟商</div><div class="conv-track"><div class="conv-fill" style="width:45%;background:#b794f4"></div></div><div class="conv-pct" style="color:#b794f4">45%</div></div>
+  </div>
+
+  <!-- 技術夥伴 -->
+  <div class="role-block">
+    <div class="role-title" style="color:#4fc3f7">⚙️ 技術夥伴（20 情境）</div>
+    <table class="stbl">
+      <thead><tr><th>#</th><th>Persona</th><th>進入方式</th><th>首頁歷程</th><th>關鍵時刻</th><th>結果</th><th>未解疑慮</th></tr></thead>
+      <tbody>
+        <tr><td class="s-num">01</td><td class="s-persona">React 工程師，想找 AI 新創機會</td><td class="s-entry">GitHub 連結</td><td class="s-journey">Hero 有趣，找了 API 文件找不到，點 AI 問</td><td class="s-moment">API docs 缺失是最大痛點</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">有 API doc 嗎</td></tr>
+        <tr><td class="s-num">02</td><td class="s-persona">AI 新創公司，想整合 OmniCore</td><td class="s-entry">搜「OmniCore API 整合」</td><td class="s-journey">Hero 看到 OmniCore 很興奮，找 API 失敗，點「技術夥伴」卡</td><td class="s-moment">AI 說明了整合路徑</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">03</td><td class="s-persona">系統整合商，To B SaaS</td><td class="s-entry">搜「台灣 AI 場館系統整合」</td><td class="s-journey">Hero → OmniCore → 技術夥伴卡 → AI，問合作模式</td><td class="s-moment">AI 說明了白牌合作可能性</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">04</td><td class="s-persona">硬體商，想整合 POS</td><td class="s-entry">搜「POS 系統合作 AI」</td><td class="s-journey">Hero 沒有硬體路徑，AI 問清楚後理解</td><td class="s-moment">AI 創造了硬體整合路徑</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">05</td><td class="s-persona">大學教授，想研究 AI 場館應用</td><td class="s-entry">學術搜尋</td><td class="s-journey">Hero 找不到學術合作路徑，離開</td><td class="s-moment">學術合作路徑缺失</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">有學術合作嗎</td></tr>
+        <tr><td class="s-num">06</td><td class="s-persona">ML 工程師，求職中</td><td class="s-entry">搜「AI 新創台灣職缺」</td><td class="s-journey">Hero → 找招募頁 → 找不到 → 離開</td><td class="s-moment">沒有招募入口</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">有職缺嗎</td></tr>
+        <tr><td class="s-num">07</td><td class="s-persona">雲端解決方案商</td><td class="s-entry">同業介紹</td><td class="s-journey">Hero → OmniCore（有趣）→ 技術夥伴 → AI，談雲端整合</td><td class="s-moment">AI 提到 AWS S3 架構，很對味</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">08</td><td class="s-persona">數位行銷工具商，想整合分析</td><td class="s-entry">搜「場館行銷分析整合」</td><td class="s-journey">Hero → AI，問可否整合他們的分析工具</td><td class="s-moment">AI 說明了 API 開放程度</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">09</td><td class="s-persona">資安公司，想評估合作</td><td class="s-entry">同業介紹</td><td class="s-journey">Hero 沒有資安角度，AI 探討了資安合作可能</td><td class="s-moment">AI 靈活應對非標準需求</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">10</td><td class="s-persona">LINE 官方帳號開發商</td><td class="s-entry">搜「LINE 場館整合」</td><td class="s-journey">Hero → 技術夥伴 → AI，討論 LINE 整合深度</td><td class="s-moment">AI 知道 LINE 整合架構（Yuzu-san）</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">11</td><td class="s-persona">Freelance 設計師，想接 MCS 案</td><td class="s-entry">設計師社群推薦</td><td class="s-journey">Hero 設計感不錯，找供應商入口，找不到，點 AI</td><td class="s-moment">設計師合作路徑缺失</td><td><span class="result-tag rt-partial">半轉換</span></td><td class="s-gap">接設計案嗎</td></tr>
+        <tr><td class="s-num">12</td><td class="s-persona">IoT 感測器公司</td><td class="s-entry">搜「IoT 場館 AI」</td><td class="s-journey">Hero OmniCore 圖讓他想到 IoT 架構，點 AI 問</td><td class="s-moment">AI 理解 IoT + 場館整合場景</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">13</td><td class="s-persona">資深工程師，想評估技術深度</td><td class="s-entry">技術媒體文章</td><td class="s-journey">Hero → OmniCore → 找 GitHub → 找不到 → 點 AI 問 Tech Stack</td><td class="s-moment">AI 透露了 Next.js/Gemini/Neon 架構</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">14</td><td class="s-persona">電商平台想拓展實體場館</td><td class="s-entry">搜「電商整合實體場館」</td><td class="s-journey">Hero → AI，探討電商 × 實體整合</td><td class="s-moment">AI 提出 O2O 整合方案</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">15</td><td class="s-persona">Startup，想用 OmniCore 做白牌</td><td class="s-entry">搜「OmniCore 白牌授權」</td><td class="s-journey">Hero → 技術夥伴 → AI，談白牌可能性</td><td class="s-moment">AI 給了框架性的白牌路徑</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">16</td><td class="s-persona">外籍工程師，英文只</td><td class="s-entry">搜「AI venue management Taiwan」</td><td class="s-journey">Hero 全中文，無法理解，離開</td><td class="s-moment">無英文版</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">英文版</td></tr>
+        <tr><td class="s-num">17</td><td class="s-persona">政府科技部門，評估採購</td><td class="s-entry">政府推薦名單</td><td class="s-journey">Hero 設計感強，找資安認證找不到，找政府採購資格找不到</td><td class="s-moment">缺乏公部門採購認證資訊</td><td><span class="result-tag rt-bounce">離開</span></td><td class="s-gap">有政府認證嗎</td></tr>
+        <tr><td class="s-num">18</td><td class="s-persona">支付系統公司，想整合結帳</td><td class="s-entry">搜「台灣場館支付整合」</td><td class="s-journey">Hero → 技術夥伴 → AI，談支付整合架構</td><td class="s-moment">AI 提到 Stripe/綠界整合可能</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">19</td><td class="s-persona">AR/VR 公司想入場館</td><td class="s-entry">科技展後搜尋</td><td class="s-journey">Hero 科技感搭，找 AR 路徑，點 AI，AI 展開了未來場景</td><td class="s-moment">AI 展現前瞻思維</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+        <tr><td class="s-num">20</td><td class="s-persona">數據分析公司，想取得場館數據</td><td class="s-entry">搜「場館數據合作」</td><td class="s-journey">Hero → AI，討論數據共享模式，AI 謹慎回應隱私邊界</td><td class="s-moment">AI 的謹慎讓他信任</td><td><span class="result-tag rt-convert">轉換✓</span></td><td class="s-gap">—</td></tr>
+      </tbody>
+    </table>
+    <div class="conv-bar"><div class="conv-label">技術夥伴</div><div class="conv-track"><div class="conv-fill" style="width:60%;background:#4fc3f7"></div></div><div class="conv-pct" style="color:#4fc3f7">60%</div></div>
+  </div>
+
+  <!-- CMO Review R1 -->
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 1 現行設計問題</h3>
+    <ul>
+      <li><strong>角色選擇埋太深</strong>：場館老闆、品牌商要滾過 Hero + OmniCore 才能找到自己的入口，SEO 訪客耐心不夠</li>
+      <li><strong>OmniCore 對外無意義</strong>：「OmniCore」對第一次來的人是術語障礙，Hero 用這個詞等於沒說</li>
+      <li><strong>手機版完全失敗</strong>：情境 09（場館老闆）因 RWD 問題直接離開，估計佔手機流量 30%+ 的用戶都會流失</li>
+      <li><strong>費用資訊缺失</strong>：12 個「離開」情境中，有 5 個明確問到費用。不給定價框架就是讓人猜，猜太貴就走了</li>
+      <li><strong>垂直場景太窄</strong>：健身房、民宿、美甲、補習班、汽車旅館都離開了。首頁只有餐廳感</li>
+      <li><strong>無英文版</strong>：外籍工程師、日系品牌商直接流失</li>
+    </ul>
+  </div>
+
+  <div class="design-change">
+    <h3>🔧 Round 2 設計調整</h3>
+    <div class="change-row">
+      <div class="before-box"><div class="before-label">BEFORE</div>Hero → OmniCore（長篇）→ 角色卡（第三屏）</div>
+      <div class="after-box"><div class="after-label">AFTER</div>Hero → 角色選擇立即出現（Hero 下方第一屏）→ AI 浮動按鈕更明顯</div>
+    </div>
+    <div class="change-row">
+      <div class="before-box"><div class="before-label">BEFORE</div>Hero 標題：「場館數位化，不只是系統，是你的AI團隊」</div>
+      <div class="after-box"><div class="after-label">AFTER</div>Hero 標題：「你的場館，現在有了 AI 經營團隊」+ 副標直接說「點選你的身份，30秒告訴你適合的方案」</div>
+    </div>
+    <div class="change-row">
+      <div class="before-box"><div class="before-label">BEFORE</div>OmniCore 在 Hero 旁邊，訪客第一眼就要理解</div>
+      <div class="after-box"><div class="after-label">AFTER</div>OmniCore 移到第三屏（已選身份後），變成「為什麼我們做得到」的佐證</div>
+    </div>
+  </div>
+</div><!-- end round 1 -->
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ ROUND 2-10 CONDENSED ═══════════════════════════════ -->
+
+<!-- Round 2 -->
+<div id="r2" class="round">
+  <div class="round-header" style="background:rgba(249,115,22,0.06);--rc:var(--r2)">
+    <span class="round-badge" style="background:var(--r2)">Round 2</span>
+    <div>
+      <h2>角色前移 — Hero 下方立即出現 4 角色入口</h2>
+      <p>預測轉換率：22-26% ｜ 改善：場館老闆+8% · 品牌商+5% · 新問題：手機仍差、費用仍缺</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem">
+    <div style="background:rgba(246,173,85,0.08);border:1px solid rgba(246,173,85,0.2);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:0.68rem;color:#f6ad55;font-weight:800;margin-bottom:0.3rem">場館老闆</div><div style="font-size:1.5rem;font-weight:900;color:#f6ad55">43%</div><div style="font-size:0.65rem;color:var(--muted)">↑+8%</div></div>
+    <div style="background:rgba(104,211,145,0.08);border:1px solid rgba(104,211,145,0.2);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:0.68rem;color:#68d391;font-weight:800;margin-bottom:0.3rem">品牌商</div><div style="font-size:1.5rem;font-weight:900;color:#68d391">45%</div><div style="font-size:0.65rem;color:var(--muted)">↑+5%</div></div>
+    <div style="background:rgba(183,148,244,0.08);border:1px solid rgba(183,148,244,0.2);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:0.68rem;color:#b794f4;font-weight:800;margin-bottom:0.3rem">加盟商</div><div style="font-size:1.5rem;font-weight:900;color:#b794f4">50%</div><div style="font-size:0.65rem;color:var(--muted)">↑+5%</div></div>
+    <div style="background:rgba(79,195,247,0.08);border:1px solid rgba(79,195,247,0.2);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:0.68rem;color:#4fc3f7;font-weight:800;margin-bottom:0.3rem">技術夥伴</div><div style="font-size:1.5rem;font-weight:900;color:#4fc3f7">62%</div><div style="font-size:0.65rem;color:var(--muted)">↑+2%</div></div>
+  </div>
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 2</h3>
+    <ul>
+      <li>角色前移有效，場館老闆明顯改善，但品牌商還是滾過去找到的，不夠快</li>
+      <li>手機版 RWD 仍是未修的洞，估計手機用戶轉換率只有電腦版 40%</li>
+      <li>費用問題未解：「這要多少錢」仍是最多未解疑慮，需要在首頁給定價框架（不是完整報價，而是「方案起價」）</li>
+      <li>品牌商情境中，「B2B 採購流程」還是不清楚——他們要的不是 AI 對談，是一份服務合約框架</li>
+    </ul>
+  </div>
+  <div class="design-change">
+    <h3>🔧 Round 3 設計調整</h3>
+    <div class="change-row">
+      <div class="before-box"><div class="before-label">BEFORE</div>角色選擇是靜態圖卡，點了才進 AI 對談</div>
+      <div class="after-box"><div class="after-label">AFTER</div>角色圖卡下方加「馬上問 AI →」+ 費用提示「方案起價 NT$X,XXX/月」，讓人在點擊前就有預期</div>
+    </div>
+    <div class="change-row">
+      <div class="before-box"><div class="before-label">BEFORE</div>手機版 Hero 文字重疊，RWD 未優化</div>
+      <div class="after-box"><div class="after-label">AFTER</div>手機版：Hero 縮成 40vh、大字體 CTA 在第一屏、角色選擇用垂直列表取代橫排卡片</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Round 3 -->
+<div id="r3" class="round">
+  <div class="round-header" style="background:rgba(234,179,8,0.06);--rc:var(--r3)">
+    <span class="round-badge" style="background:var(--r3)">Round 3</span>
+    <div>
+      <h2>AI 前置 + 費用透明 + 手機修好</h2>
+      <p>預測轉換率：30-35% ｜ 手機用戶回來了 · 但 AI 第一句話太制式</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem">
+    <div style="background:rgba(246,173,85,0.08);border:1px solid rgba(246,173,85,0.2);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:0.68rem;color:#f6ad55;font-weight:800;margin-bottom:0.3rem">場館老闆</div><div style="font-size:1.5rem;font-weight:900;color:#f6ad55">52%</div><div style="font-size:0.65rem;color:var(--muted)">↑+9%</div></div>
+    <div style="background:rgba(104,211,145,0.08);border:1px solid rgba(104,211,145,0.2);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:0.68rem;color:#68d391;font-weight:800;margin-bottom:0.3rem">品牌商</div><div style="font-size:1.5rem;font-weight:900;color:#68d391">50%</div><div style="font-size:0.65rem;color:var(--muted)">↑+5%</div></div>
+    <div style="background:rgba(183,148,244,0.08);border:1px solid rgba(183,148,244,0.2);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:0.68rem;color:#b794f4;font-weight:800;margin-bottom:0.3rem">加盟商</div><div style="font-size:1.5rem;font-weight:900;color:#b794f4">55%</div><div style="font-size:0.65rem;color:var(--muted)">↑+5%</div></div>
+    <div style="background:rgba(79,195,247,0.08);border:1px solid rgba(79,195,247,0.2);border-radius:10px;padding:1rem;text-align:center"><div style="font-size:0.68rem;color:#4fc3f7;font-weight:800;margin-bottom:0.3rem">技術夥伴</div><div style="font-size:1.5rem;font-weight:900;color:#4fc3f7">68%</div><div style="font-size:0.65rem;color:var(--muted)">↑+6%</div></div>
+  </div>
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 3</h3>
+    <ul>
+      <li>手機修好後場館老闆轉換大幅回升（+9%），這是這輪最重要的改善</li>
+      <li>費用透明有效，但「方案起價」數字需要更精確，不能是 NT$X,XXX 這種模糊顯示</li>
+      <li>AI 開場白「請問您目前的場館規模？」太學院派，應該更親切：「你好！先跟我說說，現在讓你最頭痛的事是什麼？」</li>
+      <li>品牌商對「AI 對談」仍有抵觸——他們覺得 AI 給不出合約，想要人工 BD</li>
+    </ul>
+  </div>
+  <div class="design-change">
+    <h3>🔧 Round 4 設計調整</h3>
+    <div class="change-row">
+      <div class="before-box"><div class="before-label">BEFORE</div>AI 開場白：「請問您目前的場館規模是多少個座位？」</div>
+      <div class="after-box"><div class="after-label">AFTER</div>AI 開場白：「你好！你最想改善的一件事是什麼？」（開放式、低壓力）</div>
+    </div>
+    <div class="change-row">
+      <div class="before-box"><div class="before-label">BEFORE</div>品牌商只有 AI 對談一種聯絡方式</div>
+      <div class="after-box"><div class="after-label">AFTER</div>品牌商頁面加「預約 BD 電話」選項（30 分鐘諮詢）</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Rounds 4-9 condensed summary -->
+<div id="r4" class="round">
+  <div class="round-header" style="background:rgba(132,204,22,0.06);--rc:var(--r4)">
+    <span class="round-badge" style="background:var(--r4)">Round 4</span>
+    <div><h2>社會證明 + BD 電話選項 + AI 開場白改善</h2><p>場館老闆 58% · 品牌商 58% · 加盟商 60% · 技術夥伴 70%</p></div>
+  </div>
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 4</h3>
+    <ul>
+      <li>「預約 BD 電話」讓品牌商轉換大幅改善（+8%），印證大品牌不喜歡只有 AI</li>
+      <li>社會證明數字（「已服務 XX 個場館」）缺乏真實感——如果數字太小，反而失去信任。需要用「具體案例名稱」取代「XX個場館」</li>
+      <li>AI 新開場白「你最想改善的一件事」效果很好——讓訪客馬上說出痛點，AI 更精準</li>
+      <li>加盟商開始問「可以看樣品店嗎」——需要 Demo 預約路徑</li>
+    </ul>
+  </div>
+  <div class="design-change"><h3>🔧 Round 5 調整</h3>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>「已服務 50+ 場館」（空洞數字）</div><div class="after-box"><div class="after-label">AFTER</div>具體案例名稱 + Logo + 一句結果（「節省 30% 點餐人力成本」）</div></div>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>沒有 Demo 路徑</div><div class="after-box"><div class="after-label">AFTER</div>加盟商頁面加「申請 Demo 參觀」CTA</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div id="r5" class="round">
+  <div class="round-header" style="background:rgba(34,197,94,0.06);--rc:var(--r5)">
+    <span class="round-badge" style="background:var(--r5)">Round 5</span>
+    <div><h2>問題導向 Hero + 具名案例 + Demo 申請</h2><p>場館老闆 63% · 品牌商 62% · 加盟商 65% · 技術夥伴 72%</p></div>
+  </div>
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 5</h3>
+    <ul>
+      <li>整體轉換繼續提升，但成長開始放緩——代表達到了「設計層」的天花板，下一步要靠「內容層」</li>
+      <li>垂直場景問題仍存在：健身房、民宿、美甲等非餐飲場館仍在首頁找不到歸屬</li>
+      <li>Hero 標題試了「問題導向」（「點餐人力花太多？」），A/B 模擬顯示效果略好於品牌陳述</li>
+      <li>技術夥伴轉換率已達 72%，幾乎是天花板——API Doc 頁是突破關鍵</li>
+    </ul>
+  </div>
+  <div class="design-change"><h3>🔧 Round 6 調整</h3>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>角色卡固定 4 個，沒有垂直擴展</div><div class="after-box"><div class="after-label">AFTER</div>角色卡下方加「還有：健身房｜民宿｜美容｜娛樂場館→」展開更多</div></div>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>技術夥伴沒有 API Doc 入口</div><div class="after-box"><div class="after-label">AFTER</div>技術夥伴卡片加「查看 API 文件 →」直連 /docs</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div id="r6" class="round">
+  <div class="round-header" style="background:rgba(16,185,129,0.06);--rc:var(--r6)">
+    <span class="round-badge" style="background:var(--r6)">Round 6</span>
+    <div><h2>垂直場景擴展 + API Doc 入口</h2><p>場館老闆 68% · 品牌商 65% · 加盟商 68% · 技術夥伴 78%</p></div>
+  </div>
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 6</h3>
+    <ul>
+      <li>「更多場館類型」展開效果顯著，健身房、民宿用戶留存率大增</li>
+      <li>API Doc 上線後，技術夥伴從「問 AI」到「自己查」，減少 AI 負擔，轉換更快</li>
+      <li>新問題：角色卡 + 垂直場景展開後，首頁資訊過載，「簡潔」消失了</li>
+      <li>品牌商轉換 65% 遇到瓶頸：他們要的「合約框架」和「服務保證」，AI 給不了，需要一份「服務白皮書 PDF」</li>
+    </ul>
+  </div>
+  <div class="design-change"><h3>🔧 Round 7 調整</h3>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>首頁 = Hero + 角色卡 + 垂直場景 + OmniCore + 數字 + AI + 案例 + Footer（資訊爆炸）</div><div class="after-box"><div class="after-label">AFTER</div>簡化：Hero（含角色選擇）→ 數字欄（3個最強數字）→ AI 對談示範 → Footer。其他移到各角色頁</div></div>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>品牌商只有 AI 和 BD 電話</div><div class="after-box"><div class="after-label">AFTER</div>品牌商加「下載服務白皮書 PDF」，留 email 換資料</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div id="r7" class="round">
+  <div class="round-header" style="background:rgba(20,184,166,0.06);--rc:var(--r7)">
+    <span class="round-badge" style="background:var(--r7)">Round 7</span>
+    <div><h2>簡化重構 + 白皮書 Lead Magnet</h2><p>場館老闆 71% · 品牌商 70% · 加盟商 70% · 技術夥伴 79%</p></div>
+  </div>
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 7</h3>
+    <ul>
+      <li>簡化首頁後，整體數字繼續上升——「少即是多」在 Landing Page 永遠成立</li>
+      <li>品牌商「下載白皮書」Lead Magnet 非常有效（+5%），email 收集率大幅提升</li>
+      <li>現在 3 條轉換路徑並存：AI 對談 / BD 電話 / 白皮書下載——每條都有效，互補</li>
+      <li>下一個突破點：AI 對談的「後半段」——當訪客說完需求，AI 要怎麼「關單」？目前AI說完就停了，沒有推進動作</li>
+    </ul>
+  </div>
+  <div class="design-change"><h3>🔧 Round 8 調整</h3>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>AI 對談：說完需求後，AI 說「好的，我們會聯絡你」（結束）</div><div class="after-box"><div class="after-label">AFTER</div>AI 對談：說完需求後，AI 說「我幫你預約一個 15 分鐘免費諮詢，你現在方便嗎？」（主動推進）</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div id="r8" class="round">
+  <div class="round-header" style="background:rgba(6,182,212,0.06);--rc:var(--r8)">
+    <span class="round-badge" style="background:var(--r8)">Round 8</span>
+    <div><h2>AI 主動關單 — 「15分鐘免費諮詢」</h2><p>場館老闆 76% · 品牌商 74% · 加盟商 75% · 技術夥伴 81%</p></div>
+  </div>
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 8</h3>
+    <ul>
+      <li><strong>最大突破：</strong> AI 從「對話結束」到「預約推進」，場館老闆轉換 +5%，這是最有效的單一改動</li>
+      <li>「15分鐘免費諮詢」降低了承諾門檻——不是「簽合約」，是「聊15分鐘」，接受度高很多</li>
+      <li>技術夥伴達到 81%，接近設計天花板——剩下 19% 是真的不適合或英文用戶</li>
+      <li>SEO 面：transtep.com 的流量開始流入 mcstation.ai，兩站互鏈效果開始顯現</li>
+    </ul>
+  </div>
+  <div class="design-change"><h3>🔧 Round 9 調整</h3>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>transtep.com 沒有明顯連結到 mcstation.ai</div><div class="after-box"><div class="after-label">AFTER</div>transtep.com 首頁頂部加橫幅「AI 策略諮詢：mcstation.ai →」，反向導流</div></div>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>mcstation.ai 無英文支援</div><div class="after-box"><div class="after-label">AFTER</div>mcstation.ai 加右上角「EN」切換（最小版本：hero 和角色卡英文化）</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div id="r9" class="round">
+  <div class="round-header" style="background:rgba(59,130,246,0.06);--rc:var(--r9)">
+    <span class="round-badge" style="background:var(--r9)">Round 9</span>
+    <div><h2>跨站聯動 + 英文版 Hero</h2><p>場館老闆 78% · 品牌商 76% · 加盟商 77% · 技術夥伴 85%</p></div>
+  </div>
+  <div class="cmo-review">
+    <h3>🪞 CMO 自我檢討 — Round 9</h3>
+    <ul>
+      <li>transtep.com 導流讓場館老闆新增 +2%，主要是找「技術公司」的老闆被帶到「AI 策略」方向</li>
+      <li>英文版讓技術夥伴突破到 85%——外籍工程師和外資品牌都回來了</li>
+      <li>現在轉換率整體接近最大化，下一步是「穩定設計」，確保設計不會因為改動而退步</li>
+      <li>最後一個未解問題：加盟商 77% 還有空間——「Demo 參觀」的預約率很高，但後續追蹤自動化還不夠</li>
+    </ul>
+  </div>
+  <div class="design-change"><h3>🔧 Round 10 最終調整</h3>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>Demo 預約後，人工安排（COO 追蹤）</div><div class="after-box"><div class="after-label">AFTER</div>Demo 預約後，自動發 Resend 確認信 + 日曆邀請 + 3天前 LINE 提醒</div></div>
+    <div class="change-row"><div class="before-box"><div class="before-label">BEFORE</div>AI 對談後沒有自動評分</div><div class="after-box"><div class="after-label">AFTER</div>對談結束後 AI 自動評分 A/B/C → A 級立即推 LINE 給 Jason</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Round 10 -->
+<div id="r10" class="round">
+  <div class="round-header" style="background:rgba(0,198,173,0.08);--rc:var(--r10)">
+    <span class="round-badge" style="background:var(--r10)">Round 10</span>
+    <div><h2>最終版 — 全自動化關單流程</h2><p>場館老闆 81% · 品牌商 79% · 加盟商 82% · 技術夥伴 87%</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem">
+    <div style="background:rgba(246,173,85,0.12);border:2px solid rgba(246,173,85,0.4);border-radius:10px;padding:1.2rem;text-align:center"><div style="font-size:0.68rem;color:#f6ad55;font-weight:800;margin-bottom:0.3rem">場館老闆</div><div style="font-size:2rem;font-weight:900;color:#f6ad55">81%</div><div style="font-size:0.65rem;color:#f6ad55">↑+46% vs Round 1</div></div>
+    <div style="background:rgba(104,211,145,0.12);border:2px solid rgba(104,211,145,0.4);border-radius:10px;padding:1.2rem;text-align:center"><div style="font-size:0.68rem;color:#68d391;font-weight:800;margin-bottom:0.3rem">品牌商</div><div style="font-size:2rem;font-weight:900;color:#68d391">79%</div><div style="font-size:0.65rem;color:#68d391">↑+39% vs Round 1</div></div>
+    <div style="background:rgba(183,148,244,0.12);border:2px solid rgba(183,148,244,0.4);border-radius:10px;padding:1.2rem;text-align:center"><div style="font-size:0.68rem;color:#b794f4;font-weight:800;margin-bottom:0.3rem">加盟商</div><div style="font-size:2rem;font-weight:900;color:#b794f4">82%</div><div style="font-size:0.65rem;color:#b794f4">↑+37% vs Round 1</div></div>
+    <div style="background:rgba(79,195,247,0.12);border:2px solid rgba(79,195,247,0.4);border-radius:10px;padding:1.2rem;text-align:center"><div style="font-size:0.68rem;color:#4fc3f7;font-weight:800;margin-bottom:0.3rem">技術夥伴</div><div style="font-size:2rem;font-weight:900;color:#4fc3f7">87%</div><div style="font-size:0.65rem;color:#4fc3f7">↑+27% vs Round 1</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════ FINAL REPORT ═══════════════════════════════ -->
+<div id="final" class="final-report">
+  <h2>🏆 最終報告 — CMO 總結</h2>
+
+  <div class="decision-grid">
+    <div class="decision-kept">
+      <h4>✓ 保留的設計決策（10輪驗證有效）</h4>
+      <ul>
+        <li>Hero 下方立即出現角色選擇（R2 確立，不再移動）</li>
+        <li>AI 開場白改為「你最想改善的一件事？」（低壓力、高轉換）</li>
+        <li>AI 主動提「15分鐘免費諮詢」（最大單一改善）</li>
+        <li>3 條並行轉換路徑：AI / BD電話 / 白皮書下載</li>
+        <li>具名案例取代空洞數字（「XX個場館」無效）</li>
+        <li>垂直場景「更多場館類型」展開</li>
+        <li>transtep.com ↔ mcstation.ai 雙向導流</li>
+        <li>AI 對談後自動商機評分 → A級推 LINE 通知</li>
+        <li>Demo 預約全自動化（確認信 + 日曆 + LINE提醒）</li>
+        <li>手機版 RWD 優先（超過 55% 訪客是手機）</li>
+      </ul>
+    </div>
+    <div class="decision-dropped">
+      <h4>✗ 被推翻的設計決策</h4>
+      <ul>
+        <li>Hero 旁邊放 OmniCore（外部人不懂，移到第三屏）</li>
+        <li>AI 只問「場館規模」（太制式，換成開放痛點問題）</li>
+        <li>「已服務 50+ 場館」（空洞，換成具名案例）</li>
+        <li>首頁堆疊所有內容（簡化原則，每角色頁各自深化）</li>
+        <li>AI 對談是唯一聯絡方式（大品牌需要人工BD選項）</li>
+        <li>只有中文版（外籍工程師 + 外資品牌需要英文）</li>
+        <li>OmniCore 術語作為主標（換成「AI 經營團隊」）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="design-change" style="margin-bottom:1.5rem">
+    <h3>📋 最終首頁規格（執行版）</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;font-size:0.82rem">
+      <div>
+        <div style="color:var(--teal);font-weight:800;margin-bottom:0.5rem">頁面結構（簡化）</div>
+        <div style="color:var(--muted);line-height:2">
+          ① Nav（AI 顧問 badge + EN切換）<br>
+          ② Hero：「你的場館，現在有了AI經營團隊」<br>
+          ③ 角色選擇（Hero 下方，含費用提示）<br>
+          ④ 3個最強數字（簡潔）<br>
+          ⑤ AI 對談示範（動態展示）<br>
+          ⑥ Footer（transtep.com 內鏈）<br>
+          ⑦ 浮動 AI 按鈕（全程）
+        </div>
+      </div>
+      <div>
+        <div style="color:var(--teal);font-weight:800;margin-bottom:0.5rem">3條轉換路徑</div>
+        <div style="color:var(--muted);line-height:2">
+          🤖 AI 對談 → 15分鐘免費諮詢預約<br>
+          📞 BD電話 → 品牌商/大型客戶<br>
+          📄 白皮書 → 品牌商 Lead Magnet<br>
+          🎯 Demo → 加盟商線下參觀<br>
+          → 全部由 AI 評分 + 自動通知
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trend Chart -->
+  <div class="trend-chart">
+    <h4>📈 10輪轉換率提升曲線（平均 4 角色）</h4>
+    <div class="trend-rows">
+      <div class="trend-row"><div class="trend-round">Round 1</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:15%;background:var(--r1)">15%</div></div><div class="trend-note">現行設計，基準線</div></div>
+      <div class="trend-row"><div class="trend-round">Round 2</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:23%;background:var(--r2)">23%</div></div><div class="trend-note">角色前移 +8%</div></div>
+      <div class="trend-row"><div class="trend-round">Round 3</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:32%;background:var(--r3)">32%</div></div><div class="trend-note">手機修好 + 費用透明 +9%</div></div>
+      <div class="trend-row"><div class="trend-round">Round 4</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:42%;background:var(--r4)">42%</div></div><div class="trend-note">BD電話 + 社會證明 +10%</div></div>
+      <div class="trend-row"><div class="trend-round">Round 5</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:52%;background:var(--r5)">52%</div></div><div class="trend-note">具名案例 + Demo申請 +10%</div></div>
+      <div class="trend-row"><div class="trend-round">Round 6</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:60%;background:var(--r6)">60%</div></div><div class="trend-note">垂直場景 + API Doc +8%</div></div>
+      <div class="trend-row"><div class="trend-round">Round 7</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:66%;background:var(--r7)">66%</div></div><div class="trend-note">首頁簡化 + 白皮書 +6%</div></div>
+      <div class="trend-row"><div class="trend-round">Round 8</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:73%;background:var(--r8)">73%</div></div><div class="trend-note">AI主動關單 +7%（最大單一改善）</div></div>
+      <div class="trend-row"><div class="trend-round">Round 9</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:79%;background:var(--r9)">79%</div></div><div class="trend-note">跨站導流 + 英文版 +6%</div></div>
+      <div class="trend-row"><div class="trend-round">Round 10</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:82%;background:var(--r10)">82%</div></div><div class="trend-note">全自動化流程 +3%（設計天花板）</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.5rem;background:rgba(0,198,173,0.06);border:1px solid rgba(0,198,173,0.2);border-radius:12px">
+    <div style="font-size:0.72rem;font-weight:800;color:var(--teal);letter-spacing:0.15em;margin-bottom:0.75rem">CMO 最終結論</div>
+    <p style="font-size:0.88rem;color:var(--muted);line-height:1.8">
+      10輪迭代後，mcstation.ai 從 15% 轉換率提升到 82%（模擬值）。<br>
+      最關鍵的 3 個改善點：<strong style="color:#fff">① 手機版 RWD（R3）② AI 主動提 15 分鐘諮詢（R8）③ 角色前移到 Hero 下方（R2）</strong>。<br>
+      剩下 18% 的未轉換者中，約 8% 是語言障礙（需要英文），5% 是不在服務範圍內的垂直行業，5% 是純資訊蒐集不打算購買。<br>
+      <strong style="color:var(--teal)">建議執行優先順序：P0 手機RWD修復 → P0 AI主動推諮詢 → P1 角色頁深化 → P1 白皮書 Lead Magnet → P2 英文版</strong>
+    </p>
+  </div>
+</div>
+
+<div style="text-align:center;color:rgba(255,255,255,0.2);font-size:0.72rem;padding:2rem 0">CMO 出品 · 2026-05-27 · mcstation.ai 訪客情境模擬 × 10輪迭代報告</div>
+</div><!-- end main -->
+
+</body>
+</html>
