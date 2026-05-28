@@ -464,6 +464,40 @@ export default function EastBeautyPage() {
         .eb-roi-num{font-size:2.2rem;font-weight:900;color:#f5c842;font-variant-numeric:tabular-nums;}
         .eb-roi-label{font-size:.8rem;color:rgba(255,255,255,.72);margin-top:6px;line-height:1.6;}
 
+        /* ── 移工宿舍商機 ── */
+        .eb-worker-wrap{background:#0a1020;padding:80px 24px;}
+        .eb-worker-inner{max-width:1100px;margin:0 auto;}
+        .eb-worker-eyebrow{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#f5c842;margin-bottom:12px;}
+        .eb-worker-title{font-family:var(--font-playfair),'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:#fff;line-height:1.25;margin-bottom:8px;}
+        .eb-worker-title em{color:#f5c842;font-style:normal;}
+        .eb-worker-sub{color:rgba(255,255,255,.6);font-size:.92rem;line-height:1.8;max-width:700px;margin-bottom:40px;}
+        .eb-worker-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;}
+        @media(max-width:600px){.eb-worker-stats{grid-template-columns:1fr 1fr;}}
+        .eb-worker-stat{background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.2);border-radius:10px;padding:20px 16px;text-align:center;}
+        .eb-worker-stat-num{font-size:1.9rem;font-weight:900;color:#f5c842;font-variant-numeric:tabular-nums;}
+        .eb-worker-stat-label{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:6px;line-height:1.5;}
+        .eb-worker-photos{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:48px;}
+        @media(max-width:700px){.eb-worker-photos{grid-template-columns:1fr 1fr;}}
+        .eb-worker-photo{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;}
+        .eb-worker-photo img{width:100%;height:100%;object-fit:cover;}
+        .eb-worker-photo-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.75));padding:10px 12px;font-size:.68rem;color:rgba(255,255,255,.8);}
+        .eb-worker-models{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;}
+        @media(max-width:750px){.eb-worker-models{grid-template-columns:1fr;}}
+        .eb-worker-model{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px 20px;position:relative;overflow:hidden;}
+        .eb-worker-model.highlight{border-color:rgba(245,200,66,.4);background:rgba(245,200,66,.04);}
+        .eb-worker-model-badge{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:12px;}
+        .eb-worker-model h4{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px;}
+        .eb-worker-model p{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:12px;}
+        .eb-worker-model-devices{font-size:.7rem;color:#f5c842;background:rgba(245,200,66,.08);border-radius:6px;padding:8px 12px;line-height:1.8;}
+        .eb-worker-xmart{display:flex;gap:16px;align-items:flex-start;background:rgba(120,80,200,.08);border:1px solid rgba(120,80,200,.25);border-radius:12px;padding:24px;margin-bottom:32px;}
+        @media(max-width:600px){.eb-worker-xmart{flex-direction:column;}}
+        .eb-worker-xmart-logo{flex:0 0 100px;border-radius:8px;overflow:hidden;}
+        .eb-worker-xmart-logo img{width:100%;display:block;}
+        .eb-worker-xmart-body h4{font-size:1rem;font-weight:700;color:#c084fc;margin-bottom:6px;}
+        .eb-worker-xmart-body p{font-size:.8rem;color:rgba(255,255,255,.65);line-height:1.75;}
+        .eb-worker-xmart-body ul{margin-top:8px;padding-left:16px;}
+        .eb-worker-xmart-body li{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.8;}
+
         /* ── CTA ── */
         .eb-cta{background:linear-gradient(135deg,#080f1a 0%,#0d2240 100%);padding:80px 24px;text-align:center;}
         .eb-cta-title{
@@ -1511,7 +1545,142 @@ export default function EastBeautyPage() {
         </div>
       </div>
 
-      {/* ⑫ CTA */}
+      {/* ⑫ 移工宿舍商機 */}
+      <div className="eb-worker-wrap" id="worker">
+        <div className="eb-worker-inner">
+          <div className="eb-worker-eyebrow">SATELLITE DEEP DIVE · 移工宿舍</div>
+          <h2 className="eb-worker-title">被低估的<em>龐大藍海</em><br />移工宿舍 — 全台 75 萬人的日常剛需</h2>
+          <p className="eb-worker-sub">
+            台灣移工人口超過 75 萬，集中居住於工廠附屬宿舍與專業移工宿舍，
+            多數地點遠離超商、禁止自炊。這些宿舍的公共區域空間大、人流密集、
+            消費需求高，卻長期缺乏優質的餐飲與茶飲解方——這就是 MCS 的機會。
+          </p>
+
+          {/* 市場數字 */}
+          <div className="eb-worker-stats">
+            <div className="eb-worker-stat">
+              <div className="eb-worker-stat-num">75萬+</div>
+              <div className="eb-worker-stat-label">台灣在台移工人口<br/>東南亞籍為主</div>
+            </div>
+            <div className="eb-worker-stat">
+              <div className="eb-worker-stat-num">26萬</div>
+              <div className="eb-worker-stat-label">居住於雇主提供<br/>集中式宿舍</div>
+            </div>
+            <div className="eb-worker-stat">
+              <div className="eb-worker-stat-num">3班制</div>
+              <div className="eb-worker-stat-label">輪班制度 · 24H<br/>消費需求不間斷</div>
+            </div>
+            <div className="eb-worker-stat">
+              <div className="eb-worker-stat-num">禁自炊</div>
+              <div className="eb-worker-stat-label">多數宿舍規定禁止<br/>自行烹煮食物</div>
+            </div>
+            <div className="eb-worker-stat">
+              <div className="eb-worker-stat-num">仲介談</div>
+              <div className="eb-worker-stat-label">透過仲介公司<br/>批量洽談進駐點</div>
+            </div>
+            <div className="eb-worker-stat">
+              <div className="eb-worker-stat-num">高頻消費</div>
+              <div className="eb-worker-stat-label">飲料 · 熱食 · 零食<br/>日均 2-3 次消費</div>
+            </div>
+          </div>
+
+          {/* 照片牆：AI 情境圖 + 真實場地 */}
+          <div className="eb-worker-photos">
+            <div className="eb-worker-photo">
+              <Image src="/images/eastbeauty/sat_v3_worker.jpg" alt="移工宿舍 MCS 自助站 AI 情境圖" fill style={{ objectFit: "cover" }} />
+              <div className="eb-worker-photo-cap">🤖 MCS 自助站部署情境示意</div>
+            </div>
+            <div className="eb-worker-photo">
+              <Image src="/images/eastbeauty/worker_dorm_ext.jpg" alt="現代移工宿舍外觀" fill style={{ objectFit: "cover" }} />
+              <div className="eb-worker-photo-cap">現代移工宿舍建築外觀</div>
+            </div>
+            <div className="eb-worker-photo">
+              <Image src="/images/eastbeauty/worker_dorm_int2.jpg" alt="宿舍公共區域" fill style={{ objectFit: "cover" }} />
+              <div className="eb-worker-photo-cap">空置公共區域 — 待活化的黃金空間</div>
+            </div>
+          </div>
+
+          {/* XMART 合作說明 */}
+          <div className="eb-worker-xmart">
+            <div className="eb-worker-xmart-logo">
+              <Image src="/images/eastbeauty/xmart_brand.jpg" alt="XMART 艾克市" width={100} height={130} style={{ objectFit: "cover", borderRadius: "8px" }} />
+            </div>
+            <div className="eb-worker-xmart-body">
+              <h4>🤝 策略合作夥伴：XMART 艾克市 — 台灣唯一東南亞選品連鎖超商</h4>
+              <p>
+                XMART 艾克市專注服務移工族群，已在新竹湖口、明湖等移工聚集地開設據點，
+                深耕東南亞選品與社群連結。MCS × XMART 合作模式：
+              </p>
+              <ul>
+                <li>在 XMART 店內設置 MCS 自助咖啡茶飲角（設備導入、收益分潤）</li>
+                <li>XMART 協助洽談宿舍進駐，MCS 提供設備與雲端管理系統</li>
+                <li>雙品牌互補：東南亞零食選品 × MCS 熱食熱飲自助站</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* 三大進駐模式 */}
+          <div style={{ marginBottom: "24px" }}>
+            <div className="eb-scenarios-label">✦ 三大進駐模式 — 彈性切入，依場域選擇</div>
+          </div>
+          <div className="eb-worker-models">
+            {/* 模式 A */}
+            <div className="eb-worker-model">
+              <span className="eb-worker-model-badge" style={{ background: "rgba(120,80,200,.2)", color: "#c084fc" }}>模式 A · XMART 異業合作</span>
+              <h4>進駐 XMART 門店角落</h4>
+              <p>
+                在現有 XMART 艾克市門店內規劃 2–3 坪角落，導入 MCS 自助茶飲吧，
+                共享客流、共享空間，快速驗證移工族群消費力。
+              </p>
+              <div className="eb-worker-model-devices">
+                📦 設備：自助智慧茶飲機 + 桌上奶茶機<br/>
+                🏢 談判對象：XMART 總部<br/>
+                ⚡ 啟動速度：最快（店面已存在）
+              </div>
+            </div>
+            {/* 模式 B */}
+            <div className="eb-worker-model highlight">
+              <span className="eb-worker-model-badge" style={{ background: "rgba(245,200,66,.2)", color: "#f5c842" }}>⭐ 模式 B · 宿舍小角落進駐</span>
+              <h4>宿舍公共區設備組合站</h4>
+              <p>
+                直接與宿舍管理方或仲介公司簽約，在公共區域建立
+                MCS 自助飲食站，利用宿舍龐大人流創造穩定收入。
+                透過仲介通路可快速批量複製到多個宿舍點位。
+              </p>
+              <div className="eb-worker-model-devices">
+                📦 設備：冷凍自取冰櫃 + 桌上蒸煮拉麵機 + 智慧販賣機<br/>
+                🏢 談判對象：宿舍業主 / 仲介公司<br/>
+                ⚡ 啟動速度：1 天安裝上線
+              </div>
+            </div>
+            {/* 模式 C */}
+            <div className="eb-worker-model">
+              <span className="eb-worker-model-badge" style={{ background: "rgba(6,193,103,.15)", color: "#06c167" }}>模式 C · 獨立茶飲吧</span>
+              <h4>MCS 品牌自助咖啡茶飲吧</h4>
+              <p>
+                在宿舍一樓空置公共空間建立完整 MCS 自助茶飲吧，
+                提供咖啡、奶茶、熱食一站式服務，東南亞口味客製化，
+                打造移工族群的日常「第三空間」。
+              </p>
+              <div className="eb-worker-model-devices">
+                📦 設備：自助智慧茶飲機 + 自助咖啡機 + 冷凍自取冰櫃 + 蒸煮機<br/>
+                🏢 談判對象：宿舍業主（租賃空間）<br/>
+                ⚡ 啟動速度：3–5 天裝潢布置
+              </div>
+            </div>
+          </div>
+
+          <div style={{ background: "rgba(6,193,103,.06)", border: "1px solid rgba(6,193,103,.2)", borderRadius: "10px", padding: "20px 24px", fontSize: ".82rem", color: "rgba(255,255,255,.7)", lineHeight: "1.85" }}>
+            💡 <strong style={{ color: "#06c167" }}>關鍵優勢：</strong>
+            移工族群高度集中、作息規律、24H 輪班消費、禁自炊形成剛性需求。
+            相較於零售型超商需要 MG 保障、高租金，MCS 設備零門檻、一天上線，
+            與宿舍業主採收益分潤模式，雙方零風險啟動。仲介公司洽談一次可批量鋪設多點，
+            實現指數型擴張。
+          </div>
+        </div>
+      </div>
+
+      {/* ⑬ CTA */}
       <div className="eb-cta" id="cta">
         <div className="eb-cta-title">準備好見證 <em>東方美 2.0</em>？</div>
         <p className="eb-cta-sub">
