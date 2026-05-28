@@ -77,18 +77,18 @@ const SEMI_STATIONS = [
   {
     num: "04",
     icon: "❄️",
-    name: "半自助取餐",
-    human: "放入智取冰櫃",
-    machine: "GraBox 掃碼自動開艙取餐",
+    name: "冷凍自取 + 蒸煮",
+    human: "確認取餐",
+    machine: "GraBox 冷凍艙掃碼開艙 → 自助放入蒸煮機 3 分鐘出餐",
     color: "#f5c84266",
     saving: "省 1 位服務員",
   },
   {
     num: "05",
     icon: "💳",
-    name: "半自助結帳",
+    name: "自助繳費結帳",
     human: "確認訂單",
-    machine: "LINE Pay / 街口 掃碼 · 系統對帳",
+    machine: "現金 / 信用卡 / 悠遊卡 / LINE Pay · 自助繳費訂餐機",
     color: "#f5c84233",
     saving: "省 1 位收銀員",
   },
@@ -119,26 +119,26 @@ const DEVICES = [
     name: "半自助蒸煮拉麵機",
     badge: "半自助",
     badgeColor: "#06c167",
-    desc: "密封杯放入 → 自動蒸煮 → 定時提醒 · 零廚藝門檻",
-    tag: "員工放杯，機器搞定",
+    desc: "搭配冷凍自取冰櫃 · 密封杯放入自動蒸煮 · 3 分鐘出餐",
+    tag: "必搭 GraBox 冷凍艙",
   },
   {
     src: "/images/eastbeauty/grabox_cold_unit.jpg",
     fallback: "/images/eastbeauty/locker_001.jpg",
-    name: "GraBox 自取冰櫃",
+    name: "GraBox 冷凍自取冰櫃",
     badge: "⭐ MCS 自研",
     badgeColor: "#f5c842",
-    desc: "冷藏 / 常溫雙層 · 掃碼自開艙 · 24H 無人運作",
-    tag: "🏭 台灣自主製造",
+    desc: "-18°C 冷凍艙 + 冷藏層 · 掃碼自開艙 · 存放冷凍拉麵碗 / 港點杯",
+    tag: "🏭 台灣自主製造 · 搭配蒸煮機",
   },
   {
     src: "/images/eastbeauty/device_kiosk.jpg",
     fallback: "/images/eastbeauty/scene2.png",
-    name: "自助點餐 Kiosk",
+    name: "自助繳費訂餐機",
     badge: "半自助",
     badgeColor: "#06c167",
-    desc: "21.5吋觸控 · 多語言 · 叫號 · 整合 MCS 後台",
-    tag: "MCS 雲端串接",
+    desc: "現金收找零 · 信用卡 / 悠遊卡 / LINE Pay · 點餐叫號一體",
+    tag: "現金族 × 長者友善",
   },
   {
     src: "/images/eastbeauty/device_microwave_locker.jpg",
@@ -874,7 +874,7 @@ export default function EastBeautyPage() {
                   { n: "1", strong: "選品擺入", span: "員工將密封杯（拉麵/港點多口味）放入蒸煮艙" },
                   { n: "2", strong: "一鍵啟動", span: "選擇品項，機器自動設定時間與溫度" },
                   { n: "3", strong: "全自動蒸煮", span: "倒計時完成，蜂鳴提醒取出，品質每次一致" },
-                  { n: "4", strong: "裝盤出餐", span: "員工取出擺盤，放入智取冰櫃或直接送桌" },
+                  { n: "4", strong: "裝盤出餐", span: "員工取出擺盤直接送桌，或顧客自行從蒸煮機取出食用" },
                 ].map((s, i) => (
                   <div key={i} className="eb-ramen-step">
                     <div className="eb-ramen-step-num">{s.n}</div>
@@ -933,8 +933,8 @@ export default function EastBeautyPage() {
           <div className="eb-locker-feats">
             {[
               { icon: "🏭", title: "台灣自主製造", desc: "硬體 + 韌體 + 雲端全自研" },
-              { icon: "❄️", title: "常溫智取艙", desc: "獨立恆溫 · LED 照明 · 食品安全" },
-              { icon: "📱", title: "掃碼自動開艙", desc: "LINE / QR Code 零接觸取餐" },
+              { icon: "❄️", title: "冷凍 / 冷藏智取艙", desc: "-18°C 冷凍 + 4°C 冷藏 · LED 照明 · 食品安全" },
+              { icon: "📱", title: "掃碼自動開艙", desc: "LINE / QR Code 零接觸取餐 · 冷凍碗搭配蒸煮機" },
               { icon: "☁️", title: "MCS 雲端串接", desc: "即時庫存 · 遠端補貨提醒" },
             ].map((f, i) => (
               <div key={i} className="eb-locker-feat">
@@ -1218,11 +1218,11 @@ export default function EastBeautyPage() {
               </div>
               <div className="eb-grabox-concept-body">
                 <div className="eb-grabox-concept-badge">⭐ MCS 銓幻元 自研產品</div>
-                <div className="eb-grabox-concept-title">GraBox <em>冷藏 / 常溫</em> 智取冰櫃<br />掃碼自取 · 24H 無人運作</div>
+                <div className="eb-grabox-concept-title">GraBox <em>冷凍 · 冷藏</em> 自取冰櫃<br />掃碼自取 · 搭配蒸煮機 · 24H 無人運作</div>
                 <div className="eb-grabox-concept-desc">
-                  台灣自主研發製造的智慧取餐設備。上層冷藏區放飲料、瓶裝茶、珍奶；
-                  中層常溫區放零食、乾燥食品；下層冷凍區放密封拉麵碗、港點杯。
-                  顧客掃碼下單 → 指定艙門自動彈開 → 取出後搭配現場蒸煮機 3 分鐘加熱。
+                  台灣自主研發製造的智慧取餐設備。上層冷藏區（4°C）放飲料、瓶裝茶、珍奶；
+                  下層冷凍區（-18°C）放密封拉麵碗、港點杯——取出後直接放入旁邊的蒸煮機。
+                  掃碼下單 → 指定艙門自動彈開 → 取冷凍碗 → 蒸煮機 3 分鐘 → 開吃。
                 </div>
                 <div className="eb-grabox-flows">
                   {[
