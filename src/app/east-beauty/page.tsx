@@ -155,8 +155,8 @@ const DEVICES = [
     name: "自助繳費訂餐機",
     badge: "自助",
     badgeColor: "#06c167",
-    desc: "現金收找零 · 信用卡 / 悠遊卡 / LINE Pay · 點餐叫號一體",
-    tag: "現金族 × 長者友善",
+    desc: "紙鈔投入 · 自動找零 · 先付後取 · 信用卡 / 悠遊卡 / LINE Pay 全支援",
+    tag: "💵 移工現金族首選 · 長者友善",
   },
   {
     src: "/images/eastbeauty/device_microwave_locker.jpg",
@@ -1667,6 +1667,29 @@ export default function EastBeautyPage() {
                 🏢 談判對象：宿舍業主（租賃空間）<br/>
                 ⚡ 啟動速度：3–5 天裝潢布置
               </div>
+            </div>
+          </div>
+
+          {/* 現金流程情境圖 */}
+          <div style={{ marginBottom: "32px" }}>
+            <div className="eb-scenarios-label" style={{ marginBottom: "14px" }}>✦ MCS 特色流程 — 現金先付，掃碼後取</div>
+            <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", aspectRatio: "16/9" }}>
+              <Image src="/images/eastbeauty/worker_cash_flow.jpg" alt="移工現金繳費→掃碼取物流程" fill style={{ objectFit: "cover" }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(0,0,0,.55) 0%, transparent 40%, transparent 60%, rgba(0,0,0,.55) 100%)" }} />
+              <div style={{ position: "absolute", left: "24px", top: "50%", transform: "translateY(-50%)", color: "#fff" }}>
+                <div style={{ fontSize: ".65rem", letterSpacing: ".15em", color: "#f5c842", marginBottom: "6px" }}>STEP 1</div>
+                <div style={{ fontSize: "1rem", fontWeight: 700, lineHeight: 1.4 }}>投現金<br/>點餐 / 選飲料</div>
+                <div style={{ fontSize: ".7rem", color: "rgba(255,255,255,.7)", marginTop: "4px" }}>繳費訂餐機<br/>紙鈔投入 · 自動找零</div>
+              </div>
+              <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)", fontSize: "1.8rem" }}>→</div>
+              <div style={{ position: "absolute", right: "24px", top: "50%", transform: "translateY(-50%)", color: "#fff", textAlign: "right" }}>
+                <div style={{ fontSize: ".65rem", letterSpacing: ".15em", color: "#f5c842", marginBottom: "6px" }}>STEP 2</div>
+                <div style={{ fontSize: "1rem", fontWeight: 700, lineHeight: 1.4 }}>憑收據掃碼<br/>自取食物飲料</div>
+                <div style={{ fontSize: ".7rem", color: "rgba(255,255,255,.7)", marginTop: "4px" }}>GraBox 智取櫃<br/>販賣機 · 蒸煮機</div>
+              </div>
+            </div>
+            <div style={{ fontSize: ".72rem", color: "rgba(255,255,255,.4)", textAlign: "center", marginTop: "8px" }}>
+              ▲ 移工無信用卡也能完整使用 — 現金投入 → 系統記帳 → 掃碼自取，全程無需店員
             </div>
           </div>
 
