@@ -171,6 +171,8 @@ export default function EastBeautyPage() {
   const sStrategy = useFadeIn();
   const s1000hero = useFadeIn();
   const s1000body = useFadeIn();
+  const sSatellite1 = useFadeIn();
+  const sSatellite2 = useFadeIn();
 
   useEffect(() => {
     const handle = () => {
@@ -617,6 +619,61 @@ export default function EastBeautyPage() {
         .eb-kpi{flex:1;min-width:110px;background:#fff;border:1px solid #e8e0d0;border-top:3px solid #f5c842;border-radius:8px;padding:14px 16px;text-align:center;}
         .eb-kpi-num{font-size:1.85rem;font-weight:900;color:#0d2240;line-height:1;}
         .eb-kpi-label{font-size:.7rem;color:#888;margin-top:3px;}
+
+        /* ── SATELLITE SECTION ── */
+        .eb-satellite-wrap{background:#0d2240;padding:0;}
+        .eb-satellite-inner{max-width:1100px;margin:0 auto;padding:72px 32px;}
+        .eb-satellite-eyebrow{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#f5c842aa;font-weight:700;margin-bottom:12px;}
+        .eb-satellite-title{font-size:clamp(1.7rem,4vw,2.8rem);font-weight:900;color:#fff;line-height:1.2;margin-bottom:16px;}
+        .eb-satellite-title em{color:#f5c842;font-style:normal;}
+        .eb-satellite-rule{width:52px;height:3px;background:linear-gradient(90deg,#f5c842,transparent);border-radius:2px;margin-bottom:24px;}
+        .eb-satellite-lead{color:rgba(255,255,255,.72);font-size:.95rem;line-height:1.9;max-width:700px;margin-bottom:40px;}
+        .eb-satellite-lead strong{color:#f5c842;}
+
+        /* GraBox concept card */
+        .eb-grabox-concept{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px;align-items:center;}
+        @media(max-width:700px){.eb-grabox-concept{grid-template-columns:1fr;}}
+        .eb-grabox-concept-img{position:relative;height:320px;border-radius:14px;overflow:hidden;border:1px solid rgba(245,200,66,.25);}
+        .eb-grabox-concept-body{color:rgba(255,255,255,.85);}
+        .eb-grabox-concept-badge{display:inline-block;background:#f5c842;color:#0d2240;font-size:.68rem;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:20px;margin-bottom:12px;}
+        .eb-grabox-concept-title{font-size:1.35rem;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.3;}
+        .eb-grabox-concept-title em{color:#f5c842;font-style:normal;}
+        .eb-grabox-concept-desc{font-size:.88rem;line-height:1.9;color:rgba(255,255,255,.7);margin-bottom:20px;}
+        .eb-grabox-flows{display:flex;flex-direction:column;gap:8px;}
+        .eb-grabox-flow{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:rgba(255,255,255,.75);}
+        .eb-grabox-flow-icon{width:28px;height:28px;border-radius:50%;background:rgba(245,200,66,.15);border:1px solid rgba(245,200,66,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.85rem;}
+        .eb-grabox-flow-text strong{color:#f5c842;display:block;margin-bottom:2px;font-size:.78rem;}
+
+        /* Uber Eats banner */
+        .eb-ubereats-banner{position:relative;height:260px;border-radius:14px;overflow:hidden;margin-bottom:48px;border:1px solid rgba(6,193,103,.3);}
+        .eb-ubereats-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,34,64,.9) 40%,transparent);z-index:1;display:flex;flex-direction:column;justify-content:center;padding:32px;}
+        .eb-ubereats-badge{display:inline-flex;align-items:center;gap:6px;background:#06c167;color:#fff;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;width:fit-content;}
+        .eb-ubereats-title{font-size:1.2rem;font-weight:800;color:#fff;line-height:1.4;margin-bottom:8px;}
+        .eb-ubereats-title em{color:#06c167;font-style:normal;}
+        .eb-ubereats-desc{font-size:.8rem;color:rgba(255,255,255,.7);max-width:380px;line-height:1.7;}
+
+        /* Scenarios grid */
+        .eb-scenarios-label{font-size:.7rem;letter-spacing:.12em;color:rgba(255,255,255,.4);text-transform:uppercase;font-weight:700;margin-bottom:18px;}
+        .eb-scenarios-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:48px;}
+        @media(max-width:600px){.eb-scenarios-grid{grid-template-columns:1fr;}}
+        .eb-scenario-card{position:relative;height:220px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);cursor:default;}
+        .eb-scenario-card:hover .eb-scenario-overlay{background:linear-gradient(0deg,rgba(13,34,64,.92) 0%,rgba(13,34,64,.5) 60%,transparent 100%);}
+        .eb-scenario-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,34,64,.88) 0%,rgba(13,34,64,.35) 60%,transparent 100%);z-index:1;transition:background .3s;}
+        .eb-scenario-content{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:16px;}
+        .eb-scenario-num{font-size:.62rem;color:#f5c84288;letter-spacing:.1em;font-weight:700;margin-bottom:4px;}
+        .eb-scenario-name{font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px;}
+        .eb-scenario-desc{font-size:.73rem;color:rgba(255,255,255,.65);line-height:1.6;}
+        .eb-scenario-tag{display:inline-block;background:rgba(245,200,66,.18);border:1px solid rgba(245,200,66,.3);color:#f5c842;font-size:.62rem;padding:2px 8px;border-radius:10px;margin-top:6px;}
+
+        /* Page 2: scenarios 5-7 + network map */
+        .eb-satellite-p2{background:#111d2e;padding:72px 0;}
+        .eb-satellite-p2-inner{max-width:1100px;margin:0 auto;padding:0 32px;}
+        .eb-scenarios-3col{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;}
+        @media(max-width:700px){.eb-scenarios-3col{grid-template-columns:1fr;}}
+        .eb-network-map{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(245,200,66,.2);}
+        .eb-network-map-img{width:100%;height:auto;display:block;}
+        .eb-network-caption{text-align:center;font-size:.75rem;color:rgba(255,255,255,.4);margin-top:12px;}
+        .eb-satellite-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(245,200,66,.25),transparent);margin:48px 0;}
       `}</style>
 
       {/* NAV */}
@@ -631,6 +688,7 @@ export default function EastBeautyPage() {
           <a href="#devices">設備陣列</a>
           <a href="#strategy">展店策略</a>
           <a href="#thousand" style={{ color: "#f5c842", fontWeight: 700 }}>千店計畫</a>
+          <a href="#satellite">衛星擴散網</a>
           <a href="#cta">洽談合作</a>
         </div>
       </nav>
@@ -1127,7 +1185,213 @@ export default function EastBeautyPage() {
         </div>
       </div>
 
-      {/* ⑪ CTA */}
+      {/* ⑪ GraBox 智取冰櫃 衛星擴散網 — Page 1 */}
+      <div className="eb-satellite-wrap" id="satellite">
+        <div className="eb-satellite-inner">
+          <div ref={sSatellite1} className="eb-fade">
+            <div className="eb-satellite-eyebrow">GRABOX SATELLITE NETWORK</div>
+            <div className="eb-satellite-title">智取冰櫃 <em>衛星擴散網</em></div>
+            <div className="eb-satellite-rule" />
+            <p className="eb-satellite-lead">
+              GraBox 不只是東方美餐廳內的設備——<br />
+              它是可以<strong>獨立部署到任何場域</strong>的「無人餐飲衛星站」。<br />
+              消費者用手機 QR 掃碼，自動開艙取飲料、取冷凍拉麵碗；
+              現場有蒸煮機，3 分鐘自助加熱，24H 無人看守。<br />
+              以東方美旗艦為<strong>母艦補貨中心</strong>，向外輻射衛星，打造最密集的 AI 餐飲毛細網。
+            </p>
+
+            {/* GraBox 概念圖 + 使用流程 */}
+            <div className="eb-grabox-concept">
+              <div className="eb-grabox-concept-img">
+                <Image src="/images/eastbeauty/grabox_cold_unit.jpg" alt="GraBox 智取冰櫃" fill
+                  style={{ objectFit: "cover" }}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/eastbeauty/locker_003.jpg"; }} />
+              </div>
+              <div className="eb-grabox-concept-body">
+                <div className="eb-grabox-concept-badge">⭐ MCS 銓幻元 自研產品</div>
+                <div className="eb-grabox-concept-title">GraBox <em>冷藏 / 常溫</em> 智取冰櫃<br />掃碼自取 · 24H 無人運作</div>
+                <div className="eb-grabox-concept-desc">
+                  台灣自主研發製造的智慧取餐設備。上層冷藏區放飲料、瓶裝茶、珍奶；
+                  中層常溫區放零食、乾燥食品；下層冷凍區放密封拉麵碗、港點杯。
+                  顧客掃碼下單 → 指定艙門自動彈開 → 取出後搭配現場蒸煮機 3 分鐘加熱。
+                </div>
+                <div className="eb-grabox-flows">
+                  {[
+                    { icon: "📱", strong: "Step 1 — 掃碼點餐", text: "LINE / QR Code 選品付款，系統指定艙號" },
+                    { icon: "❄️", strong: "Step 2 — 自動開艙", text: "指定艙門自動解鎖，顧客直接取出商品" },
+                    { icon: "♨️", strong: "Step 3 — 自助蒸煮", text: "冷凍拉麵碗放入現場蒸煮機，3 分鐘完成" },
+                    { icon: "🚴", strong: "Uber Eats 模式", text: "外送騎士掃碼取單，直接帶走無需等待" },
+                  ].map((f, i) => (
+                    <div key={i} className="eb-grabox-flow">
+                      <div className="eb-grabox-flow-icon">{f.icon}</div>
+                      <div className="eb-grabox-flow-text"><strong>{f.strong}</strong>{f.text}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Uber Eats Banner */}
+            <div className="eb-ubereats-banner">
+              <Image src="/images/eastbeauty/ubereats_grabox_pickup.jpg" alt="Uber Eats × GraBox" fill
+                style={{ objectFit: "cover" }}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+              <div className="eb-ubereats-overlay">
+                <div className="eb-ubereats-badge">🚴 Uber Eats × GraBox</div>
+                <div className="eb-ubereats-title">外送平台整合 — <em>騎士掃碼即取，零等待</em></div>
+                <div className="eb-ubereats-desc">
+                  GraBox 與 Uber Eats / Foodpanda 串接後，騎士到達衛星站掃碼，
+                  對應訂單艙門自動開啟，直接取走。不需廚房、不需等候——
+                  衛星站同時服務到店顧客與外送平台，<strong style={{ color: "#06c167" }}>坪效翻倍</strong>。
+                </div>
+              </div>
+            </div>
+
+            {/* 4 個衛星場景 */}
+            <div className="eb-scenarios-label">✦ 衛星擴散場景 — 第一波</div>
+            <div className="eb-scenarios-grid">
+              {[
+                {
+                  src: "/images/eastbeauty/satellite_hotel.jpg",
+                  fallback: "/images/eastbeauty/render1.png",
+                  num: "01",
+                  name: "酒店 · 飯店大廳",
+                  desc: "旅客 24H 自取飲料、早餐杯點、下午茶，無需等候 room service",
+                  tag: "高單價 · 高頻次",
+                },
+                {
+                  src: "/images/eastbeauty/satellite_student_dorm.jpg",
+                  fallback: "/images/eastbeauty/render2.png",
+                  num: "02",
+                  name: "大學學生宿舍",
+                  desc: "宵夜需求強烈，珍奶 + 冷凍拉麵組合，蒸煮機自助加熱，深夜照常服務",
+                  tag: "高頻 · 夜間需求",
+                },
+                {
+                  src: "/images/eastbeauty/satellite_migrant_worker.jpg",
+                  fallback: "/images/eastbeauty/render3.png",
+                  num: "03",
+                  name: "移工宿舍 · 廠房",
+                  desc: "多語介面（中/越/印），提供東南亞口味選項，班次輪替 24H 消費",
+                  tag: "多語 · 穩定高流量",
+                },
+                {
+                  src: "/images/eastbeauty/satellite_military.jpg",
+                  fallback: "/images/eastbeauty/render4.png",
+                  num: "04",
+                  name: "軍事基地 · 營區",
+                  desc: "封閉場域、人口密集、無便利店，GraBox 衛星站填補飲食空缺",
+                  tag: "封閉場域 · 獨佔",
+                },
+              ].map((s, i) => (
+                <div key={i} className="eb-scenario-card">
+                  <Image src={s.src} alt={s.name} fill style={{ objectFit: "cover" }}
+                    onError={(e) => { (e.target as HTMLImageElement).src = s.fallback; }} />
+                  <div className="eb-scenario-overlay" />
+                  <div className="eb-scenario-content">
+                    <div className="eb-scenario-num">SATELLITE {s.num}</div>
+                    <div className="eb-scenario-name">{s.name}</div>
+                    <div className="eb-scenario-desc">{s.desc}</div>
+                    <div className="eb-scenario-tag">{s.tag}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ⑪ GraBox 衛星擴散網 — Page 2 */}
+      <div className="eb-satellite-p2">
+        <div className="eb-satellite-p2-inner">
+          <div ref={sSatellite2} className="eb-fade">
+
+            {/* 3 個衛星場景 */}
+            <div className="eb-scenarios-label" style={{ marginBottom: "18px" }}>✦ 衛星擴散場景 — 第二波</div>
+            <div className="eb-scenarios-3col">
+              {[
+                {
+                  src: "/images/eastbeauty/satellite_coworking.jpg",
+                  fallback: "/images/eastbeauty/scene1.png",
+                  num: "05",
+                  name: "共享辦公空間",
+                  desc: "創業者與自由工作者的早午餐、下午茶需求，無人咖啡 + GraBox 組合完美契合",
+                  tag: "精準客群 · 高客單",
+                },
+                {
+                  src: "/images/eastbeauty/satellite_corporate.jpg",
+                  fallback: "/images/eastbeauty/scene2.png",
+                  num: "06",
+                  name: "企業大樓 · 商辦",
+                  desc: "午餐高峰自助取餐取代外送，節省等待時間；公司福委可採購月票方案",
+                  tag: "午餐高峰 · 企業採購",
+                },
+                {
+                  src: "/images/eastbeauty/satellite_community.jpg",
+                  fallback: "/images/eastbeauty/locker_outside.jpg",
+                  num: "07",
+                  name: "社區 · 公寓大廳",
+                  desc: "居民下班後取餐、週末早午餐，24H 無人操作，物管室旁即可落地",
+                  tag: "社區鄰里 · 高黏著",
+                },
+              ].map((s, i) => (
+                <div key={i} className="eb-scenario-card" style={{ height: "260px" }}>
+                  <Image src={s.src} alt={s.name} fill style={{ objectFit: "cover" }}
+                    onError={(e) => { (e.target as HTMLImageElement).src = s.fallback; }} />
+                  <div className="eb-scenario-overlay" />
+                  <div className="eb-scenario-content">
+                    <div className="eb-scenario-num">SATELLITE {s.num}</div>
+                    <div className="eb-scenario-name">{s.name}</div>
+                    <div className="eb-scenario-desc">{s.desc}</div>
+                    <div className="eb-scenario-tag">{s.tag}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="eb-satellite-divider" />
+
+            {/* 衛星網絡地圖 */}
+            <div style={{ textAlign: "center", marginBottom: "20px" }}>
+              <div className="eb-satellite-eyebrow">NETWORK MAP</div>
+              <div className="eb-satellite-title" style={{ fontSize: "clamp(1.4rem,3vw,2.2rem)" }}>
+                東方美旗艦 × <em>7 大衛星節點</em><br />
+                <span style={{ fontSize: ".6em", color: "rgba(255,255,255,.5)", fontWeight: 400 }}>以主店為母艦，向外擴散，形成最密集的 AI 餐飲毛細網</span>
+              </div>
+            </div>
+            <div className="eb-network-map">
+              <Image src="/images/eastbeauty/satellite_network_map.jpg" alt="衛星擴散網地圖" width={1100} height={620}
+                className="eb-network-map-img"
+                style={{ width: "100%", height: "auto", display: "block" }}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            </div>
+            <div className="eb-network-caption">▲ 智取冰櫃衛星擴散網 — 以東方美 AI 主店為核心，7 類場域輻射部署</div>
+
+            <div style={{ marginTop: "40px", background: "rgba(245,200,66,.06)", border: "1px solid rgba(245,200,66,.2)", borderRadius: "12px", padding: "28px 32px" }}>
+              <div style={{ color: "#f5c842", fontWeight: 700, fontSize: "1rem", marginBottom: "10px" }}>💡 衛星站商業模式</div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
+                {[
+                  { icon: "🏭", title: "主店負責補貨", desc: "每日從旗艦店配送，衛星站無需獨立備料" },
+                  { icon: "📱", title: "MCS 統一管理", desc: "所有衛星站庫存、銷售由 AI 中台即時監控" },
+                  { icon: "💰", title: "場地方分潤", desc: "場地業主收取租金或銷售分成，零風險導入" },
+                  { icon: "🔧", title: "MCS 維護保障", desc: "硬體維修、韌體更新、設備監控全包" },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: "10px" }}>
+                    <div style={{ fontSize: "1.2rem", flexShrink: 0 }}>{item.icon}</div>
+                    <div>
+                      <div style={{ color: "#f5c842", fontWeight: 700, fontSize: ".82rem", marginBottom: "4px" }}>{item.title}</div>
+                      <div style={{ color: "rgba(255,255,255,.6)", fontSize: ".78rem", lineHeight: 1.7 }}>{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* ⑫ CTA */}
       <div className="eb-cta" id="cta">
         <div className="eb-cta-title">準備好見證 <em>東方美 2.0</em>？</div>
         <p className="eb-cta-sub">
