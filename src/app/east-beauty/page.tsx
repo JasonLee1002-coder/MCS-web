@@ -215,6 +215,8 @@ export default function EastBeautyPage() {
         *{box-sizing:border-box;margin:0;padding:0;}
         html{scroll-behavior:smooth;}
         body{background:#faf8f3;color:#1a1a1a;font-family:var(--font-noto-tc),'Noto Sans TC',sans-serif;}
+        /* 此頁隱藏全站 Yuzu AI 泡泡 */
+        button[aria-label="Yuzu AI 顧問"]{display:none!important;}
 
         .eb-fade{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
         .eb-visible{opacity:1;transform:none;}
