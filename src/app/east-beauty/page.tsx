@@ -125,10 +125,10 @@ const DEVICES = [
   {
     src: "/images/eastbeauty/device_ramen_steamer.jpg",
     fallback: "/images/eastbeauty/ramen_bowl.jpg",
-    name: "自助蒸煮拉麵機",
+    name: "桌上蒸煮拉麵機",
     badge: "自助",
     badgeColor: "#06c167",
-    desc: "搭配冷凍自取冰櫃 · 密封杯放入自動蒸煮 · 3 分鐘出餐",
+    desc: "咖啡機造型 · 觸控選品 · 蒸氣噴嘴自動蒸煮密封碗 · 3 分鐘出餐",
     tag: "必搭 GraBox 冷凍艙",
   },
   {
