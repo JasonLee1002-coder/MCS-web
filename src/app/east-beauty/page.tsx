@@ -142,12 +142,12 @@ const DEVICES = [
   },
   {
     src: "/images/eastbeauty/device_grabox_ambient.jpg",
-    fallback: "/images/eastbeauty/locker_003.jpg",
+    fallback: "/images/eastbeauty/grabox_mwd_real.jpg",
     name: "GraBox 常溫雙面智取櫃",
     badge: "⭐ MCS 自研",
     badgeColor: "#f5c842",
-    desc: "常溫雙面開艙 · 走道兩側皆可取貨 · 24H 零人力",
-    tag: "🏭 台灣自主製造 · 雙面設計",
+    desc: "嵌入外牆式 · 員工內側裝單 · 顧客外側掃碼取餐 · 12 格獨立電鎖",
+    tag: "🏭 台灣自主製造 · 雙面貫穿設計",
   },
   {
     src: "/images/eastbeauty/device_kiosk.jpg",
