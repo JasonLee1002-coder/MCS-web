@@ -901,8 +901,8 @@ export default function EastBeautyPage() {
                 ))}
               </div>
               <div style={{ marginTop: "20px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
-                <Image src="/images/eastbeauty/ramen_cups.jpg" alt="密封杯裝食材" width={200} height={150} style={{ borderRadius: "8px", border: "1px solid #e8e0d0", objectFit: "cover" }} />
-                <Image src="/images/eastbeauty/ramen_bowl.jpg" alt="完成品" width={200} height={150} style={{ borderRadius: "8px", border: "1px solid #e8e0d0", objectFit: "cover" }} />
+                <Image src="/images/eastbeauty/ramen_cups.jpg" alt="密封杯裝食材" width={280} height={210} style={{ borderRadius: "8px", border: "1px solid #e8e0d0", objectFit: "contain", background: "#faf8f4" }} />
+                <Image src="/images/eastbeauty/ramen_bowl.jpg" alt="完成品" width={280} height={210} style={{ borderRadius: "8px", border: "1px solid #e8e0d0", objectFit: "contain", background: "#faf8f4" }} />
               </div>
             </div>
             <div>
