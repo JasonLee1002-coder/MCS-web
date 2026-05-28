@@ -932,7 +932,7 @@ export default function EastBeautyPage() {
       <div className="eb-locker-wrap">
         <div ref={sLocker} className="eb-fade eb-locker-inner">
           <div className="eb-locker-badge">⭐ MCS 銓幻元 自主研發</div>
-          <div className="eb-locker-title">GraBox <em>智取冰櫃</em> — 我們的核心武器</div>
+          <div className="eb-locker-title">GraBox <em>雙面智取櫃</em> — 我們的核心武器</div>
           <p className="eb-locker-sub">
             100% 台灣自主研發製造，不是外購、不是貼牌。
             GraBox 是自助取餐站的關鍵設備——
@@ -1214,12 +1214,12 @@ export default function EastBeautyPage() {
         </div>
       </div>
 
-      {/* ⑪ GraBox 智取冰櫃 衛星擴散網 — Page 1 */}
+      {/* ⑪ GraBox 雙面智取櫃 衛星擴散網 — Page 1 */}
       <div className="eb-satellite-wrap" id="satellite">
         <div className="eb-satellite-inner">
           <div ref={sSatellite1} className="eb-fade">
             <div className="eb-satellite-eyebrow">GRABOX SATELLITE NETWORK</div>
-            <div className="eb-satellite-title">智取冰櫃 <em>衛星擴散網</em></div>
+            <div className="eb-satellite-title">雙面智取櫃 <em>衛星擴散網</em></div>
             <div className="eb-satellite-rule" />
             <p className="eb-satellite-lead">
               GraBox 不只是東方美餐廳內的設備——<br />
@@ -1430,7 +1430,7 @@ export default function EastBeautyPage() {
 
                 {/* 標題 */}
                 <text x="450" y="38" textAnchor="middle" fill="#f5c842" fontSize="15" fontWeight="700" fontFamily="'Noto Sans TC', sans-serif" letterSpacing="2">
-                  智取冰櫃 衛星擴散網
+                  雙面智取櫃 衛星擴散網
                 </text>
                 <text x="450" y="58" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="10" fontFamily="'Noto Sans TC', sans-serif">
                   GraBox Satellite Network — 以東方美旗艦為母艦，向外輻射 8 大場域
@@ -1485,7 +1485,7 @@ export default function EastBeautyPage() {
                 </text>
               </svg>
             </div>
-            <div className="eb-network-caption">▲ 智取冰櫃衛星擴散網 — 以東方美 AI 主店為核心，8 大場域輻射部署</div>
+            <div className="eb-network-caption">▲ 雙面智取櫃衛星擴散網 — 以東方美 AI 主店為核心，8 大場域輻射部署</div>
 
             <div style={{ marginTop: "40px", background: "rgba(245,200,66,.06)", border: "1px solid rgba(245,200,66,.2)", borderRadius: "12px", padding: "28px 32px" }}>
               <div style={{ color: "#f5c842", fontWeight: 700, fontSize: "1rem", marginBottom: "10px" }}>💡 衛星站商業模式</div>
