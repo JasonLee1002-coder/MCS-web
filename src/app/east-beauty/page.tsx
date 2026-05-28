@@ -50,7 +50,7 @@ const SEMI_STATIONS = [
   {
     num: "01",
     icon: "📱",
-    name: "半自助點餐",
+    name: "自助點餐",
     human: "引導入座",
     machine: "Kiosk 自選菜單 · 桌邊 QR 碼點餐",
     color: "#f5c842",
@@ -59,16 +59,16 @@ const SEMI_STATIONS = [
   {
     num: "02",
     icon: "🍵",
-    name: "半自助調飲",
+    name: "自助調飲",
     human: "補充原料",
-    machine: "半自助智慧茶飲機自動調配 · 出杯計量",
+    machine: "自助智慧茶飲機自動調配 · 出杯計量",
     color: "#f5c842cc",
     saving: "省 1 位吧台人員",
   },
   {
     num: "03",
     icon: "🍜",
-    name: "半自助蒸煮",
+    name: "自助蒸煮",
     human: "放入密封杯",
     machine: "自動蒸煮計時 · 到點提醒",
     color: "#f5c84299",
@@ -96,34 +96,43 @@ const SEMI_STATIONS = [
 
 const DEVICES = [
   {
+    src: "/images/eastbeauty/device_coffee_machine.jpg",
+    fallback: "/images/eastbeauty/ref_wmf.jpg",
+    name: "自助咖啡機",
+    badge: "自助",
+    badgeColor: "#06c167",
+    desc: "WMF 德國商用級 · 全自動研磨萃取 · 掃碼點單出杯",
+    tag: "德國 WMF 合作設備",
+  },
+  {
     src: "/images/eastbeauty/device_tea_dispenser.jpg",
     fallback: "/images/eastbeauty/milk_tea2.jpg",
-    name: "半自助智慧茶飲機",
-    badge: "半自助",
+    name: "自助智慧茶飲機",
+    badge: "自助",
     badgeColor: "#06c167",
-    desc: "1.5m 商用等級 · 多口味自動調配 · 員工補料即可",
+    desc: "1.5m 商用落地 · 多口味自動調配 · 員工補料即可",
     tag: "索迪科技 合作設備",
   },
   {
-    src: "/images/eastbeauty/device_milk_tea.jpg",
-    fallback: "/images/eastbeauty/milk_tea_machine.jpg",
+    src: "/images/eastbeauty/device_milk_tea_v2.jpg",
+    fallback: "/images/eastbeauty/ref_milk_tea.jpg",
     name: "桌上型奶茶機",
-    badge: "半自助",
+    badge: "自助",
     badgeColor: "#06c167",
-    desc: "觸控選飲 · 自動出杯 · 桌邊服務不排隊",
+    desc: "觸控選飲 · 精準泵管調配 · 多料自動混合出杯",
     tag: "MCS 雲端串接",
   },
   {
     src: "/images/eastbeauty/device_ramen_steamer.jpg",
     fallback: "/images/eastbeauty/ramen_bowl.jpg",
-    name: "半自助蒸煮拉麵機",
-    badge: "半自助",
+    name: "自助蒸煮拉麵機",
+    badge: "自助",
     badgeColor: "#06c167",
     desc: "搭配冷凍自取冰櫃 · 密封杯放入自動蒸煮 · 3 分鐘出餐",
     tag: "必搭 GraBox 冷凍艙",
   },
   {
-    src: "/images/eastbeauty/grabox_cold_unit.jpg",
+    src: "/images/eastbeauty/sat_v2_grabox_frozen.jpg",
     fallback: "/images/eastbeauty/locker_001.jpg",
     name: "GraBox 冷凍自取冰櫃",
     badge: "⭐ MCS 自研",
@@ -132,10 +141,19 @@ const DEVICES = [
     tag: "🏭 台灣自主製造 · 搭配蒸煮機",
   },
   {
+    src: "/images/eastbeauty/device_grabox_ambient.jpg",
+    fallback: "/images/eastbeauty/locker_003.jpg",
+    name: "GraBox 常溫雙面智取櫃",
+    badge: "⭐ MCS 自研",
+    badgeColor: "#f5c842",
+    desc: "常溫雙面開艙 · 走道兩側皆可取貨 · 24H 零人力",
+    tag: "🏭 台灣自主製造 · 雙面設計",
+  },
+  {
     src: "/images/eastbeauty/device_kiosk.jpg",
     fallback: "/images/eastbeauty/scene2.png",
     name: "自助繳費訂餐機",
-    badge: "半自助",
+    badge: "自助",
     badgeColor: "#06c167",
     desc: "現金收找零 · 信用卡 / 悠遊卡 / LINE Pay · 點餐叫號一體",
     tag: "現金族 × 長者友善",
@@ -144,25 +162,25 @@ const DEVICES = [
     src: "/images/eastbeauty/device_microwave_locker.jpg",
     fallback: "/images/eastbeauty/setup2.png",
     name: "自助微波取餐櫃",
-    badge: "半自助",
-    badgeColor: "#06c167",
-    desc: "掃碼自動開門 · 自動微波 · 顧客自取",
-    tag: "MCS 雲端串接",
+    badge: "⭐ MCS 自研",
+    badgeColor: "#f5c842",
+    desc: "掃碼自動開門 · 自動微波加熱 · 顧客自取",
+    tag: "🏭 台灣自主製造",
   },
   {
     src: "/images/eastbeauty/device_vending_machine.jpg",
     fallback: "/images/eastbeauty/scene1.png",
     name: "觸控螢幕智慧販賣機",
-    badge: "⭐ MCS 自研",
-    badgeColor: "#f5c842",
+    badge: "自助",
+    badgeColor: "#06c167",
     desc: "21吋全觸控介面 · 掃碼 / NFC 結帳 · AI 補貨預測",
-    tag: "🏭 台灣自主製造",
+    tag: "MCS 雲端串接",
   },
 ];
 
 const PHASES = [
-  { num: "01", name: "駁二旗艦 POC", timeline: "2026 Q3", items: ["完整半自助模組導入", "MCS 平台串接驗證", "消費數據蒐集分析", "SOP 標準化建立"] },
-  { num: "02", name: "選點升級", timeline: "2026 Q4 – 2027 Q1", items: ["複製半自助模組", "2-3 個新據點", "品牌識別統一", "2 人運作目標"] },
+  { num: "01", name: "駁二旗艦 POC", timeline: "2026 Q3", items: ["完整自助模組導入", "MCS 平台串接驗證", "消費數據蒐集分析", "SOP 標準化建立"] },
+  { num: "02", name: "選點升級", timeline: "2026 Q4 – 2027 Q1", items: ["複製自助模組", "2-3 個新據點", "品牌識別統一", "2 人運作目標"] },
   { num: "03", name: "規模複製", timeline: "2027+", items: ["全台 AI 餐廳授權", "MCS SaaS 管理", "數據驅動菜單優化", "對外招商複製"] },
 ];
 
@@ -276,7 +294,7 @@ export default function EastBeautyPage() {
         .bg-navy{background:#0d2240;}
         .bg-deep{background:#080f1a;}
 
-        /* ── CORE CONCEPT — 半自助 ── */
+        /* ── CORE CONCEPT — 自助 ── */
         .eb-core-wrap{background:linear-gradient(135deg,#080f1a 0%,#0d2240 60%,#122d50 100%);padding:80px 24px;}
         .eb-core-inner{max-width:1100px;margin:0 auto;}
         .eb-core-badge{
@@ -689,10 +707,10 @@ export default function EastBeautyPage() {
       <nav className="eb-nav">
         <div>
           <span className="eb-nav-brand">東方美 × MCS 銓幻元</span>
-          <span className="eb-nav-sub">半自助科技餐廳</span>
+          <span className="eb-nav-sub">自助科技餐廳</span>
         </div>
         <div className="eb-nav-links">
-          <a href="#concept">半自助概念</a>
+          <a href="#concept">自助概念</a>
           <a href="#flagship">旗艦店</a>
           <a href="#devices">設備陣列</a>
           <a href="#strategy">展店策略</a>
@@ -706,7 +724,7 @@ export default function EastBeautyPage() {
       <section className="eb-hero" ref={heroRef}>
         <div className="eb-hero-eyebrow">✦ STRATEGY PRESENTATION 2026 ✦</div>
         <h1>東方美 × <em>MCS 銓幻元</em></h1>
-        <p className="eb-hero-tagline">新型態 <strong style={{ color: "#06c167" }}>半自助</strong> 科技餐廳發展策略</p>
+        <p className="eb-hero-tagline">新型態 <strong style={{ color: "#06c167" }}>自助</strong> 科技餐廳發展策略</p>
         <p className="eb-hero-sub">從一家店的試驗，到一個可複製的系統</p>
         <div className="eb-hero-mcs">
           <span>🤖</span>
@@ -715,21 +733,21 @@ export default function EastBeautyPage() {
         <div className="eb-scroll">SCROLL ↓</div>
       </section>
 
-      {/* ② 半自助核心概念 */}
+      {/* ② 自助核心概念 */}
       <div className="eb-core-wrap" id="concept">
         <div ref={sCore} className="eb-fade eb-core-inner">
-          <div className="eb-core-badge">💡 CORE CONCEPT — 半自助模式</div>
+          <div className="eb-core-badge">💡 CORE CONCEPT — 自助模式</div>
           <div className="eb-core-title">
-            <em>半自助</em>，才是<br />快速展店的關鍵
+            <em>自助</em>，才是<br />快速展店的關鍵
           </div>
           <p className="eb-core-sub">
             全自動太貴、太複雜，全人工太貴、太難複製。<br />
-            <strong style={{ color: "#f5c842" }}>半自助 = 機器做重複的事，人做有溫度的事。</strong><br />
+            <strong style={{ color: "#f5c842" }}>自助 = 機器做重複的事，人做有溫度的事。</strong><br />
             成本低、人力少、SOP 標準化——讓每一個新據點都能在 3 天內複製開業。
           </p>
           <div className="eb-core-grid">
             {[
-              { n: "40", s: "%", title: "人力成本降低", desc: "5 個半自助站點取代傳統 5 個工作崗位，2 人即可運作全店" },
+              { n: "40", s: "%", title: "人力成本降低", desc: "5 個自助站點取代傳統 5 個工作崗位，2 人即可運作全店" },
               { n: "3", s: "天", title: "展店複製速度", desc: "標準化 SOP + 模組化設備，新據點可快速複製上線" },
               { n: "2", s: "x", title: "翻桌率提升", desc: "零等待取餐、自助點餐，縮短每桌平均停留時間" },
             ].map((c, i) => (
@@ -741,10 +759,10 @@ export default function EastBeautyPage() {
             ))}
           </div>
 
-          {/* 五大半自助站 */}
+          {/* 五大自助站 */}
           <div style={{ marginBottom: "16px" }}>
             <div style={{ color: "rgba(255,255,255,.45)", fontSize: ".7rem", letterSpacing: ".12em", fontWeight: 700, textTransform: "uppercase", marginBottom: "20px" }}>
-              五大半自助服務站
+              五大自助服務站
             </div>
             <div className="eb-stations">
               {SEMI_STATIONS.map((s, i) => (
@@ -781,7 +799,7 @@ export default function EastBeautyPage() {
             <div>
               <p className="eb-lead">
                 東方美擁有成熟選址能力、穩定客群與完整供應鏈。
-                以東方美作為半自助 AI 模組的 <strong>第一個驗證場域</strong>，
+                以東方美作為自助 AI 模組的 <strong>第一個驗證場域</strong>，
                 在既有客流中蒐集數據、修正 SOP，再以標準化方式複製展店。
                 風險最低，學習最快。
               </p>
@@ -806,7 +824,7 @@ export default function EastBeautyPage() {
         <div ref={sFlagship} className="eb-fade">
           <section className="eb-section" id="flagship">
             <div className="eb-label">KAOHSIUNG PIER-2 FLAGSHIP</div>
-            <div className="eb-title">駁二旗艦 — <em>半自助 POC 示範店</em></div>
+            <div className="eb-title">駁二旗艦 — <em>自助 POC 示範店</em></div>
             <div className="eb-rule" />
             <div className="eb-gallery-main">
               <Image src={RENDERS[activeRender].src} alt={RENDERS[activeRender].label} fill style={{ objectFit: "cover" }} />
@@ -823,11 +841,11 @@ export default function EastBeautyPage() {
         </div>
       </div>
 
-      {/* ⑤ 半自助設備陣列 */}
+      {/* ⑤ 自助設備陣列 */}
       <div ref={sDevices} className="eb-fade">
         <section className="eb-section" id="devices">
-          <div className="eb-label">SEMI-AUTO DEVICES</div>
-          <div className="eb-title">八大<em>半自助設備</em></div>
+          <div className="eb-label">SMART SELF-SERVICE DEVICES</div>
+          <div className="eb-title">九大<em>自助設備</em></div>
           <div className="eb-rule" />
           <p className="eb-lead">
             每一台設備都代表一個可以省下的人力崗位。
@@ -855,11 +873,11 @@ export default function EastBeautyPage() {
         </section>
       </div>
 
-      {/* ⑥ 半自助蒸煮拉麵機 */}
+      {/* ⑥ 自助蒸煮拉麵機 */}
       <div className="eb-ramen-wrap">
         <div ref={sRamen} className="eb-fade eb-ramen-inner">
           <div className="eb-label">SEMI-AUTO RAMEN</div>
-          <div className="eb-title">半自助<em>蒸煮拉麵機</em></div>
+          <div className="eb-title">自助<em>蒸煮拉麵機</em></div>
           <div className="eb-rule" />
           <div className="eb-ramen-grid">
             <div>
@@ -867,7 +885,7 @@ export default function EastBeautyPage() {
                 員工只需將密封杯放入蒸煮艙，
                 機器自動計時、加熱、完成後提醒取出。
                 <strong>零廚藝門檻、出品穩定、複製容易</strong>——
-                這就是半自助的精髓。
+                這就是自助的精髓。
               </p>
               <div className="eb-ramen-steps">
                 {[
@@ -895,7 +913,7 @@ export default function EastBeautyPage() {
                   style={{ width: "100%", display: "block" }}
                 />
               </div>
-              <p style={{ fontSize: ".72rem", color: "#888", textAlign: "center", marginTop: "6px" }}>▲ 半自助蒸煮機實機操作示意</p>
+              <p style={{ fontSize: ".72rem", color: "#888", textAlign: "center", marginTop: "6px" }}>▲ 自助蒸煮機實機操作示意</p>
               <div style={{ marginTop: "16px" }} className="eb-video-wrap">
                 <video
                   src="/images/eastbeauty/ramen_machine2.mp4"
@@ -915,7 +933,7 @@ export default function EastBeautyPage() {
           <div className="eb-locker-title">GraBox <em>智取冰櫃</em> — 我們的核心武器</div>
           <p className="eb-locker-sub">
             100% 台灣自主研發製造，不是外購、不是貼牌。
-            GraBox 是半自助取餐站的關鍵設備——
+            GraBox 是自助取餐站的關鍵設備——
             顧客掃碼即自動開艙，員工只需補貨，零人力守候。
           </p>
           <div className="eb-locker-photos">
@@ -977,7 +995,7 @@ export default function EastBeautyPage() {
             <div className="eb-title">以東方美為基地，<em>滾動式 AI 展店</em></div>
             <div className="eb-rule" />
             <p className="eb-lead">
-              先以駁二旗艦驗證半自助模組，數據成熟後再複製——
+              先以駁二旗艦驗證自助模組，數據成熟後再複製——
               每一個新據點都帶著上一個場域的學習，越開越快、越開越穩。
             </p>
             <div className="eb-phases">
@@ -1046,7 +1064,7 @@ export default function EastBeautyPage() {
               {
                 icon: "💰",
                 title: "低門檻開店",
-                desc: "每家店只需貸款 100 萬即可啟動。\n小坪數（15–30坪）、少人力（2人）、設備半自助化，大幅壓低固定成本，讓加盟者快速回本、獲利。",
+                desc: "每家店只需貸款 100 萬即可啟動。\n小坪數（15–30坪）、少人力（2人）、設備自助化，大幅壓低固定成本，讓加盟者快速回本、獲利。",
                 tag: "貸款 100萬起",
               },
               {
@@ -1084,7 +1102,7 @@ export default function EastBeautyPage() {
               {[
                 { icon: "🏭", title: "東方美實業總部", desc: "中央廚房 · 備料" },
                 { icon: "🚛", title: "上百台車隊", desc: "每日定時配送" },
-                { icon: "🍜", title: "千家門店", desc: "蒸煮烤 · 半自助出餐" },
+                { icon: "🍜", title: "千家門店", desc: "蒸煮烤 · 自助出餐" },
                 { icon: "📊", title: "AI 數據回報", desc: "即時回傳 MCS" },
                 { icon: "⚙️", title: "流程持續優化", desc: "AI 推送新 SOP" },
               ].map((n, i, arr) => (
@@ -1103,7 +1121,7 @@ export default function EastBeautyPage() {
           {/* 副品牌咖啡茶飲 BAR */}
           <div style={{ marginBottom: "16px" }}>
             <div className="eb-label" style={{ color: "#f5c842aa" }}>SUB-BRAND EXPANSION</div>
-            <div className="eb-title" style={{ color: "#fff", marginBottom: "24px" }}>副品牌：<em>半自助咖啡茶飲 BAR</em></div>
+            <div className="eb-title" style={{ color: "#fff", marginBottom: "24px" }}>副品牌：<em>自助咖啡茶飲 BAR</em></div>
           </div>
           <div className="eb-subbrand">
             <div className="eb-subbrand-img">
@@ -1115,14 +1133,14 @@ export default function EastBeautyPage() {
               <div className="eb-subbrand-badge">🔀 副品牌策略</div>
               <div className="eb-subbrand-title">以主店為基地，<br /><em>向外輻射擴充</em></div>
               <p className="eb-subbrand-desc">
-                每家東方美 AI 門店，同時作為「半自助咖啡茶飲 BAR」的後勤據點——
+                每家東方美 AI 門店，同時作為「自助咖啡茶飲 BAR」的後勤據點——
                 提供設備存貨、補貨、清潔維護服務，讓副品牌 BAR 可以用極低成本快速落地，
                 形成主副品牌相互支撐的最強連鎖網絡。
               </p>
               <div className="eb-subbrand-points">
                 {[
                   "主店承擔庫存與補貨責任，BAR 只需專注銷售",
-                  "半自助設備（茶飲機 + 咖啡機）+ 1 人即可操作",
+                  "自助設備（茶飲機 + 咖啡機）+ 1 人即可操作",
                   "品牌共用 MCS AI 後台，數據統一管理",
                   "副品牌可快速進駐商圈、辦公樓、學區等高流量點",
                   "主副品牌形成「實體後勤網」× 「數位 AI 網」雙層防禦",
@@ -1175,7 +1193,7 @@ export default function EastBeautyPage() {
                   {[
                     "貸款 100 萬即可啟動，門檻低",
                     "小坪數（15–30 坪）· 租金成本低",
-                    "MCS 半自助設備一站到位",
+                    "MCS 自助設備一站到位",
                     "東方美實業每日供應半成品",
                     "無需廚師資格，SOP 極度標準化",
                     "GraBox 智取櫃 + 茶飲機 + 蒸煮機即為完整配備",
@@ -1329,7 +1347,7 @@ export default function EastBeautyPage() {
                   fallback: "/images/eastbeauty/scene1.png",
                   num: "05",
                   name: "共享辦公 · WeWork",
-                  devices: "半自助茶飲機 + 冷藏自取冰櫃",
+                  devices: "自助茶飲機 + 冷藏自取冰櫃",
                   desc: "早午餐 + 下午茶一站滿足，精品咖啡茶飲 + 健康零食，高客單消費者",
                   tag: "精準客群 · 高客單",
                 },
@@ -1496,7 +1514,7 @@ export default function EastBeautyPage() {
         <div className="eb-cta-title">準備好見證 <em>東方美 2.0</em>？</div>
         <p className="eb-cta-sub">
           邀請您親臨駁二旗艦，體驗 2 人如何運作一間完整的科技餐廳。<br />
-          半自助不是未來，是現在就能部署的商業模型。
+          自助不是未來，是現在就能部署的商業模型。
         </p>
         <a className="eb-btn" href="mailto:service@mcstation.ai">預約參訪 / 洽談合作</a>
         <div className="eb-contact">
