@@ -4,7 +4,9 @@ Using Gemini Imagen 4
 """
 import os, base64, requests
 
-API_KEY = "AIzaSyCRpV_VfVujaJ99PMd_33qR9AjvnabkY4g"
+import sys as _sys; _sys.path.insert(0,__import__("os").path.dirname(__file__))
+from _load_gemini_key import get_gemini_key
+API_KEY = get_gemini_key()
 MODEL   = "imagen-4.0-generate-001"
 URL     = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:predict?key={API_KEY}"
 OUT_DIR = r"C:\Users\JasonLee\claude_code_projects\CMO\public\images\eastbeauty"

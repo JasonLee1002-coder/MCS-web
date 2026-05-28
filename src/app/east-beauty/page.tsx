@@ -1212,9 +1212,9 @@ export default function EastBeautyPage() {
             {/* GraBox 概念圖 + 使用流程 */}
             <div className="eb-grabox-concept">
               <div className="eb-grabox-concept-img">
-                <Image src="/images/eastbeauty/grabox_cold_unit.jpg" alt="GraBox 智取冰櫃" fill
+                <Image src="/images/eastbeauty/sat_v2_grabox_frozen.jpg" alt="GraBox 冷凍自取冰櫃" fill
                   style={{ objectFit: "cover" }}
-                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/eastbeauty/locker_003.jpg"; }} />
+                  onError={(e) => { (e.target as HTMLImageElement).src = "/images/eastbeauty/grabox_cold_unit.jpg"; }} />
               </div>
               <div className="eb-grabox-concept-body">
                 <div className="eb-grabox-concept-badge">⭐ MCS 銓幻元 自研產品</div>
@@ -1242,7 +1242,7 @@ export default function EastBeautyPage() {
 
             {/* Uber Eats Banner */}
             <div className="eb-ubereats-banner">
-              <Image src="/images/eastbeauty/ubereats_grabox_pickup.jpg" alt="Uber Eats × GraBox" fill
+              <Image src="/images/eastbeauty/sat_v2_ubereats.jpg" alt="Uber Eats × GraBox" fill
                 style={{ objectFit: "cover" }}
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
               <div className="eb-ubereats-overlay">
@@ -1256,41 +1256,45 @@ export default function EastBeautyPage() {
               </div>
             </div>
 
-            {/* 4 個衛星場景 */}
-            <div className="eb-scenarios-label">✦ 衛星擴散場景 — 第一波</div>
+            {/* 衛星場景 01–04 */}
+            <div className="eb-scenarios-label">✦ 衛星擴散場景 — 第一波（01–04）</div>
             <div className="eb-scenarios-grid">
               {[
                 {
-                  src: "/images/eastbeauty/satellite_hotel.jpg",
+                  src: "/images/eastbeauty/sat_v2_hotel.jpg",
                   fallback: "/images/eastbeauty/render1.png",
                   num: "01",
-                  name: "酒店 · 飯店大廳",
-                  desc: "旅客 24H 自取飲料、早餐杯點、下午茶，無需等候 room service",
-                  tag: "高單價 · 高頻次",
+                  name: "中小型旅館 · 民宿",
+                  devices: "冷藏自取冰櫃 + 桌上奶茶機",
+                  desc: "50 房以下旅館無超商進駐資格，GraBox 無 MG 門檻，1 天安裝即上線",
+                  tag: "藍海 · 1,500 家目標",
                 },
                 {
-                  src: "/images/eastbeauty/satellite_student_dorm.jpg",
+                  src: "/images/eastbeauty/sat_v2_dorm.jpg",
                   fallback: "/images/eastbeauty/render2.png",
                   num: "02",
                   name: "大學學生宿舍",
-                  desc: "宵夜需求強烈，珍奶 + 冷凍拉麵組合，蒸煮機自助加熱，深夜照常服務",
-                  tag: "高頻 · 夜間需求",
+                  devices: "冷凍自取冰櫃 + 半自助蒸煮機",
+                  desc: "宵夜高需求：取冷凍拉麵碗 → 蒸煮機 3 分鐘，深夜 24H 無人運作",
+                  tag: "夜間高頻 · 黏著度高",
                 },
                 {
-                  src: "/images/eastbeauty/satellite_migrant_worker.jpg",
+                  src: "/images/eastbeauty/sat_v2_worker.jpg",
                   fallback: "/images/eastbeauty/render3.png",
                   num: "03",
-                  name: "移工宿舍 · 廠房",
-                  desc: "多語介面（中/越/印），提供東南亞口味選項，班次輪替 24H 消費",
-                  tag: "多語 · 穩定高流量",
+                  name: "移工宿舍 · 廠區",
+                  devices: "冷凍自取冰櫃 + 販賣機 + 蒸煮機",
+                  desc: "透過仲介公司批量談點，多語介面，班次輪替 24H 穩定消費",
+                  tag: "仲介通路 · 批量落地",
                 },
                 {
-                  src: "/images/eastbeauty/satellite_military.jpg",
+                  src: "/images/eastbeauty/sat_v2_clinic.jpg",
                   fallback: "/images/eastbeauty/render4.png",
                   num: "04",
-                  name: "軍事基地 · 營區",
-                  desc: "封閉場域、人口密集、無便利店，GraBox 衛星站填補飲食空缺",
-                  tag: "封閉場域 · 獨佔",
+                  name: "診所候診區",
+                  devices: "冷藏自取冰櫃 + 桌上溫飲機",
+                  desc: "候診時間長，家屬消費意願強，院長一人拍板即可導入，決策快",
+                  tag: "高客單 · 決策快",
                 },
               ].map((s, i) => (
                 <div key={i} className="eb-scenario-card">
@@ -1300,6 +1304,7 @@ export default function EastBeautyPage() {
                   <div className="eb-scenario-content">
                     <div className="eb-scenario-num">SATELLITE {s.num}</div>
                     <div className="eb-scenario-name">{s.name}</div>
+                    <div style={{ fontSize: ".65rem", color: "#f5c842aa", marginBottom: "3px" }}>📦 {s.devices}</div>
                     <div className="eb-scenario-desc">{s.desc}</div>
                     <div className="eb-scenario-tag">{s.tag}</div>
                   </div>
@@ -1315,42 +1320,55 @@ export default function EastBeautyPage() {
         <div className="eb-satellite-p2-inner">
           <div ref={sSatellite2} className="eb-fade">
 
-            {/* 3 個衛星場景 */}
-            <div className="eb-scenarios-label" style={{ marginBottom: "18px" }}>✦ 衛星擴散場景 — 第二波</div>
-            <div className="eb-scenarios-3col">
+            {/* 衛星場景 05–08 */}
+            <div className="eb-scenarios-label" style={{ marginBottom: "18px" }}>✦ 衛星擴散場景 — 第二波（05–08）</div>
+            <div className="eb-scenarios-grid">
               {[
                 {
-                  src: "/images/eastbeauty/satellite_coworking.jpg",
+                  src: "/images/eastbeauty/sat_v2_cowork.jpg",
                   fallback: "/images/eastbeauty/scene1.png",
                   num: "05",
-                  name: "共享辦公空間",
-                  desc: "創業者與自由工作者的早午餐、下午茶需求，無人咖啡 + GraBox 組合完美契合",
+                  name: "共享辦公 · WeWork",
+                  devices: "半自助茶飲機 + 冷藏自取冰櫃",
+                  desc: "早午餐 + 下午茶一站滿足，精品咖啡茶飲 + 健康零食，高客單消費者",
                   tag: "精準客群 · 高客單",
                 },
                 {
-                  src: "/images/eastbeauty/satellite_corporate.jpg",
+                  src: "/images/eastbeauty/sat_v2_office.jpg",
                   fallback: "/images/eastbeauty/scene2.png",
                   num: "06",
                   name: "企業大樓 · 商辦",
-                  desc: "午餐高峰自助取餐取代外送，節省等待時間；公司福委可採購月票方案",
-                  tag: "午餐高峰 · 企業採購",
+                  devices: "冷凍自取冰櫃 + 蒸煮機 + 微波取餐櫃",
+                  desc: "午餐高峰取代外送，冷凍便當蒸煮即食，福委採購月票批量方案",
+                  tag: "午餐峰值 · 企業採購",
                 },
                 {
-                  src: "/images/eastbeauty/satellite_community.jpg",
+                  src: "/images/eastbeauty/sat_v2_community.jpg",
                   fallback: "/images/eastbeauty/locker_outside.jpg",
                   num: "07",
                   name: "社區 · 公寓大廳",
-                  desc: "居民下班後取餐、週末早午餐，24H 無人操作，物管室旁即可落地",
+                  devices: "冷藏自取冰櫃 + 智慧販賣機",
+                  desc: "居民下班取飲料、宵夜，物管室旁 24H 落地，全年齡友善操作",
                   tag: "社區鄰里 · 高黏著",
                 },
+                {
+                  src: "/images/eastbeauty/sat_v2_hospital.jpg",
+                  fallback: "/images/eastbeauty/render1.png",
+                  num: "08",
+                  name: "醫院 · 家屬等候區",
+                  devices: "冷藏自取冰櫃 + 桌上溫飲機",
+                  desc: "家屬等待時間長、消費力強，冷熱飲 + 健康輕食組合，院內空缺大",
+                  tag: "新增場域 · 高潛力",
+                },
               ].map((s, i) => (
-                <div key={i} className="eb-scenario-card" style={{ height: "260px" }}>
+                <div key={i} className="eb-scenario-card">
                   <Image src={s.src} alt={s.name} fill style={{ objectFit: "cover" }}
                     onError={(e) => { (e.target as HTMLImageElement).src = s.fallback; }} />
                   <div className="eb-scenario-overlay" />
                   <div className="eb-scenario-content">
                     <div className="eb-scenario-num">SATELLITE {s.num}</div>
                     <div className="eb-scenario-name">{s.name}</div>
+                    <div style={{ fontSize: ".65rem", color: "#f5c842aa", marginBottom: "3px" }}>📦 {s.devices}</div>
                     <div className="eb-scenario-desc">{s.desc}</div>
                     <div className="eb-scenario-tag">{s.tag}</div>
                   </div>
@@ -1364,17 +1382,17 @@ export default function EastBeautyPage() {
             <div style={{ textAlign: "center", marginBottom: "20px" }}>
               <div className="eb-satellite-eyebrow">NETWORK MAP</div>
               <div className="eb-satellite-title" style={{ fontSize: "clamp(1.4rem,3vw,2.2rem)" }}>
-                東方美旗艦 × <em>7 大衛星節點</em><br />
+                東方美旗艦 × <em>8 大衛星節點</em><br />
                 <span style={{ fontSize: ".6em", color: "rgba(255,255,255,.5)", fontWeight: 400 }}>以主店為母艦，向外擴散，形成最密集的 AI 餐飲毛細網</span>
               </div>
             </div>
             <div className="eb-network-map">
-              <Image src="/images/eastbeauty/satellite_network_map.jpg" alt="衛星擴散網地圖" width={1100} height={620}
+              <Image src="/images/eastbeauty/sat_v2_network_map.jpg" alt="衛星擴散網地圖" width={1100} height={620}
                 className="eb-network-map-img"
                 style={{ width: "100%", height: "auto", display: "block" }}
-                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                onError={(e) => { (e.target as HTMLImageElement).src = "/images/eastbeauty/satellite_network_map.jpg"; }} />
             </div>
-            <div className="eb-network-caption">▲ 智取冰櫃衛星擴散網 — 以東方美 AI 主店為核心，7 類場域輻射部署</div>
+            <div className="eb-network-caption">▲ 智取冰櫃衛星擴散網 — 以東方美 AI 主店為核心，8 大場域輻射部署</div>
 
             <div style={{ marginTop: "40px", background: "rgba(245,200,66,.06)", border: "1px solid rgba(245,200,66,.2)", borderRadius: "12px", padding: "28px 32px" }}>
               <div style={{ color: "#f5c842", fontWeight: 700, fontSize: "1rem", marginBottom: "10px" }}>💡 衛星站商業模式</div>
