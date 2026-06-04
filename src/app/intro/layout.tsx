@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "MCS 銓幻元科技 | AI 智慧設備平台 — Company Overview",
   description:
-    "MCS builds AI-powered smart device platforms — hardware, firmware, cloud, and AI — all designed and operated in-house. Serving leading convenience chains, EB+ 970 stores, Japan Shuto Expressway, and more. 100% Made in Taiwan.",
+    "MCS builds AI-powered smart device platforms — hardware, firmware, cloud, and AI — all designed and operated in-house. Serving leading convenience chains, EB+ multi-location chain, Japan Shuto Expressway, and more. 100% Made in Taiwan.",
   openGraph: {
     title: "MCS 銓幻元科技 — AI Smart Device Platform",
     description:

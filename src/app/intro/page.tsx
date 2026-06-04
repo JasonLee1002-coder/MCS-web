@@ -164,10 +164,8 @@ const T = {
       sub: "MCS 銓幻元科技 — 不是賣設備，是以 AI + IoT 取代人工服務流程的智慧設備平台。從機構設計、韌體控制到 OmniCore 雲端 AI，每一層都自主設計、整合、維運。",
       cta: "預約產品展示",
       stats: [
-        { num: "20+", label: "年業界經驗" },
-        { num: "200+", label: "知名連鎖通路智販機（2026起）" },
-        { num: "10+", label: "智慧設備機型" },
-        { num: "100%", label: "MIT 台灣研發製造" },
+        { num: "4.89", label: "★ 東方美加盟滿意度評分" },
+        { num: "30+", label: "年東方美品牌歷史" },
       ],
     },
     stack: {
@@ -244,28 +242,28 @@ const T = {
     ebplus: {
       label: "台灣指標客戶",
       title: "東方美集團 × OmniCore 全通路自助化",
-      badge: "970+ 門市・台灣指標早午餐連鎖",
+      badge: "多家門市・台灣指標早午餐連鎖",
       roleChip: "MCS 角色：軟體整合商 ＋ 平台提供商",
-      sub: "MCS 不是東方美的硬體供應商——我們是協助 970+ 連鎖早午餐門市完成全通路「自助化」的技術夥伴。從 GraBox 取餐、LINE 點餐到 192 台配送車調度，全部透過 OmniCore 統一串接。",
+      sub: "MCS 不是東方美的硬體供應商——我們是協助多家連鎖早午餐門市完成全通路「自助化」的技術夥伴。從 GraBox 取餐、LINE 點餐到多台配送車調度，全部透過 OmniCore 統一串接。",
       roleNote: "✦ 自助化 ≠ 無人化。MCS 協助讓我們的合作夥伴從重複人工動作中解放，專注於真正有價值的服務品質。",
       stats: [
-        { num: "970+", label: "連鎖門市" },
+        { num: "多家", label: "連鎖門市" },
         { num: "50台", label: "2026 H2 首批 GraBox 出貨" },
-        { num: "192台", label: "配送車 GPS 調度（OmniCore 內建）" },
+        { num: "多台", label: "配送車 GPS 調度（OmniCore 內建）" },
         { num: "1%", label: "月 GMV 平台費" },
       ],
       features: [
         "LINE LIFF 點餐 → GraBox 自取，免等叫號",
-        "192 台配送車 GPS 即時追蹤 ＋ 路線優化",
-        "970 門市庫存水位即時掌握",
+        "多台配送車 GPS 即時追蹤 ＋ 路線優化",
+        "多家門市庫存水位即時掌握",
         "導入 OmniCore 後，企業僅需自建 IT 成本的 5–12%",
       ],
     },
     xiangyao: {
       label: "特定場域客戶",
-      title: "翔耀實業 × 特定場域智販機",
+      title: "上市集團 × 特定場域智販機",
       badge: "軍事基地・移工宿舍・工廠",
-      sub: "翔耀實業（母公司嵩達光電，上櫃申請中）在特定場域擁有無可複製的進場能力。MCS 提供設備與 OmniCore 平台，翔耀出場域，合作公式：場域換技術，收入按比例分潤。",
+      sub: "合作上市集團在特定場域擁有無可複製的進場能力。MCS 提供設備與 OmniCore 平台，上市集團出場域，合作公式：場域換技術，收入按比例分潤。",
       stats: [
         { num: "特定場域", label: "軍方・移工宿舍・工廠・診所" },
         { num: "悠遊卡", label: "移工最熟悉的支付，無需手機" },
@@ -367,10 +365,8 @@ const T = {
       sub: "MCS builds smart device platforms — from cabinet mechanism to cloud AI — entirely in-house. One partner for hardware, firmware, on-device software, OmniCore cloud, and third-party integrations.",
       cta: "Request a Demo",
       stats: [
-        { num: "20+", label: "Years of Industry Experience" },
-        { num: "200+", label: "Major Chain Units (from 2026)" },
-        { num: "10+", label: "Device Types" },
-        { num: "100%", label: "Made in Taiwan" },
+        { num: "4.89", label: "★ EB+ Franchise Satisfaction Score" },
+        { num: "30+", label: "Years of EB+ Brand History" },
       ],
     },
     stack: {
@@ -446,29 +442,29 @@ const T = {
     },
     ebplus: {
       label: "Taiwan Anchor Case",
-      title: "How EB+ Automated 970+ Stores with OmniCore",
-      badge: "970+ Locations · Taiwan's #1 Breakfast Chain",
+      title: "How EB+ Automated Its Chain with OmniCore",
+      badge: "Multiple Locations · Taiwan's #1 Breakfast Chain",
       roleChip: "MCS Role: Software Integrator + Platform Provider",
-      sub: "MCS is not EB+'s hardware vendor — we are the technology partner enabling 970+ breakfast chain locations to step away from manual workflows. GraBox pickup, LINE ordering, and 192-vehicle GPS dispatch — all unified through OmniCore, at 5–12% of self-build IT cost.",
+      sub: "MCS is not EB+'s hardware vendor — we are the technology partner enabling multi-location breakfast chain to step away from manual workflows. GraBox pickup, LINE ordering, and multi-vehicle GPS dispatch — all unified through OmniCore, at 5–12% of self-build IT cost.",
       roleNote: "✦ Assisted Automation ≠ Fully Unmanned. MCS frees our partners from repetitive tasks so they can focus on delivering real service quality.",
       stats: [
-        { num: "970+", label: "Chain Locations" },
+        { num: "Multi", label: "Chain Locations" },
         { num: "50 Units", label: "First GraBox Batch (H2 2026)" },
-        { num: "192 Trucks", label: "GPS Fleet Dispatch (OmniCore built-in)" },
+        { num: "Fleet", label: "GPS Fleet Dispatch (OmniCore built-in)" },
         { num: "1%", label: "Platform Fee (% Monthly GMV)" },
       ],
       features: [
         "LINE LIFF ordering → GraBox self-pickup, no queue",
-        "192-truck GPS tracking + route optimization",
-        "970 stores inventory levels at a glance",
+        "Multi-truck GPS tracking + route optimization",
+        "All stores inventory levels at a glance",
         "With OmniCore, enterprises pay only 5–12% of self-build IT costs",
       ],
     },
     xiangyao: {
       label: "Targeted-Venue Client",
-      title: "Xiangyao × Targeted-Venue Smart Vending",
+      title: "Listed Partner × Targeted-Venue Smart Vending",
       badge: "Military Base · Migrant Worker Dorms · Factories",
-      sub: "Xiangyao (parent company Sonda Optoelectronics — OTC listing application in progress) holds unmatched access to targeted venues. MCS supplies equipment and OmniCore. Formula: venue access meets technology — revenue shared proportionally.",
+      sub: "Our listed company partner holds unmatched access to targeted venues. MCS supplies equipment and OmniCore. Formula: venue access meets technology — revenue shared proportionally.",
       stats: [
         { num: "Closed Venues", label: "Military · Dorms · Factories · Clinics" },
         { num: "EasyCard", label: "Migrant worker-friendly, no smartphone needed" },
@@ -570,10 +566,8 @@ const T = {
       sub: "MCS 銓幻元科技 — 単なる機器販売ではありません。AI + IoT により手作業のサービスフローをスマートデバイスプラットフォームに置き換えます。機構設計からOmniCore クラウド AI まで、全レイヤーを自社で設計・統合・運用します。",
       cta: "デモを予約する",
       stats: [
-        { num: "20+", label: "年の業界経験" },
-        { num: "200+", label: "台 大手コンビニ設置（2026年〜）" },
-        { num: "10+", label: "スマートデバイス機種" },
-        { num: "100%", label: "台湾製（MIT）" },
+        { num: "4.89", label: "★ 東方美加盟満足度スコア" },
+        { num: "30+", label: "年の東方美ブランド歴史" },
       ],
     },
     stack: {
@@ -650,28 +644,28 @@ const T = {
     ebplus: {
       label: "台湾主要顧客",
       title: "EB+グループ × OmniCore 全チャネル省人化",
-      badge: "970店舗以上・台湾トップ朝食チェーン",
+      badge: "多店舗・台湾トップ朝食チェーン",
       roleChip: "MCSの役割：ソフトウェアインテグレーター＋プラットフォーム提供",
-      sub: "MCSはEB+のハードウェア販売会社ではありません。970店舗以上の朝食チェーンが全チャネルで「省人化」を実現するための技術パートナーです。GraBoxでの受取・LINEでの注文・192台配送車管理まで、OmniCoreで一元管理します。",
+      sub: "MCSはEB+のハードウェア販売会社ではありません。多店舗展開の朝食チェーンが全チャネルで「省人化」を実現するための技術パートナーです。GraBoxでの受取・LINEでの注文・多台配送車管理まで、OmniCoreで一元管理します。",
       roleNote: "✦ 省人化 ≠ 無人化。MCSはパートナーが単純な反復作業から解放され、真のサービス品質に集中できる環境を支援します。",
       stats: [
-        { num: "970店舗以上", label: "チェーン店舗数" },
+        { num: "多店舗", label: "チェーン店舗数" },
         { num: "50台", label: "2026年下半期 初回GraBox出荷" },
-        { num: "192台", label: "配送車GPS管理（OmniCore標準）" },
+        { num: "多台", label: "配送車GPS管理（OmniCore標準）" },
         { num: "1%", label: "月次GMVプラットフォーム利用料" },
       ],
       features: [
         "LINE LIFF注文 → GraBox自取、行列不要",
-        "192台の配送車GPS追跡＋ルート最適化",
-        "970店舗の在庫水準をリアルタイム把握",
+        "多台配送車GPS追跡＋ルート最適化",
+        "全店舗の在庫水準をリアルタイム把握",
         "OmniCore導入で自社構築費用のわずか5〜12%のコストで運用可能",
       ],
     },
     xiangyao: {
       label: "特定施設向け顧客",
-      title: "翔耀実業 × 特定施設向けスマート自販機",
+      title: "上場会社パートナー × 特定施設向けスマート自販機",
       badge: "軍施設・外国人労働者寮・工場",
-      sub: "翔耀実業（親会社の嵩達光電は上場申請中）は特定施設への参入能力において他の追随を許しません。MCSが機器とOmniCoreプラットフォームを提供し、翔耀が施設を提供する協業モデルです。収益は成果比例で配分します。",
+      sub: "上場会社パートナーは特定施設への参入能力において他の追随を許しません。MCSが機器とOmniCoreプラットフォームを提供し、上場会社が施設を提供する協業モデルです。収益は成果比例で配分します。",
       stats: [
         { num: "特定施設", label: "軍 / 寮 / 工場 / 診療所" },
         { num: "悠遊卡", label: "スマホ不要・外国人労働者向け決済" },
@@ -1251,7 +1245,7 @@ function IllustrationMultiTenant() {
       ))}
       {[
         {x:30, color:"#E8751A", bg:"#FFF7ED", label:"EB+"},
-        {x:150, color:"#7C3AED", bg:"#F5F3FF", label:"翔耀"},
+        {x:150, color:"#7C3AED", bg:"#F5F3FF", label:"上市集團"},
         {x:270, color:"#0891B2", bg:"#ECFEFF", label:"Client C"},
       ].map(({x,color,bg,label},i) => (
         <motion.g key={i}
@@ -1306,7 +1300,7 @@ const MODULE_DETAILS = [
   },
   {
     color: "bg-purple-600", light: "bg-purple-50 border-purple-200",
-    scenario: { zh: "翔耀特定場域管理者查看本週 3 個宿舍各機台銷售排行，發現週五晚 9 點飲料銷量特別高，決定提前補貨。", en: "Xiangyao manager reviews 3 dormitory vending machines weekly. Spots Friday 9pm drink spike — schedules early restocking.", ja: "翔耀の管理者が3つの寮の週間売上を確認。金曜21時の飲料急増を発見し、早めに補充手配。" },
+    scenario: { zh: "上市集團特定場域管理者查看本週 3 個宿舍各機台銷售排行，發現週五晚 9 點飲料銷量特別高，決定提前補貨。", en: "Listed partner's manager reviews 3 dormitory vending machines weekly. Spots Friday 9pm drink spike — schedules early restocking.", ja: "上場会社パートナーの管理者が3つの寮の週間売上を確認。金曜21時の飲料急増を発見し、早めに補充手配。" },
     bullets: { zh: ["機台 / 場域 / 商品 / 日期多維切片", "熱銷商品排行 ＋ 庫存消耗速率", "月 GMV 趨勢圖，支援 CSV / Excel 匯出", "自訂報表週期（日 / 週 / 月）"], en: ["Slice by device, venue, product, date", "Best-sellers + inventory depletion rate", "Monthly GMV trend, CSV / Excel export", "Custom report periods (daily/weekly/monthly)"], ja: ["機器・場所・商品・日付でスライス", "ベストセラー＋在庫消費速度", "月次GMVトレンド、CSV/Excelエクスポート", "レポート周期カスタム（日/週/月）"] },
   },
   {
@@ -1336,7 +1330,7 @@ const MODULE_DETAILS = [
   },
   {
     color: "bg-gray-700", light: "bg-gray-50 border-gray-200",
-    scenario: { zh: "東方美的店長看到橙色品牌後台；翔耀的管理者看到藍色品牌後台；兩者數據完全隔離，互看不到對方任何資料。", en: "EB+ manager sees orange-branded dashboard; Xiangyao manager sees blue-branded dashboard. Zero data cross-visibility between tenants.", ja: "東方美の店長はオレンジブランドのダッシュボード、翔耀の管理者はブルーブランドのダッシュボードを使用。テナント間でデータは完全隔離。" },
+    scenario: { zh: "東方美的店長看到橙色品牌後台；上市集團的管理者看到藍色品牌後台；兩者數據完全隔離，互看不到對方任何資料。", en: "EB+ manager sees orange-branded dashboard; listed partner's manager sees blue-branded dashboard. Zero data cross-visibility between tenants.", ja: "東方美の店長はオレンジブランドのダッシュボード、上場会社パートナーの管理者はブルーブランドのダッシュボードを使用。テナント間でデータは完全隔離。" },
     bullets: { zh: ["tenant_id 隔離，底層 DB 層實作", "各租戶獨立品牌色 / Logo / 語系", "API 層 JWT 含 tenant scope", "個別計費 ＋ 月報表獨立隔離"], en: ["tenant_id isolation at DB level", "Per-tenant brand color / logo / locale", "JWT with tenant scope at API layer", "Separate billing + isolated monthly reports"], ja: ["DB層でのtenant_id隔離", "テナント別ブランドカラー/ロゴ/言語設定", "API層でJWTにtenantスコープ付与", "個別請求＋月次レポート完全隔離"] },
   },
 ];
@@ -2347,42 +2341,39 @@ export default function IntroPage() {
       </header>
 
       {/* ── Hero ── */}
-      <section className="relative bg-[#060D1A] text-white pt-24 pb-28 px-6 overflow-hidden">
+      <section className="relative pt-24 pb-28 px-6 overflow-hidden" style={{ background: "linear-gradient(135deg, #FAFAF8 0%, #F5F0E8 40%, #EDE5D8 100%)" }}>
         {/* ── Background layers ── */}
-        {/* Central orange radial glow */}
+        {/* Warm champagne glow center */}
         <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 90% 70% at 48% 45%, rgba(232,117,26,0.22) 0%, rgba(27,58,92,0.18) 38%, transparent 68%)" }} />
-        {/* Top-right blue glow */}
+          style={{ background: "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,169,110,0.12) 0%, transparent 65%)" }} />
+        {/* Soft rose hint top-right */}
         <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 55% 45% at 88% 8%, rgba(59,130,246,0.14) 0%, transparent 60%)" }} />
-        {/* Bottom-left teal hint */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 40% 35% at 5% 90%, rgba(20,184,166,0.10) 0%, transparent 55%)" }} />
-        {/* Grid */}
-        <div className="absolute inset-0 opacity-[0.045]"
-          style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
-        {/* Floating particles */}
-        {[...Array(18)].map((_, i) => {
-          const colors = ["#E8751A","#3B82F6","#F59E0B","#14B8A6","#A855F7"];
+          style={{ background: "radial-gradient(ellipse 50% 40% at 85% 10%, rgba(200,16,46,0.06) 0%, transparent 60%)" }} />
+        {/* Grid — subtle warm lines */}
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "linear-gradient(rgba(100,80,50,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(100,80,50,0.8) 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
+        {/* Floating particles — gold tones */}
+        {[...Array(14)].map((_, i) => {
+          const colors = ["#C9A96E","#D4B483","#B8952A","#C8102E","#A0845C"];
           const sz = 2 + (i % 3);
           return (
             <motion.div key={i}
               className="absolute rounded-full pointer-events-none"
               style={{
                 width: sz, height: sz,
-                left: `${(i * 5.6) % 96 + 2}%`,
-                top: `${12 + (i * 4.7) % 76}%`,
+                left: `${(i * 6.8) % 96 + 2}%`,
+                top: `${12 + (i * 5.3) % 76}%`,
                 background: colors[i % colors.length],
-                opacity: 0.5,
+                opacity: 0.35,
               }}
-              animate={{ y: [0, -14, 0], opacity: [0.25, 0.7, 0.25], scale: [1, 1.4, 1] }}
-              transition={{ duration: 2.8 + i * 0.38, repeat: Infinity, ease: "easeInOut", delay: i * 0.22 }}
+              animate={{ y: [0, -12, 0], opacity: [0.15, 0.45, 0.15], scale: [1, 1.3, 1] }}
+              transition={{ duration: 3.2 + i * 0.42, repeat: Infinity, ease: "easeInOut", delay: i * 0.26 }}
             />
           );
         })}
-        {/* Horizontal divider glow line at top */}
+        {/* Top divider — champagne */}
         <div className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent 5%, rgba(232,117,26,0.6) 30%, rgba(59,130,246,0.6) 70%, transparent 95%)" }} />
+          style={{ background: "linear-gradient(90deg, transparent 5%, rgba(201,169,110,0.5) 30%, rgba(200,16,46,0.25) 70%, transparent 95%)" }} />
 
         <div className="max-w-5xl mx-auto relative">
           {/* Animated gradient border badge */}
@@ -2393,12 +2384,12 @@ export default function IntroPage() {
             className="relative inline-flex mb-7"
           >
             <motion.div className="absolute inset-0 rounded-full"
-              style={{ background: "linear-gradient(90deg, #E8751A, #F59E0B, #A855F7, #3B82F6, #E8751A)", backgroundSize: "300% 100%", padding: "1.5px" }}
+              style={{ background: "linear-gradient(90deg, #C9A96E, #D4B483, #C8102E, #C9A96E)", backgroundSize: "300% 100%", padding: "1.5px" }}
               animate={{ backgroundPosition: ["0% 0%", "100% 0%", "0% 0%"] }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             />
-            <div className="relative bg-[#060D1A]/95 rounded-full px-5 py-2 m-[1.5px]">
-              <span className="text-[11px] font-black tracking-[0.22em] uppercase text-[#f5a87a]">{t.hero.badge}</span>
+            <div className="relative bg-white/90 rounded-full px-5 py-2 m-[1.5px]">
+              <span className="text-[11px] font-black tracking-[0.22em] uppercase text-[#8B6914]">{t.hero.badge}</span>
             </div>
           </motion.div>
 
@@ -2409,7 +2400,7 @@ export default function IntroPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-6"
           >
-            <div className="inline-block px-5 py-2 rounded-full border border-[#E8751A]/40 bg-[#E8751A]/10 text-[#f5a87a] text-sm font-bold tracking-wide">
+            <div className="inline-block px-5 py-2 rounded-full border border-[#C9A96E]/50 bg-[#C9A96E]/10 text-[#8B6914] text-sm font-bold tracking-wide">
               {lang === "ja"
                 ? "オンライン×オフライン × サプライチェーン × 全チャネル+会員を統合する唯一のAI小売OS"
                 : lang === "en"
@@ -2423,13 +2414,13 @@ export default function IntroPage() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.08, ease: [0.22,1,0.36,1] }}
-            className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.06] tracking-tight mb-5"
+            className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.06] tracking-tight mb-5 text-[#1a1a2e]"
           >
             {t.hero.title}<br />
-            {/* Shimmer gradient accent */}
+            {/* Shimmer gradient accent — champagne gold */}
             <motion.span
               style={{
-                background: "linear-gradient(105deg, #E8751A 0%, #FBBF24 38%, #F97316 55%, #E8751A 100%)",
+                background: "linear-gradient(105deg, #8B6914 0%, #C9A96E 38%, #D4B483 55%, #8B6914 100%)",
                 backgroundSize: "200% 100%",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -2447,32 +2438,32 @@ export default function IntroPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.22 }}
-            className="text-white/65 text-base md:text-lg max-w-2xl mb-12 leading-relaxed"
+            className="text-[#5a5a6a] text-base md:text-lg max-w-2xl mb-12 leading-relaxed"
           >
             {t.hero.sub}
           </motion.p>
 
-          {/* Stats — glowing cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          {/* Stats — elegant champagne cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 max-w-lg">
             {t.hero.stats.map((s, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.3 + i * 0.09, ease: [0.22,1,0.36,1] }}
+                transition={{ duration: 0.55, delay: 0.3 + i * 0.12, ease: [0.22,1,0.36,1] }}
                 className="group relative"
               >
-                <div className="relative bg-white/[0.04] border border-white/[0.08] rounded-2xl p-4 md:p-5 overflow-hidden hover:border-[#E8751A]/40 transition-all duration-300">
+                <div className="relative bg-white/80 border border-[#C9A96E]/25 rounded-2xl p-5 md:p-6 overflow-hidden hover:border-[#C9A96E]/60 hover:shadow-lg transition-all duration-300" style={{ backdropFilter: "blur(8px)" }}>
                   {/* Top shimmer line */}
-                  <div className="absolute inset-x-0 top-0 h-[1px]"
-                    style={{ background: "linear-gradient(90deg, transparent, rgba(232,117,26,0.6), transparent)" }} />
+                  <div className="absolute inset-x-0 top-0 h-[1.5px] rounded-t-2xl"
+                    style={{ background: "linear-gradient(90deg, transparent, rgba(201,169,110,0.7), transparent)" }} />
                   {/* Inner glow */}
                   <div className="absolute inset-0 rounded-2xl"
-                    style={{ background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(232,117,26,0.14), transparent 70%)" }} />
+                    style={{ background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,169,110,0.08), transparent 70%)" }} />
                   {/* Number */}
-                  <div className="text-4xl md:text-5xl font-black text-[#E8751A] leading-none mb-2 relative">
+                  <div className="text-4xl md:text-5xl font-black text-[#8B6914] leading-none mb-2 relative">
                     <CountUp target={s.num} duration={2.2} />
                   </div>
-                  <div className="text-white/50 text-xs leading-snug relative">{s.label}</div>
+                  <div className="text-[#666] text-sm leading-snug relative font-medium">{s.label}</div>
                 </div>
               </motion.div>
             ))}
@@ -2491,22 +2482,22 @@ export default function IntroPage() {
                 className="relative inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full text-sm overflow-hidden group/cta"
               >
                 {/* Button bg */}
-                <span className="absolute inset-0 rounded-full bg-[#E8751A] group-hover/cta:bg-[#d4651a] transition-colors duration-200" />
+                <span className="absolute inset-0 rounded-full bg-[#8B6914] group-hover/cta:bg-[#7a5c10] transition-colors duration-200" />
                 {/* Glow halo */}
                 <motion.span className="absolute inset-0 rounded-full"
-                  style={{ background: "#E8751A", filter: "blur(14px)", opacity: 0 }}
+                  style={{ background: "#C9A96E", filter: "blur(14px)", opacity: 0 }}
                   whileHover={{ opacity: 0.55 }}
                   transition={{ duration: 0.3 }}
                 />
                 {/* Pulse ring */}
-                <motion.span className="absolute inset-0 rounded-full border-2 border-[#E8751A]"
+                <motion.span className="absolute inset-0 rounded-full border-2 border-[#C9A96E]"
                   animate={{ scale: [1, 1.25, 1.5], opacity: [0.6, 0.2, 0] }}
                   transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
                 />
                 <span className="relative">{t.hero.cta} →</span>
               </a>
               <motion.p
-                className="text-white/30 text-xs"
+                className="text-[#aaa] text-xs"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
               >
                 {lang === "ja" ? "返信は通常 24 時間以内" : lang === "en" ? "Reply within 24 hours" : "24 小時內回覆"}
@@ -3109,12 +3100,12 @@ export default function IntroPage() {
                     },
                     {
                       icon: "🚚",
-                      label: lang === "ja" ? "192台 配送車 GPS 管理" : lang === "en" ? "192-Vehicle GPS Fleet" : "192 台配送車 GPS 調度",
+                      label: lang === "ja" ? "多台 配送車 GPS 管理" : lang === "en" ? "Multi-Vehicle GPS Fleet" : "多台配送車 GPS 調度",
                       detail: lang === "ja" ? "全配送車をリアルタイムGPS追跡・ルート最適化・到着予測" : lang === "en" ? "Real-time GPS tracking, route optimization, ETA prediction" : "即時 GPS 追蹤、路線優化、到達時間預測"
                     },
                     {
                       icon: "🏪",
-                      label: lang === "ja" ? "970店舗 在庫監視" : lang === "en" ? "970-Store Inventory Monitor" : "970 門市庫存監控",
+                      label: lang === "ja" ? "全店舗 在庫監視" : lang === "en" ? "All-Store Inventory Monitor" : "全門市庫存監控",
                       detail: lang === "ja" ? "全店の在庫水準・補充タイミング・食安温度を一元管理" : lang === "en" ? "All-store inventory, restocking timing, food-safety temperature in one view" : "全門市庫存、補貨時機、食安溫控一鍵掌握"
                     },
                   ].map((item, i) => (
@@ -3156,7 +3147,7 @@ export default function IntroPage() {
         </div>
       </section>
 
-      {/* ── 翔耀 特定場域 ── */}
+      {/* ── 上市集團 特定場域 ── */}
       <section className="py-16 px-6 bg-[#1a1a2e]">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
@@ -3227,7 +3218,7 @@ export default function IntroPage() {
                   {lang === "ja" ? "協業モデル" : lang === "en" ? "Partnership Model" : "合作模式"}
                 </div>
                 {[
-                  { from: lang === "ja" ? "翔耀が提供" : lang === "en" ? "Xiangyao provides" : "翔耀提供", item: lang === "ja" ? "特定施設へのアクセス権" : lang === "en" ? "Targeted venue access" : "特定場域進場能力", color: "bg-[#5B2D8E]/30 text-[#c084fc]" },
+                  { from: lang === "ja" ? "上場会社パートナーが提供" : lang === "en" ? "Listed Partner provides" : "上市集團提供", item: lang === "ja" ? "特定施設へのアクセス権" : lang === "en" ? "Targeted venue access" : "特定場域進場能力", color: "bg-[#5B2D8E]/30 text-[#c084fc]" },
                   { from: lang === "ja" ? "MCSが提供" : lang === "en" ? "MCS provides" : "MCS 提供", item: lang === "ja" ? "機器 + OmniCoreプラットフォーム" : lang === "en" ? "Equipment + OmniCore platform" : "設備 ＋ OmniCore 平台", color: "bg-[#E8751A]/20 text-[#f5a87a]" },
                   { from: lang === "ja" ? "収益配分" : lang === "en" ? "Revenue split" : "收益分潤", item: lang === "ja" ? "GMVベースの成果比例分配" : lang === "en" ? "Proportional (GMV-based)" : "按 GMV 比例分潤", color: "bg-green-500/20 text-green-400" },
                 ].map((row, i) => (
@@ -3238,7 +3229,7 @@ export default function IntroPage() {
                 ))}
                 <div className="mt-2 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
                   <div className="text-white/50 text-xs">
-                    {lang === "ja" ? "🏢 嵩達光電（翔耀の親会社）— 上場申請中。MCSとの技術提携がESG・AI導入ストーリーを強化" : lang === "en" ? "🏢 Sonda Optoelectronics (Xiangyao parent) — OTC listing application in progress. MCS partnership strengthens ESG + AI story" : "🏢 嵩達光電（翔耀母公司）上櫃申請中 — MCS 技術合作強化 ESG ＋ AI 賦能故事"}
+                    {lang === "ja" ? "🏢 上場会社パートナー — MCSとの技術提携がESG・AI導入ストーリーを強化" : lang === "en" ? "🏢 Listed company partner — MCS technology partnership strengthens ESG + AI story" : "🏢 上市集團合作夥伴 — MCS 技術合作強化 ESG ＋ AI 賦能故事"}
                   </div>
                 </div>
               </div>
