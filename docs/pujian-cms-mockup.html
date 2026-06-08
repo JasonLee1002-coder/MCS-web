@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>普健生醫 AI 行銷管理中心 — 示意稿</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans TC', system-ui, sans-serif; background: #f0f4f8; color: #1a202c; font-size: 16px; }
+
+/* ── LAYOUT ── */
+.app { display: flex; height: 100vh; overflow: hidden; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 240px; flex-shrink: 0;
+  background: #fff;
+  border-right: 1.5px solid #e2e8f0;
+  display: flex; flex-direction: column;
+  padding: 0;
+}
+.sidebar-logo {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.sidebar-logo .brand { font-size: 17px; font-weight: 800; color: #0f766e; line-height: 1.3; }
+.sidebar-logo .sub { font-size: 11px; color: #94a3b8; margin-top: 2px; letter-spacing: 0.5px; }
+
+.nav { padding: 16px 12px; flex: 1; }
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 10px;
+  font-size: 15px; font-weight: 600; color: #475569;
+  cursor: pointer; margin-bottom: 4px;
+  transition: all 0.15s;
+}
+.nav-item:hover { background: #f0fdf4; color: #0f766e; }
+.nav-item.active { background: #0f766e; color: #fff; }
+.nav-item .icon { font-size: 20px; width: 24px; text-align: center; }
+.nav-badge {
+  margin-left: auto; background: #f59e0b;
+  color: #fff; font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px;
+}
+.nav-badge.green { background: #22c55e; }
+
+.sidebar-user {
+  padding: 16px 20px;
+  border-top: 1px solid #e2e8f0;
+  display: flex; align-items: center; gap: 10px;
+}
+.avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #0f766e, #059669);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.user-info .name { font-size: 13px; font-weight: 700; color: #1a202c; }
+.user-info .role { font-size: 11px; color: #94a3b8; }
+
+/* ── MAIN ── */
+.main { flex: 1; overflow-y: auto; }
+
+/* ── TOPBAR ── */
+.topbar {
+  background: #fff; border-bottom: 1.5px solid #e2e8f0;
+  padding: 16px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 10;
+}
+.topbar h1 { font-size: 22px; font-weight: 800; color: #1a202c; }
+.topbar .date { font-size: 14px; color: #94a3b8; }
+
+/* ── CONTENT ── */
+.content { padding: 28px 32px; }
+
+/* ── STAT CARDS ── */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+.stat-card {
+  background: #fff; border-radius: 14px;
+  padding: 20px 22px;
+  border: 1.5px solid #e2e8f0;
+}
+.stat-card .label { font-size: 13px; color: #94a3b8; font-weight: 600; margin-bottom: 8px; }
+.stat-card .value { font-size: 32px; font-weight: 800; color: #1a202c; line-height: 1; }
+.stat-card .sub { font-size: 12px; color: #94a3b8; margin-top: 6px; }
+.stat-card.highlight { background: #0f766e; border-color: #0f766e; }
+.stat-card.highlight .label { color: rgba(255,255,255,0.7); }
+.stat-card.highlight .value { color: #fff; }
+.stat-card.highlight .sub { color: rgba(255,255,255,0.6); }
+
+/* ── GENERATE SECTION ── */
+.section-title {
+  font-size: 18px; font-weight: 800; color: #1a202c;
+  margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+.section-title .dot { width: 8px; height: 8px; background: #0f766e; border-radius: 50%; }
+
+.generate-box {
+  background: #fff; border-radius: 16px;
+  border: 1.5px solid #e2e8f0;
+  padding: 28px;
+  margin-bottom: 28px;
+}
+.topic-label { font-size: 15px; font-weight: 700; color: #374151; margin-bottom: 12px; }
+.topics { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+.topic-btn {
+  padding: 10px 20px; border-radius: 10px;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  border: 2px solid #e2e8f0; background: #f8fafc; color: #475569;
+  transition: all 0.15s;
+}
+.topic-btn:hover { border-color: #0f766e; color: #0f766e; background: #f0fdf4; }
+.topic-btn.selected { background: #0f766e; border-color: #0f766e; color: #fff; }
+.topic-btn .emoji { margin-right: 6px; }
+
+.generate-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 18px;
+  background: linear-gradient(135deg, #0f766e, #059669);
+  color: #fff; font-size: 18px; font-weight: 800;
+  border: none; border-radius: 12px; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(15,118,110,0.3);
+  transition: all 0.2s;
+}
+.generate-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(15,118,110,0.4); }
+.generate-btn .arrow { font-size: 20px; }
+
+.generate-note { font-size: 13px; color: #94a3b8; margin-top: 10px; text-align: center; }
+
+/* ── DRAFT LIST ── */
+.drafts { background: #fff; border-radius: 16px; border: 1.5px solid #e2e8f0; overflow: hidden; }
+.drafts-header {
+  padding: 18px 24px; border-bottom: 1px solid #e2e8f0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.drafts-header .title { font-size: 16px; font-weight: 800; color: #1a202c; }
+.publish-all-btn {
+  padding: 10px 22px; background: #f59e0b;
+  color: #fff; font-size: 14px; font-weight: 700;
+  border: none; border-radius: 8px; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+}
+.draft-item {
+  padding: 16px 24px; border-bottom: 1px solid #f1f5f9;
+  display: flex; align-items: center; gap: 16px;
+}
+.draft-item:last-child { border-bottom: none; }
+.draft-pharmacy {
+  width: 120px; flex-shrink: 0;
+  font-size: 13px; font-weight: 700; color: #0f766e;
+  background: #f0fdf4; padding: 4px 10px; border-radius: 20px;
+  text-align: center;
+}
+.draft-pharmacy.main { background: #eff6ff; color: #1d4ed8; }
+.draft-title { flex: 1; font-size: 15px; font-weight: 600; color: #1a202c; }
+.draft-title .angle { font-size: 12px; color: #94a3b8; font-weight: 500; display: block; margin-top: 2px; }
+.draft-status {
+  font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
+}
+.draft-status.draft { background: #fef9c3; color: #ca8a04; }
+.draft-status.ok { background: #dcfce7; color: #16a34a; }
+.draft-actions { display: flex; gap: 8px; }
+.btn-edit {
+  padding: 7px 14px; border: 1.5px solid #e2e8f0;
+  background: #fff; border-radius: 7px; font-size: 13px; font-weight: 600;
+  color: #475569; cursor: pointer;
+}
+.btn-ok {
+  padding: 7px 14px; border: 1.5px solid #22c55e;
+  background: #f0fdf4; border-radius: 7px; font-size: 13px; font-weight: 600;
+  color: #16a34a; cursor: pointer;
+}
+
+/* ── PHARMACY VIEW (hidden by default, shown when nav clicked) ── */
+.pharmacy-view { display: none; padding: 0; }
+.pharmacy-view.show { display: block; }
+
+.pharma-table-wrap { background: #fff; border-radius: 16px; border: 1.5px solid #e2e8f0; overflow: hidden; }
+.pharma-table-header {
+  padding: 18px 24px; border-bottom: 1px solid #e2e8f0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pharma-table-header .title { font-size: 16px; font-weight: 800; }
+.add-btn {
+  padding: 10px 20px; background: #0f766e; color: #fff;
+  font-size: 14px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer;
+}
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  background: #f8fafc; padding: 12px 20px;
+  text-align: left; font-size: 13px; font-weight: 700;
+  color: #64748b; border-bottom: 1px solid #e2e8f0;
+}
+tbody td {
+  padding: 14px 20px; border-bottom: 1px solid #f1f5f9;
+  font-size: 14px; color: #374151;
+}
+tbody tr:hover td { background: #fafafa; }
+.td-name { font-weight: 700; color: #1a202c; }
+.td-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
+}
+.td-status.active { background: #dcfce7; color: #16a34a; }
+.td-status.inactive { background: #fee2e2; color: #dc2626; }
+.dot-status { width: 6px; height: 6px; border-radius: 50%; }
+.dot-status.g { background: #16a34a; }
+.dot-status.r { background: #dc2626; }
+.btn-small {
+  padding: 6px 12px; border: 1.5px solid #e2e8f0;
+  background: #fff; border-radius: 6px; font-size: 12px; font-weight: 600;
+  color: #475569; cursor: pointer; margin-right: 4px;
+}
+.btn-small:hover { border-color: #0f766e; color: #0f766e; }
+
+/* ── TABS (screen switcher) ── */
+.demo-tab {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: #1a202c; border-radius: 40px; padding: 8px 12px;
+  display: flex; gap: 6px; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.demo-tab button {
+  padding: 8px 18px; border-radius: 30px; border: none;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  background: transparent; color: rgba(255,255,255,0.5);
+  transition: all 0.15s;
+}
+.demo-tab button.active { background: #fff; color: #1a202c; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="brand">普健生醫<br>AI 行銷管理中心</div>
+      <div class="sub">PuJian Medical CMS</div>
+    </div>
+    <nav class="nav">
+      <div class="nav-item active" onclick="switchTab('dashboard')">
+        <span class="icon">✍️</span> 今日產文
+        <span class="nav-badge">5</span>
+      </div>
+      <div class="nav-item" onclick="switchTab('pharmacy')">
+        <span class="icon">🏪</span> 藥局管理
+        <span class="nav-badge green">12</span>
+      </div>
+      <div class="nav-item" onclick="switchTab('history')">
+        <span class="icon">📋</span> 發布記錄
+      </div>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar">林</div>
+      <div class="user-info">
+        <div class="name">林小美</div>
+        <div class="role">行銷企劃</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <h1 id="page-title">今日產文</h1>
+      </div>
+      <div class="date">2026年6月6日 星期六</div>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div class="content" id="view-dashboard">
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat-card highlight">
+          <div class="label">今日待發布</div>
+          <div class="value">5</div>
+          <div class="sub">篇草稿等待確認</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">聯盟藥局</div>
+          <div class="value">12</div>
+          <div class="sub">家，共 36 篇/天</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">本週發布</div>
+          <div class="value">84</div>
+          <div class="sub">篇文章</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">本月累積</div>
+          <div class="value">312</div>
+          <div class="sub">篇文章</div>
+        </div>
+      </div>
+
+      <!-- Generate -->
+      <div class="section-title"><div class="dot"></div> 選擇今日主題，一鍵產文</div>
+      <div class="generate-box">
+        <div class="topic-label">選擇今日主題（可多選）</div>
+        <div class="topics">
+          <button class="topic-btn selected" onclick="this.classList.toggle('selected')"><span class="emoji">🤧</span>過敏保養</button>
+          <button class="topic-btn" onclick="this.classList.toggle('selected')"><span class="emoji">👁️</span>葉黃素護眼</button>
+          <button class="topic-btn" onclick="this.classList.toggle('selected')"><span class="emoji">🦵</span>關節保健</button>
+          <button class="topic-btn" onclick="this.classList.toggle('selected')"><span class="emoji">⚖️</span>體重管理</button>
+        </div>
+        <button class="generate-btn">
+          <span>⚡</span>
+          一鍵產生所有藥局今日文章（共 39 篇）
+          <span class="arrow">→</span>
+        </button>
+        <div class="generate-note">普健總站 3 篇 ＋ 12 間藥局各 3 篇，每篇角度不同，約需 2 分鐘</div>
+      </div>
+
+      <!-- Draft List -->
+      <div class="section-title"><div class="dot"></div> 待審稿（5 篇）</div>
+      <div class="drafts">
+        <div class="drafts-header">
+          <div class="title">今日草稿</div>
+          <button class="publish-all-btn">🚀 全部確認，立即發布</button>
+        </div>
+
+        <div class="draft-item">
+          <div class="draft-pharmacy main">普健總站</div>
+          <div class="draft-title">
+            入秋過敏高峰！藥師教你 3 種天然舒緩法
+            <span class="angle">學術角度 ｜ 過敏保養</span>
+          </div>
+          <div class="draft-status draft">待確認</div>
+          <div class="draft-actions">
+            <button class="btn-edit">✏️ 編輯</button>
+            <button class="btn-ok">✓ 確認</button>
+          </div>
+        </div>
+
+        <div class="draft-item">
+          <div class="draft-pharmacy">長青台北站</div>
+          <div class="draft-title">
+            台北盆地秋季過敏特別嚴重？陳藥師的在地觀察
+            <span class="angle">在地角度 ｜ 過敏保養</span>
+          </div>
+          <div class="draft-status ok">已確認</div>
+          <div class="draft-actions">
+            <button class="btn-edit">✏️ 編輯</button>
+          </div>
+        </div>
+
+        <div class="draft-item">
+          <div class="draft-pharmacy">長青新竹站</div>
+          <div class="draft-title">
+            新竹風城乾燥氣候，過敏族群這樣保養最有效
+            <span class="angle">季節角度 ｜ 過敏保養</span>
+          </div>
+          <div class="draft-status draft">待確認</div>
+          <div class="draft-actions">
+            <button class="btn-edit">✏️ 編輯</button>
+            <button class="btn-ok">✓ 確認</button>
+          </div>
+        </div>
+
+        <div class="draft-item">
+          <div class="draft-pharmacy">長青桃園站</div>
+          <div class="draft-title">
+            一個媽媽的故事：孩子過敏讓全家不得安寧
+            <span class="angle">故事角度 ｜ 過敏保養</span>
+          </div>
+          <div class="draft-status draft">待確認</div>
+          <div class="draft-actions">
+            <button class="btn-edit">✏️ 編輯</button>
+            <button class="btn-ok">✓ 確認</button>
+          </div>
+        </div>
+
+        <div class="draft-item">
+          <div class="draft-pharmacy">長青台中站</div>
+          <div class="draft-title">
+            Q&A｜過敏藥吃了想睡怎麼辦？台中李藥師解答
+            <span class="angle">Q&A 角度 ｜ 過敏保養</span>
+          </div>
+          <div class="draft-status ok">已確認</div>
+          <div class="draft-actions">
+            <button class="btn-edit">✏️ 編輯</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHARMACY VIEW -->
+    <div class="content pharmacy-view" id="view-pharmacy">
+      <div class="pharma-table-wrap">
+        <div class="pharma-table-header">
+          <div class="title">聯盟藥局管理（12 家）</div>
+          <button class="add-btn">＋ 新增藥局</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>藥局名稱</th>
+              <th>藥師</th>
+              <th>地區</th>
+              <th>主打項目</th>
+              <th>狀態</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-name">普健生醫總站</td>
+              <td>黃維德 藥師</td>
+              <td>台北市</td>
+              <td>過敏、葉黃素</td>
+              <td><span class="td-status active"><span class="dot-status g"></span>上線中</span></td>
+              <td><button class="btn-small">✏️ 編輯</button><button class="btn-small">📄 文章</button></td>
+            </tr>
+            <tr>
+              <td class="td-name">長青連鎖 大安店</td>
+              <td>陳雅婷 藥師</td>
+              <td>台北市大安區</td>
+              <td>過敏、關節</td>
+              <td><span class="td-status active"><span class="dot-status g"></span>上線中</span></td>
+              <td><button class="btn-small">✏️ 編輯</button><button class="btn-small">📄 文章</button></td>
+            </tr>
+            <tr>
+              <td class="td-name">長青連鎖 新竹東區</td>
+              <td>李明哲 藥師</td>
+              <td>新竹市東區</td>
+              <td>過敏、體重管理</td>
+              <td><span class="td-status active"><span class="dot-status g"></span>上線中</span></td>
+              <td><button class="btn-small">✏️ 編輯</button><button class="btn-small">📄 文章</button></td>
+            </tr>
+            <tr>
+              <td class="td-name">長青連鎖 桃園中壢</td>
+              <td>王淑芬 藥師</td>
+              <td>桃園市中壢區</td>
+              <td>葉黃素、關節</td>
+              <td><span class="td-status active"><span class="dot-status g"></span>上線中</span></td>
+              <td><button class="btn-small">✏️ 編輯</button><button class="btn-small">📄 文章</button></td>
+            </tr>
+            <tr>
+              <td class="td-name">長青連鎖 台中西屯</td>
+              <td>張建宏 藥師</td>
+              <td>台中市西屯區</td>
+              <td>過敏、葉黃素</td>
+              <td><span class="td-status inactive"><span class="dot-status r"></span>準備中</span></td>
+              <td><button class="btn-small">✏️ 編輯</button><button class="btn-small">📄 文章</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- HISTORY VIEW -->
+    <div class="content" id="view-history" style="display:none;">
+      <div style="background:#fff;border-radius:16px;border:1.5px solid #e2e8f0;padding:40px;text-align:center;color:#94a3b8;">
+        <div style="font-size:48px;margin-bottom:16px;">📋</div>
+        <div style="font-size:18px;font-weight:700;color:#374151;margin-bottom:8px;">發布記錄</div>
+        <div style="font-size:14px;">所有歷史發布紀錄，可依日期、藥局、主題篩選</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Demo switcher -->
+<div class="demo-tab">
+  <span style="color:rgba(255,255,255,0.4);font-size:12px;padding:8px 4px;">示意畫面：</span>
+  <button class="active" onclick="switchTab('dashboard')">今日產文</button>
+  <button onclick="switchTab('pharmacy')">藥局管理</button>
+  <button onclick="switchTab('history')">發布記錄</button>
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.demo-tab button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+
+  ['dashboard','pharmacy','history'].forEach(v => {
+    const el = document.getElementById('view-' + v);
+    if (el) el.style.display = 'none';
+  });
+
+  const view = document.getElementById('view-' + tab);
+  if (view) view.style.display = 'block';
+
+  const titles = { dashboard: '今日產文', pharmacy: '藥局管理', history: '發布記錄' };
+  document.getElementById('page-title').textContent = titles[tab] || tab;
+
+  const tabBtns = document.querySelectorAll('.demo-tab button');
+  const navItems = document.querySelectorAll('.nav-item');
+  const idx = { dashboard: 0, pharmacy: 1, history: 2 };
+  if (tabBtns[idx[tab]]) tabBtns[idx[tab]].classList.add('active');
+  if (navItems[idx[tab]]) navItems[idx[tab]].classList.add('active');
+}
+</script>
+
+</body>
+</html>

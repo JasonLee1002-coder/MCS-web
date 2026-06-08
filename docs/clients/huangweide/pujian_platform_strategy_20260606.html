@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>普健生醫平台設計 × 策略會議對照 — CMO 評估</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans TC', system-ui, sans-serif; background: #f8fafc; color: #1a202c; font-size: 16px; line-height: 1.8; }
+
+.header {
+  background: linear-gradient(135deg, #0f766e, #059669);
+  padding: 40px 40px 32px;
+  color: #fff;
+}
+.header .badge { font-size: 11px; letter-spacing: 3px; opacity: 0.7; text-transform: uppercase; margin-bottom: 12px; }
+.header h1 { font-size: 26px; font-weight: 900; line-height: 1.3; margin-bottom: 8px; }
+.header .meta { font-size: 13px; opacity: 0.7; }
+
+.container { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
+
+/* VERDICT BANNER */
+.verdict-banner {
+  background: #fff;
+  border-radius: 14px;
+  border: 2px solid #0f766e;
+  padding: 24px 28px;
+  margin-bottom: 36px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.verdict-icon { font-size: 32px; flex-shrink: 0; }
+.verdict-text h3 { font-size: 17px; font-weight: 800; color: #0f766e; margin-bottom: 8px; }
+.verdict-text p { font-size: 15px; color: #374151; }
+
+/* SECTION */
+.section { margin-bottom: 36px; }
+.section-title {
+  font-size: 19px; font-weight: 900; color: #1a202c;
+  margin-bottom: 18px; padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title .num {
+  width: 30px; height: 30px; background: #0f766e; color: #fff;
+  font-size: 14px; font-weight: 800; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+/* BOXES */
+.good-box {
+  background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 14px;
+}
+.good-box h4 { color: #16a34a; font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+.good-box p, .good-box li { font-size: 14px; color: #166534; line-height: 1.7; }
+.good-box ul { padding-left: 20px; }
+.good-box li { margin-bottom: 4px; }
+
+.challenge-box {
+  background: #fff7ed; border: 1.5px solid #fdba74; border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 14px;
+}
+.challenge-box h4 { color: #c2410c; font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+.challenge-box p, .challenge-box li { font-size: 14px; color: #9a3412; line-height: 1.7; }
+.challenge-box ul { padding-left: 20px; }
+.challenge-box li { margin-bottom: 4px; }
+
+.update-box {
+  background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 14px;
+}
+.update-box h4 { color: #1d4ed8; font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+.update-box p, .update-box li { font-size: 14px; color: #1e3a8a; line-height: 1.7; }
+.update-box ul { padding-left: 20px; }
+.update-box li { margin-bottom: 4px; }
+
+/* PLATFORM DIFF */
+.diff-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.diff-table th {
+  background: #f1f5f9; padding: 12px 16px; text-align: left;
+  font-size: 13px; font-weight: 800; color: #64748b;
+  border-bottom: 2px solid #e2e8f0;
+}
+.diff-table td { padding: 14px 16px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+.diff-table tr:hover td { background: #f8fafc; }
+.diff-table .old { color: #94a3b8; }
+.diff-table .new { color: #0f766e; font-weight: 700; }
+.diff-table .arrow { color: #f59e0b; font-weight: 800; text-align: center; }
+
+/* FUNNEL */
+.funnel {
+  background: #fff; border-radius: 14px; border: 1.5px solid #e2e8f0;
+  padding: 28px; text-align: center;
+}
+.funnel-step {
+  display: inline-block; background: #f0fdf4; border: 2px solid #86efac;
+  border-radius: 10px; padding: 12px 28px; font-size: 15px; font-weight: 700;
+  color: #15803d; margin: 4px;
+}
+.funnel-step.platform { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+.funnel-arrow { font-size: 20px; color: #94a3b8; margin: 6px 0; display: block; }
+
+/* CMS UPDATES */
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
+.feature-card {
+  background: #fff; border: 1.5px solid #e2e8f0; border-radius: 12px;
+  padding: 18px 20px;
+}
+.feature-card h4 { font-size: 14px; font-weight: 800; color: #1a202c; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.feature-card p { font-size: 13px; color: #64748b; line-height: 1.6; }
+.feature-card .tag {
+  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px;
+  background: #dcfce7; color: #16a34a; flex-shrink: 0;
+}
+.feature-card .tag.new-tag { background: #dbeafe; color: #1d4ed8; }
+
+p { font-size: 15px; color: #374151; }
+strong { color: #1a202c; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">CMO 平台策略評估</div>
+  <h1>普健生醫 AI 行銷平台<br>× 策略會議對照分析</h1>
+  <div class="meta">2026-06-06 ｜ 基於 2026/06/02 策略會議紀錄</div>
+</div>
+
+<div class="container">
+
+  <!-- VERDICT -->
+  <div class="verdict-banner">
+    <div class="verdict-icon">📋</div>
+    <div class="verdict-text">
+      <h3>CMO 總評：方向正確，但平台設計需要升級</h3>
+      <p>
+        會議紀錄確認了一件事：這不只是「SEO 文章管理工具」，而是一個<strong>完整的流量閉環平台</strong>。
+        我們原本設計的 CMS 只涵蓋了整個漏斗的上半段（流量），但會議明確要求下半段（LINE OA → 銷售）也要在平台內管理。
+        以下逐項對照，哪些設計不變，哪些需要新增。
+      </p>
+    </div>
+  </div>
+
+  <!-- SECTION 1: 會議正確的地方 -->
+  <div class="section">
+    <div class="section-title"><div class="num">1</div> 會議決策正確，CMO 支持</div>
+
+    <div class="good-box">
+      <h4>✅ DP2 外用過敏 — 差異化是真實存在的</h4>
+      <p>「可吃可擦的過敏專利」確實是市場空白。口服益生菌人滿為患，外用過敏幾乎無競品。這個定位值得集中資源打造，平台所有文章的核心敘事都應圍繞 DP2。</p>
+    </div>
+
+    <div class="good-box">
+      <h4>✅ LINE OA 作為核心會員池 — 台灣市場正確選擇</h4>
+      <p>台灣用戶轉化習慣：看文章 → 加 LINE → 購買，這個路徑在保健品類已被無數品牌驗證。會員池目標 1,000 → 10,000 人的分階段擴張也合理。</p>
+    </div>
+
+    <div class="good-box">
+      <h4>✅ 矩陣式藥局聯盟 — 流量放大器</h4>
+      <p>100 家藥局各帶自己的顧客名單加入聯盟，這是比廣告買流量便宜 10 倍的方式。平台設計完全支持這個模式。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: CMO 挑戰 -->
+  <div class="section">
+    <div class="section-title"><div class="num">2</div> CMO 挑戰：3 個我認為不對的地方</div>
+
+    <div class="challenge-box">
+      <h4>🚨 挑戰一：「先做 PPT，再做網站」的優先順序錯了</h4>
+      <p>
+        會議把「完成 DP2 過敏專利簡報」列為<strong>第一優先</strong>，網站/部落格是<strong>第二優先</strong>。
+        這個順序在 SEO 邏輯下是錯誤的。
+      </p>
+      <ul>
+        <li>Google SEO 從第一篇文章發布到看到排名效果，需要 <strong>3-6 個月</strong></li>
+        <li>PPT 做好只需要 1-2 週，但 SEO 不能等</li>
+        <li>正確順序：網站 + 第一批文章 <strong>同步</strong> 進行，PPT 不應卡住網站建置</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>CMO 建議：</strong>本週就啟動網站建置，PPT 並行做，互不阻礙。</p>
+    </div>
+
+    <div class="challenge-box">
+      <h4>🚨 挑戰二：「600 家過敏健康管理中心」出現得太突然</h4>
+      <p>
+        顧問在「缺口三」提到「依據您目前規劃的 600 家過敏健康管理中心計畫」，但這個數字在會議紀錄其他地方完全沒有出現。
+      </p>
+      <ul>
+        <li>100 家藥局聯盟本身已是非常有野心的目標</li>
+        <li>跳到 600 家，是否有具體的加盟機制、費用結構、SLA？</li>
+        <li>如果沒有，這個數字只是願景，不能算入平台的設計需求</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>CMO 建議：</strong>平台先設計支援到 100 家，架構上保留擴充彈性，600 家是 2-3 年後的事。</p>
+    </div>
+
+    <div class="challenge-box">
+      <h4>🚨 挑戰三：「數據缺口」是最危險的致命傷</h4>
+      <p>
+        顧問提到「缺少臨床數據、個案見證」，這個問題比會議中呈現的更嚴重。
+      </p>
+      <ul>
+        <li>DP2 如果只有「專利」但沒有「可公開引用的使用者見證或臨床指標」，消費者轉化率會很低</li>
+        <li>廣告投放後，流量進來，沒有社會證明 → 跳出率高 → 廣告費燒掉</li>
+        <li>這不是「之後再補」的事，<strong>必須在廣告投放前就有</strong></li>
+      </ul>
+      <p style="margin-top:10px;"><strong>CMO 建議：</strong>在廣告投放（第五優先）之前，先收集至少 20 個真實使用案例（照片 + 短文），這是最重要的轉化素材。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: 平台設計升級 -->
+  <div class="section">
+    <div class="section-title"><div class="num">3</div> 平台設計需要升級的地方</div>
+    <p style="margin-bottom:20px;">對照會議紀錄，原本我們設計的 CMS 只覆蓋了 <strong>流量層</strong>，但會議明確要求平台要涵蓋整個漏斗。以下是需要新增的功能：</p>
+
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>功能</th>
+          <th>原設計</th>
+          <th></th>
+          <th>升級後（對應會議需求）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>文章角色</strong></td>
+          <td class="old">SEO 內容，吸引搜尋流量</td>
+          <td class="arrow">→</td>
+          <td class="new">文章結尾強制帶「加入 LINE OA」CTA，每篇文章都是轉化入口</td>
+        </tr>
+        <tr>
+          <td><strong>LINE OA 整合</strong></td>
+          <td class="old">未規劃</td>
+          <td class="arrow">→</td>
+          <td class="new">管理中心可設定每個藥局的 LINE OA 連結，自動注入所有文章</td>
+        </tr>
+        <tr>
+          <td><strong>轉化漏斗追蹤</strong></td>
+          <td class="old">未規劃</td>
+          <td class="arrow">→</td>
+          <td class="new">Dashboard 顯示：文章瀏覽數 → LINE 點擊數（UTM 追蹤）</td>
+        </tr>
+        <tr>
+          <td><strong>附近藥局地圖</strong></td>
+          <td class="old">每個分站顯示附近聯盟藥局</td>
+          <td class="arrow">→</td>
+          <td class="new">地圖 + 顯示「免費過敏諮詢」入口，按一下直接加 LINE</td>
+        </tr>
+        <tr>
+          <td><strong>DP2 說明頁</strong></td>
+          <td class="old">未規劃</td>
+          <td class="arrow">→</td>
+          <td class="new">每個分站標配「DP2 專利介紹」固定頁，由管理中心統一維護</td>
+        </tr>
+        <tr>
+          <td><strong>見證案例管理</strong></td>
+          <td class="old">未規劃</td>
+          <td class="arrow">→</td>
+          <td class="new">管理中心可新增使用者見證（照片 + 文字），同步到所有分站</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 4: 完整漏斗設計 -->
+  <div class="section">
+    <div class="section-title"><div class="num">4</div> 平台對應的完整轉化漏斗</div>
+    <div class="funnel">
+      <div class="funnel-step">Google 搜尋「過敏」「異位性皮膚炎」</div>
+      <span class="funnel-arrow">↓</span>
+      <div class="funnel-step platform">分站 SEO 文章（管理中心產文）</div>
+      <span class="funnel-arrow">↓</span>
+      <div class="funnel-step platform">文章結尾 CTA：加入 LINE OA 領免費衛教資訊</div>
+      <span class="funnel-arrow">↓</span>
+      <div class="funnel-step">LINE OA 歡迎訊息 → 過敏問卷</div>
+      <span class="funnel-arrow">↓</span>
+      <div class="funnel-step">推播：DP2 專利介紹 + 試用品申請</div>
+      <span class="funnel-arrow">↓</span>
+      <div class="funnel-step platform">附近藥局地圖 → 免費諮詢預約</div>
+      <span class="funnel-arrow">↓</span>
+      <div class="funnel-step">藥局現場銷售 / 線上購買</div>
+    </div>
+    <p style="font-size:13px;color:#94a3b8;text-align:center;margin-top:12px;">🔵 藍色方塊 = 由「管理中心平台」負責的環節</p>
+  </div>
+
+  <!-- SECTION 5: 更新後的平台功能 -->
+  <div class="section">
+    <div class="section-title"><div class="num">5</div> 升級版平台功能清單</div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>✍️ 今日產文 <span class="tag">原有</span></h4>
+        <p>選主題 → 一鍵 AI 產文 → 審稿 → 發布到所有分站。每篇文章自動加入 LINE OA 加入連結。</p>
+      </div>
+      <div class="feature-card">
+        <h4>🏪 藥局管理 <span class="tag">原有</span></h4>
+        <p>藥局 CRUD、藥師資料、GPS 座標、Vercel 專案 ID、各站 LINE OA 連結。</p>
+      </div>
+      <div class="feature-card">
+        <h4>📢 LINE OA 管理 <span class="tag new-tag">新增</span></h4>
+        <p>管理每個藥局的 LINE OA ID，自動注入分站的「加入 LINE」按鈕。統一管理 CTA 文案。</p>
+      </div>
+      <div class="feature-card">
+        <h4>🏆 見證案例管理 <span class="tag new-tag">新增</span></h4>
+        <p>新增使用者見證（照片 + 短文 + 評分），同步到所有分站的「真實案例」區塊。</p>
+      </div>
+      <div class="feature-card">
+        <h4>🔬 DP2 說明頁管理 <span class="tag new-tag">新增</span></h4>
+        <p>統一維護 DP2 專利說明內容，一次更新同步推送到所有分站的「關於 DP2」固定頁。</p>
+      </div>
+      <div class="feature-card">
+        <h4>📊 轉化數據 Dashboard <span class="tag new-tag">新增</span></h4>
+        <p>各分站文章瀏覽量、LINE CTA 點擊數（UTM）、各藥局導流比較。讓行銷人員看到成效。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: 建議執行順序 -->
+  <div class="section">
+    <div class="section-title"><div class="num">6</div> CMO 建議立即執行順序</div>
+    <div class="update-box">
+      <h4>📌 本週就要動的事（不能等）</h4>
+      <ul>
+        <li><strong>普健總站網域確認</strong> — pujian.com.tw 還是用黃維德.com？兩個品牌要分開嗎？</li>
+        <li><strong>LINE OA 建立</strong> — 「普健生醫過敏健康管理」LINE OA 帳號，馬上建，馬上開始累積</li>
+        <li><strong>首批 DP2 文章 5 篇</strong> — 用我們的管理平台產出並發布，讓 Google 開始收錄</li>
+        <li><strong>見證素材收集</strong> — 請黃維德藥師現有顧客提供 10 個使用回饋，不需要臨床，真實就好</li>
+      </ul>
+    </div>
+    <div class="update-box">
+      <h4>📌 平台開發分兩期</h4>
+      <ul>
+        <li><strong>期一（2週）：</strong>今日產文 + 藥局管理 + LINE OA 注入 → 先讓內容動起來</li>
+        <li><strong>期二（4週）：</strong>見證案例管理 + DP2 說明頁 + 轉化 Dashboard → 完整閉環</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

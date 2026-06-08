@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>普健生醫 × 長青聯盟 — CMO 策略分析報告</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', system-ui, sans-serif;
+    background: #0c1220;
+    color: #e2e8f0;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+  .header {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    border-bottom: 2px solid #00b4d8;
+    padding: 40px 0 32px;
+    text-align: center;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(0,180,216,0.15);
+    border: 1px solid #00b4d8;
+    color: #00b4d8;
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: #00b4d8; }
+  .header .subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+  }
+  .header .meta {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #64748b;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* Executive Summary */
+  .exec-summary {
+    background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(0,180,216,0.03));
+    border: 1px solid rgba(0,180,216,0.3);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+  .exec-summary h2 {
+    color: #00b4d8;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .exec-summary p {
+    font-size: 16px;
+    color: #cbd5e1;
+    line-height: 1.9;
+  }
+  .verdict {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .verdict-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  .verdict-item.good { border-left: 3px solid #22c55e; }
+  .verdict-item.warn { border-left: 3px solid #f59e0b; }
+  .verdict-item.risk { border-left: 3px solid #ef4444; }
+  .verdict-item .icon { font-size: 18px; }
+
+  /* Section */
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .section-num {
+    width: 32px;
+    height: 32px;
+    background: #00b4d8;
+    color: #0c1220;
+    font-weight: 800;
+    font-size: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+  .section h2 .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+  .tag-good { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .tag-warn { background: rgba(245,158,11,0.15); color: #f59e0b; }
+  .tag-risk { background: rgba(239,68,68,0.15); color: #ef4444; }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 640px) { .card-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #cbd5e1;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .card ul li {
+    font-size: 14px;
+    color: #94a3b8;
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #00b4d8;
+    font-size: 12px;
+  }
+
+  /* Risk Box */
+  .risk-box {
+    background: rgba(239,68,68,0.06);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .risk-box h4 {
+    color: #ef4444;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .risk-box p, .risk-box ul li {
+    font-size: 14px;
+    color: #fca5a5;
+    line-height: 1.7;
+  }
+  .risk-box ul { padding-left: 20px; }
+  .risk-box ul li { margin-bottom: 6px; }
+
+  .warn-box {
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .warn-box h4 {
+    color: #f59e0b;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .warn-box p, .warn-box ul li {
+    font-size: 14px;
+    color: #fcd34d;
+    line-height: 1.7;
+  }
+  .warn-box ul { padding-left: 20px; }
+  .warn-box ul li { margin-bottom: 6px; }
+
+  .good-box {
+    background: rgba(34,197,94,0.06);
+    border: 1px solid rgba(34,197,94,0.25);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .good-box h4 {
+    color: #22c55e;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .good-box p, .good-box ul li {
+    font-size: 14px;
+    color: #86efac;
+    line-height: 1.7;
+  }
+  .good-box ul { padding-left: 20px; }
+  .good-box ul li { margin-bottom: 6px; }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, #00b4d8, rgba(0,180,216,0.1));
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00b4d8;
+    border: 2px solid #0c1220;
+  }
+  .timeline-item .phase {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #00b4d8;
+    margin-bottom: 4px;
+  }
+  .timeline-item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+  }
+  .timeline-item p {
+    font-size: 13px;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  /* Priority Table */
+  .priority-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .priority-table th {
+    background: rgba(0,180,216,0.1);
+    color: #00b4d8;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,180,216,0.2);
+  }
+  .priority-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: #94a3b8;
+    vertical-align: top;
+  }
+  .priority-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .priority-table .p1 { color: #ef4444; font-weight: 700; }
+  .priority-table .p2 { color: #f59e0b; font-weight: 700; }
+  .priority-table .p3 { color: #22c55e; font-weight: 700; }
+
+  /* Final Verdict */
+  .final-verdict {
+    background: linear-gradient(135deg, rgba(0,180,216,0.1), rgba(0,180,216,0.03));
+    border: 1px solid rgba(0,180,216,0.4);
+    border-radius: 16px;
+    padding: 36px;
+    margin-top: 48px;
+  }
+  .final-verdict h2 {
+    color: #00b4d8;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .final-verdict p {
+    font-size: 15px;
+    color: #cbd5e1;
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+  .final-verdict .signature {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+    color: #475569;
+    text-align: right;
+  }
+
+  p { font-size: 15px; color: #94a3b8; line-height: 1.8; }
+  strong { color: #e2e8f0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">CMO 策略分析報告</div>
+  <h1>普健生醫 × 長青聯盟<br><span>100 藥局數位平台計畫</span></h1>
+  <div class="subtitle">基於李奇申顧問會議紀錄 × CMO 行銷觀點</div>
+  <div class="meta">2026-06-06 ｜ 機密文件 — 僅供 Jason 審閱</div>
+</div>
+
+<div class="container">
+
+  <!-- Executive Summary -->
+  <div class="exec-summary">
+    <h2>CMO 一句話結論</h2>
+    <p>
+      這個計畫的<strong>方向是對的</strong>，SEO 站群 + AI 產文是藥局數位化的最短路徑。但目前的執行框架有<strong>兩個致命缺口</strong>：一是技術層面的 SEO 站群風險沒有被充分認知，二是「讓藥局自願加入」的動機設計幾乎是空白的。補上這兩塊，這個計畫才有機會真正跑起來。
+    </p>
+    <div class="verdict">
+      <div class="verdict-item good"><span class="icon">✅</span> 策略方向正確</div>
+      <div class="verdict-item good"><span class="icon">✅</span> 技術選型可行</div>
+      <div class="verdict-item warn"><span class="icon">⚠️</span> SEO 站群風險未處理</div>
+      <div class="verdict-item warn"><span class="icon">⚠️</span> 藥局加入誘因不清楚</div>
+      <div class="verdict-item risk"><span class="icon">🚨</span> 100 站同步推進過於樂觀</div>
+    </div>
+  </div>
+
+  <!-- Section 1: 計畫優勢 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>計畫優勢分析 <span class="tag tag-good">亮點</span></h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <h4>📡 母站+分站模型 — 架構正確</h4>
+        <ul>
+          <li>普健總站建立品牌權威性（Domain Authority）</li>
+          <li>分站注入在地長尾關鍵字（新竹藥局、桃園藥局）</li>
+          <li>互相 backlink 是 SEO 的合理連結策略</li>
+          <li>等同建立一個私有 PBN（Private Blog Network）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>🤖 AI 產文 — 規模化的關鍵</h4>
+        <ul>
+          <li>100 個分站人工產文不可能，AI 是唯一解</li>
+          <li>Claude/GPT 可批量生成在地化健康文章</li>
+          <li>藥師審稿確保法規合規（不踩廣告法紅線）</li>
+          <li>每站產文速度 10x 提升</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>🔑 四大主題柱 — 選題精準</h4>
+        <ul>
+          <li>過敏、葉黃素、關節、體重管理</li>
+          <li>皆為台灣藥局高頻購買需求</li>
+          <li>Google 搜尋量大，競爭度中等</li>
+          <li>適合長尾 SEO 佈局</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>⚡ 技術選型 — Claude + GitHub + Vercel</h4>
+        <ul>
+          <li>部署速度快，藥局看得到效果</li>
+          <li>CMS 讓藥局自己更新，降低維運成本</li>
+          <li>成本遠低於傳統網頁公司</li>
+          <li>可複製模板快速擴展到 100 站</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: SEO 站群風險 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>最大風險：SEO 站群問題 <span class="tag tag-risk">致命</span></h2>
+    </div>
+
+    <div class="risk-box">
+      <h4>🚨 風險一：Google 重複內容懲罰（Duplicate Content Penalty）</h4>
+      <p>100 個分站如果用同一個 AI 模板產文，Google 會判定「薄內容」（Thin Content）。一旦觸發，整個站群可能被 deindex。這不是小機率事件 — Google 在 2024 年 Helpful Content Update 已大規模清除此類站群。</p>
+      <ul style="margin-top:10px;">
+        <li>每個分站的文章必須有真正的在地差異（門診時間、藥師姓名、在地活動）</li>
+        <li>AI 產文後，藥師必須加入至少 30% 的原創內容</li>
+        <li>禁止跨站複製貼上相同文章</li>
+      </ul>
+    </div>
+
+    <div class="risk-box">
+      <h4>🚨 風險二：Google Link Scheme 算法</h4>
+      <p>100 個站互相 backlink，如果連結結構過於規則化（如每站都有相同的 footer 連結），Google 的 SpamBrain 算法會標記為「人工連結計畫」。</p>
+      <ul style="margin-top:10px;">
+        <li>連結要自然，出現在文章內文而非 footer/sidebar</li>
+        <li>連結錨點文字要多樣化，不要全部用「普健生醫」</li>
+        <li>連結不要形成完全相同的環狀結構</li>
+      </ul>
+    </div>
+
+    <div class="warn-box">
+      <h4>⚠️ 風險三：sPPT® 產品 SEO 法規紅線</h4>
+      <p>黃維德藥師的核心產品是 sPPT® 擦劑。若分站文章提到具體療效（如「改善皮膚炎」），即使是藥師網站也可能觸犯食藥署廣告法規。</p>
+      <ul style="margin-top:10px;">
+        <li>所有產品相關文章，必須通過藥師法規審查才發布</li>
+        <li>SEO 文章聚焦「保養知識」，不碰「療效宣稱」</li>
+        <li>建議設置 AI 產文 → 行銷審稿 → 藥師確認 三層審核</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 3: 計畫缺口 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>關鍵缺口：計畫沒說清楚的事 <span class="tag tag-warn">需補足</span></h2>
+    </div>
+
+    <div class="warn-box">
+      <h4>⚠️ 缺口一：「為什麼藥局要加入？」 — 最核心問題沒有答案</h4>
+      <p>
+        計畫書花了很多篇幅說技術怎麼做，但沒說清楚：藥局加入這個聯盟，對他們有什麼好處？年費多少？SEO 排名能給他們帶來多少客流？
+        如果只是「你有免費網站」，藥局根本沒動力配合 CMS 更新。
+      </p>
+      <p style="margin-top:10px;"><strong style="color:#fcd34d;">CMO 建議：</strong>做一個「加入試算表」— 算出「假設你的藥局每月增加 50 次 Google 搜尋帶來的客人，平均客單價 500 元，月增營收 25,000 元，年費 X 元，ROI = Y%」</p>
+    </div>
+
+    <div class="warn-box">
+      <h4>⚠️ 缺口二：會員系統 / LINE OA — 沒有回頭客機制</h4>
+      <p>
+        SEO 帶來流量只是第一步。用戶進來看了文章就走，沒有任何留存機制。沒有 LINE OA 加粉、沒有會員點數、沒有定期推播，流量不會變成忠實顧客。
+      </p>
+      <p style="margin-top:10px;"><strong style="color:#fcd34d;">CMO 建議：</strong>每個分站頁面加入「加入 LINE 好友領折價券」按鈕，與藥局的 LINE OA 綁定，讓 SEO 流量有地方去。</p>
+    </div>
+
+    <div class="warn-box">
+      <h4>⚠️ 缺口三：Google 商家檔案（GMB）沒提到</h4>
+      <p>
+        對藥局而言，Google 地圖上的排名（Local Pack）往往比自然搜尋更重要。100 個藥局的 GMB 優化，才是帶進實體客流的核心工具，但計畫書完全沒提。
+      </p>
+      <p style="margin-top:10px;"><strong style="color:#fcd34d;">CMO 建議：</strong>每個分站上線同時，協助藥局優化 GMB（新增照片、Q&A、貼文），配合分站做 Local SEO 雙打。</p>
+    </div>
+
+    <div class="warn-box">
+      <h4>⚠️ 缺口四：100 站同時推進 — 執行力過度樂觀</h4>
+      <p>
+        100 個藥局的資料收集（地址、電話、藥師照片、服務項目）、CMS 教學、初始內容審核，如果同步進行，需要龐大的人力。計畫書沒有提到誰來負責這件事，也沒有分階段的里程碑。
+      </p>
+      <p style="margin-top:10px;"><strong style="color:#fcd34d;">CMO 建議：</strong>分三批執行：先試辦 5 站（黃維德自己的長青藥局）→ 驗證效果 → 招募 20 站 → 擴展到 100 站。</p>
+    </div>
+  </div>
+
+  <!-- Section 4: 執行優先順序 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>CMO 建議執行順序 <span class="tag tag-good">路線圖</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="phase">Phase 0 — 立刻做（0-2週）</div>
+        <h4>母站建立 + SEO 基礎設定</h4>
+        <p>建立 pujian.com.tw 或類似域名的母站，完成技術 SEO（sitemap、robots.txt、Core Web Vitals 90+）。先把四大主題的「柱狀頁面」（Pillar Pages）做好，這是整個站群的 DA 基礎。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Phase 1 — 試辦（1-2個月）</div>
+        <h4>長青連鎖藥局 5 家試辦站</h4>
+        <p>以黃維德自己管理的長青藥局為試驗田，建立 5 個分站，完整跑過：AI 產文 → 藥師審稿 → 上線 → GMB 優化 → 數據追蹤。用真實數據（流量成長、客流增加）做成成功案例簡報，這是之後招募其他藥局加入的最強說服工具。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Phase 2 — 擴展（2-4個月）</div>
+        <h4>招募外部藥局 20 家</h4>
+        <p>以 Phase 1 的成果數據主動招募。建議設計「藥局數位加盟方案」：月費制（例如 NT$2,000/月），含分站維護 + 每月 4 篇 AI 產文 + GMB 管理。這個定價對藥局來說比找一個員工便宜太多。</p>
+      </div>
+      <div class="timeline-item">
+        <div class="phase">Phase 3 — 規模化（6個月後）</div>
+        <h4>100 站 AI 數位聯盟平台</h4>
+        <p>有了 20 站的口碑和標準化 SOP，才有條件向 100 站推進。此時可以考慮讓普健生醫產品成為聯盟的「指定採購品項」，形成 SEO 平台 × 供應鏈的雙層商業模式。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: 優先行動表 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>行動優先度矩陣</h2>
+    </div>
+    <table class="priority-table">
+      <thead>
+        <tr>
+          <th>優先度</th>
+          <th>行動項目</th>
+          <th>負責人</th>
+          <th>CMO 理由</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="p1">P1</span></td>
+          <td>母站建立 + 四大主題 Pillar Pages</td>
+          <td>李奇申 + Claude Code</td>
+          <td>沒有母站 DA，分站 backlink 沒有意義</td>
+        </tr>
+        <tr>
+          <td><span class="p1">P1</span></td>
+          <td>設計「藥局加入方案」說帖（含 ROI 試算）</td>
+          <td>黃維德 + CMO</td>
+          <td>沒有動機設計，藥局不會主動參與</td>
+        </tr>
+        <tr>
+          <td><span class="p1">P1</span></td>
+          <td>制定 AI 產文法規審核 SOP</td>
+          <td>黃維德（藥師）</td>
+          <td>一篇違法文章可以毀掉整個計畫</td>
+        </tr>
+        <tr>
+          <td><span class="p2">P2</span></td>
+          <td>5 家長青藥局試辦站上線</td>
+          <td>李奇申執行</td>
+          <td>需要真實成功案例才能招募外部藥局</td>
+        </tr>
+        <tr>
+          <td><span class="p2">P2</span></td>
+          <td>每個分站加入 LINE OA 加粉入口</td>
+          <td>CMO 設計 + 李奇申實作</td>
+          <td>流量需要有地方「留下來」</td>
+        </tr>
+        <tr>
+          <td><span class="p2">P2</span></td>
+          <td>Google 商家檔案（GMB）優化流程</td>
+          <td>李奇申</td>
+          <td>Local Pack 對實體藥局比自然排名更重要</td>
+        </tr>
+        <tr>
+          <td><span class="p3">P3</span></td>
+          <td>招募外部 20 家藥局</td>
+          <td>黃維德業務拓展</td>
+          <td>Phase 1 驗證成功後才進行</td>
+        </tr>
+        <tr>
+          <td><span class="p3">P3</span></td>
+          <td>CMS 系統讓藥局自行更新</td>
+          <td>李奇申開發</td>
+          <td>短期由李奇申代管，長期才需要 CMS</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Final Verdict -->
+  <div class="final-verdict">
+    <h2>📋 CMO 最終意見</h2>
+    <p>
+      李奇申的計畫在技術層面是可行的，方向也是對的。藥局產業的數位化成熟度普遍很低，確實是一個尚未有人系統化切入的市場。如果能成功建立 100 站的聯盟，普健生醫在台灣藥局 SEO 的市佔將形成強大護城河。
+    </p>
+    <p>
+      <strong>但我最擔心的一件事是「藥局的配合意願」。</strong>這個計畫成功的前提，是藥局願意提供資料、配合更新內容、讓 AI 用他們的名義產文。如果藥局不配合，整個站群就會淪為一堆「空殼頁面」，不但 SEO 沒效果，還可能被 Google 懲罰。
+    </p>
+    <p>
+      建議在 Phase 0 就花時間設計「加入方案說帖」，要非常清楚地告訴藥局：<strong>你加入，你得到什麼、你要做什麼、你付多少錢、你多久看得到效果</strong>。這份說帖做好，比 100 個網站都做好更重要。
+    </p>
+    <p>
+      對 Jason 而言，這個計畫值得支持，但要建議李奇申和黃維德先把第一批 5 站的成果做扎實，不要急著拉 100 站進來。<strong>慢即是快，1 個成功的真實案例，勝過 100 個沒人管的空站。</strong>
+    </p>
+    <div class="signature">
+      CMO AI 行銷長<br>
+      2026-06-06｜普健生醫策略分析報告
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
