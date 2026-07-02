@@ -8,6 +8,46 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    slug: 'ghost-kitchen-smart-pickup-system-2026',
+    title: '幽靈廚房導入智慧取餐系統：訂單爆量的無人化解法（2026）',
+    excerpt: '幽靈廚房多平台訂單、外送員同時到場、人力不足三大挑戰一次解決。冷凍微波機+智取物流櫃組合讓廚師出餐後自動通知取件，節省1-2人力，外送接單量提升30%。',
+    date: '2026-07-03',
+    tags: ['幽靈廚房', '冷凍微波機', '智取物流櫃'],
+    readMin: 5,
+  },
+  {
+    slug: 'military-base-vending-machine-closed-venue-2026',
+    title: '軍方封閉場域的無人補給方案：冷凍販賣機完整規劃（2026）',
+    excerpt: '軍事基地、外島駐紮、偏遠礦場等封閉場域，外送進不來、商店不存在。冷凍販賣機24小時無人值守、感應卡扣款、IoT遠端補貨管理，是封閉場域最完整的解法。',
+    date: '2026-07-03',
+    tags: ['封閉場域', '冷凍販賣機', '無人值守'],
+    readMin: 6,
+  },
+  {
+    slug: 'office-building-smart-locker-employee-meal-2026',
+    title: '辦公大樓員工訂餐智慧取物：HR 再也不用分便當（2026）',
+    excerpt: 'HR每天花30分鐘分便當，月薪3.5萬等於每月2,250元的人力浪費。智慧取物櫃讓外送員自行分格放餐、員工掃碼自取，HR徹底解放。',
+    date: '2026-07-03',
+    tags: ['辦公大樓', '員工訂餐', '智慧取物櫃'],
+    readMin: 5,
+  },
+  {
+    slug: 'long-term-care-facility-frozen-vending-2026',
+    title: '長照機構夜間補給：冷凍販賣機讓護理師不再兼差送餐（2026）',
+    excerpt: '護理之家、安養中心深夜無外送、食堂打烊，護理師要幫住民家屬代購食物。24小時冷凍販賣機備有軟質食品，護理師不需外出，安全有保障。',
+    date: '2026-07-03',
+    tags: ['長照機構', '護理之家', '冷凍販賣機'],
+    readMin: 6,
+  },
+  {
+    slug: 'dormitory-frozen-food-vending-migrant-workers-2026',
+    title: '移工宿舍冷凍食品販賣機：東南亞口味 + 感應卡扣款完整方案（2026）',
+    excerpt: '越南、印尼、菲律賓移工找不到家鄉口味是深夜餐食最大的痛。移工宿舍冷凍販賣機備有東南亞食品，支援薪資預付卡扣款，多語介面讓移工自助購餐。',
+    date: '2026-07-03',
+    tags: ['移工宿舍', '東南亞食品', '冷凍販賣機'],
+    readMin: 6,
+  },
+  {
     slug: 'smart-locker-factory-migrant',
     title: '工廠移工宿舍智慧取物冰箱：薪資扣款模式完整說明',
     excerpt: '移工無台灣行動支付帳號？用工作證感應消費，月底薪資自動扣款。完整流程說明、勞基法合規做法、HR 操作後台，附台中 520 人宿舍真實數據。',
