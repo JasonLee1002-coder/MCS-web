@@ -15,6 +15,18 @@ export default function Footer() {
           <p className="text-sm text-white/40 mt-4">138 Cecil Street, #13-02, Singapore</p>
           <p className="text-sm text-white/40">台北市大同區長安西路78巷4弄10號1樓</p>
           <p className="text-sm text-white/40 mt-2">service@transtep.com</p>
+          <p className="text-sm text-white/40">業務：henry.ho@transtep.com</p>
+          <div className="flex gap-3 mt-3">
+            <a href="https://lin.ee/mcstation"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white"
+              style={{ background: '#06C755' }}>
+              LINE 諮詢
+            </a>
+            <a href="/contact"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white/70 border border-white/20 hover:border-white/40 transition-colors">
+              聯絡我們
+            </a>
+          </div>
         </div>
         <div className="flex gap-12 text-sm text-white/50">
           <div className="flex flex-col gap-2">

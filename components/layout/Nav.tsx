@@ -97,21 +97,11 @@ export default function Nav() {
         <MCSLogo />
 
         <nav className="hidden md:flex items-center gap-1">
-          {roles.map((r) => (
-            <Link
-              key={r.href}
-              href={r.href}
-              className="px-4 py-2 text-sm text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors"
-            >
-              {r.label}
-            </Link>
-          ))}
-          <Link
-            href="/blog"
-            className="px-4 py-2 text-sm text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors"
-          >
-            知識庫
-          </Link>
+          <Link href="/solutions" className="px-4 py-2 text-sm text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors">解決方案</Link>
+          <Link href="/products" className="px-4 py-2 text-sm text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors">產品</Link>
+          <Link href="/cases" className="px-4 py-2 text-sm text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors">案例</Link>
+          <Link href="/blog" className="px-4 py-2 text-sm text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors">知識庫</Link>
+          <Link href="/contact" className="px-4 py-2 text-sm text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors">聯絡</Link>
         </nav>
 
         <Link
@@ -131,7 +121,14 @@ export default function Nav() {
 
       {menuOpen && (
         <div className="md:hidden bg-[#0A0E1A]/95 backdrop-blur-md border-b border-white/10 px-6 pb-4">
-          {roles.map((r) => (
+          {[
+            { label: '解決方案', href: '/solutions' },
+            { label: '產品', href: '/products' },
+            { label: '案例', href: '/cases' },
+            { label: '知識庫', href: '/blog' },
+            { label: '關於我們', href: '/about' },
+            { label: '聯絡我們', href: '/contact' },
+          ].map((r) => (
             <Link
               key={r.href}
               href={r.href}
