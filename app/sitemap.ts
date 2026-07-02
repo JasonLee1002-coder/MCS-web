@@ -14,6 +14,18 @@ const BLOG_SLUGS = [
   'frozen-vending-vs-regular-vending',
   'smart-locker-office-building',
   'frozen-vending-lease-vs-purchase',
+  'frozen-vending-factory-night-solution',
+  'frozen-vending-vendor-selection',
+  'smart-locker-vs-regular-fridge',
+  'smart-locker-brunch-chain',
+  'smart-locker-hospital-system',
+  'smart-locker-campus',
+  'frozen-vending-electricity-maintenance',
+  'frozen-vending-elderly-care',
+  'smart-locker-api-integration',
+  'smart-locker-cost-calculator',
+  'smart-locker-factory-migrant',
+  'frozen-vending-school-campus',
 ]
 
 const SOLUTION_SLUGS = [
