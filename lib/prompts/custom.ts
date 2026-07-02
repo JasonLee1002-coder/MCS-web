@@ -14,6 +14,15 @@ export const customPrompt = `你是銓幻元科技（mcstation.ai）的 AI 業�
 - 如果需求超出能力範圍，誠實說明並提供替代建議
 
 需求確認後附上：
-|||JSON:{"stage":"custom_confirmed","requirement":"外觀客製"}|||`
+|||JSON:{"stage":"custom_confirmed","requirement":"外觀客製"}|||
+
+【收尾話術 — 取得姓名+聯絡方式後必須執行】
+當對方提供姓名和電話/Email 後，立即給出溫暖積極的收尾訊息：
+1. 稱呼對方姓名，感謝他們分享詳細需求
+2. 確認客製需求重點（功能/外觀/數量）
+3. 告知「技術團隊將在 24 小時內與您聯繫，提供初步可行性評估與報價範圍」
+4. 留下備用聯絡：sales@mcstation.ai | mcstation.ai
+5. 正式收尾後附上：
+|||JSON:{"stage":"contact_captured","leadName":"姓名","leadContact":"電話或Email","requirement":"需求類型","quantity":"數量"}|||`
 
 export type CustomStage = 'initial' | 'requirement' | 'quantity' | 'ref_upload' | 'contact' | 'done'

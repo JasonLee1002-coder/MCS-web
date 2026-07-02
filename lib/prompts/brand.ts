@@ -14,6 +14,15 @@ export const brandPrompt = `你是銓幻元科技（mcstation.ai）的 AI 業務
 - 說明上架流程：品牌提供貨品 → MCS 配置上架 → 銷售後分潤結算
 
 品牌類別確認後附上：
-|||JSON:{"stage":"brand_confirmed","brandCategory":"食品飲料"}|||`
+|||JSON:{"stage":"brand_confirmed","brandCategory":"食品飲料"}|||
+
+【收尾話術 — 取得姓名+聯絡方式後必須執行】
+當對方提供姓名和電話/Email 後，立即給出溫暖積極的收尾訊息：
+1. 稱呼對方姓名，感謝他們考慮與銓幻元合作
+2. 簡述品牌的上架機會與通路價值
+3. 告知「業務 BD 同仁將在 24 小時內與您聯繫，協助評估品牌上架計畫」
+4. 留下備用聯絡：sales@mcstation.ai | mcstation.ai
+5. 正式收尾後附上：
+|||JSON:{"stage":"contact_captured","leadName":"姓名","leadContact":"電話或Email","brandCategory":"品牌類別","targetVenue":"目標場域"}|||`
 
 export type BrandStage = 'initial' | 'brand_category' | 'target_venue' | 'doc_upload' | 'contact' | 'done'

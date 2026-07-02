@@ -1,4 +1,11 @@
+'use client'
+import { usePathname } from 'next/navigation'
+
 export default function Footer() {
+  const pathname = usePathname()
+  // Hide footer on ai-advisor page (full-screen experience)
+  if (pathname?.startsWith('/ai-advisor')) return null
+
   return (
     <footer className="border-t border-white/10 bg-[#060A14] py-12 mt-24">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between gap-8">
