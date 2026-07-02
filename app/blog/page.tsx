@@ -8,6 +8,30 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    slug: 'frozen-vending-migrant-worker-dormitory',
+    title: '移工宿舍放冷凍販賣機：3 個月實際案例與完整成本回收分析',
+    excerpt: '台灣 76 萬移工的宿舍夜間餐食困境。公開 3 間工廠移工宿舍的真實數據：越南/印尼籍移工使用率、食材策略、月均利潤 NT$24,000 的完整案例。',
+    date: '2026-07-03',
+    tags: ['冷凍販賣機', '移工宿舍', '封閉場域'],
+    readMin: 7,
+  },
+  {
+    slug: 'smart-locker-restaurant-takeout',
+    title: '餐廳導入智慧取物櫃：外帶免排隊的完整解決方案與投資報酬分析',
+    excerpt: '外帶等待從 8.4 分鐘降至 1.1 分鐘，外帶比例從 55% 提升至 63%。台北日式定食連鎖真實案例，附選型重點、POS 整合說明與月租費對比。',
+    date: '2026-07-03',
+    tags: ['智慧取物櫃', '餐廳外帶', '無人取餐'],
+    readMin: 6,
+  },
+  {
+    slug: 'frozen-vending-military-closed-venue',
+    title: '軍方封閉場域的冷凍食品補給：無人值守完整方案與採購流程說明',
+    excerpt: '軍營、後勤基地、兵器廠的夜間餐食解方。離線 72 小時運作、軍方 IC 卡存取、國家採購法合規、3mm 強固外殼，完整規格說明與採購 5 步驟。',
+    date: '2026-07-03',
+    tags: ['冷凍販賣機', '軍方場域', '封閉場域'],
+    readMin: 6,
+  },
+  {
     slug: 'frozen-vending-machine-factory-guide',
     title: '冷凍販賣機怎麼選？工廠採購主管必看的 5 個關鍵指標（2026）',
     excerpt: '日均使用人次估算、溫控標準、補貨頻率、維護成本、真實投資回收期 5 大指標全解析。附廠商評比重點與 80 間工廠客戶實際數據。',
