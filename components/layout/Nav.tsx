@@ -106,6 +106,12 @@ export default function Nav() {
               {r.label}
             </Link>
           ))}
+          <Link
+            href="/blog"
+            className="px-4 py-2 text-sm text-white/70 hover:text-[var(--accent)] hover:bg-white/5 rounded-lg transition-colors"
+          >
+            知識庫
+          </Link>
         </nav>
 
         <Link
