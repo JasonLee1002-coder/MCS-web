@@ -8,6 +8,30 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    slug: 'frozen-vending-vs-regular-vending',
+    title: '冷凍販賣機 vs 一般販賣機：哪個適合你的場域？完整比較指南',
+    excerpt: '冷凍機 vs 常溫機，5 個關鍵判斷指標＋場域決策樹。工廠、宿舍、醫院選冷凍機；辦公室、學校選一般機。附混合配置真實 ROI 數據。',
+    date: '2026-07-03',
+    tags: ['冷凍販賣機', '選型指南', '場域規劃'],
+    readMin: 8,
+  },
+  {
+    slug: 'smart-locker-office-building',
+    title: '辦公大樓智慧取物櫃：員工福利新選擇與完整成本分析',
+    excerpt: '前台每天 65 分鐘在接外送，降至 8 分鐘。信義區科技公司 220 人真實案例，員工午餐滿意度 72% 升至 89%。含格數選型、月費試算、ROI 分析。',
+    date: '2026-07-03',
+    tags: ['智慧取物櫃', '辦公室', '員工福利'],
+    readMin: 7,
+  },
+  {
+    slug: 'frozen-vending-lease-vs-purchase',
+    title: '冷凍販賣機租賃 vs 買斷：哪個划算？2026 完整費用試算',
+    excerpt: '損益平衡點在第 30.4 個月（約 2.5 年）。租賃 vs 買斷的 3 年總費用完整試算表，5 個決策情境指南，以及租轉買、分潤模式等彈性方案說明。',
+    date: '2026-07-03',
+    tags: ['冷凍販賣機', '租賃', '投資分析'],
+    readMin: 8,
+  },
+  {
     slug: 'frozen-vending-migrant-worker-dormitory',
     title: '移工宿舍放冷凍販賣機：3 個月實際案例與完整成本回收分析',
     excerpt: '台灣 76 萬移工的宿舍夜間餐食困境。公開 3 間工廠移工宿舍的真實數據：越南/印尼籍移工使用率、食材策略、月均利潤 NT$24,000 的完整案例。',
