@@ -1,5 +1,4 @@
-import { google } from '@ai-sdk/google'
-import { streamText, tool, convertToModelMessages, stepCountIs, type UIMessage } from 'ai'
+import { streamText, tool, gateway, convertToModelMessages, stepCountIs, type UIMessage } from 'ai'
 import { z } from 'zod'
 import { BRAND_SYSTEM_PROMPTS, type Brand } from '@/lib/chat-config'
 
@@ -14,7 +13,7 @@ export async function POST(req: Request) {
   }
 
   const result = streamText({
-    model: google('gemini-2.5-flash'),
+    model: gateway('anthropic/claude-haiku-4.5'),
     system: BRAND_SYSTEM_PROMPTS[brand ?? 'mcstation'](keyword ?? '智慧餐飲自助化'),
     messages: await convertToModelMessages(messages),
     temperature: 0.7,
