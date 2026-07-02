@@ -8,6 +8,22 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    slug: 'frozen-vending-machine-factory-guide',
+    title: '冷凍販賣機怎麼選？工廠採購主管必看的 5 個關鍵指標（2026）',
+    excerpt: '日均使用人次估算、溫控標準、補貨頻率、維護成本、真實投資回收期 5 大指標全解析。附廠商評比重點與 80 間工廠客戶實際數據。',
+    date: '2026-07-03',
+    tags: ['冷凍販賣機', '工廠採購', '場域規劃'],
+    readMin: 8,
+  },
+  {
+    slug: 'smart-locker-complete-guide',
+    title: '智慧取物櫃是什麼？5 分鐘看懂運作原理與 6 大商業應用',
+    excerpt: '從餐廳外帶、辦公室訂餐、醫院輕食到工廠員工餐，智慧取物櫃讓取餐等待從 8 分鐘降至 1 分鐘。本文詳解 6 大場域、4 個採購陷阱、真實 ROI 數據。',
+    date: '2026-07-03',
+    tags: ['智慧取物櫃', '無人取餐', '場域自動化'],
+    readMin: 7,
+  },
+  {
     slug: 'frozen-microwave-factory-night-shift',
     title: '台灣工廠夜班缺食危機：冷凍微波機如何解決 3 萬人的深夜餐食',
     excerpt: '台灣製造業夜班人數超過 30 萬，廚房 22:00 關閉後無法提供熱食。冷凍微波機 24 小時自助加熱，讓夜班員工隨時吃到熱食，設備投資 3 個月回收。',
