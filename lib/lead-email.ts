@@ -1,6 +1,8 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY ?? 'placeholder')
+}
 
 const STAFF_EMAIL = 'staff@transtep.com'
 const FROM_EMAIL = 'MCS AI 顧問 <noreply@mcstation.ai>'
@@ -176,7 +178,7 @@ export async function sendLeadEmail(params: {
 </body>
 </html>`
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: FROM_EMAIL,
     to: [STAFF_EMAIL],
     subject,
