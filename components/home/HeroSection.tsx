@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import RoleButton from '@/components/ui/RoleButton'
 
 const roles = [
@@ -10,14 +11,16 @@ const roles = [
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background video */}
-      <video
-        autoPlay muted loop playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-25"
-        poster="/images/hero-poster.jpg"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/mcs-hero.jpg"
+          alt="銓幻元智慧設備"
+          fill
+          className="object-cover opacity-30"
+          priority
+        />
+      </div>
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0E1A]/60 via-[#0A0E1A]/30 to-[#0A0E1A]" />

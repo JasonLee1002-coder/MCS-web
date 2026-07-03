@@ -15,7 +15,7 @@ export const products: Product[] = [
     name: 'GraBox 自助取餐櫃',
     tagline: '讓取餐等待，成為過去式',
     description: '智能保溫格層，LINE / APP 掃碼取餐，與 POS 系統無縫整合。適合餐飲連鎖、美食外送、辦公室供餐。',
-    image: '/images/products/grabox.jpg',
+    image: '/mcs-partner.jpg',
     specs: [
       { label: '格層', value: '12 / 24 / 36 格（可選）' },
       { label: '保溫', value: '40°C–75°C 精準控溫' },
@@ -30,7 +30,7 @@ export const products: Product[] = [
     name: '冷凍微波販賣機',
     tagline: '24 小時，熱食隨時有',
     description: '內建微波爐，冷凍食品即買即熱。適合交通樞紐、醫院、校園、24 小時場域。',
-    image: '/images/products/frozen-vending.jpg',
+    image: '/mcs-venue.jpg',
     specs: [
       { label: '容量', value: '60–120 個品項' },
       { label: '溫度', value: '-18°C 冷凍保鮮' },
@@ -45,7 +45,7 @@ export const products: Product[] = [
     name: '智慧販賣機（標準款）',
     tagline: '你的品牌，智能上架',
     description: '模組化設計，支援飲料、零食、保健品、生活用品上架。品牌商專屬貼牌，OmniCore 後台即時監控。',
-    image: '/images/products/smart-vending.jpg',
+    image: '/mcs-brand.jpg',
     specs: [
       { label: '格層', value: '可客製 5–10 排' },
       { label: '溫控', value: '常溫 / 冷藏 / 冷凍（可選）' },

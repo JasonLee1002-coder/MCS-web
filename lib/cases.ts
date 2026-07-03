@@ -19,7 +19,7 @@ export const cases: Case[] = [
     client: '麥味登',
     category: '餐飲連鎖',
     description: '全台 200+ 門市，GraBox 自助取餐讓顛峰時段出餐效率提升 40%',
-    image: '/images/cases/mcdiner.jpg',
+    image: '/mcs-brand.jpg',
     size: 'hero',
     metrics: [
       { label: '導入門市', value: '200+' },
@@ -33,7 +33,7 @@ export const cases: Case[] = [
     client: '全家',
     category: '零售',
     description: '指定門市試行 GraBox，整合 POS 系統，提升自助取餐比例',
-    image: '/images/cases/familymart.jpg',
+    image: '/mcs-partner.jpg',
     size: 'medium',
   },
   {
@@ -42,7 +42,7 @@ export const cases: Case[] = [
     client: '首都高速株式會社',
     category: '交通樞紐',
     description: '冷凍微波販賣機進駐高速公路服務區，24 小時無人化服務',
-    image: '/images/cases/japan-highway.jpg',
+    image: '/mcs-franchise.jpg',
     size: 'medium',
   },
   {
@@ -51,7 +51,7 @@ export const cases: Case[] = [
     client: '富田電機 / 竹科',
     category: '辦公室',
     description: '企業員工餐飲自助解決方案，節省 30% 餐飲空間成本',
-    image: '/images/cases/office-park.jpg',
+    image: '/mcs-venue.jpg',
     size: 'small',
   },
   {
@@ -60,7 +60,7 @@ export const cases: Case[] = [
     client: '展望運動',
     category: '場館',
     description: '運動後補給站，冷飲 + 輕食 24 小時自助供應',
-    image: '/images/cases/sports-venue.jpg',
+    image: '/mcs-omnicore.jpg',
     size: 'small',
   },
 ]

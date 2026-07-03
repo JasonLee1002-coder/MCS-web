@@ -57,17 +57,28 @@ export default function CasesWall() {
         ))}
       </div>
 
-      {/* Video reel bar */}
+      {/* Stats banner */}
       <div className="reveal mt-4" style={{ transitionDelay: '0.6s' }}>
         <div className="relative rounded-2xl overflow-hidden h-[160px] md:h-[200px] bg-[var(--bg-card)] border border-white/10">
-          <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-40">
-            <source src="/videos/cases-reel.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0E1A]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent)]/10 to-transparent" />
           <div className="absolute inset-0 flex items-center px-10">
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-white">全台 <span className="text-[var(--accent)]">500+</span> 台設備</p>
-              <p className="text-white/50 mt-1">持續擴張中 · 服務 30+ 產業別</p>
+            <div className="flex gap-12 items-center">
+              <div>
+                <p className="text-3xl md:text-4xl font-black text-white">全台 <span className="text-[var(--accent)]">500+</span> 台設備</p>
+                <p className="text-white/50 mt-1">持續擴張中 · 服務 30+ 產業別</p>
+              </div>
+              <div className="hidden md:flex gap-8">
+                {[
+                  { val: '80+', label: '場域' },
+                  { val: '3個月', label: '回收週期' },
+                  { val: '24hr', label: '無人化運作' },
+                ].map(({ val, label }) => (
+                  <div key={label} className="text-center">
+                    <p className="text-2xl font-black text-[var(--accent)]">{val}</p>
+                    <p className="text-white/40 text-xs mt-1">{label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
