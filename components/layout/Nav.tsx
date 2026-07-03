@@ -2,11 +2,11 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const roles = [
-  { label: '場地主', href: '/ai-advisor?role=venue' },
-  { label: '品牌商', href: '/ai-advisor?role=brand' },
-  { label: '加盟合作', href: '/ai-advisor?role=franchise' },
-  { label: '客製化', href: '/ai-advisor?role=custom' },
+const navLinks = [
+  { label: '產品', href: '/products' },
+  { label: '解決方案', href: '/solutions' },
+  { label: '成功案例', href: '/cases' },
+  { label: '關於我們', href: '/about' },
 ]
 
 export default function Nav() {
@@ -34,7 +34,7 @@ export default function Nav() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
-          {roles.map((r) => (
+          {navLinks.map((r) => (
             <Link
               key={r.href}
               href={r.href}
@@ -64,7 +64,7 @@ export default function Nav() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-[#0A0E1A]/95 backdrop-blur-md border-b border-white/10 px-6 pb-4">
-          {roles.map((r) => (
+          {navLinks.map((r) => (
             <Link
               key={r.href}
               href={r.href}
