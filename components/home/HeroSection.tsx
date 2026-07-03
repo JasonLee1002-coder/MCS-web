@@ -32,12 +32,28 @@ export default function HeroSection() {
           銓幻元科技 · mcstation.ai
         </p>
         <h1 className="shimmer-text text-5xl md:text-7xl font-black leading-tight mb-6">
-          智慧設備<br />讓生意更聰明
+          線下自助服務<br />一站式整合商
         </h1>
-        <p className="text-lg md:text-xl text-white/55 mb-16 max-w-2xl mx-auto leading-relaxed">
-          GraBox 取餐櫃、冷凍微波販賣機、智慧設備一站式服務。<br className="hidden md:block" />
-          告訴 AI 你的需求，3 分鐘找到最適合你的方案。
+        <p className="text-lg md:text-xl text-white/55 mb-10 max-w-2xl mx-auto leading-relaxed">
+          GraBox 取餐櫃 · 冷凍微波販賣機 · 智慧設備 · POS 系統整合。<br className="hidden md:block" />
+          從硬體部署到後台管理，銓幻元讓你的場域智慧升級。
         </p>
+
+        {/* CTA buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <a
+            href="#services"
+            className="px-8 py-3.5 rounded-full bg-[var(--accent)] text-[#0A0E1A] font-bold text-base hover:opacity-90 transition-opacity"
+          >
+            瞭解服務方案
+          </a>
+          <a
+            href="/ai-advisor"
+            className="px-8 py-3.5 rounded-full border border-white/30 text-white font-medium text-base hover:bg-white/10 transition-colors"
+          >
+            AI 顧問諮詢 →
+          </a>
+        </div>
 
         {/* Role selector */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">

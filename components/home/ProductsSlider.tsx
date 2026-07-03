@@ -11,7 +11,7 @@ export default function ProductsSlider() {
   }
 
   return (
-    <section className="py-24 overflow-hidden">
+    <section id="products" className="py-24 overflow-hidden">
       {/* Header */}
       <div className="px-6 max-w-7xl mx-auto flex items-end justify-between mb-10">
         <div>

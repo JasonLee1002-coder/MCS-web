@@ -25,7 +25,7 @@ export default function CasesWall() {
   const smallCases = cases.filter((c) => c.size === 'small')
 
   return (
-    <section ref={sectionRef} className="py-24 px-6 max-w-7xl mx-auto">
+    <section id="cases" ref={sectionRef} className="py-24 px-6 max-w-7xl mx-auto">
       {/* Section header */}
       <div className="reveal mb-12">
         <p className="text-xs tracking-[0.3em] text-[var(--accent)] uppercase mb-3">Success Stories</p>
