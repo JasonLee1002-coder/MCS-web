@@ -11,18 +11,17 @@ export default function Footer() {
         </div>
         <div className="flex gap-12 text-sm text-white/50">
           <div className="flex flex-col gap-2">
-            <p className="text-white/80 font-medium mb-1">產品與方案</p>
-            <a href="/products" className="hover:text-[var(--accent)] transition-colors">產品總覽</a>
-            <a href="/solutions" className="hover:text-[var(--accent)] transition-colors">解決方案</a>
-            <a href="/cases" className="hover:text-[var(--accent)] transition-colors">成功案例</a>
-            <a href="/about" className="hover:text-[var(--accent)] transition-colors">關於我們</a>
+            <p className="text-white/80 font-medium mb-1">產品</p>
+            <a href="/ai-advisor?role=venue" className="hover:text-[var(--accent)] transition-colors">GraBox 取餐櫃</a>
+            <a href="/ai-advisor?role=venue" className="hover:text-[var(--accent)] transition-colors">冷凍微波機</a>
+            <a href="/ai-advisor?role=brand" className="hover:text-[var(--accent)] transition-colors">智慧販賣機</a>
           </div>
           <div className="flex flex-col gap-2">
-            <p className="text-white/80 font-medium mb-1">合作洽談</p>
+            <p className="text-white/80 font-medium mb-1">合作</p>
             <a href="/ai-advisor?role=venue" className="hover:text-[var(--accent)] transition-colors">我是場地主</a>
             <a href="/ai-advisor?role=brand" className="hover:text-[var(--accent)] transition-colors">我是品牌商</a>
             <a href="/ai-advisor?role=franchise" className="hover:text-[var(--accent)] transition-colors">加盟合作</a>
-            <a href="/contact" className="hover:text-[var(--accent)] transition-colors">聯絡我們</a>
+            <a href="/ai-advisor?role=custom" className="hover:text-[var(--accent)] transition-colors">客製化</a>
           </div>
         </div>
         <p className="text-xs text-white/30 self-end">
