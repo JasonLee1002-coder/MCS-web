@@ -19,6 +19,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  // Static SEO article pages (migrated 2026-07-03, closed-venue / smart-locker series)
+  const staticBlogSlugs = [
+    "frozen-microwave-factory-night-shift",
+    "frozen-vending-elderly-care",
+    "frozen-vending-electricity-maintenance",
+    "frozen-vending-factory-night-solution",
+    "frozen-vending-lease-vs-purchase",
+    "frozen-vending-machine-factory-guide",
+    "frozen-vending-migrant-worker-dormitory",
+    "frozen-vending-military-closed-venue",
+    "frozen-vending-school-campus",
+    "frozen-vending-vendor-selection",
+    "frozen-vending-vs-regular-vending",
+    "ghost-kitchen-smart-locker-guide",
+    "smart-locker-api-integration",
+    "smart-locker-brunch-chain",
+    "smart-locker-campus",
+    "smart-locker-complete-guide",
+    "smart-locker-cost-calculator",
+    "smart-locker-factory-migrant",
+    "smart-locker-hospital-system",
+    "smart-locker-office-building",
+    "smart-locker-restaurant-takeout",
+    "smart-locker-vs-regular-fridge",
+    "steam-ramen-hospital-24hr",
+  ];
+  const staticBlogPosts = staticBlogSlugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   return [
     {
       url: baseUrl,
@@ -51,5 +84,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     ...blogPosts,
+    ...staticBlogPosts,
   ];
 }
