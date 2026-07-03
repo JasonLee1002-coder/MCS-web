@@ -4,16 +4,6 @@ import { DefaultChatTransport } from 'ai'
 import { useRef, useEffect, useState } from 'react'
 import { Role } from '@/lib/chat-stages'
 
-function getSessionId(): string {
-  const key = 'mcs_session_id'
-  let id = localStorage.getItem(key)
-  if (!id) {
-    id = crypto.randomUUID()
-    localStorage.setItem(key, id)
-  }
-  return id
-}
-
 const welcomeMessages: Record<Role, string> = {
   venue: '您好！我是銓幻元的 AI 顧問 👋\n\n請問您的場地是什麼類型呢？（例如：辦公室、工廠、學校、醫院...）',
   brand: '您好！我是銓幻元的 AI 顧問 👋\n\n想讓您的品牌進入全台智慧設備通路嗎？請問您的品牌屬於哪個類別呢？',
@@ -24,21 +14,14 @@ const welcomeMessages: Record<Role, string> = {
 interface ChatPanelProps {
   role: Role
   onStageChange?: (content: string) => void
-  /** External trigger: when triggerText changes, auto-send that message */
-  triggerText?: string
-  triggerVersion?: number
 }
 
-export default function ChatPanel({ role, onStageChange, triggerText, triggerVersion }: ChatPanelProps) {
+export default function ChatPanel({ role, onStageChange }: ChatPanelProps) {
   const [input, setInput] = useState('')
   const bottomRef = useRef<HTMLDivElement>(null)
-  const [sessionId] = useState<string>(() =>
-    typeof window !== 'undefined' ? getSessionId() : ''
-  )
-  const prevTriggerRef = useRef<number | undefined>(undefined)
 
   const { messages, sendMessage, status } = useChat({
-    transport: new DefaultChatTransport({ api: '/api/chat', body: { role, sessionId } }),
+    transport: new DefaultChatTransport({ api: '/api/chat', body: { role } }),
     messages: [{
       id: 'welcome',
       role: 'assistant',
@@ -55,19 +38,6 @@ export default function ChatPanel({ role, onStageChange, triggerText, triggerVer
 
   const isStreaming = status === 'streaming' || status === 'submitted'
 
-  // ★ External trigger: when triggerVersion changes, auto-send triggerText
-  useEffect(() => {
-    if (
-      triggerText &&
-      triggerVersion !== undefined &&
-      triggerVersion !== prevTriggerRef.current &&
-      status === 'ready'
-    ) {
-      prevTriggerRef.current = triggerVersion
-      sendMessage({ text: triggerText })
-    }
-  }, [triggerText, triggerVersion, status, sendMessage])
-
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isStreaming])
@@ -80,18 +50,9 @@ export default function ChatPanel({ role, onStageChange, triggerText, triggerVer
   }
 
   return (
-    <div className="flex flex-col h-full bg-white">
-      {/* Chat header */}
-      <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full bg-[#00C6AD] flex items-center justify-center text-white font-bold text-sm">AI</div>
-        <div>
-          <p className="text-base font-semibold text-gray-800">銓幻元 AI 顧問</p>
-          <p className="text-xs text-gray-400">智慧設備專家 · 隨時為您解答</p>
-        </div>
-      </div>
-
+    <div className="flex flex-col h-full">
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-5 py-4 space-y-5">
+      <div className="flex-1 overflow-y-auto p-5 space-y-4">
         {messages.map((m) => {
           const text = m.parts
             .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
@@ -104,17 +65,17 @@ export default function ChatPanel({ role, onStageChange, triggerText, triggerVer
 
           const isUser = (m.role as string) === 'user'
           return (
-            <div key={m.id} className={`flex ${isUser ? 'justify-end' : 'justify-start'} items-end gap-2`}>
+            <div key={m.id} className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
               {!isUser && (
-                <div className="w-8 h-8 rounded-full bg-[#00C6AD] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                <div className="w-7 h-7 rounded-full bg-[var(--accent)]/20 border border-[var(--accent)]/40 flex items-center justify-center text-xs mr-2 flex-shrink-0 mt-0.5">
                   AI
                 </div>
               )}
               <div
-                className={`max-w-[78%] rounded-2xl px-5 py-3.5 text-base leading-relaxed whitespace-pre-wrap shadow-sm ${
+                className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
                   isUser
-                    ? 'bg-[#00C6AD] text-white font-medium rounded-br-sm'
-                    : 'bg-gray-100 text-gray-800 rounded-bl-sm'
+                    ? 'bg-[var(--accent)] text-[#0A0E1A] font-medium rounded-br-sm'
+                    : 'bg-white/10 text-white rounded-bl-sm'
                 }`}
               >
                 {text}
@@ -124,16 +85,16 @@ export default function ChatPanel({ role, onStageChange, triggerText, triggerVer
         })}
 
         {isStreaming && (
-          <div className="flex justify-start items-end gap-2">
-            <div className="w-8 h-8 rounded-full bg-[#00C6AD] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+          <div className="flex justify-start">
+            <div className="w-7 h-7 rounded-full bg-[var(--accent)]/20 border border-[var(--accent)]/40 flex items-center justify-center text-xs mr-2 flex-shrink-0">
               AI
             </div>
-            <div className="bg-gray-100 rounded-2xl rounded-bl-sm px-5 py-3.5">
-              <div className="flex gap-1.5 items-center h-5">
+            <div className="bg-white/10 rounded-2xl rounded-bl-sm px-4 py-3">
+              <div className="flex gap-1.5 items-center h-4">
                 {[0, 1, 2].map(i => (
                   <div
                     key={i}
-                    className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"
+                    className="w-1.5 h-1.5 rounded-full bg-white/40 animate-bounce"
                     style={{ animationDelay: `${i * 0.15}s` }}
                   />
                 ))}
@@ -145,19 +106,19 @@ export default function ChatPanel({ role, onStageChange, triggerText, triggerVer
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="p-4 border-t border-gray-100 bg-white">
+      <form onSubmit={handleSubmit} className="p-4 border-t border-white/10">
         <div className="flex gap-3">
           <input
             value={input}
             onChange={e => setInput(e.target.value)}
-            placeholder="輸入您的問題..."
+            placeholder="輸入訊息..."
             disabled={status !== 'ready'}
-            className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-5 py-3.5 text-base text-gray-800 placeholder-gray-400 outline-none focus:border-[#00C6AD] focus:ring-2 focus:ring-[#00C6AD]/20 disabled:opacity-50 transition-colors"
+            className="flex-1 bg-white/8 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-[var(--accent)]/50 focus:ring-1 focus:ring-[var(--accent)]/30 disabled:opacity-50 transition-colors"
           />
           <button
             type="submit"
             disabled={status !== 'ready' || !input.trim()}
-            className="px-6 py-3.5 bg-[#00C6AD] text-white font-semibold text-base rounded-xl hover:bg-[#00b09b] disabled:opacity-40 transition flex-shrink-0 shadow-sm"
+            className="px-5 py-3 bg-[var(--accent)] text-[#0A0E1A] font-semibold text-sm rounded-xl hover:brightness-110 disabled:opacity-40 transition flex-shrink-0"
           >
             送出
           </button>

@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: true,
   },
-  experimental: {
-    optimizePackageImports: ['framer-motion', '@phosphor-icons/react'],
-  },
 }
 
 export default nextConfig

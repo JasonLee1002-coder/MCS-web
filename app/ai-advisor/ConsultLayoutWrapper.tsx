@@ -9,5 +9,5 @@ export default function ConsultLayoutWrapper() {
   const params = useSearchParams()
   const rawRole = params.get('role') as Role
   const role: Role = VALID_ROLES.includes(rawRole) ? rawRole : 'venue'
-  return <ConsultLayout key={role} role={role} />
+  return <ConsultLayout role={role} />
 }
