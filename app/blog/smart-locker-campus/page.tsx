@@ -82,7 +82,7 @@ export default function Article() {
           <ol className="list-decimal pl-6 space-y-3">
             <li><strong className="text-slate-100">需求確認</strong>：總務處聯繫銓幻元，確認場域評估、設備規格、預算範圍</li>
             <li><strong className="text-slate-100">規格書準備</strong>：銓幻元提供符合政府採購法格式的規格書，含技術規格、認證文件、效能數據</li>
-            <li><strong className="text-slate-100">採購程序</strong>：依金額選擇公開招標（≥ NT$15 萬）或限制性招標（< NT$15 萬）</li>
+            <li><strong className="text-slate-100">採購程序</strong>：依金額選擇公開招標（≥ NT$15 萬）或限制性招標（&lt; NT$15 萬）</li>
             <li><strong className="text-slate-100">安裝與驗收</strong>：1–2 天安裝，提供驗收報告，學生餐廳不需要停業</li>
             <li><strong className="text-slate-100">App 整合</strong>：對接學校現有的學生 App 或餐廳訂餐系統，通常 3–5 工作天完成</li>
           </ol>

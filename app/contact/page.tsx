@@ -88,7 +88,7 @@ export default function ContactPage() {
               onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
               placeholder="王大明"
               className="w-full rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-600 outline-none focus:ring-2 transition-all"
-              style={{ background: '#0f1f36', border: '1px solid rgba(255,107,53,0.2)', focusRingColor: '#FF6B35' }}
+              style={{ background: '#0f1f36', border: '1px solid rgba(255,107,53,0.2)' }}
             />
           </div>
 
