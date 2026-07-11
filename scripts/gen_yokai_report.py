@@ -151,13 +151,13 @@ set_font(r2, LATIN_TITLE, SERIF_TC, 20, True, RGBColor(0xFF, 0xFF, 0xFF))
 doc.add_paragraph()
 p3 = doc.add_paragraph()
 p3.alignment = WD_ALIGN_PARAGRAPH.CENTER
-r3 = p3.add_run("侵權訴訟前置資料彙整 ｜ CMO 情報彙整")
+r3 = p3.add_run("侵權訴訟前置資料彙整 ｜ AI CMO 情報彙整")
 set_font(r3, LATIN_BODY, SANS_TC, 13, True, GOLD)
 
 p4 = doc.add_paragraph()
 p4.alignment = WD_ALIGN_PARAGRAPH.CENTER
-today = "2026年7月10日"
-r4 = p4.add_run(f"製作日期：{today}｜密級：內部與委任律師使用")
+today = "2026年7月10日（v5：2026年7月11日更新）"
+r4 = p4.add_run(f"製作日期：{today}｜密級：內部與委任律師使用｜撰寫者：AI CMO")
 set_font(r4, LATIN_BODY, SANS_TC, 10.5, False, GRAY)
 
 doc.add_paragraph()
@@ -466,6 +466,6 @@ sources = [
 for title, url in sources:
     add_source_line(doc, title, url)
 
-out_path = r"C:\Users\JasonLee\claude_code_projects\CMO\docs\Yo-Kai Express 新聞彙整及專利相關暨市場擺放點位調查報告_v5.docx"
+out_path = r"C:\Users\JasonLee\claude_code_projects\CMO\docs\AI-CMO_Yo-Kai Express 新聞彙整及專利相關暨市場擺放點位調查報告_v5.docx"
 doc.save(out_path)
 print("SAVED:", out_path)
