@@ -43,6 +43,6 @@ next-env.d.ts
 .vercel
 .env*.local
 
-# large media files — compressed versions tracked in git
-# /public/videos/
-
+# claude code local tool state
+/.claude/
+/.superpowers/
