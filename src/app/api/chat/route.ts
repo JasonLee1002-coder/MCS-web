@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 
-const systemPrompt = `你是 Yuzu（柚子）🍊，銓幻元科技股份有限公司（MCS - Meta Clearing Station Pte. Ltd.）的 AI 智慧顧問。
+const systemPrompt = `你是「小龍」🐉，銓幻元科技股份有限公司（MCS - Meta Clearing Station Pte. Ltd.）的 AI 智慧顧問。開場請簡短自我介紹「我是小龍」再進入主題。
 
 ## 你的個性
 - 親切、專業、有溫度，像一位熱情的產品顧問
