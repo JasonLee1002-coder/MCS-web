@@ -155,7 +155,7 @@ export default function AiConsultant() {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([
-        { role: "bot", text: "嗨！我是 Yuzu（柚子）🍊 MCS 銓幻元科技的 AI 顧問" },
+        { role: "bot", text: "嗨！我是小龍 🐉 MCS 銓幻元科技的 AI 顧問" },
         { role: "bot", text: ctx.welcome },
       ]);
     }
@@ -183,7 +183,7 @@ export default function AiConsultant() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "bot", text: "抱歉，暫時無法回應，請稍後再試或 Email 至 service@mcstation.ai 🍊" },
+        { role: "bot", text: "抱歉，暫時無法回應，請稍後再試或 Email 至 service@mcstation.ai 🐉" },
       ]);
     } finally {
       setIsLoading(false);
@@ -202,10 +202,10 @@ export default function AiConsultant() {
           id="yuzu-ai-btn"
           onClick={() => setIsOpen(true)}
           className="fixed bottom-6 right-6 z-50 bg-mcs-orange text-white rounded-full shadow-lg hover:bg-mcs-orange-light transition-all flex items-center gap-2 pl-4 pr-5 py-3 animate-bounce"
-          aria-label="Yuzu AI 顧問"
+          aria-label="小龍 AI 顧問"
         >
-          <span className="text-2xl">🍊</span>
-          <span className="text-sm font-bold">Yuzu AI</span>
+          <span className="text-2xl">🐉</span>
+          <span className="text-sm font-bold">小龍 AI</span>
         </button>
       )}
 
@@ -216,10 +216,10 @@ export default function AiConsultant() {
           <div className="bg-gradient-to-r from-mcs-blue-dark to-mcs-blue px-5 py-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center text-xl">
-                🍊
+                🐉
               </div>
               <div>
-                <div className="text-white font-bold text-sm">Yuzu AI 顧問</div>
+                <div className="text-white font-bold text-sm">小龍 AI 顧問</div>
                 <div className="text-white/60 text-xs">AI 驅動 · 銓幻元科技 MCS</div>
               </div>
             </div>
@@ -239,7 +239,7 @@ export default function AiConsultant() {
               msg.role === "bot" ? (
                 <div key={i} className="flex gap-2">
                   <div className="w-7 h-7 bg-mcs-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-sm">
-                    🍊
+                    🐉
                   </div>
                   <div className="bg-gray-100 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-gray-700 max-w-[280px] prose prose-sm prose-gray prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-strong:text-mcs-blue-dark prose-headings:text-mcs-blue-dark prose-headings:text-sm prose-headings:mt-2 prose-headings:mb-1">
                     <ReactMarkdown>{msg.text}</ReactMarkdown>
@@ -258,7 +258,7 @@ export default function AiConsultant() {
             {isLoading && (
               <div className="flex gap-2">
                 <div className="w-7 h-7 bg-mcs-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-sm">
-                  🍊
+                  🐉
                 </div>
                 <div className="bg-gray-100 rounded-xl rounded-tl-sm px-4 py-3 text-sm text-gray-400">
                   <span className="inline-flex gap-1">
@@ -310,7 +310,7 @@ export default function AiConsultant() {
               </button>
             </div>
             <div className="text-[10px] text-gray-400 mt-1.5 text-center">
-              Powered by Yuzu AI 🍊
+              Powered by 小龍 AI 🐉
             </div>
           </div>
         </div>
