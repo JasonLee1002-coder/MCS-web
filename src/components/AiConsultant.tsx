@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
+import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
-
-interface Message {
-  role: "user" | "bot";
-  text: string;
-}
+import { LeadConfirmCard, type LeadData } from "./LeadConfirmCard";
+import { OPENER } from "@/lib/chat-config";
 
 interface PageContext {
   welcome: string;
@@ -96,7 +96,7 @@ const pageContexts: Record<string, PageContext> = {
 };
 
 const defaultContext: PageContext = {
-  welcome: "您目前遇到最大的問題是什麼？跟我聊聊，我來幫您找方案！",
+  welcome: OPENER,
   topics: [
     "門市/廠區缺人手，想找無人化取餐/販售方案",
     "網站流量停滯不成長",
@@ -106,21 +106,83 @@ const defaultContext: PageContext = {
   ],
 };
 
+/** 四個核心欄位，用於進度顯示 */
+const CORE_FIELDS: { key: keyof LeadData; label: string }[] = [
+  { key: "venue", label: "場域" },
+  { key: "need", label: "需求" },
+  { key: "name", label: "姓名" },
+  { key: "contact", label: "聯絡方式" },
+];
+
+/** 用「已收集到的欄位」組出一筆可送出的 lead，缺的欄位標記待補 */
+function buildLead(p: Partial<LeadData>): LeadData {
+  return {
+    venue: p.venue?.trim() || "待確認場域",
+    need: p.need?.trim() || "待業務進一步了解需求",
+    headcount: p.headcount?.trim() || undefined,
+    name: p.name?.trim() || "",
+    contact: p.contact?.trim() || "待業務致電確認",
+    contactMethod: p.contactMethod || "電話",
+    institution: p.institution?.trim() || undefined,
+    category: p.category,
+  };
+}
+
 export default function AiConsultant() {
   const pathname = usePathname();
   const ctx = pageContexts[pathname] || defaultContext;
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [leadData, setLeadData] = useState<LeadData | null>(null);
+  const [dismissed, setDismissed] = useState(false);
+  const [testMode, setTestMode] = useState(false);
   const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const chatRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
-  // Get room code from URL if on /present/control
+  // Presenter mode room code (存在既有 /present/control 同步功能)
   const isPresenterMode = pathname === "/present/control";
   const roomCodeRef = useRef("");
+  const syncedIdsRef = useRef<Set<string>>(new Set());
 
-  // Hide on /intro and /east-beauty (clean presentation pages)
-  if (pathname === "/intro" || pathname === "/east-beauty") return null;
+  const initialMessages = useMemo(
+    () => [
+      {
+        id: "init-brand",
+        role: "assistant" as const,
+        parts: [{ type: "text" as const, text: "嗨！我是小龍 🐉 MCS 銓幻元科技的 AI 顧問" }],
+      },
+      {
+        id: "init-welcome",
+        role: "assistant" as const,
+        parts: [{ type: "text" as const, text: ctx.welcome }],
+      },
+    ],
+    [ctx.welcome]
+  );
+
+  const transport = useMemo(
+    () =>
+      new DefaultChatTransport({
+        api: "/api/chat",
+        body: { sourceUrl: pathname, pageContext: ctx.welcome },
+      }),
+    [pathname, ctx.welcome]
+  );
+
+  const { messages, sendMessage, regenerate, status } = useChat({
+    messages: initialMessages,
+    transport,
+  });
+
+  const isStreaming = status === "streaming" || status === "submitted";
+  const userTurns = messages.filter((m) => (m.role as string) === "user").length;
+  const MAX_TURNS = 8;
+
+  // 偵測測試模式：?test=1 → 送出時不寫入真實 CRM
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setTestMode(new URLSearchParams(window.location.search).get("test") === "1");
+  }, []);
 
   useEffect(() => {
     if (isPresenterMode) {
@@ -129,70 +191,161 @@ export default function AiConsultant() {
     }
   }, [isPresenterMode]);
 
-  // Sync Yuzu Q&A to presentation screen
-  const syncToPresentation = useCallback((question: string, answer: string) => {
-    if (!isPresenterMode || !roomCodeRef.current) return;
-    fetch("/api/present", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        room: roomCodeRef.current,
-        qa: question,
-        qaAnswer: answer,
-      }),
-    }).catch(() => {});
-  }, [isPresenterMode]);
+  // Sync Yuzu Q&A to presentation screen（沿用既有 /present 功能）
+  const syncToPresentation = useCallback(
+    (question: string, answer: string) => {
+      if (!isPresenterMode || !roomCodeRef.current) return;
+      fetch("/api/present", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ room: roomCodeRef.current, qa: question, qaAnswer: answer }),
+      }).catch(() => {});
+    },
+    [isPresenterMode]
+  );
 
+  useEffect(() => {
+    if (!isPresenterMode || isStreaming) return;
+    const lastUserIdx = messages.map((m) => m.role as string).lastIndexOf("user");
+    if (lastUserIdx < 0) return;
+    const assistantMsg = messages[lastUserIdx + 1];
+    if (!assistantMsg || assistantMsg.id === undefined || syncedIdsRef.current.has(assistantMsg.id)) return;
+    const userText = (messages[lastUserIdx].parts ?? []).find((p) => p.type === "text")?.text ?? "";
+    const answerText = (assistantMsg.parts ?? []).find((p) => p.type === "text")?.text ?? "";
+    if (!answerText) return;
+    syncedIdsRef.current.add(assistantMsg.id);
+    syncToPresentation(userText, answerText);
+  }, [messages, isStreaming, isPresenterMode, syncToPresentation]);
 
-  // Auto scroll to bottom
+  // 累積解析 summarize_lead 的每輪輸出，得到目前已收集欄位 + AI 是否判定可送出
+  const { partialLead, aiReady } = useMemo(() => {
+    const acc: Partial<LeadData> = {};
+    let ready = false;
+    const keys: (keyof LeadData)[] = ["venue", "need", "headcount", "name", "contact", "contactMethod", "institution", "category"];
+    for (const msg of messages) {
+      for (const part of msg.parts ?? []) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const p = part as any;
+        if (p.type === "tool-summarize_lead" && p.state === "output-available" && p.output) {
+          const o = p.output as Record<string, unknown>;
+          for (const k of keys) {
+            const v = o[k];
+            if (typeof v === "string" && v.trim()) {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              (acc as any)[k] = v;
+            }
+          }
+          if (o.ready === true) ready = true;
+        }
+      }
+    }
+    return { partialLead: acc, aiReady: ready };
+  }, [messages]);
+
+  const collectedCount = CORE_FIELDS.filter((f) => partialLead[f.key]).length;
+  const hasContact = !!partialLead.contact;
+  const started = userTurns > 0;
+
+  // AI 判定可送出 → 自動開啟確認卡
+  useEffect(() => {
+    if (leadData || dismissed) return;
+    if (aiReady) setLeadData(buildLead(partialLead));
+  }, [aiReady, partialLead, leadData, dismissed]);
+
+  // 空串流自動重送（極少數情況 AI Gateway/供應商偶爾回空串流）。
+  // 該輪 user 訊息後若 assistant 無任何文字/工具輸出，最多自動 regenerate 2 次。
+  const emptyRetryRef = useRef<{ userId: string | null; count: number }>({ userId: null, count: 0 });
+  useEffect(() => {
+    if (status !== "ready" && status !== "error") return;
+    if (userTurns === 0) return;
+    const lastUserIdx = messages.map((m) => m.role as string).lastIndexOf("user");
+    if (lastUserIdx < 0) return;
+    const lastUserId = messages[lastUserIdx].id;
+    const gotContent = messages.slice(lastUserIdx + 1).some((m) =>
+      (m.parts ?? []).some((p) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const x = p as any;
+        return (
+          (x.type === "text" && typeof x.text === "string" && x.text.trim()) ||
+          (x.type === "tool-summarize_lead" && x.state === "output-available")
+        );
+      })
+    );
+    if (gotContent) {
+      emptyRetryRef.current = { userId: lastUserId, count: 0 };
+      return;
+    }
+    if (emptyRetryRef.current.userId !== lastUserId) {
+      emptyRetryRef.current = { userId: lastUserId, count: 0 };
+    }
+    if (emptyRetryRef.current.count >= 2) return;
+    emptyRetryRef.current.count += 1;
+    const t = setTimeout(() => {
+      regenerate();
+    }, 500);
+    return () => clearTimeout(t);
+  }, [status, messages, userTurns, regenerate]);
+
+  // 兜底：對話達上限仍未產生 lead → 強制用已收集欄位組一筆送出（不再卡死）
+  useEffect(() => {
+    if (leadData || dismissed || isStreaming) return;
+    if (userTurns >= MAX_TURNS) setLeadData(buildLead(partialLead));
+  }, [userTurns, isStreaming, leadData, dismissed, partialLead]);
+
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-  }, [messages, isLoading]);
+  }, [messages, isStreaming, leadData]);
 
-  // Show welcome when first opened — context-aware
-  useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      setMessages([
-        { role: "bot", text: "嗨！我是小龍 🐉 MCS 銓幻元科技的 AI 顧問" },
-        { role: "bot", text: ctx.welcome },
-      ]);
-    }
-  }, [isOpen, messages.length, ctx.welcome]);
+  // Hide on /intro and /east-beauty (clean presentation pages)
+  if (pathname === "/intro" || pathname === "/east-beauty") return null;
 
-  const sendMessage = useCallback(async (text: string) => {
-    if (!text.trim() || isLoading) return;
-    const question = text.trim();
+  function handleSend(e: React.FormEvent) {
+    e.preventDefault();
+    if (!input.trim() || isStreaming) return;
+    sendMessage({ text: input });
     setInput("");
+    setDismissed(false);
+  }
 
-    const newMessages: Message[] = [...messages, { role: "user", text: question }];
-    setMessages(newMessages);
-    setIsLoading(true);
+  function forceLead() {
+    setDismissed(false);
+    setLeadData(buildLead(partialLead));
+  }
 
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: newMessages }),
-      });
+  async function handleLeadSubmit(data: LeadData) {
+    const textLines = messages
+      .filter((m) => (m.role as string) !== "system")
+      .flatMap((m) =>
+        (m.parts ?? [])
+          .filter((p): p is { type: "text"; text: string } => p.type === "text")
+          .map((p) => `[${m.role}] ${p.text}`)
+      )
+      .join("\n");
 
-      const data = await res.json();
-      setMessages((prev) => [...prev, { role: "bot", text: data.answer }]);
-      syncToPresentation(question, data.answer);
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        { role: "bot", text: "抱歉，暫時無法回應，請稍後再試或 Email 至 service@mcstation.ai 🐉" },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [messages, isLoading, syncToPresentation]);
+    const caseId = `MCS-${Date.now()}`;
+    await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        caseId,
+        venue: data.venue,
+        situation: data.need,
+        description: data.headcount ?? "",
+        name: data.name,
+        contact: data.contact,
+        institution: data.institution ?? "",
+        sourceUrl: pathname,
+        contactMethod: data.contactMethod,
+        aiSummary: textLines.slice(0, 2000),
+        leadCategory: data.category ?? "IoT無人商店",
+        testMode,
+      }),
+    });
+  }
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") sendMessage(input);
-  };
+  const accent = "#E8751A"; // mcs-orange
 
   return (
     <>
@@ -211,51 +364,122 @@ export default function AiConsultant() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-50 w-full sm:w-[380px] h-full sm:h-[560px] bg-white sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
+        <motion.div
+          initial={reduceMotion ? undefined : { opacity: 0, y: 12, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-50 w-full sm:w-[380px] h-full sm:h-[600px] bg-white sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
+        >
           {/* Header */}
           <div className="bg-gradient-to-r from-mcs-blue-dark to-mcs-blue px-5 py-4 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center text-xl">
-                🐉
-              </div>
+              <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center text-xl">🐉</div>
               <div>
-                <div className="text-white font-bold text-sm">小龍 AI 顧問</div>
+                <div className="text-white font-bold text-sm flex items-center gap-1.5">
+                  小龍 AI 顧問
+                  <motion.span
+                    className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"
+                    animate={reduceMotion ? undefined : { opacity: [1, 0.35, 1] }}
+                    transition={reduceMotion ? undefined : { duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  {testMode && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-400/30 text-amber-200 font-mono">TEST</span>
+                  )}
+                </div>
                 <div className="text-white/60 text-xs">AI 驅動 · 銓幻元科技 MCS</div>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white/70 hover:text-white"
-            >
+            <button onClick={() => setIsOpen(false)} className="text-white/70 hover:text-white">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
+          {/* 需求收集進度 */}
+          <div className="px-4 py-2 shrink-0 border-b border-gray-100 bg-mcs-gray">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[11px] text-gray-500">
+                已收集 <span className="font-bold text-mcs-orange">{collectedCount}</span>/4 項需求
+              </span>
+              <span className="text-[11px] text-gray-400">
+                {collectedCount >= 3 && hasContact ? "可送出方案" : `還差 ${4 - collectedCount} 項`}
+              </span>
+            </div>
+            <div className="flex gap-1.5">
+              {CORE_FIELDS.map((f) => {
+                const done = !!partialLead[f.key];
+                return (
+                  <motion.div
+                    key={f.key}
+                    className="flex-1 flex items-center justify-center gap-1 rounded-md py-1 text-[10px] font-medium"
+                    style={{
+                      background: done ? `${accent}1A` : "#ffffff",
+                      color: done ? accent : "#9ca3af",
+                      border: `1px solid ${done ? accent + "55" : "#e5e7eb"}`,
+                    }}
+                    animate={done && !reduceMotion ? { scale: [1, 1.08, 1] } : { scale: 1 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                  >
+                    <span>{done ? "✓" : "○"}</span>
+                    {f.label}
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Chat Body */}
           <div ref={chatRef} className="flex-1 overflow-y-auto p-4 space-y-3">
-            {messages.map((msg, i) =>
-              msg.role === "bot" ? (
-                <div key={i} className="flex gap-2">
-                  <div className="w-7 h-7 bg-mcs-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-sm">
-                    🐉
-                  </div>
-                  <div className="bg-gray-100 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-gray-700 max-w-[280px] prose prose-sm prose-gray prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-strong:text-mcs-blue-dark prose-headings:text-mcs-blue-dark prose-headings:text-sm prose-headings:mt-2 prose-headings:mb-1">
-                    <ReactMarkdown>{msg.text}</ReactMarkdown>
-                  </div>
-                </div>
-              ) : (
-                <div key={i} className="flex justify-end">
-                  <div className="bg-mcs-orange text-white rounded-xl rounded-tr-sm px-4 py-2.5 text-sm max-w-[280px]">
-                    {msg.text}
-                  </div>
-                </div>
-              )
+            <AnimatePresence initial={false}>
+              {messages
+                .filter((m) => (m.role as string) !== "system")
+                .map((m) => {
+                  const textPart = (m.parts ?? []).find((p): p is { type: "text"; text: string } => p.type === "text");
+                  if (!textPart?.text) return null;
+                  const isUser = (m.role as string) === "user";
+                  return isUser ? (
+                    <motion.div
+                      key={m.id}
+                      initial={reduceMotion ? undefined : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex justify-end"
+                    >
+                      <div className="bg-mcs-orange text-white rounded-xl rounded-tr-sm px-4 py-2.5 text-sm max-w-[280px]">
+                        {textPart.text}
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key={m.id}
+                      initial={reduceMotion ? undefined : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex gap-2"
+                    >
+                      <div className="w-7 h-7 bg-mcs-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-sm">
+                        🐉
+                      </div>
+                      <div className="bg-gray-100 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-gray-700 max-w-[280px] prose prose-sm prose-gray prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-strong:text-mcs-blue-dark prose-headings:text-mcs-blue-dark prose-headings:text-sm prose-headings:mt-2 prose-headings:mb-1">
+                        <ReactMarkdown>{textPart.text}</ReactMarkdown>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+            </AnimatePresence>
+
+            {leadData && (
+              <motion.div
+                initial={reduceMotion ? undefined : { opacity: 0, scale: 0.95, y: 8 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <LeadConfirmCard data={leadData} onSubmit={handleLeadSubmit} onRevise={() => { setLeadData(null); setDismissed(true); }} />
+              </motion.div>
             )}
 
-            {/* Typing indicator */}
-            {isLoading && (
+            {isStreaming && (
               <div className="flex gap-2">
                 <div className="w-7 h-7 bg-mcs-orange/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-sm">
                   🐉
@@ -271,12 +495,16 @@ export default function AiConsultant() {
             )}
 
             {/* Quick Topics - only show at start */}
-            {messages.length <= 2 && !isLoading && (
+            {messages.length <= 2 && !isStreaming && (
               <div className="space-y-1.5 mt-1">
                 {ctx.topics.map((topic) => (
                   <button
                     key={topic}
-                    onClick={() => sendMessage(topic)}
+                    onClick={() => {
+                      if (isStreaming) return;
+                      sendMessage({ text: topic });
+                      setDismissed(false);
+                    }}
                     className="block w-full text-left px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:border-mcs-orange hover:bg-mcs-orange/5 transition-colors"
                   >
                     {topic}
@@ -286,34 +514,44 @@ export default function AiConsultant() {
             )}
           </div>
 
-          {/* Input */}
-          <div className="px-4 py-3 border-t border-gray-100 flex-shrink-0">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="輸入您的問題..."
-                className="flex-1 px-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
-                autoFocus
-                disabled={isLoading}
-              />
-              <button
-                onClick={() => sendMessage(input)}
-                disabled={!input.trim() || isLoading}
-                className="bg-mcs-orange text-white px-3.5 py-2.5 rounded-xl hover:bg-mcs-orange-light transition-colors disabled:opacity-30"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                </svg>
-              </button>
+          {/* 明確送出出口 + 輸入框 */}
+          {!leadData && (
+            <div className="shrink-0 border-t border-gray-100">
+              {(hasContact || started) && (
+                <button
+                  onClick={forceLead}
+                  className="w-full px-4 py-2 text-xs font-bold border-b border-gray-100 transition-colors"
+                  style={{
+                    background: hasContact ? accent : "transparent",
+                    color: hasContact ? "#ffffff" : accent,
+                  }}
+                >
+                  {hasContact ? "產生方案並送出 →" : "✋ 直接留下聯絡方式，專人聯繫"}
+                </button>
+              )}
+              <form onSubmit={handleSend} className="px-4 py-3 flex gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="輸入您的問題..."
+                  className="flex-1 px-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-mcs-orange/50"
+                  disabled={isStreaming}
+                />
+                <button
+                  type="submit"
+                  disabled={!input.trim() || isStreaming}
+                  className="bg-mcs-orange text-white px-3.5 py-2.5 rounded-xl hover:bg-mcs-orange-light transition-colors disabled:opacity-30"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                  </svg>
+                </button>
+              </form>
+              <div className="text-[10px] text-gray-400 pb-2 text-center">Powered by 小龍 AI 🐉</div>
             </div>
-            <div className="text-[10px] text-gray-400 mt-1.5 text-center">
-              Powered by 小龍 AI 🐉
-            </div>
-          </div>
-        </div>
+          )}
+        </motion.div>
       )}
     </>
   );
