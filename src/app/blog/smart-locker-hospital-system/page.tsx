@@ -28,7 +28,7 @@ export default function Article() {
             門診患者等待期間需要點心。傳統的院內員工餐廳只能服務部分時段和部分人群。
           </p>
           <p>
-            銓幻元在台灣已有超過 15 個醫療院所場域導入<KeywordTrigger keyword="智慧取物櫃" />與冷凍設備，
+            銓幻元已服務多個醫療院所場域，導入<KeywordTrigger keyword="智慧取物櫃" />與冷凍設備，
             本文整理醫院場域的特殊需求和系統配置邏輯。
           </p>
 
@@ -99,24 +99,13 @@ export default function Article() {
             <li><strong className="text-slate-100">採購合規</strong>：醫院屬公立或法人機構者，可配合政府採購法流程提供完整文件</li>
           </ul>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-8">真實案例：台北某區域醫院</h2>
-          <div className="space-y-3">
-            {[
-              { label: '護理師深夜熱食滿意度', before: '31%（只能泡麵）', after: '88%（冷凍機導入後）' },
-              { label: '員工午餐平均等待', before: '22 分鐘', after: '6 分鐘' },
-              { label: '門診大廳月均販售收入', before: 'NT$0', after: 'NT$28,000（智取冰箱+飲料機）' },
-              { label: '護理師流動率（3 個月）', before: '基準', after: '-15%（留才改善）' },
-            ].map(({ label, before, after }) => (
-              <div key={label} className="flex items-center justify-between p-3 rounded-lg" style={{ background: '#1e293b' }}>
-                <span className="text-slate-300 text-xs">{label}</span>
-                <div className="flex items-center gap-3 text-xs">
-                  <span className="text-slate-500">{before}</span>
-                  <span className="text-slate-600">→</span>
-                  <span className="font-bold" style={{ color: '#FF6B35' }}>{after}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <h2 className="text-xl font-bold text-slate-100 mt-8">醫院場域導入後的常見改善方向</h2>
+          <ul className="list-disc pl-6 space-y-2">
+            <li><strong className="text-slate-100">護理師深夜熱食滿意度提升</strong>：冷凍微波機導入後，夜班護理師不再只能靠泡麵果腹</li>
+            <li><strong className="text-slate-100">員工午餐等待時間縮短</strong>：智慧取物櫃自取取代現場排隊，尖峰時段等待明顯改善</li>
+            <li><strong className="text-slate-100">門診大廳創造額外收入</strong>：智取冰箱與飲料機自助販售，可為醫院或外包廠商帶來穩定額外收入</li>
+            <li><strong className="text-slate-100">有助於護理人員留任</strong>：改善夜班用餐條件是提升護理師工作滿意度的因素之一</li>
+          </ul>
 
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">醫院場域規劃，AI 顧問幫你配置</p>

@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   title: '連鎖早午餐導入智慧取物櫃：週末人潮如何不塞爆？完整攻略 | 銓幻元',
-  description: '早午餐週末排隊 40 分鐘是常態，但真正的瓶頸不在廚房，在取餐流程。智慧取物櫃如何讓連鎖早午餐的翻桌率提升 35%？含導入成本與 3 個月效果數據。',
+  description: '早午餐週末排隊 40 分鐘是常態，但真正的瓶頸不在廚房，在取餐流程。智慧取物櫃如何幫連鎖早午餐提升翻桌率？含導入成本與配置邏輯說明。',
 }
 
 export default function Article() {
@@ -59,17 +59,16 @@ export default function Article() {
             <li><strong className="text-slate-100">外帶等待從被動到主動</strong>：顧客主動選擇何時取餐，減少「等到不耐煩就走人」的流失</li>
           </ul>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-10">真實案例：台中連鎖早午餐（5 家門市）</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-10">連鎖早午餐導入後，通常會改善哪些指標</h2>
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
-            <h3 className="font-bold text-[#FF6B35] mb-3">2025 Q3 旗艦店試裝，2025 Q4 全門市展開</h3>
+            <h3 className="font-bold text-[#FF6B35] mb-3">導入智取櫃後的典型變化方向</h3>
             <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">導入前週末外帶等待：</span><span className="text-slate-200">38 分鐘（平均）</span></p>
-              <p><span className="text-slate-400">導入後週末外帶等待：</span><span className="text-[#FF6B35] font-bold">14 分鐘（顧客可先離開等通知）</span></p>
-              <p><span className="text-slate-400">外帶出錯率：</span><span className="text-[#FF6B35] font-bold">8.4% → 1.1%（格口獨立防混淆）</span></p>
-              <p><span className="text-slate-400">週末翻桌率：</span><span className="text-[#FF6B35] font-bold">提升 35%（顧客不在店內等，桌子更快轉）</span></p>
+              <p><span className="text-slate-400">外帶等待感受：</span><span className="text-slate-200">顧客可先離開等 LINE 通知，不需在店內排隊等叫號，實際「感受等待時間」明顯縮短</span></p>
+              <p><span className="text-slate-400">外帶出錯率：</span><span className="text-slate-200">格口獨立、掃碼放餐，可有效降低對錯訂單、拿錯餐點的狀況</span></p>
+              <p><span className="text-slate-400">週末翻桌率：</span><span className="text-slate-200">顧客不佔用內用座位等外帶，桌子週轉速度可望提升</span></p>
               <p><span className="text-slate-400">設備（20 格）月租：</span><span className="text-slate-200">NT$4,200/台</span></p>
-              <p><span className="text-slate-400">月省人力成本：</span><span className="text-slate-200">NT$28,000（週末加派人力減少 1 人）</span></p>
-              <p><span className="text-slate-400">回收期：</span><span className="text-[#FF6B35] font-bold">導入第 1 個月即正回報</span></p>
+              <p><span className="text-slate-400">人力效益：</span><span className="text-slate-200">週末尖峰可減少 1 名專責叫號/交餐人力，改由系統自動通知</span></p>
+              <p className="text-slate-500 text-xs mt-2">* 實際改善幅度依門市規模、原有流程與人流結構而異，建議洽詢顧問依你的門市數據估算</p>
             </div>
           </div>
 

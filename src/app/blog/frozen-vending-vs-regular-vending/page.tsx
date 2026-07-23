@@ -152,9 +152,8 @@ export default function Article() {
               <p><span className="text-slate-400">設備 A：</span><span className="text-slate-200">2 台<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />（含微波功能）→ 熱食便當、料理包</span></p>
               <p><span className="text-slate-400">設備 B：</span><span className="text-slate-200">1 台飲料機 → 茶、咖啡、碳酸飲料</span></p>
               <p><span className="text-slate-400">補貨頻率：</span><span className="text-slate-200">冷凍機每 10 天、飲料機每 3 天</span></p>
-              <p><span className="text-slate-400">月均總收入：</span><span className="text-[#FF6B35] font-bold">NT$68,000（冷凍佔 76%）</span></p>
-              <p><span className="text-slate-400">月均利潤：</span><span className="text-[#FF6B35] font-bold">NT$28,000（稅前）</span></p>
-              <p className="text-slate-500 text-xs mt-2">* 資料來源：銓幻元桃園工業區客戶，2026 Q1 數據</p>
+              <p><span className="text-slate-400">營收結構：</span><span className="text-slate-200">熱食料理包週轉快、單價高，通常是混合配置中營收佔比較高的品項；飲料機則負責高頻率的小額消費</span></p>
+              <p className="text-slate-500 text-xs mt-2">* 此為配置邏輯示意，實際營收依場域人流、單價與品項組合而異，建議洽詢顧問依你的場域試算</p>
             </div>
           </div>
 

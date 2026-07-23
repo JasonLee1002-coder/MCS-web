@@ -38,7 +38,7 @@ export default function Article() {
             特別是夜班員工，廚房 22:00 後關閉，熱食供應中斷，這個問題催生了<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />在工廠場域的快速成長。
           </p>
           <p>
-            本文整理了銓幻元服務超過 80 間工廠客戶的經驗，提供採購主管評估時最常忽略的 5 個關鍵指標。
+            本文整理了銓幻元服務工廠客戶累積的實務經驗，提供採購主管評估時最常忽略的 5 個關鍵指標。
           </p>
 
           <ArticleCTA keyword="冷凍販賣機" slug="frozen-microwave" />
@@ -52,7 +52,7 @@ export default function Article() {
             而不是「夜班實際會使用販賣機的人數」。
             這兩個數字差距可能高達 5 倍。
           </p>
-          <p>以台南一家 2,000 人電子廠的實際數據為例：</p>
+          <p>以下用一個 2,000 人電子廠的情境，示範估算邏輯：</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>全廠員工 2,000 人，夜班約 600 人</li>
             <li>夜班有自備便當習慣的佔 40%（240 人）</li>
@@ -126,8 +126,8 @@ export default function Article() {
 
           <h3 className="text-lg font-semibold text-slate-200 mt-6">指標四：年度維護費用拆解</h3>
           <p>
-            冷凍設備的維護費用常被低估。根據銓幻元 80+ 工廠客戶的實際數據，
-            平均年度維護費用拆解如下：
+            冷凍設備的維護費用常被低估。以下是工廠場域常見的
+            年度維護費用拆解，供採購評估參考：
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>定期保養（季度）：NT$3,200/次 × 4 = NT$12,800</li>
@@ -143,7 +143,7 @@ export default function Article() {
           <h3 className="text-lg font-semibold text-slate-200 mt-6">指標五：真實投資回收期</h3>
           <p>
             理論上的回收期計算很簡單，但許多廠商給的數字是「最樂觀情境」。
-            根據銓幻元實際客戶數據，工廠冷凍販賣機的回收期區間：
+            以下是工廠冷凍販賣機常見的回收期區間，實際仍依場域使用率而異：
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li><strong className="text-slate-100">自費使用模式</strong>（員工付費購買）：2–4 個月</li>

@@ -70,7 +70,7 @@ export default function Article() {
               <p className="text-slate-400 text-sm leading-relaxed mb-3">
                 機台設置在員工休息室或護理站附近，僅供照護人員使用（IC 卡門禁限制）。
                 品項以照護員需求為主：冷凍便當、熱湯、能量飲料。這個應用和工廠場域邏輯相同，
-                銓幻元已有超過 20 個照護機構場域採用此模式。
+                銓幻元在多個照護機構場域已有導入此模式的經驗。
               </p>
               <div className="text-xs text-slate-300 space-y-1">
                 <p>✓ 解決夜班照護員深夜餐食問題</p>

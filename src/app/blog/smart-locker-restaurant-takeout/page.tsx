@@ -28,8 +28,8 @@ export default function Article() {
             尖峰時段 1 個員工同時要應付 4–6 組外帶顧客，手忙腳亂之餘還要維持內用服務品質。
           </p>
           <p>
-            銓幻元<KeywordTrigger keyword="智慧取物櫃" />方案已協助超過 120 間台灣餐廳解決這個問題。
-            本文整理選型重點、常見踩坑和實際 ROI，幫助餐廳老闆做決策。
+            銓幻元<KeywordTrigger keyword="智慧取物櫃" />方案已協助多間台灣餐廳解決這個問題。
+            本文整理選型重點、常見踩坑和 ROI 試算方式，幫助餐廳老闆做決策。
           </p>
 
           <ArticleCTA keyword="智慧取物櫃" />
@@ -103,18 +103,16 @@ export default function Article() {
             </table>
           </div>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-8">真實案例：台北中山區日式定食（3 家門市）</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-8">餐廳導入後的常見改善方向</h2>
           <p>
-            台北中山區某日式定食連鎖（客單價 NT$280，外帶佔 55%），2025 年 Q3 在旗艦店試裝 20 格<KeywordTrigger keyword="智慧取物櫃" />：
+            外帶比例高的餐廳導入<KeywordTrigger keyword="智慧取物櫃" />後，通常會觀察到以下幾種變化：
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>外帶平均等待時間：8.4 分鐘 → <strong className="text-[#FF6B35]">1.1 分鐘</strong></li>
-            <li>外帶員工需求：2 人 → <strong className="text-[#FF6B35]">0.5 人</strong>（現有員工兼辦）</li>
-            <li>外帶 Google 評分關鍵詞：「外帶很快」出現次數增加 340%</li>
-            <li>外帶訂單比例：55% → <strong className="text-[#FF6B35]">63%</strong>（顧客因為方便而主動增加外帶頻率）</li>
-            <li>月省人力成本：約 NT$35,000</li>
-            <li>設備月租費：NT$4,200</li>
-            <li>結論：<strong className="text-[#FF6B35]">1 個月內正回報，3 個月後展開全門市導入</strong></li>
+            <li>外帶平均等待時間<strong className="text-[#FF6B35]">大幅縮短</strong>，顧客不再需要在櫃檯前久候</li>
+            <li>負責外帶出餐的人力需求<strong className="text-[#FF6B35]">明顯降低</strong>，現有員工即可兼辦</li>
+            <li>顧客對「外帶速度」的評價傾向轉為正面</li>
+            <li>取餐便利性提升後，部分顧客會提高外帶訂餐的頻率</li>
+            <li>相較節省下來的人力成本，設備月租費用通常在短期內即可打平</li>
           </ul>
 
           <h2 className="text-xl font-bold text-slate-100 mt-8">常見問題（FAQ）</h2>
@@ -122,7 +120,7 @@ export default function Article() {
             {[
               {
                 q: 'Q：顧客不會用取物機怎麼辦？',
-                a: '導入初期有 5–10% 顧客需要引導，通常 2 週後就完全習慣。銓幻元提供教學小卡和收銀台 QR Code 說明影片。從我們的客戶數據看，65 歲以上顧客的使用率在第 2 個月就達到 80%+。',
+                a: '導入初期有 5–10% 顧客需要引導，通常 2 週後就完全習慣。銓幻元提供教學小卡和收銀台 QR Code 說明影片，年長顧客在店員或影片引導下，通常也能快速上手。',
               },
               {
                 q: 'Q：熱食放太久會冷掉嗎？',

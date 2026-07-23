@@ -68,9 +68,10 @@ export default function Article() {
             </li>
           </ol>
           <p>
-            關鍵數據：根據銓幻元 2025 年客戶統計，導入<KeywordTrigger keyword="智慧取物櫃" />後，
-            取餐等待時間從平均 6.2 分鐘降至 0.4 分鐘，服務人員可減少 1–2 人，
-            尖峰時段客訴率下降 67%。
+            實際效果：導入<KeywordTrigger keyword="智慧取物櫃" />後，
+            取餐等待從「排隊等叫號」變成「收到通知再取」，等待時間可大幅縮短；
+            尖峰時段不需要額外加派人力處理交餐，也能減少因等待久、拿錯餐引發的客訴。
+            實際改善幅度依場域人流與原有流程而異，建議依你的場域數據估算。
           </p>
 
           {/* H2 #2 */}
@@ -155,17 +156,18 @@ export default function Article() {
           <ArticleCTA keyword="智慧取物櫃" />
 
           {/* Real case */}
-          <h2 className="text-xl font-bold text-slate-100 mt-4">真實數據：連鎖餐廳導入 3 個月後的變化</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-4">連鎖餐飲品牌導入後，常見的變化方向</h2>
           <p>
-            台中某連鎖健康便當品牌（8 家門市），2025 年 Q3 在 3 家直營店試裝銓幻元<KeywordTrigger keyword="智慧取物櫃" />：
+            對於有多門市的連鎖健康餐飲品牌，導入<KeywordTrigger keyword="智慧取物櫃" />通常會先在少數直營店試裝，
+            確認效果後再擴大到全門市：
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong className="text-slate-100">外帶等待時間</strong>：從平均 8.3 分鐘降至 1.2 分鐘</li>
-            <li><strong className="text-slate-100">外帶訂單比例</strong>：從 31% 提升至 47%（消費者主動選自取）</li>
-            <li><strong className="text-slate-100">外帶尖峰人力</strong>：從 2 人縮減至 1 人，省下 NT$38,000/月</li>
-            <li><strong className="text-slate-100">Google 評分</strong>：從 4.1 提升至 4.6（評論提到「外帶很方便」）</li>
-            <li><strong className="text-slate-100">3 個月後決定</strong>：全部 8 家門市擴大導入</li>
+            <li><strong className="text-slate-100">外帶等待時間</strong>：顧客改為收到通知才進店取餐，現場排隊等待明顯減少</li>
+            <li><strong className="text-slate-100">外帶訂單比例</strong>：取餐更方便後，消費者傾向主動選擇外帶自取</li>
+            <li><strong className="text-slate-100">外帶尖峰人力</strong>：交餐流程自動化，尖峰時段可減少專責叫號/交餐的人力配置</li>
+            <li><strong className="text-slate-100">顧客評價</strong>：取餐便利性提升，常反映在外帶顧客的評論與回購率上</li>
           </ul>
+          <p className="text-slate-500 text-xs">* 實際改善幅度依門市規模、訂單量與原有流程而異，建議洽詢顧問依你的門市數據估算</p>
 
           {/* FAQ */}
           <h2 className="text-xl font-bold text-slate-100 mt-10">常見問題（FAQ）</h2>

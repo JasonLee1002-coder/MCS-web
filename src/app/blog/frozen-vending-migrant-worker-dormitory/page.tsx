@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
-  title: '移工宿舍放冷凍販賣機：3 個月實際案例與完整成本回收分析 | 銓幻元',
-  description: '台灣移工超過 76 萬人，宿舍夜間餐食是長年痛點。本文公開 3 間工廠移工宿舍導入冷凍販賣機的真實數據：使用率、成本、回收期與員工滿意度變化。',
+  title: '移工宿舍放冷凍販賣機：導入評估與完整成本回收分析 | 銓幻元',
+  description: '台灣移工超過 76 萬人，宿舍夜間餐食是長年痛點。本文說明工廠移工宿舍導入冷凍販賣機的評估重點：使用率趨勢、成本結構、回收期試算與常見情境。',
 }
 
 export default function Article() {
@@ -17,7 +17,7 @@ export default function Article() {
           ))}
         </div>
         <h1 className="text-3xl font-bold mb-3 text-slate-100">
-          移工宿舍放<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />：3 個月實際案例與完整成本回收分析
+          移工宿舍放<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />：導入評估與完整成本回收分析
         </h1>
         <p className="text-slate-500 text-sm mb-10">2026-07-03 · 7 分鐘閱讀</p>
 
@@ -28,8 +28,8 @@ export default function Article() {
             這個族群有個共同的餐食困境：宿舍廚房使用受限（防火規定）、附近超商距離遠、夜班後肚子餓卻找不到熱食。
           </p>
           <p>
-            銓幻元從 2024 年開始服務移工宿舍場域，目前已有超過 25 間宿舍導入<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />方案。
-            本文公開其中 3 間最具代表性的完整數據，幫助宿舍業者和工廠 HR 主管做出更準確的評估。
+            銓幻元從 2024 年開始服務移工宿舍場域，累積了不少實務導入經驗。
+            本文整理常見的導入模式與趨勢觀察，幫助宿舍業者和工廠 HR 主管做出更準確的評估。
           </p>
 
           <ArticleCTA keyword="冷凍販賣機" slug="frozen-microwave" />
@@ -51,44 +51,30 @@ export default function Article() {
             </li>
           </ul>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-10">3 個真實案例數據</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-10">常見導入模式與趨勢觀察</h2>
 
-          {/* Case 1 */}
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
-            <h3 className="font-bold text-[#FF6B35] mb-3">案例 A：桃園工業區電子廠移工宿舍（280 人）</h3>
-            <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">設備：</span><span className="text-slate-200">2 台冷凍販賣機（越南/台式食材各一）</span></p>
-              <p><span className="text-slate-400">導入月份：</span><span className="text-slate-200">2025 年 Q1</span></p>
-              <p><span className="text-slate-400">第 1 個月日均使用：</span><span className="text-slate-200">42 次（使用率 15%）</span></p>
-              <p><span className="text-slate-400">第 2 個月日均使用：</span><span className="text-slate-200">87 次（口碑擴散後提升）</span></p>
-              <p><span className="text-slate-400">第 3 個月日均使用：</span><span className="text-slate-200">124 次（加入越南新食材後）</span></p>
-              <p><span className="text-slate-400">設備投資回收：</span><span className="text-[#FF6B35] font-bold">導入後第 11 週</span></p>
-              <p><span className="text-slate-400">移工流動率變化：</span><span className="text-slate-200">3 個月後季度離職率從 18% 降至 12%</span></p>
-            </div>
-          </div>
-
-          {/* Case 2 */}
-          <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
-            <h3 className="font-bold text-[#FF6B35] mb-3">案例 B：台中精密機械廠宿舍大樓（520 人，三班制）</h3>
-            <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">設備：</span><span className="text-slate-200">4 台冷凍販賣機 + 2 台<KeywordTrigger keyword="智慧取物櫃" />（飲料零食）</span></p>
-              <p><span className="text-slate-400">食材策略：</span><span className="text-slate-200">與台中東南亞食材行合作，每週二五補貨越南/印尼食品</span></p>
-              <p><span className="text-slate-400">日均使用穩定期（第 2 個月起）：</span><span className="text-slate-200">210–250 次</span></p>
-              <p><span className="text-slate-400">月均收入（自營模式）：</span><span className="text-slate-200">NT$58,000</span></p>
-              <p><span className="text-slate-400">月均成本（食材+電費+維護）：</span><span className="text-slate-200">NT$34,000</span></p>
-              <p><span className="text-slate-400">月均利潤：</span><span className="text-[#FF6B35] font-bold">NT$24,000</span></p>
-            </div>
-          </div>
-
-          {/* Case 3 */}
-          <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
-            <h3 className="font-bold text-[#FF6B35] mb-3">案例 C：高雄石化廠移工宿舍（180 人，泰籍為主）</h3>
-            <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">特殊需求：</span><span className="text-slate-200">泰籍移工對辣味需求高，一般台式便當使用率低</span></p>
-              <p><span className="text-slate-400">解法：</span><span className="text-slate-200">與泰式料理冷凍食品廠商合作，提供打拋豬/綠咖哩等品項</span></p>
-              <p><span className="text-slate-400">導入前日均使用估算：</span><span className="text-slate-200">預計 30–40 次</span></p>
-              <p><span className="text-slate-400">實際日均（第 3 個月）：</span><span className="text-slate-200">68 次（超出預期 70%）</span></p>
-              <p><span className="text-slate-400">移工滿意度（問卷）：</span><span className="text-[#FF6B35] font-bold">91% 表示「改善了宿舍生活品質」</span></p>
+            <div className="text-sm space-y-3 text-slate-300">
+              <p>
+                <strong className="text-slate-100">導入初期使用率通常偏低，隨口碑擴散逐步提升：</strong>
+                多數宿舍在導入初期（第 1 個月）使用率不高，員工需要時間熟悉操作方式與建立信任，
+                隨著同宿舍移工間的口碑擴散，使用率通常在 1–2 個月後明顯回升。
+              </p>
+              <p>
+                <strong className="text-slate-100">食材策略是成敗關鍵：</strong>
+                只提供台式便當的場域，使用率普遍不如預期；搭配移工母國口味的冷凍食品（如越式、泰式料理）後，
+                使用率會有明顯改善，尤其對辣味、重口味需求較高的東南亞移工族群效果更明顯。
+              </p>
+              <p>
+                <strong className="text-slate-100">三班制、大型宿舍適合搭配自營或分潤模式：</strong>
+                人數較多、三班輪值的宿舍大樓，若搭配多台設備與穩定的東南亞食材供應鏈，
+                機台收入通常足以覆蓋食材、電費與維護等營運成本，但實際獲利需視使用規模與合約模式而定。
+              </p>
+              <p>
+                <strong className="text-slate-100">員工反饋普遍正向：</strong>
+                多語言介面、深夜熱食可得性是移工端最常提到的改善點，但確切滿意度與流動率影響因場域規模、
+                既有福利條件差異很大，建議個案評估，不宜套用單一數字。
+              </p>
             </div>
           </div>
 
