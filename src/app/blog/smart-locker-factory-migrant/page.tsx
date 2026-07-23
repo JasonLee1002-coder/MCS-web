@@ -91,12 +91,12 @@ export default function Article() {
           </div>
           <p className="text-xs text-slate-500">* 銓幻元系統三種模式可並存，移工自由選擇</p>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-8">真實案例：台中移工宿舍（520 人）</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-8">薪資扣款模式導入後的常見成效</h2>
           <ul className="list-disc pl-6 space-y-2">
-            <li>導入薪資扣款模式後，<strong className="text-[#FF6B35]">92% 的移工選擇薪資扣款</strong>（vs 現金僅 8%）</li>
-            <li>每月扣款帳單對帳時間：<strong className="text-[#FF6B35]">HR 工作量從 4 小時降至 30 分鐘</strong>（系統自動生成）</li>
-            <li>移工月均消費：NT$680/人，遠低於上限 NT$1,500，<strong className="text-[#FF6B35]">無帳款糾紛</strong></li>
-            <li>配合法規：同意書覆蓋率 100%，經勞動部查廠無疑慮</li>
+            <li>移工宿舍導入後，<strong className="text-[#FF6B35]">薪資扣款通常會成為多數移工的主要付款方式</strong>（相較現金投幣更省事）</li>
+            <li>月底扣款對帳流程自動化後，<strong className="text-[#FF6B35]">HR 對帳工作量可大幅減少</strong>（系統自動生成報表，取代人工逐筆核對）</li>
+            <li>搭配月度消費上限設定，可有效控管移工消費金額，降低帳款糾紛風險</li>
+            <li>配合完整的書面同意書流程，有助於符合勞動部查廠的合規要求</li>
           </ul>
 
           <h2 className="text-xl font-bold text-slate-100 mt-8">常見問題（FAQ）</h2>

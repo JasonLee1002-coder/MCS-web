@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
-  title: '醫院夜班護理師的救星：蒸氣拉麵機在醫療場域的 3 個成功案例 | 銓幻元',
+  title: '醫院夜班護理師的救星：蒸氣拉麵機在醫療場域的 3 個應用情境 | 銓幻元',
   description: '台灣醫院護理師夜班超過 12 小時，院內自助餐 21:00 後關閉。蒸氣拉麵機提供 24 小時熱食，解決夜班需求同時創造院內額外收入。',
 }
 
@@ -20,7 +20,7 @@ export default function Article() {
           ))}
         </div>
         <h1 className="text-3xl font-bold mb-3 text-slate-100">
-          醫院夜班護理師的救星：<KeywordTrigger keyword="蒸氣拉麵機" />在醫療場域的 3 個成功案例
+          醫院夜班護理師的救星：<KeywordTrigger keyword="蒸氣拉麵機" />在醫療場域的 3 個應用情境
         </h1>
         <p className="text-slate-500 text-sm mb-10">2026-07-03 · 5 分鐘閱讀</p>
 
@@ -52,21 +52,21 @@ export default function Article() {
 
           <ArticleCTA keyword="蒸氣拉麵機" />
 
-          <h2 className="text-xl font-bold text-slate-100">3 個醫院成功案例</h2>
+          <h2 className="text-xl font-bold text-slate-100">3 種常見的醫院導入情境</h2>
 
           <div className="space-y-4">
             {[
               {
-                title: '案例 1：台南醫學中心（1,800 床）',
-                content: '於急診室旁走廊設置 2 台蒸氣拉麵機，夜間（22:00–06:00）使用人次平均 180 次/天。護理師滿意度從 31% 提升至 78%。醫院同時對訪客開放，額外創造 NT$8 萬/月收入。',
+                title: '情境 1：大型醫學中心',
+                content: '於急診室旁走廊設置多台蒸氣拉麵機，供夜班人員與訪客使用。夜班熱食選擇增加後，護理師滿意度通常有感提升；對訪客開放販售也能為醫院創造額外收入。',
               },
               {
-                title: '案例 2：高雄地區醫院（800 床）',
-                content: '結合銓幻元冷凍微波機，提供拉麵 + 便當兩種選擇。設備投資 6 週回收。夜班護理師離職率在導入後 3 個月下降 12%。',
+                title: '情境 2：中型區域醫院',
+                content: '結合銓幻元冷凍微波機，提供拉麵 + 便當兩種選擇，設備投資回收期通常較短。改善夜班用餐條件也有助於降低護理人員的流動率。',
               },
               {
-                title: '案例 3：台北區域醫院（300 床）',
-                content: '小型醫院預算有限，採用 1 台蒸氣拉麵機 + 1 台智取物流櫃（飲料零食）組合方案。月均使用人次 240 次，設備投資 4 個月回收。',
+                title: '情境 3：小型醫院',
+                content: '預算有限的小型醫院，可採用 1 台蒸氣拉麵機 + 1 台智取物流櫃（飲料零食）的組合方案，以較低的初期投入滿足夜班用餐需求。',
               },
             ].map(({ title, content }) => (
               <div key={title} className="rounded-xl p-5 border border-slate-700/50" style={{ background: '#0f1f36' }}>

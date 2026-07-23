@@ -87,13 +87,14 @@ export default function Article() {
             <li><strong className="text-slate-100">App 整合</strong>：對接學校現有的學生 App 或餐廳訂餐系統，通常 3–5 工作天完成</li>
           </ol>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-8">真實案例：中部科技大學（8,000 人）</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-8">大型校園（8,000 人規模）導入的典型效果方向</h2>
           <ul className="list-disc pl-6 space-y-2">
-            <li>導入前午餐尖峰排隊：<strong className="text-[#FF6B35]">平均 22 分鐘</strong></li>
-            <li>導入後（智取 60 格 × 2 台）：<strong className="text-[#FF6B35]">4 分鐘（預訂取餐）/ 8 分鐘（現場點餐）</strong></li>
-            <li>餐廳增加座位翻桌：<strong className="text-[#FF6B35]">月增加 NT$85,000 餐飲收入</strong>（等餐時間縮短，學生可用餐時間增加）</li>
-            <li>學生餐飲滿意度：<strong className="text-[#FF6B35]">68% → 84%</strong></li>
+            <li>午餐尖峰排隊：預訂取餐的學生可直接掃碼取餐，跳過現場排隊隊伍</li>
+            <li>設備配置：以 8,000 人規模校園來說，智取 60 格 × 2 台可分散尖峰時段的取餐人流</li>
+            <li>餐廳座位運用：學生等餐時間縮短，用餐可用時間相對增加，有助於座位週轉</li>
+            <li>學生餐飲滿意度：排隊等待是校園餐飲滿意度調查中常見的扣分項，縮短等待通常能帶動整體滿意度提升</li>
           </ul>
+          <p className="text-slate-500 text-xs">* 實際效果依校園人數、餐廳規模與現行流程而異，銓幻元已有學校採購案例，建議洽詢顧問依貴校情況評估</p>
 
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">學校場域規劃，AI 顧問幫你提案</p>

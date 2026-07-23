@@ -52,15 +52,15 @@ export default function Article() {
 
           <ArticleCTA keyword="冷凍微波機" />
 
-          <h2 className="text-xl font-bold text-slate-100">真實案例：南科電子廠</h2>
+          <h2 className="text-xl font-bold text-slate-100">大型三班制工廠的常見配置邏輯</h2>
           <p>
-            台南科學園區某電子廠（員工 2,000 人，三班制），2025 年 Q4 導入銓幻元<KeywordTrigger keyword="冷凍微波機" />：
+            以員工規模 2,000 人上下、三班制運作的電子廠為例，銓幻元團隊常見的<KeywordTrigger keyword="冷凍微波機" />配置邏輯如下：
           </p>
           <ul className="list-disc pl-6 space-y-2 text-slate-300">
-            <li>設備：2 台冷凍微波機 + 1 台<KeywordTrigger keyword="智慧取物櫃" />（飲料、零食）</li>
-            <li>每月夜班使用人次：4,200 次</li>
-            <li>員工滿意度調查：夜班餐食滿意度從 34% 提升至 81%</li>
-            <li>設備投資回收：2.8 個月（含電費、食材成本）</li>
+            <li>設備：依夜班人數配置多台冷凍微波機，搭配<KeywordTrigger keyword="智慧取物櫃" />（飲料、零食）分流使用</li>
+            <li>使用高峰集中在下班前與凌晨休息時段</li>
+            <li>導入後普遍能觀察到夜班餐食滿意度提升、員工反映正面</li>
+            <li>設備投資回收期依場域使用率而異，需以實際人數與班次估算</li>
           </ul>
 
           <h2 className="text-xl font-bold text-slate-100">不同規模工廠的建議配置</h2>

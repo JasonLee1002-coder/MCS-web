@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   title: '冷凍販賣機耗電量與維護成本：採購前必看的真實數字 | 銓幻元',
-  description: '冷凍販賣機每月電費多少？維護成本如何計算？本文公開銓幻元 80+ 場域的真實耗電數據、維修頻率、年度維護預算，幫你在採購前做出準確的財務規劃。',
+  description: '冷凍販賣機每月電費多少？維護成本如何計算？本文整理銓幻元多場域營運經驗中的耗電數據、維修頻率、年度維護預算，幫你在採購前做出準確的財務規劃。',
 }
 
 export default function Article() {
@@ -28,7 +28,7 @@ export default function Article() {
             這兩個數字直接影響設備的投資回報計算，卻很少有廠商願意公開真實數據。
           </p>
           <p>
-            本文公開銓幻元 80+ 場域的實測電費數據、維修頻率統計和年度維護費用，
+            本文整理銓幻元多場域營運累積的電費數據、維修頻率統計和年度維護費用，
             幫助你在採購前做出更準確的財務規劃。
           </p>
 
@@ -76,7 +76,7 @@ export default function Article() {
 
           <h2 className="text-xl font-bold text-slate-100 mt-10">維護成本：3 年真實數據</h2>
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
-            <h3 className="font-bold text-[#FF6B35] mb-3">銓幻元 80+ 場域 3 年維護統計（2023–2025）</h3>
+            <h3 className="font-bold text-[#FF6B35] mb-3">銓幻元多場域維護經驗統計（2023–2025）</h3>
             <div className="text-sm space-y-2">
               <p><span className="text-slate-400">平均故障間隔：</span><span className="text-slate-200">每台每年 0.6 次故障（低於行業均值 1.2 次）</span></p>
               <p><span className="text-slate-400">最常見故障類型：</span><span className="text-slate-200">門封條磨損（35%）、觸控螢幕（22%）、壓縮機（18%）</span></p>

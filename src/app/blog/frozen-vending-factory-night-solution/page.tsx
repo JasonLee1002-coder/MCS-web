@@ -28,7 +28,7 @@ export default function Article() {
             這個問題不只影響員工健康，更直接拉高夜班拒絕率和整體離職率。
           </p>
           <p>
-            銓幻元服務超過 80 個封閉工廠場域，其中 60% 以上是為了解決夜班餐食而導入<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />。
+            銓幻元服務多個封閉工廠場域，其中相當比例是為了解決夜班餐食而導入<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />。
             本文整理完整的解決邏輯、設備規劃和投資試算。
           </p>
 

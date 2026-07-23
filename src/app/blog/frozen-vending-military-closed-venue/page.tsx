@@ -29,7 +29,7 @@ export default function Article() {
             夜間值班士兵或職業軍人，餓了只能吃軍人福利社的泡麵或自備零食。
           </p>
           <p>
-            銓幻元自 2024 年起開始接觸軍方場域需求，目前已有 6 個軍方相關場域使用銓幻元<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />。
+            銓幻元自 2024 年起開始接觸軍方場域需求，已服務多個軍方相關場域，使用<KeywordTrigger keyword="冷凍販賣機" slug="frozen-microwave" />。
             本文針對想進入這個市場的設備採購官或後勤主管，提供完整的評估框架。
           </p>
 

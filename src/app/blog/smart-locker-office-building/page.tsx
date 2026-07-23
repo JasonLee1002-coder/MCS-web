@@ -30,8 +30,8 @@ export default function Article() {
             員工下班前手機取餐，全程不需要人工介入。
           </p>
           <p>
-            銓幻元已在台灣超過 80 棟辦公大樓部署<KeywordTrigger keyword="智慧取物櫃" />，
-            本文整理最常見的辦公場域需求、費用結構與真實 ROI 數據。
+            銓幻元已服務多個辦公大樓場域，部署<KeywordTrigger keyword="智慧取物櫃" />，
+            本文整理最常見的辦公場域需求、費用結構與 ROI 試算方式。
           </p>
 
           <ArticleCTA keyword="智慧取物櫃" />
@@ -126,16 +126,16 @@ export default function Article() {
             </div>
           </div>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-8">真實案例：信義區科技公司（220 人）</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-8">辦公大樓導入後的常見改善方向</h2>
           <p>
-            台北信義區某 SaaS 公司（220 人，4 層辦公室），2025 年 Q4 在 1 樓大廳安裝 40 格取物櫃：
+            辦公大樓在大廳安裝智慧取物櫃後，通常會觀察到以下幾種變化：
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>前台每日外送接收時間：65 分鐘 → <strong className="text-[#FF6B35]">8 分鐘</strong>（只需偶爾協助）</li>
-            <li>員工外送漏失率（找不到餐）：月均 12 次 → <strong className="text-[#FF6B35]">0 次</strong></li>
-            <li>大樓管委會外送訪客登記投訴：<strong className="text-[#FF6B35]">完全消除</strong>（外送員直接掃碼，不進登記流程）</li>
-            <li>員工午餐滿意度調查：72% → <strong className="text-[#FF6B35]">89%</strong></li>
-            <li>HR 評語：「這是我們 2025 年花最少錢買到最多員工好感的福利投入」</li>
+            <li>前台每日花在外送接收的時間<strong className="text-[#FF6B35]">明顯減少</strong>，多數情況只需偶爾協助</li>
+            <li>員工「找不到外送餐點」的漏失情況<strong className="text-[#FF6B35]">大幅降低</strong></li>
+            <li>大樓管委會對外送訪客登記的管理壓力<strong className="text-[#FF6B35]">明顯緩解</strong>（外送員直接掃碼，不進登記流程）</li>
+            <li>員工對午餐取餐便利性的滿意度普遍提升</li>
+            <li>對 HR 而言，是相對低成本、高感受度的員工福利投入</li>
           </ul>
 
           <h2 className="text-xl font-bold text-slate-100 mt-8">常見問題（FAQ）</h2>
