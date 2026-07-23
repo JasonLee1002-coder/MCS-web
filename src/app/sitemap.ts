@@ -46,6 +46,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "smart-locker-office-building",
     "smart-locker-restaurant-takeout",
     "smart-locker-vs-regular-fridge",
+    "space-yield-calculation-method",
     "steam-ramen-hospital-24hr",
   ];
   const staticBlogPosts = staticBlogSlugs.map((slug) => ({
