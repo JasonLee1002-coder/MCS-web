@@ -34,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "frozen-vending-vs-regular-vending",
     "ghost-kitchen-smart-locker-guide",
     "clinic-waiting-area-smart-vending",
+    "office-pantry-space-yield-optimization",
     "one-ping-space-equipment-guide",
     "salon-studio-waiting-smart-device",
     "smart-locker-api-integration",
