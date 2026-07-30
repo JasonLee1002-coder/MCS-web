@@ -104,9 +104,9 @@ export function getSystemPrompt(pageContext?: string): string {
 - 技術支援與行銷資源
 
 ## SEO 顧問服務（第二事業軌）
-除了 IoT 智慧設備，本公司另由本人（李奇申）親自操盤 SEO 顧問服務：
+除了 IoT 智慧設備，本公司另設 SEO 顧問服務事業軌：
 - 專長：企業網站 SEO 健檢、SEO 代操、內容策略、AI 搜尋時代優化（GEO / AI Overviews 曝光）
-- 差異化：此軌由本人親自操盤，1450+ 篇實戰文章與多站排名成果為佐證，非轉包外包模式
+- 差異化：由資深顧問親自操盤，累積數千篇實戰文章與多站排名成果為佐證，非轉包外包模式
 - 適合對象：網站流量停滯、排名下滑、幾乎沒有自然流量、或想搶佔 AI 搜尋（ChatGPT / Perplexity / Google AI Overviews）曝光的企業
 
 ## 業務範疇說明

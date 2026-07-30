@@ -3700,7 +3700,7 @@ export default function IntroPage() {
                         <ZoomImg src="/images/intro/mps-nda-signed.jpg" alt="MPS NDA 締結" fill className="object-cover" />
                         <div className="absolute bottom-0 left-0 right-0 bg-black/50 px-2 py-1">
                           <span className="text-white text-[10px] font-semibold">
-                            {lang === "ja" ? "NDA 締結（Jason Lee × Eiji Sato）" : lang === "en" ? "NDA Signed — Jason Lee × Eiji Sato" : "NDA 簽署（Jason Lee × Eiji Sato）"}
+                            {lang === "ja" ? "NDA 締結（MCS × MPS）" : lang === "en" ? "NDA Signed — MCS × MPS" : "NDA 簽署（MCS × MPS）"}
                           </span>
                         </div>
                       </div>
@@ -3717,8 +3717,8 @@ export default function IntroPage() {
                       {lang === "ja"
                         ? "MP-Solution Japan の IM10 キャッシュレス端末と MCS OmniCore の統合が完了。日本側代表 Eiji Sato 氏と NDA を締結し、台湾にて検収試験を実施・合格済み。日本全国の無人機台への水平展開を共同推進中。"
                         : lang === "en"
-                        ? "MCS OmniCore is fully integrated with MP-Solution Japan's IM10 cashless terminal. NDA signed between Jason Lee (MCS) and Eiji Sato (MPS). Acceptance tests conducted in Taiwan — passed. Joint rollout to vending machines across Japan now in progress."
-                        : "MCS OmniCore 與 MP-Solution Japan IM10 無現金支付端末完成技術整合。Jason Lee（MCS）與 Eiji Sato（MPS）正式簽署 NDA，並在台灣現場完成驗收測試。目前雙方協力推進日本全國無人機台部署。"}
+                        ? "MCS OmniCore is fully integrated with MP-Solution Japan's IM10 cashless terminal. NDA signed between MCS and MP-Solution Japan. Acceptance tests conducted in Taiwan — passed. Joint rollout to vending machines across Japan now in progress."
+                        : "MCS OmniCore 與 MP-Solution Japan IM10 無現金支付端末完成技術整合。MCS 與 MP-Solution Japan 雙方代表正式簽署 NDA，並在台灣現場完成驗收測試。目前雙方協力推進日本全國無人機台部署。"}
                     </p>
                   </div>
                 </div>

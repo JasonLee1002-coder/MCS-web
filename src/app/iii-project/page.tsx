@@ -135,7 +135,7 @@ const team: TeamMember[] = [
   { name: 'Kami（陳劭寰）', org: '資策會', role: '計畫審核支援', color: '#1565C0' },
   { name: 'Ben（鄭有富）', org: '東方美', role: '財務長 / 計畫主持人', color: '#2E7D32' },
   { name: 'FIFI（蔡濱妃）', org: '東方美/雅安', role: '文件彙整 / 場域聯繫', color: '#2E7D32' },
-  { name: 'Jason Lee', org: '銓幻元(MCS)', role: '整合協調 / SI角色 / GraBox', color: '#E65100' },
+  { name: '專案整合窗口', org: '銓幻元(MCS)', role: '整合協調 / SI角色 / GraBox', color: '#E65100' },
   { name: 'Monique（陳泱璇）', org: '銓幻元(MCS)', role: '用印 / 行政聯絡', color: '#E65100' },
   { name: '小麥（呂慶緯）', org: '牧森', role: '文件支援 / 場域資料', color: '#E65100' },
   { name: 'Chester', org: 'BOXVERSE', role: 'AI Agent 技術方案', color: '#7B1FA2' },
