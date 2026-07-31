@@ -338,10 +338,7 @@ const T = {
           { name: "必勝客", desc: "2in1 Food Locker：常溫雙面智取櫃 + 線下取訂單整合" },
           { name: "麗嬰國際", desc: "玩具智販機，整合鼎新 ERP 系統" },
           { name: "N&W Group", desc: "健身食品智販機，整合 Ocard 會員系統" },
-          { name: "昇恆昌機場", desc: "商品販售 + 活動兌換 + 廣告宣傳" },
           { name: "滙聚食品", desc: "多機型智販機加盟營運商，抽獎互動遊戲模組" },
-          { name: "台灣高鐵", desc: "紀念品販售智販機" },
-          { name: "霹靂布袋戲", desc: "IP 文創周邊、盲盒智販機" },
           { name: "全省 15 個郵局", desc: "郵局電商商品展示兌換機" },
         ],
       },
@@ -539,10 +536,7 @@ const T = {
           { name: "Pizza Hut", desc: "2in1 Food Locker: heated cabinet + offline order pickup" },
           { name: "Lihpao International", desc: "Toy vending machines with Digiwin ERP integration" },
           { name: "N&W Group", desc: "Fitness food vending with Ocard loyalty integration" },
-          { name: "Everrich Duty Free", desc: "Airport retail + activity redemption + advertising" },
           { name: "Huiju Food", desc: "Multi-model vending franchise operator, gamification module" },
-          { name: "Taiwan HSR", desc: "Souvenir vending machine" },
-          { name: "PiliAnimation", desc: "IP merchandise & blind box vending" },
           { name: "15 Post Offices", desc: "Post Office e-commerce product display & redemption" },
         ],
       },
@@ -743,7 +737,6 @@ const T = {
           { name: "エバーリッチ免税店", desc: "空港小売＋特典交換＋広告宣伝" },
           { name: "滙聚フード", desc: "多機種自販機フランチャイズ、ゲーミフィケーション対応" },
           { name: "台湾新幹線", desc: "記念品自動販売機" },
-          { name: "霹靂布袋戲", desc: "IPグッズ・ブラインドボックス自販機" },
           { name: "全国郵便局 15拠点", desc: "郵便局EC商品展示・交換機" },
         ],
       },
@@ -788,15 +781,7 @@ const MORE_CLIENT_DETAILS = [
       ja: "N&W Group フィットネス食品自販機と Ocard ロイヤルティを統合。LINE アカウント連携でポイント付与・割引の個人化を実現し、リピート率を向上。",
     },
   },
-  {
-    color: "bg-yellow-600", img: null,
-    tag: { zh: "機場免稅", en: "Airport Duty-Free", ja: "空港免税" },
-    detail: {
-      zh: "昇恆昌機場免稅店，MCS 提供智慧販賣機應用於商品販售、活動兌換券核銷與廣告宣傳三合一場景，適合機場高人流、長時間等候的自助消費需求。",
-      en: "Everrich Duty Free Airport — MCS machines handle retail sales, voucher redemption, and in-store advertising in one unit, meeting high-traffic airport self-service demand.",
-      ja: "エバーリッチ空港免税店にて、MCS 機が物品販売・クーポン交換・広告配信の3機能を1台で提供。空港の高回転環境に対応。",
-    },
-  },
+  
   {
     color: "bg-teal-600", img: null,
     tag: { zh: "連鎖餐飲", en: "F&B Franchise", ja: "飲食FC" },
@@ -806,24 +791,8 @@ const MORE_CLIENT_DETAILS = [
       ja: "滙聚食品は MCS 冷蔵・冷凍自販機のフランチャイズ運営パートナー。機台選定・補充スケジュール・日常保守を担当し、ゲーミフィケーションモジュールで顧客定着を促進。",
     },
   },
-  {
-    color: "bg-[#1B3A5C]", img: null,
-    tag: { zh: "大眾交通", en: "Mass Transit", ja: "公共交通" },
-    detail: {
-      zh: "台灣高鐵站體內，MCS 智販機提供旅客紀念品與周邊商品的自助購買服務，無需排隊等候人工服務台，適合匆忙旅次場景。",
-      en: "MCS smart vending machines at Taiwan High Speed Rail stations provide self-service souvenir retail — no queuing at service counters for time-pressured travelers.",
-      ja: "台湾高速鉄道駅構内に MCS 自販機を設置。旅客が記念品をセルフで購入可能。忙しい乗客に対応した無人販売形態。",
-    },
-  },
-  {
-    color: "bg-orange-700", img: null,
-    tag: { zh: "IP 文創", en: "IP Merchandise", ja: "IP グッズ" },
-    detail: {
-      zh: "霹靂布袋戲 IP 周邊商品與限量盲盒，透過 MCS 智販機在台灣各地授權店及展覽場館進行限定販售，強化品牌粉絲互動體驗。",
-      en: "Pili Puppet Shows' IP merchandise and limited blind boxes sold through MCS machines at licensed stores and exhibition venues across Taiwan, boosting fan engagement.",
-      ja: "霹靂布袋戲の IP グッズ・限定ブラインドボックスを MCS 機で展開。台湾各地のライセンスショップや展示会場でのファン体験を強化。",
-    },
-  },
+  
+  
   {
     color: "bg-gray-700", img: null,
     tag: { zh: "政府機關", en: "Government", ja: "政府機関" },
