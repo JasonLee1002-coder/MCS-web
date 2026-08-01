@@ -332,10 +332,22 @@ const T = {
         desc: "與日本首都高速道路合作，開發 PA（休息站）專用冷凍 + 微波一體智販機。已簽訂 NDA 及 MOU，PSE 認證進行中。整合 MP-Solution Japan 無人機台支付系統。",
         stats: ["NDA + MOU 已簽訂", "PSE 認證進行中", "MPS Japan 支付整合", "SA/PA 877 據點展開計畫（日方文件）"],
       },
+      partners: {
+        title: "合作廠商",
+        items: [
+          { name: "Acer 海柏特", code: "興櫃 6884", desc: "3C 售後服務與維修網絡" },
+          { name: "華經資訊", code: "上市 2468", desc: "系統整合與企業資訊服務" },
+          { name: "永彰科技", code: "上市 4523", desc: "電機機械與設備製造" },
+          { name: "伍豐科技", code: "上櫃 8076", desc: "POS 終端與資訊亭製造" },
+        ],
+      },
       more: {
         title: "更多合作客戶",
         items: [
           { name: "麗嬰國際", desc: "玩具智販機，整合鼎新 ERP 系統" },
+          { name: "東方美實業", desc: "千家早餐供應鏈，冷凍智販機與自助設備整合" },
+          { name: "Acer", desc: "3C 品牌自助服務設備整合" },
+          { name: "XMART 移工超商", desc: "移工宿舍場域無人商店，多語系介面與封閉場域營運" },
         ],
       },
     },
@@ -526,10 +538,22 @@ const T = {
         desc: "Co-developed frozen + microwave-combo vending machines for Shuto Expressway parking areas. NDA and MOU signed. PSE certification in progress. Integrated with MP-Solution Japan cashless payment infrastructure.",
         stats: ["NDA + MOU signed", "PSE certification in progress", "MPS Japan payment integration", "SA/PA 877-location expansion roadmap (JP document)"],
       },
+      partners: {
+        title: "Technology Partners",
+        items: [
+          { name: "Acer Hyper", code: "TPEx Emerging 6884", desc: "3C after-sales service & repair network" },
+          { name: "Fortune Information Systems", code: "TWSE 2468", desc: "Systems integration & enterprise IT services" },
+          { name: "Everbrite Technology", code: "TWSE 4523", desc: "Electrical machinery & equipment manufacturing" },
+          { name: "Firich Enterprises", code: "TPEx 8076", desc: "POS terminals & kiosk manufacturing" },
+        ],
+      },
       more: {
         title: "More Clients",
         items: [
           { name: "Lihpao International", desc: "Toy vending machines with Digiwin ERP integration" },
+          { name: "Oriental Beauty Industrial", desc: "Breakfast chain supply network — frozen vending & self-service integration" },
+          { name: "Acer", desc: "Self-service equipment integration for a major 3C brand" },
+          { name: "XMART Migrant Worker Store", desc: "Unmanned stores in dormitory venues — multilingual UI, closed-venue operations" },
         ],
       },
     },
@@ -720,12 +744,22 @@ const T = {
         desc: "首都高速道路PA（パーキングエリア）向けに冷凍＋電子レンジ一体型自動販売機を共同開発。NDA・MOU署名済み、PSE認証取得中。MP-Solution Japanキャッシュレス決済インフラと統合済み。",
         stats: ["NDA + MOU 署名済み", "PSE 認証取得中", "MP-Solution Japan 決済統合", "SA/PA 877拠点展開ロードマップ（日本語文書）"],
       },
+      partners: {
+        title: "協業パートナー",
+        items: [
+          { name: "Acer Hyper（海柏特）", code: "エマージング 6884", desc: "3Cアフターサービス・修理ネットワーク" },
+          { name: "華經資訊（FIS）", code: "台湾上場 2468", desc: "システム統合・企業向けITサービス" },
+          { name: "永彰科技（Everbrite）", code: "台湾上場 4523", desc: "電機機械・設備製造" },
+          { name: "伍豐科技（FEC）", code: "店頭 8076", desc: "POS端末・キオスク製造" },
+        ],
+      },
       more: {
         title: "その他の導入実績",
         items: [
           { name: "麗嬰国際", desc: "玩具自動販売機、Digiwin ERP統合" },
-          { name: "エバーリッチ免税店", desc: "空港小売＋特典交換＋広告宣伝" },
-          { name: "台湾新幹線", desc: "記念品自動販売機" },
+          { name: "東方美実業", desc: "朝食チェーン供給網向け冷凍自販機・セルフ設備統合" },
+          { name: "Acer", desc: "3Cブランド向けセルフサービス設備統合" },
+          { name: "XMART 移住労働者ストア", desc: "寮施設向け無人店舗。多言語UI・クローズド会場運営" },
         ],
       },
     },
@@ -758,6 +792,33 @@ const MORE_CLIENT_DETAILS = [
   
   
   
+  {
+    color: "bg-amber-600", img: null,
+    tag: { zh: "早餐供應鏈", en: "Breakfast Supply Chain", ja: "朝食サプライチェーン" },
+    detail: {
+      zh: "東方美實業為千家規模的早餐供應鏈體系，導入冷凍智販機與自助設備，將中央廚房備料延伸到門市端的自助取餐與補給流程。",
+      en: "Oriental Beauty Industrial operates a breakfast supply chain at thousand-store scale. Frozen vending and self-service equipment extend central-kitchen prep into in-store self-pickup and replenishment.",
+      ja: "東方美実業は千店舗規模の朝食サプライチェーンを運営。冷凍自販機とセルフ設備により、セントラルキッチンの仕込みを店舗側のセルフ受取・補給フローへ拡張。",
+    },
+  },
+  {
+    color: "bg-teal-700", img: null,
+    tag: { zh: "3C 品牌", en: "3C Brand", ja: "3Cブランド" },
+    detail: {
+      zh: "Acer 導入自助服務設備整合方案，涵蓋設備端介面、後台管理與服務流程串接。",
+      en: "Acer deployed an integrated self-service equipment solution covering device UI, back-office management, and service-flow integration.",
+      ja: "Acer がセルフサービス設備の統合ソリューションを導入。デバイスUI・バックオフィス管理・サービスフロー連携をカバー。",
+    },
+  },
+  {
+    color: "bg-indigo-700", img: null,
+    tag: { zh: "封閉場域", en: "Closed Venue", ja: "クローズド会場" },
+    detail: {
+      zh: "XMART 移工超商設置於移工宿舍場域，採無人商店模式營運，提供多語系操作介面，因應封閉場域的補貨節奏與支付習慣調整。",
+      en: "XMART migrant-worker stores operate as unmanned retail inside dormitory venues, with multilingual UI and replenishment/payment flows adapted to closed-venue conditions.",
+      ja: "XMART 移住労働者ストアは寮施設内で無人店舗として運営。多言語UIを備え、クローズド会場の補給リズムと決済習慣に合わせて調整。",
+    },
+  },
 ];
 
 // ─── OmniCore Module Illustrations (Animated SVG + Framer Motion) ──────────────
@@ -3725,6 +3786,36 @@ export default function IntroPage() {
             </div>
           </div>
           </FadeIn>
+
+          {/* Technology Partners — 上市櫃合作廠商 */}
+          <FadeIn delay={0.08}>
+          <div className="mt-12">
+            <h3 className="font-black text-xl text-[#1B3A5C] mb-5">{t.cases.partners.title}</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {t.cases.partners.items.map((p, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.05 }}
+                  className="rounded-xl border border-gray-100 hover:border-[#0A9396]/40 hover:shadow-sm transition-all duration-200 overflow-hidden"
+                >
+                  <div className="bg-[#0A9396] px-4 py-3">
+                    <span className="text-white/70 text-[10px] font-bold uppercase tracking-wide">
+                      {p.code}
+                    </span>
+                    <div className="font-black text-white text-sm leading-tight">{p.name}</div>
+                  </div>
+                  <div className="px-4 py-3">
+                    <p className="text-gray-500 text-xs leading-relaxed">{p.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          </FadeIn>
+
         </div>
       </section>
 
