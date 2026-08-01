@@ -335,11 +335,7 @@ const T = {
       more: {
         title: "更多合作客戶",
         items: [
-          { name: "必勝客", desc: "2in1 Food Locker：常溫雙面智取櫃 + 線下取訂單整合" },
           { name: "麗嬰國際", desc: "玩具智販機，整合鼎新 ERP 系統" },
-          { name: "N&W Group", desc: "健身食品智販機，整合 Ocard 會員系統" },
-          { name: "滙聚食品", desc: "多機型智販機加盟營運商，抽獎互動遊戲模組" },
-          { name: "全省 15 個郵局", desc: "郵局電商商品展示兌換機" },
         ],
       },
     },
@@ -533,11 +529,7 @@ const T = {
       more: {
         title: "More Clients",
         items: [
-          { name: "Pizza Hut", desc: "2in1 Food Locker: heated cabinet + offline order pickup" },
           { name: "Lihpao International", desc: "Toy vending machines with Digiwin ERP integration" },
-          { name: "N&W Group", desc: "Fitness food vending with Ocard loyalty integration" },
-          { name: "Huiju Food", desc: "Multi-model vending franchise operator, gamification module" },
-          { name: "15 Post Offices", desc: "Post Office e-commerce product display & redemption" },
         ],
       },
     },
@@ -731,13 +723,9 @@ const T = {
       more: {
         title: "その他の導入実績",
         items: [
-          { name: "ピザハット", desc: "2in1 Food Locker：保温キャビネット＋オフライン注文受取統合" },
           { name: "麗嬰国際", desc: "玩具自動販売機、Digiwin ERP統合" },
-          { name: "N&W Group", desc: "フィットネス食品自販機、Ocardロイヤルティ統合" },
           { name: "エバーリッチ免税店", desc: "空港小売＋特典交換＋広告宣伝" },
-          { name: "滙聚フード", desc: "多機種自販機フランチャイズ、ゲーミフィケーション対応" },
           { name: "台湾新幹線", desc: "記念品自動販売機" },
-          { name: "全国郵便局 15拠点", desc: "郵便局EC商品展示・交換機" },
         ],
       },
     },
@@ -754,15 +742,7 @@ const T = {
 
 // ─── More Client Detail Content ───────────────────────────────────────────────
 const MORE_CLIENT_DETAILS = [
-  {
-    color: "bg-red-600", img: null,
-    tag: { zh: "餐飲", en: "F&B", ja: "飲食" },
-    detail: {
-      zh: "必勝客（Pizza Hut）導入 MCS 2in1 Food Locker，整合線下門市取餐訂單流程。保溫格子確保取餐品質，同時減少人工交餐等待時間，已於台灣多家門市部署驗證。",
-      en: "Pizza Hut deployed MCS 2in1 Food Locker to manage offline order pickup. Heated locker slots maintain food quality while reducing staff handover wait times. Validated across multiple Taiwan locations.",
-      ja: "ピザハットが MCS の 2in1 Food Locker を導入。オフライン注文の受取フローを統合し、保温キャビネットで料理品質を維持。台湾複数店舗で実証済み。",
-    },
-  },
+  
   {
     color: "bg-purple-600", img: "/images/cards/client-funbox.png",
     tag: { zh: "玩具零售", en: "Toy Retail", ja: "玩具" },
@@ -772,36 +752,12 @@ const MORE_CLIENT_DETAILS = [
       ja: "麗嬰国際の玩具ブランドが MCS スマート自販機を導入。鼎新電腦 ERP（Digiwin）との統合により、在庫の自動照合と多拠点在庫同期を実現。",
     },
   },
-  {
-    color: "bg-green-700", img: null,
-    tag: { zh: "健身食品", en: "Fitness F&B", ja: "フィットネス" },
-    detail: {
-      zh: "N&W Group 健身食品智慧販賣機，整合 Ocard 會員系統，實現點數累積與消費折扣。消費者掃描 LINE 綁定帳號即可啟動個人化優惠，提升回購率。",
-      en: "N&W Group fitness food vending machines integrated with Ocard loyalty — enabling point accumulation and personalized discounts via LINE account binding.",
-      ja: "N&W Group フィットネス食品自販機と Ocard ロイヤルティを統合。LINE アカウント連携でポイント付与・割引の個人化を実現し、リピート率を向上。",
-    },
-  },
-  
-  {
-    color: "bg-teal-600", img: null,
-    tag: { zh: "連鎖餐飲", en: "F&B Franchise", ja: "飲食FC" },
-    detail: {
-      zh: "滙聚食品為 MCS 冷藏與冷凍智販機的加盟營運商，在台灣多個場域負責機台選點、補貨排班與日常維保，同時搭載 MCS 抽獎互動遊戲模組提升客戶黏性。",
-      en: "Huiju Food operates MCS chilled + frozen vending machines as a franchise partner — handling site selection, replenishment scheduling, and maintenance, with gamification modules for engagement.",
-      ja: "滙聚食品は MCS 冷蔵・冷凍自販機のフランチャイズ運営パートナー。機台選定・補充スケジュール・日常保守を担当し、ゲーミフィケーションモジュールで顧客定着を促進。",
-    },
-  },
   
   
-  {
-    color: "bg-gray-700", img: null,
-    tag: { zh: "政府機關", en: "Government", ja: "政府機関" },
-    detail: {
-      zh: "全台 15 個郵局據點設置 MCS 電商商品展示兌換機，讓民眾可在郵局現場瀏覽線上商品、完成兌換核銷，打通線上線下最後一哩路。",
-      en: "MCS e-commerce redemption machines deployed at 15 post office branches nationwide — enabling customers to browse online products and redeem orders in-person, bridging online-to-offline.",
-      ja: "全国 15 か所の郵便局に MCS EC 商品展示・交換機を設置。来客がオンライン商品を閲覧・現地で引き換え可能にし、O2O の最後の1マイルを接続。",
-    },
-  },
+  
+  
+  
+  
 ];
 
 // ─── OmniCore Module Illustrations (Animated SVG + Framer Motion) ──────────────
@@ -3386,7 +3342,7 @@ export default function IntroPage() {
           </div>
           </FadeIn>
 
-          {/* Cold/Frozen Vending — 滙聚 deep expertise */}
+          {/* Cold/Frozen Vending — 冷凍冷藏設備能力 */}
           <FadeIn delay={0.1}>
           <div className="mb-12 border border-gray-200 rounded-2xl overflow-hidden">
             <CaseHeader color="bg-[#0A9396]" badge={t.cases.frozen.badge} title={t.cases.frozen.title} accentLine="#7FFFD4" />
@@ -3429,7 +3385,7 @@ export default function IntroPage() {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                 {/* Feature: food court concept render — full width top */}
                 <div className="col-span-2 md:col-span-3 rounded-xl overflow-hidden bg-gray-100 relative" style={{ aspectRatio: "3/1" }}>
-                  <ZoomImg src="/images/intro/huiju-foodcourt-render.jpg" alt="滙聚美食街 4 品牌智販機概念" fill className="object-cover object-center" />
+                  <ZoomImg src="/images/intro/huiju-foodcourt-render.jpg" alt="美食街 4 品牌智販機概念" fill className="object-cover object-center" />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-4 py-3">
                     <span className="text-white text-xs font-semibold">
                       {lang === "ja" ? "フードコート向け4ブランド展開コンセプト" : lang === "en" ? "4-brand food court deployment concept" : "美食街 4 品牌智販機場域概念"}
@@ -3460,10 +3416,10 @@ export default function IntroPage() {
               {/* Caption */}
               <div className="bg-[#0A9396]/10 border border-[#0A9396]/25 rounded-xl px-4 py-3">
                 <p className="text-[#0A9396] text-xs font-bold mb-1">
-                  {lang === "ja" ? "滙聚食品 — MCSの冷凍・冷蔵自販機フランチャイズ加盟運営パートナー" : lang === "en" ? "Huiju Food — MCS franchise vending operator: chilled + frozen deployments across Taiwan" : "滙聚食品 — MCS 冷藏 / 冷凍智販機加盟營運夥伴"}
+                  {lang === "ja" ? "冷凍・冷蔵自販機のフランチャイズ運営向けソリューション" : lang === "en" ? "Chilled + frozen vending solutions for franchise operators" : "冷藏 / 冷凍智販機的加盟營運解決方案"}
                 </p>
                 <p className="text-gray-500 text-xs">
-                  {lang === "ja" ? "複数のF&Bブランド（龍涎居・CU冰棒・巧幫滷味など）向けに冷凍自販機ソリューションを提供。くじ引き機能など独自のエンゲージメントモジュールも開発。" : lang === "en" ? "Multiple F&B brands (Longyan, CU Ice, GaiBang etc.) deployed with MCS frozen vending solutions. Custom gamification modules developed for customer engagement." : "龍涎居、CU冰棒、巧幫滷味等多個餐飲品牌部署冷凍智販機。MCS 另為滙聚開發抽獎互動遊戲模組，提升客單率。"}
+                  {lang === "ja" ? "複数のF&Bブランド向けに冷凍自販機ソリューションを提供。くじ引き機能など独自のエンゲージメントモジュールにも対応。" : lang === "en" ? "Frozen vending solutions supporting multi-brand F&B deployments, with custom gamification modules for customer engagement." : "可支援多個餐飲品牌的冷凍智販機部署，並提供抽獎互動遊戲模組等客製功能，提升客單率。"}
                 </p>
               </div>
             </div>
