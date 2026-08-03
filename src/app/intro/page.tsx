@@ -304,14 +304,14 @@ const T = {
       sub: "從台灣知名連鎖通路到日本高速公路，MCS 在不同場域持續驗證整合能力。",
       fm: {
         title: "台灣知名連鎖超商",
-        badge: "台灣最大連鎖超商",
+        badge: "通路系統整合",
         tabs: ["智慧販賣機", "APP 智取整合"],
         vendingTitle: "知名連鎖超商智慧販賣機",
-        vendingDesc: "與台灣知名連鎖超商合作，將販賣機部署至科學園區、大學、觀光飯店等場域，整合超商 POS 系統、時控條碼、友善食光折扣、員工卡支付（台積電、Garmin 等）。",
-        vendingStats: ["200+ 台部署（2026 起，每年 +100 台）", "整合超商 POS 系統", "多元場域：科學園區 / 大學 / 觀光飯店"],
+        vendingDesc: "參與知名連鎖超商通路的販賣機系統整合，介接超商 POS 系統、時控條碼、友善食光折扣、員工卡支付（台積電、Garmin 等）。",
+        vendingStats: ["超商 POS 系統介接", "時控條碼與折扣機制", "適用場域：科學園區 / 大學 / 觀光飯店"],
         pickupTitle: "APP 智取櫃整合",
-        pickupDesc: "與知名超商 APP 平台整合，實現 APP 下單 → 格子取貨 O2O 流程，部署於捷運站場域，整合超商 POS、APP 商品追蹤、自取點選擇介面。",
-        pickupStats: ["App 下單 → 格子取貨 O2O", "整合超商 APP & POS 系統", "捷運站場域試營運"],
+        pickupDesc: "參與知名超商 APP 平台與智取櫃的介接開發，支援 APP 下單 → 格子取貨的 O2O 流程，涵蓋超商 POS、APP 商品追蹤與自取點選擇介面。",
+        pickupStats: ["App 下單 → 格子取貨 O2O", "超商 APP & POS 介接", "捷運站場域試營運"],
       },
       mwd: {
         title: "麥味登 知名早餐連鎖",
@@ -323,8 +323,8 @@ const T = {
         label: "冷凍・冷藏設備",
         title: "冷凍・冷藏・微波智販機",
         badge: "通路客戶 · 全台穩定部署",
-        sub: "MCS 在冷凍、冷藏、微波加熱智販機控制上累積多年實戰技術。通路客戶於全台各場域穩定運行超過 300 台。",
-        stats: ["300+ 台通路客戶部署中", "多年冷凍 / 冷藏 / 微波控制技術", "多場域穩定運行驗證"],
+        sub: "MCS 在冷凍、冷藏、微波加熱智販機控制上累積多年實戰技術。通路客戶於全台各場域穩定運行超過 1,000 台。",
+        stats: ["1,000+ 台通路客戶部署中", "多年冷凍 / 冷藏 / 微波控制技術", "多場域穩定運行驗證"],
       },
       shutoko: {
         title: "日本首都高速道路",
@@ -332,17 +332,22 @@ const T = {
         desc: "與日本首都高速道路合作，開發 PA（休息站）專用冷凍 + 微波一體智販機。已簽訂 NDA 及 MOU，PSE 認證進行中。整合 MP-Solution Japan 無人機台支付系統。",
         stats: ["NDA + MOU 已簽訂", "PSE 認證進行中", "MPS Japan 支付整合", "SA/PA 877 據點展開計畫（日方文件）"],
       },
+      partners: {
+        title: "合作廠商",
+        items: [
+          { name: "Acer 海柏特", code: "興櫃 6884", desc: "3C 售後服務與維修網絡" },
+          { name: "華經資訊", code: "上市 2468", desc: "系統整合與企業資訊服務" },
+          { name: "永彰科技", code: "上市 4523", desc: "電機機械與設備製造" },
+          { name: "伍豐科技", code: "上櫃 8076", desc: "POS 終端與資訊亭製造" },
+        ],
+      },
       more: {
         title: "更多合作客戶",
         items: [
-          { name: "必勝客", desc: "2in1 Food Locker：常溫雙面智取櫃 + 線下取訂單整合" },
           { name: "麗嬰國際", desc: "玩具智販機，整合鼎新 ERP 系統" },
-          { name: "N&W Group", desc: "健身食品智販機，整合 Ocard 會員系統" },
-          { name: "昇恆昌機場", desc: "商品販售 + 活動兌換 + 廣告宣傳" },
-          { name: "滙聚食品", desc: "多機型智販機加盟營運商，抽獎互動遊戲模組" },
-          { name: "台灣高鐵", desc: "紀念品販售智販機" },
-          { name: "霹靂布袋戲", desc: "IP 文創周邊、盲盒智販機" },
-          { name: "全省 15 個郵局", desc: "郵局電商商品展示兌換機" },
+          { name: "東方美實業", desc: "千家早餐供應鏈，冷凍智販機與自助設備整合" },
+          { name: "Acer", desc: "3C 品牌自助服務設備整合" },
+          { name: "XMART 威爾互動", desc: "移工宿舍場域無人商店，多語系介面與封閉場域營運" },
         ],
       },
     },
@@ -505,14 +510,14 @@ const T = {
       sub: "From Taiwan's leading retail chains to Japan's expressways, MCS validates integration capabilities across diverse venues.",
       fm: {
         title: "Leading Convenience Chain",
-        badge: "Taiwan's Largest Convenience Chain",
+        badge: "Retail Systems Integration",
         tabs: ["Smart Vending Machines", "App O2O Locker Integration"],
         vendingTitle: "Smart Vending Machines — Major Chain",
-        vendingDesc: "Deployed across science parks, universities, and tourist hotels. Integrates chain POS, time-controlled barcodes, discounted food programs, and employee card payment (TSMC, Garmin, etc.).",
-        vendingStats: ["200+ units (from 2026, +100/yr)", "Full POS integration", "Science parks / Universities / Hotels"],
+        vendingDesc: "Systems integration work for a major convenience chain's vending programme. Interfaces with chain POS, time-controlled barcodes, discounted food programs, and employee card payment (TSMC, Garmin, etc.).",
+        vendingStats: ["Chain POS interfacing", "Time-controlled barcodes & discount logic", "Science parks / Universities / Hotels"],
         pickupTitle: "App O2O Locker Integration",
-        pickupDesc: "MCS smart lockers integrated with a major chain's app platform for O2O pickup: app order → locker collection. Piloted at an MRT station with POS, app item tracking, and pickup point selection.",
-        pickupStats: ["App-order → locker O2O flow", "Chain APP & POS integrated", "MRT station pilot deployment"],
+        pickupDesc: "Integration work connecting a major chain's app platform with smart lockers for O2O pickup: app order → locker collection. Piloted at an MRT station with POS, app item tracking, and pickup point selection.",
+        pickupStats: ["App-order → locker O2O flow", "Chain APP & POS interfacing", "MRT station pilot deployment"],
       },
       mwd: {
         title: "MWD Breakfast Chain",
@@ -523,9 +528,9 @@ const T = {
       frozen: {
         label: "Frozen & Chilled Vending",
         title: "Frozen / Chilled / Microwave Vending Machines",
-        badge: "Channel Customers · 300+ Units Deployed",
-        sub: "MCS has years of hands-on expertise in frozen, chilled, and microwave-combo vending machine control. Our channel customers operate 300+ units stably across various venues.",
-        stats: ["300+ units deployed (channel customers)", "Multi-year frozen / chilled / microwave control expertise", "Proven across multiple venue types"],
+        badge: "Channel Customers · 1,000+ Units Deployed",
+        sub: "MCS has years of hands-on expertise in frozen, chilled, and microwave-combo vending machine control. Our channel customers operate 1,000+ units stably across various venues.",
+        stats: ["1,000+ units deployed (channel customers)", "Multi-year frozen / chilled / microwave control expertise", "Proven across multiple venue types"],
       },
       shutoko: {
         title: "Shuto Expressway Japan",
@@ -533,17 +538,22 @@ const T = {
         desc: "Co-developed frozen + microwave-combo vending machines for Shuto Expressway parking areas. NDA and MOU signed. PSE certification in progress. Integrated with MP-Solution Japan cashless payment infrastructure.",
         stats: ["NDA + MOU signed", "PSE certification in progress", "MPS Japan payment integration", "SA/PA 877-location expansion roadmap (JP document)"],
       },
+      partners: {
+        title: "Technology Partners",
+        items: [
+          { name: "Acer Hyper", code: "TPEx Emerging 6884", desc: "3C after-sales service & repair network" },
+          { name: "Fortune Information Systems", code: "TWSE 2468", desc: "Systems integration & enterprise IT services" },
+          { name: "Everbrite Technology", code: "TWSE 4523", desc: "Electrical machinery & equipment manufacturing" },
+          { name: "Firich Enterprises", code: "TPEx 8076", desc: "POS terminals & kiosk manufacturing" },
+        ],
+      },
       more: {
         title: "More Clients",
         items: [
-          { name: "Pizza Hut", desc: "2in1 Food Locker: heated cabinet + offline order pickup" },
           { name: "Lihpao International", desc: "Toy vending machines with Digiwin ERP integration" },
-          { name: "N&W Group", desc: "Fitness food vending with Ocard loyalty integration" },
-          { name: "Everrich Duty Free", desc: "Airport retail + activity redemption + advertising" },
-          { name: "Huiju Food", desc: "Multi-model vending franchise operator, gamification module" },
-          { name: "Taiwan HSR", desc: "Souvenir vending machine" },
-          { name: "PiliAnimation", desc: "IP merchandise & blind box vending" },
-          { name: "15 Post Offices", desc: "Post Office e-commerce product display & redemption" },
+          { name: "Oriental Beauty Industrial", desc: "Breakfast chain supply network — frozen vending & self-service integration" },
+          { name: "Acer", desc: "Self-service equipment integration for a major 3C brand" },
+          { name: "XMART (Well Interactive)", desc: "Unmanned stores in dormitory venues — multilingual UI, closed-venue operations" },
         ],
       },
     },
@@ -706,14 +716,14 @@ const T = {
       sub: "台湾の大手小売チェーンから日本の首都高速道路まで、MCS はさまざまな施設・業態で統合能力を実証しています。",
       fm: {
         title: "台湾大手コンビニチェーン",
-        badge: "台湾最大コンビニチェーン",
+        badge: "流通システム統合",
         tabs: ["スマート自動販売機", "アプリ O2O ロッカー統合"],
         vendingTitle: "スマート自動販売機 — 大手コンビニ",
-        vendingDesc: "サイエンスパーク・大学・観光ホテルなどに展開。コンビニPOS・時限バーコード・割引プログラム・社員カード決済（TSMC、Garmin等）を統合。",
-        vendingStats: ["200台以上設置（2026年〜、毎年+100台）", "コンビニPOSフル統合", "サイエンスパーク / 大学 / ホテル"],
+        vendingDesc: "大手コンビニ流通における自動販売機のシステム統合を担当。コンビニPOS・時限バーコード・割引プログラム・社員カード決済（TSMC、Garmin等）を統合。",
+        vendingStats: ["コンビニPOS連携", "時限バーコード・割引ロジック", "サイエンスパーク / 大学 / ホテル"],
         pickupTitle: "アプリ O2O ロッカー統合",
-        pickupDesc: "大手コンビニのアプリプラットフォームとMCSスマートロッカーを統合したO2Oピックアップフロー。MRT駅でパイロット展開。アプリ注文 → ロッカー受取を実現。",
-        pickupStats: ["アプリ注文 → ロッカー受取 O2O", "コンビニ APP & POS 統合", "MRT 駅でのパイロット展開"],
+        pickupDesc: "大手コンビニのアプリプラットフォームとスマートロッカーの連携開発を担当。O2Oピックアップフロー。MRT駅でパイロット展開。アプリ注文 → ロッカー受取を実現。",
+        pickupStats: ["アプリ注文 → ロッカー受取 O2O", "コンビニ APP & POS 連携", "MRT 駅でのパイロット展開"],
       },
       mwd: {
         title: "麦味登 朝食チェーン",
@@ -724,9 +734,9 @@ const T = {
       frozen: {
         label: "冷凍・冷蔵自動販売機",
         title: "冷凍・冷蔵・電子レンジ一体型自動販売機",
-        badge: "通路顧客 · 300台以上稼働中",
-        sub: "MCS は冷凍・冷蔵・電子レンジ一体型自販機の制御技術において、多年の実績と商業的検証を積み重ねています。通路顧客の稼働台数は300台以上。",
-        stats: ["300台以上稼働中（通路顧客）", "多年の冷凍 / 冷蔵 / 電子レンジ制御技術", "多様な施設・環境での安定稼働実証済み"],
+        badge: "通路顧客 · 1,000台以上稼働中",
+        sub: "MCS は冷凍・冷蔵・電子レンジ一体型自販機の制御技術において、多年の実績と商業的検証を積み重ねています。通路顧客の稼働台数は1,000台以上。",
+        stats: ["1,000台以上稼働中（通路顧客）", "多年の冷凍 / 冷蔵 / 電子レンジ制御技術", "多様な施設・環境での安定稼働実証済み"],
       },
       shutoko: {
         title: "首都高速道路 日本",
@@ -734,17 +744,22 @@ const T = {
         desc: "首都高速道路PA（パーキングエリア）向けに冷凍＋電子レンジ一体型自動販売機を共同開発。NDA・MOU署名済み、PSE認証取得中。MP-Solution Japanキャッシュレス決済インフラと統合済み。",
         stats: ["NDA + MOU 署名済み", "PSE 認証取得中", "MP-Solution Japan 決済統合", "SA/PA 877拠点展開ロードマップ（日本語文書）"],
       },
+      partners: {
+        title: "協業パートナー",
+        items: [
+          { name: "Acer Hyper（海柏特）", code: "エマージング 6884", desc: "3Cアフターサービス・修理ネットワーク" },
+          { name: "華經資訊（FIS）", code: "台湾上場 2468", desc: "システム統合・企業向けITサービス" },
+          { name: "永彰科技（Everbrite）", code: "台湾上場 4523", desc: "電機機械・設備製造" },
+          { name: "伍豐科技（FEC）", code: "店頭 8076", desc: "POS端末・キオスク製造" },
+        ],
+      },
       more: {
         title: "その他の導入実績",
         items: [
-          { name: "ピザハット", desc: "2in1 Food Locker：保温キャビネット＋オフライン注文受取統合" },
           { name: "麗嬰国際", desc: "玩具自動販売機、Digiwin ERP統合" },
-          { name: "N&W Group", desc: "フィットネス食品自販機、Ocardロイヤルティ統合" },
-          { name: "エバーリッチ免税店", desc: "空港小売＋特典交換＋広告宣伝" },
-          { name: "滙聚フード", desc: "多機種自販機フランチャイズ、ゲーミフィケーション対応" },
-          { name: "台湾新幹線", desc: "記念品自動販売機" },
-          { name: "霹靂布袋戲", desc: "IPグッズ・ブラインドボックス自販機" },
-          { name: "全国郵便局 15拠点", desc: "郵便局EC商品展示・交換機" },
+          { name: "東方美実業", desc: "朝食チェーン供給網向け冷凍自販機・セルフ設備統合" },
+          { name: "Acer", desc: "3Cブランド向けセルフサービス設備統合" },
+          { name: "XMART 威爾互動", desc: "寮施設向け無人店舗。多言語UI・クローズド会場運営" },
         ],
       },
     },
@@ -761,15 +776,7 @@ const T = {
 
 // ─── More Client Detail Content ───────────────────────────────────────────────
 const MORE_CLIENT_DETAILS = [
-  {
-    color: "bg-red-600", img: null,
-    tag: { zh: "餐飲", en: "F&B", ja: "飲食" },
-    detail: {
-      zh: "必勝客（Pizza Hut）導入 MCS 2in1 Food Locker，整合線下門市取餐訂單流程。保溫格子確保取餐品質，同時減少人工交餐等待時間，已於台灣多家門市部署驗證。",
-      en: "Pizza Hut deployed MCS 2in1 Food Locker to manage offline order pickup. Heated locker slots maintain food quality while reducing staff handover wait times. Validated across multiple Taiwan locations.",
-      ja: "ピザハットが MCS の 2in1 Food Locker を導入。オフライン注文の受取フローを統合し、保温キャビネットで料理品質を維持。台湾複数店舗で実証済み。",
-    },
-  },
+  
   {
     color: "bg-purple-600", img: "/images/cards/client-funbox.png",
     tag: { zh: "玩具零售", en: "Toy Retail", ja: "玩具" },
@@ -779,58 +786,37 @@ const MORE_CLIENT_DETAILS = [
       ja: "麗嬰国際の玩具ブランドが MCS スマート自販機を導入。鼎新電腦 ERP（Digiwin）との統合により、在庫の自動照合と多拠点在庫同期を実現。",
     },
   },
+  
+  
+  
+  
+  
+  
   {
-    color: "bg-green-700", img: null,
-    tag: { zh: "健身食品", en: "Fitness F&B", ja: "フィットネス" },
+    color: "bg-amber-600", img: null,
+    tag: { zh: "早餐供應鏈", en: "Breakfast Supply Chain", ja: "朝食サプライチェーン" },
     detail: {
-      zh: "N&W Group 健身食品智慧販賣機，整合 Ocard 會員系統，實現點數累積與消費折扣。消費者掃描 LINE 綁定帳號即可啟動個人化優惠，提升回購率。",
-      en: "N&W Group fitness food vending machines integrated with Ocard loyalty — enabling point accumulation and personalized discounts via LINE account binding.",
-      ja: "N&W Group フィットネス食品自販機と Ocard ロイヤルティを統合。LINE アカウント連携でポイント付与・割引の個人化を実現し、リピート率を向上。",
+      zh: "東方美實業為千家規模的早餐供應鏈體系，導入冷凍智販機與自助設備，將中央廚房備料延伸到門市端的自助取餐與補給流程。",
+      en: "Oriental Beauty Industrial operates a breakfast supply chain at thousand-store scale. Frozen vending and self-service equipment extend central-kitchen prep into in-store self-pickup and replenishment.",
+      ja: "東方美実業は千店舗規模の朝食サプライチェーンを運営。冷凍自販機とセルフ設備により、セントラルキッチンの仕込みを店舗側のセルフ受取・補給フローへ拡張。",
     },
   },
   {
-    color: "bg-yellow-600", img: null,
-    tag: { zh: "機場免稅", en: "Airport Duty-Free", ja: "空港免税" },
+    color: "bg-teal-700", img: null,
+    tag: { zh: "3C 品牌", en: "3C Brand", ja: "3Cブランド" },
     detail: {
-      zh: "昇恆昌機場免稅店，MCS 提供智慧販賣機應用於商品販售、活動兌換券核銷與廣告宣傳三合一場景，適合機場高人流、長時間等候的自助消費需求。",
-      en: "Everrich Duty Free Airport — MCS machines handle retail sales, voucher redemption, and in-store advertising in one unit, meeting high-traffic airport self-service demand.",
-      ja: "エバーリッチ空港免税店にて、MCS 機が物品販売・クーポン交換・広告配信の3機能を1台で提供。空港の高回転環境に対応。",
+      zh: "Acer 導入自助服務設備整合方案，涵蓋設備端介面、後台管理與服務流程串接。",
+      en: "Acer deployed an integrated self-service equipment solution covering device UI, back-office management, and service-flow integration.",
+      ja: "Acer がセルフサービス設備の統合ソリューションを導入。デバイスUI・バックオフィス管理・サービスフロー連携をカバー。",
     },
   },
   {
-    color: "bg-teal-600", img: null,
-    tag: { zh: "連鎖餐飲", en: "F&B Franchise", ja: "飲食FC" },
+    color: "bg-indigo-700", img: null,
+    tag: { zh: "封閉場域", en: "Closed Venue", ja: "クローズド会場" },
     detail: {
-      zh: "滙聚食品為 MCS 冷藏與冷凍智販機的加盟營運商，在台灣多個場域負責機台選點、補貨排班與日常維保，同時搭載 MCS 抽獎互動遊戲模組提升客戶黏性。",
-      en: "Huiju Food operates MCS chilled + frozen vending machines as a franchise partner — handling site selection, replenishment scheduling, and maintenance, with gamification modules for engagement.",
-      ja: "滙聚食品は MCS 冷蔵・冷凍自販機のフランチャイズ運営パートナー。機台選定・補充スケジュール・日常保守を担当し、ゲーミフィケーションモジュールで顧客定着を促進。",
-    },
-  },
-  {
-    color: "bg-[#1B3A5C]", img: null,
-    tag: { zh: "大眾交通", en: "Mass Transit", ja: "公共交通" },
-    detail: {
-      zh: "台灣高鐵站體內，MCS 智販機提供旅客紀念品與周邊商品的自助購買服務，無需排隊等候人工服務台，適合匆忙旅次場景。",
-      en: "MCS smart vending machines at Taiwan High Speed Rail stations provide self-service souvenir retail — no queuing at service counters for time-pressured travelers.",
-      ja: "台湾高速鉄道駅構内に MCS 自販機を設置。旅客が記念品をセルフで購入可能。忙しい乗客に対応した無人販売形態。",
-    },
-  },
-  {
-    color: "bg-orange-700", img: null,
-    tag: { zh: "IP 文創", en: "IP Merchandise", ja: "IP グッズ" },
-    detail: {
-      zh: "霹靂布袋戲 IP 周邊商品與限量盲盒，透過 MCS 智販機在台灣各地授權店及展覽場館進行限定販售，強化品牌粉絲互動體驗。",
-      en: "Pili Puppet Shows' IP merchandise and limited blind boxes sold through MCS machines at licensed stores and exhibition venues across Taiwan, boosting fan engagement.",
-      ja: "霹靂布袋戲の IP グッズ・限定ブラインドボックスを MCS 機で展開。台湾各地のライセンスショップや展示会場でのファン体験を強化。",
-    },
-  },
-  {
-    color: "bg-gray-700", img: null,
-    tag: { zh: "政府機關", en: "Government", ja: "政府機関" },
-    detail: {
-      zh: "全台 15 個郵局據點設置 MCS 電商商品展示兌換機，讓民眾可在郵局現場瀏覽線上商品、完成兌換核銷，打通線上線下最後一哩路。",
-      en: "MCS e-commerce redemption machines deployed at 15 post office branches nationwide — enabling customers to browse online products and redeem orders in-person, bridging online-to-offline.",
-      ja: "全国 15 か所の郵便局に MCS EC 商品展示・交換機を設置。来客がオンライン商品を閲覧・現地で引き換え可能にし、O2O の最後の1マイルを接続。",
+      zh: "XMART 移工超商設置於移工宿舍場域，採無人商店模式營運，提供多語系操作介面，因應封閉場域的補貨節奏與支付習慣調整。",
+      en: "XMART migrant-worker stores operate as unmanned retail inside dormitory venues, with multilingual UI and replenishment/payment flows adapted to closed-venue conditions.",
+      ja: "XMART 移住労働者ストアは寮施設内で無人店舗として運営。多言語UIを備え、クローズド会場の補給リズムと決済習慣に合わせて調整。",
     },
   },
 ];
@@ -3417,7 +3403,7 @@ export default function IntroPage() {
           </div>
           </FadeIn>
 
-          {/* Cold/Frozen Vending — 滙聚 deep expertise */}
+          {/* Cold/Frozen Vending — 冷凍冷藏設備能力 */}
           <FadeIn delay={0.1}>
           <div className="mb-12 border border-gray-200 rounded-2xl overflow-hidden">
             <CaseHeader color="bg-[#0A9396]" badge={t.cases.frozen.badge} title={t.cases.frozen.title} accentLine="#7FFFD4" />
@@ -3460,7 +3446,7 @@ export default function IntroPage() {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
                 {/* Feature: food court concept render — full width top */}
                 <div className="col-span-2 md:col-span-3 rounded-xl overflow-hidden bg-gray-100 relative" style={{ aspectRatio: "3/1" }}>
-                  <ZoomImg src="/images/intro/huiju-foodcourt-render.jpg" alt="滙聚美食街 4 品牌智販機概念" fill className="object-cover object-center" />
+                  <ZoomImg src="/images/intro/huiju-foodcourt-render.jpg" alt="美食街 4 品牌智販機概念" fill className="object-cover object-center" />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-4 py-3">
                     <span className="text-white text-xs font-semibold">
                       {lang === "ja" ? "フードコート向け4ブランド展開コンセプト" : lang === "en" ? "4-brand food court deployment concept" : "美食街 4 品牌智販機場域概念"}
@@ -3491,10 +3477,10 @@ export default function IntroPage() {
               {/* Caption */}
               <div className="bg-[#0A9396]/10 border border-[#0A9396]/25 rounded-xl px-4 py-3">
                 <p className="text-[#0A9396] text-xs font-bold mb-1">
-                  {lang === "ja" ? "滙聚食品 — MCSの冷凍・冷蔵自販機フランチャイズ加盟運営パートナー" : lang === "en" ? "Huiju Food — MCS franchise vending operator: chilled + frozen deployments across Taiwan" : "滙聚食品 — MCS 冷藏 / 冷凍智販機加盟營運夥伴"}
+                  {lang === "ja" ? "冷凍・冷蔵自販機のフランチャイズ運営向けソリューション" : lang === "en" ? "Chilled + frozen vending solutions for franchise operators" : "冷藏 / 冷凍智販機的加盟營運解決方案"}
                 </p>
                 <p className="text-gray-500 text-xs">
-                  {lang === "ja" ? "複数のF&Bブランド（龍涎居・CU冰棒・巧幫滷味など）向けに冷凍自販機ソリューションを提供。くじ引き機能など独自のエンゲージメントモジュールも開発。" : lang === "en" ? "Multiple F&B brands (Longyan, CU Ice, GaiBang etc.) deployed with MCS frozen vending solutions. Custom gamification modules developed for customer engagement." : "龍涎居、CU冰棒、巧幫滷味等多個餐飲品牌部署冷凍智販機。MCS 另為滙聚開發抽獎互動遊戲模組，提升客單率。"}
+                  {lang === "ja" ? "複数のF&Bブランド向けに冷凍自販機ソリューションを提供。くじ引き機能など独自のエンゲージメントモジュールにも対応。" : lang === "en" ? "Frozen vending solutions supporting multi-brand F&B deployments, with custom gamification modules for customer engagement." : "可支援多個餐飲品牌的冷凍智販機部署，並提供抽獎互動遊戲模組等客製功能，提升客單率。"}
                 </p>
               </div>
             </div>
@@ -3700,7 +3686,7 @@ export default function IntroPage() {
                         <ZoomImg src="/images/intro/mps-nda-signed.jpg" alt="MPS NDA 締結" fill className="object-cover" />
                         <div className="absolute bottom-0 left-0 right-0 bg-black/50 px-2 py-1">
                           <span className="text-white text-[10px] font-semibold">
-                            {lang === "ja" ? "NDA 締結（Jason Lee × Eiji Sato）" : lang === "en" ? "NDA Signed — Jason Lee × Eiji Sato" : "NDA 簽署（Jason Lee × Eiji Sato）"}
+                            {lang === "ja" ? "NDA 締結（MCS × MPS）" : lang === "en" ? "NDA Signed — MCS × MPS" : "NDA 簽署（MCS × MPS）"}
                           </span>
                         </div>
                       </div>
@@ -3717,8 +3703,8 @@ export default function IntroPage() {
                       {lang === "ja"
                         ? "MP-Solution Japan の IM10 キャッシュレス端末と MCS OmniCore の統合が完了。日本側代表 Eiji Sato 氏と NDA を締結し、台湾にて検収試験を実施・合格済み。日本全国の無人機台への水平展開を共同推進中。"
                         : lang === "en"
-                        ? "MCS OmniCore is fully integrated with MP-Solution Japan's IM10 cashless terminal. NDA signed between Jason Lee (MCS) and Eiji Sato (MPS). Acceptance tests conducted in Taiwan — passed. Joint rollout to vending machines across Japan now in progress."
-                        : "MCS OmniCore 與 MP-Solution Japan IM10 無現金支付端末完成技術整合。Jason Lee（MCS）與 Eiji Sato（MPS）正式簽署 NDA，並在台灣現場完成驗收測試。目前雙方協力推進日本全國無人機台部署。"}
+                        ? "MCS OmniCore is fully integrated with MP-Solution Japan's IM10 cashless terminal. NDA signed between MCS and MP-Solution Japan. Acceptance tests conducted in Taiwan — passed. Joint rollout to vending machines across Japan now in progress."
+                        : "MCS OmniCore 與 MP-Solution Japan IM10 無現金支付端末完成技術整合。MCS 與 MP-Solution Japan 雙方代表正式簽署 NDA，並在台灣現場完成驗收測試。目前雙方協力推進日本全國無人機台部署。"}
                     </p>
                   </div>
                 </div>
@@ -3800,6 +3786,36 @@ export default function IntroPage() {
             </div>
           </div>
           </FadeIn>
+
+          {/* Technology Partners — 上市櫃合作廠商 */}
+          <FadeIn delay={0.08}>
+          <div className="mt-12">
+            <h3 className="font-black text-xl text-[#1B3A5C] mb-5">{t.cases.partners.title}</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {t.cases.partners.items.map((p, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.05 }}
+                  className="rounded-xl border border-gray-100 hover:border-[#0A9396]/40 hover:shadow-sm transition-all duration-200 overflow-hidden"
+                >
+                  <div className="bg-[#0A9396] px-4 py-3">
+                    <span className="text-white/70 text-[10px] font-bold uppercase tracking-wide">
+                      {p.code}
+                    </span>
+                    <div className="font-black text-white text-sm leading-tight">{p.name}</div>
+                  </div>
+                  <div className="px-4 py-3">
+                    <p className="text-gray-500 text-xs leading-relaxed">{p.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          </FadeIn>
+
         </div>
       </section>
 

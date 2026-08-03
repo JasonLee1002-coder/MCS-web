@@ -34,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "frozen-vending-vs-regular-vending",
     "ghost-kitchen-smart-locker-guide",
     "clinic-waiting-area-smart-vending",
+    "office-pantry-space-yield-optimization",
     "one-ping-space-equipment-guide",
     "salon-studio-waiting-smart-device",
     "smart-locker-api-integration",
@@ -46,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "smart-locker-office-building",
     "smart-locker-restaurant-takeout",
     "smart-locker-vs-regular-fridge",
+    "space-yield-calculation-method",
     "steam-ramen-hospital-24hr",
   ];
   const staticBlogPosts = staticBlogSlugs.map((slug) => ({
