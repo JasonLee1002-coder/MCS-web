@@ -117,5 +117,5 @@ faq:
 延伸閱讀：
 - [GraBox AI 智取櫃產品頁面](/products/grabox)
 - [GraBox vs 傳統取餐方式比較](/blog/grabox-vs-traditional-pickup)
-- [客戶實績：麥味登智慧門市](/cases#mwd)
+- [麥味登智取櫃導入完整案例](/blog/mwd-grabox-smart-pickup-case-study)
 - [導入智取櫃的完整成本效益分析](/blog/smart-vending-machine-roi-analysis)

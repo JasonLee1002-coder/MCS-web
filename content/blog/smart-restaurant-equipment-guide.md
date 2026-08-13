@@ -58,7 +58,7 @@ faq:
 
 #### 最適合的場景：
 
-- **連鎖早午餐品牌**：早上尖峰時段的出餐壓力最大，[GraBox 智慧取餐櫃](/products/grabox)可以讓廚房專心做餐。麥味登的實際導入經驗已證明這一點。
+- **連鎖早午餐品牌**：早上尖峰時段的出餐壓力最大，[GraBox 智慧取餐櫃](/products/grabox)可以讓廚房專心做餐。[麥味登智取櫃的實際導入經驗](/blog/mwd-grabox-smart-pickup-case-study)已證明這一點。
 - **企業員工餐廳**：午餐時段集中用餐，取餐櫃避免排隊等候，員工體驗大幅提升。
 - **外送/外帶為主的店型**：外送員不需要在櫃台等候，掃碼即取，減少店內混亂。
 
@@ -122,4 +122,4 @@ faq:
 - [冷凍微波販賣機 TH-21MS/FD/FS 產品介紹](/products/frozen-microwave)
 - [智取櫃 × POS × KDS 系統整合完整指南](/blog/smart-cabinet-pos-kds-integration)
 - [餐飲業缺工解方：智慧設備如何降低人力依賴](/blog/restaurant-labor-shortage-solution)
-- [客戶實績：麥味登智取櫃導入案例](/cases#mwd)
+- [麥味登智取櫃導入完整案例](/blog/mwd-grabox-smart-pickup-case-study)

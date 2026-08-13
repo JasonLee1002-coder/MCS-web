@@ -73,7 +73,7 @@ image: "/images/products/frozen-microwave/th-21ms-catalog.png"
 
 ### GraBox 智取櫃的人機協作模式
 
-以麥味登早午餐為例，導入 **GraBox AI 智取櫃**後：
+以[麥味登智取櫃的導入](/blog/mwd-grabox-smart-pickup-case-study)為例，採用 **GraBox AI 智取櫃**後：
 - 顧客線上點餐 → 廚房製作 → 放入智取櫃 → 顧客自助取餐
 - 省去 1-2 名櫃台人員的取餐遞餐工作
 - 人力轉移至廚房和品質管控
