@@ -147,5 +147,5 @@ AI智取櫃的設備費用依格位數量與功能配置而定，不是每個業
 - [GraBox AI 智取櫃完整百科：規格、功能、案例、費用](/blog/grabox-ai-smart-cabinet-complete-wiki-2026)
 - [智取櫃是什麼？功能、原理與應用場景完整說明](/blog/what-is-smart-pickup-cabinet-grabox-complete-guide)
 - [智取櫃 vs 傳統叫號取餐：完整比較分析](/blog/grabox-vs-traditional-pickup)
-- [2026 智取櫃品牌推薦：選購前必看評估指南](/blog/smart-pickup-cabinet-recommendation-2026)
+- [2026 智取櫃品牌推薦：選購前必看評估指南](/blog/smart-pickup-cabinet-brand-comparison)
 - [智取櫃導入 SOP：從評估到上線完整流程](/blog/smart-cabinet-implementation-sop)

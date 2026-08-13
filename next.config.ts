@@ -19,6 +19,15 @@ const nextConfig: NextConfig = {
       { source: "/index.php", destination: "/", permanent: true },
       { source: "/index", destination: "/", permanent: true },
       { source: "/index.html", destination: "/", permanent: true },
+
+      // 2026-08-13 智取櫃品類詞去重：「2026 智取櫃品牌推薦」原本有兩篇近重複文章
+      // （發布只差 6 天、評估面向與 GraBox 定位段落幾乎相同），分食同一批曝光，
+      // 導致「智取櫃」品類詞在 GSC 上幾乎零能見度。獨有的場景配置表已併入留存頁。
+      {
+        source: "/blog/smart-pickup-cabinet-recommendation-2026",
+        destination: "/blog/smart-pickup-cabinet-brand-comparison",
+        permanent: true,
+      },
     ];
   },
   async headers() {

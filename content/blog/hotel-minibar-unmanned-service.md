@@ -117,5 +117,5 @@ GraBox 最小機型的佔地面積約為一張雙人沙發的大小，通常設�
 - [GraBox 智慧取餐櫃產品介紹](/products/grabox)
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [銓幻元科技客戶實績](/cases)
-- [智慧取餐櫃推薦：2026 年最新機型比較](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智慧取餐櫃推薦：2026 年最新機型比較](/blog/smart-pickup-cabinet-brand-comparison)
 - [IVM 雲端販賣機管理平台完整介紹](/blog/ivm-cloud-vending-management-platform)

@@ -180,7 +180,7 @@ GraBox 的 AI 功能讓設備成為「主動幫手」：
 ### 延伸閱讀
 
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
-- [智取櫃品牌推薦與選購指南](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智取櫃品牌推薦與選購指南](/blog/smart-pickup-cabinet-brand-comparison)
 - [GraBox vs 傳統叫號取餐比較](/blog/grabox-vs-traditional-pickup)
 - [排隊人潮怎麼解？智取櫃消滅排隊的策略](/blog/queue-solution-smart-pickup-cabinet)
 - [智取櫃缺點真心話](/blog/smart-cabinet-disadvantages-real-talk)

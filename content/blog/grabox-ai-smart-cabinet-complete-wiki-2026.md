@@ -245,6 +245,6 @@ GraBox 提供三種合作模式，適應不同業者的資金狀況：
 - [AI智取櫃缺點有哪些？導入前必須知道的5個限制](/blog/smart-cabinet-disadvantages-real-talk)
 - [GraBox AI 智取櫃產品規格完整介紹](/products/grabox)
 - [智取櫃是什麼？功能、原理與應用場景說明](/blog/what-is-smart-pickup-cabinet-grabox-complete-guide)
-- [智取櫃品牌推薦：2026 選購評估完整指南](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智取櫃品牌推薦：2026 選購評估完整指南](/blog/smart-pickup-cabinet-brand-comparison)
 - [智取櫃 vs 傳統取餐方式：哪個更適合你的餐廳？](/blog/grabox-vs-traditional-pickup)
 - [早午餐連鎖品牌導入智取櫃實際效益案例](/blog/brunch-chain-smart-cabinet-solution)

@@ -94,6 +94,6 @@ A：銓幻元科技提供台灣在地售後服務，搭配 IVM 雲端平台的�
 
 - [GraBox 智慧取餐櫃產品介紹](/products/grabox)
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
-- [智慧取餐櫃推薦：2026 年最新機型比較](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智慧取餐櫃推薦：2026 年最新機型比較](/blog/smart-pickup-cabinet-brand-comparison)
 - [IVM 雲端販賣機管理平台完整介紹](/blog/ivm-cloud-vending-management-platform)
 - [智慧販賣機 ROI 分析：投資報酬率怎麼算？](/blog/smart-vending-machine-roi-analysis)

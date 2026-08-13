@@ -92,6 +92,6 @@ image: "/images/cases/funbox/vending-machines.jpg"
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [冷凍食材品牌如何拓展 24H 無人銷售通路？](/blog/frozen-food-brand-24h-vending-channel)
-- [智慧取餐櫃推薦指南（2026 最新）](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智慧取餐櫃推薦指南（2026 最新）](/blog/smart-pickup-cabinet-brand-comparison)
 - [智慧販賣機選點策略完整指南](/blog/vending-machine-location-strategy)
 - [客戶實績與成功案例](/cases)

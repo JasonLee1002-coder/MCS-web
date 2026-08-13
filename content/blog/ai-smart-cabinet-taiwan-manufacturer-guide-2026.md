@@ -151,5 +151,5 @@ GraBox 支援與台灣主流系統串接：
 - [銓幻元科技品牌完整介紹](/blog/quanhuanyuan-tech-brand-introduction)
 - [GraBox AI 智取櫃完整百科](/blog/grabox-ai-smart-cabinet-complete-wiki-2026)
 - [餐飲智取櫃 vs 包裹智取櫃：有什麼不同？](/blog/food-pickup-cabinet-vs-parcel-locker-difference)
-- [2026 智取櫃品牌推薦完整指南](/blog/smart-pickup-cabinet-recommendation-2026)
+- [2026 智取櫃品牌推薦完整指南](/blog/smart-pickup-cabinet-brand-comparison)
 - [麥味登 × GraBox 智取櫃案例](/blog/mwd-grabox-smart-pickup-case-study)

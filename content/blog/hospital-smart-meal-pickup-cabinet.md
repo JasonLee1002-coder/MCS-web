@@ -119,4 +119,4 @@ GraBox 不是一台獨立運作的冰箱，而是能融入醫院既有系統的�
 - [校園與企業團膳的智慧取餐櫃導入方案](/blog/campus-enterprise-smart-meal-pickup)
 - [智慧取餐櫃導入 SOP 完整指南](/blog/smart-cabinet-implementation-sop)
 - [智慧取餐櫃 × POS/KDS 系統整合](/blog/smart-cabinet-pos-kds-integration)
-- [智慧取餐櫃推薦指南（2026 最新）](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智慧取餐櫃推薦指南（2026 最新）](/blog/smart-pickup-cabinet-brand-comparison)
