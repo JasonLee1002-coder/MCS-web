@@ -4,7 +4,9 @@ import Footer from "@/components/Footer";
 import FrozenMicrowaveShowcase from "@/components/FrozenMicrowaveShowcase";
 
 export const metadata: Metadata = {
-  title: "冷凍微波販賣機 | 銓幻元科技 MCS · 台灣製造 · 日本高速公路指定",
+  // 同 /products/grabox：根 layout 的 template 是 "%s | 銓幻元科技 MCS"，
+  // 這裡不要再寫一次品牌名，否則成品標題會出現兩次「銓幻元科技 MCS」並被截斷。
+  title: "冷凍微波販賣機：台灣製造，日本高速公路指定",
   description:
     "銓幻元科技 100% 台灣研發製造冷凍微波販賣機，搭載商用 3600W 微波加熱，冷食瞬間變熱餐。服務大型連鎖通路數百台智慧販賣機經驗，食安管控業界領先。受日本首都高速公路青睞，簽訂 MOU 布點全日本休息站。提供台製與進口機型選擇。",
   keywords: [

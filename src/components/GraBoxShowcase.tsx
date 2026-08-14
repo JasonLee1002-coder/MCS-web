@@ -192,6 +192,10 @@ function CinematicHero() {
               >
                 GraBox
               </motion.span>
+              {/* 這個空白是必要的：兩個 block span 之間若無空白字元，DOM 文字會被
+                  抽取成「GraBoxAI 智取櫃」，品牌 token 變成 GraBoxAI，傷害「GraBox」
+                  品牌詞的精確匹配。兩者都是 block 顯示，補空白不影響視覺排版。 */}
+              {" "}
               <motion.span
                 className="block bg-gradient-to-r from-orange-400 via-amber-400 to-orange-600 bg-clip-text text-transparent"
                 initial={{ opacity: 0, y: 40 }}
