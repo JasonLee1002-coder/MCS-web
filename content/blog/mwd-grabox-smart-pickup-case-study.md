@@ -115,6 +115,15 @@ faq:
 3. 加盟體系如何推廣？（租賃制是關鍵）
 4. 先試點幾家門市再推廣？（銓幻元科技建議 3–5 家試點）
 
+麥味登用的 My Express，硬體與系統本體就是 GraBox——規格、溫層選項、
+POS/KDS 串接方式與可客製的範圍，都整理在
+[GraBox AI 智取櫃產品頁](/products/grabox)。
+想確認自己的門市條件適不適用，從那裡看最快。
+
+延伸閱讀：
+- [GraBox 智取櫃是哪家公司製造的？](/blog/grabox-smart-cabinet-manufacturer-mcs)——製造商背景與技術能力
+- [連鎖餐飲導入外帶自取智取櫃完整指南](/blog/chain-restaurant-self-pickup-smart-cabinet-guide)——從評估到上線的流程
+
 **立即聯絡銓幻元科技顧問，了解適合您品牌的智取櫃方案：**
 - 官網：[www.mcstation.ai](https://www.mcstation.ai)
 - 聯絡表單：[https://www.mcstation.ai/#contact](https://www.mcstation.ai/#contact)

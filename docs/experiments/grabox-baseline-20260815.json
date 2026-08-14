@@ -1,0 +1,132 @@
+{
+  "experiment": "mcstation GraBox 產品—案例閉環",
+  "hypothesis": "把產品頁、案例頁、製造商頁三向連結打通後，目標查詢會改由指定頁承接，且產品頁開始取得曝光",
+  "recordedAt": "2026-08-15",
+  "changeDeployedAt": "2026-08-15",
+  "primaryMetric": "實驗組 5 頁合計非品牌曝光 + /products/grabox 是否開始有曝光",
+  "secondaryMetric": "目標查詢是否由指定 URL 承接（而非通用廠商指南）",
+  "reviewAt": {
+    "first": "2026-08-29（14天：收錄與內鏈生效）",
+    "second": "2026-09-26（42天：曝光與排名）",
+    "final": "2026-10-10（56天：結案）"
+  },
+  "rules": [
+    "觀察期內不得再改這 8 頁的內容與內鏈",
+    "以 URL 群組驗收，不看全站總點擊",
+    "對照組僅供方向性參考，流量基期本就較高"
+  ],
+  "baselineWindow": {
+    "startDate": "2026-07-14",
+    "endDate": "2026-08-11"
+  },
+  "pages": [
+    {
+      "group": "experiment",
+      "page": "/products/grabox",
+      "clicks": 0,
+      "impressions": 0,
+      "position": 0,
+      "ctr": 0
+    },
+    {
+      "group": "experiment",
+      "page": "/blog/mwd-grabox-smart-pickup-case-study",
+      "clicks": 0,
+      "impressions": 22,
+      "position": 7.5,
+      "ctr": 0
+    },
+    {
+      "group": "experiment",
+      "page": "/blog/grabox-smart-cabinet-manufacturer-mcs",
+      "clicks": 2,
+      "impressions": 25,
+      "position": 4.1,
+      "ctr": 8
+    },
+    {
+      "group": "experiment",
+      "page": "/blog/chain-restaurant-self-pickup-smart-cabinet-guide",
+      "clicks": 0,
+      "impressions": 8,
+      "position": 7.5,
+      "ctr": 0
+    },
+    {
+      "group": "experiment",
+      "page": "/blog/smart-pickup-cabinet-brand-comparison",
+      "clicks": 3,
+      "impressions": 133,
+      "position": 6.8,
+      "ctr": 2.26
+    },
+    {
+      "group": "control",
+      "page": "/blog/ai-smart-cabinet-taiwan-manufacturer-guide-2026",
+      "clicks": 18,
+      "impressions": 260,
+      "position": 7.3,
+      "ctr": 6.92
+    },
+    {
+      "group": "control",
+      "page": "/blog/smart-cabinet-pos-kds-integration",
+      "clicks": 2,
+      "impressions": 106,
+      "position": 8.1,
+      "ctr": 1.89
+    },
+    {
+      "group": "control",
+      "page": "/blog/what-is-smart-pickup-cabinet-grabox-complete-guide",
+      "clicks": 0,
+      "impressions": 0,
+      "position": 0,
+      "ctr": 0
+    }
+  ],
+  "queries": [
+    {
+      "query": "grabox",
+      "clicks": 2,
+      "impressions": 6,
+      "position": 4
+    },
+    {
+      "query": "智取櫃",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 6
+    },
+    {
+      "query": "麥味登智取櫃",
+      "clicks": 0,
+      "impressions": 36,
+      "position": 11.8
+    },
+    {
+      "query": "智取櫃價格",
+      "clicks": 0,
+      "impressions": 1,
+      "position": 1
+    },
+    {
+      "query": "智能取餐櫃",
+      "clicks": 0,
+      "impressions": 10,
+      "position": 6.4
+    },
+    {
+      "query": "智取櫃推薦",
+      "clicks": 0,
+      "impressions": 0,
+      "position": 0
+    },
+    {
+      "query": "ai智取櫃",
+      "clicks": 0,
+      "impressions": 0,
+      "position": 0
+    }
+  ]
+}
