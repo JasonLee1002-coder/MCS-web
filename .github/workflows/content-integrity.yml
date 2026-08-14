@@ -1,0 +1,42 @@
+name: 內容誠信與輸出驗證
+
+# 為什麼需要這個 workflow：
+# 本機的 .git/hooks/pre-commit 有兩個弱點——
+#   1. `git commit --no-verify` 就能繞過
+#   2. hook 只掃 markdown 原始檔，看不到算繪後實際送給 Google 的 HTML
+# 這裡補上這兩層：CI 一定會跑（繞不過），而且驗證 build 出來的實際輸出。
+#
+# 規則與白名單見 content-governance/verified-claims.md
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 第一層：markdown 原始檔的誠信檢查
+      - name: 內容閘門（markdown 層）
+        run: node scripts/content-gate.cjs --all
+
+      - name: 安裝相依套件
+        run: npm ci
+
+      - name: 建置
+        run: npm run build
+
+      # 第二層：算繪後 HTML 的結構檢查
+      # 抓 markdown 層看不到的問題：標題模板疊加、Person 實體碎片化、
+      # H1 相鄰標籤黏字、schema 與 canonical 網域形式不一致
+      - name: 輸出驗證（HTML 層）
+        run: node scripts/verify-output.cjs .next/server/app
