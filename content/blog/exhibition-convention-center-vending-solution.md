@@ -119,5 +119,5 @@ faq:
 - [GraBox智慧取餐櫃產品介紹](/products/grabox)
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [智慧販賣機設點策略完整指南](/blog/vending-machine-location-strategy)
-- [智慧取餐櫃推薦指南（2026最新）](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智慧取餐櫃推薦指南（2026最新）](/blog/smart-pickup-cabinet-brand-comparison)
 - [無人商店趨勢完整解析（2026）](/blog/unmanned-store-trend-2026)

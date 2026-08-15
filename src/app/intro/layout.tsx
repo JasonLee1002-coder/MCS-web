@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "MCS 銓幻元科技 | AI 智慧設備平台 — Company Overview",
+  // 標題自帶品牌，用 absolute 略過根 layout 的「%s | 銓幻元科技 MCS」模板，
+  // 否則會變成「MCS 銓幻元科技 | … | 銓幻元科技 MCS」品牌出現兩次。
+  title: { absolute: "MCS 銓幻元科技 | AI 智慧設備平台 — Company Overview" },
   description:
     "MCS builds AI-powered smart device platforms — hardware, firmware, cloud, and AI — all designed and operated in-house. Serving leading convenience chains, EB+ multi-location chain, Japan Shuto Expressway, and more. 100% Made in Taiwan.",
   openGraph: {

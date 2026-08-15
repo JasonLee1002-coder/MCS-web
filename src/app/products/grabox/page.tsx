@@ -4,7 +4,10 @@ import Footer from "@/components/Footer";
 import GraBoxShowcase from "@/components/GraBoxShowcase";
 
 export const metadata: Metadata = {
-  title: "GraBox AI 智取櫃 | 銓幻元科技 · 多溫層智慧取餐櫃 · 台灣製造",
+  // 注意：根 layout 的 title template 是 "%s | 銓幻元科技 MCS"，會自動接在後面。
+  // 這裡若再寫一次「銓幻元科技」，成品會變成 42 個中文字、品牌名重複兩次，
+  // 而中文標題在 SERP 上約只顯示 30 字，等於把尾巴白白截掉。
+  title: "GraBox AI 智取櫃：多溫層智慧取餐櫃，台灣製造",
   description:
     "銓幻元科技 GraBox AI 智取櫃：台灣100%自主研發製造，結合 AI 訂餐系統、人臉辨識取餐，標配常溫可客製冷藏/冷凍溫層，支援多元支付、24H無人取餐。POS/KDS 系統串接，適用餐廳、飯店、企業、學校、早午餐連鎖。",
   keywords: [

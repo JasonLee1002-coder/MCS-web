@@ -19,8 +19,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
+  // 根 layout 的 title.template 是「%s | 銓幻元科技 MCS」，會自動接在後面。
+  // 但有些文章的標題本身就必須帶品牌名——例如「GraBox 智取櫃是哪家公司製造的？
+  // 銓幻元科技 MCS 完整介紹」，品牌就是那個查詢的答案，拿掉反而弱化。
+  // 這種情況套上模板會變成品牌出現兩次、標題超過 40 字（中文 SERP 約只顯示 30），
+  // 等於把尾巴白白截掉。標題已自帶品牌時就用 absolute 略過模板。
+  const title = post.title.includes('銓幻元')
+    ? { absolute: post.title }
+    : post.title;
+
   return {
-    title: post.title,
+    title,
     description: post.description,
     keywords: post.keywords,
     alternates: {

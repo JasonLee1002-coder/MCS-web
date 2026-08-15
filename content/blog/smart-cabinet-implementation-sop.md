@@ -170,7 +170,7 @@ A：歡迎[聯繫我們](/#contact)討論租賃方案。
 
 延伸閱讀：
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
-- [智取櫃品牌推薦與選購指南](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智取櫃品牌推薦與選購指南](/blog/smart-pickup-cabinet-brand-comparison)
 - [POS/KDS 系統整合詳解](/blog/smart-cabinet-pos-kds-integration)
 - [餐廳人力不足的智慧解決方案](/blog/restaurant-labor-shortage-solution)
 - [客戶實績](/cases)

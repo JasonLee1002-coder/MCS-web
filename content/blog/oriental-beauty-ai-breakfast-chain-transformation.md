@@ -123,7 +123,7 @@ Phase 1（1–3 個月）建立 GCP 基礎設施、完成 API 整合與首批文
 
 ## 關於銓幻元科技（MCS）
 
-銓幻元科技（Meta Clearing Station Pte. Ltd.）是一家台灣技術、新加坡立足、面向東南亞市場的 AI 智慧設備整合商。除了協助東方美推動 AI 轉型，也為麥味登、麗嬰國際、日本首都高速公路等跨產業客戶提供 GraBox 智取櫃、冷凍微波販賣機及全套 AI 整合服務。
+銓幻元科技（Meta Clearing Station Pte. Ltd.）是一家台灣技術、新加坡立足、面向東南亞市場的 AI 智慧設備整合商。除了協助東方美推動 AI 轉型，也為[麥味登](/blog/mwd-grabox-smart-pickup-case-study)、麗嬰國際、日本首都高速公路等跨產業客戶提供 GraBox 智取櫃、冷凍微波販賣機及全套 AI 整合服務。
 
 **想讓您的餐飲或零售品牌也導入 AI？** [立即聯絡我們](/contact)
 

@@ -192,6 +192,10 @@ function CinematicHero() {
               >
                 GraBox
               </motion.span>
+              {/* 這個空白是必要的：兩個 block span 之間若無空白字元，DOM 文字會被
+                  抽取成「GraBoxAI 智取櫃」，品牌 token 變成 GraBoxAI，傷害「GraBox」
+                  品牌詞的精確匹配。兩者都是 block 顯示，補空白不影響視覺排版。 */}
+              {" "}
               <motion.span
                 className="block bg-gradient-to-r from-orange-400 via-amber-400 to-orange-600 bg-clip-text text-transparent"
                 initial={{ opacity: 0, y: 40 }}
@@ -777,7 +781,21 @@ function CTASection() {
               看客戶實績
             </Link>
           </div>
-          <div className="flex justify-center gap-6 mt-8">
+          {/*
+            產品—案例閉環（2026-08-15）：原本產品頁只連 /cases 總覽，
+            麥味登專屬案例頁一條反向連結都沒有——權重進不了那一頁，
+            結果 Google 把「麥味登智取櫃」這個查詢派給通用廠商指南。
+            錨文字帶目標查詢詞，不用「看更多」這種泛稱。
+          */}
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-8">
+            <Link href="/blog/mwd-grabox-smart-pickup-case-study" className="text-white/40 text-sm hover:text-orange-400 transition-colors">
+              實際導入 → 麥味登智取櫃案例
+            </Link>
+            <Link href="/blog/grabox-smart-cabinet-manufacturer-mcs" className="text-white/40 text-sm hover:text-orange-400 transition-colors">
+              製造商 → GraBox 是哪家公司做的
+            </Link>
+          </div>
+          <div className="flex justify-center gap-6 mt-4">
             <Link href="/products/frozen-microwave" className="text-white/30 text-sm hover:text-orange-400 transition-colors">
               也看看 → 冷凍微波販賣機
             </Link>

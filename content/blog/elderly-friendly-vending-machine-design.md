@@ -21,7 +21,7 @@ image: "/images/illustrations/vending.png"
 
 ## 台灣高齡化浪潮下的自助服務挑戰
 
-根據國發會推估，台灣將在 2026 年正式進入「超高齡社會」，65 歲以上人口佔比超過 20%。當銀髮族成為消費主力之一，傳統販賣機的小字體螢幕、複雜操作流程、過高或過低的取物口，都成為長輩使用時的障礙。
+台灣正快速邁入超高齡社會，65 歲以上人口佔比持續攀升（確切比例與時程請以國發會人口推估公告為準）。當銀髮族成為消費主力之一，傳統販賣機的小字體螢幕、複雜操作流程、過高或過低的取物口，都成為長輩使用時的障礙。
 
 **銀髮族友善販賣機**不是全新品類，而是在現有智慧設備基礎上，透過介面與硬體的「通用設計」（Universal Design），讓所有年齡層都能輕鬆使用。
 
@@ -94,6 +94,6 @@ A：銓幻元科技提供台灣在地售後服務，搭配 IVM 雲端平台的�
 
 - [GraBox 智慧取餐櫃產品介紹](/products/grabox)
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
-- [智慧取餐櫃推薦：2026 年最新機型比較](/blog/smart-pickup-cabinet-recommendation-2026)
+- [智慧取餐櫃推薦：2026 年最新機型比較](/blog/smart-pickup-cabinet-brand-comparison)
 - [IVM 雲端販賣機管理平台完整介紹](/blog/ivm-cloud-vending-management-platform)
 - [智慧販賣機 ROI 分析：投資報酬率怎麼算？](/blog/smart-vending-machine-roi-analysis)
