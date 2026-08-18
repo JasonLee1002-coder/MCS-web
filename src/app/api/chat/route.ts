@@ -100,10 +100,11 @@ export async function POST(req: Request) {
             const v = (input as Record<string, unknown>)[k]
             if (typeof v === 'string' && v.trim()) merged[k] = v
           }
-          const effectiveNeed = filled(merged.need)
-            ? merged.need
-            : (merged.venue && merged.venue.trim().length >= 4 ? merged.venue : '')
-          const ready = filled(merged.venue) && filled(effectiveNeed) && filled(merged.contact)
+          // 2026-08-18 移除「venue 長度 >= 4 就當成 need」的替代條件。
+          // 那等於把字串長度當成需求的代理指標，實際造成「場域填了、需求空的」
+          // 也判定收齊送出，業務收到只有場域沒有需求的單。
+          // need 必須自己成立。
+          const ready = filled(merged.venue) && filled(merged.need) && filled(merged.contact)
           return { ...merged, ready, confirmed: false }
         },
       }),

@@ -37,7 +37,10 @@ export interface LeadPayload {
   leadCategory?: string
   timestamp?: string
   contactMethod?: string
+  headcount?: string
   aiSummary?: string
+  transcriptRedactedLines?: number
+  transcriptTruncated?: boolean
   TEST_MODE?: boolean
 }
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { after } from 'next/server'
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
-import { scrubLeak } from '@/lib/leak-guard'
+import { scrubTranscript } from '@/lib/leak-guard'
 import { forwardToYuzu, writeLeadToNotionDirect, alertLeadFailure, type LeadPayload } from '@/lib/lead-fallback'
 
 /**
@@ -80,6 +80,8 @@ export async function POST(req: NextRequest) {
     return response
   }
 
+  const transcript = scrubTranscript(typeof data.aiSummary === 'string' ? data.aiSummary : '')
+
   const payload: LeadPayload = {
     caseId,
     keyword:       typeof data.keyword === 'string' ? data.keyword : '',
@@ -94,7 +96,13 @@ export async function POST(req: NextRequest) {
     leadCategory:  (data.leadCategory as string | undefined) ?? 'IoT無人商店',
     timestamp:     new Date().toISOString(),
     contactMethod: data.contactMethod as string | undefined,
-    aiSummary:     scrubLeak(typeof data.aiSummary === 'string' ? data.aiSummary : '').slice(0, 2000),
+    headcount:     (data.headcount as string | undefined) ?? '',
+    // scrub v2：逐行遮蔽而非整段替換。v1 的 scrubLeak 只要命中任一 marker
+    // 就把整份逐字稿換成一句安全語——客戶問一句「你們有用 ChatGPT 嗎」
+    // 就會讓場域、人流、姓名、電話全部消失。詳見 lib/leak-guard.ts。
+    aiSummary:     transcript.text,
+    transcriptRedactedLines: transcript.redactedLines,
+    transcriptTruncated:     transcript.truncated,
     TEST_MODE:     !!data.YUZU_TEST_MODE, // 內部驗測用：Yuzu 端驗證格式但不寫入 CRM/LINE
   }
 

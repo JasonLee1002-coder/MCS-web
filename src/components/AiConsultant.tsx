@@ -320,7 +320,10 @@ export default function AiConsultant() {
       .flatMap((m) =>
         (m.parts ?? [])
           .filter((p): p is { type: "text"; text: string } => p.type === "text")
-          .map((p) => `[${m.role}] ${p.text}`)
+          // 2026-08-18 紅隊修正：把訊息內容裡出現的 [user]/[assistant]/[system]
+          // 換成全形括號，避免內容偽造出一行假的角色前綴——下游 scrubTranscript
+          // 是逐行判讀的，若讓內容能自行宣告角色，遮蔽規則就形同虛設。
+          .map((p) => `[${m.role}] ${p.text.replace(/\[(user|assistant|system)\]/gi, "［$1］")}`)
       )
       .join("\n");
 
@@ -332,13 +335,25 @@ export default function AiConsultant() {
         caseId,
         venue: data.venue,
         situation: data.need,
-        description: data.headcount ?? "",
+        // 2026-08-18 修：description 原本整欄就是 data.headcount，
+        // 所以 CRM「現有條件」欄長年只有「1000人以上」「1」這種人流字串，
+        // 沒問到人流時就整欄空白（實查 12 筆真單有 5 筆空白）。
+        // 現在 headcount 走自己的欄位，description 改成真正的「現有條件」——
+        // 場域原話 + 人流 + 單位，業務看得到情境。
+        description: [
+          data.venue ? `場域：${data.venue}` : "",
+          data.headcount ? `人流／出餐量：${data.headcount}` : "",
+          data.institution ? `單位：${data.institution}` : "",
+        ].filter(Boolean).join("\n"),
+        headcount: data.headcount ?? "",
         name: data.name,
         contact: data.contact,
         institution: data.institution ?? "",
         sourceUrl: pathname,
         contactMethod: data.contactMethod,
-        aiSummary: textLines.slice(0, 2000),
+        // 上限放寬到 6000，實際遮蔽與截斷由伺服器端 scrubTranscript() 處理
+        // （它會保留結尾——聯絡方式與更正通常在對話最後，比開頭值錢）
+        aiSummary: textLines.slice(0, 6000),
         leadCategory: data.category ?? "IoT無人商店",
         testMode,
       }),
