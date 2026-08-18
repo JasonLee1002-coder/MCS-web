@@ -217,6 +217,20 @@ export default function AiConsultant() {
     syncToPresentation(userText, answerText);
   }, [messages, isStreaming, isPresenterMode, syncToPresentation]);
 
+/**
+ * 撤回判定（必須與 api/chat/route.ts 的 isClearToken 同義）。
+ *
+ * 2026-08-18 Codex R3 收緊：原本 `v.replace(/[\s_]/g,'').toUpperCase()==='CLEAR'`
+ * 會把裸的 `CLEAR` / `clear` 也當成控制碼——公司名、LINE ID、英文需求「clear」
+ * 都會被靜默刪除。現在要求至少帶一個底線，變體仍涵蓋
+ * `__CLEAR__` / `__clear__` / `_clear_` / `__ CLEAR __`。
+ */
+function isClearToken(v: string): boolean {
+  const s = v.trim();
+  if (!s.includes("_")) return false;
+  return s.replace(/[\s_]/g, "").toUpperCase() === "CLEAR";
+}
+
   // 累積解析 summarize_lead 的每輪輸出，得到目前已收集欄位 + AI 是否判定可送出
   const { partialLead, aiReady } = useMemo(() => {
     const acc: Partial<LeadData> = {};
@@ -230,12 +244,20 @@ export default function AiConsultant() {
           const o = p.output as Record<string, unknown>;
           for (const k of keys) {
             const v = o[k];
-            if (typeof v === "string" && v.trim()) {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              (acc as any)[k] = v;
-            }
+            if (typeof v !== "string") continue;
+            const tv = v.trim();
+            if (!tv) continue;
+            // 2026-08-18 Codex R3：撤回原本只在伺服器端生效，前端這個累積器
+            // 不認 __CLEAR__，導致使用者更正後確認卡仍顯示舊值、送出的也是舊值——
+            // 功能名不副實，比沒做更糟。前後端必須同一套語意。
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            if (isClearToken(tv)) { delete (acc as any)[k]; continue; }
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (acc as any)[k] = tv;
           }
-          if (o.ready === true) ready = true;
+          // ready 原本只會 latch true，撤回聯絡方式後仍停留在可送出。
+          // 改成以「最後一輪工具輸出」為準，讓它能倒退回 false。
+          ready = o.ready === true;
         }
       }
     }

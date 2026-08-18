@@ -35,7 +35,11 @@ const LEAD_FIELD_KEYS = ['venue', 'need', 'headcount', 'name', 'contact', 'conta
  *   3. sentinel 不得外洩到確認卡或 CRM → 命中即 delete，永遠不會成為欄位值
  */
 function isClearToken(v: string): boolean {
-  return v.replace(/[\s_]/g, '').toUpperCase() === 'CLEAR'
+  // 2026-08-18 Codex R3 收緊：原本裸的 CLEAR / clear 也算控制碼，
+  // 公司名、LINE ID、英文需求「clear」都會被靜默刪除。要求至少帶一個底線。
+  const s = v.trim()
+  if (!s.includes('_')) return false
+  return s.replace(/[\s_]/g, '').toUpperCase() === 'CLEAR'
 }
 
 const CLEAR_TOKEN = '__CLEAR__'
