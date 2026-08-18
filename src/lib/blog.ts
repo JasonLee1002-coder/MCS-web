@@ -93,8 +93,13 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
     .map((r) => r.post);
 }
 
-export async function getBlogPost(slug: string): Promise<BlogPost> {
+// 回傳 null 而不是讓 readFileSync 拋 ENOENT：在 Server Component 裡未捕捉的例外
+// 會被 Next.js 當成伺服器錯誤，對不存在的 slug 回 HTTP 500 而不是 404。
+// 爬蟲（含 GPTBot/ClaudeBot 等 AI 爬蟲）遇到 5xx 會判定站台不穩並降低抓取頻率，
+// 對小站傷害尤其大，所以這裡一律走 notFound() 路徑。（2026-08-18 修）
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
   const filePath = path.join(blogDir, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return null;
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content: markdown } = matter(raw);
 

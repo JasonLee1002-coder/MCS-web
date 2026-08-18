@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
@@ -12,6 +13,10 @@ export async function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
 }
 
+// 文章來源是 build 時掃 content/blog/*.md，不存在動態新增的 slug。
+// 關掉 dynamicParams 讓 Next 對名單外的路徑直接回 404，不進 render。
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,6 +24,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
+  if (!post) return { title: "找不到文章" };
   // 根 layout 的 title.template 是「%s | 銓幻元科技 MCS」，會自動接在後面。
   // 但有些文章的標題本身就必須帶品牌名——例如「GraBox 智取櫃是哪家公司製造的？
   // 銓幻元科技 MCS 完整介紹」，品牌就是那個查詢的答案，拿掉反而弱化。
@@ -60,6 +66,7 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
   const post = await getBlogPost(slug);
+  if (!post) notFound();
 
   const wordCount = post.content.replace(/<[^>]*>/g, "").length;
 
