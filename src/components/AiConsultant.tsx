@@ -246,10 +246,20 @@ export default function AiConsultant() {
   const hasContact = !!partialLead.contact;
   const started = userTurns > 0;
 
+  // 2026-08-18 Codex 稽核：caseId 原本在 handleLeadSubmit 內用 Date.now() 現算，
+  // 代表同一張確認卡只要重送一次（送出失敗後再按、或卡片重新開啟），
+  // 下游就會拿到全新的 caseId、當成兩筆不同的單——Notion、BD 追蹤案、
+  // LINE/TG 通知全部重複，而且沒有任何一層看得出它們其實是同一筆。
+  // 改成確認卡出現時產生一次，成功送出後才清掉。
+  const caseIdRef = useRef<string>("");
+
   // AI 判定可送出 → 自動開啟確認卡
   useEffect(() => {
     if (leadData || dismissed) return;
-    if (aiReady) setLeadData(buildLead(partialLead));
+    if (aiReady) {
+      if (!caseIdRef.current) caseIdRef.current = `MCS-${Date.now()}`;
+      setLeadData(buildLead(partialLead));
+    }
   }, [aiReady, partialLead, leadData, dismissed]);
 
   // 空串流自動重送（極少數情況 AI Gateway/供應商偶爾回空串流）。
@@ -289,7 +299,10 @@ export default function AiConsultant() {
   // 兜底：對話達上限仍未產生 lead → 強制用已收集欄位組一筆送出（不再卡死）
   useEffect(() => {
     if (leadData || dismissed || isStreaming) return;
-    if (userTurns >= MAX_TURNS) setLeadData(buildLead(partialLead));
+    if (userTurns >= MAX_TURNS) {
+      if (!caseIdRef.current) caseIdRef.current = `MCS-${Date.now()}`;
+      setLeadData(buildLead(partialLead));
+    }
   }, [userTurns, isStreaming, leadData, dismissed, partialLead]);
 
   useEffect(() => {
@@ -311,6 +324,7 @@ export default function AiConsultant() {
 
   function forceLead() {
     setDismissed(false);
+    if (!caseIdRef.current) caseIdRef.current = `MCS-${Date.now()}`;
     setLeadData(buildLead(partialLead));
   }
 
@@ -327,7 +341,9 @@ export default function AiConsultant() {
       )
       .join("\n");
 
-    const caseId = `MCS-${Date.now()}`;
+    // 用確認卡出現時就固定下來的 caseId，讓重送是「同一筆」而不是「新一筆」
+    if (!caseIdRef.current) caseIdRef.current = `MCS-${Date.now()}`;
+    const caseId = caseIdRef.current;
     await fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
