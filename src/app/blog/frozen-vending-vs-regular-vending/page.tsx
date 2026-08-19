@@ -194,6 +194,10 @@ export default function Article() {
           </div>
 
         </div>
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending" style={{ color: '#FF6B35' }} className="hover:underline">冷凍與冷凍微波全系列 8 款比較</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← 返回知識庫</a>
         </div>

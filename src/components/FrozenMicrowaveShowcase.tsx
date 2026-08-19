@@ -819,6 +819,15 @@ function CTA() {
             >
               查看客戶實績
             </Link>
+            {/* 2026-08-20：接到新的全系列規格頁。錨文字帶「8 款型號規格」而不是
+                「了解更多」——這頁是站上權重最高的冷凍相關頁，錨文字要把型號意圖帶過去。 */}
+            <Link
+              href="/products/frozen-vending"
+              className="inline-block border px-10 py-4 rounded-full font-medium transition-all"
+              style={{ borderColor: 'rgba(255,107,53,0.5)', color: '#FF6B35' }}
+            >
+              看全系列 8 款型號規格
+            </Link>
             <Link
               href="/products/grabox"
               className="inline-block border border-white/20 text-white/60 px-10 py-4 rounded-full font-medium hover:bg-white/5 hover:text-white transition-all"
