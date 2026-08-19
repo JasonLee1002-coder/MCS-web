@@ -8,17 +8,35 @@
  *
  * 1. **這裡的數字全部是「設備規格標示值」，不是本公司實測值。** PDF 每一頁都標了這句，
  *    網頁上也必須標。任何一個數字都不可以在文案裡被寫成「實測」「保證」「可達成」。
- * 2. **PDF 寫「資料未載」「單位未載」的欄位，這裡就填 null，網頁顯示「規格未載」。**
+ * 2. **PDF 寫「資料未載」「單位未載」的欄位，這裡就填 null，網頁顯示「產品文件未載」。**
  *    不要自己補一個看起來合理的數字——那正是站上內容誠信閘門在擋的東西。
+ *    若 PDF 有寫數字但不合格（例如標了範圍卻沒標單位），值仍然填 null，
+ *    原始字串放進 `sourceNote`。**`sourceNote` 只能當註腳顯示，不可以渲染成規格值、
+ *    不可以進 schema。** 這條是 2026-08-20 跨模型稽核抓到的：我原本把
+ *    「90–170，單位未載」留在 value 裡，等於規則說 null、資料卻留著數字，
+ *    文案照樣可以拿去用。
  * 3. **不放價格。** 業主 2026-08-19 定：WEB 不出現金額。規格頁一律導向洽詢，不給數字。
+ * 4. **質性宣稱與比較級也要有出處，不是只管數字。**（2026-08-20 補）
+ *    「最大／最窄／唯一／適合半戶外／適合連續出餐」這類話不含數字，前三條都管不到，
+ *    但它們一樣是可被檢驗的宣稱。規則：**寫得出 PDF 頁碼才能留，寫不出就刪。**
+ *    PDF 原文寫的比較級，敘述時要帶出處語氣（「產品文件標示為三款中容量最大」），
+ *    不要改寫成我方的斷言（「容量最大」）。
+ *    ⚠️ 特別注意 FM32L 的「容量最大」：PDF 這樣寫，但它的容量數字沒有單位，
+ *    所以這個比較級在 PDF 內部就缺乏可比基礎。頁面上只能引述，不可當賣點主打。
  */
 
 export type SeriesKey = 'frozen-microwave' | 'freezer'
 
 export interface SpecRow {
   label: string
-  /** null = PDF 標示「資料未載」，網頁顯示「規格未載」 */
+  /** null = PDF 標示「資料未載」，網頁顯示「產品文件未載」 */
   value: string | null
+  /**
+   * 來源註記。**只能顯示為註腳，不可以被渲染成規格值、不可以進 schema 的
+   * additionalProperty。** 用來保存「PDF 有寫但不合格」的原始字串，
+   * 例如標了數字卻沒標單位——那種值不可以當規格用，但也不該從紀錄裡消失。
+   */
+  sourceNote?: string
 }
 
 export interface Model {
@@ -38,11 +56,20 @@ export interface Model {
   specs: SpecRow[]
   /** 本款獨有配置（PDF 的「機型差異」段落） */
   uniqueFeatures: string[]
+  /**
+   * 本款規格在來源 PDF 的頁碼。
+   * 2026-08-20 跨模型稽核時，Codex 把五句 `positioning`／`evaluateFor` 判為
+   * 「超出 PDF 明載範圍的營運推論」。逐句回查後五句裡有四句其實是 PDF 原文
+   * （半戶外 p9、容量最大 p2/p6、單點試點 p12、人流快速通過 p9），
+   * 只有一句是我自己加的。加這個欄位就是為了讓下一次爭議能直接翻頁查證，
+   * 而不是靠記憶或推測。
+   */
+  sourcePage: number
 }
 
 /** 全系列共同的免責，每一頁都要出現 */
 export const DISCLAIMER =
-  '本頁數值為設備規格標示值，非本公司實測值。溫度未載明量測工況（環境溫度、滿載狀態、開門頻率），' +
+  '本頁數值為設備規格標示值，非本公司實測值。本產品文件未載明溫度數值的量測工況（環境溫度、滿載狀態、開門頻率），' +
   '加熱秒數依商品與初始溫度而異，容量須經貴方商品適配測試後才成為可承諾數字。' +
   '設備持續改版，實際交付規格以雙方簽署之訂單或合約為準。'
 
@@ -67,6 +94,7 @@ export const MODELS: Model[] = [
   // ── 冷凍微波系列 ─────────────────────────────────────────────
   {
     slug: 'mcs-fm55',
+    sourcePage: 4,
     code: 'MCS-FM55',
     name: 'MCS-FM55 冷凍微波智能販賣機',
     positioning: '55 吋廣告版位＋履帶貨道，販售與廣告曝光同時經營',
@@ -89,6 +117,7 @@ export const MODELS: Model[] = [
   },
   {
     slug: 'mcs-fm32',
+    sourcePage: 5,
     code: 'MCS-FM32',
     name: 'MCS-FM32 雙微波冷凍微波智能販賣機',
     positioning: '雙微波模組，適合連續出餐的用餐尖峰場域',
@@ -111,16 +140,17 @@ export const MODELS: Model[] = [
   },
   {
     slug: 'mcs-fm32l',
+    sourcePage: 6,
     code: 'MCS-FM32L',
     name: 'MCS-FM32L 深冷大容量冷凍微波智能販賣機',
-    positioning: '三款中機身最窄、容量最大、溫域最低',
+    positioning: '產品文件標示為三款中機身最窄、容量最大、溫域最低',
     series: 'frozen-microwave',
     differentiator: '溫域可調至 -26 °C，加熱標示秒數最短，機身最窄',
-    evaluateFor: '空間受限但需要較大容量的場域',
+    evaluateFor: '空間受限的場域（容量比較請見下方註記，產品文件未載單位）',
     specs: [
       { label: '溫控範圍', value: '-26 °C ～ 10 °C 可調' },
       { label: '加熱方式', value: '微波加熱，標示 75 秒' },
-      { label: '商品容量', value: '依商品適配確認（PDF 標示 90–170，單位未載）' },
+      { label: '商品容量', value: null, sourceNote: '產品文件標示 90–170，但未載單位，因此不作為容量規格使用；實際數量以商品適配測試為準。' },
       { label: '貨道型式', value: '履帶貨道' },
       { label: '商品尺寸', value: '最大 180×180×70 mm／最小 100×100×40 mm' },
       { label: '顯示螢幕', value: '32 吋觸控' },
@@ -139,12 +169,13 @@ export const MODELS: Model[] = [
   // ── 冷凍系列 ─────────────────────────────────────────────────
   {
     slug: 'mcs-fz21',
+    sourcePage: 8,
     code: 'MCS-FZ21',
     name: 'MCS-FZ21 冷凍智能販賣機（標準款）',
     positioning: '45 貨道標準款，冰品、肉品與冷凍食品通用',
     series: 'freezer',
     differentiator: '五款中唯一配置重量感測',
-    evaluateFor: '第一次導入、品項結構還在調整的場域',
+    evaluateFor: '冰品、肉品與冷凍食品通用的標準配置（PDF 未載特定場域建議）',
     specs: [
       { label: '最低溫度', value: '-25 °C' },
       { label: '貨道數', value: '45（履帶／螺旋）' },
@@ -161,6 +192,7 @@ export const MODELS: Model[] = [
   },
   {
     slug: 'mcs-fz21s',
+    sourcePage: 9,
     code: 'MCS-FZ21S',
     name: 'MCS-FZ21S 冷凍智能販賣機（保溫取貨箱）',
     positioning: '內推門一次取出＋保溫取貨箱，取貨動線最短',
@@ -183,6 +215,7 @@ export const MODELS: Model[] = [
   },
   {
     slug: 'mcs-fz21x',
+    sourcePage: 10,
     code: 'MCS-FZ21X',
     name: 'MCS-FZ21X 冷凍智能販賣機（側面取貨）',
     positioning: '側面取貨口直接取用，貨道數最多的一款',
@@ -205,6 +238,7 @@ export const MODELS: Model[] = [
   },
   {
     slug: 'mcs-fz49',
+    sourcePage: 11,
     code: 'MCS-FZ49',
     name: 'MCS-FZ49 冷凍智能販賣機（49 吋廣告屏）',
     positioning: '49 吋大螢幕輪播廣告，販售與曝光同時經營',
@@ -227,6 +261,7 @@ export const MODELS: Model[] = [
   },
   {
     slug: 'mcs-fz10',
+    sourcePage: 12,
     code: 'MCS-FZ10',
     name: 'MCS-FZ10 冷凍智能販賣機（窄機身）',
     positioning: '機身寬 850 mm，五款中最窄、最輕，佈點最靈活',
