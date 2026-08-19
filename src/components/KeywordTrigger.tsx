@@ -1,20 +1,50 @@
 'use client'
 
-// Maps keyword text → /solutions/[slug]
+// Maps keyword text → 站內既有頁面。
+// 2026-08-19 修：原本一律指向 /solutions/{slug}，但那是 transtep 的動態路由，
+// mcstation.ai 從來沒有 /solutions/frozen-microwave、/solutions/smart-locker，
+// 導致 blog 內所有關鍵字連結與文末 CTA 全部 404（實測 mcstation.ai/solutions/frozen-microwave）。
+// 現在一律解析成本站真實存在的產品頁。
 const KEYWORD_TO_SLUG: Record<string, string> = {
   '冷凍微波機':   'frozen-microwave',
+  '冷凍販賣機':   'frozen-microwave',
   '冷凍機':       'frozen-microwave',
-  '蒸氣拉麵機':   'steam-ramen',
-  '蒸氣便當':     'steam-bento',
+  '蒸氣拉麵機':   'frozen-microwave',
+  '蒸氣便當':     'frozen-microwave',
+  '智慧販賣機':   'frozen-microwave',
   '智慧取物櫃':   'smart-locker',
   '智取物流櫃':   'smart-locker',
   '取物櫃':       'smart-locker',
   'GraBox':       'smart-locker',
-  'AI 勞動力':    'ai-labor',
-  '幽靈廚房':     'ghost-kitchen',
-  '幽靈廚房設備': 'ghost-kitchen',
-  '智慧販賣機':   'frozen-microwave',
+  '幽靈廚房':     'smart-locker',
+  '幽靈廚房設備': 'smart-locker',
   '自助取餐':     'smart-locker',
+  'AI 勞動力':    'ai-labor',
+}
+
+// slug → 本站實際路由（唯一真相；新增產品頁時只改這裡）
+const SLUG_TO_PATH: Record<string, string> = {
+  'frozen-microwave': '/products/frozen-microwave',
+  'smart-locker':     '/products/grabox',
+  'ai-labor':         '/#platform',
+}
+
+const DEFAULT_PATH = '/products/frozen-microwave'
+
+/**
+ * 組出站內連結。
+ * autoOpenAi=true 時帶 ?ai=1，落地頁會自動展開小龍 AI 顧問——
+ * 只給文末「諮詢 AI」用；行文中的關鍵字連結不該強制彈出對話框。
+ */
+function buildHref(target: string, medium: string, campaign: string, autoOpenAi: boolean) {
+  const base = SLUG_TO_PATH[target] ?? DEFAULT_PATH
+  const [path, hash] = base.split('#')
+  const params = new URLSearchParams()
+  if (autoOpenAi) params.set('ai', '1')
+  params.set('utm_source', 'article')
+  params.set('utm_medium', medium)
+  params.set('utm_campaign', campaign)
+  return `${path}?${params.toString()}${hash ? '#' + hash : ''}`
 }
 
 interface KeywordTriggerProps {
@@ -24,7 +54,7 @@ interface KeywordTriggerProps {
 
 export function KeywordTrigger({ keyword, slug }: KeywordTriggerProps) {
   const target = slug ?? KEYWORD_TO_SLUG[keyword] ?? 'frozen-microwave'
-  const href = `/solutions/${target}?utm_source=article&utm_medium=keyword-trigger&utm_campaign=${encodeURIComponent(keyword)}`
+  const href = buildHref(target, 'keyword-trigger', keyword, false)
 
   return (
     <a
@@ -60,7 +90,7 @@ export function KeywordTrigger({ keyword, slug }: KeywordTriggerProps) {
 // CTA block at bottom of article
 export function ArticleCTA({ keyword, slug }: KeywordTriggerProps) {
   const target = slug ?? KEYWORD_TO_SLUG[keyword] ?? 'frozen-microwave'
-  const href = `/solutions/${target}?utm_source=article&utm_medium=article-cta&utm_campaign=${encodeURIComponent(keyword)}`
+  const href = buildHref(target, 'article-cta', keyword, true)
 
   return (
     <div style={{

@@ -123,7 +123,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">適合你的是智取櫃還是冰箱？3 分鐘 AI 顧問幫你判斷</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們外帶訂單量、熱食比例、現有 POS 系統，AI 立刻給出推薦</p>
-            <a href="/solutions/smart-locker?utm_source=blog&utm_medium=article-bottom&utm_campaign=vs-fridge"
+            <a href="/products/grabox?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=vs-fridge"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

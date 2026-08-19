@@ -195,7 +195,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">告訴 AI 顧問你的場域，3 分鐘得到租 vs 買建議</p>
             <p className="text-slate-400 text-sm mb-5">輸入場域人數、預計使用年限、預算，AI 立刻給出最划算的財務建議</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=lease-vs-buy"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=lease-vs-buy"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

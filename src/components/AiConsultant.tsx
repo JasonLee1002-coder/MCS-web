@@ -179,9 +179,12 @@ export default function AiConsultant() {
   const MAX_TURNS = 8;
 
   // 偵測測試模式：?test=1 → 送出時不寫入真實 CRM
+  // 並支援 ?ai=1 自動展開對話框（blog 文末「諮詢 AI 顧問」CTA 用，落地即開始對話）
   useEffect(() => {
     if (typeof window === "undefined") return;
-    setTestMode(new URLSearchParams(window.location.search).get("test") === "1");
+    const params = new URLSearchParams(window.location.search);
+    setTestMode(params.get("test") === "1");
+    if (params.get("ai") === "1") setIsOpen(true);
   }, []);
 
   useEffect(() => {
