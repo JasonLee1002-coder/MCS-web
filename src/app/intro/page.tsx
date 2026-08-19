@@ -272,7 +272,7 @@ const T = {
       features: [
         "常溫 / 冷藏販賣機：零食、飲料、泡麵、日用品",
         "悠遊卡 / 一卡通（移工友善，不需手機）",
-        "電信儲值服務整合（每筆代辦費 NT$7）",
+        "電信儲值服務整合（依筆數收取代辦費）",
         "OmniCore 遠端監控：補貨預測 ＋ 設備異常通報",
       ],
     },
@@ -478,7 +478,7 @@ const T = {
       features: [
         "Ambient / chilled vending: snacks, drinks, daily essentials",
         "EasyCard / iPASS (migrant worker friendly, no smartphone)",
-        "Telecom top-up integration (NT$7 fee per transaction)",
+        "Telecom top-up integration (per-transaction service fee)",
         "OmniCore: restocking prediction + anomaly alerts",
       ],
     },
@@ -684,7 +684,7 @@ const T = {
       features: [
         "常温・冷蔵自販機：スナック・飲料・日用品",
         "悠遊卡 / iPASS決済（外国人労働者向け）",
-        "通話料チャージサービス統合（1件NT$7手数料）",
+        "通話料チャージサービス統合（1件ごとの手数料）",
         "OmniCoreリモート監視：補充予測＋異常通報",
       ],
     },
@@ -1306,7 +1306,7 @@ const MODULE_DETAILS = [
   },
   {
     color: "bg-red-600", light: "bg-red-50 border-red-200",
-    scenario: { zh: "麥味登週五活動：消費滿 NT$150 打九折。店長自己 3 分鐘在後台設好、即時生效，不需工程師介入。", en: "MWD Friday promo: NT$150+ gets 10% off. Store owner sets it up in 3 minutes in the dashboard, live instantly. No engineer needed.", ja: "麦味登の金曜プロモ：NT$150以上で10%割引。店長がダッシュボードで3分で設定→即時有効、エンジニア不要。" },
+    scenario: { zh: "門市週五活動：消費滿額打折。店長自己 3 分鐘在後台設好、即時生效，不需工程師介入。", en: "Store Friday promo: spend-and-save discount. Store owner sets it up in 3 minutes in the dashboard, live instantly. No engineer needed.", ja: "店舗の金曜プロモ：一定金額以上で割引。店長がダッシュボードで3分で設定→即時有効、エンジニア不要。" },
     bullets: { zh: ["折扣碼 / 買一送一 / 組合促銷", "時間限定活動（開始/結束自動切換）", "商品層級 / 訂單層級折扣", "促銷成效報告（折扣後 GMV 對比）"], en: ["Discount codes / BOGO / bundle deals", "Time-gated campaigns (auto start/end)", "Product-level / order-level discounts", "Promo ROI report (pre/post GMV comparison)"], ja: ["割引コード/BOGO/セット割引", "期間限定キャンペーン（自動開始/終了）", "商品レベル/注文レベル割引", "プロモROIレポート（割引前後GMV比較）"] },
   },
   {
@@ -1444,7 +1444,7 @@ function DashboardSales({ lang = "zh" }: { lang?: string }) {
       <text x="56" y="22" fontSize="10" fill="#8b949e" fontFamily="monospace">OmniCore / Sales Analytics</text>
       <rect x="10" y="44" width="152" height="66" fill="#161b22" rx="8"/>
       <text x="20" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">{labels.revenue}</text>
-      <text x="20" y="82" fontSize="19" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">NT$2,847K</text>
+      <text x="20" y="82" fontSize="19" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">— — —</text>
       <rect x="20" y="88" width="48" height="14" rx="5" fill="#22C55E20"/>
       <text x="44" y="98" textAnchor="middle" fontSize="8" fill="#22C55E" fontFamily="monospace" fontWeight="bold">↑ +18%</text>
       <rect x="170" y="44" width="96" height="66" fill="#161b22" rx="8"/>
@@ -1453,7 +1453,7 @@ function DashboardSales({ lang = "zh" }: { lang?: string }) {
       <text x="180" y="100" fontSize="8" fill="#22C55E" fontFamily="monospace">↑ +9% MoM</text>
       <rect x="274" y="44" width="96" height="66" fill="#161b22" rx="8"/>
       <text x="284" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">{labels.basket}</text>
-      <text x="284" y="82" fontSize="16" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">NT$199</text>
+      <text x="284" y="82" fontSize="16" fontWeight="bold" fill="#c9d1d9" fontFamily="monospace">— —</text>
       <text x="284" y="100" fontSize="8" fill="#3B82F6" fontFamily="monospace">→ Stable</text>
       <rect x="378" y="44" width="100" height="66" fill="#161b22" rx="8"/>
       <text x="388" y="60" fontSize="8" fill="#6e7681" fontFamily="monospace">{labels.top}</text>
@@ -1779,7 +1779,7 @@ const BACKEND_TABS: {
     label: { zh: "銷售報表分析", en: "Sales Analytics", ja: "売上分析" },
     desc: { zh: "日、週、月多維度報表，依門市 / 品項 / 時段自動切片。AI 自動找出異常時段與爆品機會。", en: "Daily/weekly/monthly reports auto-sliced by store, item, and time slot. AI flags anomalies and top-seller opportunities.", ja: "日次・週次・月次レポートを店舗/商品/時間帯で自動集計。AI が異常と売れ筋機会を検出。" },
     stats: [
-      { value: "NT$2.8M", label: { zh: "月營收", en: "Monthly Revenue", ja: "月次売上" } },
+      { value: "—", label: { zh: "月營收", en: "Monthly Revenue", ja: "月次売上" } },
       { value: "+18%", label: { zh: "環比增長", en: "MoM Growth", ja: "前月比" } },
       { value: "14,293", label: { zh: "月交易筆數", en: "Transactions", ja: "月次取引" } },
     ],
@@ -2847,10 +2847,10 @@ export default function IntroPage() {
                   </div>
                   <div className="text-white/70 text-sm leading-relaxed">
                     {lang === "en"
-                      ? "A full-scale IT team capable of OmniCore-level systems costs NT$800K–1.2M/month in salaries alone. OmniCore gives you a usage-based fee — and a system that keeps improving with every device."
+                      ? "Building an in-house IT team at OmniCore scale is a substantial recurring payroll commitment. OmniCore gives you a usage-based fee — and a system that keeps improving with every device."
                       : lang === "ja"
                       ? "OmniCoreレベルのITチームを内製すると月額人件費だけで80〜120万台湾ドル以上。OmniCoreなら使った分だけ支払い、設備が増えるほどシステムも賢くなります。"
-                      : "一個能做 OmniCore 規模系統的資訊團隊，月薪成本至少 NT$80-120 萬起跳。OmniCore 讓企業按使用量付費，設備越多、系統越精準。"}
+                      : "一個能做 OmniCore 規模系統的資訊團隊，光是月薪就是一筆長期固定支出。OmniCore 讓企業按使用量付費，設備越多、系統越精準。"}
                   </div>
                 </div>
                 <div className="flex-1 p-5 bg-[#E8751A]/10 border border-[#E8751A]/30 rounded-2xl">

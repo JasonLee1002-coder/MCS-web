@@ -54,7 +54,7 @@ export default function Article() {
                   ['格口管理', '無區隔（餐點堆在一起）', 'S/M/L 獨立格口，避免混淆'],
                   ['使用記錄', '無', '每筆取餐時間戳記，可稽核'],
                   ['外送員流程', '無（還是要員工交接）', '外送員掃碼自取，0 人力'],
-                  ['設備費用', 'NT$8,000–25,000（買斷）', 'NT$4,200/月起（月租）'],
+                  ['設備費用', '一次購置', '月租，依格數與合約'],
                   ['安裝難度', '即插即用', '需 POS 串接（1–2 天）'],
                 ].map(([item, normal, smart], i) => (
                   <tr key={i} style={{ borderTop: '1px solid #1e293b', background: i % 2 === 0 ? '#0f1f36' : '#0d1a2d' }}>
@@ -117,7 +117,7 @@ export default function Article() {
                 </div>
               </div>
             </div>
-            <p className="text-slate-500 text-xs mt-3">* 月租費 NT$4,200，月省人力成本 NT$7,900，第 1 個月即正回報</p>
+            <p className="text-slate-500 text-xs mt-3">* 是否劃算取決於現行人力成本與取餐頻率，需依現場條件試算</p>
           </div>
 
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>

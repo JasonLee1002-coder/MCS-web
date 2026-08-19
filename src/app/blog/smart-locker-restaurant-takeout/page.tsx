@@ -132,7 +132,7 @@ export default function Article() {
               },
               {
                 q: 'Q：租賃方案最短合約是多少？',
-                a: '最短 6 個月，含安裝、系統、維護、POS 串接一次費用（NT$3,000）。超過 12 個月簽約可享 8 折月費，超過 24 個月可選擇換購買斷。',
+                a: '最短 6 個月，含安裝、系統、維護與 POS 串接。簽約期間越長，月費條件越好，長約也可選擇換購買斷。',
               },
             ].map(({ q, a }) => (
               <div key={q} className="rounded-xl p-4" style={{ background: '#1e293b' }}>

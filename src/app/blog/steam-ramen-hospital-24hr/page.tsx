@@ -47,7 +47,7 @@ export default function Article() {
             <li><strong className="text-slate-100">品項多元</strong>：拉麵、便當、港點、湯品均可，醫院採購現有供應商食材即可</li>
             <li><strong className="text-slate-100">全自動加熱</strong>：員工刷識別證選餐，設備自動加熱，全程無需人力監管</li>
             <li><strong className="text-slate-100">衛生符合醫療標準</strong>：封閉式蒸氣腔體，不產生油煙，通過 ISO 22000 食品安全認證</li>
-            <li><strong className="text-slate-100">收費彈性</strong>：可設定員工福利補貼（如每次 NT$50）或全額收費</li>
+            <li><strong className="text-slate-100">收費彈性</strong>：可設定員工福利補貼或全額收費</li>
           </ul>
 
           <ArticleCTA keyword="蒸氣拉麵機" />

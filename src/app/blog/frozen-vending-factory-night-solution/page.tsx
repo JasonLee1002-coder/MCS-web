@@ -94,13 +94,15 @@ export default function Article() {
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
             <h3 className="font-bold text-[#FF6B35] mb-3">試算情境：桃園工廠，夜班 150 人，2 台冷凍販賣機</h3>
             <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">設備月租費：</span><span className="text-slate-200">NT$7,500 × 2 = NT$15,000/月</span></p>
-              <p><span className="text-slate-400">食材月均成本：</span><span className="text-slate-200">NT$28,000/月（自採，含冷凍便當+零食）</span></p>
-              <p><span className="text-slate-400">電費：</span><span className="text-slate-200">NT$2,800/月</span></p>
-              <p><span className="text-slate-400">月均銷售收入（日均 80 次 × NT$90）：</span><span className="text-slate-200">NT$216,000</span></p>
-              <p><span className="text-slate-400">月均毛利：</span><span className="text-[#FF6B35] font-bold">NT$170,200</span></p>
-              <p><span className="text-slate-400">夜班申請率提升（從 60% → 78%）：</span><span className="text-slate-200">少招 18% 的人力缺口</span></p>
-              <p className="text-slate-500 text-xs mt-2">* 若工廠以員工福利形式提供（每人每月 NT$300 補貼），月支出增加 NT$45,000 但員工滿意度大幅提升</p>
+              <p className="text-slate-300">這個場域的成本會由以下幾項決定，實際金額差距很大，需要依現場條件試算：</p>
+              <ul className="text-slate-400 list-disc pl-5 space-y-1 mt-2">
+                <li>設備取得方式（購置或租賃）與機型、格數、溫層</li>
+                <li>商品進貨成本與品項結構</li>
+                <li>電費，取決於溫層與現場使用強度</li>
+                <li>補貨與維護的人力安排</li>
+              </ul>
+              <p className="text-slate-500 text-xs mt-3">本站不提供費用數字。實際條件請由專人依您的場地評估後說明。</p>
+            
             </div>
           </div>
 
@@ -127,7 +129,7 @@ export default function Article() {
           <h2 className="text-xl font-bold text-slate-100 mt-8">常見問題（FAQ）</h2>
           <div className="space-y-4">
             {[
-              { q: 'Q：夜班只有 30–50 人，也值得裝嗎？', a: '30 人以上通常可以支持 1 台機器的基本使用率（每台日均 15–20 次）。銓幻元有 30 人小廠場域，月均利潤約 NT$8,000，加上夜班留才效益，多數客戶認為划算。也可選擇月租制，降低前期風險。' },
+              { q: 'Q：夜班只有 30–50 人，也值得裝嗎？', a: '30 人以上通常可以支持 1 台機器的基本使用率（每台日均 15–20 次）。銓幻元有 30 人規模的小廠場域實際導入，加上夜班留才效益，多數客戶認為划算。也可選擇月租制，降低前期風險。' },
               { q: 'Q：廠區電力夠嗎？需要特別拉線嗎？', a: '一台冷凍販賣機（含微波）最大功率約 1,500W，使用一般 110V/15A 插座即可。多數工廠廠區都有足夠電源，安裝前銓幻元會確認電力需求，通常不需要特別拉線。' },
               { q: 'Q：機台放在哪個位置最有效？', a: '建議放在夜班員工動線最頻繁的地方：員工餐廳入口、更衣室附近、夜班休息室。避免放在角落或人流不易到達的地方，這是影響使用率最大的因素。' },
               { q: 'Q：員工可以用公司福利點數消費嗎？', a: '可以。銓幻元支援工廠員工識別卡（IC 卡）消費，消費金額可對應薪資福利補貼或月底扣薪，不需要員工個人手機或現金，方便快速。' },

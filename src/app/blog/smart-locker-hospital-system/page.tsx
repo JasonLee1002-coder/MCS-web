@@ -79,7 +79,7 @@ export default function Article() {
               {
                 zone: 'Zone C：門診大廳（訪客輕食）',
                 equipment: '智取冰箱 × 1 + 飲料機 × 1',
-                desc: '探病訪客和門診患者可購買飲料、三明治、點心。不需要員工協助，自助取餐。每月創造 NT$20,000–35,000 額外收入（醫院或外包廠商自營）。',
+                desc: '探病訪客和門診患者可購買飲料、三明治、點心。不需要員工協助，自助取餐。可為醫院或外包廠商創造額外收入來源。',
               },
             ].map(({ zone, equipment, desc }) => (
               <div key={zone} className="rounded-xl p-5" style={{ background: '#0f1f36', border: '1px solid rgba(255,107,53,0.12)' }}>

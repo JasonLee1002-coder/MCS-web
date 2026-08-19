@@ -95,10 +95,10 @@ export default function Article() {
               </thead>
               <tbody>
                 {[
-                  ['50 人以下', '10–15 格', 'NT$3,200', '節省前台 30 分/天'],
-                  ['50–150 人', '20–30 格', 'NT$4,800', '節省前台 50 分/天'],
-                  ['150–300 人', '30–50 格', 'NT$6,500', '節省前台 80 分/天'],
-                  ['300 人以上', '50–80 格（建議 2 台）', 'NT$8,000×2', '前台完全脫手外送接收'],
+                  ['50 人以下', '10–15 格', '依格數與合約', '節省前台 30 分/天'],
+                  ['50–150 人', '20–30 格', '依格數與合約', '節省前台 50 分/天'],
+                  ['150–300 人', '30–50 格', '依格數與合約', '節省前台 80 分/天'],
+                  ['300 人以上', '50–80 格（建議 2 台）', '依格數與合約', '前台完全脫手外送接收'],
                 ].map(([size, slots, fee, benefit], i) => (
                   <tr key={i} style={{ borderTop: '1px solid #1e293b', background: i % 2 === 0 ? '#0f1f36' : '#0d1a2d' }}>
                     <td className="px-4 py-3 text-slate-300 font-medium">{size}</td>
@@ -115,14 +115,15 @@ export default function Article() {
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
             <h3 className="font-bold text-[#FF6B35] mb-3">試算情境：台北市辦公大樓，180 名員工</h3>
             <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">設備：</span><span className="text-slate-200">35 格智慧取物櫃 × 1 台</span></p>
-              <p><span className="text-slate-400">月租費（含安裝、系統、維護）：</span><span className="text-slate-200">NT$5,500</span></p>
-              <p><span className="text-slate-400">節省前台人力（60 分/天 × 22 工作天）：</span><span className="text-slate-200">22 小時 / 月</span></p>
-              <p><span className="text-slate-400">前台時薪換算（最低工資 NT$183/h）：</span><span className="text-slate-200">NT$4,026 / 月</span></p>
-              <p><span className="text-slate-400">員工滿意度提升（減少遲到、漏單糾紛）：</span><span className="text-slate-200">難以量化，但 HR 反饋顯著</span></p>
-              <p><span className="text-slate-400">大樓管委會配合度提升：</span><span className="text-slate-200">外送員門禁問題解決，減少 1 個衝突點</span></p>
-              <p><span className="text-slate-400">實際淨成本：</span><span className="text-[#FF6B35] font-bold">NT$5,500 - NT$4,026 = NT$1,474/月</span></p>
-              <p className="text-slate-500 text-xs mt-2">* 每位員工分攤成本：NT$8.2/月。員工餐點品質和取餐便利性的滿意度提升遠高於此</p>
+              <p className="text-slate-300">這個場域的成本會由以下幾項決定，實際金額差距很大，需要依現場條件試算：</p>
+              <ul className="text-slate-400 list-disc pl-5 space-y-1 mt-2">
+                <li>設備取得方式（購置或租賃）與機型、格數、溫層</li>
+                <li>商品進貨成本與品項結構</li>
+                <li>電費，取決於溫層與現場使用強度</li>
+                <li>補貨與維護的人力安排</li>
+              </ul>
+              <p className="text-slate-500 text-xs mt-3">本站不提供費用數字。實際條件請由專人依您的場地評估後說明。</p>
+            
             </div>
           </div>
 

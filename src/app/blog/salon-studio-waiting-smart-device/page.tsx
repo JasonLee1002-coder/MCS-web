@@ -114,8 +114,8 @@ export default function Article() {
             <h3 className="font-bold text-[#FF6B35] mb-3">試算情境：一間日均接待 25 位客人的美髮沙龍</h3>
             <div className="text-sm space-y-2">
               <p><span className="text-slate-400">設備：</span><span className="text-slate-200">智慧販賣機迷你款 1 台（約 0.5 坪）</span></p>
-              <p><span className="text-slate-400">假設每日 10 人次消費（候場中約 4 成客人）：</span><span className="text-slate-200">平均客單價 NT$50</span></p>
-              <p><span className="text-slate-400">假設日均銷售額：</span><span className="text-slate-200">NT$500／天</span></p>
+              <p className="text-slate-300">產值取決於候場人次、停留時間與品項結構，本站不提供客單價與銷售額的假設數字。</p>
+              
               <p><span className="text-slate-400">店家需投入人力：</span><span className="text-slate-200">補貨約每週 1 次，不影響服務中人員</span></p>
               <p className="text-slate-500 text-xs mt-2">* 以上為假設情境試算，用來說明估算邏輯，非真實客戶數據。實際銷售會依候場人數、選品、客群而不同，建議以自身工作室實際條件代入評估。</p>
             </div>

@@ -115,8 +115,8 @@ export default function Article() {
             <h3 className="font-bold text-[#FF6B35] mb-3">試算情境：一間平均日候診 60 人次的牙醫診所</h3>
             <div className="text-sm space-y-2">
               <p><span className="text-slate-400">設備：</span><span className="text-slate-200">智慧販賣機 1 台（約 0.5–0.8 坪）</span></p>
-              <p><span className="text-slate-400">假設每日 20 人次消費（約候診人數 1/3）：</span><span className="text-slate-200">平均客單價 NT$40</span></p>
-              <p><span className="text-slate-400">假設日均銷售額：</span><span className="text-slate-200">NT$800／天</span></p>
+              <p className="text-slate-300">產值取決於候診人次、停留時間與品項結構，本站不提供客單價與銷售額的假設數字。</p>
+              
               <p><span className="text-slate-400">診所需投入人力：</span><span className="text-slate-200">補貨約每週 1–2 次，不需專人顧櫃</span></p>
               <p className="text-slate-500 text-xs mt-2">* 以上為假設情境試算，用來說明估算邏輯，非真實客戶數據。實際銷售會依候診人數、選品、地點而不同，建議以自身診所實際候診量代入計算。</p>
             </div>
