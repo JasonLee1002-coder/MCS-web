@@ -88,14 +88,11 @@ const jsonLd = {
     name: "銓幻元科技股份有限公司",
   },
   countryOfOrigin: "TW",
-  offers: {
-    "@type": "Offer",
-    availability: "https://schema.org/InStock",
-    price: "0",
-    description: "歡迎來電洽詢客製報價",
-    url: "https://www.mcstation.ai/products/grabox",
-    priceCurrency: "TWD",
-  },
+  // 2026-08-20 移除 offers：原本帶 `price: "0"` + priceCurrency TWD。
+  // Google 把 price 0 解讀為「免費提供」，等於在結構化資料層宣告這台設備不用錢——
+  // 比完全沒有 offers 更糟。業主 2026-08-19 已定 WEB 不出現金額，
+  // 沒有真實價格就不要硬湊一個 Offer（price:null／"洽詢"／假 AggregateOffer 同樣不行）。
+  // 代價是失去 Product rich result 資格，但保留合法的 Schema.org Product 語意。
   category: "智慧取餐設備",
   inLanguage: "zh-Hant",
 };
