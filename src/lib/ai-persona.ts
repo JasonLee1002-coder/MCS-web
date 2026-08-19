@@ -8,10 +8,13 @@
  *    改名時那組標記必須跟著改，否則防洩漏會漏掉新的 prompt 開頭。
  *    所以那裡直接引用 PERSONA.promptOpening，不要再寫死字串。
  */
+const NAME = 'NEON'
+
 export const PERSONA = {
-  name: 'NEON',
+  name: NAME,
   nickname: '小霓',
   avatar: '◈',
   /** leak-guard 偵測用：system prompt 的開頭特徵 */
-  promptOpening: '你是「NEON」',
+  /** 由 NAME 推導，改名時不會脫鉤 */
+  promptOpening: `你是「${NAME}」`,
 } as const;
