@@ -33,7 +33,7 @@ const DEFAULT_PATH = '/products/frozen-microwave'
 
 /**
  * 組出站內連結。
- * autoOpenAi=true 時帶 ?ai=1，落地頁會自動展開小龍 AI 顧問——
+ * autoOpenAi=true 時帶 ?ai=1，落地頁會自動展開 AI 顧問——
  * 只給文末「諮詢 AI」用；行文中的關鍵字連結不該強制彈出對話框。
  */
 function buildHref(target: string, medium: string, campaign: string, autoOpenAi: boolean) {

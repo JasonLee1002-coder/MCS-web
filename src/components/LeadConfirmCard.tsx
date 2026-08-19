@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { PERSONA } from "@/lib/ai-persona";
 
 export interface LeadData {
   venue: string
@@ -66,7 +67,7 @@ export function LeadConfirmCard({ data, onSubmit, onRevise }: LeadConfirmCardPro
   return (
     <div className="rounded-xl p-4 my-3 bg-white border border-mcs-orange/30 shadow-sm">
       <p className="text-xs font-bold mb-3 tracking-wider text-mcs-orange">
-        📋 小龍幫您整理如下，確認後送出：
+        📋 {PERSONA.name} 幫您整理如下，確認後送出：
       </p>
 
       {editing ? (

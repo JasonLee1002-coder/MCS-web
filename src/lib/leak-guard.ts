@@ -1,3 +1,4 @@
+import { PERSONA } from './ai-persona'
 /**
  * 資安：內部設定/工具/流程外洩防護。
  *
@@ -17,7 +18,7 @@ export const SAFE_REPLY = '這我不方便透露，我們聊聊您的場域需�
 
 /** 大小寫敏感的內部特徵（system prompt / 工具 / 送出邏輯 原樣輸出） */
 const LEAK_MARKERS = [
-  '你是「小龍」', 'MCS_SYSTEM_PROMPT', 'summarize_lead',
+  PERSONA.promptOpening, 'MCS_SYSTEM_PROMPT', 'summarize_lead',
   'system prompt', 'System Prompt', 'SYSTEM PROMPT', 'systemPrompt',
   '進度回報（每一輪都必做', '送出時機', '範疇限制：若用戶詢問', '資安鐵則',
   'convertToModelMessages', 'stopWhen', 'maxOutputTokens', 'stepCountIs',
@@ -107,7 +108,7 @@ export function leakGuardTransform<TOOLS extends ToolSet>(): StreamTextTransform
 
 /** 真正的內部秘密：system prompt、工具名、送出邏輯、密鑰名。這些在任何層都不該外流。 */
 const INTERNAL_MARKERS = [
-  '你是「小龍」', 'MCS_SYSTEM_PROMPT', 'BRAND_SYSTEM_PROMPTS', 'summarize_lead',
+  PERSONA.promptOpening, 'MCS_SYSTEM_PROMPT', 'BRAND_SYSTEM_PROMPTS', 'summarize_lead',
   'system prompt', 'System Prompt', 'SYSTEM PROMPT', 'systemPrompt',
   '進度回報（每一輪都必做', '送出時機', '範疇限制：若用戶詢問', '資安鐵則',
   'convertToModelMessages', 'stopWhen', 'maxOutputTokens', 'stepCountIs',
@@ -148,7 +149,7 @@ export function scrubTranscript(raw: string, maxChars = 4000): TranscriptScrubRe
     // 這等於把遮蔽規則交給被攻擊方自己宣告。客戶也可能把先前看到的內部內容
     // 貼回來——那仍然是內部秘密，只是換了一個 role 傳入。
     // 現在 INTERNAL_MARKERS 對所有行一律生效。誤殺風險極低：真正的客戶不會
-    // 說出 YUZU_WEBHOOK_SECRET 或「你是「小龍」」。當初的災難來自 MODEL_TOKENS
+    // 說出 YUZU_WEBHOOK_SECRET 或 system prompt 的開頭特徵。當初的災難來自 MODEL_TOKENS
     // （chatgpt/claude 這類日常詞彙），那批已經不在本層檢查。
     if (INTERNAL_MARKERS.some((m) => line.includes(m))) {
       redactedLines++

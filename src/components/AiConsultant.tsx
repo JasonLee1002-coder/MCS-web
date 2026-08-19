@@ -8,6 +8,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { LeadConfirmCard, type LeadData } from "./LeadConfirmCard";
 import { OPENER } from "@/lib/chat-config";
+import { PERSONA } from "@/lib/ai-persona";
 
 interface PageContext {
   welcome: string;
@@ -149,7 +150,7 @@ export default function AiConsultant() {
       {
         id: "init-brand",
         role: "assistant" as const,
-        parts: [{ type: "text" as const, text: "嗨！我是小龍 🐉 MCS 銓幻元科技的 AI 顧問" }],
+        parts: [{ type: "text" as const, text: `嗨！我是 ${PERSONA.name}，MCS 銓幻元科技的 AI 顧問` }],
       },
       {
         id: "init-welcome",
@@ -411,10 +412,10 @@ function isClearToken(v: string): boolean {
           id="yuzu-ai-btn"
           onClick={() => setIsOpen(true)}
           className="fixed bottom-6 right-6 z-50 bg-mcs-orange text-white rounded-full shadow-lg hover:bg-mcs-orange-light transition-all flex items-center gap-2 pl-4 pr-5 py-3 animate-bounce"
-          aria-label="小龍 AI 顧問"
+          aria-label={`${PERSONA.name} AI 顧問`}
         >
           <span className="text-2xl">🐉</span>
-          <span className="text-sm font-bold">小龍 AI</span>
+          <span className="text-sm font-bold">{PERSONA.name}</span>
         </button>
       )}
 
@@ -432,7 +433,7 @@ function isClearToken(v: string): boolean {
               <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center text-xl">🐉</div>
               <div>
                 <div className="text-white font-bold text-sm flex items-center gap-1.5">
-                  小龍 AI 顧問
+                  {PERSONA.name} AI 顧問
                   <motion.span
                     className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"
                     animate={reduceMotion ? undefined : { opacity: [1, 0.35, 1] }}
@@ -604,7 +605,7 @@ function isClearToken(v: string): boolean {
                   </svg>
                 </button>
               </form>
-              <div className="text-[10px] text-gray-400 pb-2 text-center">Powered by 小龍 AI 🐉</div>
+              <div className="text-[10px] text-gray-400 pb-2 text-center">Powered by {PERSONA.name}</div>
             </div>
           )}
         </motion.div>
