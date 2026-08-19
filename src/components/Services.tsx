@@ -51,6 +51,17 @@ const services = [
     tags: ["QR點餐", "AI推薦", "免下載", "多元支付", "POS整合"],
   },
   {
+    // 2026-08-19：連鎖早餐門市 AI 的技術能量入口。
+    // 刻意不寫客戶名與效益百分比——這張卡導向的是能力說明頁，不是案例頁。
+    title: "連鎖早餐門市 AI",
+    subtitle: "技術能量 | 門市代理人 × 總部協同",
+    description:
+      "早餐生意的營收擠在開店後兩小時，系統要同時扛住結帳、出餐與外送派單。我們把門市 AI 拆成六項必須各自成立的能力：店長用通訊軟體自然語言操作、總部與門市雙層自治、加盟體系資料主權切分、廠商中立介接層、斷線續轉，以及智取櫃等設備事件整合。",
+    image: "/images/illustrations/pos-kds.png",
+    tags: ["門市 AI 代理人", "加盟資料主權", "廠商中立介接", "斷線續轉"],
+    link: "/solutions/breakfast-chain-ai",
+  },
+  {
     title: "OEM / ODM 貼牌客製",
     subtitle: "可 100% 台灣製造",
     description:
