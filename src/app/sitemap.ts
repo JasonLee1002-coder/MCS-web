@@ -83,6 +83,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/technology/ai`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     // 2026-08-20 新增：冷凍／冷凍微波全系列（總覽 + 2 系列 + 8 型號）
     {
       url: `${baseUrl}/products/frozen-vending`,

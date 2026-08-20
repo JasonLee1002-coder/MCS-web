@@ -62,6 +62,17 @@ const services = [
     link: "/solutions/breakfast-chain-ai",
   },
   {
+    // 橫向的技術能力頁：早餐連鎖那張是垂直應用，這張是底下的技術層。
+    // 一樣不寫客戶名、不寫效益數字、不寫合作夥伴的產品名。
+    title: "AI 技術能量",
+    subtitle: "事件匯流 × 語意檢索 × 異常偵測 × 語音互動",
+    description:
+      "多數「導入 AI」失敗不是模型不夠好，是資料沒串起來——點餐、廚房、庫存、設備各看各的，AI 拿到片面資料，建議比店長的直覺還糟。我們把能力拆成四層，並寫清楚三個設計取捨各自的代價：推論集中雲端、模型只看資料結構不看原始資料、斷線時門市仍要能做生意。",
+    image: "/images/illustrations/pos-kds.png",
+    tags: ["事件驅動整合", "自然語言查詢", "需求預測", "斷線可降級"],
+    link: "/technology/ai",
+  },
+  {
     title: "OEM / ODM 貼牌客製",
     subtitle: "可 100% 台灣製造",
     description:
