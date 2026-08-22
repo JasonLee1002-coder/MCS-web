@@ -209,16 +209,26 @@ export default async function BlogPostPage({
             <h1 className="text-3xl sm:text-4xl font-bold mt-2 mb-4">
               {post.title}
             </h1>
-            <div className="flex flex-wrap gap-2">
-              {post.keywords.map((kw) => (
-                <span
-                  key={kw}
-                  className="bg-white/10 border border-white/20 px-3 py-1 rounded-full text-xs"
-                >
-                  {kw}
-                </span>
-              ))}
-            </div>
+
+            {/*
+              2026-08-23 GEO 修正：H1 正下方原本是關鍵字標籤列。
+
+              實測（AI 引用測試，56 題 × 兩平台）發現 mcstation 在
+              「智取櫃跟寄物櫃差在哪」這類題目上輸給自家的 transtep.com 與
+              李奇申.com——但內容其實存在且完整。抓下線上 HTML 才看到：
+              H1 之後緊接的是「餐飲智取櫃 取餐智取櫃 智取櫃差異」這串標籤，
+              **AI 最常引用的位置被關鍵字堆佔住了**，摘要反而沒出現在正文裡。
+
+              改為在 H1 下方放 description（那本來就是一句話直接回答），
+              關鍵字標籤降到文末。這是模板，影響全站約 137 篇。
+
+              關鍵字標籤本身對排名早已沒有作用，把它放在最值錢的版位是純損失。
+            */}
+            {post.description && (
+              <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-3xl">
+                {post.description}
+              </p>
+            )}
           </div>
         </section>
 
