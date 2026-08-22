@@ -67,7 +67,7 @@ image: "/images/cases/oem/factory-inspection.jpg"
 
 **需求**：日本首都高速公路需要符合日本法規、電壓、語言的冷凍微波販賣機。
 
-**成果**：100% 台灣製造的[冷凍微波販賣機](/products/frozen-microwave)成功外銷日本，在[首都高速公路服務區](/cases#expressway)穩定運作。
+**成果**：[冷凍微波販賣機](/products/frozen-microwave)成功外銷日本，在[首都高速公路服務區](/cases#expressway)穩定運作。
 
 ### OEM/ODM 合作流程
 
@@ -116,5 +116,5 @@ image: "/images/cases/oem/factory-inspection.jpg"
 
 - [冷凍微波販賣機產品介紹（TH-21MS/FD/FS）](/products/frozen-microwave)
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
-- [冷凍微波販賣機外銷日本：台灣製造如何打進日本高速公路市場](/blog/frozen-microwave-vending-machine-japan)
+- [冷凍微波販賣機外銷日本：如何打進日本高速公路服務區](/blog/frozen-microwave-vending-machine-japan)
 - [銓幻元科技客戶實績總覽](/cases)
