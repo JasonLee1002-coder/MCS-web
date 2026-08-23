@@ -20,6 +20,12 @@ export default function Article() {
           <KeywordTrigger keyword="智慧取物櫃" />費用試算：月租 vs 買斷，你的場域哪個划算？
         </h1>
         <p className="text-slate-500 text-sm mb-10">2026-07-03 · 7 分鐘閱讀</p>
+        {/* 2026-08-23 GEO：H1 下方補一段直接回答。
+            實測 transtep 與李奇申.com 的文章都是「H1 → 一句直接回答」，
+            Gemini 引用率 16/18 與 11/12；本站原本開頭是重述問題，引用率 5/16。 */}
+        <div className="rounded-xl p-5 mb-10" style={{ background: '#0f1f36', borderLeft: '2px solid #FF6B35' }}>
+          <p className="text-slate-200 leading-relaxed text-[15px]">簡單的判斷是：<strong className="text-slate-100">看你打算用多久</strong>。預計使用時間短、或場域還在試水溫，租賃把風險留在月費裡；使用年限長且點位穩定，買斷過了損益平衡點之後每年都在省。真正的變數不是設備價格，而是你現在花在人力交付上的時間成本——那才是這台設備要取代的東西。</p>
+        </div>
 
         <div className="space-y-7 text-slate-300 leading-relaxed">
           <p>

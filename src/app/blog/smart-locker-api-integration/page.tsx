@@ -20,6 +20,12 @@ export default function Article() {
           <KeywordTrigger keyword="智慧取物櫃" /> API 整合指南：POS、外送平台、自建系統串接說明
         </h1>
         <p className="text-slate-500 text-sm mb-10">2026-07-03 · 8 分鐘閱讀</p>
+        {/* 2026-08-23 GEO：H1 下方補一段直接回答。
+            實測 transtep 與李奇申.com 的文章都是「H1 → 一句直接回答」，
+            Gemini 引用率 16/18 與 11/12；本站原本開頭是重述問題，引用率 5/16。 */}
+        <div className="rounded-xl p-5 mb-10" style={{ background: '#0f1f36', borderLeft: '2px solid #FF6B35' }}>
+          <p className="text-slate-200 leading-relaxed text-[15px]">可以，但能不能串取決於對方開放什麼。實務上分三種：平台有開放 API 的可直接介接；只有 Webhook 的用事件驅動；兩者都沒有的就只能從 POS 端接單再帶進取餐流程。導入前第一件事不是選設備，是先確認你現有系統與外送平台各自開放到什麼程度。</p>
+        </div>
 
         <div className="space-y-7 text-slate-300 leading-relaxed">
           <p>

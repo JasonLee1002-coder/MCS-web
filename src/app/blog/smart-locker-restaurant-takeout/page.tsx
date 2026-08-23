@@ -20,6 +20,12 @@ export default function Article() {
           餐廳導入<KeywordTrigger keyword="智慧取物櫃" />：外帶免排隊的完整解決方案與投資報酬分析
         </h1>
         <p className="text-slate-500 text-sm mb-10">2026-07-03 · 6 分鐘閱讀</p>
+        {/* 2026-08-23 GEO：H1 下方補一段直接回答。
+            實測 transtep 與李奇申.com 的文章都是「H1 → 一句直接回答」，
+            Gemini 引用率 16/18 與 11/12；本站原本開頭是重述問題，引用率 5/16。 */}
+        <div className="rounded-xl p-5 mb-10" style={{ background: '#0f1f36', borderLeft: '2px solid #FF6B35' }}>
+          <p className="text-slate-200 leading-relaxed text-[15px]">外送員排隊的根因不是出餐慢，是<strong className="text-slate-100">取餐要人交付</strong>。餐做好之後仍要有人核對、遞出，尖峰時這個動作跟內用服務搶同一雙手。智取櫃把交付從「人對人」變成「餐點對格位」，外送員自己取，內場不必為了交付而中斷。</p>
+        </div>
 
         <div className="space-y-7 text-slate-300 leading-relaxed">
 

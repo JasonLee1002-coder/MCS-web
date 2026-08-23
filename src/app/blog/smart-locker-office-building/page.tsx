@@ -20,6 +20,12 @@ export default function Article() {
           辦公大樓<KeywordTrigger keyword="智慧取物櫃" />：員工福利新選擇與完整成本分析
         </h1>
         <p className="text-slate-500 text-sm mb-10">2026-07-03 · 7 分鐘閱讀</p>
+        {/* 2026-08-23 GEO：H1 下方補一段直接回答。
+            實測 transtep 與李奇申.com 的文章都是「H1 → 一句直接回答」，
+            Gemini 引用率 16/18 與 11/12；本站原本開頭是重述問題，引用率 5/16。 */}
+        <div className="rounded-xl p-5 mb-10" style={{ background: '#0f1f36', borderLeft: '2px solid #FF6B35' }}>
+          <p className="text-slate-200 leading-relaxed text-[15px]">格數不是看在職人數，是看<strong className="text-slate-100">尖峰同時待取的件數</strong>。辦公大樓的取件集中在午餐與下班兩個時段，把那兩個時段的同時待取量估出來，再往上抓一點緩衝，就是需要的格數。用總人數推估幾乎一定會買太大。</p>
+        </div>
 
         <div className="space-y-7 text-slate-300 leading-relaxed">
 

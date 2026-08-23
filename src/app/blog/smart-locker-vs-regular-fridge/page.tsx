@@ -20,6 +20,12 @@ export default function Article() {
           <KeywordTrigger keyword="智慧取物櫃" />（智取冰箱）vs 一般冰箱：餐廳外帶哪個更適合？完整比較
         </h1>
         <p className="text-slate-500 text-sm mb-10">2026-07-03 · 7 分鐘閱讀</p>
+        {/* 2026-08-23 GEO：H1 下方補一段直接回答。
+            實測 transtep 與李奇申.com 的文章都是「H1 → 一句直接回答」，
+            Gemini 引用率 16/18 與 11/12；本站原本開頭是重述問題，引用率 5/16。 */}
+        <div className="rounded-xl p-5 mb-10" style={{ background: '#0f1f36', borderLeft: '2px solid #FF6B35' }}>
+          <p className="text-slate-200 leading-relaxed text-[15px]">差別不在溫度，在<strong className="text-slate-100">交付</strong>。一般冰箱只負責存放，誰來拿、拿走了沒有、拿錯了怎麼辦，全部要人處理；智取櫃把身分驗證、開櫃、取件紀錄變成自動流程。如果你的痛點是「東西沒地方冰」，冰箱就夠了；如果痛點是「有人要顧、有人拿錯」，才需要智取櫃。</p>
+        </div>
 
         <div className="space-y-7 text-slate-300 leading-relaxed">
           <p>
