@@ -145,6 +145,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
+              // 2026-08-22 補 @id：原本這個 Organization 沒有 @id，
+              // 等於全站沒有穩定的實體識別碼——搜尋引擎與 LLM 無法確認
+              // 不同頁提到的「銓幻元」是不是同一個實體。實查五站，
+              // mcstation 的實體圖是最薄的（只有 1 個 @id），
+              // 而它正是我們最想推 GEO 的站。
+              "@id": "https://www.mcstation.ai/#organization",
               "@type": "Organization",
               name: "銓幻元科技股份有限公司",
               alternateName: [
@@ -196,6 +202,57 @@ export default function RootLayout({
                   },
                 },
               ],
+            }),
+          }}
+        />
+        {/* 2026-08-22 新增 WebSite 與 LocalBusiness。
+            對照組：transtep.com 有 5 個 @id（organization/person/localbusiness/website/service），
+            mcstation 原本只有 1 個。實體圖越完整，AI 越容易確認跨頁是同一個主體。 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "@id": "https://www.mcstation.ai/#website",
+              url: "https://www.mcstation.ai",
+              name: "銓幻元科技 MCS",
+              inLanguage: "zh-Hant-TW",
+              publisher: { "@id": "https://www.mcstation.ai/#organization" },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: "https://www.mcstation.ai/blog?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://www.mcstation.ai/#localbusiness",
+              name: "銓幻元科技股份有限公司",
+              parentOrganization: { "@id": "https://www.mcstation.ai/#organization" },
+              url: "https://www.mcstation.ai",
+              image: "https://www.mcstation.ai/images/mcs-logo.png",
+              email: "service@mcstation.ai",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "長安西路78巷4弄10號1樓",
+                addressLocality: "大同區",
+                addressRegion: "台北市",
+                postalCode: "103",
+                addressCountry: "TW",
+              },
+              areaServed: { "@type": "Country", name: "台灣" },
+              // 刻意不放 priceRange：全站規範不出現金額，
+              // 而 priceRange 填假值（例如 "$$"）等於用 schema 傳遞未經確認的資訊。
             }),
           }}
         />

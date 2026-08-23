@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/lib/blog";
+import { MODELS } from "@/data/frozen-vending-models";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.mcstation.ai";
@@ -80,6 +81,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/products/frozen-microwave`,
       lastModified: new Date(),
       changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/technology/ai`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    // 2026-08-20 新增：冷凍／冷凍微波全系列（總覽 + 2 系列 + 8 型號）
+    {
+      url: `${baseUrl}/products/frozen-vending`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/products/frozen-vending/fm-series`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/products/frozen-vending/fz-series`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    ...MODELS.map((m) => ({
+      url: `${baseUrl}/products/frozen-vending/${m.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    {
+      url: `${baseUrl}/solutions/breakfast-chain-ai`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {

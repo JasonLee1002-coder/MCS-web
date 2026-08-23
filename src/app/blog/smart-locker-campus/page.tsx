@@ -82,7 +82,7 @@ export default function Article() {
           <ol className="list-decimal pl-6 space-y-3">
             <li><strong className="text-slate-100">需求確認</strong>：總務處聯繫銓幻元，確認場域評估、設備規格、預算範圍</li>
             <li><strong className="text-slate-100">規格書準備</strong>：銓幻元提供符合政府採購法格式的規格書，含技術規格、認證文件、效能數據</li>
-            <li><strong className="text-slate-100">採購程序</strong>：依金額選擇公開招標（≥ NT$15 萬）或限制性招標（&lt; NT$15 萬）</li>
+            <li><strong className="text-slate-100">採購程序</strong>：依政府採購法的公告金額級距選擇公開招標或限制性招標</li>
             <li><strong className="text-slate-100">安裝與驗收</strong>：1–2 天安裝，提供驗收報告，學生餐廳不需要停業</li>
             <li><strong className="text-slate-100">App 整合</strong>：對接學校現有的學生 App 或餐廳訂餐系統，通常 3–5 工作天完成</li>
           </ol>
@@ -99,7 +99,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">學校場域規劃，AI 顧問幫你提案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們在校人數、餐廳規模、採購預算，AI 立刻給出完整配置方案</p>
-            <a href="/solutions/smart-locker?utm_source=blog&utm_medium=article-bottom&utm_campaign=campus"
+            <a href="/products/grabox?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=campus"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

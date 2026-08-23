@@ -114,8 +114,8 @@ export default function Article() {
             <h3 className="font-bold text-[#FF6B35] mb-3">試算情境：一間日均接待 25 位客人的美髮沙龍</h3>
             <div className="text-sm space-y-2">
               <p><span className="text-slate-400">設備：</span><span className="text-slate-200">智慧販賣機迷你款 1 台（約 0.5 坪）</span></p>
-              <p><span className="text-slate-400">假設每日 10 人次消費（候場中約 4 成客人）：</span><span className="text-slate-200">平均客單價 NT$50</span></p>
-              <p><span className="text-slate-400">假設日均銷售額：</span><span className="text-slate-200">NT$500／天</span></p>
+              <p className="text-slate-300">產值取決於候場人次、停留時間與品項結構，本站不提供客單價與銷售額的假設數字。</p>
+              
               <p><span className="text-slate-400">店家需投入人力：</span><span className="text-slate-200">補貨約每週 1 次，不影響服務中人員</span></p>
               <p className="text-slate-500 text-xs mt-2">* 以上為假設情境試算，用來說明估算邏輯，非真實客戶數據。實際銷售會依候場人數、選品、客群而不同，建議以自身工作室實際條件代入評估。</p>
             </div>
@@ -151,13 +151,17 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">工作室候場區想升級？AI 顧問 3 分鐘給你方案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們工作室類型、候場坪數、日均接待人數，AI 立刻給出最適合的設備與外觀配置</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=salon-studio-waiting"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=salon-studio-waiting"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>
           </div>
 
         </div>
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending/mcs-fz10" style={{ color: '#FF6B35' }} className="hover:underline">MCS-FZ10 850mm 窄機身規格</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← 返回知識庫</a>
         </div>

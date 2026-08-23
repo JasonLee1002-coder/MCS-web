@@ -42,15 +42,15 @@ export default function Article() {
                   <th className="text-left px-4 py-3 text-slate-300">機型</th>
                   <th className="text-left px-4 py-3 text-slate-300">額定功率</th>
                   <th className="text-left px-4 py-3 text-slate-300">日均用電</th>
-                  <th className="text-left px-4 py-3 text-[#FF6B35]">月電費（NT$4.3/度）</th>
+                  <th className="text-left px-4 py-3 text-[#FF6B35]">月電費</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  ['標準冷凍機（40 格）', '400W 壓縮機', '7.2 度/天', 'NT$928/月'],
-                  ['標準冷凍機（40 格）+ 微波', '400W + 900W', '9.1 度/天（含微波加熱）', 'NT$1,171/月'],
-                  ['大容量冷凍機（60 格）', '550W 壓縮機', '9.8 度/天', 'NT$1,261/月'],
-                  ['軍方版（加強隔熱）', '380W 壓縮機', '6.8 度/天', 'NT$876/月'],
+                  ['標準冷凍機（40 格）', '400W 壓縮機', '7.2 度/天', '以你的電價費率乘上度數'],
+                  ['標準冷凍機（40 格）+ 微波', '400W + 900W', '9.1 度/天（含微波加熱）', '以你的電價費率乘上度數'],
+                  ['大容量冷凍機（60 格）', '550W 壓縮機', '9.8 度/天', '以你的電價費率乘上度數'],
+                  ['軍方版（加強隔熱）', '380W 壓縮機', '6.8 度/天', '以你的電價費率乘上度數'],
                 ].map(([model, power, daily, monthly], i) => (
                   <tr key={i} style={{ borderTop: '1px solid #1e293b', background: i % 2 === 0 ? '#0f1f36' : '#0d1a2d' }}>
                     <td className="px-4 py-3 text-slate-300 text-xs">{model}</td>
@@ -63,7 +63,7 @@ export default function Article() {
             </table>
           </div>
           <p className="text-xs text-slate-500">
-            * 數據基於台電一般用電 NT$4.3/度估算，實際用電依場域溫度、開門頻率、食材補充量而異。夏季電費通常高 15–20%。
+            * 度數為設計值估算，實際用電依場域溫度、開門頻率、食材補充量而異，夏季通常明顯偏高。電費請以台電當期公告費率自行換算。
           </p>
 
           <h2 className="text-xl font-bold text-slate-100 mt-8">降低電費的 4 個方法</h2>
@@ -71,7 +71,7 @@ export default function Article() {
             <li><strong className="text-slate-100">設備擺放位置</strong>：避免放在陽光直射或高溫環境（如廠區熱源附近）。室溫每提高 5°C，壓縮機耗電增加約 8%。</li>
             <li><strong className="text-slate-100">門封條定期檢查</strong>：門封條老化或損壞是最常見的耗電增加原因，每季檢查一次。</li>
             <li><strong className="text-slate-100">避免頻繁開門</strong>：每次開門溫度回復需消耗額外電力。IoT 功能可監控異常開門頻率（防止員工補貨時門未關）。</li>
-            <li><strong className="text-slate-100">深夜低負載模式</strong>：銓幻元機台支援深夜（03:00–06:00）壓縮機降頻模式，月省電費約 NT$120–180。</li>
+            <li><strong className="text-slate-100">深夜低負載模式</strong>：銓幻元機台支援深夜（03:00–06:00）壓縮機降頻模式，可再降低一部分用電。</li>
           </ul>
 
           <h2 className="text-xl font-bold text-slate-100 mt-10">維護成本：3 年真實數據</h2>
@@ -81,8 +81,8 @@ export default function Article() {
               <p><span className="text-slate-400">平均故障間隔：</span><span className="text-slate-200">每台每年 0.6 次故障（低於行業均值 1.2 次）</span></p>
               <p><span className="text-slate-400">最常見故障類型：</span><span className="text-slate-200">門封條磨損（35%）、觸控螢幕（22%）、壓縮機（18%）</span></p>
               <p><span className="text-slate-400">平均維修時間：</span><span className="text-slate-200">2.8 小時（台北市大台北地區）</span></p>
-              <p><span className="text-slate-400">買斷版年均維修費：</span><span className="text-slate-200">NT$6,800/台（含零件和人工）</span></p>
-              <p><span className="text-slate-400">保固期內維修費：</span><span className="text-slate-200">NT$0（2 年原廠保固覆蓋）</span></p>
+              <p><span className="text-slate-400">買斷版維修費：</span><span className="text-slate-200">保固期外自行負擔，含零件與人工</span></p>
+              <p><span className="text-slate-400">保固期內維修費：</span><span className="text-slate-200">2 年原廠保固覆蓋</span></p>
             </div>
           </div>
 
@@ -98,12 +98,12 @@ export default function Article() {
               </thead>
               <tbody>
                 {[
-                  ['設備費', 'NT$220,000', 'NT$0'],
-                  ['月費 × 60 個月', 'NT$0', 'NT$450,000（NT$7,500/月）'],
-                  ['電費（月均 NT$1,200）', 'NT$72,000', 'NT$72,000'],
-                  ['保固期外維修（3–5年）', 'NT$20,400（年均 NT$6,800）', '含在月費中'],
-                  ['年度保養', 'NT$30,000（NT$6,000/年）', '含在月費中'],
-                  ['合計', 'NT$342,400', 'NT$522,000'],
+                  ['設備費', '前期一次支出', '不需要'],
+                  ['月費 × 60 個月', '不需要', '持續發生，五年累積可觀'],
+                  ['電費', '兩者相同，依度數與電價', '兩者相同，依度數與電價'],
+                  ['保固期外維修（3–5 年）', '自行負擔', '含在月費中'],
+                  ['年度保養', '自行負擔，按年計', '含在月費中'],
+                  ['五年總持有成本', '較低', '較高，但零前期、可隨時換新'],
                 ].map(([item, buy, lease], i) => (
                   <tr key={i} style={{ borderTop: '1px solid #1e293b', background: i % 2 === 0 ? '#0f1f36' : '#0d1a2d' }}>
                     <td className="px-4 py-3 text-slate-300 font-medium">{item}</td>
@@ -114,13 +114,13 @@ export default function Article() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-500">* 5 年下來買斷比租賃省約 NT$180,000。但租賃的優勢是零前期、設備可隨時升級換新款。</p>
+          <p className="text-xs text-slate-500">* 使用年限拉長，買斷的總持有成本優勢會越明顯；租賃的優勢則是零前期與隨時換新。實際差額請用你拿到的條件計算。</p>
 
           <h2 className="text-xl font-bold text-slate-100 mt-8">常見問題（FAQ）</h2>
           <div className="space-y-4">
             {[
               { q: 'Q：停電後食材還能保多久？', a: '銓幻元機台設計在停電 4 小時內，內部溫度不超過 -10°C（外部溫度 25°C 條件下）。超過 4 小時建議由人員確認食材狀態。配備 UPS 不間斷電源的場域（如軍方版）可延長至 6–8 小時。' },
-              { q: 'Q：壓縮機壽命多久？', a: '銓幻元使用日本三菱電機壓縮機，設計壽命 10–12 年，日常使用 8–10 年無需更換。壓縮機是設備最貴的零件（NT$18,000–25,000），保固期內損壞全額更換。' },
+              { q: 'Q：壓縮機壽命多久？', a: '銓幻元使用日本三菱電機壓縮機，設計壽命 10–12 年，日常使用 8–10 年無需更換。壓縮機是設備最貴的零件，保固期內損壞全額更換。' },
               { q: 'Q：月租方案的維護包含什麼？', a: '月租費包含：季度預防性保養（含零件更換）、故障維修（人為損壞除外）、軟體系統更新、IoT 遠端監控服務、24h 客服。每月固定成本清楚，無隱藏費用。' },
             ].map(({ q, a }) => (
               <div key={q} className="rounded-xl p-4" style={{ background: '#1e293b' }}>
@@ -133,7 +133,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">想知道你的場域 5 年總成本？AI 顧問幫你算</p>
             <p className="text-slate-400 text-sm mb-5">告訴 AI 你的場域規模和預算需求，立刻得到個人化財務分析</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=electricity-maintenance"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=electricity-maintenance"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

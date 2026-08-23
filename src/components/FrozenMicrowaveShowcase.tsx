@@ -97,7 +97,7 @@ function CinematicHero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.1 }}
             >
-              冷食瞬間變熱餐。台灣唯一百台實績，
+              冷食瞬間變熱餐。
               <br className="hidden sm:block" />
               日本首都高速公路指定合作。
             </motion.p>
@@ -170,8 +170,8 @@ function CinematicHero() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.9, duration: 0.6 }}
                 >
-                  <span className="text-green-400 font-bold">MIT</span>
-                  <span className="text-white/50 ml-2">台灣製造</span>
+                  <span className="text-green-400 font-bold">iVM</span>
+                  <span className="text-white/50 ml-2">雲端管理平台</span>
                 </motion.div>
               </div>
             </FloatingElement>
@@ -326,14 +326,14 @@ function FeatureShowcase() {
       accent: "text-green-400",
     },
     {
-      title: "MIT 雲端 IVM 平台",
-      desc: "自主研發管理平台。銷售數據、庫存、溫度、設備健康 — 一個後台全部掌握。",
+      title: "iVM 雲端管理平台",
+      desc: "雲端管理平台。銷售數據、庫存、溫度、設備健康 — 一個後台全部掌握。",
       icon: "☁️",
       accent: "text-purple-400",
     },
     {
-      title: "台製 / 進口雙選",
-      desc: "100% 台灣研發製造確保品質。同時提供性價比進口機型。全部搭配 MIT 管理平台。",
+      title: "多機型可選",
+      desc: "可依需求選擇不同機型與配置。全部搭配同一套雲端管理平台。",
       icon: "🇹🇼",
       accent: "text-red-400",
     },
@@ -423,7 +423,7 @@ function MachineLineup() {
             冷凍 · 微波機型陣容
           </h2>
           <p className="text-white/30 mt-4 max-w-xl mx-auto">
-            台製與進口機型可選，所有機型搭配 MIT 雲端管理平台
+            多種機型可選，所有機型搭配 iVM 雲端管理平台
           </p>
         </ScrollReveal>
 
@@ -731,8 +731,8 @@ function FAQ() {
       a: "服務大型連鎖通路實戰經驗：溫度 24H 即時監控、食品效期自動下架、異常 LINE 即時通知、銷售紀錄完整可追溯。",
     },
     {
-      q: "台製和進口機型差在哪？",
-      a: "100% 台灣研發製造品質穩定、維修方便。進口機型性價比優異。兩者都搭配 MIT 雲端管理平台與全台服務。",
+      q: "不同機型差在哪？",
+      a: "可依場域條件與預算選擇機型，兩者都搭配同一套雲端管理平台與全台服務。",
     },
     {
       q: "適合賣什麼商品？",
@@ -818,6 +818,15 @@ function CTA() {
               className="inline-block border border-white/20 text-white/60 px-10 py-4 rounded-full font-medium hover:bg-white/5 hover:text-white transition-all"
             >
               查看客戶實績
+            </Link>
+            {/* 2026-08-20：接到新的全系列規格頁。錨文字帶「8 款型號規格」而不是
+                「了解更多」——這頁是站上權重最高的冷凍相關頁，錨文字要把型號意圖帶過去。 */}
+            <Link
+              href="/products/frozen-vending"
+              className="inline-block border px-10 py-4 rounded-full font-medium transition-all"
+              style={{ borderColor: 'rgba(255,107,53,0.5)', color: '#FF6B35' }}
+            >
+              看全系列 8 款型號規格
             </Link>
             <Link
               href="/products/grabox"

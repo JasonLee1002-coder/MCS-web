@@ -23,7 +23,7 @@ export default function Article() {
 
         <div className="space-y-7 text-slate-300 leading-relaxed">
           <p>
-            台灣早午餐市場在 2026 年已超過 NT$200 億，是餐飲業成長最快的品類之一。
+            台灣早午餐是餐飲業成長最快的品類之一。
             但高需求也帶來高壓力：週末早午餐的等待時間平均 35–50 分鐘，其中廚房出餐約佔 20 分鐘，
             「等員工叫號、確認、交餐」這個環節往往佔了剩餘的 15–30 分鐘。
           </p>
@@ -66,7 +66,7 @@ export default function Article() {
               <p><span className="text-slate-400">外帶等待感受：</span><span className="text-slate-200">顧客可先離開等 LINE 通知，不需在店內排隊等叫號，實際「感受等待時間」明顯縮短</span></p>
               <p><span className="text-slate-400">外帶出錯率：</span><span className="text-slate-200">格口獨立、掃碼放餐，可有效降低對錯訂單、拿錯餐點的狀況</span></p>
               <p><span className="text-slate-400">週末翻桌率：</span><span className="text-slate-200">顧客不佔用內用座位等外帶，桌子週轉速度可望提升</span></p>
-              <p><span className="text-slate-400">設備（20 格）月租：</span><span className="text-slate-200">NT$4,200/台</span></p>
+              <p><span className="text-slate-400">設備（20 格）：</span><span className="text-slate-200">月租，費用依格數與合約期間而定</span></p>
               <p><span className="text-slate-400">人力效益：</span><span className="text-slate-200">週末尖峰可減少 1 名專責叫號/交餐人力，改由系統自動通知</span></p>
               <p className="text-slate-500 text-xs mt-2">* 實際改善幅度依門市規模、原有流程與人流結構而異，建議洽詢顧問依你的門市數據估算</p>
             </div>
@@ -101,7 +101,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">你的早午餐店適合幾格？AI 顧問幫你算</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們門市數、週末外帶訂單量、現有 POS，AI 立刻給出配置方案</p>
-            <a href="/solutions/smart-locker?utm_source=blog&utm_medium=article-bottom&utm_campaign=brunch-chain"
+            <a href="/products/grabox?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=brunch-chain"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

@@ -71,7 +71,7 @@ export default function Article() {
                 title: '大學場域',
                 points: [
                   '食品安全衛生管理法：冷凍販賣機食材須符合 CNS 冷凍食品標準，温控須有記錄',
-                  '公立大學採購：NT$15 萬以上需公開招標，銓幻元可提供完整投標文件',
+                  '公立大學採購：依政府採購法的公告金額級距決定招標方式，銓幻元可提供完整投標文件',
                   '私立大學採購：依各校自訂採購規範，通常比公立彈性',
                   '販賣機擺設許可：向學校總務處申請，銓幻元協助準備場地申請文件',
                 ],
@@ -79,7 +79,7 @@ export default function Article() {
               {
                 title: '高中住宿場域',
                 points: [
-                  '未成年保護：建議設定消費上限（如 NT$500/週），家長可透過系統查詢消費記錄',
+                  '未成年保護：可設定每週消費上限，家長可透過系統查詢消費記錄',
                   '食材限制：教育部建議學校販賣設備不得販售高糖、高鈉零食，冷凍便當需符合學校午餐營養標準（脂肪 ≤ 35%、鈉 ≤ 2000mg）',
                   '使用時段管制：可設定只在放學後和週末開放使用',
                   '家長同意書：銓幻元提供標準版，學校可直接使用',
@@ -110,26 +110,31 @@ export default function Article() {
           <h2 className="text-xl font-bold text-slate-100 mt-8">投資試算：5,000 人大學宿舍</h2>
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
             <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">設備：</span><span className="text-slate-200">冷凍販賣機 × 3（宿舍各樓棟）</span></p>
-              <p><span className="text-slate-400">設備月租費：</span><span className="text-slate-200">NT$7,500 × 3 = NT$22,500</span></p>
-              <p><span className="text-slate-400">食材月均成本：</span><span className="text-slate-200">NT$35,000</span></p>
-              <p><span className="text-slate-400">電費：</span><span className="text-slate-200">NT$4,200</span></p>
-              <p><span className="text-slate-400">日均使用（3 台合計）：</span><span className="text-slate-200">85–120 次</span></p>
-              <p><span className="text-slate-400">月均收入（100 次/天 × NT$90）：</span><span className="text-slate-200">NT$270,000</span></p>
-              <p><span className="text-slate-400">月均利潤：</span><span className="text-[#FF6B35] font-bold">NT$208,300</span></p>
-              <p><span className="text-slate-400">學生餐飲滿意度：</span><span className="text-slate-200">大幅提升（深夜餐食問題解決）</span></p>
+              <p className="text-slate-300">這個場域的成本會由以下幾項決定，實際金額差距很大，需要依現場條件試算：</p>
+              <ul className="text-slate-400 list-disc pl-5 space-y-1 mt-2">
+                <li>設備取得方式（購置或租賃）與機型、格數、溫層</li>
+                <li>商品進貨成本與品項結構</li>
+                <li>電費，取決於溫層與現場使用強度</li>
+                <li>補貨與維護的人力安排</li>
+              </ul>
+              <p className="text-slate-500 text-xs mt-3">本站不提供費用數字。實際條件請由專人依您的場地評估後說明。</p>
+            
             </div>
           </div>
 
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">學校場域採購規劃，AI 顧問提供完整文件</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們學校類型、在校人數、採購預算，AI 立刻給出合規配置方案和採購文件清單</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=school"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=school"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>
           </div>
         </div>
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending/mcs-fz21x" style={{ color: '#FF6B35' }} className="hover:underline">MCS-FZ21X 54 貨道規格</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← 返回知識庫</a>
         </div>

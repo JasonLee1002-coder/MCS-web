@@ -8,6 +8,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { LeadConfirmCard, type LeadData } from "./LeadConfirmCard";
 import { OPENER } from "@/lib/chat-config";
+import { PERSONA } from "@/lib/ai-persona";
 
 interface PageContext {
   welcome: string;
@@ -149,7 +150,7 @@ export default function AiConsultant() {
       {
         id: "init-brand",
         role: "assistant" as const,
-        parts: [{ type: "text" as const, text: "嗨！我是小龍 🐉 MCS 銓幻元科技的 AI 顧問" }],
+        parts: [{ type: "text" as const, text: `嗨！我是 ${PERSONA.name}，MCS 銓幻元科技的 AI 顧問` }],
       },
       {
         id: "init-welcome",
@@ -179,9 +180,12 @@ export default function AiConsultant() {
   const MAX_TURNS = 8;
 
   // 偵測測試模式：?test=1 → 送出時不寫入真實 CRM
+  // 並支援 ?ai=1 自動展開對話框（blog 文末「諮詢 AI 顧問」CTA 用，落地即開始對話）
   useEffect(() => {
     if (typeof window === "undefined") return;
-    setTestMode(new URLSearchParams(window.location.search).get("test") === "1");
+    const params = new URLSearchParams(window.location.search);
+    setTestMode(params.get("test") === "1");
+    if (params.get("ai") === "1") setIsOpen(true);
   }, []);
 
   useEffect(() => {
@@ -217,6 +221,20 @@ export default function AiConsultant() {
     syncToPresentation(userText, answerText);
   }, [messages, isStreaming, isPresenterMode, syncToPresentation]);
 
+/**
+ * 撤回判定（必須與 api/chat/route.ts 的 isClearToken 同義）。
+ *
+ * 2026-08-18 Codex R3 收緊：原本 `v.replace(/[\s_]/g,'').toUpperCase()==='CLEAR'`
+ * 會把裸的 `CLEAR` / `clear` 也當成控制碼——公司名、LINE ID、英文需求「clear」
+ * 都會被靜默刪除。現在要求至少帶一個底線，變體仍涵蓋
+ * `__CLEAR__` / `__clear__` / `_clear_` / `__ CLEAR __`。
+ */
+function isClearToken(v: string): boolean {
+  const s = v.trim();
+  if (!s.includes("_")) return false;
+  return s.replace(/[\s_]/g, "").toUpperCase() === "CLEAR";
+}
+
   // 累積解析 summarize_lead 的每輪輸出，得到目前已收集欄位 + AI 是否判定可送出
   const { partialLead, aiReady } = useMemo(() => {
     const acc: Partial<LeadData> = {};
@@ -230,12 +248,20 @@ export default function AiConsultant() {
           const o = p.output as Record<string, unknown>;
           for (const k of keys) {
             const v = o[k];
-            if (typeof v === "string" && v.trim()) {
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              (acc as any)[k] = v;
-            }
+            if (typeof v !== "string") continue;
+            const tv = v.trim();
+            if (!tv) continue;
+            // 2026-08-18 Codex R3：撤回原本只在伺服器端生效，前端這個累積器
+            // 不認 __CLEAR__，導致使用者更正後確認卡仍顯示舊值、送出的也是舊值——
+            // 功能名不副實，比沒做更糟。前後端必須同一套語意。
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            if (isClearToken(tv)) { delete (acc as any)[k]; continue; }
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (acc as any)[k] = tv;
           }
-          if (o.ready === true) ready = true;
+          // ready 原本只會 latch true，撤回聯絡方式後仍停留在可送出。
+          // 改成以「最後一輪工具輸出」為準，讓它能倒退回 false。
+          ready = o.ready === true;
         }
       }
     }
@@ -246,10 +272,20 @@ export default function AiConsultant() {
   const hasContact = !!partialLead.contact;
   const started = userTurns > 0;
 
+  // 2026-08-18 Codex 稽核：caseId 原本在 handleLeadSubmit 內用 Date.now() 現算，
+  // 代表同一張確認卡只要重送一次（送出失敗後再按、或卡片重新開啟），
+  // 下游就會拿到全新的 caseId、當成兩筆不同的單——Notion、BD 追蹤案、
+  // LINE/TG 通知全部重複，而且沒有任何一層看得出它們其實是同一筆。
+  // 改成確認卡出現時產生一次，成功送出後才清掉。
+  const caseIdRef = useRef<string>("");
+
   // AI 判定可送出 → 自動開啟確認卡
   useEffect(() => {
     if (leadData || dismissed) return;
-    if (aiReady) setLeadData(buildLead(partialLead));
+    if (aiReady) {
+      if (!caseIdRef.current) caseIdRef.current = `MCS-${Date.now()}`;
+      setLeadData(buildLead(partialLead));
+    }
   }, [aiReady, partialLead, leadData, dismissed]);
 
   // 空串流自動重送（極少數情況 AI Gateway/供應商偶爾回空串流）。
@@ -289,7 +325,10 @@ export default function AiConsultant() {
   // 兜底：對話達上限仍未產生 lead → 強制用已收集欄位組一筆送出（不再卡死）
   useEffect(() => {
     if (leadData || dismissed || isStreaming) return;
-    if (userTurns >= MAX_TURNS) setLeadData(buildLead(partialLead));
+    if (userTurns >= MAX_TURNS) {
+      if (!caseIdRef.current) caseIdRef.current = `MCS-${Date.now()}`;
+      setLeadData(buildLead(partialLead));
+    }
   }, [userTurns, isStreaming, leadData, dismissed, partialLead]);
 
   useEffect(() => {
@@ -311,6 +350,7 @@ export default function AiConsultant() {
 
   function forceLead() {
     setDismissed(false);
+    if (!caseIdRef.current) caseIdRef.current = `MCS-${Date.now()}`;
     setLeadData(buildLead(partialLead));
   }
 
@@ -320,11 +360,16 @@ export default function AiConsultant() {
       .flatMap((m) =>
         (m.parts ?? [])
           .filter((p): p is { type: "text"; text: string } => p.type === "text")
-          .map((p) => `[${m.role}] ${p.text}`)
+          // 2026-08-18 紅隊修正：把訊息內容裡出現的 [user]/[assistant]/[system]
+          // 換成全形括號，避免內容偽造出一行假的角色前綴——下游 scrubTranscript
+          // 是逐行判讀的，若讓內容能自行宣告角色，遮蔽規則就形同虛設。
+          .map((p) => `[${m.role}] ${p.text.replace(/\[(user|assistant|system)\]/gi, "［$1］")}`)
       )
       .join("\n");
 
-    const caseId = `MCS-${Date.now()}`;
+    // 用確認卡出現時就固定下來的 caseId，讓重送是「同一筆」而不是「新一筆」
+    if (!caseIdRef.current) caseIdRef.current = `MCS-${Date.now()}`;
+    const caseId = caseIdRef.current;
     await fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -332,13 +377,25 @@ export default function AiConsultant() {
         caseId,
         venue: data.venue,
         situation: data.need,
-        description: data.headcount ?? "",
+        // 2026-08-18 修：description 原本整欄就是 data.headcount，
+        // 所以 CRM「現有條件」欄長年只有「1000人以上」「1」這種人流字串，
+        // 沒問到人流時就整欄空白（實查 12 筆真單有 5 筆空白）。
+        // 現在 headcount 走自己的欄位，description 改成真正的「現有條件」——
+        // 場域原話 + 人流 + 單位，業務看得到情境。
+        description: [
+          data.venue ? `場域：${data.venue}` : "",
+          data.headcount ? `人流／出餐量：${data.headcount}` : "",
+          data.institution ? `單位：${data.institution}` : "",
+        ].filter(Boolean).join("\n"),
+        headcount: data.headcount ?? "",
         name: data.name,
         contact: data.contact,
         institution: data.institution ?? "",
         sourceUrl: pathname,
         contactMethod: data.contactMethod,
-        aiSummary: textLines.slice(0, 2000),
+        // 上限放寬到 6000，實際遮蔽與截斷由伺服器端 scrubTranscript() 處理
+        // （它會保留結尾——聯絡方式與更正通常在對話最後，比開頭值錢）
+        aiSummary: textLines.slice(0, 6000),
         leadCategory: data.category ?? "IoT無人商店",
         testMode,
       }),
@@ -355,10 +412,10 @@ export default function AiConsultant() {
           id="yuzu-ai-btn"
           onClick={() => setIsOpen(true)}
           className="fixed bottom-6 right-6 z-50 bg-mcs-orange text-white rounded-full shadow-lg hover:bg-mcs-orange-light transition-all flex items-center gap-2 pl-4 pr-5 py-3 animate-bounce"
-          aria-label="小龍 AI 顧問"
+          aria-label={`${PERSONA.name} AI 顧問`}
         >
           <span className="text-2xl">🐉</span>
-          <span className="text-sm font-bold">小龍 AI</span>
+          <span className="text-sm font-bold">{PERSONA.name}</span>
         </button>
       )}
 
@@ -376,7 +433,7 @@ export default function AiConsultant() {
               <div className="w-10 h-10 bg-mcs-orange rounded-full flex items-center justify-center text-xl">🐉</div>
               <div>
                 <div className="text-white font-bold text-sm flex items-center gap-1.5">
-                  小龍 AI 顧問
+                  {PERSONA.name} AI 顧問
                   <motion.span
                     className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"
                     animate={reduceMotion ? undefined : { opacity: [1, 0.35, 1] }}
@@ -548,7 +605,7 @@ export default function AiConsultant() {
                   </svg>
                 </button>
               </form>
-              <div className="text-[10px] text-gray-400 pb-2 text-center">Powered by 小龍 AI 🐉</div>
+              <div className="text-[10px] text-gray-400 pb-2 text-center">Powered by {PERSONA.name}</div>
             </div>
           )}
         </motion.div>

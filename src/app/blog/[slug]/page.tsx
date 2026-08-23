@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
@@ -12,6 +13,10 @@ export async function generateStaticParams() {
   return getAllBlogSlugs().map((slug) => ({ slug }));
 }
 
+// 文章來源是 build 時掃 content/blog/*.md，不存在動態新增的 slug。
+// 關掉 dynamicParams 讓 Next 對名單外的路徑直接回 404，不進 render。
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,6 +24,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
+  if (!post) return { title: "找不到文章" };
   // 根 layout 的 title.template 是「%s | 銓幻元科技 MCS」，會自動接在後面。
   // 但有些文章的標題本身就必須帶品牌名——例如「GraBox 智取櫃是哪家公司製造的？
   // 銓幻元科技 MCS 完整介紹」，品牌就是那個查詢的答案，拿掉反而弱化。
@@ -60,6 +66,7 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
   const post = await getBlogPost(slug);
+  if (!post) notFound();
 
   const wordCount = post.content.replace(/<[^>]*>/g, "").length;
 
@@ -202,16 +209,26 @@ export default async function BlogPostPage({
             <h1 className="text-3xl sm:text-4xl font-bold mt-2 mb-4">
               {post.title}
             </h1>
-            <div className="flex flex-wrap gap-2">
-              {post.keywords.map((kw) => (
-                <span
-                  key={kw}
-                  className="bg-white/10 border border-white/20 px-3 py-1 rounded-full text-xs"
-                >
-                  {kw}
-                </span>
-              ))}
-            </div>
+
+            {/*
+              2026-08-23 GEO 修正：H1 正下方原本是關鍵字標籤列。
+
+              實測（AI 引用測試，56 題 × 兩平台）發現 mcstation 在
+              「智取櫃跟寄物櫃差在哪」這類題目上輸給自家的 transtep.com 與
+              李奇申.com——但內容其實存在且完整。抓下線上 HTML 才看到：
+              H1 之後緊接的是「餐飲智取櫃 取餐智取櫃 智取櫃差異」這串標籤，
+              **AI 最常引用的位置被關鍵字堆佔住了**，摘要反而沒出現在正文裡。
+
+              改為在 H1 下方放 description（那本來就是一句話直接回答），
+              關鍵字標籤降到文末。這是模板，影響全站約 137 篇。
+
+              關鍵字標籤本身對排名早已沒有作用，把它放在最值錢的版位是純損失。
+            */}
+            {post.description && (
+              <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-3xl">
+                {post.description}
+              </p>
+            )}
           </div>
         </section>
 

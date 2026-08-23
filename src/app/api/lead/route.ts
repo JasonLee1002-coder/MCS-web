@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { after } from 'next/server'
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
-import { scrubLeak } from '@/lib/leak-guard'
-
-const YUZU_BASE = process.env.YUZU_INTERNAL_URL ?? 'https://poc.mcstation.ai/yuzu'
-const YUZU_WEBHOOK_SECRET = process.env.YUZU_WEBHOOK_SECRET
+import { scrubTranscript } from '@/lib/leak-guard'
+import { forwardToYuzu, writeLeadToNotionDirect, alertLeadFailure, type LeadPayload } from '@/lib/lead-fallback'
 
 /**
  * 判斷是否為「有效聯絡方式」。無聯絡卻仍派單是下游死單主因，
@@ -82,41 +80,43 @@ export async function POST(req: NextRequest) {
     return response
   }
 
+  const transcript = scrubTranscript(typeof data.aiSummary === 'string' ? data.aiSummary : '')
+
+  const payload: LeadPayload = {
+    caseId,
+    keyword:       typeof data.keyword === 'string' ? data.keyword : '',
+    venue:         data.venue as string | undefined,
+    situation:     data.situation as string | undefined,
+    description:   (data.description as string | undefined) ?? '',
+    name:          data.name as string | undefined,
+    contact:       data.contact as string | undefined,
+    institution:   (data.institution as string | undefined) ?? '',
+    sourceUrl:     (data.sourceUrl as string | undefined) ?? 'mcstation.ai',
+    source:        'mcstation.ai',
+    leadCategory:  (data.leadCategory as string | undefined) ?? 'IoT無人商店',
+    timestamp:     new Date().toISOString(),
+    contactMethod: data.contactMethod as string | undefined,
+    headcount:     (data.headcount as string | undefined) ?? '',
+    // scrub v2：逐行遮蔽而非整段替換。v1 的 scrubLeak 只要命中任一 marker
+    // 就把整份逐字稿換成一句安全語——客戶問一句「你們有用 ChatGPT 嗎」
+    // 就會讓場域、人流、姓名、電話全部消失。詳見 lib/leak-guard.ts。
+    aiSummary:     transcript.text,
+    transcriptRedactedLines: transcript.redactedLines,
+    transcriptTruncated:     transcript.truncated,
+    TEST_MODE:     !!data.YUZU_TEST_MODE, // 內部驗測用：Yuzu 端驗證格式但不寫入 CRM/LINE
+  }
+
   after(async () => {
-    try {
-      const yuzuRes = await fetch(`${YUZU_BASE}/api/lead`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(YUZU_WEBHOOK_SECRET ? { 'x-yuzu-secret': YUZU_WEBHOOK_SECRET } : {}),
-        },
-        body: JSON.stringify({
-          caseId,
-          keyword:      typeof data.keyword === 'string' ? data.keyword : '',
-          venue:        data.venue,
-          situation:    data.situation,
-          description:  data.description ?? '',
-          name:         data.name,
-          contact:      data.contact,
-          institution:  data.institution ?? '',
-          sourceUrl:    data.sourceUrl ?? 'mcstation.ai',
-          source:       'mcstation.ai',
-          leadCategory: data.leadCategory ?? 'IoT無人商店',
-          timestamp:    new Date().toISOString(),
-          contactMethod: data.contactMethod,
-          aiSummary:    scrubLeak(typeof data.aiSummary === 'string' ? data.aiSummary : '').slice(0, 2000),
-          TEST_MODE:    !!data.YUZU_TEST_MODE, // 內部驗測用：Yuzu 端驗證格式但不寫入 CRM/LINE
-        }),
-        signal: AbortSignal.timeout(10000),
-      })
-      if (!yuzuRes.ok) {
-        console.error('[lead] Yuzu forward failed:', caseId, yuzuRes.status, await yuzuRes.text())
-      } else {
-        console.log('[lead]', caseId, `venue="${data.venue ?? ''}"`, '→ Yuzu ✓')
-      }
-    } catch (err) {
-      console.error('[lead] Yuzu forward failed:', err)
+    // 2026-08-18：原本只送一次，失敗只寫 console.error —— 客戶端已看到「已送出」，
+    // 單子卻不存在於任何地方。改為重試三次 → 直接寫 CRM → 寄信告警。
+    const reason = await forwardToYuzu(payload)
+    if (reason === null) {
+      console.log('[lead]', caseId, `venue="${data.venue ?? ''}"`, '→ Yuzu ✓')
+      return
     }
+    console.error('[lead] Yuzu 轉發三次皆失敗:', caseId, reason)
+    const notionOk = await writeLeadToNotionDirect(payload, reason)
+    await alertLeadFailure(payload, reason, notionOk)
   })
 
   return response

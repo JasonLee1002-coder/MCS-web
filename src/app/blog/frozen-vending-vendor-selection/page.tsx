@@ -105,7 +105,7 @@ export default function Article() {
           <h2 className="text-xl font-bold text-slate-100 mt-10">3 個常見踩坑情境</h2>
           <div className="space-y-4">
             {[
-              { title: '❌ 坑 1：被最低報價吸引，忽略維修成本', desc: '一台低報價設備可能在 1 年內出現 3–4 次故障，每次維修費用 NT$5,000–12,000 加上停機損失，實際總成本遠高於買優質設備。選廠商不能只看設備單價。' },
+              { title: '❌ 坑 1：被最低報價吸引，忽略維修成本', desc: '一台低報價設備可能在 1 年內出現 3–4 次故障，每次維修都有費用，加上停機損失，實際總成本遠高於買優質設備。選廠商不能只看設備單價。' },
               { title: '❌ 坑 2：不確認食材供應就簽約', desc: '設備到位了，才發現合適的冷凍食材很難取得，或補貨物流要自己全部搞定。導入前一定要先確認食材供應鏈是否可行，否則設備形同擺設。' },
               { title: '❌ 坑 3：忽略 IoT 功能，用人工管理', desc: '每天派人去查庫存、手動記銷售、現場才能發現故障——這些都是有 IoT 系統就能自動化的工作。沒有 IoT 的設備，管理成本高 50% 以上。' },
             ].map(({ title, desc }) => (
@@ -142,12 +142,16 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">讓 AI 顧問幫你比較方案，省去自己問的時間</p>
             <p className="text-slate-400 text-sm mb-5">告訴 AI 你的場域需求，AI 直接給出銓幻元規格說明，3 分鐘完成第一輪評估</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=vendor-selection"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=vendor-selection"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>
           </div>
         </div>
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending" style={{ color: '#FF6B35' }} className="hover:underline">冷凍與冷凍微波全系列 8 款比較</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← 返回知識庫</a>
         </div>

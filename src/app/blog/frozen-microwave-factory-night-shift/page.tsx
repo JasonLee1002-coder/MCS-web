@@ -76,8 +76,8 @@ export default function Article() {
               </thead>
               <tbody>
                 {[
-                  ['< 200 人', '1 台冷凍微波機', 'NT$8,000–12,000'],
-                  ['200–1,000 人', '2 台冷凍微波機 + 1 台智取櫃', 'NT$18,000–25,000'],
+                  ['< 200 人', '1 台冷凍微波機', '依機型與合作方式'],
+                  ['200–1,000 人', '2 台冷凍微波機 + 1 台智取櫃', '依機型與合作方式'],
                   ['> 1,000 人', '4+ 台 + IoT 監控 + AI 補貨', '客製報價'],
                 ].map(([size, config, price], i) => (
                   <tr key={i} style={{ borderTop: '1px solid #1e293b', background: i % 2 === 0 ? '#0f1f36' : '#0d1a2d' }}>
@@ -101,6 +101,10 @@ export default function Article() {
         </div>
 
         {/* Back link */}
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending/mcs-fm32" style={{ color: '#FF6B35' }} className="hover:underline">MCS-FM32 雙微波規格</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">
             ← 返回知識庫

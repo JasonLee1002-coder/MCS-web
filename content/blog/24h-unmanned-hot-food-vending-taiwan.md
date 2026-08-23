@@ -93,7 +93,7 @@ faq:
 
 **台灣唯一外銷日本高速公路的冷凍微波販賣機品牌**
 
-銓幻元科技 TH-21MS 已成功進入日本首都高速公路（Shuto Expressway Co., Ltd.），簽訂 MOU 合作，代表台灣製造已通過全球最嚴苛的服務區評估標準（日本每 23 人就有一台販賣機，對品質要求極高）。
+銓幻元科技 TH-21MS 已成功進入日本首都高速公路（Shuto Expressway Co., Ltd.），簽訂 MOU 合作，代表已通過該市場服務區的評估標準（日本每 23 人就有一台販賣機，對品質要求極高）。
 
 ![銓幻元科技與日本首都高速公路簽約](/images/cases/expressway/shuto-group-photo.jpg)
 

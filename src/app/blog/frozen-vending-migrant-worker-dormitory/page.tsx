@@ -90,11 +90,11 @@ export default function Article() {
               </thead>
               <tbody>
                 {[
-                  ['設備費用', 'NT$7,500/月（含維護）', 'NT$220,000（1 次）'],
-                  ['食材成本', 'NT$25,000/月', 'NT$25,000/月'],
-                  ['電費', 'NT$1,400/月', 'NT$1,400/月'],
-                  ['月均收入（200人宿舍）', 'NT$52,000', 'NT$52,000'],
-                  ['月均利潤', 'NT$18,100', 'NT$25,600'],
+                  ['設備費用', '月租（含維護）', '一次購置'],
+                  ['食材成本', '兩者相同，依品項結構', '兩者相同，依品項結構'],
+                  ['電費', '兩者相同，依溫層與使用強度', '兩者相同，依溫層與使用強度'],
+                  ['月均收入', '依住宿人數與使用率', '依住宿人數與使用率'],
+                  ['損益結構', '前期支出低、長期總成本較高', '前期支出高、長期總成本較低'],
                   ['回收設備費', '—（無前期支出）', '約 8.6 個月'],
                 ].map(([item, rental, purchase], i) => (
                   <tr key={i} style={{ borderTop: '1px solid #1e293b', background: i % 2 === 0 ? '#0f1f36' : '#0d1a2d' }}>
@@ -138,13 +138,17 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">有場域需求？直接跟 AI 顧問說，3 分鐘整理你的方案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們宿舍人數、移工國籍、補貨頻率偏好，AI 立刻給出配置建議</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=migrant-worker"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=migrant-worker"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>
           </div>
 
         </div>
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending/mcs-fz21s" style={{ color: '#FF6B35' }} className="hover:underline">MCS-FZ21S 保溫取貨箱規格</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← 返回知識庫</a>
         </div>

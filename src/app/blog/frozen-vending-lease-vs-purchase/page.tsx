@@ -45,11 +45,11 @@ export default function Article() {
               </thead>
               <tbody>
                 {[
-                  ['前期設備費', 'NT$0', 'NT$220,000–380,000'],
-                  ['安裝費', '含在月費中', 'NT$5,000–8,000（一次）'],
-                  ['月費（含維護）', 'NT$6,500–9,500', 'NT$0（維護另計）'],
-                  ['年度保養費', '含在月費中', 'NT$8,000–12,000/年'],
-                  ['故障維修費', '含在月費中（保固期內）', 'NT$3,000–15,000/次'],
+                  ['前期設備費', '不需要', '一次性支出，依機型與規格'],
+                  ['安裝費', '含在月費中', '一次性計費'],
+                  ['月費（含維護）', '持續發生，含維護', '不需月費，維護另計'],
+                  ['年度保養費', '含在月費中', '自行負擔，按年計'],
+                  ['故障維修費', '含在月費中（保固期內）', '保固期外自行負擔，依故障項目'],
                   ['合約最短年限', '6 個月', '無限制（設備你的）'],
                   ['設備升級', '合約期滿可換新款', '需自行汰換'],
                   ['提前終止違約金', '剩餘月費 × 50%', '無（設備自有）'],
@@ -76,13 +76,12 @@ export default function Article() {
               </thead>
               <tbody>
                 {[
-                  ['第 1 個月', 'NT$7,500（月費）', 'NT$228,000（設備＋安裝）'],
-                  ['第 6 個月', 'NT$45,000', 'NT$233,000'],
-                  ['第 12 個月', 'NT$90,000', 'NT$243,000'],
-                  ['第 18 個月', 'NT$135,000', 'NT$251,000（含半年保養）'],
-                  ['第 24 個月', 'NT$180,000', 'NT$259,000'],
-                  ['第 30 個月', 'NT$225,000', 'NT$267,000（含半年保養）'],
-                  ['第 36 個月', 'NT$270,000', 'NT$275,000'],
+                  ['第 1 個月', '只有月費', '設備＋安裝的大額支出全部落在這裡'],
+                  ['前半年', '累積月費仍低', '幾乎沒有新增支出'],
+                  ['第 1 年', '累積月費持續上升', '開始出現保養支出'],
+                  ['第 2 年', '累積月費逼近買斷前期金額', '僅保養與偶發維修'],
+                  ['第 3 年前後', '兩者累積成本通常在此交叉', '此後每年只剩維護成本'],
+                  ['第 3 年之後', '月費持續發生', '總成本明顯低於租賃'],
                 ].map(([time, lease, buy], i) => (
                   <tr key={i} style={{ borderTop: '1px solid #1e293b', background: i % 2 === 0 ? '#0f1f36' : '#0d1a2d' }}>
                     <td className="px-4 py-3 text-slate-300 font-medium">{time}</td>
@@ -94,16 +93,16 @@ export default function Article() {
             </table>
           </div>
           <p className="text-xs text-slate-500">
-            * 試算基礎：1 台冷凍販賣機、月費 NT$7,500（含維護）、設備買斷 NT$220,000、安裝 NT$8,000、年保養 NT$10,000。
-            <br />* 第 36 個月兩者費用幾乎持平（買斷略低 NT$5,000）。之後買斷每年可節省 NT$80,000 左右。
+            * 交叉點落在第幾個月，完全取決於機型、月費條件與保養約定，需要用你自己拿到的條件計算。
+            <br />* 判斷原則：預計使用時間明顯超過交叉點就買斷，反之租賃。
           </p>
 
           <h2 className="text-xl font-bold text-slate-100 mt-8">損益平衡點分析</h2>
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
-            <h3 className="font-bold text-[#FF6B35] mb-3">以 NT$7,500/月租賃 vs NT$228,000 買斷為例</h3>
+            <h3 className="font-bold text-[#FF6B35] mb-3">怎麼自己算出交叉點</h3>
             <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">每月費用差：</span><span className="text-slate-200">買斷前期多支出 NT$228,000，但每月少付 NT$7,500</span></p>
-              <p><span className="text-slate-400">損益平衡：</span><span className="text-[#FF6B35] font-bold">NT$228,000 ÷ NT$7,500 = 30.4 個月（約 2.5 年）</span></p>
+              <p><span className="text-slate-400">每月費用差：</span><span className="text-slate-200">買斷前期多支出一筆，但之後每月少付一筆</span></p>
+              <p><span className="text-slate-400">損益平衡：</span><span className="text-[#FF6B35] font-bold">買斷的前期支出 ÷ 每月省下的月費 ＝ 幾個月後兩者打平</span></p>
               <p><span className="text-slate-400">結論：</span><span className="text-slate-200">預計使用超過 2.5 年 → 買斷划算；不確定使用年限 → 先租賃</span></p>
             </div>
           </div>
@@ -114,35 +113,35 @@ export default function Article() {
               {
                 situation: '情境 A：工廠/宿舍，確定長期使用',
                 recommendation: '建議買斷',
-                reason: '場域穩定、使用年限長，2.5 年後每年省 NT$80,000+。若資金有限，可先租賃 1 年確認效果再買斷。',
+                reason: '場域穩定、使用年限長，過了交叉點之後每年都在省。若資金有限，可先租賃一年確認效果再買斷。',
                 color: 'rgba(34,197,94,0.1)',
                 border: 'rgba(34,197,94,0.3)',
               },
               {
                 situation: '情境 B：新開發場域，不確定使用率',
                 recommendation: '強烈建議先租賃',
-                reason: '租賃讓你用 6 個月驗證場域。若使用率不達預期（日均 < 40 次），可在合約期滿後不續租，損失最多 NT$45,000，而非 NT$228,000 的設備成本。',
+                reason: '租賃讓你用半年驗證場域。若使用率不如預期，合約期滿不續租，損失只有已付的月費，而不是整台設備。',
                 color: 'rgba(59,130,246,0.1)',
                 border: 'rgba(59,130,246,0.3)',
               },
               {
                 situation: '情境 C：政府 / 軍方採購',
                 recommendation: '視採購法規定',
-                reason: '超過 NT$15 萬需走公開招標，買斷通常是預算科目。租賃可能歸入「服務費」科目，反而在年度預算操作上更靈活。請確認各單位的採購法適用規則。',
+                reason: '達到公告金額級距就要走招標程序，買斷通常列資本門。租賃可能歸入服務費科目，年度預算操作上較靈活。實際適用請確認各單位的採購規定。',
                 color: 'rgba(245,158,11,0.1)',
                 border: 'rgba(245,158,11,0.3)',
               },
               {
                 situation: '情境 D：連鎖佈點（5 台以上）',
                 recommendation: '建議租賃（批量折扣）',
-                reason: '5 台以上租賃可談 8 折月費（NT$6,000/台），同時避免大量前期資本支出。設備統一維護、統一管理，比分散買斷更有效率。',
+                reason: '量大時租賃月費有議價空間，同時避免大量前期資本支出。設備統一維護、統一管理，比分散買斷更有效率。',
                 color: 'rgba(168,85,247,0.1)',
                 border: 'rgba(168,85,247,0.3)',
               },
               {
                 situation: '情境 E：資金充裕、想自主運營',
                 recommendation: '建議買斷',
-                reason: '買斷後食材收入 100% 歸自己，月費 0。若日均 80 次、售價平均 NT$100，月收入 NT$240,000，月費節省讓利潤率提升 3–4 個百分點。',
+                reason: '買斷後沒有月費，銷售收入全部歸自己。使用率越高，省下的月費在利潤結構裡的佔比越明顯。',
                 color: 'rgba(34,197,94,0.1)',
                 border: 'rgba(34,197,94,0.3)',
               },
@@ -174,7 +173,7 @@ export default function Article() {
               },
               {
                 q: 'Q：買斷後，維修保固是多久？',
-                a: '原廠保固 2 年，軍方版延長至 3 年。保固期外的維修採計時計料方式，零件費 + 人工費，通常每次 NT$3,000–8,000。保固期外也可另購年度維護合約（NT$10,000/年）。',
+                a: '原廠保固 2 年，軍方版延長至 3 年。保固期外的維修採計時計料方式（零件費＋人工費），也可另購年度維護合約。',
               },
               {
                 q: 'Q：買斷後機台折舊怎麼算？',
@@ -195,13 +194,17 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">告訴 AI 顧問你的場域，3 分鐘得到租 vs 買建議</p>
             <p className="text-slate-400 text-sm mb-5">輸入場域人數、預計使用年限、預算，AI 立刻給出最划算的財務建議</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=lease-vs-buy"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=lease-vs-buy"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>
           </div>
 
         </div>
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending" style={{ color: '#FF6B35' }} className="hover:underline">冷凍與冷凍微波全系列 8 款比較</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← 返回知識庫</a>
         </div>

@@ -187,7 +187,7 @@ export default function Article() {
               },
               {
                 q: 'Q：一台設備多少錢？有租賃方案嗎？',
-                a: '標準 30 格方案月租 NT$3,500 起（含安裝、系統、維護）。買斷方案 NT$8.8–15 萬依規格。大部分客戶選擇前兩年租賃，視使用狀況再決定是否買斷。',
+                a: '提供月租（含安裝、系統、維護）與買斷兩種方式，費用依格數與規格而定。大部分客戶選擇前兩年租賃，視使用狀況再決定是否買斷。',
               },
             ].map(({ q, a }) => (
               <div key={q} className="rounded-xl p-4" style={{ background: '#1e293b' }}>
@@ -201,7 +201,7 @@ export default function Article() {
             <p className="text-lg font-bold text-slate-200 mb-2">有場域需求？直接跟 AI 顧問說，3 分鐘整理你的方案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們場域類型、每日人流、預算，AI 立刻給出適合的取物櫃配置</p>
             <a
-              href="/solutions/smart-locker?utm_source=blog&utm_medium=article-bottom&utm_campaign=smart-locker-guide"
+              href="/products/grabox?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=smart-locker-guide"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white"
               style={{ background: '#FF6B35' }}
             >

@@ -130,9 +130,9 @@ export default function Article() {
             年度維護費用拆解，供採購評估參考：
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>定期保養（季度）：NT$3,200/次 × 4 = NT$12,800</li>
-            <li>易耗零件（門鎖、感測器）：平均 NT$4,000/年</li>
-            <li>電費（每台每月）：約 NT$1,200–1,800（依使用頻率）</li>
+            <li>定期保養：建議每季一次，費用依合約內容而定</li>
+            <li>易耗零件（門鎖、感測器）：依使用強度定期更換</li>
+            <li>電費：依溫層、機型與使用頻率差異很大，需依現場估算</li>
             <li>突發故障維修（有保固期內免費）：建議問清保固條款</li>
           </ul>
           <p>
@@ -171,7 +171,7 @@ export default function Article() {
               },
               {
                 q: 'Q：租賃還是買斷比較划算？',
-                a: '使用年限 < 3 年建議租賃（月費 NT$6,000–8,000，含維護），> 5 年建議買斷（設備費 NT$18–25 萬，自行維護）。大部分中型工廠選擇 2+1 年彈性方案。',
+                a: '使用年限 < 3 年建議租賃（含維護），> 5 年建議買斷（自行維護），實際條件由專人評估。大部分中型工廠選擇 2+1 年彈性方案。',
               },
               {
                 q: 'Q：員工刷卡還是現金付款？',
@@ -189,7 +189,7 @@ export default function Article() {
             <p className="text-lg font-bold text-slate-200 mb-2">有場域需求？直接跟 AI 顧問說，3 分鐘整理你的方案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們場域規模、夜班人數、預算，AI 立刻給出初步配置建議</p>
             <a
-              href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=frozen-vending-factory"
+              href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=frozen-vending-factory"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white"
               style={{ background: '#FF6B35' }}
             >
@@ -199,6 +199,10 @@ export default function Article() {
 
         </div>
 
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending/mcs-fz21" style={{ color: '#FF6B35' }} className="hover:underline">MCS-FZ21 標準款規格</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">
             ← 返回知識庫

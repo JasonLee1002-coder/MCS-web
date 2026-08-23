@@ -83,7 +83,7 @@ export default function Article() {
               <p className="text-slate-400 text-sm leading-relaxed mb-3">
                 機台設置在訪客接待區，供院民家屬購買帶入的點心飲料。
                 機台選品需考慮「哪些食品適合帶給長者」，建議搭配機構營養師意見。
-                此模式機構可獲得額外收入來源（NT$8,000–15,000/月），不需要額外人力管理。
+                此模式機構可獲得額外收入來源，不需要額外人力管理。
               </p>
               <div className="text-xs text-slate-300 space-y-1">
                 <p>✓ 家屬探視時方便購買適合的點心</p>
@@ -108,27 +108,34 @@ export default function Article() {
             ))}
           </div>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-8">費用試算：50 人護理之家</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-8">成本結構：50 人護理之家要算哪些項目</h2>
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
             <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">設備：</span><span className="text-slate-200">1 台冷凍販賣機（員工區，40 格）</span></p>
-              <p><span className="text-slate-400">月租費：</span><span className="text-slate-200">NT$6,500</span></p>
-              <p><span className="text-slate-400">食材月均成本：</span><span className="text-slate-200">NT$12,000</span></p>
-              <p><span className="text-slate-400">月均銷售收入（日均 25 次 × NT$85）：</span><span className="text-slate-200">NT$63,750</span></p>
-              <p><span className="text-slate-400">月均利潤：</span><span className="text-[#FF6B35] font-bold">NT$45,250</span></p>
-              <p><span className="text-slate-400">附加效益：</span><span className="text-slate-200">照護員夜班申請率提升 20%、深夜照護品質改善</span></p>
+              <p className="text-slate-300">這個場域的成本會由以下幾項決定，實際金額差距很大，需要依現場條件試算：</p>
+              <ul className="text-slate-400 list-disc pl-5 space-y-1 mt-2">
+                <li>設備取得方式（購置或租賃）與機型、格數、溫層</li>
+                <li>商品進貨成本與品項結構</li>
+                <li>電費，取決於溫層與現場使用強度</li>
+                <li>補貨與維護的人力安排</li>
+              </ul>
+              <p className="text-slate-500 text-xs mt-3">本站不提供費用數字。實際條件請由專人依您的場地評估後說明。</p>
+            
             </div>
           </div>
 
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">長照場域規劃，AI 顧問提供合規建議</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們機構類型、床位數、照護員人數，AI 立刻給出符合長照法規的設備方案</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=elderly-care"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=elderly-care"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>
           </div>
         </div>
+
+          <p className="text-slate-400 text-sm my-6">
+            對應機型規格：<a href="/products/frozen-vending/mcs-fz21s" style={{ color: '#FF6B35' }} className="hover:underline">MCS-FZ21S 保溫取貨箱規格</a>。
+          </p>
         <div className="mt-12 pt-8 border-t border-slate-700/40">
           <a href="/blog" className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← 返回知識庫</a>
         </div>

@@ -33,7 +33,7 @@ export default function Article() {
           </p>
           <p>
             傳統做法是安排人員在取餐點等候，但這意味著每個場域每天需要 1-2 人工看守，
-            若佈建 10 個場域，人力成本就超過每月 NT$40 萬。這讓幽靈廚房的規模化變得極其困難。
+            場域一多，光是取餐點的人力成本就會等比放大。這讓幽靈廚房的規模化變得極其困難。
           </p>
 
           <h2 className="text-xl font-bold text-slate-100">
@@ -80,11 +80,11 @@ export default function Article() {
               </thead>
               <tbody>
                 {[
-                  ['每月人力成本（10點）', 'NT$40 萬+', 'NT$0'],
+                  ['每月人力成本', '隨點位等比增加', '不需駐點人力'],
                   ['取餐等待時間', '5-15 分鐘', '< 30 秒'],
                   ['24 小時取餐', '❌', '✅'],
                   ['取餐數據分析', '❌', '✅ 自動生成'],
-                  ['設備月租費', 'N/A', 'NT$3,500/台'],
+                  ['設備月租費', 'N/A', '依機型與格數'],
                 ].map(([item, before, after], i) => (
                   <tr key={i} style={{ borderTop: '1px solid #1e293b', background: i % 2 === 0 ? '#0f1f36' : '#0d1a2d' }}>
                     <td className="px-4 py-3 text-slate-300">{item}</td>

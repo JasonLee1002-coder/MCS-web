@@ -79,7 +79,7 @@ export default function Article() {
               {
                 zone: 'Zone C：門診大廳（訪客輕食）',
                 equipment: '智取冰箱 × 1 + 飲料機 × 1',
-                desc: '探病訪客和門診患者可購買飲料、三明治、點心。不需要員工協助，自助取餐。每月創造 NT$20,000–35,000 額外收入（醫院或外包廠商自營）。',
+                desc: '探病訪客和門診患者可購買飲料、三明治、點心。不需要員工協助，自助取餐。可為醫院或外包廠商創造額外收入來源。',
               },
             ].map(({ zone, equipment, desc }) => (
               <div key={zone} className="rounded-xl p-5" style={{ background: '#0f1f36', border: '1px solid rgba(255,107,53,0.12)' }}>
@@ -110,7 +110,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">醫院場域規劃，AI 顧問幫你配置</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們護理師人數、班次、門診量，AI 立刻給出三區設備配置方案</p>
-            <a href="/solutions/smart-locker?utm_source=blog&utm_medium=article-bottom&utm_campaign=hospital"
+            <a href="/products/grabox?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=hospital"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

@@ -26,6 +26,24 @@ const LEAD_FIELD_KEYS = ['venue', 'need', 'headcount', 'name', 'contact', 'conta
  * 從對話歷史（先前每輪 summarize_lead 的 output）累積已知欄位。
  * 模型有時在後續回合漏帶先前欄位；以歷史聯集為準，讓 ready 判斷穩定不倒退。
  */
+/** 模型可以用這個字面值明確撤回某個欄位（見 summarize_lead 的 schema 說明） */
+/**
+ * 撤回判定。Codex 稽核指出 in-band sentinel 的三個實際風險，這裡逐一處理：
+ *   1. 模型可能輸出大小寫或空白變體（__clear__、"__CLEAR__ "）→ 統一正規化比對
+ *   2. 客戶真的打出 __CLEAR__ 時會被當成控制指令 → 只在「模型填入工具欄位」
+ *      這一層判定，客戶原話走的是 transcript，不經過這裡
+ *   3. sentinel 不得外洩到確認卡或 CRM → 命中即 delete，永遠不會成為欄位值
+ */
+function isClearToken(v: string): boolean {
+  // 2026-08-18 Codex R3 收緊：原本裸的 CLEAR / clear 也算控制碼，
+  // 公司名、LINE ID、英文需求「clear」都會被靜默刪除。要求至少帶一個底線。
+  const s = v.trim()
+  if (!s.includes('_')) return false
+  return s.replace(/[\s_]/g, '').toUpperCase() === 'CLEAR'
+}
+
+const CLEAR_TOKEN = '__CLEAR__'
+
 function accumulateFields(messages: UIMessage[]): Record<string, string> {
   const acc: Record<string, string> = {}
   for (const m of messages ?? []) {
@@ -36,7 +54,16 @@ function accumulateFields(messages: UIMessage[]): Record<string, string> {
       if ((p?.type === 'tool-summarize_lead' || p?.type === 'dynamic-tool') && out && typeof out === 'object') {
         for (const k of LEAD_FIELD_KEYS) {
           const v = out[k]
-          if (typeof v === 'string' && v.trim()) acc[k] = v
+          if (typeof v !== 'string') continue
+          const t = v.trim()
+          if (!t) continue
+          // 2026-08-18：原本這個累積器只增不減——模型在後續回合漏帶某欄時，
+          // 早期可能抽錯的舊值會永遠留著。使用者說「不是工廠，是辦公室」時，
+          // 只有在模型主動重發 venue 的情況下才會更正，否則靜默沿用錯值，
+          // 而且錯值最後會寫進 CRM、業務照著打電話。
+          // 現在給模型一個明確的撤回操作：填入 __CLEAR__ 即代表這欄作廢。
+          if (isClearToken(t)) { delete acc[k]; continue }
+          acc[k] = t
         }
       }
     }
@@ -77,7 +104,7 @@ export async function POST(req: Request) {
     tools: {
       summarize_lead: tool({
         description:
-          '需求收集進度回報工具。每一輪對話都要呼叫一次，帶入「目前已知的所有欄位」（包含先前回合已問到的，一律重帶，不要因為這輪沒提到就留空）。只要使用者提過痛點/用途，一定要填入 need 欄位，不可留空。當同時具備「場域」「需求」「聯絡方式」時，將 ready 設為 true 觸發送出確認卡。',
+          '需求收集進度回報工具。每一輪對話都要呼叫一次，帶入「目前已知的所有欄位」（包含先前回合已問到的，一律重帶，不要因為這輪沒提到就留空）。若使用者更正或收回先前講過的內容（例：「不是工廠，是辦公室」「電話我剛講錯」「場地還沒確定」），把該欄位填成 __CLEAR__ 代表作廢，不要留著舊值。只要使用者提過痛點/用途，一定要填入 need 欄位，不可留空。當同時具備「場域」「需求」「聯絡方式」時，將 ready 設為 true 觸發送出確認卡。',
         inputSchema: z.object({
           venue: z.string().optional().describe('場域類型，如：桃園辦公大樓、台北工廠'),
           need: z.string().optional().describe('核心需求／痛點摘要（必填：使用者一提到用途或痛點就填，例：夜班宵夜、無人取餐、SEO排名下滑）'),
@@ -98,12 +125,17 @@ export async function POST(req: Request) {
           const merged: Record<string, string> = { ...priorFields }
           for (const k of LEAD_FIELD_KEYS) {
             const v = (input as Record<string, unknown>)[k]
-            if (typeof v === 'string' && v.trim()) merged[k] = v
+            if (typeof v !== 'string') continue
+            const t = v.trim()
+            if (!t) continue
+            if (isClearToken(t)) { delete merged[k]; continue }
+            merged[k] = t
           }
-          const effectiveNeed = filled(merged.need)
-            ? merged.need
-            : (merged.venue && merged.venue.trim().length >= 4 ? merged.venue : '')
-          const ready = filled(merged.venue) && filled(effectiveNeed) && filled(merged.contact)
+          // 2026-08-18 移除「venue 長度 >= 4 就當成 need」的替代條件。
+          // 那等於把字串長度當成需求的代理指標，實際造成「場域填了、需求空的」
+          // 也判定收齊送出，業務收到只有場域沒有需求的單。
+          // need 必須自己成立。
+          const ready = filled(merged.venue) && filled(merged.need) && filled(merged.contact)
           return { ...merged, ready, confirmed: false }
         },
       }),

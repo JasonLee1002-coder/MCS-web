@@ -44,7 +44,7 @@ export default function Article() {
               },
               {
                 title: '2. 國家採購法合規',
-                content: '金額超過 NT$15 萬的政府採購需走公開招標。銓幻元已取得政府採購網廠商資格，可配合以下方式採購：公開招標（≥ 15 萬）、限制性招標（< 15 萬，3 家比價）、文件備齊：規格書、報價單、型錄、政府電子採購平台完整資料。',
+                content: '政府採購依政府採購法的公告金額級距決定招標方式，實際級距請以主管機關公告為準。銓幻元已取得政府採購網廠商資格，可配合以下方式採購：公開招標、限制性招標（依規定比價）、文件備齊：規格書、報價單、型錄、政府電子採購平台完整資料。',
               },
               {
                 title: '3. 資安與存取紀錄要求',
@@ -131,7 +131,7 @@ export default function Article() {
               },
               {
                 q: 'Q：食材費用誰出？',
-                a: '有三種模式：（1）自費：士兵自行付費，機台收入歸軍方或福利社；（2）補貼制：軍方提供每月 NT$500–1,000 福利點數；（3）全免費：部分特種部隊值班場域，全額由軍方支付食材費用。',
+                a: '有三種模式：（1）自費：士兵自行付費，機台收入歸軍方或福利社；（2）補貼制：軍方按月提供福利點數；（3）全免費：部分特種部隊值班場域，全額由軍方支付食材費用。',
               },
               {
                 q: 'Q：進口軍事場域需要特殊許可嗎？',
@@ -148,7 +148,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">有場域需求？直接跟 AI 顧問說，3 分鐘整理你的方案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們場域類型、值班人數、網路條件，AI 立刻給出軍方場域專屬配置建議</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=military-venue"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=military-venue"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

@@ -87,9 +87,9 @@ export default function Article() {
             <div className="text-sm space-y-2">
               <p><span className="text-slate-400">可用坪數：</span><span className="text-slate-200">0.5 坪（僅供假設，實際依現場丈量）</span></p>
               <p><span className="text-slate-400">人流轉換率：</span><span className="text-slate-200">假設每日 40 人次靠近停留</span></p>
-              <p><span className="text-slate-400">假設客單價：</span><span className="text-slate-200">舉例區間 NT$40–60</span></p>
+              <p><span className="text-slate-400">假設客單價：</span><span className="text-slate-200">依品項結構而定，需由您自己的實際售價代入</span></p>
               <p><span className="text-slate-400">假設轉換為消費的比例：</span><span className="text-slate-200">舉例抓 30%</span></p>
-              <p><span className="text-slate-400">試算月產值：</span><span className="text-[#FF6B35] font-bold">40 × 30% × NT$50 × 22 天 ≈ NT$13,200（純示範公式，非承諾數字）</span></p>
+              <p><span className="text-slate-400">試算月產值：</span><span className="text-[#FF6B35] font-bold">日經過人次 × 停留轉換率 × 客單價 × 營業天數</span></p>
               <p className="text-slate-500 text-xs mt-2">
                 * 以上所有數字均為說明計算邏輯用的假設值，不代表任何真實客戶場域的實際數據或成效承諾。
                 實際產值會因品項組合、定價策略、場域淡旺季而有明顯差異，建議以此公式套入自己場域的實際觀察數字。
@@ -224,7 +224,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">不確定自己的空間坪效潛力？AI 顧問幫你估算</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們空間坪數、場域類型、人流狀況，AI 立刻給出坪效試算與設備配置建議</p>
-            <a href="/solutions/frozen-microwave?utm_source=blog&utm_medium=article-bottom&utm_campaign=space-yield-calculation"
+            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=space-yield-calculation"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

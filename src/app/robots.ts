@@ -9,6 +9,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           "/present",
           "/present/control",
+          "/iii-project",
+          "/east-beauty",
           "/api/",
           "/index.php",
           "/index.php/",
