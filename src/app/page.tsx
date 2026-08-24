@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "銓幻元科技 MCS | GraBox AI 智取櫃 · 冷凍微波販賣機",
     description:
-      "銓幻元科技 100% 台灣研發製造智慧設備。GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機。知名連鎖通路實績，日本高速公路 MOU 合作。",
+      "銓幻元科技 台灣設計組裝智慧設備。GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機。知名連鎖通路實績，日本高速公路 MOU 合作。",
     url: "https://www.mcstation.ai",
     siteName: "銓幻元科技 MCS",
     images: [{ url: "https://www.mcstation.ai/images/mcs-logo.png", width: 1200, height: 630, alt: "銓幻元科技 MCS Logo" }],
@@ -67,7 +67,7 @@ const organizationJsonLd = {
     width: 300,
     height: 100,
   },
-  description: "銓幻元科技股份有限公司，台灣 100% 自主研發製造，專注 GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機設備，服務台灣、日本、新加坡市場。",
+  description: "銓幻元科技股份有限公司，台灣設計組裝，專注 GraBox AI 智取櫃、冷凍微波販賣機、智慧販賣機設備，服務台灣、日本、新加坡市場。",
   foundingDate: "2023",
   foundingLocation: "Singapore",
   areaServed: ["TW", "JP", "SG"],

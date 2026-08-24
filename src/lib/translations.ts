@@ -155,18 +155,18 @@ export const translations: Record<Lang, Translations> = {
       sgBadge: "ACRA 認證 · 2023 立案",
       twTitle: "台灣研發中心",
       twDesc:
-        "銓幻元科技股份有限公司\n103 台北市大同區\n長安西路 78 巷 4 弄 10 號 1 樓\n\n• 硬體研發製造 100% 台灣\n• 軟體工程與 AI 模組開發\n• 日本市場技術合作夥伴",
-      twBadge: "100% 台灣製造",
+        "銓幻元科技股份有限公司\n103 台北市大同區\n長安西路 78 巷 4 弄 10 號 1 樓\n\n• 硬體設計組裝於台灣\n• 軟體工程與 AI 模組開發\n• 日本市場技術合作夥伴",
+      twBadge: "台灣製造",
       bridge: "技術 × 市場 × 合規",
     },
     about: {
       title: "關於銓幻元科技 MCS",
-      subtitle: "台灣研發製造 × 新加坡國際總部",
-      desc: "銓幻元科技股份有限公司是 GraBox AI 智取櫃、冷凍微波販賣機的台灣設計製造商，所有設備 100% 台灣自主研發製造。國際總部 Meta Clearing Station Pte. Ltd. 於 2023 年在新加坡 ACRA 立案，以亞太為舞台提供完整的智慧零售解決方案。",
+      subtitle: "台灣設計組裝 × 新加坡國際總部",
+      desc: "銓幻元科技股份有限公司是 GraBox AI 智取櫃、冷凍微波販賣機的台灣設計製造商，所有設備在台灣設計組裝。國際總部 Meta Clearing Station Pte. Ltd. 於 2023 年在新加坡 ACRA 立案，以亞太為舞台提供完整的智慧零售解決方案。",
       feat1t: "新加坡立案",
       feat1d: "ACRA 認證，合規國際營運",
-      feat2t: "台灣研發製造",
-      feat2d: "銓幻元科技 100% 台灣硬體",
+      feat2t: "台灣設計組裝",
+      feat2d: "硬體在台灣設計與組裝",
       feat3t: "AI 智慧驅動",
       feat3d: "自主 AI 模組，持續進化",
       feat4t: "一站式整合",
@@ -175,7 +175,7 @@ export const translations: Record<Lang, Translations> = {
     numbers: {
       v1: "2023", l1: "新加坡立案",
       v2: "6+",   l2: "核心服務項目",
-      v3: "100%", l3: "台灣自主研發",
+      v3: "MIT", l3: "台灣設計組裝",
       v4: "3",    l4: "服務市場（TW·JP·SG）",
     },
     contact: {
@@ -265,8 +265,8 @@ export const translations: Record<Lang, Translations> = {
       sgBadge: "ACRA Registered · Est. 2023",
       twTitle: "Taiwan R&D Center",
       twDesc:
-        "Transtep Technology Co., Ltd.\n103 Taipei City, Datong District\nChangan W. Rd., Ln.78, Aly.4, No.10, 1F\n\n• 100% Taiwan Hardware Manufacturing\n• Software Engineering & AI Module R&D\n• Japan Market Technology Partner",
-      twBadge: "100% Taiwan-Made",
+        "MCS Taiwan Office\n103 Taipei City, Datong District\nChangan W. Rd., Ln.78, Aly.4, No.10, 1F\n\n• Hardware Design & Assembly in Taiwan\n• Software Engineering & AI Module R&D\n• Japan Market Technology Partner",
+      twBadge: "Made in Taiwan",
       bridge: "Technology × Market × Compliance",
     },
     about: {
@@ -276,7 +276,7 @@ export const translations: Record<Lang, Translations> = {
       feat1t: "Singapore Incorporated",
       feat1d: "ACRA certified for compliant global operations",
       feat2t: "Taiwan R&D & Manufacturing",
-      feat2d: "100% Taiwan hardware, quality assured",
+      feat2d: "Hardware designed and assembled in Taiwan",
       feat3t: "AI-Powered",
       feat3d: "Proprietary AI modules, continuously evolving",
       feat4t: "All-in-One Integration",
@@ -285,7 +285,7 @@ export const translations: Record<Lang, Translations> = {
     numbers: {
       v1: "2023", l1: "Singapore Incorporated",
       v2: "6+",   l2: "Core Service Categories",
-      v3: "100%", l3: "Taiwan-Developed Technology",
+      v3: "MIT", l3: "Designed & Assembled in Taiwan",
       v4: "3",    l4: "Markets Served (TW · JP · SG)",
     },
     contact: {
@@ -375,8 +375,8 @@ export const translations: Record<Lang, Translations> = {
       sgBadge: "Terdaftar ACRA · Est. 2023",
       twTitle: "Pusat R&D Taiwan",
       twDesc:
-        "Transtep Technology Co., Ltd.\n103 Kota Taipei, Distrik Datong\nChangan W. Rd., Ln.78, Aly.4, No.10, 1F\n\n• 100% Manufaktur Perangkat Keras Taiwan\n• Rekayasa Perangkat Lunak & R&D Modul AI\n• Mitra Teknologi Pasar Jepang",
-      twBadge: "100% Buatan Taiwan",
+        "Kantor MCS Taiwan\n103 Kota Taipei, Distrik Datong\nChangan W. Rd., Ln.78, Aly.4, No.10, 1F\n\n• Desain & Perakitan Perangkat Keras di Taiwan\n• Rekayasa Perangkat Lunak & R&D Modul AI\n• Mitra Teknologi Pasar Jepang",
+      twBadge: "Buatan Taiwan",
       bridge: "Teknologi × Pasar × Kepatuhan",
     },
     about: {
@@ -386,7 +386,7 @@ export const translations: Record<Lang, Translations> = {
       feat1t: "Didirikan di Singapura",
       feat1d: "Bersertifikasi ACRA untuk operasi global yang patuh",
       feat2t: "R&D & Manufaktur Taiwan",
-      feat2d: "100% perangkat keras Taiwan, terjamin kualitasnya",
+      feat2d: "Perangkat keras dirancang dan dirakit di Taiwan",
       feat3t: "Berbasis AI",
       feat3d: "Modul AI proprieter yang terus berkembang",
       feat4t: "Integrasi Lengkap",
@@ -395,7 +395,7 @@ export const translations: Record<Lang, Translations> = {
     numbers: {
       v1: "2023", l1: "Didirikan di Singapura",
       v2: "6+",   l2: "Kategori Layanan Utama",
-      v3: "100%", l3: "Teknologi Buatan Taiwan",
+      v3: "MIT", l3: "Dirancang & Dirakit di Taiwan",
       v4: "3",    l4: "Pasar Dilayani (TW · JP · SG)",
     },
     contact: {
@@ -485,8 +485,8 @@ export const translations: Record<Lang, Translations> = {
       sgBadge: "ACRA登録 · 2023年設立",
       twTitle: "台湾R&Dセンター",
       twDesc:
-        "銓幻元科技股份有限公司\n台北市大同区長安西路78巷4弄10号1F\n\n• 100%台湾製ハードウェア製造\n• ソフトウェアエンジニアリング・AIモジュールR&D\n• 日本市場テクノロジーパートナー",
-      twBadge: "100%台湾製",
+        "銓幻元科技股份有限公司\n台北市大同区長安西路78巷4弄10号1F\n\n• ハードウェアの設計・組立は台湾\n• ソフトウェアエンジニアリング・AIモジュールR&D\n• 日本市場テクノロジーパートナー",
+      twBadge: "台湾製",
       bridge: "技術 × 市場 × コンプライアンス",
     },
     about: {
@@ -496,7 +496,7 @@ export const translations: Record<Lang, Translations> = {
       feat1t: "シンガポール法人",
       feat1d: "ACRA認定、国際基準に準拠した運営",
       feat2t: "台湾R&D・製造",
-      feat2d: "100%台湾製ハードウェア、品質保証",
+      feat2d: "ハードウェアは台湾で設計・組立",
       feat3t: "AI駆動",
       feat3d: "独自AIモジュール、継続的に進化",
       feat4t: "オールインワン統合",
@@ -505,7 +505,7 @@ export const translations: Record<Lang, Translations> = {
     numbers: {
       v1: "2023", l1: "シンガポール設立",
       v2: "6+",   l2: "コアサービス種別",
-      v3: "100%", l3: "台湾開発技術",
+      v3: "MIT", l3: "台湾で設計・組立",
       v4: "3",    l4: "サービス市場（TW·JP·SG）",
     },
     contact: {

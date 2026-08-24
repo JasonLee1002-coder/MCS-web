@@ -107,11 +107,11 @@ const TRANSLATIONS = {
       ],
     },
     locker: {
-      badge: "⭐ MCS 銓幻元 自主研發",
+      badge: "⭐ MCS 銓幻元 GraBox",
       title1: "GraBox ",
       title2: "雙面智取櫃",
       title3: " — 我們的核心武器",
-      sub: "100% 台灣自主研發製造，不是外購、不是貼牌。GraBox 是自助取餐站的關鍵設備——顧客掃碼即自動開艙，員工只需補貨，零人力守候。",
+      sub: "GraBox 是自助取餐站的關鍵設備——顧客掃碼即自動開艙，員工只需補貨，零人力守候。",
       photos: [
         { label:"夜景概念圖" },
         { label:"霓虹夜間效果" },
@@ -215,7 +215,7 @@ const TRANSLATIONS = {
       lead6: "，向外輻射衛星，打造最密集的 AI 餐飲毛細網。",
       conceptBadge: "⭐ MCS 銓幻元 自研產品",
       conceptTitle: "GraBox 冷凍 · 冷藏 自取冰櫃掃碼自取 · 搭配蒸煮機 · 24H 無人運作",
-      conceptDesc: "台灣自主研發製造的智慧取餐設備。上層冷藏區（4°C）放飲料、瓶裝茶、珍奶；下層冷凍區（-18°C）放密封拉麵碗、港點杯——取出後直接放入旁邊的蒸煮機。掃碼下單 → 指定艙門自動彈開 → 取冷凍碗 → 蒸煮機 3 分鐘 → 開吃。",
+      conceptDesc: "雙溫層的智慧取餐設備。上層冷藏區（4°C）放飲料、瓶裝茶、珍奶；下層冷凍區（-18°C）放密封拉麵碗、港點杯——取出後直接放入旁邊的蒸煮機。掃碼下單 → 指定艙門自動彈開 → 取冷凍碗 → 蒸煮機 3 分鐘 → 開吃。",
       flows: [
         { icon:"📱",strong:"Step 1 — 掃碼點餐",text:"LINE / QR Code 選品付款，系統指定艙號" },
         { icon:"❄️",strong:"Step 2 — 自動開艙",text:"指定艙門自動解鎖，顧客直接取出商品" },
@@ -325,7 +325,7 @@ const TRANSLATIONS = {
       title1: "GraBox ",
       title2: "Dual-Side Smart Locker",
       title3: " — Our Core Weapon",
-      sub: "100% Taiwan-designed and manufactured — not outsourced, not white-labeled. GraBox is the key device for self-service pickup: customers scan QR to auto-unlock their compartment; staff only need to restock.",
+      sub: "GraBox is the key device for self-service pickup: customers scan QR to auto-unlock their compartment; staff only need to restock.",
       photos: [
         { label:"Night Concept" },
         { label:"Neon Night Effect" },
@@ -539,7 +539,7 @@ const TRANSLATIONS = {
       title1: "GraBox ",
       title2: "両面スマートロッカー",
       title3: " — 当社のコアウェポン",
-      sub: "100%台湾自主設計・製造 — アウトソーシングなし、OEMなし。GraBoxはセルフピックアップステーションのキーデバイス。お客様はQRスキャンでコンパートメントが自動開錠、スタッフは補充のみ。",
+      sub: "GraBoxはセルフピックアップステーションのキーデバイス。お客様はQRスキャンでコンパートメントが自動開錠、スタッフは補充のみ。",
       photos: [
         { label:"ナイトコンセプト" },
         { label:"ネオン夜間エフェクト" },

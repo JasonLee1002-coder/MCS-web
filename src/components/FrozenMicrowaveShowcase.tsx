@@ -837,7 +837,7 @@ function CTA() {
           </div>
           <div className="flex justify-center gap-4 mt-4">
             <Link href="/blog/frozen-microwave-vending-machine-japan" className="text-blue-400/60 hover:text-blue-400 text-sm transition-colors">
-              延伸閱讀：外銷日本實戰 →
+              延伸閱讀：進軍日本的推進歷程 →
             </Link>
             <Link href="/blog/frozen-vending-machine-food-safety-management" className="text-blue-400/60 hover:text-blue-400 text-sm transition-colors">
               食安管控指南 →

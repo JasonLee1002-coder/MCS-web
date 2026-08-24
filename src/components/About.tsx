@@ -72,7 +72,7 @@ export default function About() {
               <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500">
                 <LightboxImage
                   src="/images/illustrations/factory.png"
-                  alt="銓幻元科技台灣研發製造中心 — 100% 台灣自主研發硬體製造"
+                  alt="銓幻元科技台灣研發製造中心 — 台灣硬體設計組裝"
                   width={600}
                   height={400}
                   className="w-full h-auto"

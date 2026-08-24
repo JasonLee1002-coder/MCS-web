@@ -8,7 +8,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/motion
 const faqItems = [
   {
     q: "銓幻元科技提供哪些產品？",
-    a: "我們提供 GraBox AI 智取櫃、智慧販賣機、冷凍微波販賣機、自助服務機（Kiosk）、OEM/ODM 貼牌客製等全系列智慧設備，搭配 POS/KDS 系統串接與雲端營運平台。所有產品 100% 台灣設計製造。",
+    a: "我們提供 GraBox AI 智取櫃、智慧販賣機、冷凍微波販賣機、自助服務機（Kiosk）、OEM/ODM 貼牌客製等全系列智慧設備，搭配 POS/KDS 系統串接與雲端營運平台。所有產品 台灣設計組裝。",
   },
   {
     q: "GraBox AI 智取櫃跟一般取餐櫃有什麼不同？",
@@ -16,7 +16,7 @@ const faqItems = [
   },
   {
     q: "冷凍微波販賣機有外銷實績嗎？",
-    a: "有的，我們的冷凍微波販賣機已外銷日本，部署於日本首都高速公路（Shuto Expressway）服務區，提供 24 小時無人化熱食供應，是 100% 台灣設計製造的產品。",
+    a: "我們已與日本首都高速公路（Shuto Expressway）簽訂 NDA 與 MOU，共同評估將冷凍微波販賣機導入其服務區，提供 24 小時無人化熱食供應。日方代表團已於 2024 年 10 月親訪台灣工廠實地驗證設備。產品在台灣設計組裝。",
   },
   {
     q: "可以客製化品牌貼牌嗎？",

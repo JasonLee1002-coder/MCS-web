@@ -105,4 +105,4 @@ faq:
 - [冷凍微波販賣機產品介紹](/products/frozen-microwave)
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
 - [智慧販賣機設點策略全解析](/blog/vending-machine-location-strategy)
-- [冷凍微波販賣機外銷日本：如何打進日本高速公路服務區](/blog/frozen-microwave-vending-machine-japan)
+- [冷凍微波販賣機進軍日本：與首都高速公路的 MOU 怎麼談成的](/blog/frozen-microwave-vending-machine-japan)

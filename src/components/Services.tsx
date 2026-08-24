@@ -20,7 +20,7 @@ const services = [
     title: "GraBox 智取櫃",
     subtitle: "主力產品 | AI 訂餐 · 接線服務員",
     description:
-      "結合 AI 技術的智慧取餐櫃，多種規格可選，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。100% 台灣設計製造。",
+      "結合 AI 技術的智慧取餐櫃，多種規格可選，適用於企業、餐廳、飯店等多元場景，實現無人化智慧取餐體驗。台灣設計組裝。",
     image: "/images/cases/mwd/grabox-closeup.jpg",
     tags: ["多溫層可客製", "人臉辨識", "AI 訂餐", "台灣製造"],
     link: "/products/grabox",
@@ -74,7 +74,7 @@ const services = [
   },
   {
     title: "OEM / ODM 貼牌客製",
-    subtitle: "可 100% 台灣製造",
+    subtitle: "可在台灣製造",
     description:
       "提供完整的硬體客製化服務，從外觀設計到軟體介面，全程台灣製造，品質有保障。支援企業品牌貼牌需求。",
     image: "/images/illustrations/factory.png",

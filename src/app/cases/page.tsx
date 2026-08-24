@@ -88,7 +88,7 @@ const cases = [
       { src: "/images/cases/mwd/franchise-expo-2026.jpg", alt: "2026 加盟展 麥味登攤位 GraBox 智取櫃現場展示" },
       { src: "/images/cases/mwd/mwd-storefront-daytime.jpg", alt: "麥味登門市白天實景 GraBox 智取櫃正面外觀" },
       { src: "/images/cases/mwd/grabox-use-cases.png", alt: "GraBox 智取櫃應用場景 麥味登 東方美早餐店" },
-      { src: "/images/cases/mwd/grabox-features.png", alt: "GraBox R101 智取櫃核心特色 規格 100% 台灣製造" },
+      { src: "/images/cases/mwd/grabox-features.png", alt: "GraBox R101 智取櫃核心特色與規格說明" },
       { src: "/images/cases/mwd/snoopy-menu.jpg", alt: "麥味登 PEANUTS Snoopy 聯名菜單" },
     ],
     videos: [
@@ -116,7 +116,7 @@ const cases = [
       "客製化外觀設計（金龍、鳳凰雕刻）",
       "「有求必應」「祈願功德箱」「招財開運」主題機台",
       "可選四種神明動畫互動",
-      "100% 台灣在地設計製造",
+      "客製化外觀與機構設計",
     ],
     images: [
       { src: "/images/cases/temple/renhai-temple-overview.jpg", alt: "中壢仁海宮數位功德香油箱部署實景 四張角度總覽" },
@@ -134,7 +134,7 @@ const cases = [
       { src: "/images/cases/temple/temple-machine-03.mp4", alt: "數位功德香油箱完整導覽" },
       { src: "/images/cases/temple/renhai-kid.mp4", alt: "中壢仁海宮小朋友體驗數位功德箱" },
     ],
-    tags: ["OEM客製", "宮廟文化", "數位支付", "文化創新", "台灣製造"],
+    tags: ["OEM客製", "宮廟文化", "數位支付", "文化創新", "在地組裝"],
   },
   {
     id: "toyplus",
@@ -179,16 +179,16 @@ const cases = [
   {
     id: "expressway",
     client: "日本首都高速公路",
-    title: "冷凍微波機外銷日本 × 高速公路智能服務",
-    subtitle: "台灣製造冷凍微波販賣機，走進日本首都高速公路",
+    title: "冷凍微波機進軍日本 × 高速公路智能服務",
+    subtitle: "冷凍微波販賣機走進日本首都高速公路",
     description:
-      "與日本首都高速公路（Shuto Expressway）合作，將台灣製造的冷凍微波販賣機導入日本高速公路服務區。旅客可 24 小時自助選購冷凍餐點，機台自動微波加熱出餐，實現無人化熱食供應。這項跨國合作展現銓幻元的技術實力獲國際市場認可，是「台灣製造、外銷日本」的最佳證明。",
+      "與日本首都高速公路（Shuto Expressway）簽訂 NDA 與 MOU，共同評估將冷凍微波販賣機導入日本高速公路服務區。日方代表團已於 2024 年 10 月親訪台灣工廠實地驗證設備，我方亦赴日勘查服務區現場條件。規劃的應用是 24 小時無人化熱食供應：旅客自助選購冷凍餐點，機台自動微波加熱出餐。",
     highlights: [
-      "冷凍微波販賣機外銷日本",
-      "日本首都高速公路服務區部署",
-      "24H 無人化熱食供應",
+      "NDA 與 MOU 已簽訂",
+      "日方代表團實地驗證設備",
+      "規劃 24H 無人化熱食供應",
       "自動微波加熱出餐",
-      "100% 台灣設計製造",
+      "符合日本場域規範的設備整合",
       "跨國技術合作典範",
     ],
     images: [
@@ -244,12 +244,12 @@ const cases = [
   {
     id: "oem",
     client: "台灣在地 OEM 製造",
-    title: "100% 台灣設計、台灣製造",
+    title: "台灣在地設計與組裝的 OEM 服務",
     subtitle: "從設計到量產，品質嚴格把關",
     description:
-      "委託銓幻元，所有智慧設備均可在台灣工廠設計、開發、製造。從電路板焊接、機構組裝到軟體燒錄，每一台設備都經過嚴格品質檢測。在地製造確保快速交貨、即時售後服務，不需等待海外零件，真正做到「台灣品質、國際水準」。",
+      "委託銓幻元，智慧設備可在台灣進行設計、機構組裝與軟體整合，並經品質檢測後出貨。在地作業的實際好處是溝通與售後回應快、少量多樣的排程彈性大。",
     highlights: [
-      "100% 台灣設計、台灣製造",
+      "台灣在地設計與組裝",
       "嚴格品質檢測流程",
       "少量多樣、彈性生產",
       "快速交貨，彈性排程",
@@ -257,10 +257,10 @@ const cases = [
       "軟硬體一站式整合",
     ],
     images: [
-      { src: "/images/illustrations/factory.png", alt: "台灣在地工廠品質檢測產線 - 銓幻元科技 100% 台灣製造" },
+      { src: "/images/illustrations/factory.png", alt: "台灣在地工廠品質檢測產線 - 銓幻元科技智慧設備組裝" },
       { src: "/images/cases/oem/factory-inspection.jpg", alt: "台灣在地工廠品質檢測 - 銓幻元科技智慧設備製造" },
     ],
-    tags: ["台灣製造", "OEM", "品質保證", "彈性生產", "在地服務"],
+    tags: ["在地組裝", "OEM", "品質保證", "彈性生產", "在地服務"],
   },
 ];
 

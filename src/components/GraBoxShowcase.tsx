@@ -76,7 +76,7 @@ const advantages = [
   {
     title: "vs 進口智取櫃",
     points: [
-      "100% 台灣製造，維修不用等進口零件",
+      "台灣製造，維修不用等進口零件",
       "軟硬體全客製，進口機型固定規格",
       "在地售後服務，全台到府支援",
     ],
@@ -110,7 +110,7 @@ const faqItems = [
   },
   {
     q: "GraBox 跟市面上的智取櫃有什麼不同？",
-    a: "GraBox 內建 AI 訂餐系統、語音互動、人臉辨識，並非單純的密碼鎖櫃。標配常溫，可客製冷藏/冷凍溫層，自帶雲端管理平台與數據分析，100% 台灣製造，售後服務快速。",
+    a: "GraBox 內建 AI 訂餐系統、語音互動、人臉辨識，並非單純的密碼鎖櫃。標配常溫，可客製冷藏/冷凍溫層，自帶雲端管理平台與數據分析，台灣製造，售後服務快速。",
   },
   {
     q: "GraBox 的保固與售後服務？",
@@ -214,7 +214,7 @@ function CinematicHero() {
             >
               不只是取餐櫃 — 結合 AI 訂餐系統、人臉辨識、
               <br className="hidden sm:block" />
-              多溫層可客製的新一代智慧設備。100% 台灣設計製造。
+              多溫層可客製的新一代智慧設備。台灣設計組裝。
             </motion.p>
 
             <motion.div
@@ -254,7 +254,7 @@ function CinematicHero() {
                 <div className="relative w-[320px] h-[400px] sm:w-[380px] sm:h-[480px]">
                   <Image
                     src="/images/products/grabox/r101-spec.png"
-                    alt="GraBox-R101 智慧取餐櫃產品規格圖 - 100% 台灣製造"
+                    alt="GraBox-R101 智慧取餐櫃產品規格圖 - 台灣製造"
                     fill
                     className="object-contain object-top drop-shadow-[0_0_40px_rgba(232,117,26,0.3)]"
                     priority
@@ -390,7 +390,7 @@ function ProductGallery() {
             GraBox-R101 產品細節
           </h2>
           <p className="text-white/30 mt-4">
-            100% 台灣製造 · 模組化設計 · 通過上市連鎖餐飲品質驗證
+            台灣製造 · 模組化設計 · 通過上市連鎖餐飲品質驗證
           </p>
         </ScrollReveal>
 

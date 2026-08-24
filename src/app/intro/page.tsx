@@ -278,9 +278,9 @@ const T = {
     },
     weche: {
       label: "戰略製造夥伴",
-      title: "100% 台灣在地製造",
-      sub: "MCS 與台灣在地製造夥伴深度整合軟硬體，本地組裝產線支援大量出貨，100% 台灣研發製造。",
-      badge: "100% 台灣製造",
+      title: "台灣在地組裝與售後",
+      sub: "MCS 與台灣在地製造夥伴深度整合軟硬體，本地組裝產線支援大量出貨，台灣設計組裝。",
+      badge: "台灣製造",
       points: [
         { icon: "🏭", title: "台灣在地組裝廠", desc: "大型組裝產線，支援量產出貨需求，快速回應客製規格。" },
         { icon: "⚙️", title: "機電整合專業", desc: "機構設計、製冷系統、機電控制，超過 20 年硬體製造經驗。" },
@@ -289,7 +289,7 @@ const T = {
       ],
     },
     mit: {
-      label: "100% 台灣製造",
+      label: "台灣製造",
       title: "自有研發製造能力",
       sub: "MCS 擁有台灣本地工程團隊與製造夥伴，從機構設計、控制板研發到整機出廠測試，全程在台灣完成。",
       points: [
@@ -485,7 +485,7 @@ const T = {
     weche: {
       label: "Manufacturing Partner",
       title: "100% Made in Taiwan",
-      sub: "Deep hardware-software integration with our Taiwan-based manufacturing partner. Local assembly facility supports high-volume production. 100% Taiwan R&D and manufacturing.",
+      sub: "Deep hardware-software integration with our Taiwan-based manufacturing partner. Local assembly facility supports high-volume production.",
       badge: "100% Made in Taiwan",
       points: [
         { icon: "🏭", title: "Taiwan Assembly Facility", desc: "Full-scale assembly line for mass production. Rapid turnaround on custom specifications." },
@@ -690,9 +690,9 @@ const T = {
     },
     weche: {
       label: "製造戦略パートナー",
-      title: "100% 台湾製造",
-      sub: "MCS は台湾在地の製造パートナーとソフトウェア・ハードウェアを深く統合。現地組立工場が量産出荷をサポート。100% 台湾研究開発・製造。",
-      badge: "100% 台湾製造",
+      title: "台湾での組立と保守",
+      sub: "MCS は台湾在地の製造パートナーとソフトウェア・ハードウェアを深く統合。現地組立工場が量産出荷をサポート。",
+      badge: "台湾製",
       points: [
         { icon: "🏭", title: "台湾在地組立工場", desc: "大規模組立ラインで量産出荷に対応。カスタム仕様にも迅速に対応可能。" },
         { icon: "⚙️", title: "機電統合の専門性", desc: "機構設計・冷却システム・機電制御。20年以上のハードウェア製造実績。" },
@@ -701,7 +701,7 @@ const T = {
       ],
     },
     mit: {
-      label: "100% 台湾製（MIT）",
+      label: "台湾製（MIT）",
       title: "自社研究開発・製造能力",
       sub: "MCS は台湾の自社エンジニアリングチームと提携工場を保有。機構設計・PCB開発から出荷前全数検査まで、すべて台湾で完結します。",
       points: [

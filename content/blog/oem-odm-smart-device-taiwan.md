@@ -1,7 +1,7 @@
 ---
 title: "台灣 OEM/ODM 智慧設備：從設計到量產的一站式客製化服務"
 date: "2026-02-20"
-description: "尋找台灣智慧設備OEM/ODM廠商？銓幻元科技提供從工業設計、電路開發、軟體整合到量產的一站式客製化服務。100%台灣製造，外銷日本。"
+description: "尋找台灣智慧設備OEM/ODM廠商？銓幻元科技提供從工業設計、電路開發、軟體整合到量產的一站式客製化服務。台灣製造，佈局日本市場。"
 keywords: ["OEM", "ODM", "台灣製造", "智慧設備", "客製化", "銓幻元科技", "貼牌製造", "台灣OEM"]
 image: "/images/cases/oem/factory-inspection.jpg"
 ---
@@ -67,7 +67,7 @@ image: "/images/cases/oem/factory-inspection.jpg"
 
 **需求**：日本首都高速公路需要符合日本法規、電壓、語言的冷凍微波販賣機。
 
-**成果**：[冷凍微波販賣機](/products/frozen-microwave)成功外銷日本，在[首都高速公路服務區](/cases#expressway)穩定運作。
+**成果**：[冷凍微波販賣機](/products/frozen-microwave)與日本首都高速公路簽訂 NDA 與 MOU，共同評估導入其服務區。
 
 ### OEM/ODM 合作流程
 
@@ -116,5 +116,5 @@ image: "/images/cases/oem/factory-inspection.jpg"
 
 - [冷凍微波販賣機產品介紹（TH-21MS/FD/FS）](/products/frozen-microwave)
 - [GraBox AI 智取櫃產品介紹](/products/grabox)
-- [冷凍微波販賣機外銷日本：如何打進日本高速公路服務區](/blog/frozen-microwave-vending-machine-japan)
+- [冷凍微波販賣機進軍日本：與首都高速公路的 MOU 怎麼談成的](/blog/frozen-microwave-vending-machine-japan)
 - [銓幻元科技客戶實績總覽](/cases)
