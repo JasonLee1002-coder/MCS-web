@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/clinic-waiting-area-smart-vending' },
   title: '診所候診區導入智慧販賣機：候診時間也能兼顧衛生管控 | 銓幻元',
   description: '牙醫、動物醫院、複合科別診所的候診區怎麼選設備？智慧販賣機、GraBox智取櫃差在哪裡？從候診時間不確定、空間有限、感染管制到多科人流管理，完整選型指南。',
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-electricity-maintenance' },
   title: '冷凍販賣機耗電量與維護成本：採購前必看的真實數字 | 銓幻元',
   description: '冷凍販賣機每月電費多少？維護成本如何計算？本文整理銓幻元多場域營運經驗中的耗電數據、維修頻率、年度維護預算，幫你在採購前做出準確的財務規劃。',
 }

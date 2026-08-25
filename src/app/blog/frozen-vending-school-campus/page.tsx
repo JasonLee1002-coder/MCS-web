@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-school-campus' },
   title: '冷凍便當販賣機進駐學校：大學、高中場域評估完整指南 | 銓幻元',
   description: '學校放冷凍販賣機需要什麼許可？採購程序怎麼走？本文整理大學和高中場域的評估重點、法規說明、食材選擇和真實投資回報，幫助總務主任做出決策。',
 }

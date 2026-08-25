@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/steam-ramen-hospital-24hr' },
   title: '醫院夜班護理師的救星：蒸氣拉麵機在醫療場域的 3 個應用情境 | 銓幻元',
   description: '台灣醫院護理師夜班超過 12 小時，院內自助餐 21:00 後關閉。蒸氣拉麵機提供 24 小時熱食，解決夜班需求同時創造院內額外收入。',
 }

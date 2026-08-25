@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-lease-vs-purchase' },
   title: '冷凍販賣機租賃 vs 買斷：哪個划算？2026 完整費用試算 | 銓幻元',
   description: '冷凍販賣機要租還是買？本文從前期成本、月費結構、回收期、風險承擔四個角度完整分析，附費用試算表，幫你找到最適合場域的財務決策。',
 }

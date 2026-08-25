@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-factory-migrant' },
   title: '工廠移工宿舍智慧取物冰箱：薪資扣款模式完整說明 | 銓幻元',
   description: '工廠移工使用智慧取物冰箱，薪資扣款如何設定？移工不需要手機 App，只要工作證感應即可消費，月底自動從薪資扣除。完整操作說明與法規說明。',
 }

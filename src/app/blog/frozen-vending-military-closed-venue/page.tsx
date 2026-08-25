@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-military-closed-venue' },
   title: '軍方封閉場域的冷凍食品補給：無人值守完整方案與採購流程說明 | 銓幻元',
   description: '軍營、兵器廠、後勤基地等封閉場域，夜間餐食問題長年無解。本文說明適合軍方場域的冷凍販賣機規格、採購流程、安全規範與實際案例。',
 }

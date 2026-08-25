@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-brunch-chain' },
   title: '連鎖早午餐導入智慧取物櫃：週末人潮如何不塞爆？完整攻略 | 銓幻元',
   description: '早午餐週末排隊 40 分鐘是常態，但真正的瓶頸不在廚房，在取餐流程。智慧取物櫃如何幫連鎖早午餐提升翻桌率？含導入成本與配置邏輯說明。',
 }

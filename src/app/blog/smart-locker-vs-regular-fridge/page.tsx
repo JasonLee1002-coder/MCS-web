@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-vs-regular-fridge' },
   title: '智慧取物冰箱 vs 一般冰箱：餐廳外帶哪個更適合？完整比較 | 銓幻元',
   description: '餐廳放一台普通冰箱讓顧客自取外帶，真的夠嗎？智慧取物冰箱 vs 一般冰箱的完整比較：保溫時間、訂單整合、人力需求、盜取風險、投資回報全面分析。',
 }

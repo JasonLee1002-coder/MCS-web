@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-cost-calculator' },
   title: '智慧取物櫃費用試算：月租 vs 買斷，你的場域哪個划算？| 銓幻元',
   description: '智慧取物櫃月租多少？買斷要多少錢？本文提供 2026 年最新費用試算表，依場域人數、外帶訂單量、POS 系統類型給出個人化估算，幫你在簽約前做好財務規劃。',
 }

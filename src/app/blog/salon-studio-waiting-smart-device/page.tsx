@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/salon-studio-waiting-smart-device' },
   title: '美容美髮工作室候場空間怎麼配置？智慧設備選型指南 | 銓幻元',
   description: '美髮、美甲、按摩、寵物美容等個人工作室的候場空間，怎麼在不佔人力、不破壞店面調性的前提下提升客人等候體驗？智慧販賣機、GraBox智取櫃選型與配色建議。',
 }

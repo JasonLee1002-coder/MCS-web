@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-api-integration' },
   title: '智慧取物櫃 API 整合指南：POS、外送平台、自建系統串接說明 | 銓幻元',
   description: '智慧取物櫃要發揮最大效益，API 整合是關鍵。本文說明銓幻元取物系統與 iCHEF、Winfood、Uber Eats、foodpanda 以及自建系統的整合方式與串接時程。',
 }

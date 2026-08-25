@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-office-building' },
   title: '辦公大樓智慧取物櫃：員工福利新選擇與成本分析 | 銓幻元',
   description: '辦公大樓導入智慧取物櫃，午餐訂餐不用下樓等、外送到公司不用衝去接，讓員工滿意度提升的同時降低管理負擔。含租賃費、ROI 試算與真實案例。',
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-microwave-factory-night-shift' },
   title: '台灣工廠夜班缺食危機：冷凍微波機如何解決 3 萬人的深夜餐食 | 銓幻元',
   description: '工廠廚房 22:00 關閉後夜班員工無熱食可吃。冷凍微波機提供 24 小時自助加熱，3 個月回收設備投資，不需廚師不需人力監管。',
 }

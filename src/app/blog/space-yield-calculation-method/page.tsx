@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/space-yield-calculation-method' },
   title: '坪效怎麼算？無人設備投資前的空間產值評估方法 | 銓幻元',
   description: '別再憑感覺決定要不要在空間裡放設備。這篇文章拆解坪效試算的四個步驟——可用坪數、人流轉換、客單價、月產值試算，附常見評估誤區，讓你自己動手算出一個空間值不值得投資。',
 }

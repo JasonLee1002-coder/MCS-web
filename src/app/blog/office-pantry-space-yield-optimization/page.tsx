@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/office-pantry-space-yield-optimization' },
   title: '辦公室茶水間坪效怎麼救？從閒置角落到員工福利收益 | 銓幻元',
   description: '茶水間堆著茶包、即溶咖啡，坪效趨近於零？用坪效試算框架拆解辦公室茶水間的軟硬韌解法——智慧販賣機取代人工補貨、後台數據動態調品項、企業福利點數整合扣款。',
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-hospital-system' },
   title: '醫院智慧取物系統：護理師、員工餐、訪客輕食一套搞定 | 銓幻元',
   description: '醫院場域的餐食供應比一般場所複雜：三班制護理師、探病訪客、門診病患、醫院員工四種需求並存。智慧取物系統如何在醫院達到 24 小時服務？',
 }

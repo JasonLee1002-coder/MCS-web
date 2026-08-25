@@ -70,9 +70,10 @@ export const metadata: Metadata = {
   creator: "銓幻元科技股份有限公司",
   publisher: "Meta Clearing Station Pte. Ltd.",
   metadataBase: new URL("https://www.mcstation.ai"),
-  alternates: {
-    canonical: "/",
-  },
+  // 這裡不設 alternates.canonical。
+  // 2026-08-26：原本設 canonical:"/"，導致每個沒自己覆寫的頁面都繼承成首頁，
+  // 等於對 Google 說「我是首頁的複本」。GSC 實測 28 個獨立文章頁曝光 0-21，
+  // /products/grabox 更是 30 天零曝光。canonical 一律由各頁自己宣告。
   openGraph: {
     type: "website",
     locale: "zh_TW",
