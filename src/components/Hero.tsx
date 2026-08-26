@@ -4,7 +4,7 @@
  * ⚠️ 這個檔案目前沒有被任何地方 import（2026-08-26 確認）。
  *
  * 首頁 src/app/page.tsx 實際渲染的是 `@/app/intro/page` 的 IntroPage，
- * 真正的 Hero 內容在 src/app/intro/page.tsx 的 `{/* ── Hero ── */}` 區塊。
+ * 真正的 Hero 內容在 src/app/intro/page.tsx 標著「── Hero ──」的那個區塊。
  *
  * 記這一筆是因為我 2026-08-26 改「88% → 大幅節省」時先改了這裡，
  * 部署後截圖才發現線上根本不是這支元件。留著這行註解，
