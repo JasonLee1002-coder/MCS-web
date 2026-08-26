@@ -27,9 +27,9 @@ const services = [
   },
   {
     title: "冷凍販賣機 · 冷凍微波機",
-    subtitle: "日本首都高速指定合作 | 食安管控",
+    subtitle: "日本首都高速 MOU | 食安管控",
     description:
-      "台灣唯一擁有上百台實績。冷凍販賣機 + 冷凍微波加熱販賣機全系列。服務大型連鎖通路實戰經驗，食安管控業界領先。日本首都高速公路 MOU 指定合作。",
+      "知名連鎖通路上百台實績。冷凍販賣機 + 冷凍微波加熱販賣機全系列，累積大型連鎖通路的實戰經驗與食安管控作法。與日本首都高速公路簽訂 MOU。",
     image: "/images/products/frozen-microwave/th-21ms-catalog.png",
     tags: ["冷凍販賣機", "冷凍微波加熱", "食安管控", "日本MOU"],
     link: "/products/frozen-microwave",

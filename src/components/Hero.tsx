@@ -40,7 +40,7 @@ const wordVariants = {
 const TAGLINE = {
   zh: {
     line1: [
-      { text: "唯一整合", style: "text-gray-300" },
+      { text: "一套系統整合", style: "text-gray-300" },
       { text: "硬體設備", style: "text-white font-semibold" },
       { text: "×", style: "text-mcs-orange font-bold mx-1" },
       { text: "OmniCore AI 雲端平台", style: "text-white font-semibold" },

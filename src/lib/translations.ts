@@ -98,12 +98,12 @@ export const translations: Record<Lang, Translations> = {
       consulting: "顧問服務",
     },
     hero: {
-      badge: "唯一整合線上線下 × 供應鏈 × 全通道+會員的 AI 零售作業系統",
+      badge: "線上線下 × 供應鏈 × 全通道會員整合的 AI 零售作業系統",
       subBadge: "🇹🇼 台灣研發製造 · 新加坡國際總部 · 日本 MOU 已簽",
       headline1: "不是賣設備",
       headline2: "讓零售生態真正有效益",
       tagline:
-        "MCS 銓幻元科技是台灣唯一整合硬體設備 × OmniCore AI 雲端平台 × ERP/會員/金流/物流串接的智慧零售作業系統。一個平台讓連鎖品牌省下 88% 的 IT 建置成本，真正讓每一個場域的營運效益最大化。",
+        "MCS 銓幻元科技把硬體設備、OmniCore AI 雲端平台與 ERP/會員/金流/物流串接整合成一套智慧零售作業系統。一個平台讓連鎖品牌省下 88% 的 IT 建置成本，真正讓每一個場域的營運效益最大化。",
       cta1: "預約產品展示",
       cta2: "聯絡顧問",
       stat1v: "200台+",
@@ -213,7 +213,7 @@ export const translations: Record<Lang, Translations> = {
       headline1: "We Don't Sell Hardware.",
       headline2: "We Make Retail Ecosystems Work.",
       tagline:
-        "MCS is Taiwan's only AI Retail Operating System — integrating smart devices, OmniCore cloud AI, and ERP/loyalty/payment/logistics in one platform. Enterprise partners save 88% on IT infrastructure while maximizing revenue at every venue.",
+        "MCS is an AI Retail Operating System — integrating smart devices, OmniCore cloud AI, and ERP/loyalty/payment/logistics in one platform. Enterprise partners save 88% on IT infrastructure while maximizing revenue at every venue.",
       cta1: "Request a Demo",
       cta2: "Talk to a Consultant",
       stat1v: "200+",
@@ -433,7 +433,7 @@ export const translations: Record<Lang, Translations> = {
       headline1: "機器を売るのではない。",
       headline2: "小売エコシステムを機能させる。",
       tagline:
-        "MCSは台湾唯一のAI小売オペレーティングシステムです。スマート機器 × OmniCoreクラウドAI × ERP/会員/決済/物流を一つのプラットフォームに統合。企業パートナーはITコストを88%削減しながら、すべての拠点で収益を最大化できます。",
+        "MCSはAI小売オペレーティングシステムです。スマート機器 × OmniCoreクラウドAI × ERP/会員/決済/物流を一つのプラットフォームに統合。企業パートナーはITコストを88%削減しながら、すべての拠点で収益を最大化できます。",
       cta1: "デモを予約する",
       cta2: "コンサルタントに相談",
       stat1v: "200台+",

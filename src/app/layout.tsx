@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | 銓幻元科技 MCS",
   },
   description:
-    "銓幻元科技股份有限公司（MCS Meta Clearing Station Pte. Ltd.）新加坡商，專業提供 GraBox AI智取櫃、智慧販賣機、自助服務機、冷凍微波販賣機、AI訂餐系統、OEM/ODM貼牌客製、企業會員系統整合、餐飲零售POS/KDS串接、雲端營運平台及AI分析模組。台灣製造，佈局日本市場。AI智慧設備 x 商業系統整合的領導品牌。",
+    "銓幻元科技股份有限公司（MCS Meta Clearing Station Pte. Ltd.）新加坡商，專業提供 GraBox AI智取櫃、智慧販賣機、自助服務機、冷凍微波販賣機、AI訂餐系統、OEM/ODM貼牌客製、企業會員系統整合、餐飲零售POS/KDS串接、雲端營運平台及AI分析模組。台灣製造，佈局日本市場。AI 智慧設備與商業系統整合。",
   keywords: [
     "銓幻元科技",
     "銓幻元",

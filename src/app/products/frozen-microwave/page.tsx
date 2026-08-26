@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   // 這裡不要再寫一次品牌名，否則成品標題會出現兩次「銓幻元科技 MCS」並被截斷。
   title: "冷凍微波販賣機：溫控、微波加熱與雲端管理整合",
   description:
-    "銓幻元科技冷凍微波販賣機，冷凍保存、下單後才加熱，冷食瞬間變熱餐。服務大型連鎖通路數百台智慧販賣機經驗，食安管控業界領先。受日本首都高速公路青睞，簽訂 MOU 布點全日本休息站。提供台製與進口機型選擇。",
+    "銓幻元科技冷凍微波販賣機，冷凍保存、下單後才加熱，冷食瞬間變熱餐。累積大型連鎖通路數百台智慧販賣機的經驗，含食安管控與溫控管理。受日本首都高速公路青睞，簽訂 MOU 布點全日本休息站。提供台製與進口機型選擇。",
   keywords: [
     "冷凍微波販賣機",
     "冷凍微波販賣機台灣",
@@ -47,7 +47,7 @@ const jsonLd = {
   "@type": "Product",
   name: "冷凍微波販賣機 TH-21MS",
   description:
-    "冷凍微波販賣機，-18°C~4°C 全溫域控制，下單後才加熱。服務大型連鎖通路實戰經驗，食安管控業界領先。日本首都高速公路 MOU 指定合作。",
+    "冷凍微波販賣機，-18°C~4°C 全溫域控制，下單後才加熱。累積大型連鎖通路實戰經驗，含食安管控與溫控管理。與日本首都高速公路簽訂 MOU。",
   image: "https://www.mcstation.ai/images/products/frozen-microwave/th-21ms-catalog.png",
   brand: { "@type": "Brand", name: "銓幻元科技 MCS" },
   // 2026-08-20 依 Jason 裁示移除 manufacturer 與 countryOfOrigin：

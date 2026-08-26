@@ -323,7 +323,7 @@ const T = {
         label: "冷凍・冷藏設備",
         title: "冷凍・冷藏・微波智販機",
         badge: "通路客戶 · 全台穩定部署",
-        sub: "MCS 在冷凍、冷藏、微波加熱智販機控制上累積多年實戰技術。通路客戶於全台各場域穩定運行超過 1,000 台。",
+        sub: "MCS 在冷凍、冷藏、微波加熱智販機控制上累積多年實戰技術。通路客戶於全台各場域穩定運行數百台。",
         stats: ["1,000+ 台通路客戶部署中", "多年冷凍 / 冷藏 / 微波控制技術", "多場域穩定運行驗證"],
       },
       shutoko: {
@@ -2391,7 +2391,7 @@ export default function IntroPage() {
                 ? "オンライン×オフライン × サプライチェーン × 全チャネル+会員を統合する唯一のAI小売OS"
                 : lang === "en"
                 ? "The Only AI Retail OS Integrating Online-Offline × Supply Chain × Omnichannel + Membership"
-                : "唯一整合線上線下 × 供應鏈 × 全通道+會員的 AI 零售作業系統"}
+                : "線上線下 × 供應鏈 × 全通道會員整合的 AI 零售作業系統"}
             </div>
           </motion.div>
 

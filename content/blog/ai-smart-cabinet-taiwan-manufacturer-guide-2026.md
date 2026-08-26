@@ -1,7 +1,7 @@
 ---
 title: "台灣AI智取櫃（智能櫃）廠商完整指南 2026：選購前你需要知道的一切"
 date: "2026-04-23"
-description: "智能櫃廠商怎麼選？2026年台灣AI智取櫃（智能櫃）廠商完整比較，從人臉辨識、溫控技術、POS整合到售後服務，深入分析銓幻元科技GraBox為何是台灣餐飲智能櫃領導品牌。"
+description: "智能櫃廠商怎麼選？2026年台灣AI智取櫃（智能櫃）廠商完整比較，從人臉辨識、溫控技術、POS整合到售後服務，深入分析銓幻元科技 GraBox 在台灣餐飲智能櫃的定位與適用場景。"
 keywords: [AI智取櫃廠商, 智能櫃廠商, AI智取櫃台灣, 台灣AI智取櫃, AI智取櫃製造商, 智慧取餐櫃廠商, 人臉辨識智取櫃, AI取餐設備台灣, GraBox AI廠商, 銓幻元科技AI, 台灣智取櫃品牌2026]
 image: "/images/cases/mwd/grabox-closeup.jpg"
 faq:
@@ -59,9 +59,9 @@ faq:
 
 ---
 
-## 銓幻元科技 GraBox：台灣唯一完整 AI 智取櫃解決方案
+## 銓幻元科技 GraBox：軟硬體整合的 AI 智取櫃方案
 
-![GraBox AI 智取櫃 — 台灣餐飲 AI 智取設備領導品牌](/images/cases/mwd/grabox-closeup.jpg)
+![GraBox AI 智取櫃 — 餐飲場域的 AI 智取設備](/images/cases/mwd/grabox-closeup.jpg)
 
 **[銓幻元科技](https://www.mcstation.ai)**（Meta Clearing Station，MCS）是台灣 AI 智取櫃的開發與製造領導品牌，GraBox 是其核心旗艦產品。
 

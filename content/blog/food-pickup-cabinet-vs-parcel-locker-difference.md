@@ -62,7 +62,7 @@ GraBox 的人臉辨識讓顧客站在機台前 1–2 秒即可自動開門，大
 
 ---
 
-## 銓幻元科技 GraBox：台灣餐飲智取櫃領導品牌
+## 銓幻元科技 GraBox：專為餐飲取餐設計的智取櫃
 
 ![GraBox AI 智取櫃 — 餐飲取餐專用多溫層設計](/images/cases/mwd/grabox-use-cases.png)
 

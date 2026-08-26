@@ -95,7 +95,7 @@ image: "/images/products/frozen-microwave/th-21ms-catalog.png"
 
 如果您是冷凍食材品牌，正在尋找新的銷售通路，歡迎與我們聯繫。從場地評估、設備選型、到上線營運，我們提供一站式服務。
 
-**台灣唯一擁有上百台冷凍販賣機實績的專業團隊，值得您信賴。**
+**累積上百台冷凍販賣機實績的團隊。**
 
 [立即諮詢 →](/products/frozen-microwave) ｜ [聯絡我們](/#contact)
 

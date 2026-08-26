@@ -35,7 +35,7 @@ export default function Article() {
 
           <ArticleCTA keyword="冷凍販賣機" slug="frozen-microwave" />
 
-          <h2 className="text-xl font-bold text-slate-100 mt-10">耗電量：實測數據</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-10">耗電量：依額定功率推算</h2>
           <div className="rounded-xl overflow-hidden border border-slate-700">
             <table className="w-full text-sm">
               <thead style={{ background: '#1e293b' }}>
@@ -75,13 +75,13 @@ export default function Article() {
             <li><strong className="text-slate-100">深夜低負載模式</strong>：銓幻元機台支援深夜（03:00–06:00）壓縮機降頻模式，可再降低一部分用電。</li>
           </ul>
 
-          <h2 className="text-xl font-bold text-slate-100 mt-10">維護成本：3 年真實數據</h2>
+          <h2 className="text-xl font-bold text-slate-100 mt-10">維護成本：實務上會遇到什麼</h2>
           <div className="rounded-xl p-5 border" style={{ background: '#0f1f36', borderColor: 'rgba(255,107,53,0.2)' }}>
-            <h3 className="font-bold text-[#FF6B35] mb-3">銓幻元多場域維護經驗統計（2023–2025）</h3>
+            <h3 className="font-bold text-[#FF6B35] mb-3">維護規劃時要先問清楚的幾件事</h3>
             <div className="text-sm space-y-2">
-              <p><span className="text-slate-400">平均故障間隔：</span><span className="text-slate-200">每台每年 0.6 次故障（低於行業均值 1.2 次）</span></p>
-              <p><span className="text-slate-400">最常見故障類型：</span><span className="text-slate-200">門封條磨損（35%）、觸控螢幕（22%）、壓縮機（18%）</span></p>
-              <p><span className="text-slate-400">平均維修時間：</span><span className="text-slate-200">2.8 小時（台北市大台北地區）</span></p>
+              <p><span className="text-slate-400">故障頻率：</span><span className="text-slate-200">跟場域環境關係很大——粉塵多、溫差大、開關門頻繁的點位，維護間隔要抓密一些</span></p>
+              <p><span className="text-slate-400">常見故障部位：</span><span className="text-slate-200">門封條、觸控螢幕、壓縮機。前兩者是耗材性質，換件快；壓縮機停機時間長，要問清楚備品調度</span></p>
+              <p><span className="text-slate-400">到場時間：</span><span className="text-slate-200">大台北地區當日可到；外縣市依服務網絡而定，簽約前先確認你的點位涵蓋範圍</span></p>
               <p><span className="text-slate-400">買斷版維修費：</span><span className="text-slate-200">保固期外自行負擔，含零件與人工</span></p>
               <p><span className="text-slate-400">保固期內維修費：</span><span className="text-slate-200">2 年原廠保固覆蓋</span></p>
             </div>

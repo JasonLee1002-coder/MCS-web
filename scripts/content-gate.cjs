@@ -30,6 +30,19 @@ const { execSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const WHITELIST_PATH = path.join(ROOT, 'content-governance', 'verified-claims.md');
+
+/**
+ * 要檢查哪些副檔名（2026-08-26 從 .md 擴大）
+ *
+ * 原本只檢查 .md。結果是站上最顯眼的內容完全沒被檢查——首頁 Hero、
+ * 產品頁、四語系 i18n 全是 TSX。2026-08-26 在這些檔案裡撈出
+ * 「100% 台灣製造」「台灣唯一」「業界領先」「已外銷日本」「指定合作」，
+ * 而同期的 markdown 早就被前幾輪清乾淨了。
+ *
+ * 「治理文件寫得很好，問題照樣一直發生」的原因之一，就是
+ * 檢查的範圍跟問題發生的範圍對不上。
+ */
+const CHECKED_EXT = /\.(md|mdx|tsx?)$/;
 const CONTENT_DIR = path.join(ROOT, 'content');
 
 // ── 白名單載入 ────────────────────────────────────────────────
@@ -66,6 +79,9 @@ const RULES = [
     // 排除「動作指示」語境：「收集實際數據」「累積真實數據」是叫讀者去取得資料，
     // 不是宣稱我方已有該資料。實測誤判過一次（試營運步驟表的「30天測試，收集實際數據」）。
     re: /(?<!收集|蒐集|取得|累積|建立|需要|沒有)(真實數據|實戰數據|實際數據|實測數據|完整公開|真實案例數據|實際營收|真實營運數據)[^。\n]{0,40}?[0-9]/,
+    // 2026-08-26：免責聲明不是宣稱。「假設情境試算（僅供參考，非實際數據）」
+    // 是在講「這不是真的數據」，反而該鼓勵，卻被原規則抓成違規（誤判 3 次）。
+    skip: /非實際數據|非真實數據|僅供參考|假設情境|示意用|舉例說明/,
     hint: '改成不宣稱資料來源的敘述，或提供可回查來源並加入白名單',
   },
   {
@@ -102,6 +118,29 @@ const RULES = [
     hint: '標題與 description 是 SERP 門面，不得出現未查證金額',
   },
   {
+    level: 'BLOCK',
+    name: '自我最高級宣稱',
+    // 2026-08-26 立。這輪在三站清掉的最高級包括「台灣唯一擁有上百台實績」
+    // 「食安管控業界領先」「AI 智取櫃的領導製造商」「台灣市場最具完整技術能力」
+    // 「100% 台灣製造」「唯一整合線上線下的 AI 零售作業系統」。
+    // 這些出現在首頁 title、Hero、四語系 i18n——最顯眼也最難事後補救的位置。
+    re: /(台灣唯一|全台唯一|業界領先|領導品牌|領導製造商|最具完整|100\s*%\s*台灣|唯一整合|唯一通過|唯一成功|全台首創的自家|業界第一)/,
+    // 講第三方的公認事實不擋：「NXP 全球最大 NFC 晶片廠」「CCTV 中國最大國家級電視台」
+    // 「中華電信是台灣最大的電信業者」都是關於別人的、可查證的敘述。
+    skip: /NXP|CCTV|中華電信|Intel|IBM|XMART|艾克市|台積電|鴻海是/,
+    hint: '拿掉比較級，只留可查證的事實（「上百台實績」可以，「台灣唯一擁有上百台實績」不行）',
+  },
+  {
+    level: 'BLOCK',
+    name: '把意向書說成已完成的交易',
+    // 2026-08-26 立。站上曾有 26 處把日本首都高的 NDA+MOU 寫成
+    // 「已外銷」「成功進駐服務區」「旅客 24H 自助選購」「通過嚴格驗收標準」。
+    // 站內證據只到：MOU 已簽、日方代表團 2024/10 親訪台灣工廠、我方赴日勘查。
+    // 對具名第三方宣稱未完成的交易，風險遠高於數字寫錯。
+    re: /(已外銷|成功外銷|成功進駐)[^。\n]{0,20}(日本|首都高|高速公路)|(首都高|Shuto)[^。\n]{0,30}(指定合作|穩定運作|通過[^。\n]{0,6}驗收)/,
+    hint: '照實際階段寫：「已簽訂 NDA 與 MOU，共同評估導入」「日方代表團已親訪台灣工廠實地驗證設備」',
+  },
+  {
     level: 'WARN',
     name: '正文金額',
     re: /(NT\$\s?[0-9][0-9,]*|[0-9][0-9,]{2,}\s*元)/,
@@ -135,6 +174,9 @@ function checkFile(file, whitelist, showWarn) {
     const nline = norm(line);
     if (whitelist.some((c) => nline.includes(c))) return;
 
+    // 2026-08-26：跳過程式註解。治理註解常引用被禁的字串來說明「為什麼不能寫」，
+    // 那是說明不是宣稱。只跳過整行都是註解的情況，行尾註解仍檢查。
+    if (/^\s*(\/\/|\*|\/\*)/.test(line)) return;
     for (const rule of RULES) {
       if (rule.level === 'WARN' && !showWarn) continue;
       // 標題規則要對整行（含 frontmatter key）比對
@@ -167,11 +209,14 @@ function targetFiles(argv) {
       if (!fs.existsSync(d)) return;
       for (const e of fs.readdirSync(d, { withFileTypes: true })) {
         const p = path.join(d, e.name);
-        if (e.isDirectory()) walk(p);
-        else if (e.name.endsWith('.md')) out.push(p);
+        if (e.isDirectory()) {
+          if (e.name === 'node_modules' || e.name === '.next') continue;
+          walk(p);
+        } else if (CHECKED_EXT.test(e.name)) out.push(p);
       }
     };
     walk(CONTENT_DIR);
+    walk(path.join(ROOT, 'src'));   // 2026-08-26：TSX 也要檢查，見檔頭說明
     return out;
   }
 
@@ -181,7 +226,7 @@ function targetFiles(argv) {
       .toString()
       .trim()
       .split('\n')
-      .filter((f) => f.endsWith('.md'))
+      .filter((f) => CHECKED_EXT.test(f))
       .map((f) => path.join(ROOT, f))
       .filter((f) => fs.existsSync(f));
   } catch {
@@ -195,7 +240,7 @@ const showWarn = argv.includes('--warn') || argv.includes('--all');
 const files = targetFiles(argv);
 
 if (!files.length) {
-  console.log('內容閘門：沒有要檢查的 markdown，通過。');
+  console.log('內容閘門：沒有要檢查的內容檔（.md/.mdx/.ts/.tsx），通過。');
   process.exit(0);
 }
 

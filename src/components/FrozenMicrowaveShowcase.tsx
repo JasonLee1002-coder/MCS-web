@@ -99,7 +99,7 @@ function CinematicHero() {
             >
               冷食瞬間變熱餐。
               <br className="hidden sm:block" />
-              日本首都高速公路指定合作。
+              與日本首都高速公路簽訂 MOU。
             </motion.p>
 
             <motion.div
@@ -320,7 +320,7 @@ function FeatureShowcase() {
       accent: "text-cyan-400",
     },
     {
-      title: "食安管控業界領先",
+      title: "食安與溫控管理",
       desc: "服務大型連鎖通路實戰經驗。食品效期自動管理、溫度即時監控、異常 LINE 即時推播。",
       icon: "🛡️",
       accent: "text-green-400",
@@ -518,7 +518,7 @@ function JapanMOU() {
             <h2 className="text-4xl sm:text-5xl font-black text-white mb-6 leading-tight">
               日本首都高速公路<br />
               <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-                MOU 指定合作
+                MOU 已簽訂
               </span>
             </h2>
             <p className="text-white/50 text-lg leading-relaxed mb-8">
@@ -618,7 +618,7 @@ function FoodSafetyPlatform() {
 /* ───── Use Cases ───── */
 function UseCases() {
   const cases = [
-    { icon: "🛣️", title: "高速公路休息站", desc: "日本首都高速指定合作，24H 熱食服務", featured: true },
+    { icon: "🛣️", title: "高速公路休息站", desc: "與日本首都高速簽訂 MOU，規劃 24H 熱食服務", featured: true },
     { icon: "🦐", title: "冷凍食材業 24H 站", desc: "品牌直營無中間商，拓展 24H 通路", featured: true },
     { icon: "🍳", title: "餐飲連鎖 24H 延伸", desc: "門市不打烊，招牌餐冷凍微波即食", featured: true },
     { icon: "🏪", title: "便利商店 / 超市", desc: "店外擴增冷凍鮮食銷售點位", featured: false },
