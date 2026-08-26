@@ -39,12 +39,16 @@ const DEFAULT_PATH = '/products/frozen-microwave'
 function buildHref(target: string, medium: string, campaign: string, autoOpenAi: boolean) {
   const base = SLUG_TO_PATH[target] ?? DEFAULT_PATH
   const [path, hash] = base.split('#')
+  // 站內連結不掛 UTM。2026-08-26：GSC 顯示 /products/grabox 與
+  // /products/frozen-microwave 都「已找到但未建立索引」，Google 記到的來源連結
+  // 全是 ?utm_source=article&utm_medium=keyword-trigger&... 這種變體。
+  // UTM 是站外歸因用的，掛在內鏈上會分散內鏈權重、讓 GA4 把站內點擊
+  // 當成新來源 session、並產生大量只差參數的重複 URL。
+  // 內鏈點擊要追蹤請發 GA4 事件，不要動 URL。
   const params = new URLSearchParams()
-  if (autoOpenAi) params.set('ai', '1')
-  params.set('utm_source', 'article')
-  params.set('utm_medium', medium)
-  params.set('utm_campaign', campaign)
-  return `${path}?${params.toString()}${hash ? '#' + hash : ''}`
+  if (autoOpenAi) params.set('ai', '1')   // 功能參數，不是追蹤參數
+  const qs = params.toString()
+  return `${path}${qs ? '?' + qs : ''}${hash ? '#' + hash : ''}`
 }
 
 interface KeywordTriggerProps {

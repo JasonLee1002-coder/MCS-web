@@ -186,7 +186,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">辦公室茶水間該怎麼優化？AI 顧問幫你估算</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們茶水間坪數、員工人數、目前的補貼方式，AI 立刻給出坪效試算與設備配置建議</p>
-            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=office-pantry-space-yield"
+            <a href="/products/frozen-microwave?ai=1"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

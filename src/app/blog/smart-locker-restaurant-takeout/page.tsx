@@ -152,7 +152,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">有場域需求？直接跟 AI 顧問說，3 分鐘整理你的方案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們門市數量、日均外帶訂單、現有 POS 系統，AI 立刻給出最適合的取物櫃配置</p>
-            <a href="/products/grabox?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=restaurant-takeout"
+            <a href="/products/grabox?ai=1"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

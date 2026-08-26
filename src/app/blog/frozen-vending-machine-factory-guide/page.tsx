@@ -190,7 +190,7 @@ export default function Article() {
             <p className="text-lg font-bold text-slate-200 mb-2">有場域需求？直接跟 AI 顧問說，3 分鐘整理你的方案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們場域規模、夜班人數、預算，AI 立刻給出初步配置建議</p>
             <a
-              href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=frozen-vending-factory"
+              href="/products/frozen-microwave?ai=1"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white"
               style={{ background: '#FF6B35' }}
             >

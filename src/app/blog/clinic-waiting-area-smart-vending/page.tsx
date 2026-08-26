@@ -153,7 +153,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">診所候診區想導入設備？AI 顧問 3 分鐘給你方案</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們候診區坪數、日均候診人次、科別類型，AI 立刻給出最適合的設備配置</p>
-            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=clinic-waiting-area"
+            <a href="/products/frozen-microwave?ai=1"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

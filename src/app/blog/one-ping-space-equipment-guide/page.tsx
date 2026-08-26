@@ -156,7 +156,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">不確定自己的空間夠不夠格？AI 顧問 3 分鐘幫你判斷</p>
             <p className="text-slate-400 text-sm mb-5">告訴我們空間坪數、形狀、現有電力條件，AI 立刻給出最適合的設備配置建議</p>
-            <a href="/products/grabox?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=one-ping-space"
+            <a href="/products/grabox?ai=1"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>

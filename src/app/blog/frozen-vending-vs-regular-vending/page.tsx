@@ -188,7 +188,7 @@ export default function Article() {
           <div className="rounded-xl p-5 my-6 text-center" style={{ background: '#0f2744', border: '1px solid rgba(255,107,53,0.3)' }}>
             <p className="text-lg font-bold text-slate-200 mb-2">不確定選哪種？3 分鐘讓 AI 幫你判斷</p>
             <p className="text-slate-400 text-sm mb-5">告訴 AI 顧問你的場域類型、人數、補貨條件，立刻得到個人化推薦</p>
-            <a href="/products/frozen-microwave?ai=1&utm_source=blog&utm_medium=article-bottom&utm_campaign=vending-comparison"
+            <a href="/products/frozen-microwave?ai=1"
               className="inline-block px-8 py-3 rounded-xl font-bold text-white" style={{ background: '#FF6B35' }}>
               立即諮詢 AI 顧問 →
             </a>
