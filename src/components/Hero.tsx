@@ -1,32 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { MagneticHover } from "@/components/motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/translations";
 import OmniCoreViz from "@/components/OmniCoreViz";
 
-// Count-up hook
-function useCountUp(target: number, duration = 1.4) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const [display, setDisplay] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const steps = 36;
-    const stepTime = (duration * 1000) / steps;
-    const inc = target / steps;
-    const t = setInterval(() => {
-      start += inc;
-      if (start >= target) { setDisplay(target); clearInterval(t); }
-      else setDisplay(Math.floor(start));
-    }, stepTime);
-    return () => clearInterval(t);
-  }, [inView, target, duration]);
-  return { ref, display };
-}
+// 2026-08-26：原本這裡有個 useCountUp，用來把 Hero 的「88%」跑成動畫數字。
+// 那個 88% 不在 content-governance/verified-claims.md 裡，也找不到可回查來源，
+// Jason 裁示改成「大幅節省」，數字沒了，這個 hook 也就沒有使用者。
+// 之後若要再做數字動畫，先確認那個數字有出處並列進白名單，再把 hook 加回來。
 
 // Word-stagger animation
 const wordVariants = {
@@ -48,10 +32,9 @@ const TAGLINE = {
       { text: "ERP/會員/金流/物流串接", style: "text-white font-semibold" },
       { text: "的智慧零售作業系統", style: "text-gray-300" },
     ],
-    line2pre: "一個平台讓連鎖品牌省下",
-    countTarget: 88,
-    countSuffix: "%",
-    line2post: " 的 IT 建置成本",
+    line2pre: "一個平台讓連鎖品牌",
+    highlight: "大幅節省",
+    line2post: " IT 建置成本",
     line3: "真正讓每一個場域的營運效益最大化",
   },
   en: {
@@ -64,10 +47,9 @@ const TAGLINE = {
       { text: " ERP/Loyalty/Payment/Logistics", style: "text-white font-semibold" },
       { text: " — one AI Retail OS.", style: "text-gray-300" },
     ],
-    line2pre: "Enterprise partners save",
-    countTarget: 88,
-    countSuffix: "%",
-    line2post: " on IT infrastructure costs",
+    line2pre: "Enterprise partners",
+    highlight: "substantially cut",
+    line2post: " their IT infrastructure costs",
     line3: "— maximizing revenue at every venue.",
   },
   ja: {
@@ -81,9 +63,8 @@ const TAGLINE = {
       { text: "——AI小売OSで一元管理。", style: "text-gray-300" },
     ],
     line2pre: "企業パートナーのITコストを",
-    countTarget: 88,
-    countSuffix: "%",
-    line2post: "削減",
+    highlight: "大幅に削減",
+    line2post: "",
     line3: "——すべての拠点で収益を最大化。",
   },
   id: {
@@ -96,17 +77,15 @@ const TAGLINE = {
       { text: " ERP/Loyalitas/Pembayaran/Logistik", style: "text-white font-semibold" },
       { text: " — satu AI Retail OS.", style: "text-gray-300" },
     ],
-    line2pre: "Hemat",
-    countTarget: 88,
-    countSuffix: "%",
-    line2post: " biaya IT infrastruktur",
+    line2pre: "Pangkas biaya IT infrastruktur",
+    highlight: "secara signifikan",
+    line2post: "",
     line3: "— maksimalkan pendapatan di setiap venue.",
   },
 };
 
 function AnimatedTagline({ lang }: { lang: string }) {
   const tl = TAGLINE[lang as keyof typeof TAGLINE] ?? TAGLINE.zh;
-  const { ref, display } = useCountUp(tl.countTarget, 1.4);
   const containerRef = useRef<HTMLDivElement>(null);
   const containerInView = useInView(containerRef, { once: true });
 
@@ -128,7 +107,11 @@ function AnimatedTagline({ lang }: { lang: string }) {
         ))}
       </p>
 
-      {/* Line 2 — 88% callout */}
+      {/* Line 2 — 成本效益 callout
+          2026-08-26：原本是一個 88 的動畫計數器（「省下 88% 的 IT 建置成本」）。
+          那個數字不在 content-governance/verified-claims.md 裡，也找不到可回查來源。
+          Jason 2026-08-26 裁示：「大幅節省 就好」。
+          視覺焦點改用詞組承接——保留同樣的橘色與發光，字級因為是詞不是數字而降一階。 */}
       <motion.p
         className="text-xl sm:text-2xl font-medium leading-relaxed"
         initial={{ opacity: 0, y: 14 }}
@@ -136,14 +119,8 @@ function AnimatedTagline({ lang }: { lang: string }) {
         transition={{ duration: 0.5, delay: 1.55 }}
       >
         <span className="text-gray-300">{tl.line2pre} </span>
-        <span className="inline-flex items-baseline gap-0.5">
-          <span
-            ref={ref}
-            className="text-4xl sm:text-5xl font-black text-mcs-orange drop-shadow-[0_0_16px_rgba(232,117,26,0.5)]"
-          >
-            {display}
-          </span>
-          <span className="text-3xl font-black text-mcs-orange">{tl.countSuffix}</span>
+        <span className="text-3xl sm:text-4xl font-black text-mcs-orange drop-shadow-[0_0_16px_rgba(232,117,26,0.5)]">
+          {tl.highlight}
         </span>
         <span className="text-gray-300">{tl.line2post}</span>
       </motion.p>

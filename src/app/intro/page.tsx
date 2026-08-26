@@ -2793,7 +2793,7 @@ export default function IntroPage() {
                   <div className="mt-5 inline-flex items-center gap-2 bg-[#E8751A]/15 border border-[#E8751A]/40 rounded-full px-4 py-2">
                     <span className="w-2 h-2 rounded-full bg-[#E8751A] animate-pulse flex-shrink-0" />
                     <span className="text-[#f5a87a] text-sm font-bold">
-                      {lang === "ja" ? "企業 IT コスト 88% 削減" : lang === "en" ? "88% lower IT build cost" : "企業 IT 建置成本節省 88%"}
+                      {lang === "ja" ? "企業 IT コストを大幅に削減" : lang === "en" ? "Substantially lower IT build cost" : "企業 IT 建置成本大幅節省"}
                     </span>
                   </div>
                 </div>
