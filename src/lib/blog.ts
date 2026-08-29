@@ -105,10 +105,21 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 
   const processed = await remark().use(gfm).use(html).process(markdown);
 
+  // 內文的 H1 一律降成 H2（2026-08-29）
+  //
+  // 頁面模板已經用文章標題算繪了一個 <h1>，而 107 篇裡有 18 篇的 markdown 內文
+  // 又以「# 同一個標題」開頭——結果那 18 頁有兩個 <h1>，而且文字一模一樣。
+  // 一頁兩個 H1 會讓搜尋引擎與 AI 抓不準這頁的主題，對 AI 摘要更不利。
+  // 線上抽驗 40 頁抓到 7 頁中招（17.5%），與檔案層的 18/107 比例吻合。
+  //
+  // 修在這裡而不是逐篇改 markdown：這是模板層的問題，改一次連未來新寫的文章
+  // 一起保護；逐篇改只解決今天這 18 篇，下一篇照樣會再犯。
+  const demoted = processed.toString().replace(/<h1>([\s\S]*?)<\/h1>/g, "<h2>$1</h2>");
+
   // Extract headings and inject anchor IDs
   const toc: TocItem[] = [];
   const idCount: Record<string, number> = {};
-  const contentHtml = processed.toString().replace(
+  const contentHtml = demoted.replace(
     /<(h[23])>(.*?)<\/h[23]>/g,
     (_, tag: string, content: string) => {
       const level = parseInt(tag[1]);
