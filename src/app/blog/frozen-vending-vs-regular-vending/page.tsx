@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-vs-regular-vending' },
-  title: '冷凍販賣機 vs 一般販賣機：哪個適合你的場域？完整比較指南',
+  title: '冷凍販賣機 vs 一般販賣機：怎麼選',
   description: '冷凍販賣機與一般常溫販賣機的全面比較：選機邏輯、場域適配、投資成本、維護差異。工廠、宿舍、醫院、辦公室，哪個場域選哪種機型？一文看懂。',
 }
 
