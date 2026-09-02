@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-factory-night-solution' },
-  title: '工廠夜班餐食問題怎麼解？冷凍販賣機完整方案指南 | 銓幻元',
+  title: '工廠夜班餐食問題怎麼解？冷凍販賣機完整方案指南',
   description: '台灣製造業夜班人數超過 30 萬，廚房 22:00 關閉後無熱食供應。冷凍販賣機如何解決工廠夜班餐食困境？本文提供場域規劃、設備選型、投資試算完整指南。',
 }
 

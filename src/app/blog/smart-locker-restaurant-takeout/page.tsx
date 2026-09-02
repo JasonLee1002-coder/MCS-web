@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-restaurant-takeout' },
-  title: '餐廳導入智慧取物櫃：外帶免排隊的完整解決方案與投資報酬分析 | 銓幻元',
+  title: '餐廳導入智慧取物櫃：外帶免排隊的完整解決方案與投資報酬分析',
   description: '餐廳外帶尖峰時段排隊 15 分鐘是常態？智慧取物櫃讓外帶自取等待時間降至 30 秒，同時釋放 1–2 人力。本文提供選型指南、真實案例與 ROI 試算。',
 }
 

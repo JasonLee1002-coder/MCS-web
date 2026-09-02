@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-vendor-selection' },
-  title: '冷凍販賣機廠商怎麼選？採購主管必看的 6 大評估指標（2026）| 銓幻元',
+  title: '冷凍販賣機廠商怎麼選？採購主管必看的 6 大評估指標（2026）',
   description: '台灣冷凍販賣機廠商良莠不齊，哪些指標能篩出真正靠得住的供應商？本文從售後服務、技術規格、財務穩定性等 6 個維度提供完整評估框架。',
 }
 

@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-machine-factory-guide' },
-  title: '冷凍販賣機怎麼選？工廠採購主管必看的 5 個關鍵指標（2026）| 銓幻元',
+  title: '冷凍販賣機怎麼選？工廠採購主管必看的 5 個關鍵指標（2026）',
   description: '工廠採購冷凍販賣機前必讀。容量規格、溫控標準、補貨頻率、維護費用、投資回收 5 大指標全解析，附真實場域數據與廠商評比重點。',
 }
 

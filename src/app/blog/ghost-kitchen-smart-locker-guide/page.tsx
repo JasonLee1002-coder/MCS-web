@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/ghost-kitchen-smart-locker-guide' },
-  title: '幽靈廚房設備選購完整指南：AI 智取物流櫃為何是核心配備 | 銓幻元',
+  title: '幽靈廚房設備選購完整指南：AI 智取物流櫃為何是核心配備',
   description: '幽靈廚房如何在多場域同步派送餐食？關鍵在「最後一哩路」的智慧取物櫃。本文詳解選型重點、場域佈建策略與 AI 勞動力降本方案。',
 }
 

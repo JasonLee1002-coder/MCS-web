@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-elderly-care' },
-  title: '長照機構冷凍販賣機：24 小時銀髮族餐食供應完整指南 | 銓幻元',
+  title: '長照機構冷凍販賣機：24 小時銀髮族餐食供應完整指南',
   description: '長照機構、護理之家、日照中心的餐食供應有嚴格規範。冷凍販賣機如何在符合長照法規的前提下，解決夜間照護人員餐食和補充性點心需求？含真實案例。',
 }
 

@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/frozen-vending-migrant-worker-dormitory' },
-  title: '移工宿舍放冷凍販賣機：導入評估與完整成本回收分析 | 銓幻元',
+  title: '移工宿舍放冷凍販賣機：導入評估與完整成本回收分析',
   description: '台灣移工超過 76 萬人，宿舍夜間餐食是長年痛點。本文說明工廠移工宿舍導入冷凍販賣機的評估重點：使用率趨勢、成本結構、回收期試算與常見情境。',
 }
 

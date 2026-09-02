@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-campus' },
-  title: '校園智慧取物櫃：大學、科大學生餐食自動化完整指南 | 銓幻元',
+  title: '校園智慧取物櫃：大學、科大學生餐食自動化完整指南',
   description: '大學餐廳午餐排隊 20 分鐘是常態，課間 10 分鐘根本不夠。校園智慧取物系統讓學生手機訂餐、課後取餐，免排隊、免等待。含費用試算與學校採購說明。',
 }
 

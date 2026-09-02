@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/smart-locker-complete-guide' },
-  title: '智慧取物櫃是什麼？5 分鐘看懂運作原理與 6 大商業應用 | 銓幻元',
+  title: '智慧取物櫃是什麼？5 分鐘看懂運作原理與 6 大商業應用',
   description: '從餐廳外帶、辦公室訂餐、醫院輕食到工廠員工餐，智慧取物櫃正在改變台灣各場域的無人化取餐體驗。本文詳解運作原理、選型重點與真實案例。',
 }
 

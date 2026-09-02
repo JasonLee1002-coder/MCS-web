@@ -3,7 +3,7 @@ import { KeywordTrigger, ArticleCTA } from '@/components/KeywordTrigger'
 
 export const metadata: Metadata = {
   alternates: { canonical: 'https://www.mcstation.ai/blog/one-ping-space-equipment-guide' },
-  title: '1坪店面能放什麼設備？小空間複合式部署完整指南 | 銓幻元',
+  title: '1坪店面能放什麼設備？小空間複合式部署完整指南',
   description: '只有1坪、1.5坪、2坪的閒置空間，到底能放哪些自助設備組合？從單一智取櫃到咖啡機加販賣機的複合配置，用坪數對照表告訴你自己的空間夠不夠格當AI勞動力基地。',
 }
 
